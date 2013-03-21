@@ -1,3 +1,10 @@
+/* Overthrow CSS:
+   Enable overflow: auto on elements with overthrow class when html element has overthrow class too */
+.overthrow-enabled .overthrow {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /**
  * Includes a base64-encoded icon for use within tab bars and buttons (With the component parameter iconMask: true).
  * It is identical to the built in sencha pictos-iconmask mixin except that this one also creates the more generic x-icon-max.foo class
