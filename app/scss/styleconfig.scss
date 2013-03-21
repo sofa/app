@@ -1,0 +1,79 @@
+// START Configuration **********************************************************************************************
+$toolbar-background-color: transparent;
+//applies to icons on the toolbar
+$toolbar-icon-color: #C90630;
+//applies to text on the toolbar
+$toolbar-text-color: #C90630;
+
+
+$background-color: #cccccc;
+//applies to icons on the background (if any)
+$background-icon-color: #7F7F7F;
+//applies to text on the background
+$background-text-color: #666666;
+//OPTIONAL $background-border-color that applies to borders on the background
+$background-border-color: #9c9c9c;
+
+
+$content-background-color: #ffffff;
+//applies to icons on the content area
+$content-icon-color: #C90630;
+//applies to text on the content area
+$content-text-color:  #666666;
+
+//this is optional (we automatically try to pick a nice color)
+//$content-border-color: red;
+
+
+//applies to default buttons
+$default-button-background-color: #FA8732;
+// applies to text on default buttons
+$default-button-text-color: #000000;
+
+
+//applies to buttons that are somewhat positive (e.g. add, ok)
+$positive-button-background-color: #c7e76c;
+//applies to text on buttons that are somewhat positive
+$positive-button-text-color: #F1FFD6;
+
+
+//applies to buttons that are somewhat negative (e.g. remove, cancel)
+$negative-button-background-color: #C94A27;
+//applies to text on buttons that are somewhat negative
+$negative-button-text-color: #ffe0cb;
+
+
+//applies to info areas
+$info-area-background-color: #f95679;
+//applies to icons on info areas
+$info-area-icon-color: #4d0313;
+//applies to text on info areas
+$info-area-text-color: #4d0313;
+
+
+//applies to warning areas
+$warning-background-color: #000000;
+//applies to icons on warning areas
+$warning-icon-color: #ffffff;
+//applies to text on warning areas
+$warning-text-color: #000000;
+
+$font1: 'Lucida Grande', Helvetica, Verdana, Arial, Times;
+
+$font-size-huge: 26px;
+
+$font-size-big: 20px;
+
+$font-size-medium: 16px;
+
+$font-size-regular: 13px;
+
+$font-size-small: 12px;
+
+$font-size-tiny: 11px;
+
+
+// Toolbar image name tablet
+$toolbarURL_tablet: url(../images/toolbar.png);
+$toolbarURL_phone: url(../images/toolbar_phone.png);
+// END Configuration **********************************************************************************************

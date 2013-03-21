@@ -1,0 +1,31 @@
+// .cc-product-listing-row{
+//     @extend %cc-list-row;
+// }
+
+// .cc-product-listing-row-image{
+//     @extend %cc-list-row-image;
+// }
+
+// .cc-product-listing-row-text{
+//     @extend %cc-list-row-text;
+// }
+
+.cc-product-list-row-text{
+    display: block;
+    position: relative;
+    color: $content-text-color;
+    font-size: $font-size-regular;
+}
+
+.cc-product-list-row-name{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-weight: bold;
+}
+
+.cc-product-list-row-price{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}

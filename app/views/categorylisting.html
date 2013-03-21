@@ -1,0 +1,18 @@
+
+<default-couch-view>
+    <ul class="cc-list cc-category-listing">
+        <li ng-repeat="category in categories.children"
+            ng-click="goToCategory(category)" 
+            class="cc-list-row cc-category-listing-row" >
+            <div class="cc-list-row-image cc-category-listing-row-image" 
+                 style="background-image: url({{category.image}})">
+
+            </div>
+            <div class="cc-list-row-text cc-category-listing-row-text">
+                <div class="cc-list-row-text-centered">
+                    {{category.label}}
+                </div>
+            </div>
+        </li>
+    </ul>
+</default-couch-view>

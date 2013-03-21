@@ -1,0 +1,146 @@
+
+
+@mixin vendor-prefix($name, $argument) {
+  #{$name}: $argument;
+  -webkit-#{$name}: $argument;
+  -ms-#{$name}: $argument;
+  -moz-#{$name}: $argument;
+  -o-#{$name}: $argument;
+}
+
+
+
+@mixin anti-blurry {
+    -webkit-transform: translate3d(0,0,0);
+}
+
+//todo: can we make that more generic so that we only need one
+//black-or-white function that returns just black or white instead
+///of beeing coupled to the color attribute?
+@mixin black-or-white($color) {
+    @if lightness($color) > 40 {
+        color:  #000000;
+    }
+    @else {
+        color: #ffffff;
+    }
+}
+
+//Todo pass in the context-color (e.g. $content-background-color) so that
+//the function has more knowledge about the context and can find the best match
+@mixin try-lighter($attribute, $color, $amount:40%) {
+    @if lightness($color) > 80 {
+        #{$attribute}: darken($color, $amount);
+    }
+    @else {
+        #{$attribute}: lighten($color, $amount);
+    }
+}
+
+@mixin try-darker($attribute, $color, $amount:40%) {
+    @if lightness($color) < 20 {
+        #{$attribute}: lighten($color, $amount);
+    }
+    @else {
+        #{$attribute}: darken($color, $amount);
+    }
+}
+
+@mixin try-lighter-extended($attribute, $color, $prefix, $postfix, $amount:40%) {
+    @if lightness($color) > 80 {
+        #{$attribute}: #{$prefix} darken($color, $amount) #{$postfix};
+    }
+    @else {
+        #{$attribute}: #{$prefix} lighten($color, $amount) #{$postfix};
+    }
+}
+
+@mixin try-darker-extended($attribute, $color, $prefix, $postfix, $amount:40%) {
+    @if lightness($color) < 20 {
+        #{$attribute}: #{$prefix} lighten($color, $amount) #{$postfix};
+    }
+    @else {
+        #{$attribute}: #{$prefix} darken($color, $amount) #{$postfix};
+    }
+}
+
+
+@mixin button-gradient($bg-color){
+
+    $background-color-mid: darken($bg-color, 10%);
+    $background-color-last: darken($bg-color, 20%);
+
+    background-image: none;
+    background-color: $bg-color;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $bg-color), color-stop(3%, $background-color-mid), color-stop(100%, $background-color-last));
+    background-image: -webkit-linear-gradient(top, $bg-color, $background-color-mid 3%, $background-color-last);
+    background-image: linear-gradient(top, $bg-color, $background-color-mid 3%, $background-color-last)
+}
+
+@mixin button-gradient-pressed($temp-bg-color){
+
+    $bg-color: lighten($temp-bg-color, 20%);
+
+    $background-color-mid: darken($bg-color, 10%);
+    $background-color-last: darken($bg-color, 20%);
+
+    background-image: none;
+    background-color: $bg-color;
+    background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $bg-color), color-stop(3%, $background-color-mid), color-stop(100%, $background-color-last));
+    background-image: -webkit-linear-gradient(top, $bg-color, $background-color-mid 3%, $background-color-last);
+    background-image: linear-gradient(top, $bg-color, $background-color-mid 3%, $background-color-last)
+}
+
+
+@mixin gradient-button($color) {
+  @include background-image(
+    linear-gradient(top,
+      lighten($color, 20%) 0%,
+      darken($color, 20%) 100%)
+    );
+}
+
+/**
+ * Includes a base64-encoded icon for use within tab bars and buttons (With the component parameter iconMask: true).
+ * It is identical to the built in sencha pictos-iconmask mixin except that this one also creates the more generic x-icon-max.foo class
+ * At some point we might want to tweak it to allow pointing to a different folder: http://www.sencha.com/forum/showthread.php?136129-Theming-change-where-theme-image()-function-points
+ *
+ *     @include pictos-iconmask('attachment');
+ *
+ * @param {string} $name The name of the icon to be included. This is to match the name of the icon file (located at resources/themes/images/default/pictos) without its extention (.png).
+ */
+@mixin cc-pictos-iconmask($name) {
+    .x-icon-mask.#{$name},
+    .x-tab .x-button-icon.#{$name},
+    .x-button .x-button-icon.x-icon-mask.#{$name} {
+        -webkit-mask-image: theme_image($theme-name, "pictos/" + $name + ".png");
+    }
+}
+
+@mixin cc-selectbox-ui($name, $color){
+    .x-field-#{$name}{
+        background: none;
+        border: 1px solid $color;
+        border-radius: 15px;
+        position: relative;
+
+        .x-form-label{
+            background: none;
+            border-right: 1px solid $color;
+        }
+
+        .x-component-outer::after{
+            @extend .x-icon-mask.arrow2_down;
+            content: "";
+            position: absolute;
+            width: 1.4em;
+            height: 1.4em;
+            top: 50%;
+            left: auto;
+            right: 0.7em;
+            -webkit-mask-size: 1.4em;
+            margin-top: -0.7em;
+            background: $color;
+        }
+    }
+}

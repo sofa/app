@@ -1,0 +1,1 @@
+# a spike for the CouchCommerce frontend written in AngularJS

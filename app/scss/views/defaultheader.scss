@@ -1,0 +1,38 @@
+.cc-header{
+    background: #ffffff; /* Old browsers */
+    background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+    width: 100%;
+    position: relative;
+}
+
+.cc-header-icon{
+    color: $toolbar-icon-color;
+    position: absolute;
+}
+
+.cc-header-icon:active, .active.cc-header-icon{
+    color: white;
+    //@include try-lighter('color', $toolbar-icon-color, 10%);
+}
+
+.cc-header-go-back{
+    line-height: 45px;
+    padding-left: 10px;
+}
+
+.cc-header-logo-wrapper{
+    @extend %cc-expand-only;
+    text-align: center;
+    line-height: 45px;
+}
+
+.cc-header-logo{
+    text-shadow: 2px 2px 2px white;
+    font-size: $font-size-huge;
+}
