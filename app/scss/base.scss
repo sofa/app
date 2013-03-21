@@ -54,9 +54,19 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     @extend %cc-expand-only;
 }
 
-.cc-scrollable{
-    overflow: scroll;
+%cc-scrollable {
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+.cc-scrollable{
+    @extend %cc-scrollable;
+}
+
+/* Overthrow CSS:
+   Enable overflow: auto on elements with overthrow class when html element has overthrow class too */
+.cc-scrollable-enabled .cc-scrollable {
+    @extend %cc-scrollable;
 }
 
 .cc-container, %cc-container{
