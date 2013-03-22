@@ -19,7 +19,7 @@ angular
             $scope.productService = productService;
 
             $scope.goToProduct = function(product){
-                $location.path('cat/' + $scope.categoryUrlId + '/product/' + product.id);
+                $location.path('cat/' + $scope.categoryUrlId + '/product/' + product.urlKey);
             };
 
             couchService

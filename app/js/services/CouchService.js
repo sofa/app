@@ -32,6 +32,7 @@ angular
     .module('CouchCommerceApp')
     .factory('couchService', ['$http', '$q', function($http, $q){
         var self = {},
+            products = {},
             currentCategory = null;
 
         self.getCategories = function(rootCategory){
@@ -62,8 +63,35 @@ angular
                     '&cat=' + categoryUrlId +
                     '&callback=JSON_CALLBACK')
                     .then(function(data){
-                       return data.data.products;
+                        //FixMe we are effectively creating a memory leak here by caching all
+                        //seen products forever. This needs to be more sophisticated
+                        products[categoryUrlId] = data.data.products;
+                        return data.data.products;
                     });
+        };
+
+        self.getProduct = function(categoryUrlId, productUrlId){
+            if(!products[categoryUrlId]){
+                return self.getProducts(categoryUrlId)
+                    .then(function(data){
+                        return getProduct(data, productUrlId)
+                    });
+            }
+
+            var deferredProduct = $q.defer();
+            deferredProduct.resolve(getProduct(products[categoryUrlId], productUrlId));
+            return deferredProduct.promise;
+        };
+
+        var getProduct = function(products, productUrlId){
+            for (var i = 0; i < products.length; i++) {
+                var product = products[i];
+                if (product.urlKey === productUrlId){
+                    return product;
+                }
+            };
+
+            return null;
         };
 
         self.getCurrentCategory = function(){
