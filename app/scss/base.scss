@@ -138,3 +138,16 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     width: 100%;
     height: 100%;
 }
+
+.cc-view-wrapper{
+    padding: 10px;
+}
+
+.cc-view-phone{
+    color: $background-text-color;
+}
+
+.cc-view-title{
+    font-size: $font-size-big;
+    font-weight: bold;
+}

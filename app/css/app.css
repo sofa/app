@@ -1453,6 +1453,19 @@ table {
   height: 100%;
 }
 
+.cc-view-wrapper {
+  padding: 10px;
+}
+
+.cc-view-phone {
+  color: #666666;
+}
+
+.cc-view-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .cc-list {
   margin: 0 10px 10px 10px;
 }
@@ -1566,4 +1579,14 @@ table {
   position: absolute;
   bottom: 5px;
   right: 5px;
+}
+
+.cc-product-view-image {
+  height: 300px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  background-color: white;
+  border: 1px solid #9c9c9c;
 }

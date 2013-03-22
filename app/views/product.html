@@ -1,5 +1,7 @@
 <default-couch-view>
-    <div class="cc-view-wrapper">
-        <div class="cc-product-view-title">{{product.name}}</div>
+    <div class="cc-view-wrapper cc-view-phone">
+        <div class="cc-view-title">{{product.name}}</div>
+        <div class="cc-product-view-image"
+             style="background-image: url({{productService.getImage(product, 'small')}})"></div>
     </div>
 </default-couch-view>

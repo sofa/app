@@ -56,7 +56,9 @@ angular
         };
 
         self.getProducts = function(categoryUrlId){
-            return $http
+
+            if(!products[categoryUrlId]){
+                return $http
                     .jsonp(cc.Config.apiUrl +
                     '?&stid=' +
                     cc.Config.storeId +
@@ -68,6 +70,11 @@ angular
                         products[categoryUrlId] = data.data.products;
                         return data.data.products;
                     });
+            }
+
+            var deferredProducts = $q.defer();
+            deferredProducts.resolve(products[categoryUrlId]);
+            return deferredProducts.promise;
         };
 
         self.getProduct = function(categoryUrlId, productUrlId){
