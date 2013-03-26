@@ -58,18 +58,20 @@ angular
         self.getProducts = function(categoryUrlId){
 
             if(!products[categoryUrlId]){
-                return $http
-                    .jsonp(cc.Config.apiUrl +
+                return $http({
+                    method: cc.Config.apiHttpMethod,
+                    url: cc.Config.apiUrl +
                     '?&stid=' +
                     cc.Config.storeId +
                     '&cat=' + categoryUrlId +
-                    '&callback=JSON_CALLBACK')
-                    .then(function(data){
-                        //FixMe we are effectively creating a memory leak here by caching all
-                        //seen products forever. This needs to be more sophisticated
-                        products[categoryUrlId] = data.data.products;
-                        return data.data.products;
-                    });
+                    '&callback=JSON_CALLBACK'
+                })
+                .then(function(data){
+                    //FixMe we are effectively creating a memory leak here by caching all
+                    //seen products forever. This needs to be more sophisticated
+                    products[categoryUrlId] = data.data.products;
+                    return data.data.products;
+                });
             }
 
             var deferredProducts = $q.defer();
@@ -106,14 +108,16 @@ angular
         };
 
         var fetchAllCategories = function(){
-            return $http
-                .get('data/dasgibtesnureinmal/categories.json')
-                .then(function(data){
-                    self.categories = data.data;
-                    augmentCategories(self.categories);
-                    currentCategory = self.categories;
-                    return data.data;
-                });
+            return $http({
+                method: 'get',
+                url: 'data/dasgibtesnureinmal/categories.json'
+            })  
+            .then(function(data){
+                self.categories = data.data;
+                augmentCategories(self.categories);
+                currentCategory = self.categories;
+                return data.data;
+            });
         };
 
         var augmentCategories = function(categories){
