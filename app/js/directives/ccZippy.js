@@ -11,6 +11,23 @@ angular.module("CouchCommerceApp")
             scope: {
                 caption: '=',
             },
-            templateUrl: 'views/generic-directive-templates/cczippy.tpl.html'
+            templateUrl: 'views/generic-directive-templates/cczippy.tpl.html',
+            link: function(scope, element, attrs){
+                var caption = angular.element(element.children('.cc-zippy-caption')[0]),
+                    opened = true,
+                    openedIconClass = 'icon-chevron-down',
+                    closedIconClass = 'icon-chevron-up';
+
+                var toggle = function(){
+                    opened = !opened;
+                    element.removeClass(opened ? 'cc-zippy-closed' : 'cc-zippy-opened');
+                    element.addClass(opened ? 'cc-zippy-opened' : 'cc-zippy-closed');
+                };
+
+                caption.bind('click', toggle);
+
+                toggle();
+
+            }
         };
     });

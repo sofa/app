@@ -1,0 +1,12 @@
+
+.cc-zippy-content{
+    overflow: hidden;
+    max-height: 9999px;
+    @include vendor-prefix('transition', 0.3s);
+}
+
+.cc-zippy-closed{
+    .cc-zippy-content{
+        max-height: 0;
+    }
+}
