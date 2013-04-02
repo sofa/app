@@ -1,6 +1,11 @@
 /* CSS Mobile Reset */
-* {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
 }
 
 html, body
@@ -47,6 +52,20 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.cc-dock-left, %cc-dock-left{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+.cc-dock-right, %cc-dock-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .cc-expand{
@@ -129,6 +148,11 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     display: table-cell;
 }
 
+.cc-table-cell-bottom-aligned, %cc-table-cell-bottom-aligned{
+    @extend %cc-table-cell;
+    vertical-align: bottom;
+}
+
 .cc-table-row, %cc-table-row{
     display: table-row;
 }
@@ -150,4 +174,41 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 .cc-view-title{
     font-size: $font-size-big;
     font-weight: bold;
+}
+
+$button-color-normal: lighten($default-button-background-color, 10%);
+$button-color-pressed: lighten($default-button-background-color, 20%);
+
+.cc-couch-action-button{
+
+    @include vendor-prefix('border-radius', 5px);
+    //using a top and bottom padding is better than setting a fixed height
+    //since it keeps the text centered
+    padding: 12px;
+    border: 2px solid $default-button-background-color;
+    font-size: $font-size-medium;
+    color: $default-button-text-color;
+    text-align: center;
+    //This is so that we can use <a> tags as buttons as well
+    display: inline-block;
+    
+    @if lightness($default-button-text-color) > 40 {
+        text-shadow: 1px 1px 1px #000000;
+    }
+    @else {
+        text-shadow: 1px 1px 1px #ffffff;
+    }
+
+    text-align: center;
+    width: 100%;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$button-color-pressed),color-stop(100%,$button-color-normal));
+    background-image: -webkit-linear-gradient(bottom,$button-color-pressed 28%,$button-color-normal 100%);
+    background-image: linear-gradient(bottom,$button-color-pressed 28%,$button-color-normal 100%);
+
+    &:active{
+        background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$button-color-normal),color-stop(100%,$button-color-pressed));
+        background-image: -webkit-linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
+        background-image: linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
+    }
+
 }

@@ -1316,8 +1316,13 @@ ul.icons li [class*=" icon-"] {
 }
 
 /* CSS Mobile Reset */
-* {
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
 }
 
 html, body {
@@ -1376,6 +1381,20 @@ table {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.cc-dock-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.cc-dock-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .cc-scrollable, .cc-scrollable-enabled .cc-scrollable {
@@ -1439,8 +1458,12 @@ table {
   height: 100%;
 }
 
-.cc-table-cell {
+.cc-table-cell, .cc-table-cell-bottom-aligned {
   display: table-cell;
+}
+
+.cc-table-cell-bottom-aligned {
+  vertical-align: bottom;
 }
 
 .cc-table-row {
@@ -1464,6 +1487,31 @@ table {
 .cc-view-title {
   font-size: 20px;
   font-weight: bold;
+}
+
+.cc-couch-action-button {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  padding: 12px;
+  border: 2px solid #67e667;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  text-shadow: 1px 1px 1px white;
+  text-align: center;
+  width: 100%;
+  background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(28%, #bff4bf), color-stop(100%, #93ed93));
+  background-image: -webkit-linear-gradient(bottom, #bff4bf 28%, #93ed93 100%);
+  background-image: linear-gradient(bottom, #bff4bf 28%, #93ed93 100%);
+}
+.cc-couch-action-button:active {
+  background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(28%, #93ed93), color-stop(100%, #bff4bf));
+  background-image: -webkit-linear-gradient(bottom, #93ed93 28%, #bff4bf 100%);
+  background-image: linear-gradient(bottom, #93ed93 28%, #bff4bf 100%);
 }
 
 .cc-list {
@@ -1581,6 +1629,21 @@ table {
   right: 5px;
 }
 
+.cc-product-view-price-info {
+  position: relative;
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.cc-product-view-price-info-right {
+  text-align: right;
+}
+
+.cc-product-view-price-info-price {
+  font-size: 26px;
+  font-weight: bold;
+}
+
 .cc-product-view-image {
   height: 300px;
   width: 100%;
@@ -1589,4 +1652,8 @@ table {
   background-position: center center;
   background-color: white;
   border: 1px solid #9c9c9c;
+}
+
+.cc-product-view-add-to-cart {
+  margin-bottom: 5px;
 }

@@ -1,3 +1,18 @@
+.cc-product-view-price-info{
+    position: relative;
+    font-size: $font-size-tiny;
+    margin-bottom: 5px;
+}
+
+.cc-product-view-price-info-right{
+    text-align: right;
+}
+
+.cc-product-view-price-info-price{
+    font-size: $font-size-huge;
+    font-weight: bold;
+}
+
 .cc-product-view-image{
     height: 300px;
     width: 100%;
@@ -6,4 +21,8 @@
     background-position: center center;
     background-color: $content-background-color;
     border: 1px solid $background-border-color;
+}
+
+.cc-product-view-add-to-cart{
+    margin-bottom: 5px;
 }

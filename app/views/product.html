@@ -1,7 +1,21 @@
 <default-couch-view>
     <div class="cc-view-wrapper cc-view-phone">
         <div class="cc-view-title">{{product.name}}</div>
+        <div class="cc-product-view-price-info cc-table">
+            <div class="cc-table-cell-bottom-aligned">
+                <div class="cc-product-view-price-info-shipping">zzgl. 5€ Versandkosten</div>
+                <div class="cc-product-view-price-info-base-price">entspricht 9.98 € pro Liter (l)</div>
+            </div>
+            <div class="cc-table-cell-bottom-aligned cc-product-view-price-info-right">
+                <div class="cc-product-view-price-info-price">44.91 €</div>
+                <div class="cc-product-view-price-info-tax">inkl. 19% MwSt.</div>
+            </div>
+        </div>
+        <a class="cc-couch-action-button cc-product-view-add-to-cart">In den Warenkorb</a>
         <div class="cc-product-view-image"
              style="background-image: url({{productService.getImage(product, 'small')}})"></div>
+
+        <cc-zippy caption="'Test'">Dies ist ein Beispieltext</cc-zippy>
+
     </div>
 </default-couch-view>
