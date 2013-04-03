@@ -1,4 +1,16 @@
 
+.cc-zippy-caption{
+    position: relative;
+}
+
+.cc-zippy-icon{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-top: -7px;
+    text-shadow: 1px 1px 1px #ffffff;
+}
+
 .cc-zippy-content{
     overflow: hidden;
     max-height: 9999px;
