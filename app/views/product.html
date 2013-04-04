@@ -15,11 +15,8 @@
         <div class="cc-product-view-image"
              style="background-image: url({{productService.getImage(product, 'small')}})"></div>
 
-        <cc-zippy caption="'Test'">
-        <div>Dies ist ein Beispieltext</div>
-        <div>Dies ist ein Beispieltext</div>
-        <div>Dies ist ein Beispieltext</div>
-        <div>Dies ist ein Beispieltext</div>
+        <cc-zippy caption="lang.productDetails">
+            <div ng-bind-html-unsafe="product.description"></div>
         </cc-zippy>
 
     </div>

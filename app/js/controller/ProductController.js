@@ -12,6 +12,7 @@ angular
                 .getProduct($routeParams.category, $routeParams.productUrlKey)
                 .then(function(product){
                     $scope.product = product;
+                    $scope.lang = cc.Lang;
                 });
         }
     ]);
