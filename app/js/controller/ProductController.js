@@ -12,6 +12,8 @@ angular
                 .getProduct($routeParams.category, $routeParams.productUrlKey)
                 .then(function(product){
                     $scope.product = product;
+
+                    //guess it would make sense if we had lang on the $routeScope
                     $scope.lang = cc.Lang;
                 });
         }
