@@ -212,3 +212,55 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     }
 
 }
+
+/*
+ The animate-enter prefix is the event name that you
+ have provided within the ngAnimate attribute.
+*/
+.animate-enter-setup {
+ -webkit-transition: 0.3s linear left; /* Safari/Chrome */
+ -moz-transition: 0.3s linear left; /* Firefox */
+ -ms-transition: 0.3s linear left; /* IE10 */
+ -o-transition: 0.3s linear left; /* Opera */
+ transition: 0.3s linear left; /* Future Browsers */
+ 
+ /* The animation preparation code */
+ position: relative;
+ left: 100%;
+}
+ 
+/*
+ Keep in mind that you want to combine both CSS
+ classes together to avoid any CSS-specificity
+ conflicts
+*/
+.animate-enter-setup.animate-enter-start {
+ /* The animation code itself */
+ left: 0%;
+}
+
+/*
+ The animate-enter prefix is the event name that you
+ have provided within the ngAnimate attribute.
+*/
+.animate-leave-setup {
+ -webkit-transition: 0.3s linear right; /* Safari/Chrome */
+ -moz-transition: 0.3s linear right; /* Firefox */
+ -ms-transition: 0.3s linear right; /* IE10 */
+ -o-transition: 0.3s linear right; /* Opera */
+ transition: 0.3s linear right; /* Future Browsers */
+ 
+ /* The animation preparation code */
+ position: relative;
+ right: 0%;
+}
+ 
+/*
+ Keep in mind that you want to combine both CSS
+ classes together to avoid any CSS-specificity
+ conflicts
+*/
+.animate-leave-setup.animate-leave-start {
+ /* The animation code itself */
+ right: 100%;
+}

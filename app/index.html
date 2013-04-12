@@ -9,7 +9,13 @@
 </head>
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
 <body ontouchstart="">
-  <div class="cc-full-width-height" ng-view></div>
+  <!-- TODO: we would love to move this into a main.tpl.html but it seems not to be possible by default -->
+  <div ng-controller="MainController" class="cc-full-width-height">
+    <!-- TODO: bind the header and footer to an expression so that it can be changed per view -->
+    <div cc-fixed-toolbars-view header="ui.header" footer="ui.footer">
+        <div ng-view ng-animate="{enter: 'animate-enter' }"></div>
+    </div cc-fixed-toolbars-view>
+  </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
@@ -23,6 +29,7 @@
   <script src="js/services/CouchService.js"></script>
   <script src="js/services/ProductService.js"></script>
   <script src="js/services/NavigationService.js"></script>
+  <script src="js/controller/MainController.js"></script>
   <script src="js/controller/CategoryController.js"></script>
   <script src="js/controller/ProductsController.js"></script>
   <script src="js/controller/ProductController.js"></script>

@@ -5,12 +5,12 @@
 angular.module("CouchCommerceApp")
     .directive('ccFixedToolbarsView', function() {
         return {
-            restrict: 'E',
+            restrict: 'EA',
             replace: true,
             transclude: true,
             scope: {
-                header: '@',
-                footer: '@'
+                header: '=',
+                footer: '='
             },
             templateUrl: 'views/generic-directive-templates/fixedtoolbarsview.html'
         };

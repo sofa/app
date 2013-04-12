@@ -7,7 +7,7 @@
 angular.module("CouchCommerceApp")
     .directive('defaultCouchView', function() {
         return {
-            restrict: 'E',
+            restrict: 'EA',
             replace: true,
             transclude: true,
             templateUrl: 'views/app-directive-templates/defaultcouchview.html'
