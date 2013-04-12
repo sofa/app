@@ -11,7 +11,6 @@
 <body ontouchstart="">
   <!-- TODO: we would love to move this into a main.tpl.html but it seems not to be possible by default -->
   <div ng-controller="MainController" class="cc-full-width-height">
-    <!-- TODO: bind the header and footer to an expression so that it can be changed per view -->
     <div cc-fixed-toolbars-view header="ui.header" footer="ui.footer">
         <div ng-view ng-animate="{enter: 'animate-enter' }"></div>
     </div cc-fixed-toolbars-view>
