@@ -218,15 +218,16 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
  have provided within the ngAnimate attribute.
 */
 .animate-enter-setup {
- -webkit-transition: 0.3s linear left; /* Safari/Chrome */
- -moz-transition: 0.3s linear left; /* Firefox */
- -ms-transition: 0.3s linear left; /* IE10 */
- -o-transition: 0.3s linear left; /* Opera */
- transition: 0.3s linear left; /* Future Browsers */
+ -webkit-transition: 0.3s linear all; /* Safari/Chrome */
+ -moz-transition: 0.3s linear all; /* Firefox */
+ -ms-transition: 0.3s linear all; /* IE10 */
+ -o-transition: 0.3s linear all; /* Opera */
+ transition: 0.3s linear all; /* Future Browsers */
  
  /* The animation preparation code */
  position: relative;
- left: 100%;
+ //left: 100%;
+ @include vendor-prefix('transform',translate3d(100%,0,0));
 }
  
 /*
@@ -236,7 +237,8 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
 */
 .animate-enter-setup.animate-enter-start {
  /* The animation code itself */
- left: 0%;
+ //left: 0%;
+ @include vendor-prefix('transform',translate3d(0%,0,0));
 }
 
 /*
