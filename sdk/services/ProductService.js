@@ -1,8 +1,9 @@
 'use strict';
 
+angular.module('sdk.services.productService', []);
 
 angular
-    .module('CouchCommerceApp')
+    .module('sdk.services.productService')
     .factory('productService', [function(){
         var self = {};
 

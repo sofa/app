@@ -1,6 +1,6 @@
 'use strict';
 
-/* Services */
+angular.module('sdk.services.couchService', []);
 
 //This code can probably be improved.
 //it's probably unefficient since it doesn't screen level by level
@@ -29,7 +29,7 @@ var TreeIterator = function(tree, childNodeProperty){
 };
 
 angular
-    .module('CouchCommerceApp')
+    .module('sdk.services.couchService')
     .factory('couchService', ['$http', '$q', function($http, $q){
         var self = {},
             products = {},

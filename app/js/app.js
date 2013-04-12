@@ -1,7 +1,11 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-angular.module('CouchCommerceApp', []).
+angular.module('CouchCommerceApp', [
+    'sdk.services.couchService',
+    'sdk.services.navigationService',
+    'sdk.services.productService'
+    ]).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {templateUrl: 'views/categorylisting.html', controller: 'CategoryController'});
     $routeProvider.when('/cat/:category', {templateUrl: 'views/categorylisting.html', controller: 'CategoryController'});

@@ -1,8 +1,9 @@
 'use strict';
 
+angular.module('sdk.services.navigationService', []);
 
 angular
-    .module('CouchCommerceApp')
+    .module('sdk.services.navigationService')
     .factory('navigationService', ['$location', 'couchService', function($location, couchService){
         var self = {};
 
