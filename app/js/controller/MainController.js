@@ -5,7 +5,7 @@ angular
     .controller( 'MainController',
     [
         '$scope',
-        function CategoryController($scope) {
+        function MainController($scope) {
 
             var ui = {
                 header: 'views/defaultheader.html',
