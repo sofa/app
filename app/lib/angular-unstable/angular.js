@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.1.4
+ * @license AngularJS v1.1.5-fa313e6
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -705,7 +705,7 @@ function sliceArgs(args, startIndex) {
  *
  * @description
  * Returns a function which calls function `fn` bound to `self` (`self` becomes the `this` for
- * `fn`). You can supply optional `args` that are are prebound to the function. This feature is also
+ * `fn`). You can supply optional `args` that are prebound to the function. This feature is also
  * known as [function currying](http://en.wikipedia.org/wiki/Currying).
  *
  * @param {Object} self Context which `fn` should be evaluated in.
@@ -898,7 +898,7 @@ function encodeUriQuery(val, pctEncodeSpaces) {
  *
  * @description
  *
- * Use this directive to auto-bootstrap on application. Only
+ * Use this directive to auto-bootstrap an application. Only
  * one directive can be used per HTML document. The directive
  * designates the root of the application and is typically placed
  * at the root of the page.
@@ -1037,7 +1037,7 @@ function bindJQuery() {
 }
 
 /**
- * throw error of the argument is falsy.
+ * throw error if the argument is falsy.
  */
 function assertArg(arg, name, reason) {
   if (!arg) {
@@ -1345,11 +1345,11 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.1.4',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.1.5-fa313e6',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 1,
-  dot: 4,
-  codeName: 'quantum-manipulation'
+  dot: 5,
+  codeName: 'triangle-squarification'
 };
 
 
@@ -1497,18 +1497,18 @@ function publishExternalAPI(angular){
  * - [after()](http://api.jquery.com/after/)
  * - [append()](http://api.jquery.com/append/)
  * - [attr()](http://api.jquery.com/attr/)
- * - [bind()](http://api.jquery.com/bind/)
- * - [children()](http://api.jquery.com/children/)
+ * - [bind()](http://api.jquery.com/bind/) - Does not support namespaces
+ * - [children()](http://api.jquery.com/children/) - Does not support selectors
  * - [clone()](http://api.jquery.com/clone/)
  * - [contents()](http://api.jquery.com/contents/)
  * - [css()](http://api.jquery.com/css/)
  * - [data()](http://api.jquery.com/data/)
  * - [eq()](http://api.jquery.com/eq/)
- * - [find()](http://api.jquery.com/find/) - Limited to lookups by tag name.
+ * - [find()](http://api.jquery.com/find/) - Limited to lookups by tag name
  * - [hasClass()](http://api.jquery.com/hasClass/)
  * - [html()](http://api.jquery.com/html/)
- * - [next()](http://api.jquery.com/next/)
- * - [parent()](http://api.jquery.com/parent/)
+ * - [next()](http://api.jquery.com/next/) - Does not support selectors
+ * - [parent()](http://api.jquery.com/parent/) - Does not support selectors
  * - [prepend()](http://api.jquery.com/prepend/)
  * - [prop()](http://api.jquery.com/prop/)
  * - [ready()](http://api.jquery.com/ready/)
@@ -1520,7 +1520,7 @@ function publishExternalAPI(angular){
  * - [text()](http://api.jquery.com/text/)
  * - [toggleClass()](http://api.jquery.com/toggleClass/)
  * - [triggerHandler()](http://api.jquery.com/triggerHandler/) - Doesn't pass native event objects to handlers.
- * - [unbind()](http://api.jquery.com/unbind/)
+ * - [unbind()](http://api.jquery.com/unbind/) - Does not support namespaces
  * - [val()](http://api.jquery.com/val/)
  * - [wrap()](http://api.jquery.com/wrap/)
  *
@@ -2395,7 +2395,7 @@ function annotate(fn) {
  * # Injection Function Annotation
  *
  * JavaScript does not have annotations, and annotations are needed for dependency injection. The
- * following ways are all valid way of annotating function with injection arguments and are equivalent.
+ * following are all valid ways of annotating function with injection arguments and are equivalent.
  *
  * <pre>
  *   // inferred (only works if code not minified/obfuscated)
@@ -3043,8 +3043,8 @@ function $AnimationProvider($provide) {
  *
  * @description
  * The `ngAnimate` directive works as an attribute that is attached alongside pre-existing directives.
- * It effects how the directive will perform DOM manipulation. This allows for complex animations to take place while
- * without burduning the directive which uses the animation with animation details. The built dn directives
+ * It effects how the directive will perform DOM manipulation. This allows for complex animations to take place
+ * without burdening the directive which uses the animation with animation details. The built in directives
  * `ngRepeat`, `ngInclude`, `ngSwitch`, `ngShow`, `ngHide` and `ngView` already accept `ngAnimate` directive.
  * Custom directives can take advantage of animation through {@link ng.$animator $animator service}.
  *
@@ -3075,9 +3075,11 @@ function $AnimationProvider($provide) {
  *
  * The `event1` and `event2` attributes refer to the animation events specific to the directive that has been assigned.
  *
+ * Keep in mind that if an animation is running, no child element of such animation can also be animated.
+ *
  * <h2>CSS-defined Animations</h2>
  * By default, ngAnimate attaches two CSS3 classes per animation event to the DOM element to achieve the animation.
- * This is up to you, the developer, to ensure that the animations take place using cross-browser CSS3 transitions.
+ * It is up to you, the developer, to ensure that the animations take place using cross-browser CSS3 transitions.
  * All that is required is the following CSS code:
  *
  * <pre>
@@ -3156,192 +3158,245 @@ function $AnimationProvider($provide) {
  *
  */
 
-/**
- * @ngdoc function
- * @name ng.$animator
- *
- * @description
- * The $animator service provides the DOM manipulation API which is decorated with animations.
- *
- * @param {Scope} scope the scope for the ng-animate.
- * @param {Attributes} attr the attributes object which contains the ngAnimate key / value pair. (The attributes are
- *        passed into the linking function of the directive using the `$animator`.)
- * @return {object} the animator object which contains the enter, leave, move, show, hide and animate methods.
- */
 var $AnimatorProvider = function() {
-  this.$get = ['$animation', '$window', '$sniffer', function($animation, $window, $sniffer) {
-    return function(scope, attrs) {
-      var ngAnimateAttr = attrs.ngAnimate;
-      var animator = {};
+  var NG_ANIMATE_CONTROLLER = '$ngAnimateController';
+  var rootAnimateController = {running:true};
 
-      /**
-       * @ngdoc function
-       * @name ng.animator#enter
-       * @methodOf ng.$animator
-       * @function
-       *
-       * @description
-       * Injects the element object into the DOM (inside of the parent element) and then runs the enter animation.
-       *
-       * @param {jQuery/jqLite element} element the element that will be the focus of the enter animation
-       * @param {jQuery/jqLite element} parent the parent element of the element that will be the focus of the enter animation
-       * @param {jQuery/jqLite element} after the sibling element (which is the previous element) of the element that will be the focus of the enter animation
-      */
-      animator.enter = animateActionFactory('enter', insert, noop);
+  this.$get = ['$animation', '$window', '$sniffer', '$rootElement', '$rootScope',
+      function($animation, $window, $sniffer, $rootElement, $rootScope) {
+    $rootElement.data(NG_ANIMATE_CONTROLLER, rootAnimateController);
+    var unregister = $rootScope.$watch(function() {
+      unregister();
+      if (rootAnimateController.running) {
+        $window.setTimeout(function() {
+          rootAnimateController.running = false;
+        }, 0);
+      }
+    });
 
-      /**
-       * @ngdoc function
-       * @name ng.animator#leave
-       * @methodOf ng.$animator
-       * @function
-       *
-       * @description
-       * Runs the leave animation operation and, upon completion, removes the element from the DOM.
-       *
-       * @param {jQuery/jqLite element} element the element that will be the focus of the leave animation
-       * @param {jQuery/jqLite element} parent the parent element of the element that will be the focus of the leave animation
-      */
-      animator.leave = animateActionFactory('leave', noop, remove);
-
-      /**
-       * @ngdoc function
-       * @name ng.animator#move
-       * @methodOf ng.$animator
-       * @function
-       *
-       * @description
-       * Fires the move DOM operation. Just before the animation starts, the animator will either append it into the parent container or
-       * add the element directly after the after element if present. Then the move animation will be run.
-       *
-       * @param {jQuery/jqLite element} element the element that will be the focus of the move animation
-       * @param {jQuery/jqLite element} parent the parent element of the element that will be the focus of the move animation
-       * @param {jQuery/jqLite element} after the sibling element (which is the previous element) of the element that will be the focus of the move animation
-      */
-      animator.move = animateActionFactory('move', move, noop);
-
-      /**
-       * @ngdoc function
-       * @name ng.animator#show
-       * @methodOf ng.$animator
-       * @function
-       *
-       * @description
-       * Reveals the element by setting the CSS property `display` to `block` and then starts the show animation directly after.
-       *
-       * @param {jQuery/jqLite element} element the element that will be rendered visible or hidden
-      */
-      animator.show = animateActionFactory('show', show, noop);
-
-      /**
-       * @ngdoc function
-       * @name ng.animator#hide
-       * @methodOf ng.$animator
-       *
-       * @description
-       * Starts the hide animation first and sets the CSS `display` property to `none` upon completion.
-       *
-       * @param {jQuery/jqLite element} element the element that will be rendered visible or hidden
-      */
-      animator.hide = animateActionFactory('hide', noop, hide);
-      return animator;
-
-      function animateActionFactory(type, beforeFn, afterFn) {
+    /**
+     * @ngdoc function
+     * @name ng.$animator
+     * @function
+     *
+     * @description
+     * The $animator.create service provides the DOM manipulation API which is decorated with animations.
+     *
+     * @param {Scope} scope the scope for the ng-animate.
+     * @param {Attributes} attr the attributes object which contains the ngAnimate key / value pair. (The attributes are
+     *        passed into the linking function of the directive using the `$animator`.)
+     * @return {object} the animator object which contains the enter, leave, move, show, hide and animate methods.
+     */
+     var AnimatorService = function(scope, attrs) {
+        var ngAnimateAttr = attrs.ngAnimate;
         var ngAnimateValue = ngAnimateAttr && scope.$eval(ngAnimateAttr);
-        var className = ngAnimateAttr
-            ? isObject(ngAnimateValue) ? ngAnimateValue[type] : ngAnimateValue + '-' + type
-            : '';
-        var animationPolyfill = $animation(className);
-
-        var polyfillSetup = animationPolyfill && animationPolyfill.setup;
-        var polyfillStart = animationPolyfill && animationPolyfill.start;
-
-        if (!className) {
-          return function(element, parent, after) {
-            beforeFn(element, parent, after);
-            afterFn(element, parent, after);
-          }
-        } else {
-          var setupClass = className + '-setup';
-          var startClass = className + '-start';
-
-          return function(element, parent, after) {
-            if (!$sniffer.supportsTransitions && !polyfillSetup && !polyfillStart) {
+        var animator = {};
+  
+        /**
+         * @ngdoc function
+         * @name ng.animator#enter
+         * @methodOf ng.$animator
+         * @function
+         *
+         * @description
+         * Injects the element object into the DOM (inside of the parent element) and then runs the enter animation.
+         *
+         * @param {jQuery/jqLite element} element the element that will be the focus of the enter animation
+         * @param {jQuery/jqLite element} parent the parent element of the element that will be the focus of the enter animation
+         * @param {jQuery/jqLite element} after the sibling element (which is the previous element) of the element that will be the focus of the enter animation
+        */
+        animator.enter = animateActionFactory('enter', insert, noop);
+  
+        /**
+         * @ngdoc function
+         * @name ng.animator#leave
+         * @methodOf ng.$animator
+         * @function
+         *
+         * @description
+         * Runs the leave animation operation and, upon completion, removes the element from the DOM.
+         *
+         * @param {jQuery/jqLite element} element the element that will be the focus of the leave animation
+         * @param {jQuery/jqLite element} parent the parent element of the element that will be the focus of the leave animation
+        */
+        animator.leave = animateActionFactory('leave', noop, remove);
+  
+        /**
+         * @ngdoc function
+         * @name ng.animator#move
+         * @methodOf ng.$animator
+         * @function
+         *
+         * @description
+         * Fires the move DOM operation. Just before the animation starts, the animator will either append it into the parent container or
+         * add the element directly after the after element if present. Then the move animation will be run.
+         *
+         * @param {jQuery/jqLite element} element the element that will be the focus of the move animation
+         * @param {jQuery/jqLite element} parent the parent element of the element that will be the focus of the move animation
+         * @param {jQuery/jqLite element} after the sibling element (which is the previous element) of the element that will be the focus of the move animation
+        */
+        animator.move = animateActionFactory('move', move, noop);
+  
+        /**
+         * @ngdoc function
+         * @name ng.animator#show
+         * @methodOf ng.$animator
+         * @function
+         *
+         * @description
+         * Reveals the element by setting the CSS property `display` to `block` and then starts the show animation directly after.
+         *
+         * @param {jQuery/jqLite element} element the element that will be rendered visible or hidden
+        */
+        animator.show = animateActionFactory('show', show, noop);
+  
+        /**
+         * @ngdoc function
+         * @name ng.animator#hide
+         * @methodOf ng.$animator
+         *
+         * @description
+         * Starts the hide animation first and sets the CSS `display` property to `none` upon completion.
+         *
+         * @param {jQuery/jqLite element} element the element that will be rendered visible or hidden
+        */
+        animator.hide = animateActionFactory('hide', noop, hide);
+        return animator;
+  
+        function animateActionFactory(type, beforeFn, afterFn) {
+          var className = ngAnimateAttr
+              ? isObject(ngAnimateValue) ? ngAnimateValue[type] : ngAnimateValue + '-' + type
+              : '';
+          var animationPolyfill = $animation(className);
+  
+          var polyfillSetup = animationPolyfill && animationPolyfill.setup;
+          var polyfillStart = animationPolyfill && animationPolyfill.start;
+  
+          if (!className) {
+            return function(element, parent, after) {
               beforeFn(element, parent, after);
               afterFn(element, parent, after);
-              return;
             }
-
-            element.addClass(setupClass);
-            beforeFn(element, parent, after);
-            if (element.length == 0) return done();
-
-            var memento = (polyfillSetup || noop)(element);
-
-            // $window.setTimeout(beginAnimation, 0); this was causing the element not to animate
-            // keep at 1 for animation dom rerender
-            $window.setTimeout(beginAnimation, 1);
-
-            function beginAnimation() {
-              element.addClass(startClass);
-              if (polyfillStart) {
-                polyfillStart(element, done, memento);
-              } else if (isFunction($window.getComputedStyle)) {
-                var vendorTransitionProp = $sniffer.vendorPrefix + 'Transition';
-                var w3cTransitionProp = 'transition'; //one day all browsers will have this
-
-                var durationKey = 'Duration';
-                var duration = 0;
-                //we want all the styles defined before and after
-                forEach(element, function(element) {
-                  var globalStyles = $window.getComputedStyle(element) || {};
-                  duration = Math.max(
-                      parseFloat(globalStyles[w3cTransitionProp    + durationKey]) ||
-                      parseFloat(globalStyles[vendorTransitionProp + durationKey]) ||
-                      0,
-                      duration);
-                });
-
-                $window.setTimeout(done, duration * 1000);
-              } else {
-                done();
+          } else {
+            var setupClass = className + '-setup';
+            var startClass = className + '-start';
+  
+            return function(element, parent, after) {
+              if (!parent) {
+                parent = after ? after.parent() : element.parent();
               }
-            }
+              if ((!$sniffer.supportsTransitions && !polyfillSetup && !polyfillStart) ||
+                  (parent.inheritedData(NG_ANIMATE_CONTROLLER) || noop).running) {
+                beforeFn(element, parent, after);
+                afterFn(element, parent, after);
+                return;
+              }
 
-            function done() {
-              afterFn(element, parent, after);
-              element.removeClass(setupClass);
-              element.removeClass(startClass);
+              element.data(NG_ANIMATE_CONTROLLER, {running:true});
+              element.addClass(setupClass);
+              beforeFn(element, parent, after);
+              if (element.length == 0) return done();
+  
+              var memento = (polyfillSetup || noop)(element);
+  
+              // $window.setTimeout(beginAnimation, 0); this was causing the element not to animate
+              // keep at 1 for animation dom rerender
+              $window.setTimeout(beginAnimation, 1);
+
+              function getMaxTransitionDuration(durationString){
+                if (isUndefined(durationString)){
+                  return 0;
+                }
+
+                var normalizedValues = map(durationString.split(','), function(val){
+                  return parseFloat(val);
+                });
+                return Math.max.apply(null, normalizedValues);
+              }
+  
+              function beginAnimation() {
+                element.addClass(startClass);
+                if (polyfillStart) {
+                  polyfillStart(element, done, memento);
+                } else if (isFunction($window.getComputedStyle)) {
+                  var vendorTransitionProp = $sniffer.vendorPrefix + 'Transition';
+                  var w3cTransitionProp = 'transition'; //one day all browsers will have this
+  
+                  var durationKey = 'Duration';
+                  var duration = 0;
+                  //we want all the styles defined before and after
+                  forEach(element, function(element) {
+                    var globalStyles = $window.getComputedStyle(element) || {};
+                    duration = Math.max(
+                        getMaxTransitionDuration(globalStyles[w3cTransitionProp    + durationKey]) ||
+                        getMaxTransitionDuration(globalStyles[vendorTransitionProp + durationKey]) ||
+                        0,
+                        duration);
+                  });
+                  $window.setTimeout(done, duration * 1000);
+                } else {
+                  done();
+                }
+              }
+  
+              function done() {
+                afterFn(element, parent, after);
+                element.removeClass(setupClass);
+                element.removeClass(startClass);
+                element.removeData(NG_ANIMATE_CONTROLLER);
+              }
             }
           }
         }
+  
+        function show(element) {
+          element.css('display', '');
+        }
+  
+        function hide(element) {
+          element.css('display', 'none');
+        }
+  
+        function insert(element, parent, after) {
+          if (after) {
+            after.after(element);
+          } else {
+            parent.append(element);
+          }
+        }
+  
+        function remove(element) {
+          element.remove();
+        }
+  
+        function move(element, parent, after) {
+          // Do not remove element before insert. Removing will cause data associated with the
+          // element to be dropped. Insert will implicitly do the remove.
+          insert(element, parent, after);
+        }
+      };
+
+    /**
+     * @ngdoc function
+     * @name ng.animator#enabled
+     * @methodOf ng.$animator
+     * @function
+     *
+     * @param {Boolean=} If provided then set the animation on or off.
+     * @return {Boolean} Current animation state.
+     *
+     * @description
+     * Globally enables/disables animations.
+     *
+    */
+    AnimatorService.enabled = function(value) {
+      if (arguments.length) {
+        rootAnimateController.running = !value;
       }
-    }
+      return !rootAnimateController.running;
+    };
 
-    function show(element) {
-      element.css('display', '');
-    }
-
-    function hide(element) {
-      element.css('display', 'none');
-    }
-
-    function insert(element, parent, after) {
-      if (after) {
-        after.after(element);
-      } else {
-        parent.append(element);
-      }
-    }
-
-    function remove(element) {
-      element.remove();
-    }
-
-    function move(element, parent, after) {
-      // Do not remove element before insert. Removing will cause data associated with the
-      // element to be dropped. Insert will implicitly do the remove.
-      insert(element, parent, after);
-    }
+    return AnimatorService;
   }];
 };
 
@@ -4455,9 +4510,9 @@ function $CompileProvider($provide) {
 
 
     /**
-     * Once the directives have been collected their compile functions is executed. This method
+     * Once the directives have been collected, their compile functions are executed. This method
      * is responsible for inlining directive templates as well as terminating the application
-     * of the directives if the terminal directive has been reached..
+     * of the directives if the terminal directive has been reached.
      *
      * @param {Array} directives Array of collected directives to execute their compile function.
      *        this needs to be pre-sorted by priority order.
@@ -5214,7 +5269,7 @@ function $DocumentProvider(){
  *
  */
 function $ExceptionHandlerProvider() {
-  this.$get = ['$log', function($log){
+  this.$get = ['$log', function($log) {
     return function(exception, cause) {
       $log.error.apply($log, arguments);
     };
@@ -9016,7 +9071,7 @@ function $SnifferProvider() {
           break;
         }
       }
-      transitions = !!(vendorPrefix + 'Transition' in bodyStyle);
+      transitions = !!(('transition' in bodyStyle) || (vendorPrefix + 'Transition' in bodyStyle));
     }
 
 
@@ -9292,7 +9347,7 @@ function $HttpProvider() {
      *
      * @description
      * The `$http` service is a core Angular service that facilitates communication with the remote
-     * HTTP servers via browser's {@link https://developer.mozilla.org/en/xmlhttprequest
+     * HTTP servers via the browser's {@link https://developer.mozilla.org/en/xmlhttprequest
      * XMLHttpRequest} object or via {@link http://en.wikipedia.org/wiki/JSONP JSONP}.
      *
      * For unit testing applications that use `$http` service, see
@@ -9302,13 +9357,13 @@ function $HttpProvider() {
      * $resource} service.
      *
      * The $http API is based on the {@link ng.$q deferred/promise APIs} exposed by
-     * the $q service. While for simple usage patters this doesn't matter much, for advanced usage,
-     * it is important to familiarize yourself with these apis and guarantees they provide.
+     * the $q service. While for simple usage patterns this doesn't matter much, for advanced usage
+     * it is important to familiarize yourself with these APIs and the guarantees they provide.
      *
      *
      * # General usage
      * The `$http` service is a function which takes a single argument — a configuration object —
-     * that is used to generate an http request and returns  a {@link ng.$q promise}
+     * that is used to generate an HTTP request and returns  a {@link ng.$q promise}
      * with two $http specific methods: `success` and `error`.
      *
      * <pre>
@@ -9323,21 +9378,21 @@ function $HttpProvider() {
      *     });
      * </pre>
      *
-     * Since the returned value of calling the $http function is a Promise object, you can also use
+     * Since the returned value of calling the $http function is a `promise`, you can also use
      * the `then` method to register callbacks, and these callbacks will receive a single argument –
-     * an object representing the response. See the api signature and type info below for more
+     * an object representing the response. See the API signature and type info below for more
      * details.
      *
-     * A response status code that falls in the [200, 300) range is considered a success status and
+     * A response status code between 200 and 299 is considered a success status and
      * will result in the success callback being called. Note that if the response is a redirect,
      * XMLHttpRequest will transparently follow it, meaning that the error callback will not be
      * called for such responses.
      *
      * # Shortcut methods
      *
-     * Since all invocation of the $http service require definition of the http method and url and
-     * POST and PUT requests require response body/data to be provided as well, shortcut methods
-     * were created to simplify using the api:
+     * Since all invocations of the $http service require passing in an HTTP method and URL, and
+     * POST/PUT requests require request data to be provided as well, shortcut methods
+     * were created:
      *
      * <pre>
      *   $http.get('/someUrl').success(successCallback);
@@ -9356,24 +9411,24 @@ function $HttpProvider() {
      *
      * # Setting HTTP Headers
      *
-     * The $http service will automatically add certain http headers to all requests. These defaults
+     * The $http service will automatically add certain HTTP headers to all requests. These defaults
      * can be fully configured by accessing the `$httpProvider.defaults.headers` configuration
      * object, which currently contains this default configuration:
      *
      * - `$httpProvider.defaults.headers.common` (headers that are common for all requests):
      *   - `Accept: application/json, text/plain, * / *`
-     * - `$httpProvider.defaults.headers.post`: (header defaults for HTTP POST requests)
+     * - `$httpProvider.defaults.headers.post`: (header defaults for POST requests)
      *   - `Content-Type: application/json`
-     * - `$httpProvider.defaults.headers.put` (header defaults for HTTP PUT requests)
+     * - `$httpProvider.defaults.headers.put` (header defaults for PUT requests)
      *   - `Content-Type: application/json`
      *
-     * To add or overwrite these defaults, simply add or remove a property from this configuration
+     * To add or overwrite these defaults, simply add or remove a property from these configuration
      * objects. To add headers for an HTTP method other than POST or PUT, simply add a new object
-     * with name equal to the lower-cased http method name, e.g.
+     * with the lowercased HTTP method name as the key, e.g.
      * `$httpProvider.defaults.headers.get['My-Header']='value'`.
      *
-     * Additionally, the defaults can be set at runtime via the `$http.defaults` object in a similar
-     * fashion as described above.
+     * Additionally, the defaults can be set at runtime via the `$http.defaults` object in the same
+     * fashion.
      *
      *
      * # Transforming Requests and Responses
@@ -9383,36 +9438,36 @@ function $HttpProvider() {
      *
      * Request transformations:
      *
-     * - if the `data` property of the request config object contains an object, serialize it into
+     * - If the `data` property of the request configuration object contains an object, serialize it into
      *   JSON format.
      *
      * Response transformations:
      *
-     *  - if XSRF prefix is detected, strip it (see Security Considerations section below)
-     *  - if json response is detected, deserialize it using a JSON parser
+     *  - If XSRF prefix is detected, strip it (see Security Considerations section below).
+     *  - If JSON response is detected, deserialize it using a JSON parser.
      *
      * To globally augment or override the default transforms, modify the `$httpProvider.defaults.transformRequest` and
-     * `$httpProvider.defaults.transformResponse` properties of the `$httpProvider`. These properties are by default an
+     * `$httpProvider.defaults.transformResponse` properties. These properties are by default an
      * array of transform functions, which allows you to `push` or `unshift` a new transformation function into the
      * transformation chain. You can also decide to completely override any default transformations by assigning your
      * transformation functions to these properties directly without the array wrapper.
      *
      * Similarly, to locally override the request/response transforms, augment the `transformRequest` and/or
-     * `transformResponse` properties of the config object passed into `$http`.
+     * `transformResponse` properties of the configuration object passed into `$http`.
      *
      *
      * # Caching
      *
-     * To enable caching set the configuration property `cache` to `true`. When the cache is
+     * To enable caching, set the configuration property `cache` to `true`. When the cache is
      * enabled, `$http` stores the response from the server in local cache. Next time the
      * response is served from the cache without sending a request to the server.
      *
      * Note that even if the response is served from cache, delivery of the data is asynchronous in
      * the same way that real requests are.
      *
-     * If there are multiple GET requests for the same url that should be cached using the same
+     * If there are multiple GET requests for the same URL that should be cached using the same
      * cache, but the cache is not populated yet, only one request to the server will be made and
-     * the remaining requests will be fulfilled using the response for the first request.
+     * the remaining requests will be fulfilled using the response from the first request.
      *
      * A custom default cache built with $cacheFactory can be provided in $http.defaults.cache.
      * To skip it, set configuration property `cache` to `false`.
@@ -9423,14 +9478,14 @@ function $HttpProvider() {
      * Before you start creating interceptors, be sure to understand the
      * {@link ng.$q $q and deferred/promise APIs}.
      *
-     * For purposes of global error handling, authentication or any kind of synchronous or
+     * For purposes of global error handling, authentication, or any kind of synchronous or
      * asynchronous pre-processing of request or postprocessing of responses, it is desirable to be
      * able to intercept requests before they are handed to the server and
-     * responses  before they are handed over to the application code that
+     * responses before they are handed over to the application code that
      * initiated these requests. The interceptors leverage the {@link ng.$q
-     * promise APIs} to fulfil this need for both synchronous and asynchronous pre-processing.
+     * promise APIs} to fulfill this need for both synchronous and asynchronous pre-processing.
      *
-     * The interceptors are service factories that are registered with the $httpProvider by
+     * The interceptors are service factories that are registered with the `$httpProvider` by
      * adding them to the `$httpProvider.interceptors` array. The factory is called and
      * injected with dependencies (if specified) and returns the interceptor.
      *
@@ -9550,7 +9605,7 @@ function $HttpProvider() {
      * When designing web applications, consider security threats from:
      *
      * - {@link http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx
-     *   JSON Vulnerability}
+     *   JSON vulnerability}
      * - {@link http://en.wikipedia.org/wiki/Cross-site_request_forgery XSRF}
      *
      * Both server and the client must cooperate in order to eliminate these threats. Angular comes
@@ -9560,8 +9615,8 @@ function $HttpProvider() {
      * ## JSON Vulnerability Protection
      *
      * A {@link http://haacked.com/archive/2008/11/20/anatomy-of-a-subtle-json-vulnerability.aspx
-     * JSON Vulnerability} allows third party web-site to turn your JSON resource URL into
-     * {@link http://en.wikipedia.org/wiki/JSON#JSONP JSONP} request under some conditions. To
+     * JSON vulnerability} allows third party website to turn your JSON resource URL into
+     * {@link http://en.wikipedia.org/wiki/JSONP JSONP} request under some conditions. To
      * counter this your server can prefix all JSON requests with following string `")]}',\n"`.
      * Angular will automatically strip the prefix before processing it as JSON.
      *
@@ -9582,7 +9637,7 @@ function $HttpProvider() {
      * ## Cross Site Request Forgery (XSRF) Protection
      *
      * {@link http://en.wikipedia.org/wiki/Cross-site_request_forgery XSRF} is a technique by which
-     * an unauthorized site can gain your user's private data. Angular provides following mechanism
+     * an unauthorized site can gain your user's private data. Angular provides a mechanism
      * to counter XSRF. When performing XHR requests, the $http service reads a token from a cookie
      * (by default, `XSRF-TOKEN`) and sets it as an HTTP header (`X-XSRF-TOKEN`). Since only
      * JavaScript that runs on your domain could read the cookie, your server can be assured that
@@ -9590,12 +9645,12 @@ function $HttpProvider() {
      * cross-domain requests.
      *
      * To take advantage of this, your server needs to set a token in a JavaScript readable session
-     * cookie called `XSRF-TOKEN` on first HTTP GET request. On subsequent non-GET requests the
+     * cookie called `XSRF-TOKEN` on the first HTTP GET request. On subsequent XHR requests the
      * server can verify that the cookie matches `X-XSRF-TOKEN` HTTP header, and therefore be sure
-     * that only JavaScript running on your domain could have read the token. The token must be
-     * unique for each user and must be verifiable by the server (to prevent the JavaScript making
+     * that only JavaScript running on your domain could have sent the request. The token must be
+     * unique for each user and must be verifiable by the server (to prevent the JavaScript from making
      * up its own tokens). We recommend that the token is a digest of your site's authentication
-     * cookie with {@link http://en.wikipedia.org/wiki/Rainbow_table salt for added security}.
+     * cookie with a {@link https://en.wikipedia.org/wiki/Salt_(cryptography) salt} for added security.
      *
      * The name of the headers can be specified using the xsrfHeaderName and xsrfCookieName
      * properties of either $httpProvider.defaults, or the per-request config object.
@@ -9812,7 +9867,7 @@ function $HttpProvider() {
      * @methodOf ng.$http
      *
      * @description
-     * Shortcut method to perform `GET` request
+     * Shortcut method to perform `GET` request.
      *
      * @param {string} url Relative or absolute URL specifying the destination of the request
      * @param {Object=} config Optional configuration object
@@ -9825,7 +9880,7 @@ function $HttpProvider() {
      * @methodOf ng.$http
      *
      * @description
-     * Shortcut method to perform `DELETE` request
+     * Shortcut method to perform `DELETE` request.
      *
      * @param {string} url Relative or absolute URL specifying the destination of the request
      * @param {Object=} config Optional configuration object
@@ -9838,7 +9893,7 @@ function $HttpProvider() {
      * @methodOf ng.$http
      *
      * @description
-     * Shortcut method to perform `HEAD` request
+     * Shortcut method to perform `HEAD` request.
      *
      * @param {string} url Relative or absolute URL specifying the destination of the request
      * @param {Object=} config Optional configuration object
@@ -9851,7 +9906,7 @@ function $HttpProvider() {
      * @methodOf ng.$http
      *
      * @description
-     * Shortcut method to perform `JSONP` request
+     * Shortcut method to perform `JSONP` request.
      *
      * @param {string} url Relative or absolute URL specifying the destination of the request.
      *                     Should contain `JSON_CALLBACK` string.
@@ -9866,7 +9921,7 @@ function $HttpProvider() {
      * @methodOf ng.$http
      *
      * @description
-     * Shortcut method to perform `POST` request
+     * Shortcut method to perform `POST` request.
      *
      * @param {string} url Relative or absolute URL specifying the destination of the request
      * @param {*} data Request content
@@ -9880,7 +9935,7 @@ function $HttpProvider() {
      * @methodOf ng.$http
      *
      * @description
-     * Shortcut method to perform `PUT` request
+     * Shortcut method to perform `PUT` request.
      *
      * @param {string} url Relative or absolute URL specifying the destination of the request
      * @param {*} data Request content
@@ -9932,7 +9987,7 @@ function $HttpProvider() {
 
 
     /**
-     * Makes the request
+     * Makes the request.
      *
      * !!! ACCESSES CLOSURE VARS:
      * $httpBackend, defaults, $log, $rootScope, defaultCache, $http.pendingRequests
@@ -14798,7 +14853,7 @@ var ngRepeatDirective = ['$parse', '$animator', function($parse, $animator) {
         var animate = $animator($scope, $attr);
         var expression = $attr.ngRepeat;
         var match = expression.match(/^\s*(.+)\s+in\s+(.*?)\s*(\s+track\s+by\s+(.+)\s*)?$/),
-          trackByExp, hashExpFn, trackByIdFn, lhs, rhs, valueIdentifier, keyIdentifier,
+          trackByExp, trackByExpGetter, trackByIdFn, lhs, rhs, valueIdentifier, keyIdentifier,
           hashFnLocals = {$id: hashKey};
 
         if (!match) {
@@ -14811,13 +14866,13 @@ var ngRepeatDirective = ['$parse', '$animator', function($parse, $animator) {
         trackByExp = match[4];
 
         if (trackByExp) {
-          hashExpFn = $parse(trackByExp);
+          trackByExpGetter = $parse(trackByExp);
           trackByIdFn = function(key, value, index) {
             // assign key, value, and $index to the locals so that they can be used in hash functions
             if (keyIdentifier) hashFnLocals[keyIdentifier] = key;
             hashFnLocals[valueIdentifier] = value;
             hashFnLocals.$index = index;
-            return hashExpFn($scope, hashFnLocals);
+            return trackByExpGetter($scope, hashFnLocals);
           };
         } else {
           trackByIdFn = function(key, value) {
@@ -14878,7 +14933,8 @@ var ngRepeatDirective = ['$parse', '$animator', function($parse, $animator) {
            key = (collection === collectionKeys) ? index : collectionKeys[index];
            value = collection[key];
            trackById = trackByIdFn(key, value, index);
-           if((block = lastBlockMap[trackById])) {
+           if(lastBlockMap.hasOwnProperty(trackById)) {
+             block = lastBlockMap[trackById]
              delete lastBlockMap[trackById];
              nextBlockMap[trackById] = block;
              nextBlockOrder[index] = block;
@@ -14888,10 +14944,12 @@ var ngRepeatDirective = ['$parse', '$animator', function($parse, $animator) {
                if (block && block.element) lastBlockMap[block.id] = block;
              });
              // This is a duplicate and we need to throw an error
-             throw new Error('Duplicates in a repeater are not allowed. Repeater: ' + expression);
+             throw new Error('Duplicates in a repeater are not allowed. Repeater: ' + expression +
+                 ' key: ' + trackById);
            } else {
              // new never before seen block
              nextBlockOrder[index] = { id: trackById };
+             nextBlockMap[trackById] = false;
            }
          }
 
