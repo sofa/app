@@ -8,7 +8,7 @@ angular
         function MainController($scope) {
 
             var ui = {
-                header: 'views/defaultheader.html',
+                header: 'modules/common/header/defaultheader.html',
                 footer: ''
             };
 

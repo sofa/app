@@ -1,8 +1,10 @@
 'use strict';
 
+angular.module('sdk.directives.ccZippy', []);
+
 //this is a generic directive that creates an view with optional fixed
 //header and toolbars
-angular.module("CouchCommerceApp")
+angular.module('sdk.directives.ccZippy')
     .directive('ccZippy', function() {
         return {
             restrict: 'E',
@@ -11,7 +13,7 @@ angular.module("CouchCommerceApp")
             scope: {
                 caption: '=',
             },
-            templateUrl: 'views/generic-directive-templates/cczippy.tpl.html',
+            templateUrl: '../sdk/directives/ccZippy/cczippy.tpl.html',
             link: function(scope, element, attrs){
                 var $element = $(element[0]),
                     $caption = $element.children('.cc-zippy-caption').first(),

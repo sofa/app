@@ -1,8 +1,0 @@
-/* since browsers rendere custom elements as inline by default
- * we need to adjust the display here. We should figure out
- * if it should be encouraged to use the directive as
- * attribute on a div instead e.g. <div default-couch-view>*/
- 
-default-couch-view{
-    display: block;
-}

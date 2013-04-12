@@ -1,8 +1,10 @@
 'use strict';
 
+angular.module('sdk.directives.ccFixedToolbarsView', []);
+
 //this is a generic directive that creates an view with optional fixed
 //header and toolbars
-angular.module("CouchCommerceApp")
+angular.module('sdk.directives.ccFixedToolbarsView')
     .directive('ccFixedToolbarsView', function() {
         return {
             restrict: 'EA',
@@ -12,6 +14,6 @@ angular.module("CouchCommerceApp")
                 header: '=',
                 footer: '='
             },
-            templateUrl: 'views/generic-directive-templates/fixedtoolbarsview.html'
+            templateUrl: '../sdk/directives/ccFixedToolbarsView/fixedtoolbarsview.html'
         };
     });

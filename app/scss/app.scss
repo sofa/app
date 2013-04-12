@@ -1,13 +1,13 @@
-@import 'overthrow.scss';
-@import 'mixins.scss';
-@import 'font-awesome/font-awesome.scss';
-@import 'styleconfig.scss';
-@import 'compatibility.scss';
-@import 'base.scss';
-@import 'listings.scss';
-@import 'directives/cczippy.scss';
-@import 'directives/defaultcouchview.scss';
-@import 'views/defaultheader.scss';
-@import 'views/categorylisting.scss';
-@import 'views/productlisting.scss';
-@import 'views/product.scss';
+@import '../../sdk/styling/overthrow.scss';
+@import '../../sdk/styling/mixins.scss';
+@import '../../sdk/styling/font-awesome.scss';
+@import '../../sdk/styling/styleconfig.scss';
+@import '../../sdk/styling/compatibility.scss';
+@import '../../sdk/styling/base.scss';
+@import '../../sdk/styling/listings.scss';
+@import '../../sdk/directives/directives.scss';
+
+@import '../modules/common/header/defaultheader.scss';
+@import '../modules/categories/categorylisting.scss';
+@import '../modules/products/productlisting.scss';
+@import '../modules/product/product.scss';
