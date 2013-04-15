@@ -40,6 +40,21 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 
 //some generic helper classes
 
+.cc-unstyled{
+
+    body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6{ font-weight: normal; font-size: 100%; }
+
+    address, caption, cite, code, dfn, em, strong, th, var {
+        font-style: normal;
+        font-weight: normal;
+    }
+}
+
 
 .cc-full-width-height, %cc-full-width-height{
     width: 100%;
@@ -174,6 +189,10 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 .cc-view-title{
     font-size: $font-size-big;
     font-weight: bold;
+}
+
+.cc-view-content{
+    font-size: $font-size-regular;
 }
 
 $button-color-normal: lighten($default-button-background-color, 10%);
