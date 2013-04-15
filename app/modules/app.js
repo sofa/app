@@ -11,6 +11,17 @@ angular.module('CouchCommerceApp', [
     $routeProvider.when('/', {templateUrl: 'modules/categories/categorylisting.html', controller: 'CategoryController'});
     $routeProvider.when('/cat/:category', {templateUrl: 'modules/categories/categorylisting.html', controller: 'CategoryController'});
     $routeProvider.when('/cat/:category/products', {templateUrl: 'modules/products/productlisting.html', controller: 'ProductsController'});
-    $routeProvider.when('/cat/:category/product/:productUrlKey', {templateUrl: 'modules/product/product.html', controller: 'ProductController'});
+    
+    $routeProvider.when('/cat/:category/product/:productUrlKey', {
+        templateUrl: 'modules/product/product.html', 
+        controller: 'ProductController',
+        resolve: {
+            product: ['couchService', '$route', function(couchService, $route){
+                var params = $route.current.params;
+                return couchService.getProduct(params.category, params.productUrlKey);
+            }]
+        }
+    });
+    
     $routeProvider.otherwise({redirectTo: '/'});
   }]);

@@ -4,17 +4,14 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$routeParams', '$location', 'couchService', 'productService',
-        function ProductController($scope, $routeParams, $location, couchService, productService) {
+        '$scope', '$routeParams', '$location', 'couchService', 'productService', 'product',
+        function ProductController($scope, $routeParams, $location, couchService, productService, product) {
+
             $scope.productService = productService;
 
-            couchService
-                .getProduct($routeParams.category, $routeParams.productUrlKey)
-                .then(function(product){
-                    $scope.product = product;
+            $scope.product = product;
 
-                    //guess it would make sense if we had lang on the $routeScope
-                    $scope.lang = cc.Lang;
-                });
+            //guess it would make sense if we had lang on the $routeScope
+            $scope.lang = cc.Lang;
         }
     ]);
