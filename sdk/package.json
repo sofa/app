@@ -10,6 +10,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "doxx": "~0.5.9",
+    "grunt-shell": "~0.2.2"
   }
 }

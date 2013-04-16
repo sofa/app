@@ -1,11 +1,11 @@
-@import '../../sdk/styling/overthrow.scss';
-@import '../../sdk/styling/mixins.scss';
-@import '../../sdk/styling/font-awesome.scss';
-@import '../../sdk/styling/styleconfig.scss';
-@import '../../sdk/styling/compatibility.scss';
-@import '../../sdk/styling/base.scss';
-@import '../../sdk/styling/listings.scss';
-@import '../../sdk/directives/directives.scss';
+@import '../../sdk/src/styling/overthrow.scss';
+@import '../../sdk/src/styling/mixins.scss';
+@import '../../sdk/src/styling/font-awesome.scss';
+@import '../../sdk/src/styling/styleconfig.scss';
+@import '../../sdk/src/styling/compatibility.scss';
+@import '../../sdk/src/styling/base.scss';
+@import '../../sdk/src/styling/listings.scss';
+@import '../../sdk/src/directives/directives.scss';
 
 @import '../modules/common/header/defaultheader.scss';
 @import '../modules/categories/categorylisting.scss';
