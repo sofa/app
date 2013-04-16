@@ -229,48 +229,4 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
         background-image: -webkit-linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
         background-image: linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
     }
-
-}
-
-/*
- The animate-enter prefix is the event name that you
- have provided within the ngAnimate attribute.
-*/
-.animate-enter-setup {
- @include vendor-prefix('transition', 0.3s linear all);
- /* The animation preparation code */
- position: relative;
- @include vendor-prefix('transform',translate3d(100%,0,0));
-}
- 
-/*
- Keep in mind that you want to combine both CSS
- classes together to avoid any CSS-specificity
- conflicts
-*/
-.animate-enter-setup.animate-enter-start {
- /* The animation code itself */
- @include vendor-prefix('transform',translate3d(0%,0,0));
-}
-
-/*
- The animate-enter prefix is the event name that you
- have provided within the ngAnimate attribute.
-*/
-.animate-leave-setup {
- @include vendor-prefix('transition', 0.3s linear all);
- 
- /* The animation preparation code */
- position: relative;
- @include vendor-prefix('transform',translate3d(0%,0,0));
-}
- 
-/*
- Keep in mind that you want to combine both CSS
- classes together to avoid any CSS-specificity
- conflicts
-*/
-.animate-leave-setup.animate-leave-start {
- /* The animation code itself */
- @include vendor-prefix('transform',translate3d(-100%,0,0));
 }
