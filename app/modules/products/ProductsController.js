@@ -9,12 +9,14 @@ angular
         '$location', 
         'couchService',
         'productService',
+        'products',
         function ProductsController(
             $scope, 
             $routeParams, 
             $location, 
             couchService,
-            productService) {
+            productService,
+            products) {
             
             $scope.productService = productService;
 
@@ -22,11 +24,7 @@ angular
                 $location.path('cat/' + $scope.categoryUrlId + '/product/' + product.urlKey);
             };
 
-            couchService
-                .getProducts($routeParams.category)
-                .then(function(data) {
-                    $scope.products = data;
-                    $scope.categoryUrlId = $routeParams.category;
-                });
+            $scope.products = products;
+            $scope.categoryUrlId = $routeParams.category;
         }
     ]);
