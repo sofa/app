@@ -1,22 +1,33 @@
-    <div class="cc-view-wrapper cc-view-phone">
-        <div class="cc-view-title">{{product.name}}</div>
-        <div class="cc-product-view-price-info cc-table">
-            <div class="cc-table-cell-bottom-aligned">
-                <div class="cc-product-view-price-info-shipping">zzgl. 5€ Versandkosten</div>
-                <div class="cc-product-view-price-info-base-price">entspricht 9.98 € pro Liter (l)</div>
-            </div>
-            <div class="cc-table-cell-bottom-aligned cc-product-view-price-info-right">
-                <div class="cc-product-view-price-info-price">44.91 €</div>
-                <div class="cc-product-view-price-info-tax">inkl. 19% MwSt.</div>
-            </div>
+<div class="cc-view-wrapper cc-view-phone">
+    <div class="cc-view-title">{{product.name}}</div>
+    <div class="cc-product-view-price-info cc-table">
+        <div class="cc-table-cell-bottom-aligned">
+            <div class="cc-product-view-price-info-shipping">zzgl. 5€ Versandkosten</div>
+            <div class="cc-product-view-price-info-base-price">entspricht 9.98 € pro Liter (l)</div>
         </div>
-        <a class="cc-couch-action-button cc-product-view-add-to-cart">In den Warenkorb</a>
-        <div class="cc-product-view-image"
-             style="background-image: url({{productService.getImage(product, 'small')}})"></div>
-
-        <div class="cc-view-content cc-unstyled">
-            <cc-zippy caption="lang.productDetails">
-                <div ng-bind-html-unsafe="product.description"></div>
-            </cc-zippy>
+        <div class="cc-table-cell-bottom-aligned cc-product-view-price-info-right">
+            <div class="cc-product-view-price-info-price">44.91 €</div>
+            <div class="cc-product-view-price-info-tax">inkl. 19% MwSt.</div>
         </div>
     </div>
+    <a class="cc-couch-action-button cc-product-view-add-to-cart">In den Warenkorb</a>
+    <div class="cc-product-view-image"
+         style="background-image: url({{productService.getImage(product, 'small')}})"></div>
+
+    <div class="cc-view-content cc-unstyled">
+        <div class="cc-padded-line-seperator"></div>
+        <cc-zippy caption="lang.productDetails">
+            <div ng-bind-html-unsafe="product.description"></div>
+        </cc-zippy>
+        <div class="cc-padded-line-seperator"></div>
+        <cc-zippy caption="lang.productSpecifications">
+            <table class="cc-product-view-attributes">
+                <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes">
+                    <td class="cc-product-view-attributes-row-key">{{key}}</td>
+                    <td class="cc-product-view-attributes-row-value">{{value}}</td>
+                </tr>
+            </table>
+        </cc-zippy>
+        <div class="cc-padded-line-seperator"></div>
+    </div>
+</div>
