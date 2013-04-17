@@ -8,12 +8,12 @@ angular.module('CouchCommerceApp', [
     'sdk.directives'
     ]).
   config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {templateUrl: 'modules/categories/categorylisting.html', controller: 'CategoryController'});
-    $routeProvider.when('/cat/:category', {templateUrl: 'modules/categories/categorylisting.html', controller: 'CategoryController'});
-    $routeProvider.when('/cat/:category/products', {templateUrl: 'modules/products/productlisting.html', controller: 'ProductsController'});
+    $routeProvider.when('/', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
+    $routeProvider.when('/cat/:category', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
+    $routeProvider.when('/cat/:category/products', {templateUrl: 'modules/products/productlisting.tpl.html', controller: 'ProductsController'});
     
     $routeProvider.when('/cat/:category/product/:productUrlKey', {
-        templateUrl: 'modules/product/product.html', 
+        templateUrl: 'modules/product/product.tpl.html', 
         controller: 'ProductController',
         resolve: {
             product: ['couchService', '$route', function(couchService, $route){
