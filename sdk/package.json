@@ -12,6 +12,13 @@
   "devDependencies": {
     "grunt": "~0.4.1",
     "doxx": "~0.5.9",
-    "grunt-shell": "~0.2.2"
+    "grunt-shell": "~0.2.2",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-jshint": "~0.2.0",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-uglify": "~0.1.1",
+    "grunt-html2js": "~0.1.0",
+    "grunt-contrib-watch": "~0.3.1"
   }
 }

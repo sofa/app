@@ -1,7 +1,5 @@
 'use strict';
 
-var cc = {};
-
 cc.Config = {
     storeId: 88399,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
