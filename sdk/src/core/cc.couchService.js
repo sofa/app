@@ -147,7 +147,7 @@ cc.define('cc.CouchService', function($http, $q){
     };
 
     var augmentCategories = function(categories){
-        var iterator = new TreeIterator(categories, 'children');
+        var iterator = new cc.util.TreeIterator(categories, 'children');
         iterator.iterateChildren(function(category, parent){
             category.parent = parent;
             category.image = cc.Config.mediaFolder + category.urlId + "." + cc.Config.mediaImgExtension;
@@ -162,7 +162,7 @@ cc.define('cc.CouchService', function($http, $q){
     };
 
     var findChildCategory = function(rootCategory, urlId){
-        var iterator = new TreeIterator(rootCategory, 'children');
+        var iterator = new cc.util.TreeIterator(rootCategory, 'children');
         var matchedCategory;
 
         iterator.iterateChildren(function(category){
