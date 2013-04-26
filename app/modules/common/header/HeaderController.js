@@ -9,15 +9,10 @@ angular
 
             $scope.goBack = function(){
                 navigationService.goUp();
-//                var currentCategory = couchService.getCurrentCategory();
-//                if (navigationService.isView('product')){
-//                    if (currentCategory){
-//                        $location.path('')
-//                    }
-//                }
-//                else if (navigationService.isView('products')){
-//
-//                }
+            };
+
+            $scope.goToRoot = function(){
+                navigationService.navigateToRootCategory();
             };
         }
     ]);
