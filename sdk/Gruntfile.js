@@ -4,10 +4,12 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         ccName: 'cc',
+        ccTestsName: 'cc.tests',
         ccAngularName: 'cc.angular',
         distdir: 'dist',
         src: {
             cc: ['src/core/cc.js','src/core/**/*.js'],
+            ccTests: ['test/**/*.js'],
             ccAngular: ['src/services/**/*.js', 'src/directives/**/*.js']
         },
         shell:{
@@ -22,6 +24,10 @@ module.exports = function(grunt) {
             dist:{
                 src:['<%= src.cc %>'],
                 dest:'<%= distdir %>/<%= ccName %>.js'
+            },
+            ccTests:{
+                src:['<%= src.ccTests %>'],
+                dest:'<%= distdir %>/<%= ccTestsName %>.js'
             },
             ccAngular:{
                 src:['<%= src.ccAngular %>'],
@@ -52,15 +58,19 @@ module.exports = function(grunt) {
             //     dest: '<%= distdir %>/jquery.js'
             // }
         },
+        qunit: {
+            all: ['test/**/*.html']
+        },
         watch:{
             all: {
-                files:['<%= src.cc %>', '<%= src.ccAngular %>'],
+                files:['<%= src.cc %>', '<%= src.ccAngular %>', '<%= src.ccTests %>'],
                 tasks:['build']
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -72,6 +82,6 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['shell']);
-    grunt.registerTask('build', ['clean','concat']);
+    grunt.registerTask('build', ['clean','concat', 'qunit']);
 
 };
