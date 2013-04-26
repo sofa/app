@@ -1,7 +1,5 @@
 'use strict';
 
-cc.namespace('cc.CouchService');
-
 //This code can probably be improved.
 //it's probably unefficient since it doesn't screen level by level
 //instead it goes deep down all levels of each categories and then hops
@@ -28,7 +26,7 @@ var TreeIterator = function(tree, childNodeProperty){
     }
 };
 
-cc.CouchService = function($http, $q){
+cc.define('cc.CouchService', function($http, $q){
     var self = {},
         products = {},
         currentCategory = null;
@@ -180,4 +178,4 @@ cc.CouchService = function($http, $q){
     };
 
     return self;
-};
+});

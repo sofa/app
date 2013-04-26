@@ -2,6 +2,21 @@
 
 var cc = {};
 
+    /**
+     * Creates the given namespace within the cc namespace.
+     * The methor returns an object that contains meta data
+     *
+     * - targetParent (object)
+     * - targetName (string)
+     * - bind (function) : a convenient function to bind
+                           a value to the namespace
+     * 
+     * Options:
+     * 
+     *   - `namespaceString` e.g. 'cc.services.FooService'
+     * 
+     */
+
 cc.namespace = function (namespaceString) {
     var parts = namespaceString.split('.'), parent = cc, i;
 
@@ -10,18 +25,37 @@ cc.namespace = function (namespaceString) {
         parts = parts.slice(1);
     }
 
+    var targetParent = cc,
+        targetName;
+
     for (i = 0; i < parts.length; i++) {
         //create a propery if it doesn't exist
         if (typeof parent[parts[i]] === "undefined") {
             parent[parts[i]] = {};
         }
+
+        if (i === parts.length - 2){
+            targetParent = parent[parts[i]]
+        }
+
+        targetName = parts[i];
+
         parent = parent[parts[i]];
     }
-    return parent;
+    return {
+        targetParent: targetParent,
+        targetName: targetName,
+        bind: function(target){
+            targetParent[targetName] = target;
+        }
+    };
+};
+
+cc.define = function(namespace, fn){
+    cc.namespace(namespace)
+      .bind(fn);
 };
 'use strict';
-
-cc.namespace('cc.CouchService');
 
 //This code can probably be improved.
 //it's probably unefficient since it doesn't screen level by level
@@ -49,7 +83,7 @@ var TreeIterator = function(tree, childNodeProperty){
     }
 };
 
-cc.CouchService = function($http, $q){
+cc.define('cc.CouchService', function($http, $q){
     var self = {},
         products = {},
         currentCategory = null;
@@ -201,4 +235,4 @@ cc.CouchService = function($http, $q){
     };
 
     return self;
-};
+});
