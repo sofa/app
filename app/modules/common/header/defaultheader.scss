@@ -13,7 +13,10 @@
 
 .cc-header-icon{
     color: $toolbar-icon-color;
+    //the padding is to increase the clickable area
+    padding: 0 10px 0 10px;
     position: absolute;
+    line-height: 45px;
 }
 
 .cc-header-icon:active, .active.cc-header-icon{
@@ -21,11 +24,8 @@
     //@include try-lighter('color', $toolbar-icon-color, 10%);
 }
 
-.cc-header-go-back{
-    line-height: 45px;
-    padding-left: 10px;
-    //the padding is only to increase the clickable area
-    padding-right: 40px;
+.cc-header-shopping-cart{
+    right: 0;
 }
 
 .cc-header-logo-wrapper{
