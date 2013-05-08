@@ -55,3 +55,4 @@ cc.define = function(namespace, fn){
     cc.namespace(namespace)
       .bind(fn);
 };
+

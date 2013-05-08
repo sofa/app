@@ -12,6 +12,9 @@ cc.define('cc.BasketService', function(options){
                        productAOptionId === productBOptionId;
             };
 
+    //allow this service to raise events
+    cc.observable.mixin(self);
+
     /**
      * Adds an item to the basket. Returns the added 'BasketItem' 
      * 
@@ -35,6 +38,8 @@ cc.define('cc.BasketService', function(options){
         basketItem.quantity = basketItem.quantity + quantity;
         basketItem.variantId = variantId;
         basketItem.optionId = optionId;
+
+        self.emit('itemAdded', self, basketItem);
 
         return basketItem;
     };
@@ -86,6 +91,8 @@ cc.define('cc.BasketService', function(options){
 
         basketItem.quantity = basketItem.quantity - quantity;
 
+        self.emit('itemRemoved', self, basketItem);
+
         return basketItem;
     };
 
@@ -123,6 +130,18 @@ cc.define('cc.BasketService', function(options){
 
     self.getItems = function(){
         return items;
+    };
+
+    self.getSummary = function(){
+        var summary = {
+            quantity: 0
+        };
+
+        items.forEach(function(item){
+            summary.quantity += item.quantity;
+        });
+
+        return summary;
     };
 
     return self;

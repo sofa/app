@@ -6,6 +6,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.couchService',
     'sdk.services.navigationService',
     'sdk.services.productService',
+    'sdk.services.basketService',
     'sdk.directives'
     ]).
   config(['$routeProvider', function($routeProvider) {

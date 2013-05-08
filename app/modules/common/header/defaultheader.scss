@@ -19,6 +19,25 @@
     line-height: 45px;
 }
 
+.cc-header-badge{
+    position: absolute;
+    padding: 2px;
+    font-size: $font-size-tiny;
+    font-weight: bold;
+    border: 1px solid black;
+    line-height: normal;
+    border-radius: 3px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.cc-header-shopping-cart-badge{
+    top: 4px;
+    right: 2px;
+    background: red;
+    color: #ffffff;
+}
+
 .cc-header-icon:active, .active.cc-header-icon{
     color: white;
     //@include try-lighter('color', $toolbar-icon-color, 10%);

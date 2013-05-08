@@ -3,15 +3,18 @@ test('can create BasketService instance', function() {
     ok(basketService, 'Created basketService instance' );
 });
 
-test('can create BasketService instance', function() {
+test('can add item', function() {
     var basketService = new cc.BasketService();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
 
     var basketItem = basketService.addItem(product, 1);
+    var summary = basketService.getSummary();
 
+    ok(summary.quantity === 1, 'has a summary of one')
     ok(basketItem.product === product, 'retrieved product from basketItem');
+
 });
 
 test('cumulates same products', function() {
@@ -22,7 +25,9 @@ test('cumulates same products', function() {
 
     var basketItem = basketService.addItem(product, 1);
     var basketItem2 = basketService.addItem(product, 1);
+    var summary = basketService.getSummary();
 
+    ok(summary.quantity === 2, 'has a quantity of two');
     ok(basketService.exists(product), 'product exists');
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem === basketItem2, 'baksetItems are identical');
@@ -40,11 +45,13 @@ test('can increase quantity by any number', function() {
     var basketItem = basketService.addItem(product, 1);
     var basketItem2 = basketService.addItem(product, 2);
 
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 3, 'has a quantity of three');
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem === basketItem2, 'baksetItems are identical');
     ok(basketItem.quantity === 3, 'has a quantity of three');
     ok(basketService.getItems().length === 1, 'has only one item');
-
 });
 
 test('does not cumulate same products with different variantIds', function() {
@@ -55,6 +62,11 @@ test('does not cumulate same products with different variantIds', function() {
 
     var basketItem = basketService.addItem(product, 1, 123);
     var basketItem2 = basketService.addItem(product, 1, 456);
+
+
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 2, 'has a quantity of two');
 
     ok(basketService.exists(product, 123), 'product exists');
     ok(basketService.exists(product, 456), 'product exists');
@@ -78,6 +90,11 @@ test('cumulates same products with identical variantIds', function() {
     var basketItem = basketService.addItem(product, 1, 1);
     var basketItem2 = basketService.addItem(product, 1, 1);
 
+
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 2, 'has a quantity of two');
+
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem2.product === product, 'retrieved product from basketItem2');
 
@@ -96,6 +113,10 @@ test('cumulates same products with identical optionIds', function() {
 
     var basketItem = basketService.addItem(product, 1, 1, 1);
     var basketItem2 = basketService.addItem(product, 1, 1, 1);
+
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 2, 'has a quantity of two');
 
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem2.product === product, 'retrieved product from basketItem2');
@@ -116,6 +137,10 @@ test('does not cumulate same products with different optionIds', function() {
     var basketItem2 = basketService.addItem(product, 1, 1, 456);
 
 
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 2, 'has a quantity of two');
+
     ok(basketService.exists(product, 1, 123), 'product exists');
     ok(basketService.exists(product, 1, 456), 'product exists');
     
@@ -135,12 +160,20 @@ test('can remove items by any number', function() {
     product.name = 'Testproduct';
     product.id = 10;
 
-    var basketItem = basketService.addItem(product, 10);;
+    var basketItem = basketService.addItem(product, 10);
+
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 10, 'has a quantity of ten');
 
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem.quantity === 10, 'has a quantity of tten');
 
     basketService.removeItem(product, 5);
+
+    var summaryAfter = basketService.getSummary();
+
+    ok(summaryAfter.quantity === 5, 'has a quantity of five');
 
     ok(basketItem.quantity === 5, 'has a quantity of five');
 });
@@ -183,6 +216,10 @@ test('can clear all items', function() {
     var basketItem = basketService.addItem(product, 1, 123);
     var basketItem2 = basketService.addItem(product, 1, 456);
 
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 2, 'has a quantity of two');
+
     var product2 = new cc.models.Product();
     product2.name = 'Testproduct';
     product2.id = 12;
@@ -193,6 +230,10 @@ test('can clear all items', function() {
     ok(basketService.getItems().length === 4, 'has four items');
 
     basketService.clear();
+
+    var summaryAfter = basketService.getSummary();
+
+    ok(summaryAfter.quantity === 0, 'has a quantity of five');
 
     ok(basketService.getItems().length === 0, 'has zero items');
 });
