@@ -15,9 +15,6 @@ angular
 
             $scope.product = product;
 
-            //guess it would make sense if we had lang on the $routeScope
-            $scope.lang = cc.Lang;
-
             $scope.addToBasket = function(product){
                 basketService.addItem(product, 1);
             };
