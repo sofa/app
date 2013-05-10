@@ -8,17 +8,10 @@ angular
         function CategoryController($scope, $location, navigationService, couchService, basketService) {
 
             $scope.basketItemCount = 0;
+            $scope.navigationService = navigationService;
 
             basketService.on('itemAdded', function(service, basketItem){
                 $scope.basketItemCount = service.getSummary().quantity;
             });
-
-            $scope.goBack = function(){
-                navigationService.goUp();
-            };
-
-            $scope.goToRoot = function(){
-                navigationService.navigateToRootCategory();
-            };
         }
     ]);

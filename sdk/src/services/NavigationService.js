@@ -33,11 +33,15 @@ angular
         };
 
         self.navigateToCategory = function(categoryUrlId){
-            $location.path('cat/' + categoryUrlId);
+            $location.path('/cat/' + categoryUrlId);
         };
 
         self.navigateToRootCategory = function(){
             $location.path('');
+        };
+
+        self.navigateToCart = function(){
+            $location.path('/cart')
         };
 
         self.getCategoryUrlId = function(){

@@ -1,31 +1,17 @@
 <div class="cc-view-wrapper cc-view-phone">
-    <div class="cc-view-title">{{product.name}}</div>
-    
-    <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
-    
-    <div class="cc-product-view-image"
-         style="background-image: url({{productService.getImage(product, 'small')}})"></div>
-
-    <div class="cc-view-content cc-unstyled">
-
-        <div class="cc-padded-line-seperator"></div>
-        
-        <cc-zippy caption="lang.productDetails" opened="true">
-            <div ng-bind-html-unsafe="product.description"></div>
-        </cc-zippy>
-        <div class="cc-padded-line-seperator"></div>
-
-        <cc-zippy caption="lang.productSpecifications">
-            <table class="cc-product-view-attributes">
-                <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes">
-                    <td class="cc-product-view-attributes-row-key">{{key}}</td>
-                    <td class="cc-product-view-attributes-row-value">{{value}}</td>
-                </tr>
-            </table>
-        </cc-zippy>
-        
-        <div class="cc-padded-line-seperator"></div>
-        
-        <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
-    </div>
+    <div class="cc-view-title" ng-bind="ln.shoppingCart"></div>
+    <ul class="cc-list">
+        <li ng-repeat="item in basketService.getItems()"
+            ng-click="alert('not implemented')" 
+            class="cc-list-row" >
+            <div class="cc-list-row-image cc-category-listing-row-image" 
+                 style="background-image: url({{productService.getImage(item.product, 'small')}})">
+            </div>
+            <div class="cc-list-row-text cc-category-listing-row-text">
+                <div class="cc-list-row-text-centered">
+                    {{item.product.name}}
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>

@@ -11,6 +11,7 @@ angular.module('CouchCommerceApp', [
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
+        $routeProvider.when('/cart', {templateUrl: 'modules/cart/cart.tpl.html', controller: 'CartController'});
         $routeProvider.when('/cat/:category', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
         
         $routeProvider.when('/cat/:category/products', {
