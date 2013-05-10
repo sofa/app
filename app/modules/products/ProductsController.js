@@ -9,6 +9,7 @@ angular
         '$location', 
         'couchService',
         'productService',
+        'navigationService',
         'products',
         function ProductsController(
             $scope, 
@@ -16,14 +17,11 @@ angular
             $location, 
             couchService,
             productService,
+            navigationService,
             products) {
             
             $scope.productService = productService;
-
-            $scope.goToProduct = function(product){
-                $location.path('cat/' + $scope.categoryUrlId + '/product/' + product.urlKey);
-            };
-
+            $scope.navigationService = navigationService;
             $scope.products = products;
             $scope.categoryUrlId = $routeParams.category;
         }

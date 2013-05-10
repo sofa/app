@@ -56,6 +56,10 @@ angular
             $location.path('/cat/' + categoryUrlId + '/products');
         };
 
+        self.navigateToProduct = function(product){
+            $location.path('cat/' + product.categoryUrlId + '/product/' + product.urlKey);
+        };
+
         self.navigateToCategory = function(categoryUrlId){
             $location.path('/cat/' + categoryUrlId);
         };

@@ -56,16 +56,28 @@ cc.define('cc.CouchService', function($http, $q){
                 '&callback=JSON_CALLBACK'
             })
             .then(function(data){
+                var products = augmentProducts(data.data.products, categoryUrlId);
                 //FixMe we are effectively creating a memory leak here by caching all
                 //seen products forever. This needs to be more sophisticated
-                products[categoryUrlId] = data.data.products;
-                return data.data.products;
+                products[categoryUrlId] = products;
+                return products;
             });
         }
 
         var deferredProducts = $q.defer();
         deferredProducts.resolve(products[categoryUrlId]);
         return deferredProducts.promise;
+    };
+
+    //it's a bit akward that we need to do that. It should be adressed
+    //directly on our server API so that this extra processing can be removed.
+    var augmentProducts = function(products, categoryUrlId){
+        
+        products.forEach(function(product){
+            product.categoryUrlId = categoryUrlId;
+        });
+
+        return products;
     };
 
     /**
