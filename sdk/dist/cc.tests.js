@@ -23,10 +23,15 @@ test('cumulates same products', function() {
     product.name = 'Testproduct';
     product.id = 10;
 
+    var itemAddedCalled = 0;
+
+    basketService.on('itemAdded', function(){ itemAddedCalled++; });
+
     var basketItem = basketService.addItem(product, 1);
     var basketItem2 = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
+    ok(itemAddedCalled === 2, 'raises itemAdded event two times');
     ok(summary.quantity === 2, 'has a quantity of two');
     ok(basketService.exists(product), 'product exists');
     ok(basketItem.product === product, 'retrieved product from basketItem');
@@ -169,10 +174,16 @@ test('can remove items by any number', function() {
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem.quantity === 10, 'has a quantity of tten');
 
+
+    var itemRemovedCalled = 0;
+
+    basketService.on('itemRemoved', function(){ itemRemovedCalled++; });
+
     basketService.removeItem(product, 5);
 
     var summaryAfter = basketService.getSummary();
 
+    ok(itemRemovedCalled === 1, 'raises itemRemoved event');
     ok(summaryAfter.quantity === 5, 'has a quantity of five');
 
     ok(basketItem.quantity === 5, 'has a quantity of five');
@@ -229,11 +240,48 @@ test('can clear all items', function() {
     
     ok(basketService.getItems().length === 4, 'has four items');
 
+
+    var clearedCalled = 0;
+
+    basketService.on('cleared', function(){ clearedCalled++; });
+
     basketService.clear();
+
+    ok(clearedCalled === 1, 'raises cleared event');
 
     var summaryAfter = basketService.getSummary();
 
     ok(summaryAfter.quantity === 0, 'has a quantity of five');
 
     ok(basketService.getItems().length === 0, 'has zero items');
+});
+
+test('calculates summary', function() {
+    var basketService = new cc.BasketService();
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 1;
+    product.price = 4.65;
+    product.tax = 19;
+
+    var product2 = new cc.models.Product();
+    product2.name = 'Testproduct';
+    product2.id = 2;
+    product2.price = 12.28;
+    product2.tax = 7;
+
+    basketService.addItem(product, 1);
+    basketService.addItem(product, 4);
+
+    basketService.addItem(product2, 2);
+    basketService.addItem(product2, 3);
+
+    var summary = basketService.getSummary();
+    var itemCount = basketService.getItems().length;
+
+    ok(itemCount === 2, 'has two basketItems');
+    ok(summary.quantity === 10, 'has a quantity of 15');
+    ok(summary.sum === 84.65, 'calculates sum correctly');
+    ok(summary.vat === 8.50, 'calculates VAT correctly');
+    ok(summary.total === 89.65, 'calculates total correctly');
 });

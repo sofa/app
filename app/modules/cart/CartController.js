@@ -11,5 +11,17 @@ angular
             $scope.productService = productService;
             $scope.navigationService = navigationService;
 
+            var updateModels = function(){
+                $scope.summary = basketService.getSummary();
+                $scope.items = basketService.getItems();
+            };
+
+            updateModels();
+
+            basketService
+                .on('cleared', updateModels)
+                .on('itemAdded', updateModels)
+                .on('itemRemoved', updateModels);
+
         }
     ]);

@@ -106,6 +106,8 @@ cc.define('cc.BasketService', function(options){
         
         items.length = 0;
 
+        self.emit('cleared', self);
+
         //return self for chaining
         return self;
     };
@@ -132,14 +134,52 @@ cc.define('cc.BasketService', function(options){
         return items;
     };
 
+    /**
+     * Returns a summary object of the current basket state 
+     * 
+     */
+
     self.getSummary = function(){
-        var summary = {
-            quantity: 0
-        };
+        var shipping            = cc.Config.shippingCost,
+            shippingTax         = cc.Config.shippingTax,
+            freeShippingFrom    = cc.Config.freeShippingFrom,
+            quantity            = 0,
+            sum                 = 0,
+            vat                 = 0,
+            discount            = 0,
+            total               = 0;
 
         items.forEach(function(item){
-            summary.quantity += item.quantity;
+            var itemQuantity = parseInt(item.quantity);
+            var product = item.product;
+            //attention this doesn't take variants into account yet!
+            var price = product.price;
+            var tax = parseInt(product.tax);
+            quantity += itemQuantity;
+            sum += price * itemQuantity;
+            vat += parseFloat(Math.round((price * tax / (100 + tax) ) * 100) / 100) * itemQuantity;
         });
+
+        //set the shipping to zero if the sum is above the configured free shipping value
+        shipping = freeShippingFrom !== null && freeShippingFrom !== undefined && sum >= freeShippingFrom ? 0 : shipping;
+
+        total = sum + shipping + discount;
+
+        vat += parseFloat(Math.round((shipping * shippingTax / (100 + shippingTax) ) * 100) / 100);
+
+        var summary = {
+            quantity: quantity,
+            sum: sum,
+            sumStr: sum.toFixed(2),
+            vat: vat,
+            vatStr: vat.toFixed(2),
+            shipping: shipping,
+            shippingStr: shipping.toFixed(2),
+            discount: discount,
+            total: total,
+            totalStr: total.toFixed(2),
+            shippingTax: shippingTax
+        };
 
         return summary;
     };

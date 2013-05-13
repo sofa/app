@@ -8,5 +8,8 @@ cc.Config = {
     //apiHttpMethod: 'get',
     mediaFolder:'http://cdn.couchcommerce.com/media/dasgibtesnureinmal/',
     mediaImgExtension:'png',
-    mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png'
+    mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
+    shippingCost:5,
+    shippingTax:19,
+    shippingFreeFrom: null
 };

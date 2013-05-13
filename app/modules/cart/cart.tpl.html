@@ -1,7 +1,7 @@
 <div class="cc-view-wrapper cc-view-phone">
     <div class="cc-view-title" ng-bind="ln.shoppingCart"></div>
     <ul class="cc-list">
-        <li ng-repeat="item in basketService.getItems()"
+        <li ng-repeat="item in items"
             ng-click="navigationService.navigateToProduct(item.product)" 
             class="cc-list-row" >
             <div class="cc-list-row-image cc-category-listing-row-image" 
@@ -14,4 +14,22 @@
             </div>
         </li>
     </ul>
+    <div class="cc-cart-total-panel">
+        <div>
+            <span class="cc-cart-total-panel-text" ng-bind="ln.summarySubtotal" ></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.sumStr"></span>
+        </div>
+        <div>
+            <span class="cc-cart-total-panel-text" ng-bind="ln.summaryShipping" ></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.shippingStr"></span>
+        </div>
+        <div>
+            <span class="cc-cart-total-panel-text" ng-bind="ln.summaryTaxLabel"></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.vatStr"></span>
+        </div>
+        <div class="cc-cart-total-line">
+            <span class="cc-cart-total-panel-text" ng-bind="ln.summaryGrandTotalLabel"></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.totalStr"></span>
+        </div>
+    </div>
 </div>
