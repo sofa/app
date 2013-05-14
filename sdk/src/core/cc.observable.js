@@ -1,6 +1,9 @@
-'use strict';
+
 
 cc.define('cc.Observable', function(){
+
+    'use strict';
+
     var self = {
         mixin: function(obj, handlers) {
             // we store the list of handlers as a local variable inside the scope

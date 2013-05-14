@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('sdk.services.couchService', []);
 
 angular

@@ -1,6 +1,9 @@
-'use strict';
+
 
 cc.define('cc.CouchService', function($http, $q){
+
+    'use strict';
+
     var self = {},
         products = {},
         currentCategory = null;

@@ -1,10 +1,11 @@
-'use strict';
-
 //This code can probably be improved.
 //it's probably unefficient since it doesn't screen level by level
 //instead it goes deep down all levels of each categories and then hops
 //over to the next category.
 cc.define('cc.util.TreeIterator', function(tree, childNodeProperty){
+
+    'use strict';
+
     var me = this,
         continueIteration = true;
 

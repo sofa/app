@@ -1,10 +1,11 @@
-'use strict';
-
 angular.module('sdk.services.productService', []);
 
 angular
     .module('sdk.services.productService')
     .factory('productService', [function(){
+
+        'use strict';
+
         var self = {};
 
         self.getImage = function(product, size){

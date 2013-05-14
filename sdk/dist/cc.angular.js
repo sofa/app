@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('sdk.services.basketService', []);
 
 angular
@@ -9,8 +7,6 @@ angular
 }]);
 
 
-
-'use strict';
 
 angular.module('sdk.services.couchService', []);
 
@@ -22,13 +18,14 @@ angular
 
 
 
-'use strict';
-
 angular.module('sdk.services.navigationService', []);
 
 angular
     .module('sdk.services.navigationService')
     .factory('navigationService', ['$location', 'couchService', function($location, couchService){
+
+        'use strict';
+
         var self = {};
 
         var views = {
@@ -116,13 +113,14 @@ angular
 
 
 
-'use strict';
-
 angular.module('sdk.services.productService', []);
 
 angular
     .module('sdk.services.productService')
     .factory('productService', [function(){
+
+        'use strict';
+
         var self = {};
 
         self.getImage = function(product, size){

@@ -1,10 +1,11 @@
-'use strict';
-
 angular.module('sdk.services.navigationService', []);
 
 angular
     .module('sdk.services.navigationService')
     .factory('navigationService', ['$location', 'couchService', function($location, couchService){
+
+        'use strict';
+
         var self = {};
 
         var views = {
