@@ -25,6 +25,7 @@ test('cumulates same products', function() {
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
+    product.price = 2;
 
     var itemAddedCalled = 0;
 
@@ -40,6 +41,7 @@ test('cumulates same products', function() {
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem === basketItem2, 'baksetItems are identical');
     ok(basketItem.quantity === 2, 'has a quantity of two');
+    ok(basketItem.getTotal() === 4, 'has a total price of four');
     ok(basketService.getItems().length === 1, 'has only one item');
 
 });

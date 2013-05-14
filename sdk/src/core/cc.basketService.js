@@ -27,7 +27,12 @@ cc.define('cc.BasketService', function(storageService, options){
 
         return data.map(function(val){
             delete val['$$hashKey'];
-            return val;
+
+            //on serialization all functions go away. That means, we basically
+            //have to create a fresh instance again, once we deserialize again
+            var item = cc.Util.deepExtend(new cc.models.BasketItem(), val);
+
+            return item;
         });
     }
 

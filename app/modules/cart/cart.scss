@@ -18,3 +18,29 @@
 .cc-cart-total-line{
     font-size: $font-size-huge;
 }
+
+.cc-cart-list-row{
+    height: 100%;
+    min-height: 120px;
+}
+
+.cc-cart-list-row-name{
+    font-weight: bold;
+}
+
+.cc-cart-list-row-single-price{
+    padding-bottom: 20px;
+}
+
+.cc-cart-list-row-text{
+    margin-left: 120px;
+    color: $content-text-color;
+    font-size: $font-size-regular;
+}
+
+.cc-cart-list-row-price{
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+    margin-right: 5px;
+}

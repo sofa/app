@@ -3,13 +3,19 @@
     <ul class="cc-list">
         <li ng-repeat="item in items"
             ng-click="navigationService.navigateToProduct(item.product)" 
-            class="cc-list-row" >
+            class="cc-list-row cc-cart-list-row" >
             <div class="cc-list-row-image cc-category-listing-row-image" 
                  style="background-image: url({{productService.getImage(item.product, 'small')}})">
             </div>
-            <div class="cc-list-row-text cc-category-listing-row-text">
-                <div class="cc-list-row-text-centered">
+            <div class="cc-cart-list-row-text">
+                <div class="cc-cart-list-row-name">
                     {{item.product.name}}
+                </div>
+                <div class="cc-cart-list-row-singleprice">
+                    Einzelpreis: {{item.product.price}}
+                </div>
+                <div class="cc-cart-list-row-price">
+                    {{item.getTotal()}}
                 </div>
             </div>
         </li>
