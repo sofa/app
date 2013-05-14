@@ -1,25 +1,25 @@
 
-.slide-in-rtl-setup {
- @include vendor-prefix('transition', 0.3s linear all);
+.slide-in-rtl {
+ @include vendor-prefix('transition', all 0.5s linear);
  /* The animation preparation code */
  position: relative;
  @include vendor-prefix('transform',translate3d(100%,0,0));
 }
  
-.slide-in-rtl-setup.slide-in-rtl-start {
+.slide-in-rtl.slide-in-rtl-active {
  /* The animation code itself */
  @include vendor-prefix('transform',translate3d(0%,0,0));
 }
 
-.slide-out-rtl-setup {
- @include vendor-prefix('transition', 0.3s linear all);
+.slide-out-rtl {
+ @include vendor-prefix('transition', all 0.3s linear );
  
  /* The animation preparation code */
  position: relative;
  @include vendor-prefix('transform',translate3d(0%,0,0));
 }
  
-.slide-out-rtl-setup.slide-out-rtl-start {
+.slide-out-rtl.slide-out-rtl-active {
  /* The animation code itself */
  @include vendor-prefix('transform',translate3d(-100%,0,0));
 }
