@@ -1,5 +1,3 @@
-
-
 var cc = {};
 
 (function(){

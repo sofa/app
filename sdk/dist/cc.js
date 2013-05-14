@@ -1,5 +1,3 @@
-
-
 var cc = {};
 
 (function(){
@@ -106,11 +104,14 @@ var cc = {};
 
 
 
-'use strict';
+cc.define('cc.BasketService', function(storageService, options){
 
-cc.define('cc.BasketService', function(options){
+    'use strict';
+
     var self = {},
-        items = [],
+        storePrefix = 'basketService_',
+        storeItemsName = storePrefix + 'items',
+        items = sanitizeSavedData(storageService.get(storeItemsName)) || [],
         productIdentityFn = options && _.isFunction(options.productIdentityFn) ? 
             options.productIdentityFn : function(productA, productAVariantId, productAOptionId,
                                                  productB, productBVariantId, productBOptionId){
@@ -120,8 +121,27 @@ cc.define('cc.BasketService', function(options){
                        productAOptionId === productBOptionId;
             };
 
+    
     //allow this service to raise events
     cc.observable.mixin(self);
+
+    //http://mutablethought.com/2013/04/25/angular-js-ng-repeat-no-longer-allowing-duplicates/
+    function sanitizeSavedData(data){
+        if (!data){
+            return data;
+        }
+
+        return data.map(function(val){
+            delete val['$$hashKey'];
+            return val;
+        });
+    }
+
+    var writeToStore = function(){
+        storageService.set(storeItemsName, items);
+    };
+
+    writeToStore();
 
     /**
      * Adds an item to the basket. Returns the added 'BasketItem' 
@@ -148,6 +168,8 @@ cc.define('cc.BasketService', function(options){
         basketItem.optionId = optionId;
 
         self.emit('itemAdded', self, basketItem);
+
+        writeToStore();
 
         return basketItem;
     };
@@ -201,6 +223,8 @@ cc.define('cc.BasketService', function(options){
 
         self.emit('itemRemoved', self, basketItem);
 
+        writeToStore();
+
         return basketItem;
     };
 
@@ -215,6 +239,8 @@ cc.define('cc.BasketService', function(options){
         items.length = 0;
 
         self.emit('cleared', self);
+
+        writeToStore();
 
         //return self for chaining
         return self;
@@ -307,8 +333,6 @@ cc.Config = {
     shippingTax:19,
     shippingFreeFrom: null
 };
-
-
 cc.define('cc.CouchService', function($http, $q){
 
     'use strict';
@@ -505,8 +529,28 @@ cc.define('cc.util.TreeIterator', function(tree, childNodeProperty){
         }
     }
 });
+cc.define('cc.MemoryStorageService', function(){
+    
+    var _storage = {};
 
+    var set = function(id, data){
+        _storage[id] = data;
+    };
 
+    var get = function(id){
+        return _storage[id];
+    };
+
+    var remove = function(id){
+        delete _storage[id];
+    };
+
+    return {
+        set: set,
+        get: get,
+        remove: remove
+    };
+});
 cc.define('cc.models.BasketItem', function(){
 
     'use strict';
@@ -525,8 +569,6 @@ cc.define('cc.models.Product', function(){
 
     return self;
 });
-
-
 cc.define('cc.Observable', function(){
 
     'use strict';
@@ -615,6 +657,10 @@ cc.define('cc.Observable', function(){
 });
 
 cc.observable = new cc.Observable();
+//we just wrap store.js in a service here
+cc.define('cc.SessionStorageService', function(){
+    return store;
+});
 /**
  * @license
  * Lo-Dash 1.2.0 (Custom Build) <http://lodash.com/>
@@ -5870,7 +5916,7 @@ cc.observable = new cc.Observable();
     var store = {},
         win = window,
         doc = win.document,
-        localStorageName = 'localStorage',
+        localStorageName = 'sessionStorage',
         namespace = '__storejs__',
         storage
 

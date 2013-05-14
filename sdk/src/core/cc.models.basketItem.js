@@ -1,5 +1,3 @@
-
-
 cc.define('cc.models.BasketItem', function(){
 
     'use strict';

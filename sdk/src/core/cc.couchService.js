@@ -1,5 +1,3 @@
-
-
 cc.define('cc.CouchService', function($http, $q){
 
     'use strict';

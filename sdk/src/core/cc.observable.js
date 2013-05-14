@@ -1,5 +1,3 @@
-
-
 cc.define('cc.Observable', function(){
 
     'use strict';

@@ -1,9 +1,12 @@
-angular.module('sdk.services.basketService', []);
+angular.module('sdk.services.basketService', [
+        // TODO: Investigate. I'm not sold this should be handled on this level. 
+        store.enabled ? 'sdk.services.sessionStorageService' : 'sdk.services.memoryStorageService'
+    ]);
 
 angular
     .module('sdk.services.basketService')
-    .factory('basketService', [function(){
-        return new cc.BasketService();
+    .factory('basketService', ['storageService', function(storageService){
+        return new cc.BasketService(storageService);
 }]);
 
 
@@ -14,6 +17,16 @@ angular
     .module('sdk.services.couchService')
     .factory('couchService', ['$http', '$q', function($http, $q){
         return new cc.CouchService($http, $q);
+}]);
+
+
+
+angular.module('sdk.services.memoryStorageService', []);
+
+angular
+    .module('sdk.services.memoryStorageService')
+    .factory('storageService', [function(){
+        return new cc.MemoryStorageService();
 }]);
 
 
@@ -134,6 +147,16 @@ angular
         }
 
         return self;
+}]);
+
+
+
+angular.module('sdk.services.sessionStorageService', []);
+
+angular
+    .module('sdk.services.sessionStorageService')
+    .factory('storageService', [function(){
+        return new cc.SessionStorageService();
 }]);
 
 

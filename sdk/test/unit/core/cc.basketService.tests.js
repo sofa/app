@@ -1,10 +1,12 @@
 test('can create BasketService instance', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     ok(basketService, 'Created basketService instance' );
 });
 
 test('can add item', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -18,7 +20,8 @@ test('can add item', function() {
 });
 
 test('cumulates same products', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -42,7 +45,8 @@ test('cumulates same products', function() {
 });
 
 test('can increase quantity by any number', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -60,7 +64,8 @@ test('can increase quantity by any number', function() {
 });
 
 test('does not cumulate same products with different variantIds', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -87,7 +92,8 @@ test('does not cumulate same products with different variantIds', function() {
 });
 
 test('cumulates same products with identical variantIds', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -111,7 +117,8 @@ test('cumulates same products with identical variantIds', function() {
 
 
 test('cumulates same products with identical optionIds', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -133,7 +140,8 @@ test('cumulates same products with identical optionIds', function() {
 });
 
 test('does not cumulate same products with different optionIds', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -160,7 +168,8 @@ test('does not cumulate same products with different optionIds', function() {
 });
 
 test('can remove items by any number', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -190,7 +199,8 @@ test('can remove items by any number', function() {
 });
 
 test('trying to remove an non existing item raises exception', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -201,7 +211,8 @@ test('trying to remove an non existing item raises exception', function() {
 });
 
 test('trying to remove more items than what exists in basket raises exception', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 10;
@@ -218,7 +229,8 @@ test('trying to remove more items than what exists in basket raises exception', 
 });
 
 test('can clear all items', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
 
     var product = new cc.models.Product();
     product.name = 'Testproduct';
@@ -257,7 +269,9 @@ test('can clear all items', function() {
 });
 
 test('calculates summary', function() {
-    var basketService = new cc.BasketService();
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
+
     var product = new cc.models.Product();
     product.name = 'Testproduct';
     product.id = 1;

@@ -1,8 +1,11 @@
-'use strict';
+cc.define('cc.BasketService', function(storageService, options){
 
-cc.define('cc.BasketService', function(options){
+    'use strict';
+
     var self = {},
-        items = [],
+        storePrefix = 'basketService_',
+        storeItemsName = storePrefix + 'items',
+        items = sanitizeSavedData(storageService.get(storeItemsName)) || [],
         productIdentityFn = options && _.isFunction(options.productIdentityFn) ? 
             options.productIdentityFn : function(productA, productAVariantId, productAOptionId,
                                                  productB, productBVariantId, productBOptionId){
@@ -12,8 +15,27 @@ cc.define('cc.BasketService', function(options){
                        productAOptionId === productBOptionId;
             };
 
+    
     //allow this service to raise events
     cc.observable.mixin(self);
+
+    //http://mutablethought.com/2013/04/25/angular-js-ng-repeat-no-longer-allowing-duplicates/
+    function sanitizeSavedData(data){
+        if (!data){
+            return data;
+        }
+
+        return data.map(function(val){
+            delete val['$$hashKey'];
+            return val;
+        });
+    }
+
+    var writeToStore = function(){
+        storageService.set(storeItemsName, items);
+    };
+
+    writeToStore();
 
     /**
      * Adds an item to the basket. Returns the added 'BasketItem' 
@@ -40,6 +62,8 @@ cc.define('cc.BasketService', function(options){
         basketItem.optionId = optionId;
 
         self.emit('itemAdded', self, basketItem);
+
+        writeToStore();
 
         return basketItem;
     };
@@ -93,6 +117,8 @@ cc.define('cc.BasketService', function(options){
 
         self.emit('itemRemoved', self, basketItem);
 
+        writeToStore();
+
         return basketItem;
     };
 
@@ -107,6 +133,8 @@ cc.define('cc.BasketService', function(options){
         items.length = 0;
 
         self.emit('cleared', self);
+
+        writeToStore();
 
         //return self for chaining
         return self;

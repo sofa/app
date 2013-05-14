@@ -10,8 +10,15 @@ angular
             $scope.basketItemCount = 0;
             $scope.navigationService = navigationService;
 
-            basketService.on('itemAdded', function(service, basketItem){
-                $scope.basketItemCount = service.getSummary().quantity;
-            });
+            var updateBasketItemCount = function(){
+                $scope.basketItemCount = basketService.getSummary().quantity;
+            };
+
+            updateBasketItemCount();
+
+            basketService
+                .on('itemAdded', updateBasketItemCount)
+                .on('itemRemoved', updateBasketItemCount);
+
         }
     ]);
