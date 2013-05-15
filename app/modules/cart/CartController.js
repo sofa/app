@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('CartController',
     [
-        '$scope','basketService', 'productService', 'navigationService',
-        function CartController($scope, basketService, productService, navigationService) {
+        '$scope','basketService', 'productService', 'navigationService', '$dialog',
+        function CartController($scope, basketService, productService, navigationService, $dialog) {
 
             $scope.basketService = basketService;
             $scope.productService = productService;
@@ -23,5 +23,26 @@ angular
                 .on('itemAdded', updateModels)
                 .on('itemRemoved', updateModels);
 
+            $scope.decreaseItem = function(item){
+                if (item.quantity > 1){
+                    basketService.decreaseOne(item);
+                }
+                else {
+                    $dialog
+                        .messageBox(
+                            'Artikel entfernen?',
+                            'Soll der Artikel entfernt werden?',
+                            [{result: 'cancel', label: 'Abbrechen'}, {result: 'ok', label: 'Entfernen'}]
+                        )
+                        .open()
+                        .then(function(result){
+                            if (result === 'ok'){
+                                basketService.decreaseOne(item);
+                            }
+                        });
+                }
+
+
+            };
         }
     ]);

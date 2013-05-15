@@ -19,7 +19,7 @@
                 </div>
                 <div class="cc-cart-quantity-selector">
                     <!-- TODO think about making this a directive -->
-                    <span ng-click="basketService.decreaseOne(item)" class="cc-cart-button">-</span>
+                    <span ng-click="decreaseItem(item)" class="cc-cart-button">-</span>
                     <span>{{item.quantity}}</span>
                     <span ng-click="basketService.increaseOne(item)" class="cc-cart-button">+</span>
                 </div>
