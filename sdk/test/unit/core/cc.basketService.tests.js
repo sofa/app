@@ -19,6 +19,51 @@ test('can add item', function() {
 
 });
 
+test('can use increase and decrease shorthands', function() {
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 10;
+
+    var basketItem = basketService.addItem(product, 1);
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 1, 'has a summary of 1')
+    ok(basketItem.product === product, 'retrieved product from basketItem');
+    ok(basketItem.quantity === 1, 'has a quantity of 1');
+
+    basketService.increaseOne(basketItem);
+
+    summary = basketService.getSummary();
+
+    ok(summary.quantity === 2, 'has a summary of 2');
+    ok(basketItem.quantity === 2, 'has a quantity of 2');
+
+    basketService.decreaseOne(basketItem);
+
+    summary = basketService.getSummary();
+
+    ok(summary.quantity === 1, 'has a summary of 1');
+    ok(basketItem.quantity === 1, 'has a quantity of 1');
+
+    basketService.increase(basketItem, 10);
+
+    summary = basketService.getSummary();
+
+    ok(summary.quantity === 11, 'has a summary of 11');
+    ok(basketItem.quantity === 11, 'has a quantity of 11');
+
+
+    basketService.decrease(basketItem, 10);
+
+    summary = basketService.getSummary();
+
+    ok(summary.quantity === 1, 'has a summary of 1');
+    ok(basketItem.quantity === 1, 'has a quantity of 1');
+
+});
+
 test('cumulates same products', function() {
     var basketService = new cc.BasketService(new cc.SessionStorageService());
     basketService.clear();

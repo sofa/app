@@ -74,6 +74,30 @@ cc.define('cc.BasketService', function(storageService, options){
     };
 
     /**
+     * A shorthand for:
+     * basketService.increase(basketItem, 1) 
+     * 
+     * Options:
+     * 
+     *   - `basketItem` the basketItem that should be increased by one
+     */
+    self.increaseOne = function(basketItem){
+        return self.increase(basketItem, 1);
+    };
+
+    /**
+     * A shorthand for:
+     * basketService.addItem(basketItem.product, number, basketItem.variantId, basketItem.optionId) 
+     * 
+     * Options:
+     * 
+     *   - `basketItem` the basketItem that should be increased by one
+     */
+    self.increase = function(basketItem, number){
+        return self.addItem(basketItem.product, number, basketItem.variantId, basketItem.optionId);
+    };
+
+    /**
      * Checks if an product exists in the basket 
      * 
      * Options:
@@ -125,6 +149,30 @@ cc.define('cc.BasketService', function(storageService, options){
         writeToStore();
 
         return basketItem;
+    };
+
+    /**
+     * A shorthand for:
+     * basketService.decrease(basketItem, 1) 
+     * 
+     * Options:
+     * 
+     *   - `basketItem` the basketItem that should be decreased by one
+     */
+    self.decreaseOne = function(basketItem){
+        return self.decrease(basketItem, 1);
+    };
+
+    /**
+     * A shorthand for:
+     * basketService.removeItem(basketItem.product, number, basketItem.variantId, basketItem.optionId) 
+     * 
+     * Options:
+     * 
+     *   - `basketItem` the basketItem that should be decreased by one
+     */
+    self.decrease = function(basketItem, number){
+        return self.removeItem(basketItem.product, number, basketItem.variantId, basketItem.optionId);
     };
 
     /**

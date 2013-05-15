@@ -1,21 +1,27 @@
 <div class="cc-view-wrapper cc-view-phone">
     <div class="cc-view-title" ng-bind="ln.shoppingCart"></div>
     <ul>
-        <li ng-repeat="item in items"
-            ng-click="navigationService.navigateToProduct(item.product)" 
+        <li ng-repeat="item in items" 
             class="cc-list-row cc-cart-list-row" >
-            <div class="cc-list-row-image cc-category-listing-row-image" 
+            <div class="cc-list-row-image cc-category-listing-row-image"
+            ng-click="navigationService.navigateToProduct(item.product)" 
                  style="background-image: url({{productService.getImage(item.product, 'small')}})">
             </div>
             <div class="cc-cart-list-row-text">
                 <div class="cc-cart-list-row-name">
                     {{item.product.name}}
                 </div>
-                <div class="cc-cart-list-row-singleprice">
+                <div class="cc-cart-list-row-single-price">
                     {{ln.listItemPrice}} {{item.product.price}}
                 </div>
                 <div class="cc-cart-list-row-price">
                     {{item.getTotal()}}
+                </div>
+                <div class="cc-cart-quantity-selector">
+                    <!-- TODO think about making this a directive -->
+                    <span ng-click="basketService.decreaseOne(item)" class="cc-cart-button">-</span>
+                    <span>{{item.quantity}}</span>
+                    <span ng-click="basketService.increaseOne(item)" class="cc-cart-button">+</span>
                 </div>
             </div>
         </li>
