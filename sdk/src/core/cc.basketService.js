@@ -146,6 +146,10 @@ cc.define('cc.BasketService', function(storageService, options){
 
         self.emit('itemRemoved', self, basketItem);
 
+        if (basketItem.quantity === 0){
+            cc.Array.remove(items, basketItem);
+        }
+        
         writeToStore();
 
         return basketItem;

@@ -19,6 +19,26 @@ test('can add item', function() {
 
 });
 
+test('removing the last item removes the whole basket item', function() {
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 10;
+
+    var basketItem = basketService.addItem(product, 1);
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 1, 'has a summary of one')
+    ok(basketItem.product === product, 'retrieved product from basketItem');
+
+    basketService.decreaseOne(basketItem);
+
+    summary = basketService.getSummary();
+    ok(summary.quantity === 0, 'has zero items');
+    ok(basketService.getItems().length === 0, 'has zero items');
+});
+
 test('can use increase and decrease shorthands', function() {
     var basketService = new cc.BasketService(new cc.SessionStorageService());
     basketService.clear();

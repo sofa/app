@@ -7,7 +7,8 @@ angular.module('CouchCommerceApp', [
     'sdk.services.navigationService',
     'sdk.services.productService',
     'sdk.services.basketService',
-    'sdk.directives'
+    'sdk.directives',
+    'ui.bootstrap'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
