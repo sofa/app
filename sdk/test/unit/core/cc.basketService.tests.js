@@ -32,11 +32,19 @@ test('removing the last item removes the whole basket item', function() {
     ok(summary.quantity === 1, 'has a summary of one')
     ok(basketItem.product === product, 'retrieved product from basketItem');
 
+    var itemRemovedCalled = 0;
+    basketService.on('itemRemoved', function(){
+        //it's important to proof that the item was already removed
+        //by the time the event fires
+        summary = basketService.getSummary();
+        ok(summary.quantity === 0, 'has zero items');
+        ok(basketService.getItems().length === 0, 'has zero items');
+        itemRemovedCalled++; 
+    });
+
     basketService.decreaseOne(basketItem);
 
-    summary = basketService.getSummary();
-    ok(summary.quantity === 0, 'has zero items');
-    ok(basketService.getItems().length === 0, 'has zero items');
+    ok(itemRemovedCalled === 1, 'itemRemoved was fired');
 });
 
 test('can use increase and decrease shorthands', function() {

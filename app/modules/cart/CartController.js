@@ -14,6 +14,7 @@ angular
             var updateModels = function(){
                 $scope.summary = basketService.getSummary();
                 $scope.items = basketService.getItems();
+                $scope.isEmpty = $scope.items.length === 0;
             };
 
             updateModels();

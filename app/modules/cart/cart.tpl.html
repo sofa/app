@@ -26,7 +26,7 @@
             </div>
         </li>
     </ul>
-    <div class="cc-cart-total-panel">
+    <div ng-show="!isEmpty" class="cc-cart-total-panel">
         <div>
             <span class="cc-cart-total-panel-text" ng-bind="ln.summarySubtotal" ></span>
             <span class="cc-cart-total-panel-figure" ng-bind="summary.sumStr"></span>

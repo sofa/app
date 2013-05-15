@@ -66,9 +66,9 @@ cc.define('cc.BasketService', function(storageService, options){
         basketItem.variantId = variantId;
         basketItem.optionId = optionId;
 
-        self.emit('itemAdded', self, basketItem);
-
         writeToStore();
+
+        self.emit('itemAdded', self, basketItem);
 
         return basketItem;
     };
@@ -144,13 +144,13 @@ cc.define('cc.BasketService', function(storageService, options){
 
         basketItem.quantity = basketItem.quantity - quantity;
 
-        self.emit('itemRemoved', self, basketItem);
-
         if (basketItem.quantity === 0){
             cc.Array.remove(items, basketItem);
         }
-        
+
         writeToStore();
+
+        self.emit('itemRemoved', self, basketItem);
 
         return basketItem;
     };
@@ -189,9 +189,9 @@ cc.define('cc.BasketService', function(storageService, options){
         
         items.length = 0;
 
-        self.emit('cleared', self);
-
         writeToStore();
+
+        self.emit('cleared', self);
 
         //return self for chaining
         return self;
