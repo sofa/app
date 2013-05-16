@@ -21,13 +21,13 @@
 
 .cc-header-badge{
     position: absolute;
-    padding: 2px;
-    font-size: $font-size-tiny;
+    padding: 1px;
+    font-size: $font-size-small;
     font-weight: bold;
     border: 1px solid black;
     line-height: normal;
     border-radius: 3px;
-    min-width: 18px;
+    min-width: 22px;
     text-align: center;
 }
 
@@ -36,6 +36,7 @@
     right: 2px;
     background: red;
     color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 .cc-header-icon:active, .active.cc-header-icon{
