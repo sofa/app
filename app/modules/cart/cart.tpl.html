@@ -12,10 +12,10 @@
                     {{item.product.name}}
                 </div>
                 <div class="cc-cart-list-row-single-price">
-                    {{ln.listItemPrice}} {{item.product.price}}
+                    {{ln.listItemPrice}} {{item.product.price | currency}}
                 </div>
                 <div class="cc-cart-list-row-price">
-                    {{item.getTotal()}}
+                    {{item.getTotal() | currency: '€'}}
                 </div>
                 <div class="cc-cart-quantity-selector">
                     <!-- TODO think about making this a directive -->
@@ -29,19 +29,19 @@
     <div ng-show="!isEmpty" class="cc-cart-total-panel">
         <div>
             <span class="cc-cart-total-panel-text" ng-bind="ln.summarySubtotal" ></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.sumStr"></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.sum | currency"></span>
         </div>
         <div>
             <span class="cc-cart-total-panel-text" ng-bind="ln.summaryShipping" ></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.shippingStr"></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.shipping | currency"></span>
         </div>
         <div>
             <span class="cc-cart-total-panel-text" ng-bind="ln.summaryTaxLabel"></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.vatStr"></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.vat | currency"></span>
         </div>
         <div class="cc-cart-total-line">
             <span class="cc-cart-total-panel-text" ng-bind="ln.summaryGrandTotalLabel"></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.totalStr"></span>
+            <span class="cc-cart-total-panel-figure" ng-bind="summary.total | currency"></span>
         </div>
     </div>
         <div class="cc-expand cc-cart-empty-hint" ng-show="isEmpty">

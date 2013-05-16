@@ -395,7 +395,8 @@ cc.Config = {
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
     shippingCost:5,
     shippingTax:19,
-    shippingFreeFrom: null
+    shippingFreeFrom: null,
+    currencySign:'EUR'
 };
 cc.define('cc.CouchService', function($http, $q){
 

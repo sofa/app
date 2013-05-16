@@ -10,7 +10,11 @@ module.exports = function(grunt) {
         src: {
             cc: ['src/core/cc.js','src/core/**/*.js'],
             ccTests: ['test/**/*.js'],
-            ccAngular: ['src/services/**/*.js', 'src/directives/**/*.js']
+            ccAngular:  [
+                            'src/services/**/*.js', 
+                            'src/directives/**/*.js',
+                            'src/filter/**/*.js'
+                        ]
         },
         shell:{
             doxx:{
