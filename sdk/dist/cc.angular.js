@@ -35,7 +35,7 @@ angular.module('sdk.services.navigationService', []);
 
 angular
     .module('sdk.services.navigationService')
-    .factory('navigationService', ['$location', 'couchService', function($location, couchService){
+    .factory('navigationService', ['$location', '$window', 'couchService', function($location, $window, couchService){
 
         'use strict';
 
@@ -108,6 +108,16 @@ angular
             else if(self.isView('categories')){
                 currentCategory = couchService.getCurrentCategory();
                 navigateToParentCategory(currentCategory);
+            }
+            else{
+                //TODO: The method is actually designed to go up in the tree
+                //structure of a category/product tree. However, this is as a
+                //here as a fallback so that e.g. when the user is on the 
+                //shopping cart the back button works as a history back.
+                //We should overthink our whole approach here. And almost
+                //cetainly we should move the whole service out of the SDK
+                //as it's not generic enough to be useful for others.
+                $window.history.back();
             }
 
         };
