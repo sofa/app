@@ -31,9 +31,9 @@ angular
                 else {
                     $dialog
                         .messageBox(
-                            'Artikel entfernen?',
-                            'Soll der Artikel entfernt werden?',
-                            [{result: 'cancel', label: 'Abbrechen'}, {result: 'ok', label: 'Entfernen'}]
+                            $scope.ln.btnWarning,
+                            $scope.ln.cartDelMsg,
+                            [{result: 'cancel', label: $scope.ln.btnCancel}, {result: 'ok', label: $scope.ln.btnYes}]
                         )
                         .open()
                         .then(function(result){
