@@ -15,6 +15,11 @@ angular
 
             $scope.product = product;
 
+            //to keep compatibility to our current language file we need to
+            //deal with the {tax} marker in the language value and replage it with the
+            //products tax.
+            $scope.productTaxText = $scope.ln.productTaxText.replace(/{\s*tax\s*}/, $scope.product.tax);
+
             $scope.addToBasket = function(product){
                 basketService.addItem(product, 1);
                 navigationService.navigateToCart();
