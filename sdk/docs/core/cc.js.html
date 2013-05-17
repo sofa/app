@@ -58,29 +58,75 @@
         <div class="span4 bs-docs-sidebar">
           <ul class="nav nav-list bs-docs-sidenav affix-top">
             <li class=""><a href="../index.html">Main</a></li>
+            <li class=""><a href="../core/cc.array.js.html">core/cc.array.js</a></li>
+            <li class=""><a href="../core/cc.basketService.js.html">core/cc.basketService.js</a></li>
+            <li class=""><a href="../core/cc.config.js.html">core/cc.config.js</a></li>
             <li class=""><a href="../core/cc.couchService.js.html">core/cc.couchService.js</a></li>
+            <li class=""><a href="../core/cc.helper.treeIterator.js.html">core/cc.helper.treeIterator.js</a></li>
             <li class="active"><a href="../core/cc.js.html">core/cc.js</a></li>
+            <li class=""><a href="../core/cc.memoryStorageService.js.html">core/cc.memoryStorageService.js</a></li>
+            <li class=""><a href="../core/cc.models.basketItem.js.html">core/cc.models.basketItem.js</a></li>
+            <li class=""><a href="../core/cc.models.product.js.html">core/cc.models.product.js</a></li>
+            <li class=""><a href="../core/cc.observable.js.html">core/cc.observable.js</a></li>
+            <li class=""><a href="../core/cc.sessionStorageService.js.html">core/cc.sessionStorageService.js</a></li>
+            <li class=""><a href="../core/cc.util.js.html">core/cc.util.js</a></li>
+            <li class=""><a href="../core/lodash.js.html">core/lodash.js</a></li>
+            <li class=""><a href="../core/store.js.html">core/store.js</a></li>
             <li class=""><a href="../directives/directives.js.html">directives/directives.js</a></li>
+            <li class=""><a href="../filter/filter.js.html">filter/filter.js</a></li>
+            <li class=""><a href="../services/BasketService.js.html">services/BasketService.js</a></li>
             <li class=""><a href="../services/CouchService.js.html">services/CouchService.js</a></li>
+            <li class=""><a href="../services/MemoryStorageService.js.html">services/MemoryStorageService.js</a></li>
             <li class=""><a href="../services/NavigationService.js.html">services/NavigationService.js</a></li>
             <li class=""><a href="../services/ProductService.js.html">services/ProductService.js</a></li>
+            <li class=""><a href="../services/SessionStorageService.js.html">services/SessionStorageService.js</a></li>
             <li class=""><a href="../directives/ccFixedToolbarsView/ccFixedToolbarsView.js.html">directives/ccFixedToolbarsView/ccFixedToolbarsView.js</a></li>
             <li class=""><a href="../directives/ccZippy/ccZippy.js.html">directives/ccZippy/ccZippy.js</a></li>
+            <li class=""><a href="../filter/currency/currencyFilter.js.html">filter/currency/currencyFilter.js</a></li>
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#namespace"><i class="alert alert-info"></i>namespace</a>
+              </li>
+              <li><a href="#inherits"><i class="alert alert-info"></i>inherits</a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span8">
-          <section>
-            <h1></h1>
+          <section id="namespace">
+            <h1>namespace</h1>
             <h5 class="subheader"></h5>
             <p>
-              <div class="label label-success radius ctx-type"></div>
+              <div class="label label-info radius ctx-type">method</div><span>cc.namespace()</span>
             </p>
           </section>
-          <div class="description"> </div>
+          <div class="description"><p>Creates the given namespace within the cc namespace.<br />The method returns an object that contains meta data</p>
+
+<ul>
+<li>targetParent (object)</li>
+<li>targetName (string)</li>
+<li>bind (function) : a convenient function to bind
+                       a value to the namespace</li>
+</ul>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>namespaceString</code> e.g. 'cc.services.FooService'</li>
+</ul> </div>
+          <section id="inherits">
+            <h1>inherits</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>cc.inherits()</span>
+            </p>
+          </section>
+          <div class="description"><p>Sets up an inheritance chain between two objects<br /><a href='https://github.com/isaacs/inherits/blob/master/inherits.js'>https://github.com/isaacs/inherits/blob/master/inherits.js</a></p>
+
+<h2>Can be used like this</h2>
+
+<p>function Child () {<br />   Child.super.call(this)<br />   console.error([this<br />                 ,this.constructor<br />                 ,this.constructor === Child<br />                 ,this.constructor.super === Parent<br />                 ,Object.getPrototypeOf(this) === Child.prototype<br />                 ,Object.getPrototypeOf(Object.getPrototypeOf(this))<br />                  === Parent.prototype<br />                 ,this instanceof Child<br />                 ,this instanceof Parent])<br /> }<br /> function Parent () {}<br /> inherits(Child, Parent)<br /> new Child</p> </div>
         </div>
       </div>
     </div>

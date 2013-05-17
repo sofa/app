@@ -59,7 +59,7 @@
           <ul class="nav nav-list bs-docs-sidenav affix-top">
             <li class=""><a href="../index.html">Main</a></li>
             <li class=""><a href="../core/cc.array.js.html">core/cc.array.js</a></li>
-            <li class=""><a href="../core/cc.basketService.js.html">core/cc.basketService.js</a></li>
+            <li class="active"><a href="../core/cc.basketService.js.html">core/cc.basketService.js</a></li>
             <li class=""><a href="../core/cc.config.js.html">core/cc.config.js</a></li>
             <li class=""><a href="../core/cc.couchService.js.html">core/cc.couchService.js</a></li>
             <li class=""><a href="../core/cc.helper.treeIterator.js.html">core/cc.helper.treeIterator.js</a></li>
@@ -77,7 +77,7 @@
             <li class=""><a href="../services/BasketService.js.html">services/BasketService.js</a></li>
             <li class=""><a href="../services/CouchService.js.html">services/CouchService.js</a></li>
             <li class=""><a href="../services/MemoryStorageService.js.html">services/MemoryStorageService.js</a></li>
-            <li class="active"><a href="../services/NavigationService.js.html">services/NavigationService.js</a></li>
+            <li class=""><a href="../services/NavigationService.js.html">services/NavigationService.js</a></li>
             <li class=""><a href="../services/ProductService.js.html">services/ProductService.js</a></li>
             <li class=""><a href="../services/SessionStorageService.js.html">services/SessionStorageService.js</a></li>
             <li class=""><a href="../directives/ccFixedToolbarsView/ccFixedToolbarsView.js.html">directives/ccFixedToolbarsView/ccFixedToolbarsView.js</a></li>
@@ -86,18 +86,186 @@
           </ul>
           <div class="scrollspy">
             <ul class="nav nav-list bs-docs-sidenav affix-top">
+              <li><a href="#addItem"><i class="alert alert-info"></i>addItem</a>
+              </li>
+              <li><a href="#increaseOne"><i class="alert alert-info"></i>increaseOne</a>
+              </li>
+              <li><a href="#increase"><i class="alert alert-info"></i>increase</a>
+              </li>
+              <li><a href="#exists"><i class="alert alert-info"></i>exists</a>
+              </li>
+              <li><a href="#removeItem"><i class="alert alert-info"></i>removeItem</a>
+              </li>
+              <li><a href="#decreaseOne"><i class="alert alert-info"></i>decreaseOne</a>
+              </li>
+              <li><a href="#decrease"><i class="alert alert-info"></i>decrease</a>
+              </li>
+              <li><a href="#clear"><i class="alert alert-info"></i>clear</a>
+              </li>
+              <li><a href="#find"><i class="alert alert-info"></i>find</a>
+              </li>
+              <li><a href="#getItems"><i class="alert alert-info"></i>getItems</a>
+              </li>
+              <li><a href="#getSummary"><i class="alert alert-info"></i>getSummary</a>
+              </li>
             </ul>
           </div>
         </div>
         <div class="span8">
-          <section>
-            <h1></h1>
+          <section id="addItem">
+            <h1>addItem</h1>
             <h5 class="subheader"></h5>
             <p>
-              <div class="label label-success radius ctx-type"></div>
+              <div class="label label-info radius ctx-type">method</div><span>self.addItem()</span>
             </p>
           </section>
-          <div class="description"> </div>
+          <div class="description"><p>Adds an item to the basket. Returns the added 'BasketItem' </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>product</code> the Product object itself</li>
+<li><code>quantity</code> the number of times the product should be added</li>
+<li><code>variantId</code> the variantID the product should be added with</li>
+<li><code>optionId</code> the optionId the product should be added with</li>
+</ul> </div>
+          <section id="increaseOne">
+            <h1>increaseOne</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.increaseOne()</span>
+            </p>
+          </section>
+          <div class="description"><h2>A shorthand for</h2>
+
+<p>basketService.increase(basketItem, 1) </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>basketItem</code> the basketItem that should be increased by one</li>
+</ul> </div>
+          <section id="increase">
+            <h1>increase</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.increase()</span>
+            </p>
+          </section>
+          <div class="description"><h2>A shorthand for</h2>
+
+<p>basketService.addItem(basketItem.product, number, basketItem.variantId, basketItem.optionId) </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>basketItem</code> the basketItem that should be increased by one</li>
+</ul> </div>
+          <section id="exists">
+            <h1>exists</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.exists()</span>
+            </p>
+          </section>
+          <div class="description"><p>Checks if an product exists in the basket </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>product</code> the Product object itself</li>
+<li><code>variantId</code> the variantID the basket should be checked for</li>
+<li><code>optionId</code> the optionId the basket should be checked for</li>
+</ul> </div>
+          <section id="removeItem">
+            <h1>removeItem</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.removeItem()</span>
+            </p>
+          </section>
+          <div class="description"><p>Removes an item from the basket </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>product</code> the Product that should be removed from the basket</li>
+<li><code>quantity</code> the quantity that should be removed from the basket</li>
+<li><code>variantId</code> the variantID that should be removed from the basket</li>
+<li><code>optionId</code> the optionId that should be removed from the basket</li>
+</ul> </div>
+          <section id="decreaseOne">
+            <h1>decreaseOne</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.decreaseOne()</span>
+            </p>
+          </section>
+          <div class="description"><h2>A shorthand for</h2>
+
+<p>basketService.decrease(basketItem, 1) </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>basketItem</code> the basketItem that should be decreased by one</li>
+</ul> </div>
+          <section id="decrease">
+            <h1>decrease</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.decrease()</span>
+            </p>
+          </section>
+          <div class="description"><h2>A shorthand for</h2>
+
+<p>basketService.removeItem(basketItem.product, number, basketItem.variantId, basketItem.optionId) </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>basketItem</code> the basketItem that should be decreased by one</li>
+</ul> </div>
+          <section id="clear">
+            <h1>clear</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.clear()</span>
+            </p>
+          </section>
+          <div class="description"><p>Removes all items from the basket </p>
+
+<h2>Options</h2> </div>
+          <section id="find">
+            <h1>find</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.find()</span>
+            </p>
+          </section>
+          <div class="description"><p>Finds a basket item by the given predicate function </p>
+
+<h2>Options</h2>
+
+<ul>
+<li><code>predicate</code> function to test the basketItem against</li>
+</ul> </div>
+          <section id="getItems">
+            <h1>getItems</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.getItems()</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns all basket items</p> </div>
+          <section id="getSummary">
+            <h1>getSummary</h1>
+            <h5 class="subheader"></h5>
+            <p>
+              <div class="label label-info radius ctx-type">method</div><span>self.getSummary()</span>
+            </p>
+          </section>
+          <div class="description"><p>Returns a summary object of the current basket state</p> </div>
         </div>
       </div>
     </div>
