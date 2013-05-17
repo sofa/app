@@ -156,6 +156,26 @@ angular
             return cc.Config.mediaPlaceholder;
         }
 
+        //TODO: This is pure shit. I need to talk to Felix got get that clean
+        //It's only in here to keep some German clients happy that rely on it.
+        //We need to make it more flexibile & localizable
+        self.getBasePriceInfo = function(product){
+            if (product.custom1 > 0){
+                if (product.custom3 === 'kg'){
+                    return 'entspricht ' + cc.Util.toFixed(product.custom1, 2) + ' € pro 1 Kilogramm (kg)';
+                }
+                else if (product.custom3 === 'St'){
+                    return 'entpricht ' + cc.Util.toFixed(product.custom1, 2) + ' € pro 1 Stück (St)';
+                }
+                else if (product.custom3 === 'L'){
+                    return 'entpricht ' + cc.Util.toFixed(product.custom1, 2) + ' € pro 1 Liter (l)';
+                }
+                else if (cc.util.isString(product.custom3) && product.custom3.length > 0){
+                    return 'entpricht ' + cc.Util.toFixed(product.custom1, 2) + ' € pro '  + product.custom3;
+                }
+            }
+        };
+
         return self;
 }]);
 

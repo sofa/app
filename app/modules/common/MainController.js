@@ -12,6 +12,6 @@ angular
                 footer: ''
             };
 
-            $scope.ui = ui;;
+            $scope.ui = ui;
         }
     ]);

@@ -10,5 +10,6 @@ cc.Config = {
     shippingCost:5,
     shippingTax:19,
     shippingFreeFrom: null,
-    currencySign:'EUR'
+    currencySign:'EUR',
+    shippingText:'zzgl. 5€ Versandkosten'
 };

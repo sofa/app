@@ -6,6 +6,9 @@ cc.Util = {
         return (Math.round(value * multiplier) / multiplier);
     },
     toFixed: function(value, precision){
+
+        value = cc.Util.isString(value) ? parseFloat(value) : value;
+
         if (cc.Util.isToFixedBroken) {
             precision = precision || 0;
             var pow = Math.pow(10, precision);
@@ -45,6 +48,15 @@ cc.Util = {
                 }
 
         return target;
+    },
+    isArray: function(value){
+            return toString.call(value) === '[object Array]';
+    },
+    isFunction: function(value){
+        return typeof value === 'function';
+    },
+    isString: function(value){
+        return typeof  value === 'string';
     },
     Array: {
         remove: function(arr, item){

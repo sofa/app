@@ -42,4 +42,5 @@ angular.module('CouchCommerceApp', [
     }])
     .run(['$rootScope', function($rootScope){
         $rootScope.ln = cc.Lang;
+        $rootScope.cfg = cc.Config;
     }]);
