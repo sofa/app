@@ -384,6 +384,18 @@ cc.define('cc.BasketService', function(storageService, options){
 
     return self;
 });
+cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
+
+    'use strict';
+
+    return function(a, b){
+
+        //either compare products by object identity, urlKey identity or id identity
+        return  a === b || 
+                a.urlKey && b.urlKey && a.urlKey === b.urlKey ||
+                a.id && b.id && a.id === b.id;
+    };
+});
 cc.Config = {
     storeId: 88399,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
@@ -405,7 +417,8 @@ cc.define('cc.CouchService', function($http, $q){
 
     var self = {},
         products = {},
-        currentCategory = null;
+        currentCategory = null,
+        productComparer = new cc.comparer.ProductComparer();
 
 
     /**
@@ -458,17 +471,23 @@ cc.define('cc.CouchService', function($http, $q){
                 '&callback=JSON_CALLBACK'
             })
             .then(function(data){
-                var products = augmentProducts(data.data.products, categoryUrlId);
+                var tempProducts = augmentProducts(data.data.products, categoryUrlId);
                 //FixMe we are effectively creating a memory leak here by caching all
                 //seen products forever. This needs to be more sophisticated
-                products[categoryUrlId] = products;
-                return products;
+                products[categoryUrlId] = tempProducts;
+                return tempProducts;
             });
         }
 
         var deferredProducts = $q.defer();
         deferredProducts.resolve(products[categoryUrlId]);
         return deferredProducts.promise;
+    };
+
+    var resolveWith = function(data){
+        var deferred = $q.defer();
+        deferred.resolve(data);
+        return deferred.promise;
     };
 
     //it's a bit akward that we need to do that. It should be adressed
@@ -483,6 +502,80 @@ cc.define('cc.CouchService', function($http, $q){
     };
 
     /**
+     * Fetches the next product within the product's category
+     * 
+     * Options:
+     * 
+     *   - `product` the product to find the neighbour of
+     * 
+     */
+    self.getNextProduct = function(product, circle){
+        
+        var getTargetProduct = function(categoryProducts){
+            var index = getIndexOfProduct(categoryProducts, product);
+            if (index > -1){
+                var nextProduct = categoryProducts[index + 1];
+                var targetProduct = !nextProduct && circle ?
+                                    categoryProducts[0] : nextProduct || null;
+
+                return targetProduct;
+            }
+        };
+
+        return getPreviousOrNextProduct(product, circle, getTargetProduct);
+    };
+
+    /**
+     * Fetches the previous product within the product's category
+     * 
+     * Options:
+     * 
+     *   - `product` the product to find the neighbour of
+     * 
+     */
+    self.getPreviousProduct = function(product, circle){
+
+        var getTargetProduct = function(categoryProducts, baseProduct){
+            var index = getIndexOfProduct(categoryProducts, baseProduct);
+            if (index > -1){
+                var previousProduct = categoryProducts[index - 1];
+                var targetProduct = !previousProduct && circle ? 
+                                    categoryProducts[categoryProducts.length - 1] : 
+                                    previousProduct || null;
+
+                return targetProduct;
+            }
+        }
+
+        return getPreviousOrNextProduct(product, circle, getTargetProduct);
+    };
+
+    var getPreviousOrNextProduct = function(product, circle, productFindFn){
+        var cachedProducts = products[product.categoryUrlId];
+
+        if (cachedProducts){
+            return resolveWith(productFindFn(cachedProducts, product));
+        }
+        else {
+            return  self.getProducts(product.categoryUrlId)
+                        .then(function(catProducts){
+                            return resolveWith(productFindFn(catProducts, product));
+                        });
+        }
+    }
+
+    var getIndexOfProduct = function(productTable, product){
+        for (var i = 0; i < productTable.length; i++) {
+            if (productComparer(productTable[i], product)){
+                return i;
+            }
+        };
+
+        return -1;
+    };
+
+
+    /**
      * Fetches a single product.
      * Notice that both the `categoryUrlId` and the `productUrlId` need
      * to be specified in order to get the product.
@@ -495,10 +588,10 @@ cc.define('cc.CouchService', function($http, $q){
      */
     self.getProduct = function(categoryUrlId, productUrlId){
         if(!products[categoryUrlId]){
-            return self.getProducts(categoryUrlId)
-                .then(function(data){
-                    return getProduct(data, productUrlId)
-                });
+            return  self.getProducts(categoryUrlId)
+                        .then(function(data){
+                            return getProduct(data, productUrlId)
+                        });
         }
 
         var deferredProduct = $q.defer();

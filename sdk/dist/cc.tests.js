@@ -526,6 +526,270 @@ asyncTest('can get a single product', function() {
             start();
         });
 });
+
+asyncTest('can get the next product of the same category (with cached products)', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-vieille-prune-obstbrand-pflaume-40-0-7l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    couchService
+        .getProduct(categoryUrlId, productUrlId)
+        .then(function(product){
+            ok(product.id === 204, 'retrieves product with id 204');
+
+            couchService
+                .getNextProduct(product)
+                .then(function(nextProduct){
+                    ok(nextProduct.id === 662, 'retrieves the next product');
+                    start();
+                });
+        });
+});
+
+asyncTest('can get the next product of the same category (WITHOUT cached products)', function() {
+    expect(1);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-vieille-prune-obstbrand-pflaume-40-0-7l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    var product = {
+        urlKey: productUrlId,
+        categoryUrlId: categoryUrlId
+    };
+
+    couchService
+                .getNextProduct(product)
+                .then(function(nextProduct){
+                    ok(nextProduct.id === 662, 'retrieves the next product');
+                    start();
+                });
+});
+
+asyncTest('returns "null" for the next product when reached the end', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-vieille-framboise-alter-himbeerbrand-obstbrand-40-0-7l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    couchService
+        .getProduct(categoryUrlId, productUrlId)
+        .then(function(product){
+            ok(product.id === 2720, 'retrieves product with id 2720');
+
+            couchService
+                .getNextProduct(product)
+                .then(function(nextProduct){
+                    ok(nextProduct === null, 'has no further product');
+                    start();
+                });
+        });
+});
+
+asyncTest('returns the first product of the category for the next product when reached the end and using the circle parameter', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-vieille-framboise-alter-himbeerbrand-obstbrand-40-0-7l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    couchService
+        .getProduct(categoryUrlId, productUrlId)
+        .then(function(product){
+            ok(product.id === 2720, 'retrieves product with id 2720');
+
+            couchService
+                .getNextProduct(product, true)
+                .then(function(nextProduct){
+                    ok(nextProduct.id === 1036, 'returns the first product because of the circle parameter');
+                    start();
+                });
+        });
+});
+
+asyncTest('can get the previous product of the same category (with cached products)', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-obstbrand-walderdbeeren-reserve-privee-43-0-5-l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    couchService
+        .getProduct(categoryUrlId, productUrlId)
+        .then(function(product){
+            ok(product.id === 662, 'retrieves product with id 662');
+
+            couchService
+                .getPreviousProduct(product)
+                .then(function(nextProduct){
+                    ok(nextProduct.id === 204, 'retrieves the previous product');
+                    start();
+                });
+        });
+});
+
+asyncTest('can get the previous product of the same category (WITHOUT cached products)', function() {
+    expect(1);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-obstbrand-walderdbeeren-reserve-privee-43-0-5-l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    var product = {
+        urlKey: productUrlId,
+        categoryUrlId: categoryUrlId
+    };
+
+    couchService
+                .getPreviousProduct(product)
+                .then(function(nextProduct){
+                    ok(nextProduct.id === 204, 'retrieves the previous product');
+                    start();
+                });
+});
+
+asyncTest('returns null for the previous product when reached the start', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-brut-de-fut-williams-obstbrand-53-2-0-5-l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    couchService
+        .getProduct(categoryUrlId, productUrlId)
+        .then(function(product){
+            ok(product.id === 1036, 'retrieves product with id 662');
+
+            couchService
+                .getPreviousProduct(product)
+                .then(function(nextProduct){
+                    ok(nextProduct === null, 'has no previous product');
+                    start();
+                });
+        });
+});
+
+asyncTest('returns the last product of the category for the previous product when reached the start and using the circle parameter', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'root';
+    var productUrlId = 'fassbind-brut-de-fut-williams-obstbrand-53-2-0-5-l-flasche';
+
+    //it's a bit whack that we have to know the exact URL to mock the http request
+    //but on the other hand, how should it work otherwise?
+    var url =cc.Config.apiUrl +
+                '?&stid=' +
+                cc.Config.storeId +
+                '&cat=' + categoryUrlId +
+                '&callback=JSON_CALLBACK'
+
+    httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
+
+    var couchService = new cc.CouchService(httpService, new cc.QService());
+
+    couchService
+        .getProduct(categoryUrlId, productUrlId)
+        .then(function(product){
+            ok(product.id === 1036, 'retrieves product with id 662');
+
+            couchService
+                .getPreviousProduct(product, true)
+                .then(function(nextProduct){
+                    ok(nextProduct.id === 2720, 'returns the last product of the category');
+                    start();
+                });
+        });
+});
+
+
 module('cc.qService.tests');
 
 test('can create qService instance', function() {
