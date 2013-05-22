@@ -23,3 +23,12 @@
  /* The animation code itself */
  @include vendor-prefix('transform',translate3d(-100%,0,0));
 }
+
+.fade-out {
+ @include vendor-prefix('transition', all 0.5s linear);
+ opacity: 1;
+}
+ 
+.fade-out.fade-out-active {
+ opacity: 0;
+}

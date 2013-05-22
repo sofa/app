@@ -1,7 +1,8 @@
 <div class="cc-view-wrapper cc-view-phone">
     <div class="cc-view-title" ng-bind="ln.shoppingCart"></div>
     <ul>
-        <li ng-repeat="item in items" 
+        <li ng-repeat="item in items"
+            ng-animate="{ leave: 'fade-out' }" 
             class="cc-list-row cc-cart-list-row" >
             <div class="cc-list-row-image cc-category-listing-row-image"
             ng-click="navigationService.navigateToProduct(item.product)" 
