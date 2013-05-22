@@ -39,6 +39,8 @@ cc.define('cc.mocks.httpService', function($q){
 
     return self;
 });
+module('cc.basketService.tests');
+
 test('can create BasketService instance', function() {
     var basketService = new cc.BasketService(new cc.SessionStorageService());
     basketService.clear();
@@ -416,6 +418,8 @@ test('calculates summary', function() {
     ok(summary.total === 89.65, 'calculates total correctly');
 });
 
+module('cc.couchService.tests');
+
 var productData = {
     "queryDetails":{
     "category":"main",
@@ -522,6 +526,8 @@ asyncTest('can get a single product', function() {
             start();
         });
 });
+module('cc.qService.tests');
+
 test('can create qService instance', function() {
 
     var qService = new cc.QService();

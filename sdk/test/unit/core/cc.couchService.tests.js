@@ -1,3 +1,5 @@
+module('cc.couchService.tests');
+
 var productData = {
     "queryDetails":{
     "category":"main",

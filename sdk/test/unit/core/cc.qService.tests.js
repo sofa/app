@@ -1,3 +1,5 @@
+module('cc.qService.tests');
+
 test('can create qService instance', function() {
 
     var qService = new cc.QService();

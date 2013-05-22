@@ -1,3 +1,5 @@
+module('cc.basketService.tests');
+
 test('can create BasketService instance', function() {
     var basketService = new cc.BasketService(new cc.SessionStorageService());
     basketService.clear();
