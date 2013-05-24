@@ -59,6 +59,7 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 .cc-full-width-height, %cc-full-width-height{
     width: 100%;
     height: 100%;
+    position:relative;
 }
 
 .cc-expand-only, %cc-expand-only{
@@ -177,11 +178,13 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     width: 100%;
     height: 100%;
 }
-
+.cc-full-width-height .cc-view-wrapper{
+    position: absolute;
+    width:100%;
+}
 .cc-view-wrapper{
     padding: 10px;
     height: 100%;
-    position: relative;
 }
 
 .cc-view-phone{

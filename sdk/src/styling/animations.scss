@@ -1,6 +1,9 @@
 
+$slide-duration: 0.5s;
+$slide-easing: ease-in;
+
 .slide-in-rtl {
- @include vendor-prefix('transition', all 0.5s linear);
+ @include vendor-prefix('transition', all $slide-duration $slide-easing);
  /* The animation preparation code */
  position: relative;
  @include vendor-prefix('transform',translate3d(100%,0,0));
@@ -12,7 +15,7 @@
 }
 
 .slide-out-rtl {
- @include vendor-prefix('transition', all 0.3s linear );
+ @include vendor-prefix('transition', all $slide-duration $slide-easing);
  
  /* The animation preparation code */
  position: relative;
