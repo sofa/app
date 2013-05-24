@@ -8,8 +8,12 @@ angular
         function CategoryController($scope, $routeParams, $location, couchService, navigationService) {
 
             $scope.goToCategory = function(category){
-                $location.path('cat/' + category.urlId);
-            ;}
+                if (!category.children){
+                    navigationService.navigateToProducts(category.urlId);
+                } else {
+                    $location.path('cat/' + category.urlId);
+                }
+            };
 
             couchService
                 .getCategories($routeParams.category)
