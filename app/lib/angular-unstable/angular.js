@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.1.5-6798fec
+ * @license AngularJS v1.1.6-4179f62
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -244,6 +244,7 @@ function setHashKey(obj, h) {
  *
  * @param {Object} dst Destination object.
  * @param {...Object} src Source object(s).
+ * @returns {Object} Reference to `dst`.
  */
 function extend(dst) {
   var h = dst.$$hashKey;
@@ -1045,9 +1046,10 @@ function bindJQuery() {
       injector: JQLitePrototype.injector,
       inheritedData: JQLitePrototype.inheritedData
     });
-    JQLitePatchJQueryRemove('remove', true);
-    JQLitePatchJQueryRemove('empty');
-    JQLitePatchJQueryRemove('html');
+    // Method signature: JQLitePatchJQueryRemove(name, dispatchThis, filterElems, getterIfNoArguments)
+    JQLitePatchJQueryRemove('remove', true, true, false);
+    JQLitePatchJQueryRemove('empty', false, false, false);
+    JQLitePatchJQueryRemove('html', false, false, true);
   } else {
     jqLite = JQLite;
   }
@@ -1363,11 +1365,11 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.1.5-6798fec',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.1.6-4179f62',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 1,
-  dot: 5,
-  codeName: 'triangle-squarification'
+  dot: 6,
+  codeName: 'spooky-giraffe'
 };
 
 
@@ -1538,7 +1540,7 @@ function publishExternalAPI(angular){
  * - [replaceWith()](http://api.jquery.com/replaceWith/)
  * - [text()](http://api.jquery.com/text/)
  * - [toggleClass()](http://api.jquery.com/toggleClass/)
- * - [triggerHandler()](http://api.jquery.com/triggerHandler/) - Doesn't pass native event objects to handlers.
+ * - [triggerHandler()](http://api.jquery.com/triggerHandler/) - Passes a dummy event object to handlers.
  * - [unbind()](http://api.jquery.com/unbind/) - Does not support namespaces
  * - [val()](http://api.jquery.com/val/)
  * - [wrap()](http://api.jquery.com/wrap/)
@@ -1591,37 +1593,38 @@ function camelCase(name) {
 /////////////////////////////////////////////
 // jQuery mutation patch
 //
-//  In conjunction with bindJQuery intercepts all jQuery's DOM destruction apis and fires a
+// In conjunction with bindJQuery intercepts all jQuery's DOM destruction apis and fires a
 // $destroy event on all DOM nodes being removed.
 //
 /////////////////////////////////////////////
 
-function JQLitePatchJQueryRemove(name, dispatchThis) {
+function JQLitePatchJQueryRemove(name, dispatchThis, filterElems, getterIfNoArguments) {
   var originalJqFn = jQuery.fn[name];
   originalJqFn = originalJqFn.$original || originalJqFn;
   removePatch.$original = originalJqFn;
   jQuery.fn[name] = removePatch;
 
-  function removePatch() {
-    var list = [this],
+  function removePatch(param) {
+    var list = filterElems && param ? [this.filter(param)] : [this],
         fireEvent = dispatchThis,
         set, setIndex, setLength,
-        element, childIndex, childLength, children,
-        fns, events;
+        element, childIndex, childLength, children;
 
-    while(list.length) {
-      set = list.shift();
-      for(setIndex = 0, setLength = set.length; setIndex < setLength; setIndex++) {
-        element = jqLite(set[setIndex]);
-        if (fireEvent) {
-          element.triggerHandler('$destroy');
-        } else {
-          fireEvent = !fireEvent;
-        }
-        for(childIndex = 0, childLength = (children = element.children()).length;
-            childIndex < childLength;
-            childIndex++) {
-          list.push(jQuery(children[childIndex]));
+    if (!getterIfNoArguments || param != null) {
+      while(list.length) {
+        set = list.shift();
+        for(setIndex = 0, setLength = set.length; setIndex < setLength; setIndex++) {
+          element = jqLite(set[setIndex]);
+          if (fireEvent) {
+            element.triggerHandler('$destroy');
+          } else {
+            fireEvent = !fireEvent;
+          }
+          for(childIndex = 0, childLength = (children = element.children()).length;
+              childIndex < childLength;
+              childIndex++) {
+            list.push(jQuery(children[childIndex]));
+          }
         }
       }
     }
@@ -2247,9 +2250,10 @@ forEach({
 
   triggerHandler: function(element, eventName) {
     var eventFns = (JQLiteExpandoStore(element, 'events') || {})[eventName];
+    var event;
 
     forEach(eventFns, function(fn) {
-      fn.call(element, null);
+      fn.call(element, {preventDefault: noop});
     });
   }
 }, function(fn, name){
@@ -3338,6 +3342,20 @@ var $AnimatorProvider = function() {
          * @param {jQuery/jqLite element} element the element that will be rendered visible or hidden
         */
         animator.hide = animateActionFactory('hide', noop, hide);
+
+        /**
+         * @ngdoc function
+         * @name ng.animator#animate
+         * @methodOf ng.$animator
+         *
+         * @description
+         * Triggers a custom animation event to be executed on the given element
+         *
+         * @param {jQuery/jqLite element} element that will be animated
+        */
+        animator.animate = function(event, element) {
+          animateActionFactory(event, noop, noop)(element);
+        }
         return animator;
   
         function animateActionFactory(type, beforeFn, afterFn) {
@@ -9866,7 +9884,8 @@ function $HttpProvider() {
      *      GET request, otherwise if a cache instance built with
      *      {@link ng.$cacheFactory $cacheFactory}, this cache will be used for
      *      caching.
-     *    - **timeout** – `{number}` – timeout in milliseconds.
+     *    - **timeout** – `{number|Promise}` – timeout in milliseconds, or {@link ng.$q promise}
+     *      that should abort the request when resolved.
      *    - **withCredentials** - `{boolean}` - whether to to set the `withCredentials` flag on the
      *      XHR object. See {@link https://developer.mozilla.org/en/http_access_control#section_5
      *      requests with credentials} for more information.
@@ -10245,7 +10264,7 @@ function $HttpProvider() {
         }
 
         resolvePromise(response, status, headersString);
-        $rootScope.$apply();
+        if (!$rootScope.$$phase) $rootScope.$apply();
       }
 
 
@@ -10403,20 +10422,25 @@ function createHttpBackend($browser, XHR, $browserDefer, callbacks, rawDocument,
     }
 
     if (timeout > 0) {
-      var timeoutId = $browserDefer(function() {
-        status = -1;
-        jsonpDone && jsonpDone();
-        xhr && xhr.abort();
-      }, timeout);
+      var timeoutId = $browserDefer(timeoutRequest, timeout);
+    } else if (timeout && timeout.then) {
+      timeout.then(timeoutRequest);
     }
 
+
+    function timeoutRequest() {
+      status = -1;
+      jsonpDone && jsonpDone();
+      xhr && xhr.abort();
+    }
 
     function completeRequest(callback, status, response, headersString) {
       // URL_MATCH is defined in src/service/location.js
       var protocol = (url.match(SERVER_MATCH) || ['', locationProtocol])[1];
 
-      // cancel timeout
+      // cancel timeout and subsequent timeout promise resolution
       timeoutId && $browserDefer.cancel(timeoutId);
+      jsonpDone = xhr = null;
 
       // fix status code for file protocol (it's always 0)
       status = (protocol == 'file') ? (response ? 200 : 404) : status;
@@ -10782,7 +10806,7 @@ function $FilterProvider($provide) {
        <hr>
        Any: <input ng-model="search.$"> <br>
        Name only <input ng-model="search.name"><br>
-       Phone only <input ng-model="search.phone"å><br>
+       Phone only <input ng-model="search.phone"><br>
        Equality <input type="checkbox" ng-model="strict"><br>
        <table id="searchObjResults">
          <tr><th>Name</th><th>Phone</th></tr>
@@ -11229,7 +11253,7 @@ var DATE_FORMATS_SPLIT = /((?:[^yMdHhmsaZE']+)|(?:'(?:[^']|'')*')|(?:E+|y+|M+|d+
  *   (e.g. `"h o''clock"`).
  *
  * @param {(Date|number|string)} date Date to format either as Date object, milliseconds (string or
- *    number) or various ISO 8601 datetime string formats (e.g. yyyy-MM-ddTHH:mm:ss.SSSZ and it's
+ *    number) or various ISO 8601 datetime string formats (e.g. yyyy-MM-ddTHH:mm:ss.SSSZ and its
  *    shorter versions like yyyy-MM-ddTHH:mmZ, yyyy-MM-dd or yyyyMMddTHHmmssZ). If no timezone is
  *    specified in the string input, the time is considered to be in the local timezone.
  * @param {string=} format Formatting rules (see Description). If not specified,
@@ -12615,6 +12639,8 @@ var inputType = {
    * @param {string=} ngPattern Sets `pattern` validation error key if the value does not match the
    *    RegExp pattern expression. Expected value is `/regexp/` for inline patterns or `regexp` for
    *    patterns defined as scope expressions.
+   * @param {string=} ngChange Angular expression to be executed when input changes due to user
+   *    interaction with the input element.
    *
    * @example
       <doc:example>
@@ -13390,7 +13416,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * For example {@link ng.directive:input input} or
    * {@link ng.directive:select select} directives call it.
    *
-   * It internally calls all `formatters` and if resulted value is valid, updates the model and
+   * It internally calls all `parsers` and if resulted value is valid, updates the model and
    * calls all registered change listeners.
    *
    * @param {string} value Value from the view.
