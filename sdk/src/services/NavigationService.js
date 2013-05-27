@@ -46,7 +46,7 @@ angular
         };
 
         self.navigateToCart = function(){
-            $location.path('/cart')
+            $location.path('/cart');
         };
 
         self.getCategoryUrlId = function(){
@@ -63,7 +63,7 @@ angular
             //in a specific order
             if(self.isView('product')){
                 currentCategoryUrlId = self.getCategoryUrlId();
-                self.navigateToCategory(currentCategoryUrlId);
+                self.navigateToProducts(currentCategoryUrlId);
             }
             else if (self.isView('products')){
                 currentCategoryUrlId = self.getCategoryUrlId();
