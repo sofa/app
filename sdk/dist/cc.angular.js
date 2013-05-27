@@ -88,6 +88,11 @@ angular
                 .replace(utilityRegex.urlRightFromSlash, '');
         };
 
+        self.isRootCategory = function(){
+            var path = $location.path();
+            return path === '/' || path === '/cat/' ;
+        };
+
         self.goUp = function(){
             var currentCategoryUrlId,
                 currentCategory;
@@ -100,7 +105,7 @@ angular
             }
             else if (self.isView('products')){
                 currentCategoryUrlId = self.getCategoryUrlId();
-                couchService.getCategories(currentCategoryUrlId)
+                couchService.getCategory(currentCategoryUrlId)
                     .then(function(category){
                         navigateToParentCategory(category);
                     });

@@ -9,32 +9,32 @@ cc.define('cc.CouchService', function($http, $q){
 
 
     /**
-     * Fetches all subcategories of a given category
+     * Fetches the category with the given categoryUrlId
      * If no category is specified, the method
      * defaults to the root category 
      * 
      * Options:
      * 
-     *   - `rootCategory` the category used as a starting point
+     *   - `categoryUrlId` the category to be fetched
      * 
      */
-    self.getCategories = function(rootCategory){
-        if (!rootCategory && !self.categories){
+    self.getCategory = function(category){
+        if (!category && !self.categories){
             return fetchAllCategories();
         }
-        else if(!rootCategory && self.categories){
+        else if(!category && self.categories){
             var deferredCategories = $q.defer();
             deferredCategories.resolve(self.categories);
             return deferredCategories.promise;
         }
-        else if(rootCategory && rootCategory.length > 0 && !self.categories){
+        else if(category && category.length > 0 && !self.categories){
             return fetchAllCategories()
                     .then(function(data){
-                        return findChildCategory(data, rootCategory);
+                        return findChildCategory(data, category);
                     });
         }
-        else if(rootCategory && rootCategory.length > 0 && self.categories){
-            return findChildCategoriesAndReturnPromise(self.categories, rootCategory);
+        else if(category && category.length > 0 && self.categories){
+            return findChildCategoriesAndReturnPromise(self.categories, category);
         }
     };
 
@@ -215,6 +215,8 @@ cc.define('cc.CouchService', function($http, $q){
     };
 
     var augmentCategories = function(categories){
+        //we need to fix the urlId for the rootCategory to be empty
+        categories.urlId = '';
         var iterator = new cc.util.TreeIterator(categories, 'children');
         iterator.iterateChildren(function(category, parent){
             category.parent = parent;

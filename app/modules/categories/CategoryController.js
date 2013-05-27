@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'CategoryController',
     [
-        '$scope', '$routeParams', 'couchService', 'navigationService',
-        function CategoryController($scope, $routeParams, couchService, navigationService) {
+        '$scope', '$routeParams', 'couchService', 'navigationService', 'category',
+        function CategoryController($scope, $routeParams, couchService, navigationService, category) {
 
             $scope.goToCategory = function(category){
                 if (!category.children){
@@ -15,15 +15,11 @@ angular
                 }
             };
 
-            couchService
-                .getCategories($routeParams.category)
-                .then(function(data) {
-                    if (!data.children){
-                        navigationService.navigateToProducts(data.urlId);
-                    }
-                    else{
-                        $scope.categories = data;
-                    }
-                });
+            if (!category.children){
+                navigationService.navigateToProducts(category.urlId);
+            }
+            else{
+                $scope.category = category;
+            }
         }
     ]);

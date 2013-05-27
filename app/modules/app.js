@@ -1,5 +1,18 @@
 'use strict';
 
+
+var categoryRouteConfig = {
+            templateUrl: 'modules/categories/categorylisting.tpl.html', 
+            controller: 'CategoryController', 
+            screenIndex: 0,
+            resolve: {
+                category: ['couchService', '$route', function(couchService, $route){
+                    var params = $route.current.params;
+                    return couchService.getCategory(params.category);
+                }]
+            }
+        };
+        
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
     'ngMobile',
@@ -12,10 +25,8 @@ angular.module('CouchCommerceApp', [
     'ui.bootstrap'
     ])
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
-        $routeProvider.when('/cart', {templateUrl: 'modules/cart/cart.tpl.html', controller: 'CartController'});
-        $routeProvider.when('/cat/:category', {templateUrl: 'modules/categories/categorylisting.tpl.html', controller: 'CategoryController'});
-        
+        $routeProvider.when('/', categoryRouteConfig);
+        $routeProvider.when('/cat/:category', categoryRouteConfig);
         $routeProvider.when('/cat/:category/products', {
             templateUrl: 'modules/products/productlisting.tpl.html', 
             controller: 'ProductsController',
@@ -24,12 +35,13 @@ angular.module('CouchCommerceApp', [
                     var params = $route.current.params;
                     return couchService.getProducts(params.category)
                 }]
-            }
+            },
+            screenIndex: 1
         });
-        
         $routeProvider.when('/cat/:category/product/:productUrlKey', {
             templateUrl: 'modules/product/product.tpl.html', 
             controller: 'ProductController',
+            screenIndex: 2,
             resolve: {
                 product: ['couchService', '$route', function(couchService, $route){
                     var params = $route.current.params;
@@ -37,10 +49,12 @@ angular.module('CouchCommerceApp', [
                 }]
             }
         });
+        $routeProvider.when('/cart', {templateUrl: 'modules/cart/cart.tpl.html', controller: 'CartController', screenIndex: 3});
         
         $routeProvider.otherwise({redirectTo: '/'});
     }])
-    .run(['$rootScope', function($rootScope){
+    .run(['$rootScope', 'slideDirectionService', function($rootScope, slideDirectionService){
         $rootScope.ln = cc.Lang;
         $rootScope.cfg = cc.Config;
+        $rootScope.slideDirectionService = slideDirectionService;
     }]);
