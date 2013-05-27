@@ -1,4 +1,5 @@
-    <ul class="cc-category-listing cc-view-wrapper">
+<div class="cc-view-wrapper">
+    <ul class="cc-category-listing">
         <li ng-repeat="category in categories.children"
             ng-click="goToCategory(category)" 
             class="cc-list-row cc-category-listing-row" >
@@ -13,3 +14,5 @@
             </div>
         </li>
     </ul>
+    <cc-footer></cc-footer>
+</div>

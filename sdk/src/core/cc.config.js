@@ -11,5 +11,15 @@ cc.Config = {
     shippingTax:19,
     shippingFreeFrom: null,
     currencySign:'EUR',
-    shippingText:'zzgl. 5€ Versandkosten'
+    shippingText:'zzgl. 5€ Versandkosten',
+    aboutPages:[
+            {
+                title:'Neptune',
+                id:'neptune'
+            },
+            {
+                title:'Saturn',
+                id:'saturn'
+            }
+    ]
 };

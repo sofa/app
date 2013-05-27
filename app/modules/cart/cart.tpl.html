@@ -45,10 +45,11 @@
             <span class="cc-cart-total-panel-figure" ng-bind="summary.total | currency"></span>
         </div>
     </div>
-        <div class="cc-expand cc-cart-empty-hint" ng-show="isEmpty">
-            <div class="cc-cart-empty-hint-content">
-                <div class="icon-4x icon-shopping-cart"></div>
-                <div>{{ln.cartIsEmpty}}</div>
-            </div>
+    <div class="cc-expand cc-cart-empty-hint" ng-show="isEmpty">
+        <div class="cc-cart-empty-hint-content">
+            <div class="icon-4x icon-shopping-cart"></div>
+            <div>{{ln.cartIsEmpty}}</div>
         </div>
+    </div>
+    <cc-footer></cc-footer>
 </div>

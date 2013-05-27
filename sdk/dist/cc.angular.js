@@ -210,6 +210,30 @@ angular.module('sdk.directives.ccFixedToolbarsView')
             templateUrl: '../sdk/src/directives/ccFixedToolbarsView/fixedtoolbarsview.html'
         };
     });
+angular.module('sdk.directives.ccFooter', []);
+angular
+    .module('sdk.directives.ccFooter')
+    .directive('ccFooter', function() {
+
+        'use strict';
+
+        var defaultIfUndefined = function(scope, property, defaultVal){
+            scope[property] = scope[property] === undefined ? defaultVal : scope[property];
+        };
+
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            scope: {
+                items: '=?'
+            },
+            templateUrl: '../sdk/src/directives/ccFooter/ccfooter.tpl.html',
+            link: function(scope, element, attrs){
+                defaultIfUndefined(scope, 'items', cc.Config.aboutPages);
+            }
+        };
+    });
 'use strict';
 
 angular.module('sdk.directives.ccZippy', []);
@@ -262,7 +286,8 @@ angular.module('sdk.directives.ccZippy')
     });
 angular.module('sdk.directives', [
     'sdk.directives.ccFixedToolbarsView',
-    'sdk.directives.ccZippy'
+    'sdk.directives.ccZippy',
+    'sdk.directives.ccFooter'
     ]);
 angular
     .module('sdk.filter.currency', [])

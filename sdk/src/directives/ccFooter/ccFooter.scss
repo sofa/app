@@ -1,0 +1,27 @@
+.cc-footer-wrapper{
+    text-align: center;
+}
+
+.cc-footer-item, .cc-footer-item:visited, .cc-footer-item:active {
+    color:$background-text-color;
+}
+
+.cc-footer-item{
+    padding: 10px 5px 5px 0;
+    color: $background-text-color;
+    font-size: $font-size-tiny;
+    font-weight: bold;
+    @include try-darker-extended("text-shadow", $background-color, "0px -1px", "", 10%);
+}
+
+.cc-footer-item:after{
+    content:"";
+    color: $background-text-color;
+    padding-left: 5px;
+    border-right: 1px solid $background-text-color;
+}
+
+.cc-footer-item:last-child:after{
+    content:"";
+    border: none;
+}

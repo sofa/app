@@ -1,4 +1,5 @@
-    <ul class="cc-view-wrapper">
+<div class="cc-view-wrapper">
+    <ul>
         <li ng-repeat="product in products"
             ng-click="navigationService.navigateToProduct(product)"
             class="cc-list-row cc-product-list-row">
@@ -15,3 +16,5 @@
             </div>
         </li>
     </ul>
+    <cc-footer></cc-footer>
+</div>
