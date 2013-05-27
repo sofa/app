@@ -13,7 +13,7 @@ angular
                 var previousIndex = fromRoute && fromRoute.$$route && fromRoute.$$route.screenIndex !== undefined ? fromRoute.$$route.screenIndex : minScreenIndex,
                     currentIndex = toRoute && toRoute.$$route && toRoute.$$route.screenIndex !== undefined ? toRoute.$$route.screenIndex : minScreenIndex;
 
-                //we are moving between to category listings
+                //we are moving between two category listings
                 if(previousIndex === 0 && currentIndex === 0){
                     var fromRouteCategory = fromRoute.locals.category;
                     var toRouteCategory = toRoute.locals.category;

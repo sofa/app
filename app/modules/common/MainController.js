@@ -6,7 +6,7 @@ angular
     [
         '$scope',
         'slideDirectionService',
-        function MainController($scope, slideDirectionService) {
+        function MainController($scope) {
 
             var ui = {
                 header: 'modules/common/header/defaultheader.tpl.html',
