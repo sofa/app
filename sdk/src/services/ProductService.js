@@ -13,10 +13,10 @@ angular
                 if (product.images[i].sizeName.toLowerCase() === size){
                     return product.images[i].url;
                 }
-            };
+            }
 
             return cc.Config.mediaPlaceholder;
-        }
+        };
 
         //TODO: This is pure shit. I need to talk to Felix got get that clean
         //It's only in here to keep some German clients happy that rely on it.
