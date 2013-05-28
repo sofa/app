@@ -175,10 +175,12 @@ angular
                 else if (product.custom3 === 'L'){
                     return 'entpricht ' + cc.Util.toFixed(product.custom1, 2) + ' € pro 1 Liter (l)';
                 }
-                else if (cc.util.isString(product.custom3) && product.custom3.length > 0){
+                else if (cc.Util.isString(product.custom3) && product.custom3.length > 0){
                     return 'entpricht ' + cc.Util.toFixed(product.custom1, 2) + ' € pro '  + product.custom3;
                 }
             }
+
+            return '';
         };
 
         return self;
