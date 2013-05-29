@@ -1,11 +1,11 @@
-'use strict'
-
 angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
         '$scope', '$routeParams', '$location', 'couchService', 'productService', 'basketService', 'navigationService', 'product', '$dialog',
         function ProductController($scope, $routeParams, $location, couchService, productService, basketService, navigationService, product, $dialog) {
+
+            'use strict';
 
             $scope.ui = {
                 PRICE_INFO_AND_ADD_TO_CART: 'modules/product/price-info-and-add-to-cart.tpl.html'
@@ -61,7 +61,7 @@ angular
             $scope.addToBasket = function(product){
 
                 if (productService.hasVariants(product) && !$scope.variants.selectedVariant){
-                    
+
                     var missingProperties = '';
 
                     for (var key in $scope.variants.selectedProperties){
