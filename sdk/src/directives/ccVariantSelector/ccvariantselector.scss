@@ -1,9 +1,25 @@
+
 .cc-variant-selector-on-background .cc-variant-selector-select-wrapper{
+
+    $lighter-content-background-color: lighten($background-color, 10%);
+    $darker-content-background-color: darken($background-color, 5%);
+
     border: 1px solid $background-text-color;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
+    background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+    background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
 }
 
 .cc-variant-selector-on-content .cc-variant-selector-select-wrapper{
     border: 1px solid $content-text-color;
+
+    $lighter-content-background-color: lighten($content-background-color, 10%);
+    $darker-content-background-color: darken($content-background-color, 5%);
+
+    border: 1px solid $background-text-color;
+    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
+    background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+    background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
 }
 
 .cc-variant-selector-select-wrapper{
