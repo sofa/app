@@ -2,8 +2,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$routeParams', '$location', 'couchService', 'productService', 'basketService', 'navigationService', 'product', '$dialog',
-        function ProductController($scope, $routeParams, $location, couchService, productService, basketService, navigationService, product, $dialog) {
+        '$scope', '$routeParams', '$location', 'couchService', 'basketService', 'navigationService', 'product', '$dialog',
+        function ProductController($scope, $routeParams, $location, couchService, basketService, navigationService, product, $dialog) {
 
             'use strict';
 
@@ -11,13 +11,19 @@ angular
                 PRICE_INFO_AND_ADD_TO_CART: 'modules/product/price-info-and-add-to-cart.tpl.html'
             };
 
-            $scope.productService = productService;
-
             $scope.product = product;
 
             $scope.variants = {
                 selectedVariant : null,
                 selectedProperties: null
+            };
+
+            $scope.onThumbnailSelected = function(image){
+                product.selectedImage = image;
+            };
+
+            $scope.image = {
+                selectedImageUrl: null
             };
 
             //keep that in for debugging variants
@@ -60,7 +66,7 @@ angular
 
             $scope.addToBasket = function(product){
 
-                if (productService.hasVariants(product) && !$scope.variants.selectedVariant){
+                if (product.hasVariants() && !$scope.variants.selectedVariant){
 
                     var missingProperties = '';
 

@@ -10,7 +10,13 @@
     <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
     
     <div class="cc-product-view-image"
-         style="background-image: url({{productService.getImage(product, 'small')}})"></div>
+         style="background-image: url({{product.selectedImage.url}})"></div>
+
+    <cc-thumbnail-bar 
+        class="cc-thumbnail-bar-on-background" 
+        images="product.getAllImages()" 
+        on-change="onThumbnailSelected(image)">
+    </cc-thumbnail-bar>
 
     <div class="cc-view-content cc-unstyled">
 

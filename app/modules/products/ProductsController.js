@@ -8,7 +8,6 @@ angular
         '$routeParams', 
         '$location', 
         'couchService',
-        'productService',
         'navigationService',
         'products',
         function ProductsController(
@@ -16,11 +15,9 @@ angular
             $routeParams, 
             $location, 
             couchService,
-            productService,
             navigationService,
             products) {
-            
-            $scope.productService = productService;
+
             $scope.navigationService = navigationService;
             $scope.products = products;
             $scope.categoryUrlId = $routeParams.category;

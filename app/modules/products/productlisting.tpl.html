@@ -4,7 +4,7 @@
             ng-click="navigationService.navigateToProduct(product)"
             class="cc-list-row cc-product-list-row">
             <div class="cc-list-row-image" 
-                 style="background-image: url({{productService.getImage(product, 'small')}})">
+                 style="background-image: url({{product.getImage('small')}})">
             </div>
             <div class="cc-product-list-row-text">
                 <div class="cc-product-list-row-name">

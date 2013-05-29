@@ -4,11 +4,10 @@ angular
     .module('CouchCommerceApp')
     .controller('CartController',
     [
-        '$scope','basketService', 'productService', 'navigationService', '$dialog',
-        function CartController($scope, basketService, productService, navigationService, $dialog) {
+        '$scope','basketService', 'navigationService', '$dialog',
+        function CartController($scope, basketService, navigationService, $dialog) {
 
             $scope.basketService = basketService;
-            $scope.productService = productService;
             $scope.navigationService = navigationService;
 
             var updateModels = function(){

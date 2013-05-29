@@ -80,12 +80,10 @@ cc.define('cc.CouchService', function($http, $q){
     //it's a bit akward that we need to do that. It should be adressed
     //directly on our server API so that this extra processing can be removed.
     var augmentProducts = function(products, categoryUrlId){
-        
-        products.forEach(function(product){
+        return products.map(function(product){
             product.categoryUrlId = categoryUrlId;
+            return cc.Util.deepExtend(new cc.models.Product(), product);
         });
-
-        return products;
     };
 
     /**

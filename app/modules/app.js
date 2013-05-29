@@ -18,7 +18,6 @@ angular.module('CouchCommerceApp', [
     'ngMobile',
     'sdk.services.couchService',
     'sdk.services.navigationService',
-    'sdk.services.productService',
     'sdk.services.basketService',
     'sdk.directives',
     'sdk.filter',

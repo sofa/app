@@ -6,7 +6,7 @@
             class="cc-list-row cc-cart-list-row" >
             <div class="cc-list-row-image cc-category-listing-row-image"
             ng-click="navigationService.navigateToProduct(item.product)" 
-                 style="background-image: url({{productService.getImage(item.product, 'small')}})">
+                 style="background-image: url({{item.product.getImage('small')}})">
             </div>
             <div class="cc-cart-list-row-text">
                 <div class="cc-cart-list-row-name">

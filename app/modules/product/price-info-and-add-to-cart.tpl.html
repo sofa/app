@@ -1,7 +1,7 @@
 <div class="cc-product-view-price-info cc-table">
     <div class="cc-table-cell-bottom-aligned">
         <div class="cc-product-view-price-info-shipping">{{ cfg.shippingText }}</div>
-        <div class="cc-product-view-price-info-base-price">{{productService.getBasePriceInfo(product)}}</div>
+        <div class="cc-product-view-price-info-base-price">{{product.getBasePriceInfo()}}</div>
     </div>
     <div class="cc-table-cell-bottom-aligned cc-product-view-price-info-right">
         <div class="cc-product-view-price-info-price">{{ product.price }}</div>
