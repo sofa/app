@@ -179,6 +179,10 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     height: 100%;
 }
 .cc-full-width-height .cc-view-wrapper{
+    // some tweaks for less flickering
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+    -webkit-perspective: 1000;
     position: absolute;
     width:100%;
 }

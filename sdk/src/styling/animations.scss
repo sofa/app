@@ -1,6 +1,6 @@
 
 $slide-duration: 0.4s;
-$slide-easing: ease-in;
+$slide-easing: ease-out;
 
 .slide-in-rtl {
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
