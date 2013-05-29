@@ -204,7 +204,7 @@ cc.define('cc.CouchService', function($http, $q){
     var fetchAllCategories = function(){
         return $http({
             method: 'get',
-            url: 'data/dasgibtesnureinmal/categories.json'
+            url: cc.Config.categoryJson
         })  
         .then(function(data){
             self.categories = data.data;

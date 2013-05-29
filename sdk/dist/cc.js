@@ -397,12 +397,13 @@ cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
     };
 });
 cc.Config = {
-    storeId: 88399,
+    storeId: 38883,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     apiHttpMethod: 'jsonp',
+    categoryJson: 'data/sir-chesterfield/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
-    mediaFolder:'http://cdn.couchcommerce.com/media/dasgibtesnureinmal/',
+    mediaFolder:'http://cc1.couchcommerce.com/media/sirchesterfield/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
     shippingCost:5,
@@ -627,7 +628,7 @@ cc.define('cc.CouchService', function($http, $q){
     var fetchAllCategories = function(){
         return $http({
             method: 'get',
-            url: 'data/dasgibtesnureinmal/categories.json'
+            url: cc.Config.categoryJson
         })  
         .then(function(data){
             self.categories = data.data;
