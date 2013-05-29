@@ -24,6 +24,11 @@
                     <span>{{item.quantity}}</span>
                     <span ng-click="basketService.increaseOne(item)" class="cc-cart-button">+</span>
                 </div>
+                <div class="cc-cart-item-variants">
+                    <div ng-repeat="(variantProperty, variantPropertyValue) in item.variant.properties">
+                        {{variantProperty}}:{{variantPropertyValue}}
+                    </div>
+                </div>
             </div>
         </li>
     </ul>
