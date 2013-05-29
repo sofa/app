@@ -83,7 +83,8 @@ angular
 
                 //FIX ME: the basket service should deal with the variant object instead of just the ID
                 //we want to show more information about the variant in the basket anyway
-                basketService.addItem(product, 1, $scope.variants && $scope.variants.variantID);
+                var selectedVariant = $scope.variants.selectedVariant;
+                basketService.addItem(product, 1, selectedVariant && selectedVariant.variantID);
                 navigationService.navigateToCart();
             };
         }
