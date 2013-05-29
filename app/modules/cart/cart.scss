@@ -47,9 +47,8 @@
 }
 
 .cc-cart-button{
-    padding: 15px;
-    border: 1px solid $content-border-color;
-    border-radius: 3px;
+    @extend .cc-couch-default-button-on-content;
+    width: 50px;
 }
 
 .cc-cart-quantity-selector{

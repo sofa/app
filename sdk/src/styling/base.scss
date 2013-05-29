@@ -204,42 +204,6 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     font-size: $font-size-regular;
 }
 
-$button-color-normal: lighten($default-button-background-color, 10%);
-$button-color-pressed: lighten($default-button-background-color, 20%);
-
-.cc-couch-action-button{
-
-    @include vendor-prefix('border-radius', 5px);
-    //using a top and bottom padding is better than setting a fixed height
-    //since it keeps the text centered
-    padding: 12px;
-    border: 2px solid $default-button-background-color;
-    font-size: $font-size-medium;
-    color: $default-button-text-color;
-    text-align: center;
-    //This is so that we can use <a> tags as buttons as well
-    display: inline-block;
-    
-    @if lightness($default-button-text-color) > 40 {
-        text-shadow: 1px 1px 1px #000000;
-    }
-    @else {
-        text-shadow: 1px 1px 1px #ffffff;
-    }
-
-    text-align: center;
-    width: 100%;
-    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$button-color-pressed),color-stop(100%,$button-color-normal));
-    background-image: -webkit-linear-gradient(bottom,$button-color-pressed 28%,$button-color-normal 100%);
-    background-image: linear-gradient(bottom,$button-color-pressed 28%,$button-color-normal 100%);
-
-    &:active{
-        background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$button-color-normal),color-stop(100%,$button-color-pressed));
-        background-image: -webkit-linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
-        background-image: linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
-    }
-}
-
 //generic seperator lines that magically allways look awesome
 //(it could be tweaked for black and white though)
 .cc-line-seperator, %cc-line-seperator{
