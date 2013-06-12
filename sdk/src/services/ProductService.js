@@ -18,6 +18,10 @@ angular
             return cc.Config.mediaPlaceholder;
         };
 
+        self.hasVariants = function(product){
+            return product.variants && product.variants.length > 0;
+        };
+
         //TODO: This is pure shit. I need to talk to Felix got get that clean
         //It's only in here to keep some German clients happy that rely on it.
         //We need to make it more flexibile & localizable

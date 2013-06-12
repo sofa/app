@@ -1,6 +1,12 @@
 <div class="cc-view-wrapper cc-view-phone">
     <div class="cc-view-title">{{product.name}}</div>
-    
+    <cc-variant-selector 
+        class="cc-variant-selector-on-background " 
+        choose-text="ln.choose"
+        variants="product.variants"
+        variant="variants.selectedVariant"
+        selected-properties="variants.selectedProperties">
+    </cc-variant-selector>
     <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
     
     <div class="cc-product-view-image"

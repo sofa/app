@@ -120,11 +120,11 @@ cc.define('cc.BasketService', function(storageService, options){
         storeItemsName = storePrefix + 'items',
         items = sanitizeSavedData(storageService.get(storeItemsName)) || [],
         productIdentityFn = options && _.isFunction(options.productIdentityFn) ? 
-            options.productIdentityFn : function(productA, productAVariantId, productAOptionId,
-                                                 productB, productBVariantId, productBOptionId){
+            options.productIdentityFn : function(productA, productAVariant, productAOptionId,
+                                                 productB, productBVariant, productBOptionId){
 
                 return productA.id === productB.id &&
-                       productAVariantId === productBVariantId &&
+                       productAVariant === productBVariant &&
                        productAOptionId === productBOptionId;
             };
 
@@ -162,11 +162,11 @@ cc.define('cc.BasketService', function(storageService, options){
      * 
      *   - `product` the Product object itself
      *   - `quantity` the number of times the product should be added
-     *   - `variantId` the variantID the product should be added with
+     *   - `variant` the variant the product should be added with
      *   - `optionId` the optionId the product should be added with
      */
-    self.addItem = function(product, quantity, variantId, optionId){
-        var basketItem = self.find(createProductPredicate(product, variantId, optionId)),
+    self.addItem = function(product, quantity, variant, optionId){
+        var basketItem = self.find(createProductPredicate(product, variant, optionId)),
             exists = !_.isUndefined(basketItem);
 
         if (!exists){
@@ -176,7 +176,7 @@ cc.define('cc.BasketService', function(storageService, options){
 
         basketItem.product = product;
         basketItem.quantity = basketItem.quantity + quantity;
-        basketItem.variantId = variantId;
+        basketItem.variant = variant;
         basketItem.optionId = optionId;
 
         writeToStore();
@@ -200,14 +200,14 @@ cc.define('cc.BasketService', function(storageService, options){
 
     /**
      * A shorthand for:
-     * basketService.addItem(basketItem.product, number, basketItem.variantId, basketItem.optionId) 
+     * basketService.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId) 
      * 
      * Options:
      * 
      *   - `basketItem` the basketItem that should be increased by one
      */
     self.increase = function(basketItem, number){
-        return self.addItem(basketItem.product, number, basketItem.variantId, basketItem.optionId);
+        return self.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId);
     };
 
     /**
@@ -216,18 +216,18 @@ cc.define('cc.BasketService', function(storageService, options){
      * Options:
      * 
      *   - `product` the Product object itself
-     *   - `variantId` the variantID the basket should be checked for
+     *   - `variant` the variant the basket should be checked for
      *   - `optionId` the optionId the basket should be checked for
      */
-    self.exists = function(product, variantId, optionId){
-        var basketItem = self.find(createProductPredicate(product, variantId, optionId));
+    self.exists = function(product, variant, optionId){
+        var basketItem = self.find(createProductPredicate(product, variant, optionId));
             return !_.isUndefined(basketItem);
     };
 
-    var createProductPredicate = function(productA, productAVariantId, productAOptionId){
+    var createProductPredicate = function(productA, productAVariant, productAOptionId){
         return function(item){
-            return productIdentityFn(productA, productAVariantId, productAOptionId,
-                                     item.product, item.variantId, item.optionId);
+            return productIdentityFn(productA, productAVariant, productAOptionId,
+                                     item.product, item.variant, item.optionId);
         };
     };
 
@@ -238,15 +238,15 @@ cc.define('cc.BasketService', function(storageService, options){
      * 
      *   - `product` the Product that should be removed from the basket
      *   - `quantity` the quantity that should be removed from the basket
-     *   - `variantId` the variantID that should be removed from the basket
+     *   - `variant` the variant that should be removed from the basket
      *   - `optionId` the optionId that should be removed from the basket
      */
-    self.removeItem = function(product, quantity, variantId, optionId){
-        var basketItem = self.find(createProductPredicate(product, variantId, optionId));
+    self.removeItem = function(product, quantity, variant, optionId){
+        var basketItem = self.find(createProductPredicate(product, variant, optionId));
 
         if (!basketItem){
             throw new Error('Product id: ' + product.id + 
-                ' , variantId: ' + variantId + 
+                ' , variant: ' + variant + 
                 ', optionId: ' + optionId + 
                 '  does not exist in the basket')
         }
@@ -282,14 +282,14 @@ cc.define('cc.BasketService', function(storageService, options){
 
     /**
      * A shorthand for:
-     * basketService.removeItem(basketItem.product, number, basketItem.variantId, basketItem.optionId) 
+     * basketService.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId) 
      * 
      * Options:
      * 
      *   - `basketItem` the basketItem that should be decreased by one
      */
     self.decrease = function(basketItem, number){
-        return self.removeItem(basketItem.product, number, basketItem.variantId, basketItem.optionId);
+        return self.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId);
     };
 
     /**

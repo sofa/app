@@ -1,7 +1,7 @@
 'use strict';
 
 cc.Lang = {
-        missingVariantAttributeText: 'Bitte wählen Sie den/die ',
+        missingVariantAttributeText: 'Bitte wählen Sie aus den fehlenden Attributen: ',
         noSelection: 'Keine Auswahl',
         pricePrefix:'',
         priceSuffix:' &euro;',
@@ -81,5 +81,6 @@ cc.Lang = {
         shoppingCart: 'Warenkorb',
         summary: 'Zusammenfassung',
         pageDoesntExist: 'Diese Seite existiert nicht',
-        nonEUInfo: 'Bei Lieferung in das Nicht-EU-Ausland können zusätzliche Zölle, Steuern und Gebühren anfallen'
+        nonEUInfo: 'Bei Lieferung in das Nicht-EU-Ausland können zusätzliche Zölle, Steuern und Gebühren anfallen',
+        choose: 'wähle'
     };
