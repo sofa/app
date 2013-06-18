@@ -22,10 +22,6 @@ angular
                 product.selectedImage = image;
             };
 
-            $scope.image = {
-                selectedImageUrl: null
-            };
-
             //keep that in for debugging variants
             // $scope.product.variants = [
 
