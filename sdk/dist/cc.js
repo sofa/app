@@ -735,14 +735,7 @@ cc.define('cc.models.BasketItem', function(){
 cc.models.BasketItem.prototype.getTotal = function(){
     return cc.Util.round(this.quantity * this.product.price, 2);
 }
-cc.define('cc.models.Product', function(){
-
-    'use strict';
-
-    var self = this;
-
-    return self;
-});
+cc.define('cc.models.Product', function(){});
 
 cc.models.Product.prototype.getImage = function(size){
     for (var i = 0; i < this.images.length; i++) {

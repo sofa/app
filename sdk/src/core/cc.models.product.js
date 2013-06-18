@@ -1,11 +1,4 @@
-cc.define('cc.models.Product', function(){
-
-    'use strict';
-
-    var self = this;
-
-    return self;
-});
+cc.define('cc.models.Product', function(){});
 
 cc.models.Product.prototype.getImage = function(size){
     for (var i = 0; i < this.images.length; i++) {
