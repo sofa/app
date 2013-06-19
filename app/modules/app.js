@@ -2,8 +2,8 @@
 
 
 var categoryRouteConfig = {
-            templateUrl: 'modules/categories/categorylisting.tpl.html', 
-            controller: 'CategoryController', 
+            templateUrl: 'modules/categories/categorylisting.tpl.html',
+            controller: 'CategoryController',
             screenIndex: 0,
             resolve: {
                 category: ['couchService', '$route', function(couchService, $route){
@@ -12,13 +12,14 @@ var categoryRouteConfig = {
                 }]
             }
         };
-        
+
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
     'ngMobile',
     'sdk.services.couchService',
     'sdk.services.navigationService',
     'sdk.services.basketService',
+    'sdk.services.pagesService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap'
@@ -48,8 +49,11 @@ angular.module('CouchCommerceApp', [
                 }]
             }
         });
+
         $routeProvider.when('/cart', {templateUrl: 'modules/cart/cart.tpl.html', controller: 'CartController', screenIndex: 3});
-        
+
+        $routeProvider.when('/pages/:pageId', { templateUrl: 'modules/pages/pages.tpl.html', controller: 'PagesController as pagesVm', screenIndex: -1 });
+
         $routeProvider.otherwise({redirectTo: '/'});
     }])
     .run(['$rootScope', 'slideDirectionService', function($rootScope, slideDirectionService){

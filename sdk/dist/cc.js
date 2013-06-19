@@ -869,6 +869,38 @@ cc.define('cc.Observable', function(){
 });
 
 cc.observable = new cc.Observable();
+cc.define('cc.PagesService', function($http, $q){
+
+    'use strict';
+
+    var self = {};
+
+    self.getPage = function(id){
+        return $http
+                .get('data/pages/' + id + '.html')
+                .then(function(result){
+                    if (result.data){
+
+                        //we don't want to directly alter the page config, so we create a copy
+                        var pageConfig = cc.Util.deepExtend({}, self.getPageConfig(id));
+
+                        pageConfig.content = result.data;
+
+                        return pageConfig;
+                    }
+                });
+    };
+
+    self.getPageConfig = function(id){
+        var page = cc.Config.aboutPages.filter(function(page){
+            return page.id === id;
+        });
+
+        return page.length > 0 && page[0];
+    };
+
+    return self;
+});
 cc.define('cc.QService', function(){
 
     'use strict';

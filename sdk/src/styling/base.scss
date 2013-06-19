@@ -215,3 +215,13 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     @extend %cc-line-seperator;
     margin-bottom: 10px;
 }
+
+.cc-on-background, %cc-on-background{
+    color: $background-text-color;
+    border-color: $background-border-color;
+}
+
+.cc-on-content, %cc-on-content{
+    color: $content-text-color;
+    border-color: $content-border-color;
+}
