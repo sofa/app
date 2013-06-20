@@ -59,12 +59,16 @@ angular
                     var fromRouteScreenIndex = pagesService.getPageConfig(fromRoutePageId).screenIndex;
                     var toRouteScreenIndex = pagesService.getPageConfig(toRoutePageId).screenIndex;
 
-                    direction = toRouteScreenIndex > fromRouteScreenIndex ? 'rtl' : 'ltr';
+                    direction = getDirectionFromIndexes(fromRouteScreenIndex, toRouteScreenIndex);
                 }
                 else{
-                    direction = currentIndex > previousIndex ? 'rtl' : 'ltr';
+                    direction = getDirectionFromIndexes(previousIndex, currentIndex);
                 }
             });
+
+            var getDirectionFromIndexes = function(fromIndex, toIndex){
+                return toIndex > fromIndex ? 'rtl' : 'ltr';
+            };
 
             $self.getDirection = function(){
                 return direction;
