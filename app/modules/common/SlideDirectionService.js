@@ -24,8 +24,8 @@ angular
                     //all pages on the left boundaries of our app (visually speaking!)
                     //it's quite easy to set up screenIndexes that make sense.
                     //we just iterate over all pages and assign decreasing indexes starting
-                    //at 0
-                    aboutPages[i].screenIndex = screenIndex * -1;
+                    //at -1
+                    aboutPages[i].screenIndex = (screenIndex * -1) - 1;
                     screenIndex++;
                 }
             }
