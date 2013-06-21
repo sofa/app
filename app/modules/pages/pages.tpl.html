@@ -1,6 +1,7 @@
 <div class="cc-view-wrapper cc-on-background">
     <div>
         <span class="cc-view-title" ng-bind="pagesVm.page.title"></span>
+        <a class="cc-pages-send-as-mail icon-envelope icon-large" href="{{pagesVm.mailTo}}"></a>
     </div>
     <div ng-bind-html-unsafe="pagesVm.page.content"></div>
     <cc-footer></cc-footer>

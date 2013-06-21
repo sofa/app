@@ -15,6 +15,7 @@ angular
                 .getPage($routeParams.pageId)
                 .then(function(page){
                     pagesVm.page = page;
+                    pagesVm.mailTo = 'mailto:?subject=' + page.title + '&body=' + page.content;
                 }, function(err){
                     //TODO: show 404 page
                     console.log(err);
