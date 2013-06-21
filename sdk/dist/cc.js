@@ -145,6 +145,10 @@ cc.define('cc.BasketService', function(storageService, options){
             //have to create a fresh instance again, once we deserialize again
             var item = cc.Util.deepExtend(new cc.models.BasketItem(), val);
 
+            if (item.product){
+                item.product = cc.Util.deepExtend(new cc.models.Product(), item.product);
+            }
+
             return item;
         });
     }
