@@ -16,12 +16,12 @@ $scrolling-shadow-height: 10px;
 }
 
 .cc-scrolling-shadow-top{
-    background-image: -webkit-radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), transparent);
+    background-image: -webkit-radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.4), transparent);
     top: 0;
 }
 
 
 .cc-scrolling-shadow-bottom{
-    background-image: -webkit-radial-gradient(50% 100%,farthest-side, rgba(0, 0, 0, 0.2), transparent);
+    background-image: -webkit-radial-gradient(50% 100%,farthest-side, rgba(0, 0, 0, 0.4), transparent);
     bottom: 0;
 }
