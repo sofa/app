@@ -4,7 +4,7 @@
         <div class="cc-product-view-price-info-base-price">{{product.getBasePriceInfo()}}</div>
     </div>
     <div class="cc-table-cell-bottom-aligned cc-product-view-price-info-right">
-        <div class="cc-product-view-price-info-price">{{ product.price }}</div>
+        <div class="cc-product-view-price-info-price">{{ product.price | currency }}</div>
         <div class="cc-product-view-price-info-tax" ng-bind="productTaxText"></div>
     </div>
 </div>
