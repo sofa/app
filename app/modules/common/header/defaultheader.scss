@@ -61,9 +61,8 @@
     text-shadow: 1px 1px 1px #000000;
 }
 
-.cc-header-icon:active, .active.cc-header-icon{
+.cc-header-icon:active, .ng-click-active.cc-header-icon{
     color: white;
-    //@include try-lighter('color', $toolbar-icon-color, 10%);
 }
 
 .cc-header-shopping-cart{

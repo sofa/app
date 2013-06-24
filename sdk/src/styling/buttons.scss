@@ -30,7 +30,7 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     background-image: -webkit-linear-gradient(bottom,$button-color-pressed 28%,$button-color-normal 100%);
     background-image: linear-gradient(bottom,$button-color-pressed 28%,$button-color-normal 100%);
 
-    &:active,.ng-click-active{
+    &:active, &.ng-click-active{
         background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$button-color-normal),color-stop(100%,$button-color-pressed));
         background-image: -webkit-linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
         background-image: linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
@@ -57,7 +57,7 @@ $darker-content-background-color: darken($content-background-color, 5%);
     background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
     background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
 
-    &:active,.ng-click-active{
+    &:active, &.ng-click-active{
         background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$lighter-content-background-color),color-stop(100%,$darker-content-background-color));
         background-image: -webkit-linear-gradient(bottom,$lighter-content-background-color 28%,$darker-content-background-color 100%);
         background-image: linear-gradient(bottom,$lighter-content-background-color 28%,$darker-content-background-color 100%);
