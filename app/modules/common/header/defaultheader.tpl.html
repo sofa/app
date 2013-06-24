@@ -6,9 +6,7 @@
     >
     </span>
     <span class="cc-header-seperator cc-header-back-seperator" ng-show="!navigationService.isRootCategory()"></span>
-    <div class="cc-header-logo-wrapper">
-        <span class="cc-header-logo" ng-click="navigationService.navigateToRootCategory()">CouchCommerce</span>
-    </div>
+    <span class="cc-header-logo" ng-click="navigationService.navigateToRootCategory()"></span>
     <span class="cc-header-seperator cc-header-cart-seperator"></span>
     <span class="cc-header-icon cc-header-shopping-cart icon-2x icon-shopping-cart" ng-click="navigationService.navigateToCart()">
         <span class="cc-header-badge cc-header-shopping-cart-badge" ng-bind="basketItemCount"ng-show="basketItemCount > 0"></span>
