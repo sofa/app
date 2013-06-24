@@ -18,10 +18,10 @@ angular.module('sdk.directives.ccZippy')
                 opened: '=?'
             },
             templateUrl: '../sdk/src/directives/ccZippy/cczippy.tpl.html',
-            link: function(scope, element, attrs){
-                var $element = $(element[0]),
-                    $caption = $element.children('.cc-zippy-caption').first(),
-                    $icon = $element.find('.cc-zippy-icon').first(),
+            link: function(scope, $element, attrs){
+                var element = $element[0],
+                    $caption = angular.element(element.querySelectorAll('.cc-zippy-caption')[0]),
+                    $icon = angular.element(element.querySelectorAll('.cc-zippy-icon')[0]),
                     openedIconClass = 'icon-chevron-up',
                     closedIconClass = 'icon-chevron-down';
 

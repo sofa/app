@@ -9,24 +9,29 @@ angular.module('sdk.directives.ccScrollingShadow')
             restrict: 'A',
             link: function(scope, $element, attr){
 
-                $element = $($element[0]);
-
-                var $topShadow          = $('<div class="cc-scrolling-shadow-top"></div>'),
-                    $bottomShadow       = $('<div class="cc-scrolling-shadow-bottom"></div>'),
+                var $topShadow          = angular.element('<div class="cc-scrolling-shadow-top"></div>'),
+                    $bottomShadow       = angular.element('<div class="cc-scrolling-shadow-bottom"></div>'),
                     $parent             = $element.parent();
 
                 $parent
                     .append($topShadow)
                     .append($bottomShadow);
 
-                var topShadowHeight     = $topShadow.height(),
-                    bottomShadowHeight  = $bottomShadow.height();
+                var topShadowHeight     = $topShadow[0].clientHeight,
+                    bottomShadowHeight  = $bottomShadow[0].clientHeight;
+
+
+                //IE uses scrollTop instead of scrollY
+                var getScrollTop = function(element){
+                    return ('scrollTop' in element) ? element.scrollTop : element.scrollY
+                };
 
                 var updateShadows = function(){
 
-                    var scrollTop                   = $element.scrollTop(),
-                        clientHeight                = $element[0].clientHeight,
-                        scrollHeight                = $element[0].scrollHeight,
+                    var element                     = $element[0],
+                        scrollTop                   = getScrollTop(element),
+                        clientHeight                = element.clientHeight,
+                        scrollHeight                = element.scrollHeight,
                         bottomTopVal                = (scrollTop - bottomShadowHeight) + clientHeight,
                         scrollBottom                = scrollHeight - scrollTop - clientHeight,
                         rollingShadowOffsetTop      = 0,
@@ -40,8 +45,8 @@ angular.module('sdk.directives.ccScrollingShadow')
                         rollingShadowOffsetBottom = (bottomShadowHeight - scrollBottom) * -1;
                     }
 
-                    $topShadow.css('top', rollingShadowOffsetTop);
-                    $bottomShadow.css('bottom', rollingShadowOffsetBottom);
+                    $topShadow.css('top', rollingShadowOffsetTop + 'px');
+                    $bottomShadow.css('bottom', rollingShadowOffsetBottom + 'px');
                 };
 
                 setTimeout(updateShadows, 1);
