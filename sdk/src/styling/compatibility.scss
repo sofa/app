@@ -27,6 +27,23 @@ $temp-background-border-color: #000000;
 $background-border-color: $temp-background-border-color !default;
 
 
+//use a 10% darker or brighter color for the toolbar border.
+//Excepct the toolbar color is transparent, then set the toolbar-background-color
+//to transparent as well
+$temp-toolbar-border-color: #000000;
+
+    @if $toolbar-background-color == 'transparent'{
+        $temp-toolbar-border-color: 'transparent'
+    }
+    @else if lightness($toolbar-background-color) < 30 {
+        $temp-toolbar-border-color:  lighten($toolbar-background-color, 10%);
+    }
+    @else {
+        $temp-toolbar-border-color:  darken($toolbar-background-color, 10%);
+    }
+
+$toolbar-border-color: $temp-toolbar-border-color !default;
+
 //by default make borders on the content 20% lighter than text
 //on the content. Except the text is very light already than make it
 //20 % darker

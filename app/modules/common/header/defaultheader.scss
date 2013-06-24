@@ -1,17 +1,38 @@
 .cc-header{
-    background: #ffffff; /* Old browsers */
-    background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
-    background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
+    background: $toolbar-background-color; /* Old browsers */
+    border-bottom: 2px solid $toolbar-border-color;
+    // background: -moz-linear-gradient(top, #ffffff 0%, #e5e5e5 100%); /* FF3.6+ */
+    // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#e5e5e5)); /* Chrome,Safari4+ */
+    // background: -webkit-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Chrome10+,Safari5.1+ */
+    // background: -o-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* Opera 11.10+ */
+    // background: -ms-linear-gradient(top, #ffffff 0%,#e5e5e5 100%); /* IE10+ */
+    // background: linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%); /* W3C */
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e5e5e5',GradientType=0 ); /* IE6-9 */
     width: 100%;
     position: relative;
 }
 
+//generic seperator lines that magically allways look awesome
+//(it could be tweaked for black and white though)
+.cc-header-seperator, %cc-header-seperator{
+    height: 100%;
+    border-left: 1px solid $toolbar-border-color;
+    border-right: 1px solid lighten($toolbar-background-color, 10%);
+}
+
+
+.cc-header-back-seperator{
+    position: absolute;
+    left: 45px;
+}
+
+.cc-header-cart-seperator{
+    position: absolute;
+    right: 45px;
+}
+
 .cc-header-icon{
+    text-shadow: 1px 1px 1px lighten($toolbar-icon-color, 15%);;
     color: $toolbar-icon-color;
     //the padding is to increase the clickable area
     padding: 0 10px 0 10px;
@@ -56,6 +77,7 @@
 }
 
 .cc-header-logo{
-    text-shadow: 2px 2px 2px white;
+    color: $toolbar-text-color;
+    text-shadow: 1px 1px 1px black;
     font-size: $font-size-huge;
 }
