@@ -8,18 +8,17 @@
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
-<body ontouchstart="">
+<body ontouchstart="" ng-class="supportsFixed ? 'cc-supports-position-fixed' : ''" ng-controller="MainController">
   <!-- TODO: we would love to move this into a main.tpl.html but it seems not to be possible by default -->
-  <div ng-controller="MainController" class="cc-full-width-height">
-    <div cc-fixed-toolbars-view header="ui.header" footer="ui.footer">
-        <div class="cc-full-width-height" ng-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
-    </div>
+  <div  class="cc-full-width-height">
+        <div ng-include="ui.header"></div>
+        <div class="cc-full-width-height" ng-view ng-animate="slideDirectionService.getSlideAnimationConfig()">
+        </div>
   </div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   -->
-  <script src="lib/overthrow.js"></script>
   <script src="lib/angular-unstable/angular.js"></script>
   <script src="lib/angular-unstable/angular-mobile.js"></script>
   <script src="modules/app.js"></script>
@@ -39,10 +38,3 @@
   <script src="modules/pages/PagesController.js"></script>
 </body>
 </html>
-<script type="text/javascript">
-    overthrow.configure({
-      enabledClassName: 'cc-scrollable-enabled',
-      scrollIndicatorClassName: 'cc-scrollable-vertical'
-    });
-    overthrow.set();
-</script>

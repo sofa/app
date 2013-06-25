@@ -182,6 +182,13 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     position: absolute;
     width:100%;
 }
+
+.cc-supports-position-fixed{
+    .cc-view-wrapper{
+        padding-top: 45px;
+    }
+}
+
 .cc-view-wrapper{
     padding: 10px;
     height: 100%;

@@ -20,6 +20,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.navigationService',
     'sdk.services.basketService',
     'sdk.services.pagesService',
+    'sdk.services.deviceService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap'
@@ -56,8 +57,21 @@ angular.module('CouchCommerceApp', [
 
         $routeProvider.otherwise({redirectTo: '/'});
     }])
-    .run(['$rootScope', 'slideDirectionService', function($rootScope, slideDirectionService){
+    .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', function($rootScope, $timeout, $window, slideDirectionService, deviceService){
         $rootScope.ln = cc.Lang;
         $rootScope.cfg = cc.Config;
         $rootScope.slideDirectionService = slideDirectionService;
+
+        $rootScope.supportsFixed = deviceService.hasPositionFixedSupport();
+
+        $rootScope.$on('$routeChangeSuccess', function(evt, toRoute, fromRoute){
+            
+            //we not only need that to reset the scrolling position but also because
+            //otherwise in Chrome for Android the scrolling is freezed after full page
+            //reload. It can be unfreezed by navigating somewhere else or through this hack. Weird!
+            $timeout(function(){
+                $window.scrollTo(0,1);
+            },0)
+            
+        });
     }]);
