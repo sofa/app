@@ -10,7 +10,7 @@ angular
         };
 
         return {
-            restrict: 'E',
+            restrict: 'EA',
             replace: true,
             transclude: true,
             scope: {

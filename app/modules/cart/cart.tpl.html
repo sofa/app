@@ -55,6 +55,8 @@
             <div class="icon-4x icon-shopping-cart"></div>
             <div>{{ln.cartIsEmpty}}</div>
         </div>
+        <cc-footer class="cc-cart-footer"></cc-footer>
     </div>
-    <cc-footer></cc-footer>
+    <!-- WTF!? why can't we get that to work with ng-show? -->
+    <cc-footer ng-if="!isEmpty"></cc-footer>
 </div>
