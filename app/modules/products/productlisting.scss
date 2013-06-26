@@ -2,6 +2,10 @@
     min-height: 120px;
 }
 
+.cc-product-list-row:active, .cc-product-list-row.ng-click-active{
+    @include try-darker("background", $content-background-color);
+}
+
 .cc-product-list-row-text{
     margin-left: 120px;
     color: $content-text-color;
