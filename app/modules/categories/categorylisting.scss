@@ -1,5 +1,5 @@
 .cc-category-listing-row:active, .cc-category-listing-row.ng-click-active{
-    @include try-darker("background", $content-background-color);
+    background: $info-area-background-color;
 }
 
 

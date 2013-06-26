@@ -3,7 +3,7 @@
 }
 
 .cc-product-list-row:active, .cc-product-list-row.ng-click-active{
-    @include try-darker("background", $content-background-color);
+    background: $info-area-background-color;
 }
 
 .cc-product-list-row-text{
