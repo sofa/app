@@ -4,8 +4,10 @@ angular
     .module('CouchCommerceApp')
     .controller( 'CategoryController',
     [
-        '$scope', '$routeParams', 'couchService', 'navigationService', 'category',
-        function CategoryController($scope, $routeParams, couchService, navigationService, category) {
+        '$scope', '$routeParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category',
+        function CategoryController($scope, $routeParams, couchService, navigationService, backStepHighlightService, category) {
+
+            $scope.backStepHighlightService = backStepHighlightService;
 
             $scope.goToCategory = function(category){
                 if (!category.children){

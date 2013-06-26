@@ -23,3 +23,14 @@
     right: 5px;
     margin-right: 5px;
 }
+
+.cc-highlight{
+    -webkit-animation: pulsate 0.6s ease-out;
+    -webkit-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes pulsate {
+    0% {background: inherit;}
+    50% {background: $info-area-background-color;}
+    100% {background: inherit;}
+}

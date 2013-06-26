@@ -2,6 +2,7 @@
     <ul>
         <li ng-repeat="product in products"
             ng-click="navigationService.navigateToProduct(product)"
+            ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }"
             class="cc-list-row cc-product-list-row">
             <div class="cc-list-row-image" 
                  style="background-image: url({{product.getImage('small')}})">

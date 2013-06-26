@@ -2,6 +2,7 @@
     <ul class="cc-category-listing">
         <li ng-repeat="category in category.children"
             ng-click="goToCategory(category)" 
+            ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }"
             class="cc-list-row cc-category-listing-row" >
             <div class="cc-list-row-image cc-category-listing-row-image" 
                  style="background-image: url({{category.image}})">
