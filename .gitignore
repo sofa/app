@@ -8,3 +8,4 @@ build.xml
 .idea/*
 .sass-cache
 app/css/*
+node_modules

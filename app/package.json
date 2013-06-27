@@ -1,0 +1,19 @@
+{
+  "name": "CouchCommerceSampleApp",
+  "version": "0.0.1",
+  "description": "Sample CouchCommerce AngularJS App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-sass": "~0.3.0",
+    "grunt-contrib-connect": "~0.3.0"
+  }
+}
