@@ -6,10 +6,8 @@ angular
 
             var self                        = {},
                 flaggingDurationMs          = 600,
-                flaggedProduct              = null,
-                flaggedCategoryUrlID        = null,
-                productTimeOutToken         = null,
-                categoryTimeOutToken        = null,
+                flags                       = {},
+                timeouts                    = {},
                 CATEGORY_SCREEN_INDEX       = 0,
                 PRODUCT_LIST_SCREEN_INDEX   = 1,
                 PRODUCT_SCREEN_INDEX        = 2;
@@ -21,21 +19,21 @@ angular
                     currentIndex    = toRoute && toRoute.$$route && toRoute.$$route.screenIndex;
 
                 if(previousIndex === PRODUCT_SCREEN_INDEX && currentIndex === PRODUCT_LIST_SCREEN_INDEX){
-                    flaggedProduct = fromRoute.locals.product;
+                    flags.product =  fromRoute.locals.product;
                 }
                 else if(previousIndex === PRODUCT_LIST_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX){
-                    flaggedCategoryUrlID = fromRoute.params.category;
+                    flags.category = fromRoute.params.category;
                 }
                 //TODO: Should we test for a parent child relationship?
                 else if(previousIndex === CATEGORY_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX) {
-                    flaggedCategoryUrlID = fromRoute.params.category;
+                    flags.category = fromRoute.params.category;
                 }
             });
 
             self.isHighlighted = function(item){
 
                 if (item instanceof cc.models.Product){
-                    return isHighlighted(item, flaggedProduct, productTimeOutToken);
+                    return isHighlighted(item, 'product');
                 }
                 //we don't have a category model, but the urlId property
                 //is unique enough to identify a category
@@ -44,17 +42,17 @@ angular
                         return item.urlId === flaggedObject;
                     };
 
-                    return isHighlighted(item, flaggedCategoryUrlID, categoryTimeOutToken, matcher);
+                    return isHighlighted(item, 'category', matcher);
                 }
 
                 return false;
             };
 
-            var isHighlighted = function(item, flaggedObject, timeoutToken, matcher){
+            var isHighlighted = function(item, prefix, matcher){
                 //optinally use provided matcher function
                 matcher = matcher || function(a, b) { return a === b };
 
-                var match = matcher(item, flaggedObject);
+                var match = matcher(item, flags[prefix]);
 
                 //if the query does not match the flagged object,
                 //don't remove the flag. Basically, only remove the flag
@@ -67,10 +65,10 @@ angular
                 //if there's already a timeout scheduled, don't add a new one to prevent
                 //timeouts queueing up
 
-                if (!timeoutToken){
-                    timeoutToken = $timeout(function(){
-                        flaggedObject = null;
-                        timeoutToken = null;
+                if (!timeouts[prefix]){
+                    timeouts[prefix] = $timeout(function(){
+                        flags[prefix] = null;
+                        timeouts[prefix] = null;
                     }, flaggingDurationMs);
                 }
 
