@@ -1,4 +1,4 @@
-angular.module('sdk.directives.ccVariantSelector', []);
+angular.module('sdk.directives.ccVariantSelector', ['src/directives/ccVariantSelector/ccvariantselector.tpl.html']);
 
 angular.module('sdk.directives.ccVariantSelector')
     .filter('ccVariantFilter', ['$filter', function($filter) {
@@ -44,7 +44,7 @@ angular.module('sdk.directives.ccVariantSelector')
                 selectedProperties: '=?',
                 chooseText: '=?'
             },
-            templateUrl: '../sdk/src/directives/ccVariantSelector/ccvariantselector.tpl.html',
+            templateUrl: 'src/directives/ccVariantSelector/ccvariantselector.tpl.html',
             link: function(scope, element, attrs){
 
                 // extract flat list of available properties

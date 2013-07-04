@@ -14,6 +14,6 @@ angular.module('sdk.directives.ccFixedToolbarsView')
                 header: '=',
                 footer: '='
             },
-            templateUrl: '../sdk/src/directives/ccFixedToolbarsView/fixedtoolbarsview.html'
+            templateUrl: 'src/directives/ccFixedToolbarsView/fixedtoolbarsview.html'
         };
     });

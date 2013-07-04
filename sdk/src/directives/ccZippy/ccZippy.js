@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('sdk.directives.ccZippy', []);
+angular.module('sdk.directives.ccZippy', ['src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module('sdk.directives.ccZippy')
     .directive('ccZippy', function() {
@@ -17,7 +17,7 @@ angular.module('sdk.directives.ccZippy')
                 caption: '=?',
                 opened: '=?'
             },
-            templateUrl: '../sdk/src/directives/ccZippy/cczippy.tpl.html',
+            templateUrl: 'src/directives/ccZippy/cczippy.tpl.html',
             link: function(scope, $element, attrs){
                 var element = $element[0],
                     $caption = angular.element(element.querySelectorAll('.cc-zippy-caption')[0]),

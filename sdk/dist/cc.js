@@ -404,7 +404,7 @@ cc.Config = {
     storeId: 38883,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     apiHttpMethod: 'jsonp',
-    categoryJson: 'data/sir-chesterfield/categories.json',
+    categoryJson: '../data/sir-chesterfield/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
     mediaFolder:'http://cc1.couchcommerce.com/media/sirchesterfield/img/',

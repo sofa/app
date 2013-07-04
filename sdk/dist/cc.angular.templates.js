@@ -1,0 +1,51 @@
+angular.module('cc.angular.templates', ['src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+
+angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccFooter/ccfooter.tpl.html",
+    "<div class=\"cc-footer-wrapper\">\n" +
+    "        <a ng-repeat=\"item in items\" class=\"cc-footer-item\" href=\"#/pages/{{item.id}}\">{{item.title}}</a>\n" +
+    "</div>");
+}]);
+
+angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html",
+    "<div class=\"cc-thumbnail-bar\">\n" +
+    "    <img \n" +
+    "        class=\"cc-thumbnail-bar-image\" \n" +
+    "        ng-class=\"$index === selectedImageIndex ? 'cc-thumbnail-active' : ''\"\n" +
+    "        ng-click=\"setSelectedImageIndex($index)\" \n" +
+    "        ng-repeat=\"image in images\" ng-src=\"{{image.url}}\"/>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("src/directives/ccVariantSelector/ccvariantselector.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccVariantSelector/ccvariantselector.tpl.html",
+    "<div class=\"cc-variant-selector\">\n" +
+    "    <div class=\"cc-variant-selector-select-wrapper\"\n" +
+    "         ng-repeat=\"property in properties\">\n" +
+    "         <span ng-bind=\"selectedProperties[property]\"></span>\n" +
+    "         <span ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
+    "         <i class=\"cc-variant-selector-select-icon icon-chevron-down\"></i>\n" +
+    "        <select name=\"{{property}}\"\n" +
+    "                class=\"cc-variant-selector-native-select\" \n" +
+    "                ng-model=\"selectedProperties[property]\" \n" +
+    "                ng-options=\"val for val in variants|ccVariantFilter:selectedProperties:property\">\n" +
+    "            <option value=\"\">-- {{chooseText}} {{property}} --</option>\n" +
+    "        </select>\n" +
+    "    </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("src/directives/ccZippy/cczippy.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccZippy/cczippy.tpl.html",
+    "<div class=\"cc-zippy\">\n" +
+    "    <div class=\"cc-zippy-caption\">\n" +
+    "        <span ng-bind=\"caption\"></span>\n" +
+    "        <i class=\"cc-zippy-icon\"></i>\n" +
+    "    </div>\n" +
+    "    <div class=\"cc-zippy-content\" ng-transclude></div>\n" +
+    "</div>\n" +
+    "");
+}]);

@@ -1,4 +1,4 @@
-angular.module('sdk.directives.ccThumbnailBar', []);
+angular.module('sdk.directives.ccThumbnailBar', ['src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html']);
 
 angular.module('sdk.directives.ccThumbnailBar')
     .directive('ccThumbnailBar', function() {
@@ -31,6 +31,6 @@ angular.module('sdk.directives.ccThumbnailBar')
 
                 $scope.setSelectedImageIndex($scope.selectedImageIndex);
             }],
-            templateUrl: '../sdk/src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html'
+            templateUrl: 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html'
         };
     });

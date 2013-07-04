@@ -1,4 +1,4 @@
-angular.module('sdk.directives.ccFooter', []);
+angular.module('sdk.directives.ccFooter', ['src/directives/ccFooter/ccfooter.tpl.html']);
 angular
     .module('sdk.directives.ccFooter')
     .directive('ccFooter', function() {
@@ -16,7 +16,7 @@ angular
             scope: {
                 items: '=?'
             },
-            templateUrl: '../sdk/src/directives/ccFooter/ccfooter.tpl.html',
+            templateUrl: 'src/directives/ccFooter/ccfooter.tpl.html',
             link: function(scope, element, attrs){
                 defaultIfUndefined(scope, 'items', cc.Config.aboutPages);
             }

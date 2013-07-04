@@ -24,7 +24,8 @@ angular.module('CouchCommerceApp', [
     'sdk.services.deviceService',
     'sdk.directives',
     'sdk.filter',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'templates'
     ])
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', categoryRouteConfig);

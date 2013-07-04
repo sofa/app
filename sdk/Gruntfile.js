@@ -24,6 +24,16 @@ module.exports = function(grunt) {
             }
         },
         clean: ['<%= distdir %>/*'],
+        html2js: {
+            app: {
+                options: {
+                    base: '.'
+                },
+                src: ['src/**/*.tpl.html'],
+                dest: '<%= distdir %>/cc.angular.templates.js',
+                module: 'cc.angular.templates'
+            }
+        },
         concat:{
             dist:{
                 src:['<%= src.cc %>'],
@@ -34,7 +44,7 @@ module.exports = function(grunt) {
                 dest:'<%= distdir %>/<%= ccTestsName %>.js'
             },
             ccAngular:{
-                src:['<%= src.ccAngular %>'],
+                src:['<%= distdir %>/cc.angular.templates.js','<%= src.ccAngular %>'],
                 dest:'<%= distdir %>/<%= ccAngularName %>.js'
             }
             //,
@@ -86,6 +96,6 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['shell']);
-    grunt.registerTask('build', ['clean','concat', 'qunit']);
+    grunt.registerTask('build', ['clean', 'html2js', 'concat', 'qunit']);
 
 };
