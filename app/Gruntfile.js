@@ -65,7 +65,7 @@ module.exports = function(grunt) {
           'modules/**/*.js',
           'modules/**/*.html'
         ],
-        tasks: ['default']
+        tasks: ['build']
       }
     },
      connect: {
@@ -80,7 +80,9 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('default', ['clean', 'html2js', 'concat', 'sass']);
+  grunt.registerTask('default', ['build', 'watch']);
+
+  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'sass']);
 
   //grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-clean');

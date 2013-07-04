@@ -95,7 +95,8 @@ module.exports = function(grunt) {
 
 
     // Default task(s).
-    grunt.registerTask('default', ['shell']);
+    grunt.registerTask('docs', ['shell']);
+    grunt.registerTask('default', ['build', 'watch']);
     grunt.registerTask('build', ['clean', 'html2js', 'concat', 'qunit']);
 
 };
