@@ -534,7 +534,7 @@ angular
 
             var currency = cc.Config.currencySign || '&euro;';
 
-            var currencyKey = _.findKey(currencyMap, function(item){
+            var currencyKey = cc.Util.findKey(currencyMap, function(item){
                                     return item.synonyms.indexOf(currency) > -1; 
                                 }) || 'EUR';
 

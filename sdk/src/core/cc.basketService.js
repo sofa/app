@@ -6,7 +6,7 @@ cc.define('cc.BasketService', function(storageService, options){
         storePrefix = 'basketService_',
         storeItemsName = storePrefix + 'items',
         items = sanitizeSavedData(storageService.get(storeItemsName)) || [],
-        productIdentityFn = options && _.isFunction(options.productIdentityFn) ? 
+        productIdentityFn = options && cc.Util.isFunction(options.productIdentityFn) ? 
             options.productIdentityFn : function(productA, productAVariant, productAOptionId,
                                                  productB, productBVariant, productBOptionId){
 
@@ -58,7 +58,7 @@ cc.define('cc.BasketService', function(storageService, options){
      */
     self.addItem = function(product, quantity, variant, optionId){
         var basketItem = self.find(createProductPredicate(product, variant, optionId)),
-            exists = !_.isUndefined(basketItem);
+            exists = !cc.Util.isUndefined(basketItem);
 
         if (!exists){
             basketItem = new cc.models.BasketItem();
@@ -112,7 +112,7 @@ cc.define('cc.BasketService', function(storageService, options){
      */
     self.exists = function(product, variant, optionId){
         var basketItem = self.find(createProductPredicate(product, variant, optionId));
-            return !_.isUndefined(basketItem);
+            return !cc.Util.isUndefined(basketItem);
     };
 
     var createProductPredicate = function(productA, productAVariant, productAOptionId){
@@ -210,7 +210,7 @@ cc.define('cc.BasketService', function(storageService, options){
      */
 
     self.find = function(predicate){
-        return _.find(items, predicate);
+        return cc.Util.find(items, predicate);
     };
 
 

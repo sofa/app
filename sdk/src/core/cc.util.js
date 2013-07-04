@@ -1,6 +1,16 @@
 cc.Util = {
     //http://docs.sencha.com/touch/2.2.0/source/Number2.html#Ext-Number-method-toFixed
     isToFixedBroken: (0.9).toFixed() !== '1',
+    indicatorObject: {},
+    //Used to determine if values are of the language type Object
+    objectTypes: {
+        'boolean': false,
+        'function': true,
+        'object': true,
+        'number': false,
+        'string': false,
+        'undefined': false
+    },
     round: function(value, places){
         var multiplier = Math.pow(10, places);
         return (Math.round(value * multiplier) / multiplier);
@@ -49,6 +59,98 @@ cc.Util = {
 
         return target;
     },
+    //this method is ripped out from lo-dash
+    createCallback: function(func, thisArg, argCount) {
+      if (func === null) {
+        return identity;
+      }
+      var type = typeof func;
+      if (type != 'function') {
+        if (type != 'object') {
+          return function(object) {
+            return object[func];
+          };
+        }
+        var props = keys(func);
+        return function(object) {
+          var length = props.length,
+              result = false;
+          while (length--) {
+            if (!(result = isEqual(object[props[length]], func[props[length]], cc.Util.indicatorObject))) {
+              break;
+            }
+          }
+          return result;
+        };
+      }
+      if (typeof thisArg == 'undefined') {
+        return func;
+      }
+      if (argCount === 1) {
+        return function(value) {
+          return func.call(thisArg, value);
+        };
+      }
+      if (argCount === 2) {
+        return function(a, b) {
+          return func.call(thisArg, a, b);
+        };
+      }
+      if (argCount === 4) {
+        return function(accumulator, value, index, collection) {
+          return func.call(thisArg, accumulator, value, index, collection);
+        };
+      }
+      return function(value, index, collection) {
+        return func.call(thisArg, value, index, collection);
+      };
+    },
+    //this method is ripped out from lo-dash
+    findKey: function(object, callback, thisArg) {
+      var result;
+      callback = cc.Util.createCallback(callback, thisArg);
+      cc.Util.forOwn(object, function(value, key, object) {
+        if (callback(value, key, object)) {
+          result = key;
+          return false;
+        }
+      });
+      return result;
+    },
+    find: function(object, callback, thisArg) {
+      var result;
+      callback = cc.Util.createCallback(callback, thisArg);
+      cc.Util.forOwn(object, function(value, key, object) {
+        if (callback(value, key, object)) {
+          result = value;
+          return false;
+        }
+      });
+      return result;
+    },
+    //this method is ripped out from lo-dash
+    forOwn: function(collection, callback) {
+        var index,
+            iterable = collection,
+            result = iterable;
+
+        if (!iterable) {
+            return result;
+        }
+
+        if (!cc.Util.objectTypes[typeof iterable]) {
+            return result;
+        }
+
+        for (index in iterable) {
+            if (Object.prototype.hasOwnProperty.call(iterable, index)) {
+                if (callback(iterable[index], index, collection) === cc.Util.indicatorObject) {
+                    return result;
+                }
+            }
+        }
+        return result;
+    },
     isArray: function(value){
             return toString.call(value) === '[object Array]';
     },
@@ -58,6 +160,9 @@ cc.Util = {
     isString: function(value){
         return typeof  value === 'string';
     },
+    isUndefined: function(value){
+        return typeof value === 'undefined';
+    },
     Array: {
         remove: function(arr, item){
             var index = arr.indexOf(item);
@@ -65,4 +170,4 @@ cc.Util = {
             return arr;
         }
     }
-}
+};
