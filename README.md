@@ -13,7 +13,7 @@ Prerequisites:
  
 2. You must have `node.js` installed
 
-3 You must have the `grunt-cli` installed
+3. You must have the `grunt-cli` installed
 
 Then follow this process:
 
