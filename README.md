@@ -10,21 +10,24 @@ The app is located within the `app` directory and it's subdirectories.
 Prerequisites:
 
 1. You must have `compass` installed
+ 
+2. You must have `node.js` installed
+
+3 You must have the `grunt-cli` installed
 
 Then follow this process:
 
 1. Checkout the repository
 
-2. Navigate to `app/scss` on the console
+2. Navigate to `app` on the console
 
-3. Run `while :; do clear; compass compile --force app.scss; sleep 4; done`
-(running `compass compile --force app.scss` would be enough to get it running,
-however, if you plan to hack on the app, you probably want to recompile the SCSS
-on changes. Since we organize files by feature rather than by file type,
-we currently need to use this simple polling mechanism until we have a proper
-grunt task)
+3. Run `grunt`
 
-4. Open the `index.html` in your browser
+4. Open another console tab and navigate to `sdk``
+
+5. Run `grunt`
+
+6. Open the `app/dist/index.html` in your browser
 
 #What do I need to work on the SDK?
 
@@ -34,14 +37,11 @@ Prerequisites:
 
 2. You must have the `grunt-cli` installed
 
-Then follow this process:
+3. Navigate to `sdk` on the console
 
-1. run `grunt build`
-
-2. run `grunt watch`
+4. Run `grunt`
 
 #Further tips
 
-It is recommended to keep at least three terminal sessions running. One session to poll for 
-SCSS changes (read above), one session to keep the `grunt watch` task running and one session
-to interact with git.
+grunt will keep running in both terminal sessions. Keep it running, it does all the heavy
+lifting behind the scenes.
