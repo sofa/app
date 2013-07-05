@@ -37,8 +37,8 @@ angular
 
                 //we are moving between two category listings
                 if(previousIndex === 0 && currentIndex === 0){
-                    var fromRouteCategory = fromLocals.category;
-                    var toRouteCategory = toLocals.category;
+                    var fromRouteCategory = fromLocals.globals.category;
+                    var toRouteCategory = toLocals.globals.category;
 
                     var toRouteIsChild = toRouteCategory.parent === fromRouteCategory;
                     var toRouteIsParent = fromRouteCategory.parent === toRouteCategory;

@@ -401,13 +401,13 @@ cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
     };
 });
 cc.Config = {
-    storeId: 38883,
+    storeId: 88399,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     apiHttpMethod: 'jsonp',
-    categoryJson: '../data/sir-chesterfield/categories.json',
+    categoryJson: '../data/dasgibtesnureinmal/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
-    mediaFolder:'http://cc1.couchcommerce.com/media/sirchesterfield/img/',
+    mediaFolder:'http://cc1.couchcommerce.com/media/dasgibtesnureinmal/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
     resourceUrl:'http://localhost:8888/couchcommerce/couchcommerce-frontend/app/data/pages/',
@@ -676,7 +676,7 @@ cc.define('cc.CouchService', function($http, $q){
 
     return self;
 });
-cc.define('cc.DeviceService', function(){
+cc.define('cc.DeviceService', function($window){
     var self = {};
 
     var ua = navigator.userAgent,
@@ -705,6 +705,11 @@ cc.define('cc.DeviceService', function(){
     else {
         userOSver = 'unknown';
     }
+
+    self.isTabletSize = function(){
+        //http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+        return $window.screen.width > 641;
+    };
 
     self.getOs = function(){
         return userOS;

@@ -1,4 +1,4 @@
-cc.define('cc.DeviceService', function(){
+cc.define('cc.DeviceService', function($window){
     var self = {};
 
     var ua = navigator.userAgent,
@@ -27,6 +27,11 @@ cc.define('cc.DeviceService', function(){
     else {
         userOSver = 'unknown';
     }
+
+    self.isTabletSize = function(){
+        //http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+        return $window.screen.width > 641;
+    };
 
     self.getOs = function(){
         return userOS;

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="http://rawgithub.com/revolunet/angular-carousel/master/dist/angular-carousel.min.css"/>
 </head>
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
-<body ontouchstart="" ng-class="supportsFixed ? 'cc-supports-position-fixed' : ''" ng-controller="MainController">
+<body ontouchstart="" ng-class="{'cc-supports-position-fixed' : supportsFixed, 'cc-tablet-size' : isTabletSize }" ng-controller="MainController">
   <!-- TODO: we would love to move this into a main.tpl.html but it seems not to be possible by default -->
   <div  class="cc-full-width-height">
         <div ng-include="ui.header"></div>
@@ -20,9 +20,9 @@
   <script src="../lib/angular-unstable/angular.js"></script>
   <script src="../lib/angular-unstable/angular-mobile.js"></script>
   <script src="http://rawgithub.com/revolunet/angular-carousel/master/dist/angular-carousel.js"></script>
-  <script src="js/app.js"></script>
   <script src="../../sdk/dist/cc.js"></script>
   <script src="../../sdk/dist/cc.angular.js"></script>
+  <script src="js/app.js"></script>
   <script src="../lib/CouchCommerce.Lang.js"></script>
 </body>
 </html>

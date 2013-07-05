@@ -1,0 +1,15 @@
+<ul class="cc-category-listing">
+    <li ng-repeat="subcategory in viewData.rightCategory.children"
+        ng-click="goToCategory(subcategory, $index, $event)" 
+        class="cc-list-row cc-category-listing-row" >
+        <div class="cc-list-row-image cc-category-listing-row-image" 
+             style="background-image: url({{subcategory.image}})">
+
+        </div>
+        <div class="cc-list-row-text cc-category-listing-row-text">
+            <div class="cc-list-row-text-centered">
+                {{subcategory.label}}
+            </div>
+        </div>
+    </li>
+</ul>

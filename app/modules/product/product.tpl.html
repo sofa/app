@@ -8,7 +8,7 @@
             variant="variants.selectedVariant"
             selected-properties="variants.selectedProperties">
         </cc-variant-selector>
-        <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
+        <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
 
         <div class="cc-product-view-image"
              style="background-image: url({{product.selectedImage.url}})"></div>
@@ -40,7 +40,7 @@
 
             <div class="cc-padded-line-seperator"></div>
 
-            <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
+            <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
         </div>
         <cc-footer></cc-footer>
     </div>

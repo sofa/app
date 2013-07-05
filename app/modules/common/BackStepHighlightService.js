@@ -19,7 +19,7 @@ angular
                     currentIndex    = toRoute && toRoute.screenIndex;
 
                 if(previousIndex === PRODUCT_SCREEN_INDEX && currentIndex === PRODUCT_LIST_SCREEN_INDEX){
-                    flags.product =  fromLocals.product;
+                    flags.product =  fromLocals.globals.product;
                 }
                 else if(previousIndex === PRODUCT_LIST_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX){
                     flags.category = fromParams.category;

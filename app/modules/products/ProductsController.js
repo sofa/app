@@ -5,31 +5,31 @@ angular
     .controller( 'ProductsController',
     [
         '$scope', 
-        '$routeParams', 
+        '$stateParams', 
         '$location', 
         'couchService',
         'navigationService',
         'backStepHighlightService',
         'products',
+        'selectionService',
         function ProductsController(
             $scope,
-            $routeParams,
+            $stateParams,
             $location,
             couchService,
             navigationService,
             backStepHighlightService,
-            products) {
+            products,
+            selectionService) {
 
             $scope.goToProduct = function(product, $event){
-                //this doesn't feel right. Can't we have a tap-highlight directive that
-                //hooks into the ng-click somehow?
-                angular.element($event.currentTarget).addClass('cc-static-highlight');
+                selectionService.select('products_' + $stateParams.category, angular.element($event.currentTarget));
                 navigationService.navigateToProduct(product);
             };
 
             $scope.backStepHighlightService = backStepHighlightService;
             $scope.navigationService = navigationService;
             $scope.products = products;
-            $scope.categoryUrlId = $routeParams.category;
+            $scope.categoryUrlId = $stateParams.category;
         }
     ]);

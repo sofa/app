@@ -1,0 +1,22 @@
+// .cc-tablet-size{
+//     .cc-category-listing{
+//         width: 250px;
+//     }
+// }
+
+.cc-left-box{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30%;
+    height: 100%;
+}
+
+.cc-right-box{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 70%;
+    height: 100%;
+    padding-left: 5px;
+}

@@ -1,6 +1,6 @@
 /**
  * State-based routing for AngularJS
- * @version v0.0.2-dev-2013-07-08
+ * @version v0.0.2-dev-2013-07-12
  * @link http://angular-ui.github.com/
  * @license MIT License, http://www.opensource.org/licenses/MIT
  */
@@ -297,8 +297,6 @@ UrlMatcher.prototype.exec = function (path, searchParams) {
   var params = this.params, nTotal = params.length,
     nPath = this.segments.length-1,
     values = {}, i;
-
-  if (nPath !== m.length - 1) throw new Error("Unbalanced capture group in route '" + this.source + "'");
 
   for (i=0; i<nPath; i++) values[params[i]] = decodeURIComponent(m[i+1]);
   for (/**/; i<nTotal; i++) values[params[i]] = searchParams[params[i]];
@@ -614,7 +612,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
     // Register the state in the global state list and with $urlRouter if necessary.
     if (!state['abstract'] && url) {
       $urlRouterProvider.when(url, ['$match', function ($match) {
-        if ($state.$current.navigable != state) $state.transitionTo(state, $match, false);
+        $state.transitionTo(state, $match, false);
       }]);
     }
     states[name] = state;
@@ -669,7 +667,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       var toPath = to.path,
           from = $state.$current,
           fromParams = $state.params,
-          fromResolved = $state.$current.locals.globals,
+          fromResolved = $state.$current.locals,
           fromPath = from.path;
 
       // Starting from the root of the path, keep all levels that haven't changed
@@ -714,7 +712,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       // current promise is, so that we can detect overlapping transitions and
       // keep only the outcome of the last transition.
       var transition = $state.transition = resolved.then(function (resolvedPromises) {
-        var l, entering, exiting, toResolved = resolvedPromises.globals;
+        var l, entering, exiting, toResolved = resolvedPromises;
 
         if ($state.transition !== transition) return TransitionSuperseded;
 
@@ -772,11 +770,10 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       return $state.$current.includes[findState(stateOrName).name];
     };
 
-    $state.href = function (stateOrName, params, options) {
-      options = extend({ lossy: true }, options || {});
-      var state = findState(stateOrName);
-      var nav = (state && options.lossy) ? state.navigable : state;
-      return (nav && nav.url) ? nav.url.format(normalize(state.params, params || {})) : null;
+    $state.href = function (stateOrName, params) {
+      var state = findState(stateOrName), nav = state.navigable;
+      if (!nav) throw new Error("State '" + state + "' is not navigable");
+      return nav.url.format(normalize(state.params, params || {}));
     };
 
     function resolveState(state, params, paramsAreFiltered, inherited, dst) {
@@ -973,56 +970,6 @@ function $ViewDirective(   $state,   $compile,   $controller,   $injector,   $an
 }
 
 angular.module('ui.state').directive('uiView', $ViewDirective);
-
-function parseStateRef(ref) {
-  var parsed = ref.match(/^([^(]+?)\s*(\((.*)\))?$/);
-  if (!parsed || parsed.length !== 4) throw new Error("Invalid state ref '" + ref + "'");
-  return { state: parsed[1], paramExpr: parsed[3] || null };
-}
-
-$StateRefDirective.$inject = ['$state'];
-function $StateRefDirective($state) {
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs) {
-      var ref = parseStateRef(attrs.uiSref);
-      var params = null, url = null;
-      var isForm = element[0].nodeName === "FORM";
-      var attr = isForm ? "action" : "href", nav = true;
-
-      var update = function(newVal) {
-        if (newVal) params = newVal;
-        if (!nav) return;
-
-        var newHref = $state.href(ref.state, params, { lossy: true });
-
-        if (!newHref) {
-          nav = false;
-          return false;
-        }
-        element[0][attr] = newHref;
-      };
-
-      if (ref.paramExpr) {
-        scope.$watch(ref.paramExpr, function(newVal, oldVal) {
-          if (newVal !== oldVal) update(newVal);
-        }, true);
-        params = scope.$eval(ref.paramExpr);
-      }
-      update();
-
-      if (isForm) return;
-
-      element.bind("click", function(e) {
-        $state.transitionTo(ref.state, params);
-        scope.$apply();
-        e.preventDefault();
-      });
-    }
-  };
-}
-
-angular.module('ui.state').directive('uiSref', $StateRefDirective);
 
 $RouteProvider.$inject = ['$stateProvider', '$urlRouterProvider'];
 function $RouteProvider(  $stateProvider,    $urlRouterProvider) {

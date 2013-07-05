@@ -4,17 +4,14 @@ angular
     .module('CouchCommerceApp')
     .controller( 'CategoryController',
     [
-        '$scope', '$routeParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category',
-        function CategoryController($scope, $routeParams, couchService, navigationService, backStepHighlightService, category) {
+        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService',
+        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService) {
 
             $scope.backStepHighlightService = backStepHighlightService;
 
             $scope.goToCategory = function(category, $event){
 
-                //this doesn't feel right. Can't we have a tap-highlight directive that
-                //hooks into the ng-click somehow?
-                angular.element($event.currentTarget).addClass('cc-static-highlight');
-
+                selectionService.select($stateParams.category, angular.element($event.currentTarget));
 
                 if (!category.children){
                     navigationService.navigateToProducts(category.urlId);
