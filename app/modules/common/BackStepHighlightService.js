@@ -13,20 +13,20 @@ angular
                 PRODUCT_SCREEN_INDEX        = 2;
 
 
-            $rootScope.$on('$routeChangeSuccess', function(evt, toRoute, fromRoute){
+            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, fromRoute, fromParams){
 
-                var previousIndex   = fromRoute && fromRoute.$$route && fromRoute.$$route.screenIndex,
-                    currentIndex    = toRoute && toRoute.$$route && toRoute.$$route.screenIndex;
+                var previousIndex   = fromRoute && fromRoute.screenIndex,
+                    currentIndex    = toRoute && toRoute.screenIndex;
 
                 if(previousIndex === PRODUCT_SCREEN_INDEX && currentIndex === PRODUCT_LIST_SCREEN_INDEX){
                     flags.product =  fromRoute.locals.product;
                 }
                 else if(previousIndex === PRODUCT_LIST_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX){
-                    flags.category = fromRoute.params.category;
+                    flags.category = fromParams.category;
                 }
                 //TODO: Should we test for a parent child relationship?
                 else if(previousIndex === CATEGORY_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX) {
-                    flags.category = fromRoute.params.category;
+                    flags.category = fromParams.category;
                 }
             });
 

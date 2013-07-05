@@ -6,7 +6,7 @@ cc.define('cc.PagesService', function($http, $q){
 
     self.getPage = function(id){
         return $http
-                .get('data/pages/' + id + '.html')
+                .get(cc.Config.resourceUrl + id + '.html')
                 .then(function(result){
                     if (result.data){
 

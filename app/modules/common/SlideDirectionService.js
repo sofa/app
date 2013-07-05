@@ -30,10 +30,10 @@ angular
                 }
             }
 
-            $rootScope.$on('$routeChangeSuccess', function(evt, toRoute, fromRoute){
+            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, fromRoute, fromParams){
 
-                var previousIndex = fromRoute && fromRoute.$$route && fromRoute.$$route.screenIndex !== undefined ? fromRoute.$$route.screenIndex : minScreenIndex,
-                    currentIndex = toRoute && toRoute.$$route && toRoute.$$route.screenIndex !== undefined ? toRoute.$$route.screenIndex : minScreenIndex;
+                var previousIndex = fromRoute && fromRoute.screenIndex !== undefined ? fromRoute.screenIndex : minScreenIndex,
+                    currentIndex = toRoute && toRoute.screenIndex !== undefined ? toRoute.screenIndex : minScreenIndex;
 
                 //we are moving between two category listings
                 if(previousIndex === 0 && currentIndex === 0){
@@ -53,8 +53,8 @@ angular
                 }
                 //we are moving between two views of the pages section
                 else if (previousIndex === -1 && currentIndex === -1){
-                    var fromRoutePageId = fromRoute.params.pageId;
-                    var toRoutePageId = toRoute.params.pageId;
+                    var fromRoutePageId = fromParams.pageId;
+                    var toRoutePageId = toParams.pageId;
 
                     var fromRouteScreenIndex = pagesService.getPageConfig(fromRoutePageId).screenIndex;
                     var toRouteScreenIndex = pagesService.getPageConfig(toRoutePageId).screenIndex;

@@ -2,8 +2,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'PagesController',
     [
-        '$scope', '$routeParams', '$http', 'pagesService',
-        function CategoryController($scope, $routeParams, $http, pagesService) {
+        '$scope', '$stateParams', '$http', 'pagesService',
+        function CategoryController($scope, $stateParams, $http, pagesService) {
 
             'use strict';
 
@@ -12,7 +12,7 @@ angular
             pagesVm.isLoading = true;
 
             pagesService
-                .getPage($routeParams.pageId)
+                .getPage($stateParams.pageId)
                 .then(function(page){
                     pagesVm.page = page;
                     pagesVm.mailTo = 'mailto:?subject=' + page.title + '&body=' + page.content;

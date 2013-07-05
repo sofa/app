@@ -1,22 +1,21 @@
 'use strict';
 
-
-var categoryRouteConfig = {
-            templateUrl: 'modules/categories/categorylisting.tpl.html',
-            controller: 'CategoryController',
-            screenIndex: 0,
-            resolve: {
-                category: ['couchService', '$route', function(couchService, $route){
-                    var params = $route.current.params;
-                    return couchService.getCategory(params.category);
-                }]
-            }
-        };
+var categoryStateConfig = {
+                url: '/',
+                templateUrl: 'modules/categories/categorylisting.tpl.html',
+                controller: 'CategoryController',
+                screenIndex: 0,
+                resolve: {
+                    category: ['couchService', '$stateParams', function(couchService, $stateParams){
+                        return couchService.getCategory($stateParams.category);
+                    }]
+                }
+            };
 
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
     'ngMobile',
-    'ngRoute',
+    'ui.state',
     'sdk.services.couchService',
     'sdk.services.navigationService',
     'sdk.services.basketService',
@@ -27,37 +26,57 @@ angular.module('CouchCommerceApp', [
     'ui.bootstrap',
     'templates'
     ])
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/', categoryRouteConfig);
-        $routeProvider.when('/cat/:category', categoryRouteConfig);
-        $routeProvider.when('/cat/:category/products', {
-            templateUrl: 'modules/products/productlisting.tpl.html', 
-            controller: 'ProductsController',
-            resolve: {
-                products: ['couchService', '$route', function(couchService, $route){
-                    var params = $route.current.params;
-                    return couchService.getProducts(params.category)
-                }]
-            },
-            screenIndex: 1
-        });
-        $routeProvider.when('/cat/:category/product/:productUrlKey', {
-            templateUrl: 'modules/product/product.tpl.html', 
-            controller: 'ProductController',
-            screenIndex: 2,
-            resolve: {
-                product: ['couchService', '$route', function(couchService, $route){
-                    var params = $route.current.params;
-                    return couchService.getProduct(params.category, params.productUrlKey);
-                }]
-            }
-        });
+    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 
-        $routeProvider.when('/cart', {templateUrl: 'modules/cart/cart.tpl.html', controller: 'CartController', screenIndex: 3});
+        $stateProvider
+            .state('categoryempty', categoryStateConfig);
 
-        $routeProvider.when('/pages/:pageId', { templateUrl: 'modules/pages/pages.tpl.html', controller: 'PagesController as pagesVm', screenIndex: -1 });
+        $stateProvider
+            .state('category', angular.extend({}, categoryStateConfig, { url: '/cat/:category' }));
 
-        $routeProvider.otherwise({redirectTo: '/'});
+        $stateProvider
+            .state('products', {
+                url: '/cat/:category/products',
+                templateUrl: 'modules/products/productlisting.tpl.html',
+                controller: 'ProductsController',
+                resolve: {
+                    products: ['couchService', '$stateParams', function(couchService, $stateParams){
+                        return couchService.getProducts($stateParams.category);
+                    }]
+                },
+                screenIndex: 1
+            });
+
+        $stateProvider
+            .state('product', {
+                url: '/cat/:category/product/:productUrlKey',
+                templateUrl: 'modules/product/product.tpl.html',
+                controller: 'ProductController',
+                resolve: {
+                    product: ['couchService', '$stateParams', function(couchService, $stateParams){
+                        return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
+                    }]
+                },
+                screenIndex: 2
+            });
+
+        $stateProvider
+            .state('cart', {
+                url: '/cart',
+                templateUrl: 'modules/cart/cart.tpl.html',
+                controller: 'CartController',
+                screenIndex: 3
+            });
+
+        $stateProvider
+            .state('pages', {
+                url: '/pages/:pageId',
+                templateUrl: 'modules/pages/pages.tpl.html',
+                controller: 'PagesController as pagesVm',
+                screenIndex: -1
+            });
+
+        $urlRouterProvider.otherwise('/');
     }])
     .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', function($rootScope, $timeout, $window, slideDirectionService, deviceService){
         $rootScope.ln = cc.Lang;

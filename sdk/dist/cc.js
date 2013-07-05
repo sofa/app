@@ -410,6 +410,7 @@ cc.Config = {
     mediaFolder:'http://cc1.couchcommerce.com/media/sirchesterfield/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
+    resourceUrl:'http://localhost:8888/couchcommerce/couchcommerce-frontend/app/data/pages/',
     shippingCost:5,
     shippingTax:19,
     shippingFreeFrom: null,
@@ -953,7 +954,7 @@ cc.define('cc.PagesService', function($http, $q){
 
     self.getPage = function(id){
         return $http
-                .get('data/pages/' + id + '.html')
+                .get(cc.Config.resourceUrl + id + '.html')
                 .then(function(result){
                     if (result.data){
 
