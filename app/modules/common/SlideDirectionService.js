@@ -30,15 +30,15 @@ angular
                 }
             }
 
-            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, fromRoute, fromParams){
+            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals){
 
                 var previousIndex = fromRoute && fromRoute.screenIndex !== undefined ? fromRoute.screenIndex : minScreenIndex,
                     currentIndex = toRoute && toRoute.screenIndex !== undefined ? toRoute.screenIndex : minScreenIndex;
 
                 //we are moving between two category listings
                 if(previousIndex === 0 && currentIndex === 0){
-                    var fromRouteCategory = fromRoute.locals.category;
-                    var toRouteCategory = toRoute.locals.category;
+                    var fromRouteCategory = fromLocals.category;
+                    var toRouteCategory = toLocals.category;
 
                     var toRouteIsChild = toRouteCategory.parent === fromRouteCategory;
                     var toRouteIsParent = fromRouteCategory.parent === toRouteCategory;

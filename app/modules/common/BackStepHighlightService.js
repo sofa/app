@@ -13,13 +13,13 @@ angular
                 PRODUCT_SCREEN_INDEX        = 2;
 
 
-            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, fromRoute, fromParams){
+            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals){
 
                 var previousIndex   = fromRoute && fromRoute.screenIndex,
                     currentIndex    = toRoute && toRoute.screenIndex;
 
                 if(previousIndex === PRODUCT_SCREEN_INDEX && currentIndex === PRODUCT_LIST_SCREEN_INDEX){
-                    flags.product =  fromRoute.locals.product;
+                    flags.product =  fromLocals.product;
                 }
                 else if(previousIndex === PRODUCT_LIST_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX){
                     flags.category = fromParams.category;
