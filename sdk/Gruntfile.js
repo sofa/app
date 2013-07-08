@@ -14,7 +14,8 @@ module.exports = function(grunt) {
                             'src/services/**/*.js', 
                             'src/directives/**/*.js',
                             'src/filter/**/*.js'
-                        ]
+                        ],
+            ccTemplates: ['src/**/*.tpl.html']
         },
         shell:{
             doxx:{
@@ -29,7 +30,7 @@ module.exports = function(grunt) {
                 options: {
                     base: '.'
                 },
-                src: ['src/**/*.tpl.html'],
+                src: ['<%= src.ccTemplates %>'],
                 dest: '<%= distdir %>/cc.angular.templates.js',
                 module: 'cc.angular.templates'
             }
@@ -77,7 +78,7 @@ module.exports = function(grunt) {
         },
         watch:{
             all: {
-                files:['<%= src.cc %>', '<%= src.ccAngular %>', '<%= src.ccTests %>'],
+                files:['<%= src.cc %>', '<%= src.ccAngular %>', '<%= src.ccTests %>', '<%= src.ccTemplates %>'],
                 tasks:['build']
             }
         }
