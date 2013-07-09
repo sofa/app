@@ -18,7 +18,7 @@ angular
                 selectedProperties: null
             };
 
-            $scope.onThumbnailSelected = function(image){
+            $scope.onThumbnailSelected = function(product, image){
                 product.selectedImage = image;
             };
 
@@ -54,6 +54,19 @@ angular
             // }
 
             // ];
+
+            var cycleProducts = true;
+            $scope.getPrevProduct = function(product) {
+                var prev = couchService.getPreviousProduct(product, cycleProducts);
+                //console.log('getPrevProduct', prev);
+                return prev;
+            };
+
+            $scope.getNextProduct = function(product) {
+                var next = couchService.getNextProduct(product, cycleProducts);
+                //console.log('getNextProduct', next);
+                return next;
+            };
 
             //to keep compatibility to our current language file we need to
             //deal with the {tax} marker in the language value and replace it with the

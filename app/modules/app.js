@@ -24,6 +24,7 @@ angular.module('CouchCommerceApp', [
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',
+    'angular-carousel',
     'templates'
     ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){

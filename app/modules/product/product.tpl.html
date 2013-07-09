@@ -1,45 +1,48 @@
 <div class="cc-view-wrapper cc-view-phone">
-    <div class="cc-view-title">{{product.name}}</div>
-    <cc-variant-selector 
-        class="cc-variant-selector-on-background " 
-        choose-text="ln.choose"
-        variants="product.variants"
-        variant="variants.selectedVariant"
-        selected-properties="variants.selectedProperties">
-    </cc-variant-selector>
-    <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
-    
-    <div class="cc-product-view-image"
-         style="background-image: url({{product.selectedImage.url}})"></div>
-
-    <cc-thumbnail-bar 
-        class="cc-thumbnail-bar-on-background" 
-        images="product.getAllImages()" 
-        on-change="onThumbnailSelected(image)">
-    </cc-thumbnail-bar>
-
-    <div class="cc-view-content cc-unstyled">
-
-        <div class="cc-padded-line-seperator"></div>
-        
-        <cc-zippy caption="ln.productDetails" opened="true">
-            <div ng-bind-html-unsafe="product.description"></div>
-        </cc-zippy>
-        <div class="cc-padded-line-seperator"></div>
-
-        <cc-zippy caption="ln.productSpecifications">
-            <table class="cc-product-view-attributes">
-                <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
-                    <td class="cc-product-view-attributes-row-key">{{key}}</td>
-                    <td class="cc-product-view-attributes-row-value">{{value}}</td>
-                </tr>
-            </table>
-        </cc-zippy>
-        
-        <div class="cc-padded-line-seperator"></div>
-        
+    <div rn-carousel-infinite rn-carousel-current="product" rn-carousel-prev="getPrevProduct(item)" rn-carousel-next="getNextProduct(item)">
+        <div class="cc-view-title">{{product.name}}</div>
+        <cc-variant-selector 
+            class="cc-variant-selector-on-background " 
+            choose-text="ln.choose"
+            variants="product.variants"
+            variant="variants.selectedVariant"
+            selected-properties="variants.selectedProperties">
+        </cc-variant-selector>
         <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
+
+        <div class="cc-product-view-image"
+             style="background-image: url({{product.selectedImage.url}})"></div>
+
+        <cc-thumbnail-bar 
+            class="cc-thumbnail-bar-on-background" 
+            images="product.getAllImages()" 
+            on-change="onThumbnailSelected(product, image)" 
+            >
+        </cc-thumbnail-bar>
+
+        <div class="cc-view-content cc-unstyled">
+
+            <div class="cc-padded-line-seperator"></div>
+
+            <cc-zippy caption="ln.productDetails" opened="product.opened">
+                <div ng-bind-html-unsafe="product.description"></div>
+            </cc-zippy>
+            <div class="cc-padded-line-seperator"></div>
+
+            <cc-zippy caption="ln.productSpecifications">
+                <table class="cc-product-view-attributes">
+                    <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
+                        <td class="cc-product-view-attributes-row-key">{{key}}</td>
+                        <td class="cc-product-view-attributes-row-value">{{value}}</td>
+                    </tr>
+                </table>
+            </cc-zippy>
+
+            <div class="cc-padded-line-seperator"></div>
+
+            <div ng-include="ui.PRICE_INFO_AND_ADD_TO_CART"></div>
+        </div>
+        <cc-footer></cc-footer>
     </div>
-    <cc-footer></cc-footer>
 </div>
 
