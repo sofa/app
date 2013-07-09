@@ -85,7 +85,7 @@ angular.module('CouchCommerceApp', [
 
         $rootScope.supportsFixed = deviceService.hasPositionFixedSupport();
 
-        $rootScope.$on('$routeChangeSuccess', function(evt, toRoute, fromRoute){
+        $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, fromRoute){
 
             //we not only need that to reset the scrolling position but also because
             //otherwise in Chrome for Android the scrolling is freezed after full page
