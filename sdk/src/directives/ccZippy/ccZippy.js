@@ -26,7 +26,8 @@ angular.module('sdk.directives.ccZippy')
                     closedIconClass = 'icon-chevron-down';
 
                 defaultIfUndefined(scope, 'caption', 'default');
-                defaultIfUndefined(scope, 'opened', false);
+
+                scope.opened = attrs.initOpened === undefined ? false : (attrs.initOpened === "true");
 
                 var setOpen = function(opened){
                     $element.removeClass(opened ? 'cc-zippy-closed' : 'cc-zippy-opened');
