@@ -351,11 +351,12 @@ angular.module('sdk.directives.ccThumbnailBar')
                     $scope.onChange({ image: image });
                 };
 
-                if($scope.images.length > 0 && !$scope.selectedImageIndex){
-                    $scope.selectedImageIndex = 0;
-                }
-
-                $scope.setSelectedImageIndex($scope.selectedImageIndex);
+                $scope.$watch('images', function(newValue, oldValue) {
+                    // reset the image index when images ref changes
+                    if (angular.isArray(newValue)) {
+                        $scope.setSelectedImageIndex(0);
+                    }
+                });
             }],
             templateUrl: 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html'
         };
@@ -500,6 +501,7 @@ angular.module('sdk.directives.ccZippy')
             }
         };
     });
+
 angular.module('sdk.directives', [
     'sdk.directives.ccFixedToolbarsView',
     'sdk.directives.ccZippy',
