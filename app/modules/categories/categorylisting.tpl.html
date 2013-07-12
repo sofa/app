@@ -1,7 +1,7 @@
 <div class="cc-view-wrapper">
     <ul class="cc-category-listing">
         <li ng-repeat="category in category.children"
-            ng-click="goToCategory(category)" 
+            ng-click="goToCategory(category, $event)"
             ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }"
             class="cc-list-row cc-category-listing-row" >
             <div class="cc-list-row-image cc-category-listing-row-image" 

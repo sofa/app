@@ -1,7 +1,7 @@
 <div class="cc-view-wrapper">
     <ul>
         <li ng-repeat="product in products"
-            ng-click="navigationService.navigateToProduct(product)"
+            ng-click="goToProduct(product, $event)"
             ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }"
             class="cc-list-row cc-product-list-row">
             <div class="cc-list-row-image" 

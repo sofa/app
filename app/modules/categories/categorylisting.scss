@@ -1,20 +1,3 @@
-.cc-category-listing-row:active, .cc-category-listing-row.ng-click-active{
+.cc-category-listing-row.cc-static-highlight{
     background: $info-area-background-color;
 }
-
-
-// .cc-category-listing{
-//     @extend %cc-list;
-// }
-
-// .cc-category-listing-row{
-//     @extend %cc-list-row;
-// }
-
-// .cc-category-listing-row-image{
-//     @extend %cc-list-row-image;
-// }
-
-// .cc-category-listing-row-text{
-//     @extend %cc-list-row-text;
-// }

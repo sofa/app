@@ -2,7 +2,7 @@
     min-height: 120px;
 }
 
-.cc-product-list-row:active, .cc-product-list-row.ng-click-active{
+.cc-product-list-row.cc-static-highlight{
     background: $info-area-background-color;
 }
 
