@@ -38,6 +38,12 @@ img { border: 0; max-width: 100%; }
 
 table { width:auto; border-collapse: collapse;border-spacing: 0; }
 
+.cc-clearfix, %cc-clearfix{
+    content: "";
+    display: table;
+    clear: both;
+}
+
 //some generic helper classes
 
 .cc-unstyled{

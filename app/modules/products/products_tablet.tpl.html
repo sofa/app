@@ -1,4 +1,4 @@
-<ul>
+<!-- <ul>
     <li ng-repeat="product in viewData.products"
         ng-click="navigateToProduct(product, $index)"
         ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }"
@@ -14,5 +14,19 @@
                 {{product.price | currency}}
             </div>
         </div>
+    </li>
+</ul> -->
+
+
+<ul class="cc-products-list">
+    <li ng-repeat="product in viewData.products"
+        ng-click="navigateToProduct(product, $index)" 
+        class="cc-products-list-item" >
+            <div class="cc-products-list-item-wrapper">
+                <div class="cc-products-list-item-image" style="background-image: url({{product.getImage('small')}})">
+                </div>
+                <div class="cc-products-list-item-texts cc-products-list-item-desc">{{product.name}}</div>
+                <div class="cc-products-list-item-texts cc-products-list-item-price">{{product.price | currency}}</div>
+            </div>
     </li>
 </ul>
