@@ -103,7 +103,7 @@ $slide-easing: ease-out;
 }
 
 .fade-out {
- @include vendor-prefix('transition', all 0.5s linear);
+ @include vendor-prefix('transition', opacity 0.5s linear);
  opacity: 1;
 }
  

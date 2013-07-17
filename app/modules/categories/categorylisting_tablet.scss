@@ -5,6 +5,8 @@
 // }
 
 .cc-left-box{
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
     position: absolute;
     left: 0;
     top: 0;
@@ -13,6 +15,8 @@
 }
 
 .cc-right-box{
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
     position: absolute;
     right: 0;
     top: 0;
