@@ -4,5 +4,6 @@ angular.module('sdk.directives', [
     'sdk.directives.ccFooter',
     'sdk.directives.ccVariantSelector',
     'sdk.directives.ccThumbnailBar',
-    'sdk.directives.ccScrollingShadow'
+    'sdk.directives.ccScrollingShadow',
+    'sdk.directives.ccScrollFix'
     ]);

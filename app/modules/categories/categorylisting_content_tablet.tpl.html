@@ -1,4 +1,4 @@
-<div class="cc-left-box cc-scrollable-vertical">
+<div class="cc-left-box cc-scrollable-vertical" cc-scroll-fix>
     <ul ng-if="viewData.leftBoxIsCategories()" class="cc-category-listing">
         <li ng-repeat="category in viewData.leftCategory.children"
             ng-click="goToCategory(category, $index, $event)" 
@@ -34,5 +34,5 @@
         </li>
     </ul>
 </div>
-<div class="cc-right-box cc-scrollable-vertical" ui-view ng-animate="splitViewSlideDirectionService.getSlideAnimationConfig($state.current.name)"></div>
+<div cc-scroll-fix class="cc-right-box cc-scrollable-vertical" ui-view ng-animate="splitViewSlideDirectionService.getSlideAnimationConfig($state.current.name)"></div>
 <!-- <div ui-view="products" ng-animate="{ enter: 'slide-in-rtl', leave: 'slide-out-ltr' }"></div> -->
