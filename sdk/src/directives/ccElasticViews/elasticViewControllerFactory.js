@@ -137,9 +137,6 @@ angular
                 stopDrag();
             };
 
-            //for debugging
-            window.performManualDrag = performManualDrag;
-
             var moveSiblings = function(deltaX, startView, startElement, startElementDragInfo, direction, siblingLocatorFn, siblingMoverFn){
                 var currentBottomSibling = siblingLocatorFn(startView);
                 var currentElement = startElement;
