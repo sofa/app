@@ -16,7 +16,7 @@ module.exports = function(grunt) {
                             'src/filter/**/*.js',
                             '!src/**/demos/**/*',
                         ],
-            ccTemplates: ['src/**/*.tpl.html']
+            ccTemplates: ['src/**/*.tpl.html', '!src/**/demos/**/*.tpl.html']
         },
         shell:{
             doxx:{

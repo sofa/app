@@ -1,4 +1,18 @@
-angular.module('cc.angular.templates', ['src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+
+angular.module("src/directives/ccElasticViews/elasticViews.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccElasticViews/elasticViews.tpl.html",
+    "<div class=\"cc-elastic-views-viewport\">\n" +
+    "    <div \n" +
+    "        ng-repeat=\"view in views\"\n" +
+    "        cc-elastic-views-notifier \n" +
+    "        id=\"{{view.name}}\" \n" +
+    "        class=\"cc-elastic-views-view\" \n" +
+    "        ng-class=\"view.cls\" \n" +
+    "        ng-include=\"view.tpl\">\n" +
+    "    </div>\n" +
+    "<div>");
+}]);
 
 angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccFooter/ccfooter.tpl.html",
