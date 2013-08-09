@@ -13,7 +13,8 @@ module.exports = function(grunt) {
             ccAngular:  [
                             'src/services/**/*.js', 
                             'src/directives/**/*.js',
-                            'src/filter/**/*.js'
+                            'src/filter/**/*.js',
+                            '!src/**/demos/**/*',
                         ],
             ccTemplates: ['src/**/*.tpl.html']
         },
