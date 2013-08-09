@@ -1,12 +1,13 @@
-'use strict';
 
 angular.module('sdk.directives.ccZippy', ['src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module('sdk.directives.ccZippy')
     .directive('ccZippy', function() {
 
+        'use strict';
+
         var defaultIfUndefined = function(scope, property, defaultVal){
-            return scope[property] = scope[property] === undefined ? defaultVal : scope[property];
+            scope[property] = scope[property] === undefined ? defaultVal : scope[property];
         };
 
         return {

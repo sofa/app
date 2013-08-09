@@ -26,7 +26,7 @@ cc.define('cc.BasketService', function(storageService, options){
         }
 
         return data.map(function(val){
-            delete val['$$hashKey'];
+            delete val.$$hashKey;
 
             //on serialization all functions go away. That means, we basically
             //have to create a fresh instance again, once we deserialize again
@@ -139,7 +139,7 @@ cc.define('cc.BasketService', function(storageService, options){
             throw new Error('Product id: ' + product.id + 
                 ' , variant: ' + variant + 
                 ', optionId: ' + optionId + 
-                '  does not exist in the basket')
+                '  does not exist in the basket');
         }
 
         if(basketItem.quantity < quantity){
@@ -239,11 +239,11 @@ cc.define('cc.BasketService', function(storageService, options){
             total               = 0;
 
         items.forEach(function(item){
-            var itemQuantity = parseInt(item.quantity);
+            var itemQuantity = parseInt(item.quantity, 10);
             var product = item.product;
             //attention this doesn't take variants into account yet!
             var price = product.price;
-            var tax = parseInt(product.tax);
+            var tax = parseInt(product.tax, 10);
             quantity += itemQuantity;
             sum += price * itemQuantity;
             vat += parseFloat(Math.round((price * tax / (100 + tax) ) * 100) / 100) * itemQuantity;

@@ -37,7 +37,7 @@ var cc = {};
             }
 
             if (i === parts.length - 2){
-                targetParent = parent[parts[i]]
+                targetParent = parent[parts[i]];
             }
 
             targetName = parts[i];
@@ -81,11 +81,12 @@ var cc = {};
      *
      */
 
-
+     /*jshint asi: true*/
     cc.inherits = function (c, p, proto) {
         //this code uses a shitty form of semicolon less
         //writing. We just copied it from:
         //https://github.com/isaacs/inherits/blob/master/inherits.js
+
         proto = proto || {}
         var e = {}
         ;[c.prototype, proto].forEach(function (s) {
@@ -96,8 +97,9 @@ var cc = {};
         c.prototype = Object.create(p.prototype, e)
         c.super = p
     };
+    /*jshint asi: false*/
 
-})()
+})();
 
 
 

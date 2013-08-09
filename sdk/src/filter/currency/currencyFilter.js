@@ -35,7 +35,7 @@ angular
             if (currencyKey === 'EUR' ){
                 return fixedVal.replace('.', ',') + ' ' + currencyChar;
             }
-            else if (currencyKey === 'USD' || currencyKey == 'GBP'){
+            else if (currencyKey === 'USD' || currencyKey === 'GBP'){
                 return currencyChar + ' ' + fixedVal;
             }
             else{

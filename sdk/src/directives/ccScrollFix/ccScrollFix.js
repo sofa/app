@@ -1,10 +1,9 @@
-'use strict';
-
 angular.module('sdk.directives.ccScrollFix', []);
 
 angular.module('sdk.directives.ccScrollFix')
     .directive('ccScrollFix', function() {
 
+        'use strict';
         //This code is inspired by https://github.com/joelambert/ScrollFix
         //but was turned into a angular directive
 

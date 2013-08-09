@@ -130,7 +130,7 @@ cc.define('cc.CouchService', function($http, $q){
 
                 return targetProduct;
             }
-        }
+        };
 
         return getPreviousOrNextProduct(product, circle, getTargetProduct);
     };
@@ -147,14 +147,14 @@ cc.define('cc.CouchService', function($http, $q){
                             return resolveWith(productFindFn(catProducts, product));
                         });
         }
-    }
+    };
 
     var getIndexOfProduct = function(productTable, product){
         for (var i = 0; i < productTable.length; i++) {
             if (productComparer(productTable[i], product)){
                 return i;
             }
-        };
+        }
 
         return -1;
     };
@@ -175,7 +175,7 @@ cc.define('cc.CouchService', function($http, $q){
         if(!products[categoryUrlId]){
             return  self.getProducts(categoryUrlId)
                         .then(function(data){
-                            return getProduct(data, productUrlId)
+                            return getProduct(data, productUrlId);
                         });
         }
 
@@ -190,7 +190,7 @@ cc.define('cc.CouchService', function($http, $q){
             if (product.urlKey === productUrlId){
                 return product;
             }
-        };
+        }
 
         return null;
     };

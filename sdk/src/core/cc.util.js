@@ -27,6 +27,7 @@ cc.Util = {
 
         return value.toFixed(precision);
     },
+    /*jshint eqeqeq:false*/
     deepExtend: function () {
         var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
 
@@ -59,7 +60,9 @@ cc.Util = {
 
         return target;
     },
+    /*jshint eqeqeq:true, -:true*/
     //this method is ripped out from lo-dash
+    /*jshint eqeqeq:false*/
     createCallback: function(func, thisArg, argCount) {
       if (func === null) {
         return identity;
@@ -105,6 +108,7 @@ cc.Util = {
         return func.call(thisArg, value, index, collection);
       };
     },
+    /*jshint eqeqeq:true*/
     //this method is ripped out from lo-dash
     findKey: function(object, callback, thisArg) {
       var result;

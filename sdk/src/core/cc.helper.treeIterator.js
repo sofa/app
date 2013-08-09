@@ -24,5 +24,5 @@ cc.define('cc.util.TreeIterator', function(tree, childNodeProperty){
                 }
             });
         }
-    }
+    };
 });

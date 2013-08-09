@@ -11,4 +11,4 @@ cc.define('cc.models.BasketItem', function(){
 
 cc.models.BasketItem.prototype.getTotal = function(){
     return cc.Util.round(this.quantity * this.product.price, 2);
-}
+};

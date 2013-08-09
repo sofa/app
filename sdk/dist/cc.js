@@ -37,7 +37,7 @@ var cc = {};
             }
 
             if (i === parts.length - 2){
-                targetParent = parent[parts[i]]
+                targetParent = parent[parts[i]];
             }
 
             targetName = parts[i];
@@ -81,11 +81,12 @@ var cc = {};
      *
      */
 
-
+     /*jshint asi: true*/
     cc.inherits = function (c, p, proto) {
         //this code uses a shitty form of semicolon less
         //writing. We just copied it from:
         //https://github.com/isaacs/inherits/blob/master/inherits.js
+
         proto = proto || {}
         var e = {}
         ;[c.prototype, proto].forEach(function (s) {
@@ -96,8 +97,9 @@ var cc = {};
         c.prototype = Object.create(p.prototype, e)
         c.super = p
     };
+    /*jshint asi: false*/
 
-})()
+})();
 
 
 
@@ -110,7 +112,7 @@ cc.Array = {
             arr.splice(index, 1);
             return arr;
         }
-}
+};
 cc.define('cc.BasketService', function(storageService, options){
 
     'use strict';
@@ -139,7 +141,7 @@ cc.define('cc.BasketService', function(storageService, options){
         }
 
         return data.map(function(val){
-            delete val['$$hashKey'];
+            delete val.$$hashKey;
 
             //on serialization all functions go away. That means, we basically
             //have to create a fresh instance again, once we deserialize again
@@ -252,7 +254,7 @@ cc.define('cc.BasketService', function(storageService, options){
             throw new Error('Product id: ' + product.id + 
                 ' , variant: ' + variant + 
                 ', optionId: ' + optionId + 
-                '  does not exist in the basket')
+                '  does not exist in the basket');
         }
 
         if(basketItem.quantity < quantity){
@@ -352,11 +354,11 @@ cc.define('cc.BasketService', function(storageService, options){
             total               = 0;
 
         items.forEach(function(item){
-            var itemQuantity = parseInt(item.quantity);
+            var itemQuantity = parseInt(item.quantity, 10);
             var product = item.product;
             //attention this doesn't take variants into account yet!
             var price = product.price;
-            var tax = parseInt(product.tax);
+            var tax = parseInt(product.tax, 10);
             quantity += itemQuantity;
             sum += price * itemQuantity;
             vat += parseFloat(Math.round((price * tax / (100 + tax) ) * 100) / 100) * itemQuantity;
@@ -559,7 +561,7 @@ cc.define('cc.CouchService', function($http, $q){
 
                 return targetProduct;
             }
-        }
+        };
 
         return getPreviousOrNextProduct(product, circle, getTargetProduct);
     };
@@ -576,14 +578,14 @@ cc.define('cc.CouchService', function($http, $q){
                             return resolveWith(productFindFn(catProducts, product));
                         });
         }
-    }
+    };
 
     var getIndexOfProduct = function(productTable, product){
         for (var i = 0; i < productTable.length; i++) {
             if (productComparer(productTable[i], product)){
                 return i;
             }
-        };
+        }
 
         return -1;
     };
@@ -604,7 +606,7 @@ cc.define('cc.CouchService', function($http, $q){
         if(!products[categoryUrlId]){
             return  self.getProducts(categoryUrlId)
                         .then(function(data){
-                            return getProduct(data, productUrlId)
+                            return getProduct(data, productUrlId);
                         });
         }
 
@@ -619,7 +621,7 @@ cc.define('cc.CouchService', function($http, $q){
             if (product.urlKey === productUrlId){
                 return product;
             }
-        };
+        }
 
         return null;
     };
@@ -779,7 +781,7 @@ cc.define('cc.util.TreeIterator', function(tree, childNodeProperty){
                 }
             });
         }
-    }
+    };
 });
 cc.define('cc.MemoryStorageService', function(){
     
@@ -816,7 +818,7 @@ cc.define('cc.models.BasketItem', function(){
 
 cc.models.BasketItem.prototype.getTotal = function(){
     return cc.Util.round(this.quantity * this.product.price, 2);
-}
+};
 cc.define('cc.models.Product', function(){});
 
 cc.models.Product.prototype.getImage = function(size){
@@ -1313,6 +1315,7 @@ cc.Util = {
 
         return value.toFixed(precision);
     },
+    /*jshint eqeqeq:false*/
     deepExtend: function () {
         var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
 
@@ -1345,7 +1348,9 @@ cc.Util = {
 
         return target;
     },
+    /*jshint eqeqeq:true, -:true*/
     //this method is ripped out from lo-dash
+    /*jshint eqeqeq:false*/
     createCallback: function(func, thisArg, argCount) {
       if (func === null) {
         return identity;
@@ -1391,6 +1396,7 @@ cc.Util = {
         return func.call(thisArg, value, index, collection);
       };
     },
+    /*jshint eqeqeq:true*/
     //this method is ripped out from lo-dash
     findKey: function(object, callback, thisArg) {
       var result;

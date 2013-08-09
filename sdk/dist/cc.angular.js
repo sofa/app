@@ -584,9 +584,6 @@ angular
                 stopDrag();
             };
 
-            //for debugging
-            window.performManualDrag = performManualDrag;
-
             var moveSiblings = function(deltaX, startView, startElement, startElementDragInfo, direction, siblingLocatorFn, siblingMoverFn){
                 var currentBottomSibling = siblingLocatorFn(startView);
                 var currentElement = startElement;
@@ -2229,7 +2226,6 @@ angular
     });
 
 
-'use strict';
 
 angular.module('sdk.directives.ccFixedToolbarsView', []);
 
@@ -2237,6 +2233,9 @@ angular.module('sdk.directives.ccFixedToolbarsView', []);
 //header and toolbars
 angular.module('sdk.directives.ccFixedToolbarsView')
     .directive('ccFixedToolbarsView', function() {
+
+        'use strict';
+
         return {
             restrict: 'EA',
             replace: true,
@@ -2272,13 +2271,12 @@ angular
             }
         };
     });
-'use strict';
-
 angular.module('sdk.directives.ccScrollFix', []);
 
 angular.module('sdk.directives.ccScrollFix')
     .directive('ccScrollFix', function() {
 
+        'use strict';
         //This code is inspired by https://github.com/joelambert/ScrollFix
         //but was turned into a angular directive
 
@@ -2331,7 +2329,7 @@ angular.module('sdk.directives.ccScrollingShadow')
 
                 //IE uses scrollTop instead of scrollY
                 var getScrollTop = function(element){
-                    return ('scrollTop' in element) ? element.scrollTop : element.scrollY
+                    return ('scrollTop' in element) ? element.scrollTop : element.scrollY;
                 };
 
                 var updateShadows = function(){
@@ -2464,8 +2462,8 @@ angular.module('sdk.directives.ccVariantSelector')
                         scope.selectedProperties[property] = null;
                         if (scope.properties.indexOf(property) === -1){
                             scope.properties.push(property);
-                        };
-                    };
+                        }
+                    }
                 });
                 
 
@@ -2475,7 +2473,7 @@ angular.module('sdk.directives.ccVariantSelector')
                             if (variant.properties[property] !== selectedProperties[property]){
                                 return false;
                             }
-                        };
+                        }
 
                         return true;
                     });
@@ -2491,15 +2489,16 @@ angular.module('sdk.directives.ccVariantSelector')
         };
     });
 
-'use strict';
 
 angular.module('sdk.directives.ccZippy', ['src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module('sdk.directives.ccZippy')
     .directive('ccZippy', function() {
 
+        'use strict';
+
         var defaultIfUndefined = function(scope, property, defaultVal){
-            return scope[property] = scope[property] === undefined ? defaultVal : scope[property];
+            scope[property] = scope[property] === undefined ? defaultVal : scope[property];
         };
 
         return {
@@ -2589,7 +2588,7 @@ angular
             if (currencyKey === 'EUR' ){
                 return fixedVal.replace('.', ',') + ' ' + currencyChar;
             }
-            else if (currencyKey === 'USD' || currencyKey == 'GBP'){
+            else if (currencyKey === 'USD' || currencyKey === 'GBP'){
                 return currencyChar + ' ' + fixedVal;
             }
             else{

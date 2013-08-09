@@ -23,7 +23,7 @@ angular.module('sdk.directives.ccScrollingShadow')
 
                 //IE uses scrollTop instead of scrollY
                 var getScrollTop = function(element){
-                    return ('scrollTop' in element) ? element.scrollTop : element.scrollY
+                    return ('scrollTop' in element) ? element.scrollTop : element.scrollY;
                 };
 
                 var updateShadows = function(){

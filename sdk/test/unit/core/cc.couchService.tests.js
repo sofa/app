@@ -6,8 +6,7 @@ var productData = {
     "categoryName":"Root",
     "showSizeFilter":"true",
     "showColorFilter":"true"
-}
-,
+},
 "totalCount":"16",
 "products":[
     {"id":1036,"sku":"1172","qty":"2","name":"Fassbind Brut de Fut Williams Obstbrand 53,2 % 0,5 l Flasche","price":"53.58","super":"","variants":[],"priceOld":"0.00","inStock":"false","retailer":"","retailerId":"44","locale":"de_DE","description":"<h3><strong>Fassbind Brut de Fut Williams Obstbrand 0,5 Liter Flasche<\/strong><\/h3>\n<p><strong>Fassbind Brut de Fut Williams Obstbrand<\/strong> wird in der \u00e4ltesten Destillerie der Schweiz hergestellt. Gebrannt wird mit neuester Technik, aber nach altem, bew\u00e4hrtem Rezept und nat\u00fcrlich mit viel Liebe zum Detail.<\/p>","brandName":"","brandId":"","brandUrl":"","url":"","urlKey":"fassbind-brut-de-fut-williams-obstbrand-53-2-0-5-l-flasche","tax":"19","attributes":{"Gewicht":"1.7500","Lieferzeit":"3-4 Tage"},"custom1":"107.16","custom2":"0.5","custom3":"","images":[{"sizeName":"Small","url":"http:\/\/www.dasgibtesnureinmal.de\/\/media\/catalog\/product\/f\/a\/fassbind_brut_de_fut_williams_obstbrand_50_5_0_5_l_flasche.jpg"},{"sizeName":"Large","url":"http:\/\/www.dasgibtesnureinmal.de\/\/media\/catalog\/product\/f\/a\/fassbind_brut_de_fut_williams_obstbrand_50_5_0_5_l_flasche.jpg"}],"imagesAlt":[],"colors":[],"sizes":[],"categories":["jacke"],"categoryNames":[""],"seeMoreLabel":"Fassbind Brut de Fut Williams Obstbrand 53,2 % 0,5 l Flasche","seeMoreUrl":"","gender":"","extractDate":"2013-03-22"},
@@ -66,7 +65,7 @@ asyncTest('can get products', function() {
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -93,7 +92,7 @@ asyncTest('can get a single product', function() {
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -120,7 +119,7 @@ asyncTest('can get the next product of the same category (with cached products)'
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -153,7 +152,7 @@ asyncTest('can get the next product of the same category (WITHOUT cached product
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -185,7 +184,7 @@ asyncTest('returns "null" for the next product when reached the end', function()
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -218,7 +217,7 @@ asyncTest('returns the first product of the category for the next product when r
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -251,7 +250,7 @@ asyncTest('can get the previous product of the same category (with cached produc
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -284,7 +283,7 @@ asyncTest('can get the previous product of the same category (WITHOUT cached pro
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -316,7 +315,7 @@ asyncTest('returns null for the previous product when reached the start', functi
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -349,7 +348,7 @@ asyncTest('returns the last product of the category for the previous product whe
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 

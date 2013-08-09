@@ -14,7 +14,7 @@ module.exports = function(grunt) {
                             'src/services/**/*.js', 
                             'src/directives/**/*.js',
                             'src/filter/**/*.js',
-                            '!src/**/demos/**/*',
+                            '!src/**/demos/**/*'
                         ],
             ccTemplates: ['src/**/*.tpl.html', '!src/**/demos/**/*.tpl.html']
         },
@@ -26,6 +26,24 @@ module.exports = function(grunt) {
             }
         },
         clean: ['<%= distdir %>/*'],
+        jshint: {
+          all: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+          options: {
+            eqeqeq: true,
+            globals: {
+              angular: true
+            },
+            ignores:    [
+                            'src/directives/ccElasticViews/hammer.js', 
+                            'src/core/store.js', 
+                            //we also need to exclude those files as they contain foreign code
+                            //and until jshint 1.0 there is no option to mute all warnings for a
+                            //block of code
+                            'src/core/cc.util.js',
+                            'src/core/cc.observable.js'
+                        ]
+          }
+        },
         html2js: {
             app: {
                 options: {
@@ -80,7 +98,7 @@ module.exports = function(grunt) {
         watch:{
             all: {
                 files:['<%= src.cc %>', '<%= src.ccAngular %>', '<%= src.ccTests %>', '<%= src.ccTemplates %>'],
-                tasks:['build']
+                tasks:['jshint','build']
             }
         }
     });
@@ -98,7 +116,7 @@ module.exports = function(grunt) {
 
     // Default task(s).
     grunt.registerTask('docs', ['shell']);
-    grunt.registerTask('default', ['build', 'watch']);
+    grunt.registerTask('default', ['jshint', 'build', 'watch']);
     grunt.registerTask('build', ['clean', 'html2js', 'concat', 'qunit']);
 
 };

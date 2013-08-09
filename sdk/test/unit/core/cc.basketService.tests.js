@@ -16,7 +16,7 @@ test('can add item', function() {
     var basketItem = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
-    ok(summary.quantity === 1, 'has a summary of one')
+    ok(summary.quantity === 1, 'has a summary of one');
     ok(basketItem.product === product, 'retrieved product from basketItem');
 
 });
@@ -31,7 +31,7 @@ test('removing the last item removes the whole basket item', function() {
     var basketItem = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
-    ok(summary.quantity === 1, 'has a summary of one')
+    ok(summary.quantity === 1, 'has a summary of one');
     ok(basketItem.product === product, 'retrieved product from basketItem');
 
     var itemRemovedCalled = 0;
@@ -59,7 +59,7 @@ test('can use increase and decrease shorthands', function() {
     var basketItem = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
-    ok(summary.quantity === 1, 'has a summary of 1')
+    ok(summary.quantity === 1, 'has a summary of 1');
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem.quantity === 1, 'has a quantity of 1');
 
@@ -187,8 +187,8 @@ test('cumulates same products with identical variantIds', function() {
     ok(basketItem2.product === product, 'retrieved product from basketItem2');
 
     ok(basketItem === basketItem2, 'baksetItems are identical');
-    ok(basketItem.quantity === 2, 'has a quantity of two');;
-    
+    ok(basketItem.quantity === 2, 'has a quantity of two');
+
     ok(basketService.getItems().length === 1, 'has one item');
 });
 
@@ -211,7 +211,7 @@ test('cumulates same products with identical optionIds', function() {
     ok(basketItem2.product === product, 'retrieved product from basketItem2');
 
     ok(basketItem === basketItem2, 'baksetItems are identical');
-    ok(basketItem.quantity === 2, 'has a quantity of two');;
+    ok(basketItem.quantity === 2, 'has a quantity of two');
     
     ok(basketService.getItems().length === 1, 'has one item');
 });
@@ -294,7 +294,7 @@ test('trying to remove more items than what exists in basket raises exception', 
     product.name = 'Testproduct';
     product.id = 10;
 
-    var basketItem = basketService.addItem(product, 10);;
+    var basketItem = basketService.addItem(product, 10);
 
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem.quantity === 10, 'has a quantity of ten');
@@ -303,6 +303,7 @@ test('trying to remove more items than what exists in basket raises exception', 
         basketService.removeItem(product, 11);
         ok(basketItem.quantity === 10, 'quantity was not touched');
     }, Error);
+
 });
 
 test('can clear all items', function() {
@@ -324,9 +325,9 @@ test('can clear all items', function() {
     product2.name = 'Testproduct';
     product2.id = 12;
 
-    var basketItem = basketService.addItem(product2, 1, 123);
-    var basketItem2 = basketService.addItem(product2, 1, 456);
-    
+    basketItem = basketService.addItem(product2, 1, 123);
+    basketItem2 = basketService.addItem(product2, 1, 456);
+
     ok(basketService.getItems().length === 4, 'has four items');
 
 

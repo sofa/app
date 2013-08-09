@@ -4,4 +4,4 @@ cc.Array = {
             arr.splice(index, 1);
             return arr;
         }
-}
+};

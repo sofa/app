@@ -1,4 +1,3 @@
-'use strict';
 
 angular.module('sdk.directives.ccFixedToolbarsView', []);
 
@@ -6,6 +5,9 @@ angular.module('sdk.directives.ccFixedToolbarsView', []);
 //header and toolbars
 angular.module('sdk.directives.ccFixedToolbarsView')
     .directive('ccFixedToolbarsView', function() {
+
+        'use strict';
+
         return {
             restrict: 'EA',
             replace: true,

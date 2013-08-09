@@ -60,8 +60,8 @@ angular.module('sdk.directives.ccVariantSelector')
                         scope.selectedProperties[property] = null;
                         if (scope.properties.indexOf(property) === -1){
                             scope.properties.push(property);
-                        };
-                    };
+                        }
+                    }
                 });
                 
 
@@ -71,7 +71,7 @@ angular.module('sdk.directives.ccVariantSelector')
                             if (variant.properties[property] !== selectedProperties[property]){
                                 return false;
                             }
-                        };
+                        }
 
                         return true;
                     });

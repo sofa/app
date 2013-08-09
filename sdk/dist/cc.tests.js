@@ -57,7 +57,7 @@ test('can add item', function() {
     var basketItem = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
-    ok(summary.quantity === 1, 'has a summary of one')
+    ok(summary.quantity === 1, 'has a summary of one');
     ok(basketItem.product === product, 'retrieved product from basketItem');
 
 });
@@ -72,7 +72,7 @@ test('removing the last item removes the whole basket item', function() {
     var basketItem = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
-    ok(summary.quantity === 1, 'has a summary of one')
+    ok(summary.quantity === 1, 'has a summary of one');
     ok(basketItem.product === product, 'retrieved product from basketItem');
 
     var itemRemovedCalled = 0;
@@ -100,7 +100,7 @@ test('can use increase and decrease shorthands', function() {
     var basketItem = basketService.addItem(product, 1);
     var summary = basketService.getSummary();
 
-    ok(summary.quantity === 1, 'has a summary of 1')
+    ok(summary.quantity === 1, 'has a summary of 1');
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem.quantity === 1, 'has a quantity of 1');
 
@@ -228,8 +228,8 @@ test('cumulates same products with identical variantIds', function() {
     ok(basketItem2.product === product, 'retrieved product from basketItem2');
 
     ok(basketItem === basketItem2, 'baksetItems are identical');
-    ok(basketItem.quantity === 2, 'has a quantity of two');;
-    
+    ok(basketItem.quantity === 2, 'has a quantity of two');
+
     ok(basketService.getItems().length === 1, 'has one item');
 });
 
@@ -252,7 +252,7 @@ test('cumulates same products with identical optionIds', function() {
     ok(basketItem2.product === product, 'retrieved product from basketItem2');
 
     ok(basketItem === basketItem2, 'baksetItems are identical');
-    ok(basketItem.quantity === 2, 'has a quantity of two');;
+    ok(basketItem.quantity === 2, 'has a quantity of two');
     
     ok(basketService.getItems().length === 1, 'has one item');
 });
@@ -335,7 +335,7 @@ test('trying to remove more items than what exists in basket raises exception', 
     product.name = 'Testproduct';
     product.id = 10;
 
-    var basketItem = basketService.addItem(product, 10);;
+    var basketItem = basketService.addItem(product, 10);
 
     ok(basketItem.product === product, 'retrieved product from basketItem');
     ok(basketItem.quantity === 10, 'has a quantity of ten');
@@ -344,6 +344,7 @@ test('trying to remove more items than what exists in basket raises exception', 
         basketService.removeItem(product, 11);
         ok(basketItem.quantity === 10, 'quantity was not touched');
     }, Error);
+
 });
 
 test('can clear all items', function() {
@@ -365,9 +366,9 @@ test('can clear all items', function() {
     product2.name = 'Testproduct';
     product2.id = 12;
 
-    var basketItem = basketService.addItem(product2, 1, 123);
-    var basketItem2 = basketService.addItem(product2, 1, 456);
-    
+    basketItem = basketService.addItem(product2, 1, 123);
+    basketItem2 = basketService.addItem(product2, 1, 456);
+
     ok(basketService.getItems().length === 4, 'has four items');
 
 
@@ -426,8 +427,7 @@ var productData = {
     "categoryName":"Root",
     "showSizeFilter":"true",
     "showColorFilter":"true"
-}
-,
+},
 "totalCount":"16",
 "products":[
     {"id":1036,"sku":"1172","qty":"2","name":"Fassbind Brut de Fut Williams Obstbrand 53,2 % 0,5 l Flasche","price":"53.58","super":"","variants":[],"priceOld":"0.00","inStock":"false","retailer":"","retailerId":"44","locale":"de_DE","description":"<h3><strong>Fassbind Brut de Fut Williams Obstbrand 0,5 Liter Flasche<\/strong><\/h3>\n<p><strong>Fassbind Brut de Fut Williams Obstbrand<\/strong> wird in der \u00e4ltesten Destillerie der Schweiz hergestellt. Gebrannt wird mit neuester Technik, aber nach altem, bew\u00e4hrtem Rezept und nat\u00fcrlich mit viel Liebe zum Detail.<\/p>","brandName":"","brandId":"","brandUrl":"","url":"","urlKey":"fassbind-brut-de-fut-williams-obstbrand-53-2-0-5-l-flasche","tax":"19","attributes":{"Gewicht":"1.7500","Lieferzeit":"3-4 Tage"},"custom1":"107.16","custom2":"0.5","custom3":"","images":[{"sizeName":"Small","url":"http:\/\/www.dasgibtesnureinmal.de\/\/media\/catalog\/product\/f\/a\/fassbind_brut_de_fut_williams_obstbrand_50_5_0_5_l_flasche.jpg"},{"sizeName":"Large","url":"http:\/\/www.dasgibtesnureinmal.de\/\/media\/catalog\/product\/f\/a\/fassbind_brut_de_fut_williams_obstbrand_50_5_0_5_l_flasche.jpg"}],"imagesAlt":[],"colors":[],"sizes":[],"categories":["jacke"],"categoryNames":[""],"seeMoreLabel":"Fassbind Brut de Fut Williams Obstbrand 53,2 % 0,5 l Flasche","seeMoreUrl":"","gender":"","extractDate":"2013-03-22"},
@@ -486,7 +486,7 @@ asyncTest('can get products', function() {
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -513,7 +513,7 @@ asyncTest('can get a single product', function() {
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -540,7 +540,7 @@ asyncTest('can get the next product of the same category (with cached products)'
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -573,7 +573,7 @@ asyncTest('can get the next product of the same category (WITHOUT cached product
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -605,7 +605,7 @@ asyncTest('returns "null" for the next product when reached the end', function()
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -638,7 +638,7 @@ asyncTest('returns the first product of the category for the next product when r
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -671,7 +671,7 @@ asyncTest('can get the previous product of the same category (with cached produc
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -704,7 +704,7 @@ asyncTest('can get the previous product of the same category (WITHOUT cached pro
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -736,7 +736,7 @@ asyncTest('returns null for the previous product when reached the start', functi
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
@@ -769,7 +769,7 @@ asyncTest('returns the last product of the category for the previous product whe
                 '?&stid=' +
                 cc.Config.storeId +
                 '&cat=' + categoryUrlId +
-                '&callback=JSON_CALLBACK'
+                '&callback=JSON_CALLBACK';
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
