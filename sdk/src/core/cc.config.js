@@ -2,7 +2,7 @@ cc.Config = {
     storeId: 88399,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     apiHttpMethod: 'jsonp',
-    categoryJson: '../data/dasgibtesnureinmal/categories.json',
+    categoryJson: 'data/dasgibtesnureinmal/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
     mediaFolder:'http://cc1.couchcommerce.com/media/dasgibtesnureinmal/img/',
