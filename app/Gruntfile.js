@@ -77,6 +77,12 @@ module.exports = function(grunt) {
           'modules/**/*.html'
         ],
         tasks: ['build']
+      },
+      sdk: {
+        files: [
+          '../sdk/dist/*.js'
+        ],
+        tasks: ['build']
       }
     },
      connect: {
