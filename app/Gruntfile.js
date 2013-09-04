@@ -1,6 +1,16 @@
 
 module.exports = function(grunt) {
 
+  var gruntReleaseOptions =   {
+                                app: {
+                                    options: {
+                                      releaseBranch: 'release',
+                                      cwd: '../',
+                                      distDir: 'app/dist'
+                                    }
+                                }
+                              };
+
   // Project configuration.
   grunt.initConfig({
     distdir: 'dist',
@@ -94,14 +104,23 @@ module.exports = function(grunt) {
           hostname: '0.0.0.0'
         }
       }
-    }
+    },
+    releaseBranchPre: gruntReleaseOptions,
+    releaseBranch: gruntReleaseOptions
+  });
+
+  grunt.registerTask('lastHint', function(){
+    grunt.log.writeln('Please make a final review and then type `git push -f origin release`');
   });
 
   grunt.registerTask('default', ['build', 'watch']);
 
   grunt.registerTask('build', ['clean', 'html2js', 'concat', 'sass', 'copy']);
 
+  grunt.registerTask('release', ['releaseBranchPre', 'build', 'releaseBranch']);
+
   //grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-release-branch');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-html2js');
