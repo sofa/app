@@ -68,7 +68,7 @@ module.exports = function(grunt) {
                   'modules/**/*.scss',
                   '../sdk/**/*.scss'
                ],
-        tasks: ['sass']
+        tasks: ['build']
       },
       source: {
         files: [
