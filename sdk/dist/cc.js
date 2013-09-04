@@ -426,6 +426,10 @@ cc.Config = {
             {
                 title:'Saturn',
                 id:'saturn'
+            },
+            {
+                title:'Something',
+                id:'something'
             }
     ]
 };

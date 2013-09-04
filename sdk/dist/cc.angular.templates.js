@@ -17,7 +17,14 @@ angular.module("src/directives/ccElasticViews/elasticViews.tpl.html", []).run(["
 angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccFooter/ccfooter.tpl.html",
     "<div class=\"cc-footer-wrapper\">\n" +
-    "        <a ng-repeat=\"item in items\" class=\"cc-footer-item\" href=\"#/pages/{{item.id}}\">{{item.title}}</a>\n" +
+    "        <a \n" +
+    "            ng-repeat=\"item in items\" \n" +
+    "            ng-class=\"{ 'cc-footer-item-wide' : $index % 2 == 0 && $last}\" \n" +
+    "            class=\"cc-footer-item\" \n" +
+    "            href=\"#/pages/{{item.id}}\">\n" +
+    "            {{ item.title }}\n" +
+    "            <i class=\"cc-footer-item-icon icon-angle-left icon-2x\"></i>\n" +
+    "        </a>\n" +
     "</div>");
 }]);
 

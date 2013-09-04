@@ -1,5 +1,9 @@
 .cc-footer-wrapper{
     text-align: center;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    overflow: auto;
+    width: 100%;
 }
 
 .cc-footer-item, .cc-footer-item:visited, .cc-footer-item:active {
@@ -9,19 +13,24 @@
 .cc-footer-item{
     padding: 10px 5px 10px 0;
     color: $background-text-color;
-    font-size: $font-size-tiny;
+    font-size: $font-size-regular;
     font-weight: bold;
+    width: 50%;
+    position: relative;
+    display: block;
+    float: left;
+    border: 1px solid $background-border-color;
     @include try-darker-extended("text-shadow", $background-color, "0px -1px", "", 10%);
+    text-decoration: none;
 }
 
-.cc-footer-item:after{
-    content:"";
-    color: $background-text-color;
-    padding-left: 5px;
-    border-right: 1px solid $background-text-color;
+.cc-footer-item-wide{
+    width: 100%;
 }
 
-.cc-footer-item:last-child:after{
-    content:"";
-    border: none;
+.cc-footer-item-icon{
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    margin-top: -13px;
 }
