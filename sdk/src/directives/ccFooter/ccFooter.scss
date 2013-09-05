@@ -12,16 +12,21 @@
 
 .cc-footer-item{
     padding: 10px 5px 10px 0;
-    color: $background-text-color;
     font-size: $font-size-regular;
     font-weight: bold;
     width: 50%;
     position: relative;
     display: block;
     float: left;
-    border: 1px solid $background-border-color;
-    @include try-darker-extended("text-shadow", $background-color, "0px -1px", "", 10%);
     text-decoration: none;
+    //if we make the background of the footer 10% darker(or lighter as a fallback)
+    //then the background-text-color should still be fairly readable.
+    //The border is set to the background-color to achieve the effect of having some
+    //space between the items.
+    color: $background-text-color;
+    border: 1px solid $background-color;
+    @include try-darker-extended("text-shadow", $background-color, "0px -1px", "", 10%);
+    @include try-darker("background", $background-color, 10%);
 }
 
 .cc-footer-item-wide{
