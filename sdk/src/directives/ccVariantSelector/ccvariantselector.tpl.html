@@ -1,11 +1,11 @@
-<div class="cc-variant-selector">
-    <div class="cc-variant-selector-select-wrapper"
+<div class="cc-variant-selector cc-select-box-group">
+    <div class="cc-select-box-select-wrapper"
          ng-repeat="property in properties">
          <span ng-bind="selectedProperties[property]"></span>
          <span ng-hide="selectedProperties[property]">{{chooseText}} {{property}}</span>
-         <i class="cc-variant-selector-select-icon icon-chevron-down"></i>
+         <i class="cc-select-box-select-icon icon-chevron-down"></i>
         <select name="{{property}}"
-                class="cc-variant-selector-native-select" 
+                class="cc-select-box-native-select" 
                 ng-model="selectedProperties[property]" 
                 ng-options="val for val in variants|ccVariantFilter:selectedProperties:property">
             <option value="">-- {{chooseText}} {{property}} --</option>
