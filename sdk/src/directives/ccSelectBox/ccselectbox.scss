@@ -45,19 +45,22 @@
     margin: 0px;
 }
 
-.cc-select-box-group .cc-select-box-select-wrapper:first-child, cc-select-box-group .cc-select-box-select-wrapper:first-child{
+//we don't need to scope :first-child and :last-child to cc-select-box-group because even
+//if the styles are applied without the parent being a cc-select-box-group, the radius
+//is the default style of the cc-select-box-select-wrapper. We omit that for selector performance.
+.cc-select-box-select-wrapper:first-child{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-}
-
-.cc-select-box-group .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
-cc-select-box-group .cc-select-box-select-wrapper + .cc-select-box-select-wrapper{
-    border-top: none;
 }
 
 .cc-select-box-select-wrapper:last-child{
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+.cc-select-box-group .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
+cc-select-box-group .cc-select-box-select-wrapper + .cc-select-box-select-wrapper{
+    border-top: none;
 }
 
 .cc-select-box-native-select{
