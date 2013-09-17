@@ -27,6 +27,40 @@ cc.Util = {
 
         return value.toFixed(precision);
     },
+    //this method is useful for cloning complex (read: nested) objects without having references 
+    //from the clone to the original object
+    //http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
+    clone: function(obj) {
+        // Handle the 3 simple types, and null or undefined
+        if (null == obj || "object" != typeof obj) return obj;
+
+        // Handle Date
+        if (obj instanceof Date) {
+            var copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+
+        // Handle Array
+        if (obj instanceof Array) {
+            var copy = [];
+            for (var i = 0, len = obj.length; i < len; i++) {
+                copy[i] = this.clone(obj[i]);
+            }
+            return copy;
+        }
+
+        // Handle Object
+        if (obj instanceof Object) {
+            var copy = {};
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = this.clone(obj[attr]);
+            }
+            return copy;
+        }
+
+        throw new Error("Unable to copy obj! Its type isn't supported.");
+    },
     /*jshint eqeqeq:false*/
     deepExtend: function () {
         var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
@@ -154,6 +188,9 @@ cc.Util = {
             }
         }
         return result;
+    },
+    isNumber: function(value){
+      return typeof value === 'number';
     },
     isArray: function(value){
             return toString.call(value) === '[object Array]';
