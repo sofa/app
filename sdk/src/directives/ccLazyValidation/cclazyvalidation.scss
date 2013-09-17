@@ -1,0 +1,67 @@
+.cc-validation{
+    position: relative;
+}
+
+.cc-validation__message--success{
+    display: none;
+    position: absolute;
+    right: 5px;
+    //set line-height to the height of the text-box
+    line-height: 50px;
+    //it's pretty clear that we need to tweak our abstractions
+    //if we need to reuse a variable that was introduced for buttons only
+    color: $positive-button-background-color;
+}
+
+.cc-validation__message--fail{
+    display: none;
+    background: $warning-background-color;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    position: relative;
+    color: $warning-text-color;
+}
+
+.cc-validation__message--fail:before{
+    width: 0;
+    height: 0;
+    border-bottom: 20px solid $warning-background-color;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 10px
+}
+
+.cc-valid{
+    .cc-validation__message--success{
+        display: inline-block;
+    }
+}
+
+.cc-invalid{
+    .cc-validation__message--fail{
+        display: inline-block;
+    }
+}
+
+.cc-validation{
+    .cc-text-box{
+        //I have honestly no clue why this is needed but it is :-/
+        border-top: none;
+    }
+
+    .cc-text-box:last-child{
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+}
+
+.cc-validation:last-child{
+    .cc-text-box{
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+}

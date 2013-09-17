@@ -1,11 +1,12 @@
 <div class="cc-select-box-select-wrapper">
-     <span class="cc-select-box-display-value" ng-bind="displayFn(selectedValue)"></span>
-     <span class="cc-select-box-display-value" ng-hide="selectedValue">{{chooseText}} {{propertyName}}</span>
+     <span class="cc-select-box-display-value" ng-bind="displayFn(_selectedValue)"></span>
+     <span class="cc-select-box-display-value" ng-hide="_selectedValue">{{chooseText}} {{propertyName}}</span>
      <i class="cc-select-box-select-icon icon-chevron-down"></i>
     <select name="{{propertyName}}"
             class="cc-select-box-native-select" 
-            ng-model="selectedValue" 
+            ng-model="_selectedValue" 
             ng-options="displayFn(val) for val in data">
-        <option value="">-- {{chooseText}} {{propertyName}} --</option>
+        <option ng-if="!_omitNull" value="">-- {{chooseText}} {{propertyName}} --</option>
     </select>
+    <span class="cc-validation__message--fail">{{ failMessage }}</span>
 </div>

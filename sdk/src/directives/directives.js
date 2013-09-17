@@ -5,6 +5,7 @@ angular.module('sdk.directives', [
     'sdk.directives.ccSelectBox',
     'sdk.directives.ccCheckBox',
     'sdk.directives.ccAddress',
+    'sdk.directives.ccLazyValidation',
     'sdk.directives.ccVariantSelector',
     'sdk.directives.ccThumbnailBar',
     'sdk.directives.ccScrollingShadow',

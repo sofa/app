@@ -87,6 +87,11 @@ angular
                 });
             });
 
+            $scope.canProceed = function(){
+                return  $scope.billingAddressForm.$valid &&
+                        (checkoutModel.addressEqual || $scope.shippingAddressForm.$valid);
+            };
+
             $scope.proceed = function(){
 
                 checkoutService

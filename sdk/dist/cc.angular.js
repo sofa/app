@@ -52,15 +52,16 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
 angular.module("src/directives/ccSelectBox/ccselectbox.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccSelectBox/ccselectbox.tpl.html",
     "<div class=\"cc-select-box-select-wrapper\">\n" +
-    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(selectedValue)\"></span>\n" +
-    "     <span class=\"cc-select-box-display-value\" ng-hide=\"selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(_selectedValue)\"></span>\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-hide=\"_selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
     "     <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
     "    <select name=\"{{propertyName}}\"\n" +
     "            class=\"cc-select-box-native-select\" \n" +
-    "            ng-model=\"selectedValue\" \n" +
+    "            ng-model=\"_selectedValue\" \n" +
     "            ng-options=\"displayFn(val) for val in data\">\n" +
-    "        <option value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
+    "        <option ng-if=\"!_omitNull\" value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
     "    </select>\n" +
+    "    <span class=\"cc-validation__message--fail\">{{ failMessage }}</span>\n" +
     "</div>");
 }]);
 
@@ -2372,6 +2373,61 @@ angular
             }
         };
     });
+angular.module('sdk.directives.ccLazyValidation', []);
+
+angular.module('sdk.directives.ccLazyValidation')
+    .directive('ccLazyValidation', function() {
+
+        'use strict';
+
+        var DEBOUNCE_MS     = 2000,
+            VALID_CLS       = 'cc-valid',
+            INVAID_CLS      = 'cc-invalid';
+
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function($scope, element, attributes, controller){
+
+                //there are situations where the VALID_CLS/INVALID_CLS needs to be set on the parent
+                //rather than directly on the element.
+                var notifyElement = attributes.ccLazyValidation === 'parent' ? element.parent() : element;
+
+
+                var validate = function(){
+                    return controller.$valid ? setValid() : setInvalid();
+                };
+
+                var debouncedKeyUp = cc.Util.debounce(function(){
+                    //if the user deletes all text from the box but
+                    //still hasn't moved focus to somewhere else,
+                    //don't bother him with complains
+                    if (element.val().length > 0){
+                        validate();
+                    }
+                }, DEBOUNCE_MS);
+
+                var setValid = function(){
+                    notifyElement.removeClass(INVAID_CLS);
+                    notifyElement.addClass(VALID_CLS);
+                };
+
+                var setInvalid = function(){
+                    notifyElement.removeClass(VALID_CLS);
+                    notifyElement.addClass(INVAID_CLS);
+                };
+
+                var resetState = function(){
+                    notifyElement.removeClass(VALID_CLS);
+                    notifyElement.removeClass(INVAID_CLS);
+                };
+
+                element.bind('keydown', resetState);
+                element.bind('keyup', debouncedKeyUp);
+                element.bind('blur', validate);
+            }
+        };
+    });
 angular.module('sdk.directives.ccScrollFix', []);
 
 angular.module('sdk.directives.ccScrollFix')
@@ -2486,13 +2542,78 @@ angular.module('sdk.directives.ccSelectBox')
                 data: '=',
                 propertyName: '=',
                 chooseText: '=?',
-                selectedValue: '=?',
+                failMessage: '=?',
                 displayValueExp: '&'
             },
+            require: '?ngModel',
             templateUrl: 'src/directives/ccSelectBox/ccselectbox.tpl.html',
-            link: function(scope, element, attrs){
+            link: function(scope, element, attrs, ngModelController){
+
+                if (!attrs.ngModel){
+                    return;
+                }
+
+                //Not sure, if we are doing the right thing here concerning ngModel.
+                //However, it seems to work quite well for now and it's not that much work.
+
+                //What we do is:
+
+                //1. we listen on the expression which is set via the ngModel manually.
+                //We have to use $parent for that.
+
+                //2. we propagate changes on a private _selectedValue property on the isolated scope.
+                //This way we don't have to use $parent within our template
+
+                //3. we listen on scope._selectedValue manually and propagate changes back to
+                //the $parent scope using some clever $eval magic :)
+
+                //This seems rather hacky. It works around the situation where we:
+                //  - don't have a null value
+                //  - the selected value (via ngModel) is null
+                //The problem here is, that when the data is set, it doesn't preselect
+                //the first item. Even worse, the select element *is* set to the first
+                //element but angular does not care about it. If you then click into the select
+                //and choose the already selected first value nothing gets propagated as angular
+                //no change event is triggered.
+                //We fix this by listening on the data, when it comes in and the _selectedValue
+                //is still null, we set it to the first item and instantly unbind.
+                var unwatch = scope.$watch('data', function(data){
+                    if (data.length > 0 && scope._selectedValue === null){
+                        scope._selectedValue = data[0];
+                        unwatch();
+                    }
+                });
+
+                var allowNull = attrs.allowNull !== undefined;
+
+                //defines if an empty value should be omitted
+                scope._omitNull = attrs.omitNull !== undefined;
+
+                scope.$parent.$watch(attrs.ngModel, function(newValue){
+                    scope._selectedValue = newValue;
+                });
 
                 var displayValueFormatter = scope.displayValueExp();
+
+                if (ngModelController){
+                    scope.$watch('_selectedValue', function(newValue){
+                        ngModelController.$setViewValue(newValue);
+
+                        if (!allowNull && newValue === null){
+                            ngModelController.$setValidity('value', false);
+                        }
+                        else{
+                            ngModelController.$setValidity('value', true);
+                        }
+
+                        //we need to propagate the value back to the $parent scope
+                        //where it lives on. However, bindings might not be simple
+                        //but nested properties (e.g. $scope.person.address.country)
+                        //therefore, it's best to let $eval do the heavy lifting for us.
+                        scope.$eval('$parent.' + attrs.ngModel + ' = _selectedValue');
+                    });
+                }
+
 
                 //default display function that will be used if no
                 //displayValueExp is given
@@ -2708,6 +2829,7 @@ angular.module('sdk.directives', [
     'sdk.directives.ccSelectBox',
     'sdk.directives.ccCheckBox',
     'sdk.directives.ccAddress',
+    'sdk.directives.ccLazyValidation',
     'sdk.directives.ccVariantSelector',
     'sdk.directives.ccThumbnailBar',
     'sdk.directives.ccScrollingShadow',

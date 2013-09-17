@@ -52,15 +52,16 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
 angular.module("src/directives/ccSelectBox/ccselectbox.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccSelectBox/ccselectbox.tpl.html",
     "<div class=\"cc-select-box-select-wrapper\">\n" +
-    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(selectedValue)\"></span>\n" +
-    "     <span class=\"cc-select-box-display-value\" ng-hide=\"selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(_selectedValue)\"></span>\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-hide=\"_selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
     "     <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
     "    <select name=\"{{propertyName}}\"\n" +
     "            class=\"cc-select-box-native-select\" \n" +
-    "            ng-model=\"selectedValue\" \n" +
+    "            ng-model=\"_selectedValue\" \n" +
     "            ng-options=\"displayFn(val) for val in data\">\n" +
-    "        <option value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
+    "        <option ng-if=\"!_omitNull\" value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
     "    </select>\n" +
+    "    <span class=\"cc-validation__message--fail\">{{ failMessage }}</span>\n" +
     "</div>");
 }]);
 

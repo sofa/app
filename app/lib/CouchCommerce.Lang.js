@@ -47,7 +47,7 @@ cc.Lang = {
         formSurname:'Name',
         formGivenName:'Vorname',
         formStreet:'Strasse / Nummer',
-        formCity:'Stadt',
+        formCity:'Wohnort',
         formZip:'PLZ',
         formCountry:'Land',
         formEmail:'E-mail Adresse',
@@ -96,5 +96,12 @@ cc.Lang = {
         summary: 'Zusammenfassung',
         pageDoesntExist: 'Diese Seite existiert nicht',
         nonEUInfo: 'Bei Lieferung in das Nicht-EU-Ausland können zusätzliche Zölle, Steuern und Gebühren anfallen',
-        choose: 'wähle'
+        choose: 'wähle',
+        invalidInput_Firstname: 'Bitte geben Sie Ihren Vornamen ein',
+        invalidInput_Lastname: 'Bitte geben Sie Ihren Nachnamen ein',
+        invalidInput_Street: 'Bitte geben Sie Ihre Straße ein',
+        invalidInput_Zip: 'Bitte geben Sie Ihre PLZ ein',
+        invalidInput_City: 'Bitte geben Sie Ihren Wohnort ein',
+        invalidInput_Country: 'Bitte geben Sie Ihre Land ein',
+        invalidInput_Email: 'Bitte geben Sie eine gültige E-Mail Adresse ein',
     };
