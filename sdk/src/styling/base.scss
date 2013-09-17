@@ -101,6 +101,18 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     -webkit-overflow-scrolling: touch;
 }
 
+.cc-supports-position-fixed{
+    .cc-scroller--if-fixed{
+        @extend %cc-scrollable-vertical;
+    }
+}
+
+.cc-no-position-fixed{
+    .cc-scroller--if-no-fixed{
+        @extend %cc-scrollable-vertical;
+    }
+}
+
 /* Overthrow CSS:
    Enable overflow: auto on elements with overthrow class when html element has overthrow class too */
 .cc-scrollable-enabled .cc-scrollable-vertical {
@@ -189,6 +201,8 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     width:100%;
 }
 
+//if we have a fixed toolbar, we need to push the view-wrapper
+//45px to the bottom (the height of the toolbar)
 .cc-supports-position-fixed{
     .cc-view-wrapper{
         padding-top: 45px;
