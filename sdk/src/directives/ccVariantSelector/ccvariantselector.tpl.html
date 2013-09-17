@@ -1,8 +1,8 @@
-<div class="cc-variant-selector cc-select-box-group">
+<div class="cc-variant-selector cc-grouped">
     <div class="cc-select-box-select-wrapper"
          ng-repeat="property in properties">
-         <span ng-bind="selectedProperties[property]"></span>
-         <span ng-hide="selectedProperties[property]">{{chooseText}} {{property}}</span>
+         <span class="cc-select-box-display-value" ng-bind="selectedProperties[property]"></span>
+         <span class="cc-select-box-display-value" ng-hide="selectedProperties[property]">{{chooseText}} {{property}}</span>
          <i class="cc-select-box-select-icon icon-chevron-down"></i>
         <select name="{{property}}"
                 class="cc-select-box-native-select" 
