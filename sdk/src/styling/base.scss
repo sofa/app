@@ -111,11 +111,6 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     @extend %cc-scrollable-vertical
 }
 
-/* Overthrow CSS:
-   Enable overflow: auto on elements with overthrow class when html element has overthrow class too */
-.cc-scrollable-enabled .cc-scrollable-vertical {
-    @extend %cc-scrollable-vertical;
-}
 
 .cc-container, %cc-container{
     display: -webkit-box;
