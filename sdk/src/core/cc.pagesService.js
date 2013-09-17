@@ -11,7 +11,7 @@ cc.define('cc.PagesService', function($http, $q){
                     if (result.data){
 
                         //we don't want to directly alter the page config, so we create a copy
-                        var pageConfig = cc.Util.deepExtend({}, self.getPageConfig(id));
+                        var pageConfig = cc.Util.clone(self.getPageConfig(id));
 
                         pageConfig.content = result.data;
 
