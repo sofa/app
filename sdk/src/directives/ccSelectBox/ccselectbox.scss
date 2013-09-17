@@ -3,24 +3,37 @@
 .cc-select-box-on-background.cc-select-box-select-wrapper,
 %cc-select-box-on-background{
 
-    $lighter-content-background-color: lighten($background-color, 10%);
-    $darker-content-background-color: darken($background-color, 5%);
+    // $lighter-content-background-color: lighten($background-color, 10%);
+    // $darker-content-background-color: darken($background-color, 5%);
+
+    // background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
+    // background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+    // background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
 
     border: 1px solid $background-border-color;
-    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
-    background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
-    background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+    //this might sound strange on first glance. However, it makes
+    //perfect sense to give form elements that are placed on the background the content-background-color.
+    //that's exactly the purpose of the content-background-color. To style areas that sit on the background.
+    background: $content-background-color;
 }
 
-.cc-select-box-on-content .cc-select-box-select-wrapper, .cc-select-box-on-content.cc-select-box-select-wrapper{
+.cc-select-box-on-content .cc-select-box-select-wrapper, 
+.cc-select-box-on-content.cc-select-box-select-wrapper,
+%cc-select-box-on-content{
+
+    // $lighter-content-background-color: lighten($content-background-color, 10%);
+    // $darker-content-background-color: darken($content-background-color, 5%);
+
+    // background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
+    // background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+    // background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+
     border: 1px solid $content-border-color;
+    @include try-darker("background", $content-background-color, 10%);
+}
 
-    $lighter-content-background-color: lighten($content-background-color, 10%);
-    $darker-content-background-color: darken($content-background-color, 5%);
-
-    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
-    background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
-    background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
+.cc-select-box-display-value{
+    font-size: $font-size-medium;
 }
 
 .cc-select-box-select-wrapper{
@@ -34,19 +47,19 @@
     margin: 5px 0 5px 0;
 }
 
-.cc-select-box-group, cc-select-box-group{
+.cc-grouped, cc-grouped{
     margin: 5px 0 5px 0;
     //unknown elements don't have that as default
     display: block;
 }
 
-.cc-select-box-group .cc-select-box-select-wrapper, cc-select-box-group .cc-select-box-select-wrapper{
+.cc-grouped .cc-select-box-select-wrapper, cc-grouped .cc-select-box-select-wrapper{
     border-radius: 0px;
     margin: 0px;
 }
 
-//we don't need to scope :first-child and :last-child to cc-select-box-group because even
-//if the styles are applied without the parent being a cc-select-box-group, the radius
+//we don't need to scope :first-child and :last-child to cc-grouped because even
+//if the styles are applied without the parent being a cc-grouped, the radius
 //is the default style of the cc-select-box-select-wrapper. We omit that for selector performance.
 .cc-select-box-select-wrapper:first-child{
     border-top-left-radius: 5px;
@@ -58,8 +71,10 @@
     border-bottom-right-radius: 5px;
 }
 
-.cc-select-box-group .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
-cc-select-box-group .cc-select-box-select-wrapper + .cc-select-box-select-wrapper{
+.cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
+cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
+.cc-grouped .cc-text-box + .cc-select-box-select-wrapper,
+cc-grouped .cc-text-box + .cc-select-box-select-wrapper{
     border-top: none;
 }
 
