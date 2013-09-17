@@ -2,6 +2,10 @@
 .cc-text-box-on-background.cc-text-box{
 
     border: 1px solid $background-border-color;
+    //this might sound strange on first glance. However, it makes
+    //perfect sense to give form elements that are placed on the background the content-background-color.
+    //that's exactly the purpose of the content-background-color. To style areas that sit on the background.
+    background: $content-background-color;
 }
 
 $text-box-default-border: #646666;
@@ -9,13 +13,14 @@ $text-box-default-border: #646666;
 .cc-text-box{
     border: 1px solid $text-box-default-border;
     width: 100%;
-    font-size: $font-size-big;
+    font-size: $font-size-medium;
     padding: 10px;
     border-radius: 5px;
     margin: 5px 0 5px 0;
     outline-color: transparent;
     outline-style: none;
     height: 50px;
+    -webkit-user-select: text;
 }
 
 .cc-text-box:focus{
@@ -29,13 +34,13 @@ $text-box-default-border: #646666;
     pointer-events: none;
 }
 
-.cc-text-box-group, cc-text-box-group{
+.cc-grouped, cc-grouped{
     margin: 5px 0 5px 0;
     //unknown elements don't have that as default
     display: block;
 }
 
-.cc-text-box-group .cc-text-box, cc-text-box-group .cc-text-box{
+.cc-grouped .cc-text-box, cc-grouped .cc-text-box{
     border-radius: 0px;
     margin: 0px;
 }
@@ -50,8 +55,10 @@ $text-box-default-border: #646666;
     border-bottom-right-radius: 5px;
 }
 
-// .cc-text-box-group .cc-text-box + .cc-text-box,
-// cc-text-box-group .cc-text-box + .cc-text-box{
-//     border-top: none;
-// }
+.cc-grouped .cc-text-box + .cc-text-box,
+cc-grouped .cc-text-box + .cc-text-box,
+.cc-grouped .cc-select-box-select-wrapper + .cc-text-box,
+cc-grouped .cc-select-box-select-wrapper + .cc-text-box{
+    border-top: none;
+}
 
