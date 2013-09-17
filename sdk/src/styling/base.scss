@@ -101,24 +101,14 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     -webkit-overflow-scrolling: touch;
 }
 
-.cc-supports-position-fixed{
-    .cc-scroller--if-fixed{
-        @extend %cc-scrollable-vertical;
-    }
-
-    &.cc-scroller--if-fixed{
-        @extend %cc-scrollable-vertical;
-    }
+.cc-supports-position-fixed .cc-scroller--if-fixed,
+.cc-supports-position-fixed.cc-scroller--if-fixed{
+    @extend %cc-scrollable-vertical
 }
 
-.cc-no-position-fixed{
-    .cc-scroller--if-no-fixed{
-        @extend %cc-scrollable-vertical;
-    }
-
-    &.cc-scroller--if-no-fixed{
-        @extend %cc-scrollable-vertical;
-    }
+.cc-no-position-fixed .cc-scroller--if-no-fixed,
+.cc-no-position-fixed.cc-scroller--if-no-fixed{
+    @extend %cc-scrollable-vertical
 }
 
 /* Overthrow CSS:
