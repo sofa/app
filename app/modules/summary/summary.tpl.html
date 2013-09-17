@@ -1,0 +1,77 @@
+<div ng-show="vm.page === vm.SUMMARY_PAGE" class="cc-view-wrapper cc-view-phone">
+    <h1 class="cc-title--big" ng-bind="ln.summary"></h1>
+
+    <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
+    <cc-check-box
+        ng-if="vm.showGeneralAgreement"
+        class="cc-check-box-on-background" 
+        value="vm.generalAgreement" label="'Ich stimme den AGB zu und habe die Informationen zum Widerrufsrecht gelesen.'">
+    </cc-check-box>
+
+    <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
+    <cc-check-box 
+        ng-if="vm.showAgeAgreement" 
+        class="cc-check-box-on-background" 
+        value="vm.ageAgreement" 
+        label="'Alterscheck'">
+    </cc-check-box>
+
+    <h2 class="cc-title--medium">{{ln.billingAddress}}</h2>
+    <cc-address data="vm.invoiceAddress"></cc-address>
+    <div class="cc-padded-line-seperator on-background"></div>
+
+    <h2 class="cc-title--medium">{{ln.shippingAddress}}</h2>
+    <cc-address data="vm.shippingAddress"></cc-address>
+    <div class="cc-padded-line-seperator on-background"></div>
+
+    <h2 class="cc-title--medium">{{ln.paymentMethod}}</h2>
+    <div>{{vm.paymentMethod}}</div>
+    <div class="cc-padded-line-seperator on-background"></div>
+
+    <h2 class="cc-title--medium">{{ln.shippingMethod}}</h2>
+    <div>{{vm.shippingMethod}}</div>
+    <div class="cc-padded-line-seperator on-background"></div>
+
+    <ul>
+        <li ng-repeat="item in vm.items"
+            class="cc-list-row cc-cart-list-row" >
+            <div class="cc-list-row-image cc-category-listing-row-image"
+                 style="background-image: url({{item.imageURL}})">
+            </div>
+            <div class="cc-cart-list-row-text">
+                <div class="cc-cart-list-row-name">
+                    {{item.name}}
+                </div>
+                <div class="cc-cart-list-row-single-price">
+                    {{ln.listItemPrice}} {{item.price | currency}}
+                </div>
+                <div class="cc-cart-list-row-price">
+                    {{item.subtotal | currency}}
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div ng-include="tpl.TOTALBOX"></div>
+
+    <a  ng-click="acceptedAgreements() && proceed()" 
+        ng-disabled="!vm.acceptedAgreement" 
+        ng-class="{ 'cc-couch-action-button--disabled':!acceptedAgreements()}" 
+        class="cc-couch-action-button">{{ ln.buyButton }}
+    </a>
+
+    <cc-footer></cc-footer>
+</div>
+
+<div ng-show="vm.page === vm.THANK_YOU_PAGE" class="cc-view-wrapper cc-view-phone cc-center">
+    <h1 class="cc-title--huge" >{{ ln.thankYouTitle}}</h1>
+    <div>{{ln.thankTouText}}</div>
+        <a 
+        ng-click="navigationService.navigateToRootCategory()" 
+        class="cc-couch-action-button">{{ ln.continueShopping }}
+    </a>
+    <!-- TODO: get rid of this z-index hack -->
+    <div class="cc-expand" style="z-index: -1">
+        <cc-footer class="cc-cart-footer"></cc-footer>
+    </div>
+</div>

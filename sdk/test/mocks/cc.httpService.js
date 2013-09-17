@@ -2,14 +2,21 @@ cc.define('cc.mocks.httpService', function($q){
 
     'use strict';
 
-    var mocks;
+    var mocks,
+        lastConfig; //useful for unit tests
     
     var self = function(config){
+
+        config.method = config.method && config.method.toLowerCase();
+        lastConfig = config;
         var deferred = $q.defer();
         deferred.resolve(mocks[config.method][config.url]);
         return deferred.promise;
     };
 
+    self.getLastCallParams = function(){
+        return lastConfig;
+    };
 
     self.when = function(method, endpoint){
         return {

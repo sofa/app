@@ -1,4 +1,25 @@
-angular.module('cc.angular.templates', ['src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+
+angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccAddress/ccaddress.tpl.html",
+    "<div>\n" +
+    "    <div>{{data.company}}</div>\n" +
+    "    <div>{{data.name}} {{data.surname}}</div>\n" +
+    "    <div>{{data.street}}</div>\n" +
+    "    <div>{{data.zip}} {{data.city}}</div>\n" +
+    "    <div>{{data.country.label}}</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("src/directives/ccCheckBox/cccheckbox.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccCheckBox/cccheckbox.tpl.html",
+    "<label for=\"cc-check-box-{{id}}\" class=\"topcoat-checkbox\">\n" +
+    "  <input ng-model=\"value\" id=\"cc-check-box-{{id}}\" aria-labelledby=\"cc-check-box-{{id}}-label\" aria-describedby=\"cc-check-box-{{id}}-description\" type=\"checkbox\">\n" +
+    "  <div class=\"topcoat-checkbox__checkmark\"></div>\n" +
+    "  <span id=\"cc-check-box-{{id}}-label\">{{label}}</span> \n" +
+    "</label>");
+}]);
 
 angular.module("src/directives/ccElasticViews/elasticViews.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccElasticViews/elasticViews.tpl.html",
@@ -28,6 +49,21 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "</div>");
 }]);
 
+angular.module("src/directives/ccSelectBox/ccselectbox.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccSelectBox/ccselectbox.tpl.html",
+    "<div class=\"cc-select-box-select-wrapper\">\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(selectedValue)\"></span>\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-hide=\"selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
+    "     <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
+    "    <select name=\"{{propertyName}}\"\n" +
+    "            class=\"cc-select-box-native-select\" \n" +
+    "            ng-model=\"selectedValue\" \n" +
+    "            ng-options=\"displayFn(val) for val in data\">\n" +
+    "        <option value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
+    "    </select>\n" +
+    "</div>");
+}]);
+
 angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html",
     "<div class=\"cc-thumbnail-bar\">\n" +
@@ -42,14 +78,14 @@ angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(
 
 angular.module("src/directives/ccVariantSelector/ccvariantselector.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccVariantSelector/ccvariantselector.tpl.html",
-    "<div class=\"cc-variant-selector\">\n" +
-    "    <div class=\"cc-variant-selector-select-wrapper\"\n" +
+    "<div class=\"cc-variant-selector cc-grouped\">\n" +
+    "    <div class=\"cc-select-box-select-wrapper\"\n" +
     "         ng-repeat=\"property in properties\">\n" +
-    "         <span ng-bind=\"selectedProperties[property]\"></span>\n" +
-    "         <span ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
-    "         <i class=\"cc-variant-selector-select-icon icon-chevron-down\"></i>\n" +
+    "         <span class=\"cc-select-box-display-value\" ng-bind=\"selectedProperties[property]\"></span>\n" +
+    "         <span class=\"cc-select-box-display-value\" ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
+    "         <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
     "        <select name=\"{{property}}\"\n" +
-    "                class=\"cc-variant-selector-native-select\" \n" +
+    "                class=\"cc-select-box-native-select\" \n" +
     "                ng-model=\"selectedProperties[property]\" \n" +
     "                ng-options=\"val for val in variants|ccVariantFilter:selectedProperties:property\">\n" +
     "            <option value=\"\">-- {{chooseText}} {{property}} --</option>\n" +
@@ -80,6 +116,16 @@ angular
     .module('sdk.services.basketService')
     .factory('basketService', ['storageService', function(storageService){
         return new cc.BasketService(storageService);
+}]);
+
+
+
+angular.module('sdk.services.checkoutService', ['sdk.services.basketService']);
+
+angular
+    .module('sdk.services.checkoutService')
+    .factory('checkoutService', ['$http', '$q', 'basketService', function($http, $q, basketService){
+        return new cc.CheckoutService($http, $q, basketService);
 }]);
 
 
@@ -165,6 +211,14 @@ angular
             $location.path('/cart');
         };
 
+        self.navigateToCheckout = function(){
+            $location.path('/checkout');
+        };
+
+        self.navigateToSummary = function(token){
+            $location.path('/summary/' + token);
+        };
+
         self.getCategoryUrlId = function(){
             return $location.path()
                 .replace(utilityRegex.urlBeforeCategory,'')
@@ -244,6 +298,46 @@ angular
 
 
 
+angular.module('sdk.directives.ccAddress', ['src/directives/ccAddress/ccaddress.tpl.html']);
+
+angular.module('sdk.directives.ccAddress')
+    .directive('ccAddress', function() {
+
+        'use strict';
+
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                data: '=',
+            },
+            templateUrl: 'src/directives/ccAddress/ccaddress.tpl.html'
+        };
+    });
+
+angular.module('sdk.directives.ccCheckBox', ['src/directives/ccCheckBox/cccheckbox.tpl.html']);
+
+angular.module('sdk.directives.ccCheckBox')
+    .directive('ccCheckBox', function() {
+
+        'use strict';
+
+        var instanceCount = 0;
+
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                label: '=?',
+                value: '=?'
+            },
+            templateUrl: 'src/directives/ccCheckBox/cccheckbox.tpl.html',
+            link: function(scope, $element, attrs){
+                instanceCount++;
+                scope.id = instanceCount;
+            }
+        };
+    });
 angular.module('sdk.directives.ccElasticViews', [
     'src/directives/ccElasticViews/elasticViews.tpl.html',
     /*ccElasticViews.domPos.left, */
@@ -2369,6 +2463,65 @@ angular.module('sdk.directives.ccScrollingShadow')
         };
     });
 
+angular.module('sdk.directives.ccSelectBox', ['src/directives/ccSelectBox/ccselectbox.tpl.html']);
+
+/**
+* Creates a mobile friendly select box that delegates to the native picker
+* 
+* Options:
+* 
+*   -   `displayValueExp` optional expression that maps values to display values.
+*       Can either be a string (e.g. 'some.nested.property') or a function 
+*       (e.g. function(value){ return value.some.nested.property; })
+*/
+angular.module('sdk.directives.ccSelectBox')
+    .directive('ccSelectBox', function() {
+
+        'use strict';
+
+        return {
+            restrict: 'E',
+            replace: true,
+            scope: {
+                data: '=',
+                propertyName: '=',
+                chooseText: '=?',
+                selectedValue: '=?',
+                displayValueExp: '&'
+            },
+            templateUrl: 'src/directives/ccSelectBox/ccselectbox.tpl.html',
+            link: function(scope, element, attrs){
+
+                var displayValueFormatter = scope.displayValueExp();
+
+                //default display function that will be used if no
+                //displayValueExp is given
+                scope.displayFn = function(value){ return value; };
+
+                if (angular.isFunction(displayValueFormatter)){
+                    scope.displayFn = displayValueFormatter;
+                }
+                else if (angular.isString(displayValueFormatter)){
+
+                    var properties = displayValueFormatter.split('.');
+
+                    scope.displayFn = function(value){
+
+                        if (!value){
+                            return value;
+                        }
+
+                        properties.forEach(function(node){
+                            value = value[node];
+                        });
+
+                        return value;
+                    };
+                }
+            }
+        };
+    });
+
 angular.module('sdk.directives.ccThumbnailBar', ['src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html']);
 
 angular.module('sdk.directives.ccThumbnailBar')
@@ -2552,6 +2705,9 @@ angular.module('sdk.directives', [
     'sdk.directives.ccFixedToolbarsView',
     'sdk.directives.ccZippy',
     'sdk.directives.ccFooter',
+    'sdk.directives.ccSelectBox',
+    'sdk.directives.ccCheckBox',
+    'sdk.directives.ccAddress',
     'sdk.directives.ccVariantSelector',
     'sdk.directives.ccThumbnailBar',
     'sdk.directives.ccScrollingShadow',

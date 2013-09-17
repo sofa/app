@@ -49,6 +49,14 @@ angular
             $location.path('/cart');
         };
 
+        self.navigateToCheckout = function(){
+            $location.path('/checkout');
+        };
+
+        self.navigateToSummary = function(token){
+            $location.path('/summary/' + token);
+        };
+
         self.getCategoryUrlId = function(){
             return $location.path()
                 .replace(utilityRegex.urlBeforeCategory,'')

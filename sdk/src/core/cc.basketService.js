@@ -228,7 +228,7 @@ cc.define('cc.BasketService', function(storageService, options){
      * 
      */
 
-    self.getSummary = function(){
+    self.getSummary = function(options){
         var shipping            = cc.Config.shippingCost,
             shippingTax         = cc.Config.shippingTax,
             freeShippingFrom    = cc.Config.freeShippingFrom,
@@ -236,6 +236,9 @@ cc.define('cc.BasketService', function(storageService, options){
             sum                 = 0,
             vat                 = 0,
             discount            = 0,
+            surcharge           =   options && options.paymentMethod &&
+                                    cc.Util.isNumber(options.paymentMethod.surcharge) ? 
+                                    options.paymentMethod.surcharge : 0,
             total               = 0;
 
         items.forEach(function(item){
@@ -252,7 +255,13 @@ cc.define('cc.BasketService', function(storageService, options){
         //set the shipping to zero if the sum is above the configured free shipping value
         shipping = freeShippingFrom !== null && freeShippingFrom !== undefined && sum >= freeShippingFrom ? 0 : shipping;
 
-        total = sum + shipping + discount;
+        //if a valid shipping method is provided, use the price and completely ignore
+        //the freeShippingFrom config as it's the backend's responsability to check that.
+        if (options && options.shippingMethod && cc.Util.isNumber(options.shippingMethod.price)){
+            shipping = options.shippingMethod.price;
+        }
+
+        total = sum + shipping + surcharge + discount;
 
         vat += parseFloat(Math.round((shipping * shippingTax / (100 + shippingTax) ) * 100) / 100);
 
@@ -264,6 +273,8 @@ cc.define('cc.BasketService', function(storageService, options){
             vatStr: vat.toFixed(2),
             shipping: shipping,
             shippingStr: shipping.toFixed(2),
+            surcharge: surcharge,
+            surchargeStr: surcharge.toFixed(2),
             discount: discount,
             total: total,
             totalStr: total.toFixed(2),

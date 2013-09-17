@@ -16,10 +16,11 @@ angular.module('CouchCommerceApp', [
     'sdk.services.basketService',
     'sdk.services.pagesService',
     'sdk.services.deviceService',
+    'sdk.services.checkoutService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',
-    'angular-carousel',
+    // 'angular-carousel',
     'templates'
     ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
@@ -192,6 +193,30 @@ var categoryStateConfig;
                 templateUrl: 'modules/cart/cart.tpl.html',
                 controller: 'CartController',
                 screenIndex: 3
+            });
+
+        $stateProvider
+            .state('checkout', {
+                url: '/checkout',
+                templateUrl: 'modules/checkout/checkout.tpl.html',
+                controller: 'CheckoutController',
+                screenIndex: 4
+            });
+
+        $stateProvider
+            .state('summary', {
+                url: '/summary/:token',
+                templateUrl: 'modules/summary/summary.tpl.html',
+                controller: 'SummaryController',
+                screenIndex: 5
+            });
+
+        $stateProvider
+            .state('thankyou', {
+                url: '/thankyou',
+                templateUrl: 'modules/thankyou/thankyou.tpl.html',
+                controller: function(){},
+                screenIndex: 6
             });
 
         $stateProvider

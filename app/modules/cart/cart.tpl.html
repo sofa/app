@@ -1,54 +1,44 @@
 <div class="cc-view-wrapper cc-view-phone">
-    <div class="cc-view-title" ng-bind="ln.shoppingCart"></div>
-    <ul>
-        <li ng-repeat="item in items"
-            ng-animate="{ leave: 'fade-out' }" 
-            class="cc-list-row cc-cart-list-row" >
-            <div class="cc-list-row-image cc-category-listing-row-image"
-            ng-click="navigationService.navigateToProduct(item.product)" 
-                 style="background-image: url({{item.product.getImage('small')}})">
-            </div>
-            <div class="cc-cart-list-row-text">
-                <div class="cc-cart-list-row-name">
-                    {{item.product.name}}
+    <div class="cc-title--big" ng-bind="ln.shoppingCart"></div>
+
+    <div ng-show="!isEmpty">
+        <ul>
+            <li ng-repeat="item in items"
+                ng-animate="{ leave: 'fade-out' }" 
+                class="cc-list-row cc-cart-list-row" >
+                <div class="cc-list-row-image cc-category-listing-row-image"
+                ng-click="navigationService.navigateToProduct(item.product)" 
+                     style="background-image: url({{item.product.getImage('small')}})">
                 </div>
-                <div class="cc-cart-list-row-single-price">
-                    {{ln.listItemPrice}} {{item.product.price | currency}}
-                </div>
-                <div class="cc-cart-list-row-price">
-                    {{item.getTotal() | currency: '€'}}
-                </div>
-                <div class="cc-cart-quantity-selector">
-                    <!-- TODO think about making this a directive -->
-                    <span ng-click="decreaseItem(item)" class="cc-cart-button">-</span>
-                    <span>{{item.quantity}}</span>
-                    <span ng-click="basketService.increaseOne(item)" class="cc-cart-button">+</span>
-                </div>
-                <div class="cc-cart-item-variants">
-                    <div ng-repeat="(variantProperty, variantPropertyValue) in item.variant.properties">
-                        {{variantProperty}}:{{variantPropertyValue}}
+                <div class="cc-cart-list-row-text">
+                    <div class="cc-cart-list-row-name">
+                        {{item.product.name}}
+                    </div>
+                    <div class="cc-cart-list-row-single-price">
+                        {{ln.listItemPrice}} {{item.product.price | currency}}
+                    </div>
+                    <div class="cc-cart-list-row-price">
+                        {{item.getTotal() | currency: '€'}}
+                    </div>
+                    <div class="cc-cart-quantity-selector">
+                        <!-- TODO think about making this a directive -->
+                        <span ng-click="decreaseItem(item)" class="cc-cart-button">-</span>
+                        <span>{{item.quantity}}</span>
+                        <span ng-click="basketService.increaseOne(item)" class="cc-cart-button">+</span>
+                    </div>
+                    <div class="cc-cart-item-variants">
+                        <div ng-repeat="(variantProperty, variantPropertyValue) in item.variant.properties">
+                            {{variantProperty}}:{{variantPropertyValue}}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-    </ul>
-    <div ng-show="!isEmpty" class="cc-cart-total-panel">
-        <div>
-            <span class="cc-cart-total-panel-text" ng-bind="ln.summarySubtotal" ></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.sum | currency"></span>
-        </div>
-        <div>
-            <span class="cc-cart-total-panel-text" ng-bind="ln.summaryShipping" ></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.shipping | currency"></span>
-        </div>
-        <div>
-            <span class="cc-cart-total-panel-text" ng-bind="ln.summaryTaxLabel"></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.vat | currency"></span>
-        </div>
-        <div class="cc-cart-total-line">
-            <span class="cc-cart-total-panel-text" ng-bind="ln.summaryGrandTotalLabel"></span>
-            <span class="cc-cart-total-panel-figure" ng-bind="summary.total | currency"></span>
-        </div>
+            </li>
+        </ul>
+
+        <!-- is that a candidate for a cc-total-box directive? -->
+        <div ng-include="tpl.TOTALBOX"></div>
+
+        <a ng-click="navigationService.navigateToCheckout()" class="cc-couch-action-button cc-cart-checkout-button">{{ ln.checkout }}</a>
     </div>
     <div class="cc-expand cc-cart-empty-hint" ng-show="isEmpty">
         <div class="cc-cart-empty-hint-content">

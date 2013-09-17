@@ -376,4 +376,29 @@ test('calculates summary', function() {
     ok(summary.sum === 84.65, 'calculates sum correctly');
     ok(summary.vat === 8.50, 'calculates VAT correctly');
     ok(summary.total === 89.65, 'calculates total correctly');
+    ok(summary.shipping === 5, 'uses shipping costs from config');
+});
+
+test('calculates summary', function() {
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
+
+    var product = new cc.models.Product();
+    product.price = 29.99;
+    product.tax = 19;
+
+    basketService.addItem(product, 1);
+
+    var summary = basketService.getSummary({
+        paymentMethod: { surcharge: 3 },
+        shippingMethod: { price: 2.90 }
+    });
+    var itemCount = basketService.getItems().length;
+
+    ok(itemCount === 1, 'has no basketItems');
+    ok(summary.surchargeStr === '3.00', 'has a surcharge of 3.00');
+    ok(summary.surcharge === 3, 'has a surcharge of 3');
+    ok(summary.shipping === 2.90, 'uses passed shippingMethod for shipping costs');
+    ok(summary.vat === 5.25, 'calculates VAT correctly');
+    ok(summary.total === 35.89, 'calculates total correctly');
 });

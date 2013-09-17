@@ -1,4 +1,25 @@
-angular.module('cc.angular.templates', ['src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+
+angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccAddress/ccaddress.tpl.html",
+    "<div>\n" +
+    "    <div>{{data.company}}</div>\n" +
+    "    <div>{{data.name}} {{data.surname}}</div>\n" +
+    "    <div>{{data.street}}</div>\n" +
+    "    <div>{{data.zip}} {{data.city}}</div>\n" +
+    "    <div>{{data.country.label}}</div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("src/directives/ccCheckBox/cccheckbox.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccCheckBox/cccheckbox.tpl.html",
+    "<label for=\"cc-check-box-{{id}}\" class=\"topcoat-checkbox\">\n" +
+    "  <input ng-model=\"value\" id=\"cc-check-box-{{id}}\" aria-labelledby=\"cc-check-box-{{id}}-label\" aria-describedby=\"cc-check-box-{{id}}-description\" type=\"checkbox\">\n" +
+    "  <div class=\"topcoat-checkbox__checkmark\"></div>\n" +
+    "  <span id=\"cc-check-box-{{id}}-label\">{{label}}</span> \n" +
+    "</label>");
+}]);
 
 angular.module("src/directives/ccElasticViews/elasticViews.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccElasticViews/elasticViews.tpl.html",
@@ -28,6 +49,21 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "</div>");
 }]);
 
+angular.module("src/directives/ccSelectBox/ccselectbox.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccSelectBox/ccselectbox.tpl.html",
+    "<div class=\"cc-select-box-select-wrapper\">\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(selectedValue)\"></span>\n" +
+    "     <span class=\"cc-select-box-display-value\" ng-hide=\"selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
+    "     <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
+    "    <select name=\"{{propertyName}}\"\n" +
+    "            class=\"cc-select-box-native-select\" \n" +
+    "            ng-model=\"selectedValue\" \n" +
+    "            ng-options=\"displayFn(val) for val in data\">\n" +
+    "        <option value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
+    "    </select>\n" +
+    "</div>");
+}]);
+
 angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html",
     "<div class=\"cc-thumbnail-bar\">\n" +
@@ -42,14 +78,14 @@ angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(
 
 angular.module("src/directives/ccVariantSelector/ccvariantselector.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccVariantSelector/ccvariantselector.tpl.html",
-    "<div class=\"cc-variant-selector\">\n" +
-    "    <div class=\"cc-variant-selector-select-wrapper\"\n" +
+    "<div class=\"cc-variant-selector cc-grouped\">\n" +
+    "    <div class=\"cc-select-box-select-wrapper\"\n" +
     "         ng-repeat=\"property in properties\">\n" +
-    "         <span ng-bind=\"selectedProperties[property]\"></span>\n" +
-    "         <span ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
-    "         <i class=\"cc-variant-selector-select-icon icon-chevron-down\"></i>\n" +
+    "         <span class=\"cc-select-box-display-value\" ng-bind=\"selectedProperties[property]\"></span>\n" +
+    "         <span class=\"cc-select-box-display-value\" ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
+    "         <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
     "        <select name=\"{{property}}\"\n" +
-    "                class=\"cc-variant-selector-native-select\" \n" +
+    "                class=\"cc-select-box-native-select\" \n" +
     "                ng-model=\"selectedProperties[property]\" \n" +
     "                ng-options=\"val for val in variants|ccVariantFilter:selectedProperties:property\">\n" +
     "            <option value=\"\">-- {{chooseText}} {{property}} --</option>\n" +
