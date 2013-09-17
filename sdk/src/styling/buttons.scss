@@ -13,6 +13,12 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     display: inline-block;
 }
 
+.cc-button-base--disabled, %cc-button-base--disabled{
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+}
+
 .cc-couch-action-button{
     @extend %cc-button-base;
 
@@ -35,6 +41,10 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
         background-image: -webkit-linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
         background-image: linear-gradient(bottom,$button-color-normal 28%,$button-color-pressed 100%);
     }
+}
+
+.cc-couch-action-button--disabled{
+    @extend %cc-button-base--disabled;
 }
 
 $lighter-content-background-color: lighten($content-background-color, 10%);
@@ -64,6 +74,10 @@ $darker-content-background-color: darken($content-background-color, 5%);
     }
 }
 
+.cc-couch-default-button-on-content--disabled{
+    @extend %cc-button-base--disabled;
+}
+
 $lighter-background-color: lighten($background-color, 10%);
 $darker-background-color: darken($background-color, 5%);
 
@@ -89,4 +103,8 @@ $darker-background-color: darken($background-color, 5%);
         background-image: -webkit-linear-gradient(bottom,$lighter-background-color 28%,$darker-background-color 100%);
         background-image: linear-gradient(bottom,$lighter-background-color 28%,$darker-background-color 100%);
     }
+}
+
+.cc-couch-default-button-on-background--disabled{
+    @extend %cc-button-base--disabled;
 }
