@@ -105,10 +105,18 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     .cc-scroller--if-fixed{
         @extend %cc-scrollable-vertical;
     }
+
+    &.cc-scroller--if-fixed{
+        @extend %cc-scrollable-vertical;
+    }
 }
 
 .cc-no-position-fixed{
     .cc-scroller--if-no-fixed{
+        @extend %cc-scrollable-vertical;
+    }
+
+    &.cc-scroller--if-no-fixed{
         @extend %cc-scrollable-vertical;
     }
 }
