@@ -1,0 +1,48 @@
+.cc-title, %cc-title{
+    font-weight: bold;
+}
+
+.cc-title--huge, %cc-title--huge{
+    @extend %cc-title;
+    font-size: $font-size-huge;
+}
+
+.cc-title--big, %cc-title--big{
+    @extend %cc-title;
+    font-size: $font-size-big;
+}
+
+.cc-title--medium, %cc-title--medium{
+    @extend %cc-title;
+    font-size: $font-size-medium;
+}
+
+.cc-title--regular, %cc-title--regular{
+    @extend %cc-title;
+    font-size: $font-size-regular;
+}
+
+.cc-title--centered, %cc-title--centered{
+    @extend %cc-title;
+    text-align: center;
+}
+
+.cc-title--huge--centered{
+    @extend %cc-title--huge;
+    @extend %cc-title--centered
+}
+
+.cc-title--big--centered{
+    @extend %cc-title--big;
+    @extend %cc-title--centered
+}
+
+.cc-title--medium--centered{
+    @extend %cc-title--medium;
+    @extend %cc-title--centered
+}
+
+.cc-title--regular--centered{
+    @extend %cc-title--regular;
+    @extend %cc-title--centered
+}
