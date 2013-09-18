@@ -189,6 +189,20 @@ cc.Util = {
         }
         return result;
     },
+    debounce: function (fn, delay) {
+        var timer = null;
+
+        return function () {
+            var context = this, 
+                args = arguments;
+            
+            clearTimeout(timer);
+            
+            timer = setTimeout(function () {
+              fn.apply(context, args);
+            }, delay);
+        };
+    },
     isNumber: function(value){
       return typeof value === 'number';
     },
