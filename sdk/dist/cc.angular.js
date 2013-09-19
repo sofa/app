@@ -2612,6 +2612,7 @@ angular.module('sdk.directives.ccSelectBox')
                     }
                 });
 
+                //we would move this to cc.Util but first it needs to be decoupled from angular.equals()
                 var contains = function(arr, obj){
                     for (var i = 0; i < arr.length; i++) {
                         var element = arr[i];
