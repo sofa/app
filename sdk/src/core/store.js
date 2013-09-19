@@ -2,7 +2,7 @@
     var store = {},
         win = window,
         doc = win.document,
-        localStorageName = 'sessionStorage',
+        localStorageName = 'localStorage',
         namespace = '__storejs__',
         storage
 
