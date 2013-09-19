@@ -35,13 +35,13 @@
     left: 10px
 }
 
-.cc-valid{
+.cc-valid >{
     .cc-validation__message--success{
         display: inline-block;
     }
 }
 
-.cc-invalid{
+.cc-invalid >{
     .cc-validation__message--fail{
         display: inline-block;
     }
