@@ -413,28 +413,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService){
     //allow this service to raise events
     cc.observable.mixin(self);
 
-    /**
-     * Gets an array of supported countries for shipping and invoicing 
-     * 
-     */
-    self.getSupportedCountries = function(){
-        if (!cc.Config.countries){
-            //should we rather throw an exception here?
-            return [];
-        }
-
-        return cc.Config.countries;
-    };
-
-    /**
-     * Gets the default country for shipping and invoicing
-     * 
-     */
-    self.getDefaultCountry = function(){
-        var countries = self.getSupportedCountries();
-        return countries.length === 0 ? null : countries[0];
-    };
-
     //we might want to put this into a different service
     var toFormData = function(obj) {
         var str = [];
@@ -707,6 +685,36 @@ cc.Config = {
             }
     ]
 };
+cc.define('cc.ConfigService', function(){
+
+    'use strict';
+
+    var self = {};
+
+    /**
+     * Gets an array of supported countries for shipping and invoicing 
+     * 
+     */
+    self.getSupportedCountries = function(){
+        if (!cc.Config.countries){
+            //should we rather throw an exception here?
+            return [];
+        }
+
+        return cc.Config.countries;
+    };
+
+    /**
+     * Gets the default country for shipping and invoicing
+     * 
+     */
+    self.getDefaultCountry = function(){
+        var countries = self.getSupportedCountries();
+        return countries.length === 0 ? null : countries[0];
+    };
+
+    return self;
+});
 cc.define('cc.CouchService', function($http, $q){
 
     'use strict';
@@ -1571,6 +1579,64 @@ cc.define('cc.QService', function(){
 //we just wrap store.js in a service here
 cc.define('cc.SessionStorageService', function(){
     return store;
+});
+cc.define('cc.UserService', function(storageService, configService){
+
+    'use strict';
+
+    var self = {},
+        STORE_PREFIX = 'basketService_',
+        STORE_INVOICE_ADDRESS_KEY = STORE_PREFIX + 'invoiceAddress',
+        STORE_SHIPPING_ADDRESS_KEY = STORE_PREFIX + 'shippingAddress';
+
+    /**
+     * Gets the invoice address for the user
+     */
+    self.getInvoiceAddress = function(){
+        var address = storageService.get(STORE_INVOICE_ADDRESS_KEY);
+
+        if (!address){
+            address = {
+                country: configService.getDefaultCountry()
+            };
+
+            self.updateInvoiceAddress(address);
+        }
+
+        return address;
+    };
+
+    /**
+     * Creates/Updates the invoice address for the user
+     */
+    self.updateInvoiceAddress = function(invoiceAddress){
+        return storageService.set(STORE_INVOICE_ADDRESS_KEY, invoiceAddress);
+    };
+
+    /**
+     * Gets the shipping address for the user
+     */
+    self.getShippingAddress = function(){
+        var address = storageService.get(STORE_SHIPPING_ADDRESS_KEY);
+
+        if(!address){
+            address = {
+                country: configService.getDefaultCountry()
+            };
+            self.updateInvoiceAddress(address);
+        }
+
+        return address;
+    };
+
+    /**
+     * Creates/Updates the shipping address for the user
+     */
+    self.updateShippingAddress = function(invoiceAddress){
+        return storageService.set(STORE_SHIPPING_ADDRESS_KEY, invoiceAddress);
+    };
+
+    return self;
 });
 cc.Util = {
     //http://docs.sencha.com/touch/2.2.0/source/Number2.html#Ext-Number-method-toFixed

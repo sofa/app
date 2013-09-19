@@ -4,17 +4,13 @@ angular
     .module('CouchCommerceApp')
     .controller('CheckoutController',
     [
-        '$scope','basketService', 'navigationService', 'checkoutService', '$dialog',
-        function CheckoutController($scope, basketService, navigationService, checkoutService, $dialog) {
+        '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', '$dialog',
+        function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, $dialog) {
 
             //should we abstract this into something reusable for the SDK?
             var checkoutModel = {
-                billingAddress: {
-                    country: checkoutService.getDefaultCountry()
-                },
-                shippingAddress: {
-                    country: checkoutService.getDefaultCountry()
-                },
+                billingAddress: userService.getInvoiceAddress(),
+                shippingAddress: userService.getShippingAddress(),
                 supportedShippingMethods: [],
                 supportedPaymentMethods: [],
                 selectedPaymentMethod: null,
@@ -24,6 +20,7 @@ angular
             };
 
             $scope.checkoutService = checkoutService;
+            $scope.configService = configService;
             $scope.basketService = basketService;
             $scope.navigationService = navigationService;
 
@@ -62,6 +59,11 @@ angular
                 });
             };
 
+            var saveAddresses = function(){
+                userService.updateInvoiceAddress(checkoutModel.billingAddress);
+                userService.updateShippingAddress(checkoutModel.shippingAddress);
+            };
+
             //validate the checkout on load
             validateCheckout();
 
@@ -84,6 +86,7 @@ angular
                     validateCheckout();
                     checkSurcharge();
                     updateSummary();
+                    saveAddresses();
                 });
             });
 
@@ -93,7 +96,7 @@ angular
             };
 
             $scope.proceed = function(){
-
+                saveAddresses();
                 checkoutService
                     .checkoutWithCouchCommerce(checkoutModel)
                     .then(function(token){

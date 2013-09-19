@@ -17,6 +17,8 @@ angular.module('CouchCommerceApp', [
     'sdk.services.pagesService',
     'sdk.services.deviceService',
     'sdk.services.checkoutService',
+    'sdk.services.userService',
+    'sdk.services.configService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',

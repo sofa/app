@@ -131,6 +131,16 @@ angular
 
 
 
+angular.module('sdk.services.configService', []);
+
+angular
+    .module('sdk.services.configService')
+    .factory('configService', [function(){
+        return new cc.ConfigService();
+}]);
+
+
+
 angular.module('sdk.services.couchService', []);
 
 angular
@@ -295,6 +305,20 @@ angular
     .module('sdk.services.sessionStorageService')
     .factory('storageService', [function(){
         return new cc.SessionStorageService();
+}]);
+
+
+
+angular.module('sdk.services.userService', [
+        // TODO: Investigate. I'm not sold this should be handled on this level. 
+        store.enabled ? 'sdk.services.sessionStorageService' : 'sdk.services.memoryStorageService',
+        'sdk.services.configService'
+    ]);
+
+angular
+    .module('sdk.services.userService')
+    .factory('userService', ['storageService', 'configService', function(storageService, configService){
+        return new cc.UserService(storageService, configService);
 }]);
 
 
