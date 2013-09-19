@@ -51,6 +51,7 @@ cc.Lang = {
         formZip:'PLZ',
         formCountry:'Land',
         formEmail:'E-mail Adresse',
+        formTelephone:'Telefonnummer',
         shippongMethod:'Versand',
         listItemQty:'Anzahl:',
         listItemPrice:'Einzelpreis:',
