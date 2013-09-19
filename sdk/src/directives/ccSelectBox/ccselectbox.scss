@@ -76,9 +76,7 @@ $cc-select-box-height: 50px;
 .cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
 cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
 .cc-grouped .cc-text-box + .cc-select-box-select-wrapper,
-cc-grouped .cc-text-box + .cc-select-box-select-wrapper,
-.cc-grouped .cc-validation + .cc-select-box-select-wrapper,
-cc-grouped .cc-validation + .cc-select-box-select-wrapper{
+cc-grouped .cc-text-box + .cc-select-box-select-wrapper{
     border-top: none;
 }
 

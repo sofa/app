@@ -47,21 +47,24 @@
     }
 }
 
-.cc-validation{
-    .cc-text-box{
-        //I have honestly no clue why this is needed but it is :-/
-        border-top: none;
-    }
+//This deals with all different forms of how validations can mess up the grouping :)
+.cc-grouped .cc-validation + .cc-text-box,
+cc-grouped .cc-validation + .cc-text-box,
+.cc-grouped .cc-validation + .cc-validation .cc-text-box,
+cc-grouped .cc-validation + .cc-validation .cc-text-box,
+.cc-grouped .cc-text-box + .cc-validation .cc-text-box,
+cc-grouped .cc-text-box + .cc-validation .cc-text-box,
+.cc-grouped .cc-select-box-select-wrapper + .cc-validation .cc-text-box,
+cc-grouped .cc-select-box-select-wrapper + .cc-validation .cc-text-box,
+.cc-grouped .cc-validation + .cc-select-box-select-wrapper,
+cc-grouped .cc-validation + .cc-select-box-select-wrapper
+{
+    border-top: none;
+}
 
-    .cc-text-box:last-child{
+.cc-grouped .cc-validation .cc-text-box:last-child,
+cc-grouped .cc-validation .cc-text-box:last-child{
         border-bottom-left-radius: 0px;
         border-bottom-right-radius: 0px;
-    }
 }
 
-.cc-validation:last-child{
-    .cc-text-box{
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
-    }
-}
