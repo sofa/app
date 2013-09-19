@@ -6,6 +6,9 @@ cc.define('cc.CheckoutService', function($http, $q, basketService){
 
     var FORM_DATA_HEADERS = {'Content-Type': 'application/x-www-form-urlencoded'},
         FULL_CHECKOUT_URL = cc.Config.checkoutUrl + 'ajax.php';
+
+    var lastUsedPaymentMethod,
+        lastUsedShippingMethod;
     
     //allow this service to raise events
     cc.observable.mixin(self);
@@ -83,10 +86,26 @@ cc.define('cc.CheckoutService', function($http, $q, basketService){
         return requestModel;
     };
 
+    self.getLastUsedPaymentMethod = function(){
+        return lastUsedPaymentMethod || null;
+    };
+
+    self.getLastUsedShippingMethod = function(){
+        return lastUsedShippingMethod || null;
+    };
+
     self.getSupportedCheckoutMethods = function(checkoutModel){
 
         var requestModel = createRequestData(checkoutModel);
         requestModel.task = 'GETPAYMENTMETHODS';
+
+        if (checkoutModel.selectedPaymentMethod){
+            lastUsedPaymentMethod = checkoutModel.selectedPaymentMethod;
+        }
+
+        if (checkoutModel.selectedShippingMethod){
+            lastUsedShippingMethod = checkoutModel.selectedShippingMethod;
+        }
 
         return $http({
             method: 'POST',

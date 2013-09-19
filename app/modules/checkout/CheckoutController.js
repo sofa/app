@@ -13,8 +13,8 @@ angular
                 shippingAddress: userService.getShippingAddress(),
                 supportedShippingMethods: [],
                 supportedPaymentMethods: [],
-                selectedPaymentMethod: null,
-                selectedShippingMethod: null,
+                selectedPaymentMethod: checkoutService.getLastUsedPaymentMethod(),
+                selectedShippingMethod: checkoutService.getLastUsedShippingMethod(),
                 addressEqual: true,
                 surchargeHint: ''
             };

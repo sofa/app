@@ -57,11 +57,26 @@ angular.module('sdk.directives.ccSelectBox')
                 //We fix this by listening on the data, when it comes in and the _selectedValue
                 //is still null, we set it to the first item and instantly unbind.
                 var unwatch = scope.$watch('data', function(data){
-                    if (data.length > 0 && scope._selectedValue === null){
+                    //wow, we really need unit tests for all this mess. The contains check is needed for
+                    //such cases where a _selectedValue is present but then the data changes and the value
+                    //is no longer part of the data. We then reset the _selectedValue to the first value of
+                    //the data source.
+                    if (data.length > 0 && (scope._selectedValue === null || !contains(data, scope._selectedValue))){
                         scope._selectedValue = data[0];
                         unwatch();
                     }
                 });
+
+                var contains = function(arr, obj){
+                    for (var i = 0; i < arr.length; i++) {
+                        var element = arr[i];
+                        if (angular.equals(obj, element)){
+                            return true;
+                        }
+                    }
+
+                    return false;
+                };
 
                 var allowNull = attrs.allowNull !== undefined;
 
