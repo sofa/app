@@ -5,7 +5,7 @@
     <cc-check-box
         ng-if="vm.showGeneralAgreement"
         class="cc-check-box-on-background" 
-        value="vm.generalAgreement" label="'Ich stimme den AGB zu und habe die Informationen zum Widerrufsrecht gelesen.'">
+        value="vm.generalAgreement" agreement="ln.combinedAgreement">
     </cc-check-box>
 
     <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
@@ -13,7 +13,7 @@
         ng-if="vm.showAgeAgreement" 
         class="cc-check-box-on-background" 
         value="vm.ageAgreement" 
-        label="'Alterscheck'">
+        label="ln.ageAgreement">
     </cc-check-box>
 
     <h2 class="cc-title--medium">{{ln.billingAddress}}</h2>

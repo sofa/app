@@ -714,6 +714,10 @@ cc.Config = {
     shippingText:'zzgl. 5€ Versandkosten',
     showGeneralAgreement:1,
     showAgeAgreement:0,
+    linkGeneralAgreement:'saturn',
+    linkRecallAgreement:'neptune',
+    linkAgeAgreement:'age',
+    linkShippingCosts:'',
     countries:[{"value":"DE","label":"Deutschland"},{"value":"AT","label":"\u00d6sterreich"},{"value":"AE","label":"Arabische Emirate"},{"value":"AU","label":"Australien"},{"value":"BE","label":"Belgien"},{"value":"DK","label":"D\u00e4nemark"},{"value":"FI","label":"Finnland"},{"value":"IT","label":"Italien"},{"value":"NL","label":"Niederlande"},{"value":"CH","label":"Schweiz"},{"value":"ES","label":"Spanien"}],
     aboutPages:[
             {

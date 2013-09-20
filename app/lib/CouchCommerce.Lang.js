@@ -69,7 +69,7 @@ cc.Lang = {
         recallAgreement:'Die <a href="javascript:void(0);" id="widerruflink">Widerrufsbelehrung</a> habe ich zur Kenntnis genommen.',
         ageAgreement:'Hiermit bestätige ich, dass ich 18 Jahre alt (oder älter) bin.',
         confirmAgreement:'Bitte bestätigen Sie, dass Sie die AGB und Widerrufsbelehrung gelesen und zur Kenntnis genommen haben.',
-
+        combinedAgreement:'Ich stimme den <a href="javascript:void(0);" id="agblink">AGB</a> zu und habe die <a href="javascript:void(0);" id="widerruflink">Informationen zum Widerrufsrecht</a> gelesen.',
 
         /*thank you*/
         thankYouTitle:'Danke für Ihren Einkauf bei uns!',
