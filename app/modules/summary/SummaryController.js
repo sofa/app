@@ -25,6 +25,14 @@ angular
                     vm.items            = result.response.items;
                     //we directly set this one on the scope to gain reuse of the included template
                     $scope.summary      = result.summary;
+                }, function(){
+                    $dialog
+                        .messageBox(
+                            $scope.ln.btnWarning,
+                            $scope.ln.errorGettingPaymentDetails,
+                            [{result: 'ok', label: $scope.ln.btnOk}]
+                        )
+                        .open();
                 });
 
             vm.showAgeAgreement = !!cc.Config.showAgeAgreement;

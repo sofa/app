@@ -101,6 +101,14 @@ angular
                     .checkoutWithCouchCommerce(checkoutModel)
                     .then(function(token){
                         navigationService.navigateToSummary(token);
+                    }, function(){
+                        $dialog
+                            .messageBox(
+                                $scope.ln.btnWarning,
+                                $scope.ln.errorGettingPaymentDetails,
+                                [{result: 'ok', label: $scope.ln.btnOk}]
+                            )
+                            .open();
                     });
             };
         }

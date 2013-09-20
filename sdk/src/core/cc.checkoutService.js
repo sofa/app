@@ -1,4 +1,4 @@
-cc.define('cc.CheckoutService', function($http, $q, basketService){
+cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService){
 
     'use strict';
 
@@ -141,7 +141,14 @@ cc.define('cc.CheckoutService', function($http, $q, basketService){
 
             return data;
         }, function(fail){
-            console.log(fail);
+            loggingService.error([
+                '[CheckoutService: getSupportedCheckoutMethods]',
+                '[Request Data]',
+                checkoutModel,
+                '[Service answer]',
+                fail
+            ]);
+            return $q.reject(fail);
         });
     };
 
@@ -165,7 +172,15 @@ cc.define('cc.CheckoutService', function($http, $q, basketService){
             }
             return data;
         }, function(fail){
-            console.log(fail);
+            loggingService.error([
+                '[CheckoutService: checkoutWithCouchCommerce]',
+                '[Request Data]',
+                checkoutModel,
+                '[Service answer]',
+                fail
+            ]);
+
+            return $q.reject(fail);
         });
     };
 
@@ -249,6 +264,16 @@ cc.define('cc.CheckoutService', function($http, $q, basketService){
         })
         .then(function(response){
             return toJson(response.data);
+        }, function(fail){
+            loggingService.error([
+                '[CheckoutService: checkoutWithCouchCommerce]',
+                '[Request Data]',
+                token,
+                '[Service answer]',
+                fail
+            ]);
+
+            return $q.reject(fail);
         });
     };
 

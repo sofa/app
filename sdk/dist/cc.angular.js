@@ -121,12 +121,12 @@ angular
 
 
 
-angular.module('sdk.services.checkoutService', ['sdk.services.basketService']);
+angular.module('sdk.services.checkoutService', ['sdk.services.basketService', 'sdk.services.loggingService']);
 
 angular
     .module('sdk.services.checkoutService')
-    .factory('checkoutService', ['$http', '$q', 'basketService', function($http, $q, basketService){
-        return new cc.CheckoutService($http, $q, basketService);
+    .factory('checkoutService', ['$http', '$q', 'basketService', 'loggingService', function($http, $q, basketService, loggingService){
+        return new cc.CheckoutService($http, $q, basketService, loggingService);
 }]);
 
 
@@ -157,6 +157,16 @@ angular
     .module('sdk.services.deviceService')
     .factory('deviceService', ['$window', function($window){
         return new cc.DeviceService($window);
+}]);
+
+
+
+angular.module('sdk.services.loggingService', ['sdk.services.configService']);
+
+angular
+    .module('sdk.services.loggingService')
+    .factory('loggingService', ['configService', function(configService){
+        return new cc.LoggingService(configService);
 }]);
 
 
