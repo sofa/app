@@ -22,7 +22,8 @@ angular.module('sdk.directives.ccSelectBox')
                 propertyName: '=',
                 chooseText: '=?',
                 failMessage: '=?',
-                displayValueExp: '&'
+                displayValueExp: '&',
+                _selectedValue: '=ngModel'
             },
             require: '?ngModel',
             templateUrl: 'src/directives/ccSelectBox/ccselectbox.tpl.html',
@@ -37,14 +38,12 @@ angular.module('sdk.directives.ccSelectBox')
 
                 //What we do is:
 
-                //1. we listen on the expression which is set via the ngModel manually.
-                //We have to use $parent for that.
+                //1. we set up a bi directional binding between the expression provided to ngMode
+                //and a isolated scope property called _selectedValue. This way we don't have to
+                //use $parent in our template.
 
-                //2. we propagate changes on a private _selectedValue property on the isolated scope.
-                //This way we don't have to use $parent within our template
-
-                //3. we listen on scope._selectedValue manually and propagate changes back to
-                //the $parent scope using some clever $eval magic :)
+                //2. we listen on scope._selectedValue manually and control the ngModelController
+                //accordingly
 
                 //This seems rather hacky. It works around the situation where we:
                 //  - don't have a null value
@@ -84,10 +83,6 @@ angular.module('sdk.directives.ccSelectBox')
                 //defines if an empty value should be omitted
                 scope._omitNull = attrs.omitNull !== undefined;
 
-                scope.$parent.$watch(attrs.ngModel, function(newValue){
-                    scope._selectedValue = newValue;
-                });
-
                 var displayValueFormatter = scope.displayValueExp();
 
                 if (ngModelController){
@@ -100,12 +95,6 @@ angular.module('sdk.directives.ccSelectBox')
                         else{
                             ngModelController.$setValidity('value', true);
                         }
-
-                        //we need to propagate the value back to the $parent scope
-                        //where it lives on. However, bindings might not be simple
-                        //but nested properties (e.g. $scope.person.address.country)
-                        //therefore, it's best to let $eval do the heavy lifting for us.
-                        scope.$eval('$parent.' + attrs.ngModel + ' = _selectedValue');
                     });
                 }
 
