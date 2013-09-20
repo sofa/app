@@ -1,4 +1,5 @@
 cc.Config = {
+    loggingEnabled: true,
     storeId: 53787,
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     checkoutUrl:'http://couchdemoshop.couchcommerce.com/checkout/v2/',

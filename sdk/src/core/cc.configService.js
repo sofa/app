@@ -26,5 +26,16 @@ cc.define('cc.ConfigService', function(){
         return countries.length === 0 ? null : countries[0];
     };
 
+    self.get = function(key, defaultValue){
+
+        var value = cc.Config[key];
+
+        if (cc.Util.isUndefined(value) && !cc.Util.isUndefined(defaultValue)){
+            return defaultValue;
+        }
+
+        return value;
+    };
+
     return self;
 });

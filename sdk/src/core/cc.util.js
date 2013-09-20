@@ -203,11 +203,14 @@ cc.Util = {
             }, delay);
         };
     },
+    isObject: function(value){
+        return typeof value === 'object';
+    },
     isNumber: function(value){
       return typeof value === 'number';
     },
     isArray: function(value){
-            return toString.call(value) === '[object Array]';
+        return toString.call(value) === '[object Array]';
     },
     isFunction: function(value){
         return typeof value === 'function';
