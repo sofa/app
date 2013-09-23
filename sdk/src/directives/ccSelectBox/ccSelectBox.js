@@ -19,7 +19,6 @@ angular.module('sdk.directives.ccSelectBox')
             replace: true,
             scope: {
                 data: '=',
-                propertyName: '=',
                 chooseText: '=?',
                 failMessage: '=?',
                 displayValueExp: '&',
