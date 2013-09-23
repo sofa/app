@@ -42,8 +42,11 @@
                 <div class="cc-cart-list-row-name">
                     {{item.name}}
                 </div>
-                <div class="cc-cart-list-row-single-price">
+                <div>
                     {{ln.listItemPrice}} {{item.price | currency}}
+                </div>
+                <div>
+                    {{ln.listItemQty}} {{item.qty}}
                 </div>
                 <div class="cc-cart-list-row-price">
                     {{item.subtotal | currency}}
