@@ -2,7 +2,7 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('agreement', ['$rootScope', '$dialog', 'pagesService', 'configService', function($rootScope, $dialog, pagesService, configService) {
+    .directive('agreement', ['$rootScope', '$compile', '$dialog', 'pagesService', 'configService', function($rootScope, $compile, $dialog, pagesService, configService) {
 
         'use strict';
 
@@ -30,7 +30,14 @@ angular
                 //entire code base. But the language files make it not very
                 //easy to deal with and we don't want a breaking change on the
                 //backend side.
-                $element.html($element.html().replace('{{label}}', scope.agreement));
+
+                var oldLabel = $element.find('span');
+
+                //we need to remove the entire label since. Otherwise the bindign
+                //will just remove our hard inserted value.
+                oldLabel.after('<span>' + scope.agreement + '<test>');
+
+                oldLabel.remove();
 
                 var element = $element[0];
 
