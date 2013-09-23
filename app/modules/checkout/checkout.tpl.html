@@ -65,9 +65,7 @@
             ng-model="checkoutModel.billingAddress.country"
             class="cc-select-box-on-background"
             omit-null 
-            fail-message="'Bitte wählen Sie ein Rechnungsland'"
-            choose-text="'wähle'" 
-            property-name="'Rechnungsland'" 
+            choose-text="ln.choose" 
             display-value-exp="'label'" 
             data="configService.getSupportedCountries()">
         </cc-select-box>
@@ -113,11 +111,11 @@
         </span>
         <cc-select-box
             class="cc-select-box-on-background" 
-            selected-value="checkoutModel.shippingAddress.country" 
+            ng-model="checkoutModel.shippingAddress.country" 
             choose-text="ln.choose" 
-            property-name="'Lieferland'" 
+            omit-null
             display-value-exp="'label'" 
-            data="checkoutService.getSupportedCountries()">
+            data="configService.getSupportedCountries()">
         </cc-select-box>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
