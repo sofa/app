@@ -108,3 +108,27 @@ $darker-background-color: darken($background-color, 5%);
 .cc-couch-default-button-on-background--disabled{
     @extend %cc-button-base--disabled;
 }
+
+.cc-paypal-button{
+    height: 89px;
+    width: 100%;
+    display: inline-block;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    position: relative;
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--de-de{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x_P.png);
+    }
+}
