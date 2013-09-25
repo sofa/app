@@ -4,11 +4,12 @@ angular
     .module('CouchCommerceApp')
     .controller('CartController',
     [
-        '$scope','basketService', 'navigationService', '$dialog',
-        function CartController($scope, basketService, navigationService, $dialog) {
+        '$scope','basketService', 'navigationService', '$dialog', 'checkoutService', 'configService',
+        function CartController($scope, basketService, navigationService, $dialog, checkoutService, configService) {
 
             $scope.basketService = basketService;
             $scope.navigationService = navigationService;
+            $scope.configService = configService;
 
             var updateModels = function(){
                 $scope.summary = basketService.getSummary();
@@ -41,8 +42,35 @@ angular
                             }
                         });
                 }
+            };
 
+            $scope.checkoutWithPayPal = function(){
 
+                $dialog.
+                    loading();
+
+                checkoutService
+                    .getShippingMethodsForPayPal()
+                    .then(function(data){
+
+                        $dialog.closeLoading();
+
+                        if (data.shippingMethods.length === 1 && configService.getSupportedCountries().length === 1){
+                            checkoutService.checkoutWithPayPal(data.shippingMethods[0]);
+                        }
+                        else {
+                            $dialog.dialog({
+                                templateUrl: 'modules/cart/paypaloverlay.tpl.html',
+                                controller: 'PayPalOverlayController',
+                                resolve: {
+                                    checkoutInfo: function() {
+                                        return data;
+                                    }
+                                }
+                            })
+                            .open();
+                        }
+                    });
             };
         }
     ]);

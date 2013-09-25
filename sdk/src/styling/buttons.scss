@@ -124,6 +124,10 @@ $darker-background-color: darken($background-color, 5%);
     }
 }
 
+.cc-paypal-button--disabled{
+    @extend .cc-button-base--disabled;
+}
+
 .cc-paypal-button--de-de{
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x.png);
@@ -131,4 +135,93 @@ $darker-background-color: darken($background-color, 5%);
     &:active, &.ng-click-active{
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x_P.png);
     }
+}
+
+.cc-paypal-button--de-de--disabled{
+    @extend .cc-paypal-button--de-de;
+    @extend .cc-paypal-button--disabled
+}
+
+.cc-paypal-button--en-en{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--en-en--disabled{
+    @extend .cc-paypal-button--en-en;
+    @extend .cc-paypal-button--disabled
+}
+
+.cc-paypal-button--fr-fr{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_fr_FR_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_fr_FR_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--fr-fr--disabled{
+    @extend .cc-paypal-button--fr-fr;
+    @extend .cc-paypal-button--disabled
+}
+
+.cc-paypal-button--it-it{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_it_IT_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_it_IT_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--it-it--disabled{
+    @extend .cc-paypal-button--it-it;
+    @extend .cc-paypal-button--disabled
+}
+
+.cc-paypal-button--es-es{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_es_ES_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_es_ES_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--es-es--disabled{
+    @extend .cc-paypal-button--es-es;
+    @extend .cc-paypal-button--disabled
+}
+
+.cc-paypal-button--pl-pl{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_pl_PL_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_pl_PL_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--pl-pl--disabled{
+    @extend .cc-paypal-button--pl-pl;
+    @extend .cc-paypal-button--disabled
+}
+
+.cc-paypal-button--nl-nl{
+    @extend .cc-paypal-button;
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x.png);
+
+    &:active, &.ng-click-active{
+        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x_P.png);
+    }
+}
+
+.cc-paypal-button--nl-nl--disabled{
+    @extend .cc-paypal-button--nl-nl;
+    @extend .cc-paypal-button--disabled
 }

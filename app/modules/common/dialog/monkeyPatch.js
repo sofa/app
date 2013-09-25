@@ -38,6 +38,8 @@ angular
                 }
             });
 
+            loadingModal.open();
+
             return loadingModal;
         };
 

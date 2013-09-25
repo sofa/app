@@ -1,4 +1,4 @@
-cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService){
+cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService){
 
     'use strict';
 
@@ -94,6 +94,20 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         return lastUsedShippingMethod || null;
     };
 
+    self.getShippingMethodsForPayPal = function(shippingCountry){
+        var checkoutModel = {
+            billingAddress: {
+                country: shippingCountry || configService.getDefaultCountry()
+            },
+            shippingAddress: {
+                country: shippingCountry || configService.getDefaultCountry()
+            },
+            selectedPaymentMethod: 'paypal_express'
+        };
+
+        return self.getSupportedCheckoutMethods(checkoutModel);
+    };
+
     self.getSupportedCheckoutMethods = function(checkoutModel){
 
         var requestModel = createRequestData(checkoutModel);
@@ -180,6 +194,48 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
                 fail
             ]);
 
+            return $q.reject(fail);
+        });
+    };
+
+    self.checkoutWithPayPal = function(shippingMethod){
+
+        var checkoutModel = {
+            shippingMethod: shippingMethod,
+            paymentMethod: 'paypal'
+        };
+
+        var requestModel = createRequestData(checkoutModel);
+        requestModel.task = 'UPDATEQUOTEPP';
+
+        return $http({
+            method: 'POST',
+            url: FULL_CHECKOUT_URL,
+            headers: FORM_DATA_HEADERS,
+            transformRequest: toFormData,
+            data: requestModel
+        })
+        .then(function(response){
+            /*jslint eqeq: true*/
+            if (response.data == 1){
+                //we set the browser to this backend url and the backend in turn
+                //redirects the browser to PayPal. Not sure why we don't redirect the
+                //browser directly.
+                //TODO: ask Felix
+                window.location.href = configService.get('checkoutUrl');
+            }
+            else{
+                return $q.reject(new Error("invalid server response"));
+            }
+        })
+        .then(null,function(fail){
+            loggingService.error([
+                '[CheckoutService: checkoutWithPayPal]',
+                '[Request Data]',
+                requestModel,
+                '[Service answer]',
+                fail
+            ]);
             return $q.reject(fail);
         });
     };

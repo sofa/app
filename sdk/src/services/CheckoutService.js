@@ -2,8 +2,8 @@ angular.module('sdk.services.checkoutService', ['sdk.services.basketService', 's
 
 angular
     .module('sdk.services.checkoutService')
-    .factory('checkoutService', ['$http', '$q', 'basketService', 'loggingService', function($http, $q, basketService, loggingService){
-        return new cc.CheckoutService($http, $q, basketService, loggingService);
+    .factory('checkoutService', ['$http', '$q', 'basketService', 'loggingService', 'configService', function($http, $q, basketService, loggingService, configService){
+        return new cc.CheckoutService($http, $q, basketService, loggingService, configService);
 }]);
 
 

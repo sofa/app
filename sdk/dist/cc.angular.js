@@ -1,4 +1,4 @@
-angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccAddress/ccaddress.tpl.html",
@@ -46,6 +46,21 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "            {{ item.title }}\n" +
     "            <i class=\"cc-footer-item-icon icon-angle-left icon-2x\"></i>\n" +
     "        </a>\n" +
+    "</div>");
+}]);
+
+angular.module("src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html",
+    "<div class=\"cc-loading-spinner\">\n" +
+    "    <!-- generated and tweaked from http://cssload.net/ -->\n" +
+    "    <div class=\"cc-loading-spinner__circle--01\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--02\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--03\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--04\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--05\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--06\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--07\"></div>\n" +
+    "    <div class=\"cc-loading-spinner__circle--08\"></div>\n" +
     "</div>");
 }]);
 
@@ -125,8 +140,8 @@ angular.module('sdk.services.checkoutService', ['sdk.services.basketService', 's
 
 angular
     .module('sdk.services.checkoutService')
-    .factory('checkoutService', ['$http', '$q', 'basketService', 'loggingService', function($http, $q, basketService, loggingService){
-        return new cc.CheckoutService($http, $q, basketService, loggingService);
+    .factory('checkoutService', ['$http', '$q', 'basketService', 'loggingService', 'configService', function($http, $q, basketService, loggingService, configService){
+        return new cc.CheckoutService($http, $q, basketService, loggingService, configService);
 }]);
 
 
@@ -2462,6 +2477,20 @@ angular.module('sdk.directives.ccLazyValidation')
             }
         };
     });
+
+angular.module('sdk.directives.ccLoadingSpinner', ['src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html']);
+
+angular.module('sdk.directives.ccLoadingSpinner')
+    .directive('ccLoadingSpinner', function() {
+
+        'use strict';
+
+        return {
+            restrict: 'EA',
+            replace: true,
+            templateUrl: 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html'
+        };
+    });
 angular.module('sdk.directives.ccScrollFix', []);
 
 angular.module('sdk.directives.ccScrollFix')
@@ -2574,6 +2603,7 @@ angular.module('sdk.directives.ccSelectBox')
             replace: true,
             scope: {
                 data: '=',
+                propertyName: '=',
                 chooseText: '=?',
                 failMessage: '=?',
                 displayValueExp: '&',
@@ -2872,7 +2902,8 @@ angular.module('sdk.directives', [
     'sdk.directives.ccThumbnailBar',
     'sdk.directives.ccScrollingShadow',
     'sdk.directives.ccScrollFix',
-    'sdk.directives.ccElasticViews'
+    'sdk.directives.ccElasticViews',
+    'sdk.directives.ccLoadingSpinner'
     ]);
 angular
     .module('sdk.filter.currency', [])

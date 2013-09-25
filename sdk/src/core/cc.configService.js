@@ -26,6 +26,11 @@ cc.define('cc.ConfigService', function(){
         return countries.length === 0 ? null : countries[0];
     };
 
+    self.getLocalizedPayPalButtonClass = function(disabled){
+        return !disabled ? 'cc-paypal-button--' + self.get('locale') : 
+                           'cc-paypal-button--' + self.get('locale') + '--disabled';
+    };
+
     self.get = function(key, defaultValue){
 
         var value = cc.Config[key];

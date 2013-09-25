@@ -39,6 +39,9 @@
         <div ng-include="tpl.TOTALBOX"></div>
 
         <a ng-click="navigationService.navigateToCheckout()" class="cc-couch-action-button cc-cart-checkout-button">{{ ln.checkout }}</a>
+        
+        <a ng-click="checkoutWithPayPal()" ng-class="configService.getLocalizedPayPalButtonClass()"></a>
+
     </div>
     <div class="cc-expand cc-cart-empty-hint" ng-show="isEmpty">
         <div class="cc-cart-empty-hint-content">

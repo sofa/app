@@ -1,0 +1,26 @@
+<div class="modal-body">
+    <cc-grouped>
+        <cc-select-box
+            class="cc-select-box-on-background" 
+            ng-model="vm.selectedCountry" 
+            choose-text="ln.choose" 
+            allow-null
+            omit-null
+            property-name="ln.paymentMethod" 
+            display-value-exp="'label'" 
+            data="vm.countries">
+        </cc-select-box>
+
+        <cc-select-box
+            class="cc-select-box-on-background" 
+            ng-model="vm.selectedShippingMethod" 
+            allow-null
+            omit-null
+            choose-text="ln.choose" 
+            property-name="ln.shippingMethod" 
+            display-value-exp="'title'" 
+            data="vm.supportedShippingMethods">
+        </cc-select-box>
+    </cc-grouped>
+    <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>
+</div>
