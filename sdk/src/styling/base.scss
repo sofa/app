@@ -111,6 +111,17 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     @extend %cc-scrollable-vertical
 }
 
+//Android 2 has poor overflow support. We use overflow-x: hidden
+//to avoid horizontal scrollbars on other browsers (which I don't know why they come up
+//in the first place). However, the Android 2 browser doesn't seem to suffer from the
+//scrollbars bug and by setting overflow-x:hidden the scrolling doesn't work anymore. Life is bad :-/
+.cc-no-position-fixed.cc-os-android.cc-osv-2 .cc-scroller--if-no-fixed,
+.cc-no-position-fixed.cc-os-android.cc-osv-2.cc-scroller--if-no-fixed,
+.cc-supports-position-fixed.cc-os-android.cc-osv-2 .cc-scroller--if-fixed,
+.cc-supports-position-fixed.cc-os-android.cc-osv-2.cc-scroller--if-fixed{
+    overflow: visible;
+    -webkit-overflow-scrolling: touch;
+}
 
 .cc-container, %cc-container{
     display: -webkit-box;

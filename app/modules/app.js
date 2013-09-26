@@ -240,6 +240,9 @@ var categoryStateConfig;
         $rootScope.supportsFixed = deviceService.hasPositionFixedSupport();
         $rootScope.isTabletSize = cc.isTabletSize;
 
+        //no need to add bindings for things that are unlikely to change over a session;
+        deviceService.flagOs();
+
         $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, fromRoute){
 
             //we not only need that to reset the scrolling position but also because
