@@ -1121,6 +1121,18 @@ cc.define('cc.DeviceService', function($window){
         return $window.screen.width > 641;
     };
 
+    self.flagOs = function(){
+        var htmlTag = document.getElementsByTagName('html')[0];
+        var version = self.getOsVersion();
+        var majorVersion = version.length > 0 ? version[0] : '0';
+        htmlTag.className += ' cc-os-' + self.getOs().toLowerCase() + ' cc-osv-' + majorVersion;
+    };
+
+    self.flagPositionFixedSupport = function(){
+        var htmlTag = document.getElementsByTagName('html')[0];
+        htmlTag.className += self.hasPositionFixedSupport() ? ' cc-supports-position-fixed' : ' cc-no-position-fixed';
+    };
+
     self.getOs = function(){
         return userOS;
     };

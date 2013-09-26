@@ -237,11 +237,11 @@ var categoryStateConfig;
         $rootScope.slideDirectionService = slideDirectionService;
         $rootScope.tpl = templateService;
 
-        $rootScope.supportsFixed = deviceService.hasPositionFixedSupport();
         $rootScope.isTabletSize = cc.isTabletSize;
 
         //no need to add bindings for things that are unlikely to change over a session;
         deviceService.flagOs();
+        deviceService.flagPositionFixedSupport();
 
         $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, fromRoute){
 
