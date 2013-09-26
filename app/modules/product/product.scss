@@ -14,6 +14,7 @@
 }
 
 .cc-product-view-image{
+    position: relative;
     height: 300px;
     width: 100%;
     margin-bottom: 10px;
@@ -22,6 +23,38 @@
     background-position: center center;
     background-color: $content-background-color;
     border: 1px solid $background-border-color;
+}
+
+.cc-product-view-image--expanded{
+    @extend .cc-product-view-image;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    z-index: 999;
+    opacity: 0;
+    -webkit-transition: 0.5s opacity ease-out;
+    
+}
+
+.cc-product-view-image--expanded--visible{
+    @extend .cc-product-view-image--expanded;
+    
+    opacity: 1;
+}
+
+.cc-product-view-image__expand-icon{
+    @extend .icon-fullscreen;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    //let's hardcode it for now to grey and give it
+    //a white shadow so that it's still kinda visible on
+    //dark images
+    color: #666666;
+    text-shadow: 1px 1px 1px #ffffff;
 }
 
 .cc-product-view-add-to-cart{

@@ -11,7 +11,10 @@
         <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
 
         <div class="cc-product-view-image"
-             style="background-image: url({{product.selectedImage.url}})"></div>
+             cc-image-zoom
+             style="background-image: url({{product.selectedImage.url}})">
+            <i class="icon-2x cc-product-view-image__expand-icon"></i>
+         </div>
 
         <cc-thumbnail-bar 
             class="cc-thumbnail-bar-on-background" 
