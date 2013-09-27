@@ -753,6 +753,7 @@ cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
 cc.Config = {
     loggingEnabled: true,
     storeId: 53787,
+    searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     checkoutUrl:'http://couchdemoshop.couchcommerce.com/checkout/v2/',
     apiHttpMethod: 'jsonp',
@@ -1826,6 +1827,66 @@ cc.define('cc.QService', function(){
         console.log(err);
     });
 });
+cc.define('cc.SearchService', function(configService, $http, $q){
+
+    'use strict';
+
+    var self                = {},
+        lastRequestToken    = null,
+        storeCode           = configService.get('storeCode'),
+        debounceMs          = configService.get('searchDebounceMs', 300),
+        endpoint            = configService.get('searchUrl');
+
+    self.search = function(searchStr){
+
+        var deferredResponse = $q.defer();
+
+        debouncedInnerSearch(deferredResponse, searchStr);
+
+        return deferredResponse.promise;
+    };
+
+    var innerSearch = function(deferredResponse, searchStr){
+
+        lastRequestToken = cc.Util.createGuid();
+
+        var requestToken = lastRequestToken;
+
+        $http({
+            method: 'JSONP',
+            url: endpoint,
+            data: {
+                q: createSearchCommand(normalizeUmlauts(searchStr)),
+                fetch: 'text, categoryUrlKey, categoryName, productUrlKey'
+            }
+        })
+        .then(function(response){
+            if (requestToken === lastRequestToken){
+                deferredResponse.resolve(response);
+            }
+        });
+
+        return deferredResponse.promise;
+    };
+
+    var debouncedInnerSearch = cc.Util.debounce(innerSearch, debounceMs);
+
+    var createSearchCommand = function(searchStr){
+        var reverseString = searchStr.split('').reverse().join('');
+        return '(text:' + searchStr + '* OR reverse_text:' + reverseString + '*) AND storeCode:' + storeCode;
+    };
+
+    var normalizeUmlauts = function(searchStr){
+        return searchStr
+                    .replace(/[áàâä]/g, 'a')
+                    .replace(/[úùûü]/g, 'u')
+                    .replace(/[óòôö]/g, 'o')
+                    .replace(/[éèêë]/g, 'e')
+                    .replace(/[ß]/g, 'ss');
+    };
+
+    return self;
+});
 //we just wrap store.js in a service here
 cc.define('cc.SessionStorageService', function(){
     return store;
@@ -2079,19 +2140,20 @@ cc.Util = {
         }
         return result;
     },
-    debounce: function (fn, delay) {
-        var timer = null;
-
-        return function () {
-            var context = this, 
-                args = arguments;
-            
-            clearTimeout(timer);
-            
-            timer = setTimeout(function () {
-              fn.apply(context, args);
-            }, delay);
+    debounce: function(func, wait, immediate) {
+      var timeout, result;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) result = func.apply(context, args);
         };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) result = func.apply(context, args);
+        return result;
+      };
     },
     isObject: function(value){
         return typeof value === 'object';
@@ -2110,6 +2172,13 @@ cc.Util = {
     },
     isUndefined: function(value){
         return typeof value === 'undefined';
+    },
+    createGuid: function(){
+      //http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+          return v.toString(16);
+      });
     },
     Array: {
         remove: function(arr, item){

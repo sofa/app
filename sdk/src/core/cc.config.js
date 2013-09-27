@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeId: 53787,
+    searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     checkoutUrl:'http://couchdemoshop.couchcommerce.com/checkout/v2/',
     apiHttpMethod: 'jsonp',

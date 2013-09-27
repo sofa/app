@@ -3,36 +3,68 @@ cc.define('cc.mocks.httpService', function($q){
     'use strict';
 
     var mocks,
-        lastConfig; //useful for unit tests
-    
+        requestQueue = [];
+
     var self = function(config){
 
         config.method = config.method && config.method.toLowerCase();
-        lastConfig = config;
+        requestQueue.push(config);
         var deferred = $q.defer();
-        deferred.resolve(mocks[config.method][config.url]);
+
+
+        var responseMock = mocks[config.method][config.url];
+
+        if (responseMock === undefined && config.data !== undefined){
+            var endpointKey = createEndpointKey(config.url, config.data);
+            responseMock = mocks[config.method][endpointKey];
+        }
+
+        if (responseMock && typeof responseMock.responseTime === 'number'){
+            setTimeout(function(){
+                deferred.resolve({
+                    data: responseMock.data
+                });
+            }, responseMock.responseTime);
+        }
+        else if (responseMock){
+            deferred.resolve({
+                    data: responseMock.data
+            });
+        }
+
         return deferred.promise;
     };
 
     self.getLastCallParams = function(){
-        return lastConfig;
+        return requestQueue.length > 0 ? requestQueue[requestQueue.length - 1] : null;
     };
 
-    self.when = function(method, endpoint){
+    self.getRequestQueue = function(){
+        return requestQueue;
+    };
+
+    self.when = function(method, endpoint, data){
+
+        endpoint = createEndpointKey(endpoint, data);
+
         return {
-            respond: function(data){
+            respond: function(data, responseTime){
                 method = method.toLowerCase();
-                mocks[method][endpoint] = { data: data };
+                mocks[method][endpoint] = { data: data , responseTime: responseTime};
             }
         };
     };
 
+    var createEndpointKey = function(endpoint, data){
+        return data !== undefined ? endpoint + '_' + md5Object(data) : endpoint;
+    };
 
     /**
      * clear the mocked data so that the service is in it's initial state
      * 
      */
     self.clear = function(){
+        requestQueue.length = 0;
         mocks = {
             get: {},
             post: {},

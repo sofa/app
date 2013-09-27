@@ -36,6 +36,7 @@ module.exports = function(grunt) {
             ignores:    [
                             'src/directives/ccElasticViews/hammer.js', 
                             'src/core/store.js', 
+                            'test/mocks/md5.js',
                             //we also need to exclude those files as they contain foreign code
                             //and until jshint 1.0 there is no option to mute all warnings for a
                             //block of code

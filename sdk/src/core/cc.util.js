@@ -189,19 +189,20 @@ cc.Util = {
         }
         return result;
     },
-    debounce: function (fn, delay) {
-        var timer = null;
-
-        return function () {
-            var context = this, 
-                args = arguments;
-            
-            clearTimeout(timer);
-            
-            timer = setTimeout(function () {
-              fn.apply(context, args);
-            }, delay);
+    debounce: function(func, wait, immediate) {
+      var timeout, result;
+      return function() {
+        var context = this, args = arguments;
+        var later = function() {
+          timeout = null;
+          if (!immediate) result = func.apply(context, args);
         };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) result = func.apply(context, args);
+        return result;
+      };
     },
     isObject: function(value){
         return typeof value === 'object';
@@ -220,6 +221,13 @@ cc.Util = {
     },
     isUndefined: function(value){
         return typeof value === 'undefined';
+    },
+    createGuid: function(){
+      //http://stackoverflow.com/questions/105034/how-to-create-a-guid-uuid-in-javascript
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+          return v.toString(16);
+      });
     },
     Array: {
         remove: function(arr, item){
