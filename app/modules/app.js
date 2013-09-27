@@ -10,6 +10,7 @@ cc.isTabletSize = cc.deviceService.isTabletSize();
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
     'ngMobile',
+    'ngSanitize',
     'ui.state',
     'sdk.services.couchService',
     'sdk.services.navigationService',

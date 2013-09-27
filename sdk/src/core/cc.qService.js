@@ -2,6 +2,14 @@ cc.define('cc.QService', function(){
 
     'use strict';
 
+    /**
+     * Constructs a promise manager.
+     *
+     * @param {function(function)} nextTick Function for executing functions in the next turn.
+     * @param {function(...*)} exceptionHandler Function into which unexpected exceptions are passed for
+     *     debugging purposes.
+     * @returns {object} Promise manager.
+     */
     function qFactory(nextTick, exceptionHandler) {
 
       /**
@@ -30,7 +38,7 @@ cc.define('cc.QService', function(){
                   var callback;
                   for (var i = 0, ii = callbacks.length; i < ii; i++) {
                     callback = callbacks[i];
-                    value.then(callback[0], callback[1]);
+                    value.then(callback[0], callback[1], callback[2]);
                   }
                 });
               }
@@ -43,8 +51,25 @@ cc.define('cc.QService', function(){
           },
 
 
+          notify: function(progress) {
+            if (pending) {
+              var callbacks = pending;
+
+              if (pending.length) {
+                nextTick(function() {
+                  var callback;
+                  for (var i = 0, ii = callbacks.length; i < ii; i++) {
+                    callback = callbacks[i];
+                    callback[2](progress);
+                  }
+                });
+              }
+            }
+          },
+
+
           promise: {
-            then: function(callback, errback) {
+            then: function(callback, errback, progressback) {
               var result = defer();
 
               var wrappedCallback = function(value) {
@@ -65,10 +90,18 @@ cc.define('cc.QService', function(){
                 }
               };
 
+              var wrappedProgressback = function(progress) {
+                try {
+                  result.notify((progressback || defaultCallback)(progress));
+                } catch(e) {
+                  exceptionHandler(e);
+                }
+              };
+
               if (pending) {
-                pending.push([wrappedCallback, wrappedErrback]);
+                pending.push([wrappedCallback, wrappedErrback, wrappedProgressback]);
               } else {
-                value.then(wrappedCallback, wrappedErrback);
+                value.then(wrappedCallback, wrappedErrback, wrappedProgressback);
               }
 
               return result.promise;
@@ -190,7 +223,7 @@ cc.define('cc.QService', function(){
        * @param {*} value Value or a promise
        * @returns {Promise} Returns a promise of the passed value or promise
        */
-      var when = function(value, callback, errback) {
+      var when = function(value, callback, errback, progressback) {
         var result = defer(),
             done;
 
@@ -212,15 +245,26 @@ cc.define('cc.QService', function(){
           }
         };
 
+        var wrappedProgressback = function(progress) {
+          try {
+            return (progressback || defaultCallback)(progress);
+          } catch (e) {
+            exceptionHandler(e);
+          }
+        };
+
         nextTick(function() {
           ref(value).then(function(value) {
             if (done) return;
             done = true;
-            result.resolve(ref(value).then(wrappedCallback, wrappedErrback));
+            result.resolve(ref(value).then(wrappedCallback, wrappedErrback, wrappedProgressback));
           }, function(reason) {
             if (done) return;
             done = true;
             result.resolve(wrappedErrback(reason));
+          }, function(progress) {
+            if (done) return;
+            result.notify(wrappedProgressback(progress));
           });
         });
 
@@ -282,7 +326,8 @@ cc.define('cc.QService', function(){
         when: when,
         all: all
       };
-    }
+}
+
 
     return qFactory(function(fn){
         //This is because this service is an Angular rip off. In Angular they

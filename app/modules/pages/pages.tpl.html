@@ -3,6 +3,6 @@
         <span class="cc-title--big" ng-bind="pagesVm.page.title"></span>
         <a class="cc-pages-send-as-mail icon-envelope icon-large" href="{{pagesVm.mailTo}}"></a>
     </div>
-    <div ng-bind-html-unsafe="pagesVm.page.content"></div>
+    <div ng-bind-html="pagesVm.page.content"></div>
     <cc-footer></cc-footer>
 </div>

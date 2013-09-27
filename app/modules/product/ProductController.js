@@ -2,8 +2,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$routeParams', '$location', 'couchService', 'basketService', 'navigationService', 'product', '$dialog',
-        function ProductController($scope, $routeParams, $location, couchService, basketService, navigationService, product, $dialog) {
+        '$scope', '$location', 'couchService', 'basketService', 'navigationService', 'product', '$dialog',
+        function ProductController($scope, $location, couchService, basketService, navigationService, product, $dialog) {
 
             'use strict';
 

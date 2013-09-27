@@ -1,10 +1,9 @@
 /**
- * @license AngularJS v1.1.6-4179f62
+ * @license AngularJS v1.1.6-11521a4
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
-(function(window, angular, undefined) {
-'use strict';
+(function(window, angular, undefined) {'use strict';
 
 /**
  * @ngdoc overview
@@ -92,7 +91,7 @@ ngMobile.factory('$swipe', [function() {
       // Whether a swipe is active.
       var active = false;
 
-      element.bind('touchstart mousedown', function(event) {
+      element.on('touchstart mousedown', function(event) {
         startCoords = getCoordinates(event);
         active = true;
         totalX = 0;
@@ -101,12 +100,12 @@ ngMobile.factory('$swipe', [function() {
         eventHandlers['start'] && eventHandlers['start'](startCoords);
       });
 
-      element.bind('touchcancel', function(event) {
+      element.on('touchcancel', function(event) {
         active = false;
         eventHandlers['cancel'] && eventHandlers['cancel']();
       });
 
-      element.bind('touchmove mousemove', function(event) {
+      element.on('touchmove mousemove', function(event) {
         if (!active) return;
 
         // Android will send a touchcancel if it thinks we're starting to scroll.
@@ -141,7 +140,7 @@ ngMobile.factory('$swipe', [function() {
         }
       });
 
-      element.bind('touchend mouseup', function(event) {
+      element.on('touchend mouseup', function(event) {
         if (!active) return;
         active = false;
         eventHandlers['end'] && eventHandlers['end'](getCoordinates(event));
@@ -335,7 +334,7 @@ ngMobile.directive('ngClick', ['$parse', '$timeout', '$rootElement',
       element.removeClass(ACTIVE_CLASS_NAME);
     }
 
-    element.bind('touchstart', function(event) {
+    element.on('touchstart', function(event) {
       tapping = true;
       tapElement = event.target ? event.target : event.srcElement; // IE uses srcElement.
       // Hack for Safari, which can target text nodes instead of containers.
@@ -353,15 +352,15 @@ ngMobile.directive('ngClick', ['$parse', '$timeout', '$rootElement',
       touchStartY = e.clientY;
     });
 
-    element.bind('touchmove', function(event) {
+    element.on('touchmove', function(event) {
       resetState();
     });
 
-    element.bind('touchcancel', function(event) {
+    element.on('touchcancel', function(event) {
       resetState();
     });
 
-    element.bind('touchend', function(event) {
+    element.on('touchend', function(event) {
       var diff = Date.now() - startTime;
 
       var touches = (event.changedTouches && event.changedTouches.length) ? event.changedTouches :
@@ -382,10 +381,9 @@ ngMobile.directive('ngClick', ['$parse', '$timeout', '$rootElement',
           tapElement.blur();
         }
 
-        scope.$apply(function() {
-          // TODO(braden): This is sending the touchend, not a tap or click. Is that kosher?
-          clickHandler(scope, {$event: event});
-        });
+        if (!angular.isDefined(attr.disabled) || attr.disabled === false) {
+          element.triggerHandler('click', event);
+        }
       }
 
       resetState();
@@ -395,20 +393,23 @@ ngMobile.directive('ngClick', ['$parse', '$timeout', '$rootElement',
     // something else nearby.
     element.onclick = function(event) { };
 
-    // Fallback click handler.
-    // Busted clicks don't get this far, and adding this handler allows ng-tap to be used on
-    // desktop as well, to allow more portable sites.
-    element.bind('click', function(event) {
+    // Actual click handler.
+    // There are three different kinds of clicks, only two of which reach this point.
+    // - On desktop browsers without touch events, their clicks will always come here.
+    // - On mobile browsers, the simulated "fast" click will call this.
+    // - But the browser's follow-up slow click will be "busted" before it reaches this handler.
+    // Therefore it's safe to use this directive on both mobile and desktop.
+    element.on('click', function(event) {
       scope.$apply(function() {
         clickHandler(scope, {$event: event});
       });
     });
 
-    element.bind('mousedown', function(event) {
+    element.on('mousedown', function(event) {
       element.addClass(ACTIVE_CLASS_NAME);
     });
 
-    element.bind('mousemove mouseup', function(event) {
+    element.on('mousemove mouseup', function(event) {
       element.removeClass(ACTIVE_CLASS_NAME);
     });
 
@@ -469,7 +470,7 @@ ngMobile.directive('ngClick', ['$parse', '$timeout', '$rootElement',
     </doc:example>
  */
 
-function makeSwipeDirective(directiveName, direction) {
+function makeSwipeDirective(directiveName, direction, eventName) {
   ngMobile.directive(directiveName, ['$parse', '$swipe', function($parse, $swipe) {
     // The maximum vertical delta for a swipe should be less than 75px.
     var MAX_VERTICAL_DISTANCE = 75;
@@ -513,6 +514,7 @@ function makeSwipeDirective(directiveName, direction) {
         'end': function(coords) {
           if (validSwipe(coords)) {
             scope.$apply(function() {
+              element.triggerHandler(eventName);
               swipeHandler(scope);
             });
           }
@@ -523,8 +525,8 @@ function makeSwipeDirective(directiveName, direction) {
 }
 
 // Left is negative X-coordinate, right is positive.
-makeSwipeDirective('ngSwipeLeft', -1);
-makeSwipeDirective('ngSwipeRight', 1);
+makeSwipeDirective('ngSwipeLeft', -1, 'swipeleft');
+makeSwipeDirective('ngSwipeRight', 1, 'swiperight');
 
 
 

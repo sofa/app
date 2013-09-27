@@ -2,8 +2,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductControllerTablet',
     [
-        '$scope', 'splitViewDataService', '$routeParams', '$location', 'couchService', 'basketService', 'navigationService', 'product', 'products', '$dialog',
-        function ProductController($scope, splitViewDataService, $routeParams, $location, couchService, basketService, navigationService, product, products, $dialog) {
+        '$scope', 'splitViewDataService', '$location', 'couchService', 'basketService', 'navigationService', 'product', 'products', '$dialog',
+        function ProductController($scope, splitViewDataService, $location, couchService, basketService, navigationService, product, products, $dialog) {
 
             'use strict';
 
