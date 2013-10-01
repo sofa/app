@@ -19,6 +19,10 @@ angular
             templateUrl: 'src/directives/ccFooter/ccfooter.tpl.html',
             link: function(scope, element, attrs){
                 defaultIfUndefined(scope, 'items', cc.Config.aboutPages);
+
+                scope.goTo = function(item){
+                    window.location.href = '#/pages/' + item.id;
+                };
             }
         };
     });

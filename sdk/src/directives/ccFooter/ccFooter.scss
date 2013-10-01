@@ -1,41 +1,26 @@
-.cc-footer-wrapper{
-    text-align: center;
-    margin-top: 5px;
-    padding-bottom: 5px;
-    overflow: auto;
-    width: 100%;
+.cc-footer-list{
+    @extend %cc-text-list;
+    margin-top: 50px;
+    color: $footer-text-color;
 }
 
-.cc-footer-item, .cc-footer-item:visited, .cc-footer-item:active {
-    color:$background-text-color;
+.cc-footer-list__row{
+    @extend %cc-text-list__row;
+    background-color: $footer-background-color;
+
+    &:last-child{
+        border-bottom-color: $footer-border-color;
+    }
 }
 
-.cc-footer-item{
-    padding: 10px 5px 10px 0;
-    font-size: $font-size-regular;
-    font-weight: bold;
-    width: 50%;
-    position: relative;
-    display: block;
-    float: left;
-    text-decoration: none;
-    //if we make the background of the footer 10% darker(or lighter as a fallback)
-    //then the background-text-color should still be fairly readable.
-    //The border is set to the background-color to achieve the effect of having some
-    //space between the items.
-    color: $background-text-color;
-    border: 1px solid $background-color;
-    @include try-darker-extended("text-shadow", $background-color, "0px -1px", "", 10%);
-    @include try-darker("background", $background-color, 10%);
+
+.cc-footer-list__row-content{
+    @extend .cc-text-list__row-content;
+    border-bottom-color: $footer-border-color;
 }
 
-.cc-footer-item-wide{
-    width: 100%;
-}
-
-.cc-footer-item-icon{
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    margin-top: -13px;
+.cc-footer-list__row-icon{
+    @extend %cc-text-list__row-icon;
+    //intentionally! We want the icon to use the same color as the border
+    color: $footer-border-color;
 }

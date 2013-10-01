@@ -37,16 +37,16 @@ angular.module("src/directives/ccElasticViews/elasticViews.tpl.html", []).run(["
 
 angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccFooter/ccfooter.tpl.html",
-    "<div class=\"cc-footer-wrapper\">\n" +
-    "        <a \n" +
-    "            ng-repeat=\"item in items\" \n" +
-    "            ng-class=\"{ 'cc-footer-item-wide' : $index % 2 == 0 && $last}\" \n" +
-    "            class=\"cc-footer-item\" \n" +
-    "            href=\"#/pages/{{item.id}}\">\n" +
+    "<ul class=\"cc-footer-list\">\n" +
+    "    <li ng-repeat=\"item in items\"\n" +
+    "        class=\"cc-footer-list__row\"\n" +
+    "        ng-click=\"goTo(item)\" >\n" +
+    "        <div class=\"cc-footer-list__row-content\">\n" +
     "            {{ item.title }}\n" +
-    "            <i class=\"cc-footer-item-icon icon-angle-left icon-2x\"></i>\n" +
-    "        </a>\n" +
-    "</div>");
+    "            <i class=\"cc-footer-list__row-icon icon-angle-right icon-2x\"></i>\n" +
+    "        </div>\n" +
+    "    </li>\n" +
+    "</ul>");
 }]);
 
 angular.module("src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -2419,6 +2419,10 @@ angular
             templateUrl: 'src/directives/ccFooter/ccfooter.tpl.html',
             link: function(scope, element, attrs){
                 defaultIfUndefined(scope, 'items', cc.Config.aboutPages);
+
+                scope.goTo = function(item){
+                    window.location.href = '#/pages/' + item.id;
+                };
             }
         };
     });

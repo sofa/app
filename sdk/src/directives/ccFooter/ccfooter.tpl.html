@@ -1,10 +1,10 @@
-<div class="cc-footer-wrapper">
-        <a 
-            ng-repeat="item in items" 
-            ng-class="{ 'cc-footer-item-wide' : $index % 2 == 0 && $last}" 
-            class="cc-footer-item" 
-            href="#/pages/{{item.id}}">
+<ul class="cc-footer-list">
+    <li ng-repeat="item in items"
+        class="cc-footer-list__row"
+        ng-click="goTo(item)" >
+        <div class="cc-footer-list__row-content">
             {{ item.title }}
-            <i class="cc-footer-item-icon icon-angle-left icon-2x"></i>
-        </a>
-</div>
+            <i class="cc-footer-list__row-icon icon-angle-right icon-2x"></i>
+        </div>
+    </li>
+</ul>
