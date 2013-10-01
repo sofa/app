@@ -1,0 +1,51 @@
+
+$cc-text-list---height: 120px;
+$cc-text-list__row---border-radius: 15px;
+
+.cc-text-list, %cc-text-list{
+    margin: 10px 0 10px 0;
+    color: $content-text-color;
+}
+
+.cc-text-list__row, %cc-text-list__row{
+    position: relative;
+    background-color: $content-background-color;
+
+    &:first-child{
+        border-top-left-radius: $cc-text-list__row---border-radius;
+        border-top-right-radius: $cc-text-list__row---border-radius;
+    }
+
+    &:last-child{
+        border-bottom: 3px solid $content-border-color;
+        border-bottom-left-radius: $cc-text-list__row---border-radius;
+        border-bottom-right-radius: $cc-text-list__row---border-radius;
+
+        .cc-text-list__row-content{
+            border-bottom: none;
+        }
+    }
+
+    &.cc-static-highlight{
+        background: $info-area-background-color;
+    }
+
+}
+
+.cc-text-list__row-content, %cc-text-list__row-content{
+    margin-left: 40px;
+    border-bottom: 1px solid $content-border-color;
+    padding: 20px 0 20px 0;
+    font-size: $font-size-huge;
+}
+
+.cc-text-list__row-icon, %cc-text-list__row-icon{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    //intentionally! We want the icon to use the same color as the border
+    color: $content-border-color;
+    //can we do better for centering? Should we flexbox it?
+    margin-top: -27px;
+}
+

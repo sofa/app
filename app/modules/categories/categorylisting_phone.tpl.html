@@ -1,19 +1,17 @@
 <div class="cc-view-wrapper">
-    <ul class="cc-category-listing">
+    <ul class="cc-category-list">
         <li ng-repeat="category in category.children"
             ng-click="goToCategory(category, $event)"
             ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }"
-            class="cc-list-row cc-category-listing-row" >
-            <div class="cc-list-row-image cc-category-listing-row-image" 
-                 style="background-image: url({{category.image}})">
+            class="cc-category-list__row" >
 
+            <div class="cc-category-list__row-content">
+                {{category.label}}
+                <i class="cc-category-list__row-icon icon-angle-right icon-2x"></i>
             </div>
-            <div class="cc-list-row-text cc-category-listing-row-text">
-                <div class="cc-list-row-text-centered">
-                    {{category.label}}
-                </div>
-            </div>
+
         </li>
     </ul>
     <cc-footer></cc-footer>
 </div>
+

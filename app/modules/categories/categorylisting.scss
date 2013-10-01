@@ -1,3 +1,16 @@
-.cc-category-listing-row.cc-static-highlight{
-    background: $info-area-background-color;
+.cc-category-list{
+    @extend %cc-text-list;
+}
+
+.cc-category-list__row{
+    @extend %cc-text-list__row;
+}
+
+
+.cc-category-list__row-content{
+    @extend .cc-text-list__row-content;
+}
+
+.cc-category-list__row-icon{
+    @extend %cc-text-list__row-icon;
 }
