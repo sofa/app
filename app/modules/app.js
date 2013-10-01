@@ -243,6 +243,7 @@ var categoryStateConfig;
         //no need to add bindings for things that are unlikely to change over a session;
         deviceService.flagOs();
         deviceService.flagPositionFixedSupport();
+        deviceService.flagModernFlexboxSupport();
 
         $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, fromRoute){
 

@@ -1,20 +1,24 @@
 <div class="cc-view-wrapper">
-    <ul>
+    <ul class="cc-product-grid">
         <li ng-repeat="product in products"
             ng-click="goToProduct(product, $event)"
-            ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }"
-            class="cc-list-row cc-product-list-row">
-            <div class="cc-list-row-image" 
+            ng-class="{ 
+                'cc-highlight': backStepHighlightService.isHighlighted(product),
+                'cc-product-grid__row--odd' : $odd,
+                'cc-product-grid__row--even' : $even
+            }"
+            >
+            <div class="cc-product-grid__row-wrapper">
+            <div class="cc-product-grid__row-price">
+                {{product.price | currency}}
+            </div>
+            <div class="cc-product-grid__row-image" 
                  style="background-image: url({{product.getImage('small')}})">
             </div>
-            <div class="cc-product-list-row-text">
-                <div class="cc-product-list-row-name">
-                    {{product.name}}
-                </div>
-                <div class="cc-product-list-row-price">
-                    {{product.price | currency}}
-                </div>
+            <div class="cc-product-grid__row-text">
+                {{product.name}}
             </div>
+            <div>
         </li>
     </ul>
     <cc-footer></cc-footer>

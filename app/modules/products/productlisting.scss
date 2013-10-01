@@ -1,25 +1,72 @@
-.cc-product-list-row{
-    min-height: 120px;
+.cc-supports-modern-flexbox{
+    .cc-product-grid{
+        @include vendor-prefix-value(display, flex);
+        @include vendor-prefix(flex-flow, row wrap);
+    }
+
+    .cc-product-grid__row{
+        @include vendor-prefix-value(display, flex);
+        @include vendor-prefix(flex, 0 0 50%);
+        @include vendor-prefix(justify-content, center);
+    }
 }
 
-.cc-product-list-row.cc-static-highlight{
-    background: $info-area-background-color;
-}
 
-.cc-product-list-row-text{
-    margin-left: 120px;
+.cc-product-grid{
+    overflow: auto;
+    margin: 10px 0 10px 0;
+    list-style: none;
     color: $content-text-color;
-    font-size: $font-size-regular;
 }
 
-.cc-product-list-row-name{
-    font-weight: bold;
-    padding-bottom: 20px;
+.cc-product-grid__row{
+    margin-bottom: 10px;
+
+    //display will be overwritten with flex for browsers that support
+    //the modern flexbox
+    display: inline-block;
+    //width won't have any effect for browsers which use flexbox
+    width: 50%
 }
 
-.cc-product-list-row-price{
-    position: absolute;
-    bottom: 0;
-    right: 5px;
-    margin-right: 5px;
+.cc-product-grid__row-wrapper{
+    width: 100%;
+    background-color: $content-background-color;
+    border-radius: 15px;
+    border-bottom: 3px solid $content-border-color;
+}
+
+.cc-product-grid__row--odd{
+    @extend .cc-product-grid__row;
+}
+
+.cc-product-grid__row--even{
+    @extend .cc-product-grid__row;
+    padding-right: 10px;
+}
+
+.cc-product-grid__row-price{
+    float:right;
+    //we invert the colors here
+    background: $content-text-color;
+    color: $content-background-color;
+    border-top-right-radius: 15px;
+    padding: 5px;
+}
+
+.cc-product-grid__row-image{
+    min-height: 200px;
+    width: 100%;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 40px solid transparent;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+}
+
+.cc-product-grid__row-text{
+    padding: 10px;
+    text-align: center;
 }

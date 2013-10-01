@@ -2,7 +2,10 @@ cc.define('cc.DeviceService', function($window){
     var self = {};
 
     var ua = navigator.userAgent,
+        htmlTag,
         uaindex;
+
+    var MODERN_FLEXBOX_SUPPORT = 'cc-supports-modern-flexbox';
 
     // determine OS
     if ( ua.match(/iPad/i) || ua.match(/iPhone/i) ){
@@ -28,20 +31,25 @@ cc.define('cc.DeviceService', function($window){
         userOSver = 'unknown';
     }
 
+    self.getHtmlTag = function(){
+        htmlTag = htmlTag || document.getElementsByTagName('html')[0];
+        return htmlTag;
+    };
+
     self.isTabletSize = function(){
         //http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
         return $window.screen.width > 641;
     };
 
     self.flagOs = function(){
-        var htmlTag = document.getElementsByTagName('html')[0];
+        var htmlTag = self.getHtmlTag();
         var version = self.getOsVersion();
         var majorVersion = version.length > 0 ? version[0] : '0';
         htmlTag.className += ' cc-os-' + self.getOs().toLowerCase() + ' cc-osv-' + majorVersion;
     };
 
     self.flagPositionFixedSupport = function(){
-        var htmlTag = document.getElementsByTagName('html')[0];
+        var htmlTag = self.getHtmlTag();
         htmlTag.className += self.hasPositionFixedSupport() ? ' cc-supports-position-fixed' : ' cc-no-position-fixed';
     };
 
@@ -82,6 +90,30 @@ cc.define('cc.DeviceService', function($window){
                     !versionStartsWith('2') &&
                     !versionStartsWith('3') &&
                     !versionStartsWith('4');
+        }
+    };
+
+    self.hasModernFlexboxSupport = function(){
+        var supportedValues =   [
+                                    '-webkit-flex',
+                                    '-moz-flex',
+                                    '-o-flex',
+                                    '-ms-flex',
+                                    'flex'
+                                ];
+
+        var testSpan = document.createElement('span');
+        supportedValues.forEach(function(value){
+            testSpan.style.display = value;
+        });
+
+        return supportedValues.indexOf(testSpan.style.display) > -1;
+    };
+
+    self.flagModernFlexboxSupport = function(){
+        var htmlTag = self.getHtmlTag();
+        if (self.hasModernFlexboxSupport()){
+            htmlTag.className += ' ' + MODERN_FLEXBOX_SUPPORT;
         }
     };
 

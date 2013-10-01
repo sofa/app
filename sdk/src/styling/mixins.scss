@@ -8,6 +8,13 @@
   #{$name}: $argument;
 }
 
+@mixin vendor-prefix-value($name, $argument) {
+  #{$name}: -ms-#{$argument};
+  #{$name}: -moz-#{$argument};
+  #{$name}: -o-#{$argument};
+  #{$name}: -webkit-#{$argument};
+  #{$name}: $argument;
+}
 
 
 @mixin anti-blurry {
