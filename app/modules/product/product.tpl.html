@@ -1,6 +1,6 @@
 <div class="cc-view-wrapper cc-view-phone">
     <div rn-carousel-infinite rn-carousel-current="product" rn-carousel-prev="getPrevProduct(item)" rn-carousel-next="getNextProduct(item)">
-        <div class="cc-title--big">{{product.name}}</div>
+        <div class="cc-title--huge">{{product.name}}</div>
         <cc-variant-selector 
             class="cc-variant-selector-on-background " 
             choose-text="ln.choose"
@@ -8,7 +8,6 @@
             variant="variants.selectedVariant"
             selected-properties="variants.selectedProperties">
         </cc-variant-selector>
-        <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
 
         <div class="cc-product-view-image"
              cc-image-zoom
@@ -16,22 +15,22 @@
             <i class="icon-2x cc-product-view-image__expand-icon"></i>
          </div>
 
-        <cc-thumbnail-bar 
+        <cc-thumbnail-bar
+            ng-show="product.hasMultipleImages()" 
             class="cc-thumbnail-bar-on-background" 
             images="product.getAllImages()" 
             on-change="onThumbnailSelected(product, image)" 
             >
         </cc-thumbnail-bar>
 
-        <div class="cc-view-content cc-unstyled">
+        <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
 
-            <div class="cc-padded-line-seperator"></div>
+        <div class="cc-product-view-content-box cc-unstyled">
 
             <cc-zippy caption="ln.productDetails" init-opened="true">
                 <div ng-bind-html="product.description"></div>
             </cc-zippy>
-            <div class="cc-padded-line-seperator"></div>
-
+            
             <cc-zippy caption="ln.productSpecifications">
                 <table class="cc-product-view-attributes">
                     <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
@@ -41,9 +40,6 @@
                 </table>
             </cc-zippy>
 
-            <div class="cc-padded-line-seperator"></div>
-
-            <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
         </div>
         <cc-footer></cc-footer>
     </div>

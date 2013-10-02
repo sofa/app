@@ -43,7 +43,7 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "        ng-click=\"goTo(item)\" >\n" +
     "        <div class=\"cc-footer-list__row-content\">\n" +
     "            {{ item.title }}\n" +
-    "            <i class=\"cc-footer-list__row-icon icon-angle-right icon-2x\"></i>\n" +
+    "            <i class=\"cc-footer-list__row-icon icon-chevron-right\"></i>\n" +
     "        </div>\n" +
     "    </li>\n" +
     "</ul>");

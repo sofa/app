@@ -12,6 +12,7 @@
 @import '../../sdk/src/styling/alignment.scss';
 @import '../../sdk/src/styling/forms.textbox.scss';
 @import '../../sdk/src/styling/cc-text-list.scss';
+@import '../../sdk/src/styling/tables.scss';
 @import '../../sdk/src/directives/directives.scss';
 
 @import 'base.scss';
@@ -24,5 +25,6 @@
 @import '../modules/products/productlisting.scss';
 @import '../modules/products/products_tablet.scss';
 @import '../modules/product/product.scss';
+@import '../modules/product/product-buy-box.scss';
 @import '../modules/cart/cart.scss';
 @import '../modules/summary/summary.scss';

@@ -1,0 +1,30 @@
+.cc-product-buy-box{
+    margin: 10px 0 10px 0;
+}
+
+.cc-product-buy-box__table{
+    @extend %cc-table;
+}
+
+.cc-product-buy-box__secondary-table{
+    @extend %cc-table;
+    margin-top: 10px;
+    font-size: $font-size-small;
+}
+
+.cc-product-buy-box__price{
+    @extend %cc-table-cell;
+    width: 30%;
+    font-size: $font-size-huge;
+}
+
+.cc-product-buy-box__add-to-cart{
+    @extend %cc-table-cell;
+    @extend .cc-couch-action-button;
+    width: 70%;
+}
+
+.cc-product-buy-box__half-column{
+    @extend %cc-table-cell--top-aligned;
+    width: 50%;
+}

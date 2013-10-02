@@ -19,6 +19,11 @@ cc.models.Product.prototype.getAllImages = function(){
     return this._allImages;
 };
 
+cc.models.Product.prototype.hasMultipleImages = function(){
+    return this.getAllImages().length > 0;
+};
+
+
 //TODO: This is pure shit. I need to talk to Felix got get that clean
 //It's only in here to keep some German clients happy that rely on it.
 //We need to make it more flexibile & localizable

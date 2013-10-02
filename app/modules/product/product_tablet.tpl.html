@@ -18,14 +18,11 @@
         on-change="onThumbnailSelected(product, image)">
     </cc-thumbnail-bar>
 
-    <div class="cc-view-content cc-unstyled">
+    <div class="cc-product-view-content-box cc-unstyled">
 
-        <div class="cc-padded-line-seperator"></div>
-        
         <cc-zippy caption="ln.productDetails" init-opened="true">
             <div ng-bind-html="product.description"></div>
         </cc-zippy>
-        <div class="cc-padded-line-seperator"></div>
 
         <cc-zippy caption="ln.productSpecifications">
             <table class="cc-product-view-attributes">
@@ -35,9 +32,5 @@
                 </tr>
             </table>
         </cc-zippy>
-        
-        <div class="cc-padded-line-seperator"></div>
-        
-        <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
     </div>
 </div>
