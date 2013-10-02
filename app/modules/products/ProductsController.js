@@ -1,12 +1,12 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
     .controller( 'ProductsController',
     [
-        '$scope', 
-        '$stateParams', 
-        '$location', 
+        '$scope',
+        '$stateParams',
+        '$location',
         'couchService',
         'navigationService',
         'backStepHighlightService',
@@ -21,6 +21,8 @@ angular
             backStepHighlightService,
             products,
             selectionService) {
+
+            'use strict';
 
             $scope.goToProduct = function(product, $event){
                 selectionService.select('products_' + $stateParams.category, angular.element($event.currentTarget));

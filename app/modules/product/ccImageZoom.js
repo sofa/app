@@ -26,7 +26,13 @@ angular
                     //and even scrollable which gives a bad experience.
                     $appContent.css('display', 'none');
                     $clone.addClass(EXPANDED_CLS);
-                    $clone[0].offsetWidth;
+
+                    // The following triggers a reflow which allows for the transition animation to kick in.
+                    // JSHint will give us a warning about this since we are not really doing something directly with
+                    // the variable yet it is needed for the reflow. JSHint does not allow us to turn off these warnings
+                    // so we assign it to a dummy variable
+                    var dummy = $clone[0].offsetWidth;
+
                     $clone.addClass(EXPANDED_VISIBLE_CLS);
                     $clone.bind('click', function(){
                         $appContent.css('display', '');

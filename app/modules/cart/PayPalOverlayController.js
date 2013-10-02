@@ -1,4 +1,4 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
@@ -6,6 +6,7 @@ angular
     [
         '$scope','basketService', 'navigationService', 'configService', 'checkoutService', '$dialog', 'checkoutInfo',
         function CartController($scope, basketService, navigationService, configService, checkoutService, $dialog, checkoutInfo) {
+            'use strict';
 
             var vm = {
                 countries: configService.getSupportedCountries(),

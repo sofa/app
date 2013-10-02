@@ -1,4 +1,4 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
@@ -6,6 +6,8 @@ angular
     [
         '$scope', 'navigationService', 'checkoutService', '$dialog', '$stateParams',
         function SummaryController($scope, navigationService, checkoutService, $dialog, $stateParams) {
+
+            'use strict';
 
             var vm = $scope.vm = {};
 

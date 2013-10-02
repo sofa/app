@@ -61,6 +61,27 @@ module.exports = function(grunt) {
         ]
       }
     },
+    jshint: {
+      all: ['Gruntfile.js', 'modules/**/*.js', 'test/**/*.js'],
+      options: {
+        eqeqeq: true,
+        globals: {
+          cc: true,
+          window: true,
+          angular: true
+        },
+        ignores: [
+            'modules/common/router/angular-ui-router.js',
+            // 'src/core/store.js',
+            // 'test/mocks/md5.js',
+            // //we also need to exclude those files as they contain foreign code
+            // //and until jshint 1.0 there is no option to mute all warnings for a
+            // //block of code
+            // 'src/core/cc.util.js',
+            // 'src/core/cc.observable.js'
+        ]
+      }
+    },
     html2js: {
       app: {
         options: {
@@ -86,7 +107,7 @@ module.exports = function(grunt) {
           'modules/**/*.js',
           'modules/**/*.html'
         ],
-        tasks: ['build']
+        tasks: ['jshint', 'build']
       },
       sdk: {
         files: [
@@ -128,5 +149,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
 };

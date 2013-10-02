@@ -1,4 +1,4 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
@@ -6,6 +6,8 @@ angular
     [
         '$scope', '$location', 'navigationService', 'couchService', 'basketService',
         function CategoryController($scope, $location, navigationService, couchService, basketService) {
+
+            'use strict';
 
             $scope.basketItemCount = 0;
             $scope.navigationService = navigationService;

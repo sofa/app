@@ -56,8 +56,8 @@ angular
                 if (lastStateChangeWasLevelChange){
                     return {
                         enter: 'fade-in'
-                    }
-                };
+                    };
+                }
 
                 return {
                     enter: 'slide-in-' + config.direction,

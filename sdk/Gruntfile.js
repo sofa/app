@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             cc: ['src/core/cc.js','src/core/**/*.js'],
             ccTests: ['test/**/*.js'],
             ccAngular:  [
-                            'src/services/**/*.js', 
+                            'src/services/**/*.js',
                             'src/directives/**/*.js',
                             'src/filter/**/*.js',
                             '!src/**/demos/**/*'
@@ -33,16 +33,16 @@ module.exports = function(grunt) {
             globals: {
               angular: true
             },
-            ignores:    [
-                            'src/directives/ccElasticViews/hammer.js', 
-                            'src/core/store.js', 
-                            'test/mocks/md5.js',
-                            //we also need to exclude those files as they contain foreign code
-                            //and until jshint 1.0 there is no option to mute all warnings for a
-                            //block of code
-                            'src/core/cc.util.js',
-                            'src/core/cc.observable.js'
-                        ]
+            ignores: [
+                'src/directives/ccElasticViews/hammer.js',
+                'src/core/store.js',
+                'test/mocks/md5.js',
+                //we also need to exclude those files as they contain foreign code
+                //and until jshint 1.0 there is no option to mute all warnings for a
+                //block of code
+                'src/core/cc.util.js',
+                'src/core/cc.observable.js'
+            ]
           }
         },
         html2js: {

@@ -1,4 +1,4 @@
-'use strict';
+
 
 //we need this to be available in the Angular config phase
 //since Angular does not allow access to services in the config
@@ -27,6 +27,8 @@ angular.module('CouchCommerceApp', [
     'templates'
     ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+
+    'use strict';
 
 var categoryStateConfig;
 

@@ -50,7 +50,7 @@ angular
 
             var isHighlighted = function(item, prefix, matcher){
                 //optinally use provided matcher function
-                matcher = matcher || function(a, b) { return a === b };
+                matcher = matcher || function(a, b) { return a === b; };
 
                 var match = matcher(item, flags[prefix]);
 

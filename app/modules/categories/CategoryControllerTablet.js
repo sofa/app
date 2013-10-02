@@ -1,4 +1,4 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
@@ -6,6 +6,8 @@ angular
     [
         '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', '$state', 'splitViewDataService', 'splitViewSlideDirectionService', 'selectionService',
         function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, $state, splitViewDataService, splitViewSlideDirectionService, selectionService) {
+
+            'use strict';
 
             $scope.backStepHighlightService = backStepHighlightService;
 

@@ -1,4 +1,4 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
@@ -6,6 +6,8 @@ angular
     [
         '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', '$dialog',
         function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, $dialog) {
+
+            'use strict';
 
             //should we abstract this into something reusable for the SDK?
             var checkoutModel = {
@@ -44,7 +46,7 @@ angular
                     //deal with the {surcharge} marker in the language value and replace it with the
                     //surcharge value
                     checkoutModel.surchargeHint = $scope.ln.surChargeWarning
-                                                            .replace(/{\s*surcharge\s*}/, 
+                                                            .replace(/{\s*surcharge\s*}/,
                                                                 checkoutModel.selectedPaymentMethod.surcharge + ' ' + cc.Config.currencySign);
                 }
                 else{
@@ -78,7 +80,7 @@ angular
                 'checkoutModel.shippingAddress.country'
             ].forEach(function(exp){
                 $scope.$watch(exp, function(oldValue, newValue){
-                    //we need to check for equality rather than for reference equality 
+                    //we need to check for equality rather than for reference equality
                     //to avoid unneccesary processing.
                     if(angular.equals(oldValue, newValue)){
                         return;

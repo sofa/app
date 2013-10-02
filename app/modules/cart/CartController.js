@@ -1,4 +1,4 @@
-'use strict'
+
 
 angular
     .module('CouchCommerceApp')
@@ -6,6 +6,7 @@ angular
     [
         '$scope','basketService', 'navigationService', '$dialog', 'checkoutService', 'configService',
         function CartController($scope, basketService, navigationService, $dialog, checkoutService, configService) {
+            'use strict';
 
             $scope.basketService = basketService;
             $scope.navigationService = navigationService;
