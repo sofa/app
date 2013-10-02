@@ -36,7 +36,7 @@ $cc-text-list__row---border-radius: 15px;
     margin-left: 40px;
     border-bottom: 1px solid $content-border-color;
     padding: 20px 0 20px 0;
-    font-size: $font-size-huge;
+    font-size: $font-size-big;
 }
 
 .cc-text-list__row-icon, %cc-text-list__row-icon{
@@ -45,7 +45,7 @@ $cc-text-list__row---border-radius: 15px;
     top: 50%;
     //intentionally! We want the icon to use the same color as the border
     color: $content-border-color;
-    //can we do better for centering? Should we flexbox it?
-    margin-top: -27px;
+    margin-top: -12px;
+    font-size: 24px;
 }
 
