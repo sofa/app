@@ -32,7 +32,7 @@ angular.module('CouchCommerceApp', [
 
 var categoryStateConfig;
 
-    if (cc.isTabletSize){
+    if (false){
 
         $stateProvider
             .state('catchEmptyRoot',{
