@@ -107,7 +107,7 @@ module.exports = function(grunt) {
           'modules/**/*.js',
           'modules/**/*.html'
         ],
-        tasks: ['jshint', 'build']
+        tasks: ['build']
       },
       sdk: {
         files: [
@@ -136,7 +136,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', ['build', 'watch']);
 
-  grunt.registerTask('build', ['clean', 'html2js', 'concat', 'sass', 'copy']);
+  grunt.registerTask('build', ['clean', 'html2js', 'jshint', 'concat', 'sass', 'copy']);
 
   grunt.registerTask('release', ['releaseBranchPre', 'build', 'releaseBranch']);
 
