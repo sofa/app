@@ -9,3 +9,20 @@
 .cc-view-phone{
     color: $background-text-color;
 }
+
+.cc-content-box{
+    font-size: $font-size-medium;
+    background: $content-background-color;
+    border-radius: 15px;
+    border-bottom: 3px solid $content-border-color;
+}
+
+.cc-content-box--padded{
+    @extend .cc-content-box;
+    padding: $primary-padding;
+}
+
+.cc-content-box--padded--stick-right{
+    @extend .cc-content-box--padded;
+    padding-right: 0;
+}

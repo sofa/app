@@ -33,7 +33,7 @@ $cc-text-list__row---border-radius: 15px;
 }
 
 .cc-text-list__row-content, %cc-text-list__row-content{
-    margin-left: 40px;
+    margin-left: $primary-padding;
     border-bottom: 1px solid $content-border-color;
     padding: 20px 0 20px 0;
     font-size: $font-size-big;
