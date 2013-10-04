@@ -32,30 +32,36 @@
     <div>{{vm.shippingMethod}}</div>
     <div class="cc-padded-line-seperator on-background"></div>
 
-    <ul>
-        <li ng-repeat="item in vm.items"
-            class="cc-list-row cc-cart-list-row" >
-            <div class="cc-list-row-image cc-category-listing-row-image"
-                 style="background-image: url({{item.imageURL}})">
-            </div>
-            <div class="cc-cart-list-row-text">
-                <div class="cc-cart-list-row-name">
-                    {{item.name}}
-                </div>
-                <div>
-                    {{ln.listItemPrice}} {{item.price | currency}}
-                </div>
-                <div>
-                    {{ln.listItemQty}} {{item.qty}}
-                </div>
-                <div class="cc-cart-list-row-price">
-                    {{item.subtotal | currency}}
-                </div>
-            </div>
-        </li>
-    </ul>
-
-    <div ng-include="tpl.TOTALBOX"></div>
+    <!-- This borrows some classes from the cart. I think the real problem is the 
+    seperation of cart, summary and thankyou page. This should all live in one directory
+    called "checkout" or something like that. Then the styles could be named
+    cc-checkout-list and be used across both screens. No? -->
+        <div class="cc-content-box--padded">
+            <ul class="cc-cart-list">
+                <li ng-repeat="item in vm.items" 
+                    class="cc-cart-list__row">
+                    <div class="cc-cart-list__row-image" 
+                         style="background-image: url({{ item.imageURL }})">
+                    </div>
+                    <div class="cc-cart-list__row-content">
+                        <h2 class="cc-title--big">
+                            {{item.name}}
+                        </h2>
+                        <div>
+                            {{ln.listItemPrice}} {{item.price | currency}}
+                        </div>
+                        <div>
+                            {{ln.listItemQty}} {{item.qty}}
+                        </div>
+                        <div class="cc-cart-list__row-total">
+                            {{item.subtotal | currency}}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- is that a candidate for a cc-total-box directive? -->
+            <div ng-include="tpl.TOTALBOX"></div>
+        </div>
 
     <a  ng-click="acceptedAgreements() && proceed()" 
         ng-disabled="!vm.acceptedAgreement" 

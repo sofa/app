@@ -10,11 +10,16 @@
     color: $background-text-color;
 }
 
+.cc-primary-margin{
+    margin-top: $primary-padding;
+}
+
 .cc-content-box{
     font-size: $font-size-medium;
     background: $content-background-color;
     border-radius: 15px;
     border-bottom: 3px solid $content-border-color;
+    margin: $primary-padding 0 $primary-padding 0;
 }
 
 .cc-content-box--padded{
@@ -26,3 +31,4 @@
     @extend .cc-content-box--padded;
     padding-right: 0;
 }
+
