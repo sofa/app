@@ -14,11 +14,9 @@
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
 <body ontouchstart="" ng-controller="MainController" class="cc-scroller--if-no-fixed">
   <!-- TODO: we would love to move this into a main.tpl.html but it seems not to be possible by default -->
-  <div  class="cc-full-width-height">
-        <div ng-include="ui.header"></div>
+  <div ng-include="ui.header"></div>
         <div class="cc-scroller--if-fixed cc-full-width-height" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()">
         </div>
-  </div>
   
   <script src="lib/angular-unstable/angular.js"></script>
   <script src="lib/angular-unstable/angular-mobile.js"></script>
