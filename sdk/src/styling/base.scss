@@ -183,7 +183,6 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     // some tweaks for less flickering
     -webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
-    position: absolute;
     width:100%;
 }
 

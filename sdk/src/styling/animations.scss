@@ -5,7 +5,7 @@ $slide-easing: ease-out;
 .slide-in-rtl {
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(100%,0,0));
 }
  
@@ -18,7 +18,7 @@ $slide-easing: ease-out;
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(0%,0,0));
 }
  
@@ -30,7 +30,7 @@ $slide-easing: ease-out;
 .slide-in-ltr {
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(-100%,0,0));
 }
  
@@ -43,7 +43,7 @@ $slide-easing: ease-out;
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(0%,0,0));
 }
  
@@ -55,7 +55,7 @@ $slide-easing: ease-out;
 .slide-in-ttb {
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(0,-100%,0));
 }
  
@@ -68,7 +68,7 @@ $slide-easing: ease-out;
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(0%,0,0));
 }
  
@@ -80,7 +80,7 @@ $slide-easing: ease-out;
 .slide-in-btt {
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(0,100%,0));
 }
  
@@ -93,7 +93,7 @@ $slide-easing: ease-out;
  @include vendor-prefix('transition', all $slide-duration $slide-easing);
  
  /* The animation preparation code */
- position: relative;
+ position: absolute;
  @include vendor-prefix('transform',translate3d(0%,0,0));
 }
  
