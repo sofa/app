@@ -138,12 +138,12 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 
 .cc-toolbar{
     @extend %cc-container;
-    height: 45px;
+    height: $cc-header---height;
     width: 100%;
 }
 
 .cc-footer{
-    height: 45px;
+    height: $cc-header---height;
     width: 100%;
     background: #a456a4
 }
@@ -190,7 +190,7 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 //45px to the bottom (the height of the toolbar)
 .cc-supports-position-fixed{
     .cc-view-wrapper{
-        padding-top: 45px;
+        padding-top: $cc-header---height;
     }
 }
 
