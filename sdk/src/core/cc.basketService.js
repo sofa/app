@@ -30,10 +30,10 @@ cc.define('cc.BasketService', function(storageService, options){
 
             //on serialization all functions go away. That means, we basically
             //have to create a fresh instance again, once we deserialize again
-            var item = cc.Util.deepExtend(new cc.models.BasketItem(), val);
+            var item = cc.Util.extend(new cc.models.BasketItem(), val);
 
             if (item.product){
-                item.product = cc.Util.deepExtend(new cc.models.Product(), item.product);
+                item.product = cc.Util.extend(new cc.models.Product(), item.product);
             }
 
             return item;

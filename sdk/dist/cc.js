@@ -145,10 +145,10 @@ cc.define('cc.BasketService', function(storageService, options){
 
             //on serialization all functions go away. That means, we basically
             //have to create a fresh instance again, once we deserialize again
-            var item = cc.Util.deepExtend(new cc.models.BasketItem(), val);
+            var item = cc.Util.extend(new cc.models.BasketItem(), val);
 
             if (item.product){
-                item.product = cc.Util.deepExtend(new cc.models.Product(), item.product);
+                item.product = cc.Util.extend(new cc.models.Product(), item.product);
             }
 
             return item;
@@ -922,7 +922,7 @@ cc.define('cc.CouchService', function($http, $q){
     var augmentProducts = function(products, categoryUrlId){
         return products.map(function(product){
             product.categoryUrlId = categoryUrlId;
-            return cc.Util.deepExtend(new cc.models.Product(), product);
+            return cc.Util.extend(new cc.models.Product(), product);
         });
     };
 
@@ -2049,38 +2049,18 @@ cc.Util = {
 
         throw new Error("Unable to copy obj! Its type isn't supported.");
     },
-    /*jshint eqeqeq:false*/
-    deepExtend: function () {
-        var target = arguments[0] || {}, i = 1, length = arguments.length, deep = false, options;
-
-        if (target.constructor == Boolean) {
-            deep = target;
-            target = arguments[1] || {};
-            i = 2;
-        }
-
-        if (typeof target != "object" && typeof target != "function")
-            target = {};
-
-        if (length == 1) {
-            target = this;
-            i = 0;
-        }
-
-        for (; i < length; i++)
-            if ((options = arguments[i]) != null)
-                for (var name in options) {
-                    if (target === options[name])
-                        continue;
-
-                    if (deep && options[name] && typeof options[name] == "object" && target[name] && !options[name].nodeType)
-                        target[name] = this.deepExtend(true, target[name], options[name]);
-
-                    else if (options[name] != undefined)
-                        target[name] = options[name];
+    extend: function(dst) {
+        //strange thing, we can't use forOwn here because
+        //phantomjs raises TypeErrors that don't happen in the browser
+        for (var i = 0; i < arguments.length; i++) {
+            var obj = arguments[i];
+            if (obj !== dst){
+                for (key in obj){
+                    dst[key] = obj[key];
                 }
-
-        return target;
+            }
+        }
+        return dst;
     },
     /*jshint eqeqeq:true, -:true*/
     //this method is ripped out from lo-dash

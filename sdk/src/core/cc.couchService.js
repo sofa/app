@@ -82,7 +82,7 @@ cc.define('cc.CouchService', function($http, $q){
     var augmentProducts = function(products, categoryUrlId){
         return products.map(function(product){
             product.categoryUrlId = categoryUrlId;
-            return cc.Util.deepExtend(new cc.models.Product(), product);
+            return cc.Util.extend(new cc.models.Product(), product);
         });
     };
 

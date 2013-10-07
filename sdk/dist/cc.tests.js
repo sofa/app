@@ -396,6 +396,38 @@ test('cumulates same products', function() {
 
 });
 
+test('cumulates same products even after app reload', function() {
+    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    basketService.clear();
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 10;
+    product.price = 2;
+
+    var itemAddedCalled = 0;
+
+    basketService.on('itemAdded', function(){ itemAddedCalled++; });
+
+    //we intentionally set variant and optionID to null here because
+    //it has been a regression once that null values were not preserved
+    //after reloading the app due to a bug in cc.Util.extend
+    var basketItem = basketService.addItem(product, 1, null, null);
+
+    //we create a fresh basketService instance to mock the case that the
+    //app was reloaded
+    var freshBasketService = new cc.BasketService(new cc.SessionStorageService());
+    freshBasketService.on('itemAdded', function(){ itemAddedCalled++; });
+    var basketItem2 = freshBasketService.addItem(product, 1, null, null);
+    var summary = freshBasketService.getSummary();
+
+    ok(itemAddedCalled === 2, 'raises itemAdded event two times');
+    ok(summary.quantity === 2, 'has a quantity of two');
+    ok(basketItem2.product === product, 'retrieved product from basketItem');
+    ok(basketItem2.quantity === 2, 'has a quantity of two');
+    ok(basketItem2.getTotal() === 4, 'has a total price of four');
+    ok(freshBasketService.getItems().length === 1, 'has only one item');
+});
+
 test('can increase quantity by any number', function() {
     var basketService = new cc.BasketService(new cc.SessionStorageService());
     basketService.clear();
