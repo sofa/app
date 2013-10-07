@@ -90,6 +90,13 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     bottom: 0;
 }
 
+.cc-dock-bottom, %cc-dock-bottom{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
 .cc-expand{
     @extend %cc-full-width-height;
     @extend %cc-expand-only;

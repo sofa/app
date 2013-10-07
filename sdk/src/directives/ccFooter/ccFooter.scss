@@ -5,6 +5,15 @@
     color: $footer-text-color;
 }
 
+//we sometimes need this on empty screens where we have
+//no content but still want the footer to be placed on the bottom
+.cc-footer-list--docked{
+    position: absolute;
+    left: $primary-padding;
+    right: $primary-padding;
+    bottom: 0;
+}
+
 .cc-footer-list__row{
     @extend %cc-text-list__row;
     background-color: $footer-background-color;
