@@ -50,7 +50,8 @@ $darker-content-background-color: darken($content-background-color, 5%);
     border-bottom: 3px solid $content-border-color;
 
     &:active, &.ng-click-active{
-        @include try-darker(background, $content-background-color, 10%);
+        //@include try-darker(background, $content-background-color, 10%);
+        border-bottom-width: 1px;
     }
 }
 
