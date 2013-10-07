@@ -71,6 +71,23 @@
     }
 }
 
+@function try-darker($color, $amount: 40%){
+    @if lightness($color) < 20 {
+        @return lighten($color, $amount);
+    }
+    @else {
+        @return darken($color, $amount);
+    }
+}
+
+@function try-lighter($color, $amount: 40%){
+    @if lightness($color) > 80 {
+        @return darken($color, $amount);
+    }
+    @else {
+        @return lighten($color, $amount);
+    }
+}
 
 @mixin button-gradient($bg-color){
 
