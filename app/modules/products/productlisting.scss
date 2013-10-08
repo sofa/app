@@ -37,7 +37,7 @@
     position: relative;
 
     &.cc-highlight:after,
-    &.cc-product-grid__row-wrapper--highlight:after{
+    .cc-product-grid__row-highlighter{
         content: "";
         position: absolute;
         top: 0;
@@ -46,13 +46,14 @@
         bottom: 0;
         border-radius: 15px;
         opacity: 0.5;
+        z-index: 1
     }
 
     &.cc-highlight:after{
         background: $highlight-color;
     }
 
-    &.cc-product-grid__row-wrapper--highlight:after{
+    .cc-product-grid__row-highlighter{
         @extend .cc-highlight--animated;
     }
 }
