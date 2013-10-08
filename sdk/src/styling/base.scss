@@ -204,6 +204,7 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
 .cc-view-wrapper{
     padding: $primary-padding;
     height: 100%;
+    color: $background-text-color;
 }
 
 //generic seperator lines that magically allways look awesome

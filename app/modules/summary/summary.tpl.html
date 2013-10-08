@@ -1,4 +1,4 @@
-<div ng-show="vm.page === vm.SUMMARY_PAGE" class="cc-view-wrapper cc-view-phone">
+<div ng-show="vm.page === vm.SUMMARY_PAGE" class="cc-view-wrapper">
     <h1 class="cc-title--big" ng-bind="ln.summary"></h1>
 
     <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
@@ -72,7 +72,7 @@
     <cc-footer></cc-footer>
 </div>
 
-<div ng-show="vm.page === vm.THANK_YOU_PAGE" class="cc-view-wrapper cc-view-phone cc-center">
+<div ng-show="vm.page === vm.THANK_YOU_PAGE" class="cc-view-wrapper cc-center">
     <h1 class="cc-title--huge" >{{ ln.thankYouTitle}}</h1>
     <div>{{ln.thankTouText}}</div>
         <a 
