@@ -1,6 +1,8 @@
 cc.Config = {
     loggingEnabled: true,
     storeId: 53787,
+    originalUrl:'http://couchcommerce.shopwaredemo.de/',
+    noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
     checkoutUrl:'http://couchdemoshop.couchcommerce.com/checkout/v2/',
@@ -19,6 +21,7 @@ cc.Config = {
     shippingText:'zzgl. 5€ Versandkosten',
     showGeneralAgreement:1,
     showAgeAgreement:0,
+    showAppExitLink:true,
     linkGeneralAgreement:'saturn',
     linkRecallAgreement:'neptune',
     linkAgeAgreement:'age',

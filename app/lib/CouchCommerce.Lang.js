@@ -105,5 +105,6 @@ cc.Lang = {
         invalidInput_City: 'Bitte geben Sie Ihren Wohnort ein',
         invalidInput_Country: 'Bitte geben Sie Ihre Land ein',
         invalidInput_Email: 'Bitte geben Sie eine gültige E-Mail Adresse ein',
-        welcomeText: 'Willkommen im Couch Demo Shop'
+        welcomeText: 'Willkommen im Couch Demo Shop',
+        showDesktopView:'Web-App verlassen'
     };
