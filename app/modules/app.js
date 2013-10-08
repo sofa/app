@@ -174,6 +174,9 @@ var categoryStateConfig;
                 resolve: {
                     products: ['couchService', '$stateParams', function(couchService, $stateParams){
                         return couchService.getProducts($stateParams.category);
+                    }],
+                    category: ['couchService', '$stateParams', function(couchService, $stateParams){
+                        return couchService.getCategory($stateParams.category);
                     }]
                 },
                 screenIndex: 1

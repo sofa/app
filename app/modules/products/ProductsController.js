@@ -11,6 +11,7 @@ angular
         'navigationService',
         'backStepHighlightService',
         'products',
+        'category',
         'selectionService',
         function ProductsController(
             $scope,
@@ -20,6 +21,7 @@ angular
             navigationService,
             backStepHighlightService,
             products,
+            category,
             selectionService) {
 
             'use strict';
@@ -33,5 +35,6 @@ angular
             $scope.navigationService = navigationService;
             $scope.products = products;
             $scope.categoryUrlId = $stateParams.category;
+            $scope.headline = category.label;
         }
     ]);

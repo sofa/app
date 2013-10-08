@@ -27,6 +27,7 @@ angular
             }
             else{
                 $scope.category = category;
+                $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;
             }
 
         }

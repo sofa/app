@@ -83,13 +83,13 @@ cc.Lang = {
         checkout: 'Checkout',
         surChargeWarning:'Es fallen zusätzliche Gebühren in Höhe von {surcharge} an',
         surcharge:'Zusätzliche Gebühren',
-// This is temporally disabled until we use the new
-// checkout process
-       paymentMethod_paypalexpress: 'PayPal',
-       paymentMethod_prepayment: 'Vorauszahlung',
-       paymentMethod_invoice: 'Rechnung',
-       paymentMethod_paymentOnDelivery: 'Nachnahme',
-       paymentMethod_others: 'Andere Zahlung',
+        // This is temporally disabled until we use the new
+        // checkout process
+        paymentMethod_paypalexpress: 'PayPal',
+        paymentMethod_prepayment: 'Vorauszahlung',
+        paymentMethod_invoice: 'Rechnung',
+        paymentMethod_paymentOnDelivery: 'Nachnahme',
+        paymentMethod_others: 'Andere Zahlung',
         showProducts: 'Produkte anzeigen',
         showProductsInfo: 'Die aktuelle Kategorie enthält sowohl Unterkategorien als auch direkt zugewiesene Produkte. In der aktuellen Ansicht werden Ihnen nur die Unterkategorien dargestellt. Tippen Sie auf <b>Produkte anzeigen</b>, wenn Sie stattdessen die Produkte dieser Kategorie sehen möchten',
         whatDoesThatMean: 'Was bedeutet das?',
@@ -105,4 +105,5 @@ cc.Lang = {
         invalidInput_City: 'Bitte geben Sie Ihren Wohnort ein',
         invalidInput_Country: 'Bitte geben Sie Ihre Land ein',
         invalidInput_Email: 'Bitte geben Sie eine gültige E-Mail Adresse ein',
+        welcomeText: 'Willkommen im Couch Demo Shop'
     };
