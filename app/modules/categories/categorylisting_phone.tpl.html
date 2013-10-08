@@ -2,7 +2,7 @@
     <ul class="cc-category-list">
         <li ng-repeat="category in category.children"
             ng-click="goToCategory(category, $event)"
-            ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }"
+            ng-class="{ 'cc-category-list__row--highlight': backStepHighlightService.isHighlighted(category) }"
             class="cc-category-list__row" >
 
             <div class="cc-category-list__row-content">

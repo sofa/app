@@ -34,6 +34,27 @@
     background-color: $content-background-color;
     border-radius: 15px;
     border-bottom: 3px solid $content-border-color;
+    position: relative;
+
+    &.cc-highlight:after,
+    &.cc-product-grid__row-wrapper--highlight:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 15px;
+        opacity: 0.5;
+    }
+
+    &.cc-highlight:after{
+        background: $highlight-color;
+    }
+
+    &.cc-product-grid__row-wrapper--highlight:after{
+        @extend .cc-highlight--animated;
+    }
 }
 
 .cc-product-grid__row--odd{

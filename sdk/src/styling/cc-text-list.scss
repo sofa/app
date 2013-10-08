@@ -26,8 +26,8 @@ $cc-text-list__row---border-radius: 15px;
         }
     }
 
-    &.cc-static-highlight{
-        background: $info-area-background-color;
+    &.cc-highlight{
+        background: $highlight-color;
     }
 
 }

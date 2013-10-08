@@ -4,6 +4,25 @@
 
 .cc-category-list__row{
     @extend %cc-text-list__row;
+
+    &.cc-highlight:after,
+    &.cc-category-list__row--highlight:after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0.5;
+    }
+
+    &.cc-highlight:after{
+        background: $highlight-color;
+    }
+
+    &.cc-category-list__row--highlight:after{
+        @extend .cc-highlight--animated;
+    }
 }
 
 

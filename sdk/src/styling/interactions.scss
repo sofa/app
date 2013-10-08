@@ -1,5 +1,23 @@
-
-.cc-static-highlight{
-    background: $info-area-background-color;
+.cc-highlight{
+    background: $highlight-color;
 }
+
+.cc-highlight--animated{
+    -webkit-animation: fade-out 0.6s ease-out;
+    -webkit-animation-iteration-count: 1;
+}
+
+@keyframes fade-out {
+    0% {background: $highlight-color;}
+    70% {background: $highlight-color;}
+    100% {background: none;}
+}
+
+@-webkit-keyframes fade-out {
+    0% {background: $highlight-color;}
+    70% {background: $highlight-color;}
+    100% {background: none;}
+}
+
+
 

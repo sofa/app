@@ -119,20 +119,3 @@ $slide-easing: ease-out;
 .fade-in.fade-in-active {
  opacity: 1;
 }
-
-.cc-highlight{
-    -webkit-animation: pulsate 0.6s ease-out;
-    -webkit-animation-iteration-count: 1;
-}
-
-@keyframes pulsate {
-    0% {background: inherit;}
-    50% {background: $info-area-background-color;}
-    100% {background: inherit;}
-}
-
-@-webkit-keyframes pulsate {
-    0% {background: inherit;}
-    50% {background: $info-area-background-color;}
-    100% {background: inherit;}
-}

@@ -5,7 +5,7 @@ angular
             'use strict';
 
             var self            = {},
-                HIGHLIGHT_CLS   = 'cc-static-highlight',
+                HIGHLIGHT_CLS   = 'cc-highlight',
                 containerMap    = {};
 
             var assertContainer = function(containerKey){
