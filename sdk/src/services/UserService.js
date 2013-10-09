@@ -1,6 +1,6 @@
 angular.module('sdk.services.userService', [
         // TODO: Investigate. I'm not sold this should be handled on this level. 
-        store.enabled ? 'sdk.services.sessionStorageService' : 'sdk.services.memoryStorageService',
+        store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService',
         'sdk.services.configService'
     ]);
 

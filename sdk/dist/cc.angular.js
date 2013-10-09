@@ -125,7 +125,7 @@ angular.module("src/directives/ccZippy/cczippy.tpl.html", []).run(["$templateCac
 
 angular.module('sdk.services.basketService', [
         // TODO: Investigate. I'm not sold this should be handled on this level. 
-        store.enabled ? 'sdk.services.sessionStorageService' : 'sdk.services.memoryStorageService'
+        store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService'
     ]);
 
 angular
@@ -324,19 +324,19 @@ angular
 
 
 
-angular.module('sdk.services.sessionStorageService', []);
+angular.module('sdk.services.localStorageService', []);
 
 angular
-    .module('sdk.services.sessionStorageService')
+    .module('sdk.services.localStorageService')
     .factory('storageService', [function(){
-        return new cc.SessionStorageService();
+        return new cc.LocalStorageService();
 }]);
 
 
 
 angular.module('sdk.services.userService', [
         // TODO: Investigate. I'm not sold this should be handled on this level. 
-        store.enabled ? 'sdk.services.sessionStorageService' : 'sdk.services.memoryStorageService',
+        store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService',
         'sdk.services.configService'
     ]);
 

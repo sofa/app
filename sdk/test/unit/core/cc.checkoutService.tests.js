@@ -45,7 +45,7 @@ asyncTest('getSupportCheckoutMethod sends correct data to the backend', function
         .when('POST', cc.Config.checkoutUrl + 'ajax.php')
         .respond({});
 
-    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    var basketService = new cc.BasketService(new cc.LocalStorageService());
     basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
@@ -95,7 +95,7 @@ asyncTest('checkoutWithCouchCommerce returns a promise with a token', function()
         .when('POST', cc.Config.checkoutUrl + 'ajax.php')
         .respond('({"token":"CC_4ee08a71c70c007ce92a0b941eb059fe"})');
 
-    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    var basketService = new cc.BasketService(new cc.LocalStorageService());
 
     var checkoutService = new cc.CheckoutService(httpService, new cc.QService(), basketService);
 
@@ -132,7 +132,7 @@ asyncTest('getSummary transforms addresses in standard format', function() {
         .when('POST', cc.Config.checkoutUrl + 'summaryst.php')
         .respond(response);
 
-    var basketService = new cc.BasketService(new cc.SessionStorageService());
+    var basketService = new cc.BasketService(new cc.LocalStorageService());
 
     var checkoutService = new cc.CheckoutService(httpService, new cc.QService(), basketService);
 

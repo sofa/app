@@ -1,9 +1,9 @@
-angular.module('sdk.services.sessionStorageService', []);
+angular.module('sdk.services.localStorageService', []);
 
 angular
-    .module('sdk.services.sessionStorageService')
+    .module('sdk.services.localStorageService')
     .factory('storageService', [function(){
-        return new cc.SessionStorageService();
+        return new cc.LocalStorageService();
 }]);
 
 

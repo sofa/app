@@ -1928,7 +1928,7 @@ cc.define('cc.SearchService', function(configService, $http, $q){
     return self;
 });
 //we just wrap store.js in a service here
-cc.define('cc.SessionStorageService', function(){
+cc.define('cc.LocalStorageService', function(){
     return store;
 });
 cc.define('cc.UserService', function(storageService, configService){
