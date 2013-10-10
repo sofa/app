@@ -11,6 +11,14 @@ cc.Util = {
         'string': false,
         'undefined': false
     },
+    domReady: function(fn){
+        if(document.readyState === "complete") {
+            fn()
+        }
+        else {
+            window.addEventListener("load", fn, false);
+        }
+    },
     round: function(value, places){
         var multiplier = Math.pow(10, places);
         return (Math.round(value * multiplier) / multiplier);
@@ -217,3 +225,9 @@ cc.Util = {
         }
     }
 };
+
+//we put this here instead of in an seperate file so that the
+//order of files doesn't matter for concatenation
+cc.Util.domReady(function(){
+    FastClick.attach(document.body);
+});
