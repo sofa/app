@@ -1,8 +1,16 @@
 <div class="cc-view-wrapper cc-on-background">
-    <div>
-        <span class="cc-title--big" ng-bind="pagesVm.page.title"></span>
-        <a class="cc-pages-send-as-mail icon-envelope icon-large" href="{{pagesVm.mailTo}}"></a>
+    
+    <div ng-if="pagesVm.page.content">
+        <div>
+            <span class="cc-title--huge" ng-bind="pagesVm.page.title"></span>
+            <a class="cc-pages-send-as-mail icon-envelope icon-large" href="{{pagesVm.mailTo}}"></a>
+        </div>
+        <div ng-bind-html="pagesVm.page.content" class="cc-content-box--padded"></div>
     </div>
-    <div ng-bind-html="pagesVm.page.content"></div>
+    <div class="cc-404" ng-if="!pagesVm.page.content">
+        <i class="cc-404__icon icon-wrench"></i>
+        <h1 class="cc-title--huge">{{ ln.pageDoesntExist }}</h1>
+    </div>
+
     <cca-footer></cca-footer>
 </div>
