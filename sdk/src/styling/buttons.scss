@@ -39,9 +39,6 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     @extend %cc-button-base--disabled;
 }
 
-$lighter-content-background-color: lighten($content-background-color, 10%);
-$darker-content-background-color: darken($content-background-color, 5%);
-
 .cc-couch-default-button-on-content{
     @extend %cc-button-base;
 
@@ -50,8 +47,9 @@ $darker-content-background-color: darken($content-background-color, 5%);
     border-bottom: 3px solid $content-border-color;
 
     &:active, &.ng-click-active{
-        //@include try-darker(background, $content-background-color, 10%);
         border-bottom-width: 1px;
+        //this is to not make the elements jump when the button is pressed
+        margin-bottom: 2px;
     }
 }
 
@@ -59,30 +57,17 @@ $darker-content-background-color: darken($content-background-color, 5%);
     @extend %cc-button-base--disabled;
 }
 
-$lighter-background-color: lighten($background-color, 10%);
-$darker-background-color: darken($background-color, 5%);
-
 .cc-couch-default-button-on-background{
     @extend %cc-button-base;
 
-    border: 1px solid $background-border-color;
+    border: 1px solid lighten($background-border-color, 20%);
     color: $background-text-color;
-
-    @if lightness($background-text-color) > 40 {
-        text-shadow: 1px 1px 1px #000000;
-    }
-    @else {
-        text-shadow: 1px 1px 1px #ffffff;
-    }
-
-    background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-background-color),color-stop(100%,$lighter-background-color));
-    background-image: -webkit-linear-gradient(bottom,$darker-background-color 28%,$lighter-background-color 100%);
-    background-image: linear-gradient(bottom,$darker-background-color 28%,$lighter-background-color 100%);
+    border-bottom: 3px solid $background-border-color;
 
     &:active, &.ng-click-active{
-        background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$lighter-background-color),color-stop(100%,$darker-background-color));
-        background-image: -webkit-linear-gradient(bottom,$lighter-background-color 28%,$darker-background-color 100%);
-        background-image: linear-gradient(bottom,$lighter-background-color 28%,$darker-background-color 100%);
+        border-bottom-width: 1px;
+        //this is to not make the elements jump when the button is pressed
+        margin-bottom: 2px;
     }
 }
 
