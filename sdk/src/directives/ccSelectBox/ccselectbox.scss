@@ -3,32 +3,20 @@
 .cc-select-box-on-background.cc-select-box-select-wrapper,
 %cc-select-box-on-background{
 
-    // $lighter-content-background-color: lighten($background-color, 10%);
-    // $darker-content-background-color: darken($background-color, 5%);
-
-    // background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
-    // background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
-    // background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
-
-    border: 1px solid $background-border-color;
     //this might sound strange on first glance. However, it makes
     //perfect sense to give form elements that are placed on the background the content-background-color.
     //that's exactly the purpose of the content-background-color. To style areas that sit on the background.
     background: $content-background-color;
+
+    .cc-select-box-select-icon{
+        color: $content-border-color;
+    }
 }
 
 .cc-select-box-on-content .cc-select-box-select-wrapper, 
 .cc-select-box-on-content.cc-select-box-select-wrapper,
 %cc-select-box-on-content{
 
-    // $lighter-content-background-color: lighten($content-background-color, 10%);
-    // $darker-content-background-color: darken($content-background-color, 5%);
-
-    // background-image: -webkit-gradient(linear,50% 0,50% 100%,color-stop(28%,$darker-content-background-color),color-stop(100%,$lighter-content-background-color));
-    // background-image: -webkit-linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
-    // background-image: linear-gradient(bottom,$darker-content-background-color 28%,$lighter-content-background-color 100%);
-
-    border: 1px solid $content-border-color;
     @include try-darker("background", $content-background-color, 10%);
 }
 
@@ -40,12 +28,11 @@ $cc-select-box-height: 50px;
 
 .cc-select-box-select-wrapper{
     position: relative;
-    border: 1px solid #000000;
     width: 100%;
     height: $cc-select-box-height;
     line-height: $cc-select-box-height;
     text-align: center;
-    border-radius: 5px;
+    border-radius: $primary-border-radius;
     margin: 5px 0 5px 0;
 }
 
@@ -64,13 +51,13 @@ $cc-select-box-height: 50px;
 //if the styles are applied without the parent being a cc-grouped, the radius
 //is the default style of the cc-select-box-select-wrapper. We omit that for selector performance.
 .cc-select-box-select-wrapper:first-child{
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: $primary-border-radius;
+    border-top-right-radius: $primary-border-radius;
 }
 
 .cc-select-box-select-wrapper:last-child{
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: $primary-border-radius;
+    border-bottom-right-radius: $primary-border-radius;
 }
 
 .cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
@@ -94,7 +81,8 @@ cc-grouped .cc-text-box + .cc-select-box-select-wrapper{
     position: absolute;
     right: 10px;
     top: 50%;
-    margin-top: -7px;
+    font-size: 24px;
+    margin-top: -12px;
 }
 
 .cc-select-box-select-wrapper.ng-invalid{
