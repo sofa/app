@@ -1,13 +1,6 @@
 <div class="cc-view-wrapper">
     <div rn-carousel-infinite rn-carousel-current="product" rn-carousel-prev="getPrevProduct(item)" rn-carousel-next="getNextProduct(item)">
         <div class="cc-title--huge">{{product.name}}</div>
-        <cc-variant-selector 
-            class="cc-variant-selector-on-background " 
-            choose-text="ln.choose"
-            variants="product.variants"
-            variant="variants.selectedVariant"
-            selected-properties="variants.selectedProperties">
-        </cc-variant-selector>
 
         <div class="cc-product-view-image"
              cc-image-zoom
@@ -22,6 +15,14 @@
             on-change="onThumbnailSelected(product, image)" 
             >
         </cc-thumbnail-bar>
+
+        <cc-variant-selector 
+            class="cc-variant-selector-on-background " 
+            choose-text="ln.choose"
+            variants="product.variants"
+            variant="variants.selectedVariant"
+            selected-properties="variants.selectedProperties">
+        </cc-variant-selector>
 
         <div ng-include="tpl.PRICE_INFO_AND_ADD_TO_CART"></div>
 
