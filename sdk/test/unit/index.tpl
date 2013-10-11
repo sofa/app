@@ -9,7 +9,6 @@
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
 <script src="../../node_modules/qunitjs/qunit/qunit.js"></script>
-<script src="../../dist/cc.js"></script>
-<script src="../../dist/cc.tests.js"></script>
+<%= scripts %>
 </body>
 </html>

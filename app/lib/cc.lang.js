@@ -1,5 +1,3 @@
-'use strict';
-
 cc.Lang = {
         missingVariantAttributeText: 'Bitte wählen Sie aus den fehlenden Attributen: ',
         noSelection: 'Keine Auswahl',

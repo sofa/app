@@ -1,4 +1,4 @@
-var cc = {};
+var cc = window.cc = {};
 
 (function(){
 

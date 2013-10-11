@@ -57,7 +57,11 @@ module.exports = function(grunt) {
         },
         concat:{
             dist:{
-                src:['<%= src.cc %>'],
+                src:[
+                        'build.cc.intro.js',
+                        '<%= src.cc %>',
+                        'build.cc.outro.js'
+                    ],
                 dest:'<%= distdir %>/<%= ccName %>.js'
             },
             ccTests:{
@@ -65,33 +69,14 @@ module.exports = function(grunt) {
                 dest:'<%= distdir %>/<%= ccTestsName %>.js'
             },
             ccAngular:{
-                src:['<%= distdir %>/cc.angular.templates.js','<%= src.ccAngular %>'],
+                src:[
+                        'build.intro.js',
+                        '<%= distdir %>/cc.angular.templates.js',
+                        '<%= src.ccAngular %>',
+                        'build.outro.js',
+                    ],
                 dest:'<%= distdir %>/<%= ccAngularName %>.js'
             }
-            //,
-            // index: {
-            //     src: ['src/index.html'],
-            //     dest: '<%= distdir %>/index.html',
-            //     options: {
-            //         process: true
-            //     }
-            // },
-            // angular: {
-            //     src:['vendor/angular/angular.js'],
-            //     dest: '<%= distdir %>/angular.js'
-            // },
-            // mongo: {
-            //     src:['vendor/mongolab/*.js'],
-            //     dest: '<%= distdir %>/mongolab.js'
-            // },
-            // bootstrap: {
-            //     src:['vendor/angular-ui/bootstrap/*.js'],
-            //     dest: '<%= distdir %>/bootstrap.js'
-            // },
-            // jquery: {
-            //     src:['vendor/jquery/*.js'],
-            //     dest: '<%= distdir %>/jquery.js'
-            // }
         },
         qunit: {
             all: ['test/**/*.html']
@@ -100,6 +85,12 @@ module.exports = function(grunt) {
             all: {
                 files:['<%= src.cc %>', '<%= src.ccAngular %>', '<%= src.ccTests %>', '<%= src.ccTemplates %>'],
                 tasks:['jshint','build']
+            }
+        },
+        script:{
+            cc:{
+                src: ['<%= src.cc %>', '<%= src.ccTests %>'],
+                relativeTo: 'test/unit/'
             }
         }
     });
@@ -114,10 +105,31 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-html2js');
 
+    grunt.registerTask('index-template-tests', function(){
+        
+        var indexPath = 'test/unit/';
+        var indexContents = grunt.file.read(indexPath + 'index.tpl');
+        var transformedContents = grunt.template.process(indexContents, { data: grunt.config.get('script.cc') });
+        grunt.file.write(indexPath + 'index.html', transformedContents);
+    });
+
+    grunt.registerMultiTask('script', function(){
+        var path = require('path');
+        var relativeTo = this.data.relativeTo || '';
+        var scriptTags = this.filesSrc
+                             .map(function(val){ 
+                                return '<script src="' + path.relative(relativeTo, val) + '"></script>'; 
+                             })
+                             .join('\n');
+
+        var configProperty = this.name + '.' + this.target + '.scripts';
+
+        grunt.config.set(configProperty, scriptTags);
+    });
 
     // Default task(s).
     grunt.registerTask('docs', ['shell']);
     grunt.registerTask('default', ['jshint', 'build', 'watch']);
-    grunt.registerTask('build', ['clean', 'html2js', 'concat', 'qunit']);
+    grunt.registerTask('build', ['clean', 'html2js', 'concat', 'script', 'index-template-tests', 'qunit']);
 
 };

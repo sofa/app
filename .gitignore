@@ -8,4 +8,5 @@ build.xml
 .idea/*
 .sass-cache
 app/css/*
+sdk/test/unit/index.html
 node_modules
