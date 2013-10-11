@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.1.6-11521a4
+ * @license AngularJS v1.1.6-30cd921
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -1509,7 +1509,7 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.1.6-11521a4',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.1.6-30cd921',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 1,
   dot: 6,
@@ -11405,6 +11405,11 @@ function $SnifferProvider() {
           break;
         }
       }
+
+      if(!vendorPrefix) {
+        vendorPrefix = ('WebkitOpacity' in bodyStyle) && 'webkit';
+      }
+
       transitions = !!(('transition' in bodyStyle) || (vendorPrefix + 'Transition' in bodyStyle));
       animations  = !!(('animation' in bodyStyle) || (vendorPrefix + 'Animation' in bodyStyle));
       
