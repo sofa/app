@@ -238,7 +238,7 @@ var categoryStateConfig;
 
         $urlRouterProvider.otherwise('/');
     }])
-    .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService){
+    .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', 'scrollPositionService', function($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService, scrollPositionService){
 
         //Todo: Check what can be moved over to the MainController
         //Most things can, but things like language keys, when used from within
@@ -257,15 +257,4 @@ var categoryStateConfig;
         deviceService.flagOs();
         deviceService.flagPositionFixedSupport();
         deviceService.flagModernFlexboxSupport();
-
-        $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, fromRoute){
-
-            //we not only need that to reset the scrolling position but also because
-            //otherwise in Chrome for Android the scrolling is freezed after full page
-            //reload. It can be unfreezed by navigating somewhere else or through this hack. Weird!
-            $timeout(function(){
-                $window.scrollTo(0,1);
-            },0);
-
-        });
     }]);
