@@ -1,6 +1,6 @@
 
 $cc-text-list---height: 120px;
-$cc-text-list__row---border-radius: 15px;
+$cc-text-list__row---border-radius: $primary-border-radius;
 
 .cc-text-list, %cc-text-list{
     margin: 10px 0 10px 0;
