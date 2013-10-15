@@ -4,7 +4,7 @@
            ng-click="navigationService.goUp()"
            ng-show="!navigationService.isRootCategory()"></i>
     </div>
-    <div class="cc-header__logo">&nbsp;</div>
+    <div class="cc-header__logo" ng-click="navigationService.navigateToRootCategory()">&nbsp;</div>
     <div class="cc-header__icon-wrapper">
         <i class="cc-header__icon icon-search"
            ng-click="showSearch()">
