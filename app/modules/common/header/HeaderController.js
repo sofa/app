@@ -22,5 +22,9 @@ angular
                 .on('itemAdded', updateBasketItemCount)
                 .on('itemRemoved', updateBasketItemCount);
 
+            $scope.showSearch = function(){
+                alert('its coming...soon!');
+            };
+
         }
     ]);

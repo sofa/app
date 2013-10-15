@@ -4,12 +4,15 @@ $cc-header---half-icon-height: $cc-header---icon-height / 2;
 
 .cc-header{
     background: $toolbar-background-color; 
-    border-bottom: 3px solid $toolbar-border-color;
     height: $cc-header---height;
     z-index: 999;
     width: 100%;
     position: relative;
+    display: table;
 
+    //we need a blur radius of at least 1px for box-shadow to work on Android 2.3
+    //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
+    @include vendor-prefix('box-shadow', 0px 3px 1px $toolbar-border-color);
 }
 
 .cc-supports-position-fixed{
@@ -21,43 +24,29 @@ $cc-header---half-icon-height: $cc-header---icon-height / 2;
     }
 }
 
-//generic seperator lines that magically allways look awesome
-//(it could be tweaked for black and white though)
-.cc-header__seperator, %cc-header__seperator{
-    height: 100%;
-    border-left: 1px solid $toolbar-border-color;
-    border-right: 1px solid try-lighter($toolbar-background-color, 10%);
+.cc-header__icon-wrapper{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 58px;
 }
 
 $cc-header---icon-top-bottom-padding: 8px;
 .cc-header__icon{
     text-shadow: 2px 2px 0px $toolbar-border-color;
     color: $toolbar-icon-color;
-    //the padding is to increase the clickable area
     padding: $cc-header---icon-top-bottom-padding 15px $cc-header---icon-top-bottom-padding 15px;
-    position: absolute;
-    top: 50%;
-    margin-top: -($cc-header---half-icon-height + $cc-header---icon-top-bottom-padding);
-    z-index: 5;
     font-size: $cc-header---icon-height;
 
     border: 1px solid $toolbar-border-color;
     border-bottom: 3px solid try-darker($toolbar-border-color, 5%);
     border-radius: 15px;
 
+    position: relative;
+
     &:active, &.ng-click-active{
         border-bottom-width: 1px;
     }
-}
-
-.cc-header__icon--cart{
-    @extend .cc-header__icon;
-    right: 5px;
-}
-
-.cc-header__icon--back{
-    @extend .cc-header__icon;
-    left: 5px;
 }
 
 //lots of hardcoded colors for the badge. Can we get rid of them?
@@ -88,11 +77,5 @@ $cc-header---icon-top-bottom-padding: 8px;
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    width: 230px;
-    height: 44px;
-    position: absolute;
-    margin-left: -115px;
-    left: 50%;
-    top: 50%;
-    margin-top: -22px;
+    display: table-cell;
 }
