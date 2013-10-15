@@ -1,4 +1,4 @@
-$cc-header---icon-height: 32px;
+$cc-header---icon-height: 16px;
 $cc-header---half-icon-height: $cc-header---icon-height / 2;
 
 
@@ -29,19 +29,7 @@ $cc-header---half-icon-height: $cc-header---icon-height / 2;
     border-right: 1px solid try-lighter($toolbar-background-color, 10%);
 }
 
-.cc-header__seperator--back{
-    @extend %cc-header__seperator;
-    position: absolute;
-    left: 64px;
-}
-
-.cc-header__seperator--cart{
-    @extend %cc-header__seperator;
-    position: absolute;
-    right: 72px;
-}
-
-$cc-header---icon-top-bottom-padding: 5px;
+$cc-header---icon-top-bottom-padding: 8px;
 .cc-header__icon{
     text-shadow: 2px 2px 0px $toolbar-border-color;
     color: $toolbar-icon-color;
@@ -51,6 +39,7 @@ $cc-header---icon-top-bottom-padding: 5px;
     top: 50%;
     margin-top: -($cc-header---half-icon-height + $cc-header---icon-top-bottom-padding);
     z-index: 5;
+    font-size: $cc-header---icon-height;
 
     border: 1px solid $toolbar-border-color;
     border-bottom: 3px solid try-darker($toolbar-border-color, 5%);

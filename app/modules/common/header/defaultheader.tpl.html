@@ -1,14 +1,12 @@
 <div class="cc-header" ng-controller="HeaderController">
     <span 
-    class="cc-header__icon--back icon-chevron-left icon-2x" 
+    class="cc-header__icon--back icon-chevron-left" 
     ng-click="navigationService.goUp()"
     ng-show="!navigationService.isRootCategory()"
     >
     </span>
-    <span class="cc-header__seperator--back" ng-show="!navigationService.isRootCategory()"></span>
     <span class="cc-header__logo" ng-click="navigationService.navigateToRootCategory()"></span>
-    <span class="cc-header__seperator--cart"></span>
-    <span class="cc-header__icon--cart icon-shopping-cart icon-2x" ng-click="navigationService.navigateToCart()">
+    <span class="cc-header__icon--cart icon-shopping-cart" ng-click="navigationService.navigateToCart()">
         <span class="cc-header__icon-badge--cart" ng-bind="basketItemCount"ng-show="basketItemCount > 0"></span>
     </span>
 
