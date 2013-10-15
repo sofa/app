@@ -5,7 +5,7 @@ angular
     .controller( 'HeaderController',
     [
         '$scope', '$location', 'navigationService', 'couchService', 'basketService',
-        function CategoryController($scope, $location, navigationService, couchService, basketService) {
+        function HeaderController($scope, $location, navigationService, couchService, basketService) {
 
             'use strict';
 
