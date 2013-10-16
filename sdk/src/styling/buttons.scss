@@ -26,12 +26,18 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     font-size: $font-size-big;
     color: #FFFFFF;
     background: $default-button-background-color;
-    border-bottom: 3px solid lighten($default-button-background-color, 15%);
+    border-bottom: 0;
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $border-bottom-width 1px 0 lighten($default-button-background-color, 15%);
+    box-shadow: 0 $border-bottom-width 0 0 lighten($default-button-background-color, 15%);
 
     &:active, &.ng-click-active{
         background: lighten($default-button-background-color, 15%);
         border: 1px solid lighten($default-button-background-color, 5%);
-        border-bottom: 3px solid lighten($default-button-background-color, 30%);
+        border-bottom: 0;
+        //android 2.3 needs blur for box shadow
+        -webkit-box-shadow: 0 $border-bottom-width 1px 0 lighten($default-button-background-color, 30%);
+        box-shadow: 0 $border-bottom-width 0 0 lighten($default-button-background-color, 30%);
     }
 }
 
@@ -44,12 +50,15 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
 
     border: 1px solid lighten($content-border-color, 20%);
     color: $content-text-color;
-    border-bottom: 3px solid $content-border-color;
+    border-bottom: 0;
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
+    box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
 
     &:active, &.ng-click-active{
-        border-bottom-width: 1px;
-        //this is to not make the elements jump when the button is pressed
-        margin-bottom: 2px;
+        //android 2.3 needs blur for box shadow
+        -webkit-box-shadow: 0 1px 1px 0 $content-border-color;
+        box-shadow: 0 1px 0 0 $content-border-color;
     }
 }
 
@@ -62,12 +71,15 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
 
     border: 1px solid lighten($background-border-color, 20%);
     color: $background-text-color;
-    border-bottom: 3px solid $background-border-color;
+
+    border-bottom: 0;
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $background-border-color;
+    box-shadow: 0 $border-bottom-width 0 0 $background-border-color;
 
     &:active, &.ng-click-active{
-        border-bottom-width: 1px;
-        //this is to not make the elements jump when the button is pressed
-        margin-bottom: 2px;
+        -webkit-box-shadow: 0 1px 1px 0 $background-border-color;
+        box-shadow: 0 1px 0 0 $background-border-color;
     }
 }
 

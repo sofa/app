@@ -17,9 +17,12 @@ $cc-text-list__row---border-radius: $primary-border-radius;
     }
 
     &:last-child{
-        border-bottom: 3px solid $content-border-color;
         border-bottom-left-radius: $cc-text-list__row---border-radius;
         border-bottom-right-radius: $cc-text-list__row---border-radius;
+        border-bottom: 0;
+        //android 2.3 needs blur for box shadow
+        -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
+        box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
 
         .cc-text-list__row-content{
             border-bottom: none;

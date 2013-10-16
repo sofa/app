@@ -39,13 +39,19 @@ $cc-header---icon-top-bottom-padding: 8px;
     font-size: $cc-header---icon-height;
 
     border: 1px solid $toolbar-border-color;
-    border-bottom: 3px solid try-darker($toolbar-border-color, 5%);
+    
+    //android 2.3 needs blur for box shadow
+    border-bottom: 0;
+    -webkit-box-shadow: 0 $border-bottom-width 1px 0 try-darker($toolbar-border-color, 5%);
+    box-shadow: 0 $border-bottom-width 0 0 try-darker($toolbar-border-color, 5%);
+
     border-radius: 15px;
 
     position: relative;
 
     &:active, &.ng-click-active{
-        border-bottom-width: 1px;
+        -webkit-box-shadow: 0 1px 1px 0 try-darker($toolbar-border-color, 5%);
+        box-shadow: 0 1px 0 0 try-darker($toolbar-border-color, 5%);
     }
 }
 

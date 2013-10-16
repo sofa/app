@@ -33,7 +33,12 @@
     width: 100%;
     background-color: $content-background-color;
     border-radius: 15px;
-    border-bottom: 3px solid $content-border-color;
+
+    border-bottom: 0;
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
+    box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
+
     position: relative;
 
     &.cc-highlight:after,
