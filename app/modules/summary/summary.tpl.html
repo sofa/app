@@ -4,15 +4,15 @@
     <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
     <cc-check-box
         ng-if="vm.showGeneralAgreement"
-        class="cc-check-box-on-background" 
+        class="cc-check-box-on-background"
         value="vm.generalAgreement" agreement="ln.combinedAgreement">
     </cc-check-box>
 
     <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
-    <cc-check-box 
-        ng-if="vm.showAgeAgreement" 
-        class="cc-check-box-on-background" 
-        value="vm.ageAgreement" 
+    <cc-check-box
+        ng-if="vm.showAgeAgreement"
+        class="cc-check-box-on-background"
+        value="vm.ageAgreement"
         label="ln.ageAgreement">
     </cc-check-box>
 
@@ -32,15 +32,15 @@
     <div>{{vm.shippingMethod}}</div>
     <div class="cc-padded-line-seperator on-background"></div>
 
-    <!-- This borrows some classes from the cart. I think the real problem is the 
+    <!-- This borrows some classes from the cart. I think the real problem is the
     seperation of cart, summary and thankyou page. This should all live in one directory
     called "checkout" or something like that. Then the styles could be named
     cc-checkout-list and be used across both screens. No? -->
         <div class="cc-content-box--padded">
             <ul class="cc-cart-list">
-                <li ng-repeat="item in vm.items" 
+                <li ng-repeat="item in vm.items"
                     class="cc-cart-list__row">
-                    <div class="cc-cart-list__row-image" 
+                    <div class="cc-cart-list__row-image"
                          style="background-image: url({{ item.imageURL }})">
                     </div>
                     <div class="cc-cart-list__row-content">
@@ -73,12 +73,37 @@
 </div>
 
 <div ng-show="vm.page === vm.THANK_YOU_PAGE" class="cc-view-wrapper cc-center">
-    <h1 class="cc-title--huge" >{{ ln.thankYouTitle}}</h1>
-    <div>{{ln.thankTouText}}</div>
-        <a 
-        ng-click="navigationService.navigateToRootCategory()" 
+    <h1 class="cc-title--huge" >{{ ln.thankYouTitle }}</h1>
+    <div>{{ ln.thankTouText }}</div>
+        <a
+        ng-click="navigationService.navigateToRootCategory()"
         class="cc-couch-action-button">{{ ln.continueShopping }}
     </a>
+
+    <div ng-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-thankyou">
+        <div>
+            <img class="cc-trusted-shops-dialog__image" ng-src="https://www.trustedshops.de/certificate/images/logo/trustedshops_{{ trustedShopsService.locale }}.jpg">
+
+            <div ng-bind-html="ln.tsRegistrationBuyerProtection"></div>
+        </div>
+
+        <form id="formTShops" name="formTShops" method="post"+
+                action="https://www.trustedshops.com/shop/protection.php"+
+                target="_blank">
+
+            <input name="_charset_" type="hidden" value="">
+            <input name="shop_id" type="hidden" value="{{ cfg.trustedShopsId }}">
+            <input name="email" type="hidden" value="">
+            <input name="amount" type="hidden" value="{{ summary.total }}">
+            <input name="curr" type="hidden" value="{{ cfg.currency }}">
+            <input name="paymentType" type="hidden" value="{{ vm.trustedShopsPaymentIdentifier }}">
+            <input name="kdnr" type="hidden" value="-">
+            <input name="ordernr" type="hidden" value="-">
+
+            <input type="submit" class="cc-couch-action-button" value="{{ ln.tsButtonBuyerProtection }}">
+        </form>
+    </div>
+
     <!-- TODO: get rid of this z-index hack -->
     <div class="cc-expand" style="z-index: -1">
         <cca-footer class="cc-cart-footer"></cca-footer>

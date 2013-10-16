@@ -5,7 +5,7 @@ angular
     .controller('PayPalOverlayController',
     [
         '$scope','basketService', 'navigationService', 'configService', 'checkoutService', '$dialog', 'checkoutInfo',
-        function CartController($scope, basketService, navigationService, configService, checkoutService, $dialog, checkoutInfo) {
+        function PayPalOverlayController($scope, basketService, navigationService, configService, checkoutService, $dialog, checkoutInfo) {
             'use strict';
 
             var vm = {

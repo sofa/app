@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('SummaryController',
     [
-        '$scope', 'navigationService', 'checkoutService', '$dialog', '$stateParams',
-        function SummaryController($scope, navigationService, checkoutService, $dialog, $stateParams) {
+        '$scope', 'navigationService', 'checkoutService', '$dialog', '$stateParams', 'trustedShopsService',
+        function SummaryController($scope, navigationService, checkoutService, $dialog, $stateParams, trustedShopsService) {
 
             'use strict';
 
@@ -16,6 +16,8 @@ angular
             vm.page = vm.SUMMARY_PAGE;
 
             $scope.navigationService = navigationService;
+            $scope.trustedShopsService = trustedShopsService;
+
 
             checkoutService
                 .getSummary($stateParams.token)
@@ -27,6 +29,15 @@ angular
                     vm.items            = result.response.items;
                     //we directly set this one on the scope to gain reuse of the included template
                     $scope.summary      = result.summary;
+
+                    //We need to map payment identifier from our identifiers to the ones trust shops uses.
+                    //Ideally the backend will send those.
+                    vm.trustedShopsPaymentIdentifier = "";
+                    switch(vm.paymentMethod) {
+                        case "PayPal":
+                            vm.trustedShopsPaymentIdentifier = "PAYPAL";
+                            break;
+                    }
                 }, function(){
                     $dialog
                         .messageBox(

@@ -17,6 +17,7 @@ cc.Config = {
     shippingCost:5,
     shippingTax:19,
     shippingFreeFrom: null,
+    currency:'EUR',
     currencySign:'€',
     shippingText:'zzgl. 5€ Versandkosten',
     showGeneralAgreement:1,
@@ -41,5 +42,7 @@ cc.Config = {
                 title:'Something',
                 id:'something'
             }
-    ]
+    ],
+    trustedShopsEnabled: true,
+    trustedShopsId: 'X35A8844FD4E62A875C2C9E1C05C39CD4'
 };

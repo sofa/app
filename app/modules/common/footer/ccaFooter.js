@@ -10,7 +10,7 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('ccaFooter', ['configService', function(configService) {
+    .directive('ccaFooter', ['configService', '$dialog', function(configService, $dialog) {
 
         'use strict';
 
@@ -22,9 +22,18 @@ angular
             link: function($scope, element, attrs){
 
                 $scope.showAppExitLink = configService.get('showAppExitLink', false);
+                $scope.trustedShopsEnabled = configService.get('trustedShopsEnabled', false);
 
                 $scope.exitWebApp = function(){
                     window.location.href = configService.get('originalUrl') + configService.get('noRedirectSuffix');
+                };
+
+                $scope.showTrustedShopsCertificate = function(){
+                    $dialog.dialog({
+                        templateUrl: 'modules/trustedshops/tsoverlay.tpl.html',
+                        controller: 'TrustedShopsController'
+                    })
+                    .open();
                 };
             }
         };

@@ -104,5 +104,20 @@ cc.Lang = {
         invalidInput_Country: 'Bitte geben Sie Ihre Land ein',
         invalidInput_Email: 'Bitte geben Sie eine gültige E-Mail Adresse ein',
         welcomeText: 'Willkommen im Couch Demo Shop',
-        showDesktopView:'Web-App verlassen'
+        showDesktopView:'Web-App verlassen',
+
+
+
+
+        // Trusted Shops
+        tsTitleSeal: "Trusted Shops Gütesiegel - Bitte hier Gültigkeit prüfen!",
+        tsRegistrationBuyerProtection: "Als zusätzlichen Service bieten wir Ihnen den Trusted Shops Käuferschutz an.<br>Wir übernehmen alle Kosten dieser Garantie, Sie müssen sich lediglich anmelden.",
+        tsButtonBuyerProtection: "Anmeldung zum Trusted Shops Käuferschutz",
+        tsOverlayTitle: "Vertrauenswürdiger, sicherer, und zuverlässiger Shop",
+        tsOverlayExplanation: "<p>Trusted Shops hat diesen Shop auf über 100 Qualitätskriterien wie Bonität, Preistransparenz, Kundenservice und Datenschutz geprüft.</p><p>Die Trusted Shops Garantie sichert Sie gegen Verlust Ihrer Zahlung bei Nicht-Lieferung oder Rückgabe der Ware ab.</p>",
+        tsOverlayZertifikatTitle: "TRUSTED SHOPS ZERTIFIKAT",
+        tsOverlayDetailsButton: "Details zum Zertifikat"
+
+
+
     };
