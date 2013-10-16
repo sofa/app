@@ -86,6 +86,7 @@ module.exports = function(grunt) {
                     {expand: true, cwd: 'scss/', src: ['font/**/*'], dest: 'dist/css/'},
                     {src: ['lib/**/*'], dest: 'dist/'},
                     {src: ['data/**/*'], dest: 'dist/'},
+                    {src: ['images/**/*'], dest: 'dist/'},
                     {expand: true, cwd: '../sdk/dist', src: ['cc.js'], dest: 'dist/lib'},
                     {expand: true, cwd: '../sdk/dist', src: ['cc.angular.js'], dest: 'dist/lib'}
                 ]
