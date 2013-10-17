@@ -1,0 +1,18 @@
+/**
+ * This file is to emulate the custom css mechanism during development.
+ * A hosted app on CouchCommerce can have customer css injected. The customer
+ * maintains the css via http://console.couchcommerce.com among with all
+ * the other style settings of the app.
+ *
+ * A deployed app simply get's the customer css appended at the very bottom
+ * of the css file.
+ *
+ * During development you sometimes may want to try out if a specifc
+ * customization would be possible for the customer or not. This file
+ * serves exactly this purpose. Just paste the css here to try out the
+ * customization possibles the customer has.
+ *
+ * ATTENTION: Make sure to strictly stick to css in this file. The customer
+ * CAN'T use scss via the console. Only css is allowed
+ *
+ */
