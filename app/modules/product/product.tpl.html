@@ -3,22 +3,21 @@
         <cc-inject target="aboveContent"></cc-inject>
         <h1 class="cc-title--huge">{{product.name}}</h1>
 
-        <div class="cc-product-view-image"
-             cc-image-zoom
-             style="background-image: url({{product.selectedImage.url}})">
+        <div class="cc-product-view-image-wrapper">
             <i class="icon-2x cc-product-view-image__expand-icon"></i>
+            <img cc-image-zoom ng-src="{{product.selectedImage.url}}" class="cc-product-view-image">
          </div>
 
         <cc-thumbnail-bar
-            ng-show="product.hasMultipleImages()" 
-            class="cc-thumbnail-bar-on-background" 
-            images="product.getAllImages()" 
-            on-change="onThumbnailSelected(product, image)" 
+            ng-show="product.hasMultipleImages()"
+            class="cc-thumbnail-bar-on-background"
+            images="product.getAllImages()"
+            on-change="onThumbnailSelected(product, image)"
             >
         </cc-thumbnail-bar>
 
-        <cc-variant-selector 
-            class="cc-variant-selector-on-background " 
+        <cc-variant-selector
+            class="cc-variant-selector-on-background "
             choose-text="ln.choose"
             variants="product.variants"
             variant="variants.selectedVariant"
@@ -32,7 +31,7 @@
             <cc-zippy caption="ln.productDetails" init-opened="true">
                 <div ng-bind-html="$sce.trustAsHtml(product.description)"></div>
             </cc-zippy>
-            
+
             <cc-zippy caption="ln.productSpecifications">
                 <table class="cc-product-view-attributes">
                     <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">

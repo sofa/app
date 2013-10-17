@@ -1,19 +1,43 @@
 
-.cc-product-view-image{
-    position: relative;
+.cc-product-view-image-wrapper{
     height: 300px;
     width: 100%;
     margin-bottom: 10px;
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
     background-color: $content-background-color;
     border-radius: $primary-border-radius;
+    background-size: contain;
+    background-position: center center;
+}
+.cc-product-view-image{
+    position: relative;
+    z-index: 500;
+}
+
+.cc-product-view-image-convert-to-div{
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: $content-background-color;
+}
+
+.cc-product-view-image-mask-view-fix {
+    -webkit-backface-visibility: visible !important;
+    -webkit-transform-style: flat !important;
+    -webkit-overflow-scrolling: initial !important;
+}
+
+.cc-product-view-image-mask-app-fix {
+    -webkit-overflow-scrolling: initial !important;
 }
 
 .cc-product-view-image--expanded{
     @extend .cc-product-view-image;
-    position: absolute;
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: $content-background-color;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -22,25 +46,23 @@
     z-index: 999;
     opacity: 0;
     -webkit-transition: 0.5s opacity ease-out;
-    
 }
 
 .cc-product-view-image--expanded--visible{
     @extend .cc-product-view-image--expanded;
-    
     opacity: 1;
 }
 
-.cc-product-view-image__expand-icon{
-    @extend .icon-fullscreen;
+.cc-product-view-image-mask{
     position: absolute;
-    bottom: 5px;
-    right: 5px;
-    //let's hardcode it for now to grey and give it
-    //a white shadow so that it's still kinda visible on
-    //dark images
-    color: #666666;
-    text-shadow: 1px 1px 1px #ffffff;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1200;
+    background-color: $content-background-color;
+    opacity: 0.0;
+    pointer-events: none;
 }
 
 .cc-zippy-icon{

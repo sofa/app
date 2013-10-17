@@ -1110,6 +1110,10 @@ cc.define('cc.DeviceService', function($window){
         return $window.screen.width > 641;
     };
 
+    self.isStockAndroidBrowser = function(){
+        return userOS === 'Android' && ua.indexOf("Chrome") < 0;
+    };
+
     self.flagOs = function(){
         var htmlTag = self.getHtmlTag();
         var version = self.getOsVersion();
@@ -3024,6 +3028,32 @@ if (typeof define !== 'undefined' && define.amd) {
 } else {
     window.FastClick = FastClick;
 }
+
+// Polyfill for requestAnimationFrame
+(function() {
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+}());
 ;(function(){
     var store = {},
         win = window,

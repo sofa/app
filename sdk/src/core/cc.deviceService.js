@@ -43,6 +43,10 @@ cc.define('cc.DeviceService', function($window){
         return $window.screen.width > 641;
     };
 
+    self.isStockAndroidBrowser = function(){
+        return userOS === 'Android' && ua.indexOf("Chrome") < 0;
+    };
+
     self.flagOs = function(){
         var htmlTag = self.getHtmlTag();
         var version = self.getOsVersion();
