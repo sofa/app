@@ -33,7 +33,7 @@ $cc-select-box-height: 50px;
     line-height: $cc-select-box-height;
     text-align: center;
     border-radius: $primary-border-radius;
-    margin: 5px 0 5px 0;
+    margin: 0 0 5px 0;
 
     //android 2.3 needs blur for box shadow
     -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
