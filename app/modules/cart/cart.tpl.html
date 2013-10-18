@@ -48,11 +48,11 @@
         <a class="cc-primary-margin" ng-click="checkoutWithPayPal()" ng-class="configService.getLocalizedPayPalButtonClass()"></a>
 
     </div>
-    <div class="cc-expand cc-cart-empty-hint" ng-show="isEmpty">
+    <div class="cc-full-width-height cc-cart-empty-hint" ng-show="isEmpty">
         <div class="cc-cart-empty-hint-content">
             <div class="icon-4x icon-shopping-cart"></div>
             <div>{{ln.cartIsEmpty}}</div>
         </div>
     </div>
-    <cca-footer ng-class="{'cc-footer-list--docked': $parent.isEmpty}"></cca-footer>
+    <cca-footer></cca-footer>
 </div>
