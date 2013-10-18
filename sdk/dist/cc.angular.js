@@ -96,7 +96,7 @@ angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(
 
 angular.module("src/directives/ccVariantSelector/ccvariantselector.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccVariantSelector/ccvariantselector.tpl.html",
-    "<div class=\"cc-variant-selector cc-grouped\">\n" +
+    "<div class=\"cc-variant-selector\">\n" +
     "    <div class=\"cc-select-box-select-wrapper\"\n" +
     "         ng-repeat=\"property in properties\">\n" +
     "         <span class=\"cc-select-box-display-value\" ng-bind=\"selectedProperties[property]\"></span>\n" +
