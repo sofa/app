@@ -2,29 +2,27 @@
     <h1 class="cc-title--big" ng-bind="ln.checkout"></h1>
     <a ng-click="navigationService.navigateToCart()" class="cc-couch-default-button-on-background">{{ ln.backToCart }}</a>
 
-    <cc-grouped>
-        <cc-select-box
-            class="cc-select-box-on-background" 
-            ng-model="checkoutModel.selectedPaymentMethod" 
-            choose-text="ln.choose" 
-            allow-null
-            omit-null
-            property-name="ln.paymentMethod" 
-            display-value-exp="'title'" 
-            data="checkoutModel.supportedPaymentMethods">
-        </cc-select-box>
+    <cc-select-box
+        class="cc-select-box-on-background" 
+        ng-model="checkoutModel.selectedPaymentMethod" 
+        choose-text="ln.choose" 
+        allow-null
+        omit-null
+        property-name="ln.paymentMethod" 
+        display-value-exp="'title'" 
+        data="checkoutModel.supportedPaymentMethods">
+    </cc-select-box>
 
-        <cc-select-box
-            class="cc-select-box-on-background" 
-            ng-model="checkoutModel.selectedShippingMethod" 
-            allow-null
-            omit-null
-            choose-text="ln.choose" 
-            property-name="ln.shippingMethod" 
-            display-value-exp="'title'" 
-            data="checkoutModel.supportedShippingMethods">
-        </cc-select-box>
-    </cc-grouped>
+    <cc-select-box
+        class="cc-select-box-on-background" 
+        ng-model="checkoutModel.selectedShippingMethod" 
+        allow-null
+        omit-null
+        choose-text="ln.choose" 
+        property-name="ln.shippingMethod" 
+        display-value-exp="'title'" 
+        data="checkoutModel.supportedShippingMethods">
+    </cc-select-box>
 
     <div class="cc-info-box" ng-show="checkoutModel.surchargeHint">
         <i class="icon-exclamation-sign"></i>
