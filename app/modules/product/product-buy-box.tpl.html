@@ -1,16 +1,15 @@
 <div class="cc-product-buy-box">
-    <div class="cc-product-buy-box__table">
-        <div class="cc-product-buy-box__price">
-            {{ product.price | currency }}
-        </div>
-        <a 
-            ng-click="addToBasket(product)" 
-            class="cc-product-buy-box__add-to-cart">{{ln.addToCart}}
-        </a>
+    <div class="cc-product-buy-box__price">
+        {{ product.price | currency }}
     </div>
-    <div class="cc-product-buy-box__secondary-table">
-        <div class="cc-product-buy-box__half-column" ng-bind="productTaxText"></div>
-        <div class="cc-product-buy-box__half-column">
+    <a 
+        ng-click="addToBasket(product)" 
+        class="cc-product-buy-box__add-to-cart">{{ln.addToCart}}
+    </a>
+
+    <div class="cc-product-buy-box__info">
+        <div class="cc-product-buy-box__info-left" ng-bind="productTaxText"></div>
+        <div class="cc-product-buy-box__info-right">
             <div>{{ cfg.shippingText }}<div>
             <div>{{product.getBasePriceInfo()}}<div>
         </div>
