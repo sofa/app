@@ -1,7 +1,6 @@
 <div class="cc-view-wrapper">
     <h1 class="cc-title--big" ng-bind="ln.checkout"></h1>
-    <a ng-click="navigationService.navigateToCart()" class="cc-couch-default-button-on-background">{{ ln.backToCart }}</a>
-
+    
     <cc-select-box
         class="cc-select-box-on-background" 
         ng-model="checkoutModel.selectedPaymentMethod" 
@@ -30,34 +29,42 @@
     </div>
 
     <h3>{{ln.billingAddress}}</h3>
-    <form name="billingAddressForm" novalidate class="cc-text-box-on-background cc-grouped cc-select-box-group">
-        <input ng-model="checkoutModel.billingAddress.company" class="cc-text-box" type="text" placeholder="{{ln.formCompany}}"/>
+    <form name="billingAddressForm" novalidate class="cc-text-box-on-background">
+        <p class="cc-form-label">{{ln.formCompany}}</p>
+        <input ng-model="checkoutModel.billingAddress.company" class="cc-text-box" type="text" placeholder="Musterfirma GmbH"/>
+        <p class="cc-form-label">{{ln.formSurname}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.billingAddress.surname" required cc-lazy-validation="parent" name="surname" class="cc-text-box" type="text" placeholder="{{ln.formSurname}}*"/>
+            <input ng-model="checkoutModel.billingAddress.surname" required cc-lazy-validation="parent" name="surname" class="cc-text-box" type="text" placeholder="Mustermann*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Lastname}}</span>
         </span>
+        <p class="cc-form-label">{{ln.formGivenName}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.billingAddress.name" required cc-lazy-validation="parent" name="name" class="cc-text-box" type="text" placeholder="{{ln.formGivenName}}*"/>
+            <input ng-model="checkoutModel.billingAddress.name" required cc-lazy-validation="parent" name="name" class="cc-text-box" type="text" placeholder="Hans"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Firstname}}</span>
         </span>
+        <p class="cc-form-label">{{ln.formStreet}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.billingAddress.street" required cc-lazy-validation="parent" name="street" class="cc-text-box" type="text" placeholder="{{ln.formStreet}}*"/>
+            <input ng-model="checkoutModel.billingAddress.street" required cc-lazy-validation="parent" name="street" class="cc-text-box" type="text" placeholder="Musterstraße"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Street}}</span>
         </span>
+        <p class="cc-form-label">{{ln.formZip}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.billingAddress.city" required cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder="{{ln.formCity}}*"/>
-            <span class="cc-validation__message--fail">{{ln.invalidInput_City}}</span>
-        </span>
-        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder="{{ln.formTelephone}}"/>
-        <span class="cc-validation">
-            <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.billingAddress.zip" required cc-lazy-validation="parent" name="zip" class="cc-text-box" type="text" placeholder="{{ln.formZip}}*"/>
+            <input ng-model="checkoutModel.billingAddress.zip" required cc-lazy-validation="parent" name="zip" class="cc-text-box" type="text" placeholder="30559"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Zip}}</span>
         </span>
+        <p class="cc-form-label">{{ln.formCity}}*</p>
+        <span class="cc-validation">
+            <i class="cc-validation__message--success icon-2x icon-ok"></i>
+            <input ng-model="checkoutModel.billingAddress.city" required cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder="Hannover"/>
+            <span class="cc-validation__message--fail">{{ln.invalidInput_City}}</span>
+        </span>
+        <p class="cc-form-label">{{ln.formTelephone}}</p>
+        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder=""/>
+        <p class="cc-form-label">{{ln.formCountry}}*</p>
         <cc-select-box
             name="country"
             ng-model="checkoutModel.billingAddress.country"
@@ -67,6 +74,7 @@
             display-value-exp="'label'" 
             data="configService.getSupportedCountries()">
         </cc-select-box>
+        <p class="cc-form-label">{{ln.formEmail}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
             <input type="email" ng-model="checkoutModel.billingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="text" placeholder="email@example.com*"/>
@@ -79,34 +87,47 @@
 
     <cc-check-box class="cc-check-box-on-background" value="checkoutModel.addressEqual" label="'Wie Rechnungsadresse'"></cc-check-box>
 
-    <form ng-hide="checkoutModel.addressEqual" name="shippingAddressForm" class="cc-text-box-on-background cc-grouped cc-select-box-group">
+    <form ng-hide="checkoutModel.addressEqual" name="shippingAddressForm" class="cc-text-box-on-background">
 
-        <input ng-model="checkoutModel.shippingAddress.company" class="cc-text-box" type="text" placeholder="{{ln.formCompany}}"/>
+        <p class="cc-form-label">{{ln.formCompany}}</p>
+        <input ng-model="checkoutModel.shippingAddress.company" class="cc-text-box" type="text" placeholder="Musterfirma"/>
+        
+        <p class="cc-form-label">{{ln.formSurname}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.shippingAddress.surname" required cc-lazy-validation="parent" name="surname" class="cc-text-box" type="text" placeholder="{{ln.formSurname}}*"/>
+            <input ng-model="checkoutModel.shippingAddress.surname" required cc-lazy-validation="parent" name="surname" class="cc-text-box" type="text" placeholder="Mustermann"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Lastname}}</span>
         </span>
+
+        <p class="cc-form-label">{{ln.formGivenName}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
-            <input ng-model="checkoutModel.shippingAddress.name" required cc-lazy-validation="parent" name="name" class="cc-text-box" type="text" placeholder="{{ln.formGivenName}}*"/>
+            <input ng-model="checkoutModel.shippingAddress.name" required cc-lazy-validation="parent" name="name" class="cc-text-box" type="text" placeholder="Hans"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Firstname}}</span>
         </span>
+
+        <p class="cc-form-label">{{ln.formStreet}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
             <input ng-model="checkoutModel.shippingAddress.street" required cc-lazy-validation="parent" name="street" class="cc-text-box" type="text" placeholder="{{ln.formStreet}}*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Street}}</span>
         </span>
+
+        <p class="cc-form-label">{{ln.formCity}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
             <input ng-model="checkoutModel.shippingAddress.city" required cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder="{{ln.formCity}}*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_City}}</span>
         </span>
+
+        <p class="cc-form-label">{{ln.formZip}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
             <input ng-model="checkoutModel.shippingAddress.zip" required cc-lazy-validation="parent" name="zip" class="cc-text-box" type="text" placeholder="{{ln.formZip}}*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Zip}}</span>
         </span>
+
+        <p class="cc-form-label">{{ln.formCountry}}*</p>
         <cc-select-box
             class="cc-select-box-on-background" 
             ng-model="checkoutModel.shippingAddress.country" 
@@ -115,16 +136,28 @@
             display-value-exp="'label'" 
             data="configService.getSupportedCountries()">
         </cc-select-box>
+
+        <p class="cc-form-label">{{ln.formEmail}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success icon-2x icon-ok"></i>
             <input type="email" ng-model="checkoutModel.shippingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="text" placeholder="email@example.com*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Email}}</span>
         </span>
     </form>
-    <!-- is that a candidate for a cc-total-box directive? -->
-    <div ng-show="!isEmpty" ng-include="tpl.TOTALBOX"></div>
 
-    <a ng-click="canProceed() && proceed()" ng-class="{ 'cc-couch-action-button--disabled':!canProceed() }" class="cc-couch-action-button">{{ ln.nextStep }}</a>
+    <div class="cc-checkout-navigation">
+        <div class="cc-checkout-navigation__left-col">
+            <a ng-click="navigationService.navigateToCart()" class="cc-couch-default-button-on-background">
+                <i class="icon-chevron-left"></i>
+            </a>
+        </div>
+        <!-- Poor hack: We just want to have some space between the cols-->
+        <div class="cc-checkout-navigation__middle-col"></div>
+        <div class="cc-checkout-navigation__right-col">
+            <a ng-click="canProceed() && proceed()" ng-class="{ 'cc-couch-action-button--disabled':!canProceed() }" class="cc-couch-action-button">{{ ln.nextStep }}</a>
+        </div>
+    </div>
+
     <!-- WTF!? why can't we get that to work with ng-show? -->
     <cca-footer ng-if="!isEmpty"></cca-footer>
 </div>
