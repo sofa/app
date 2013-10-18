@@ -53,7 +53,7 @@ cc.define('cc.CouchService', function($http, $q){
                 method: cc.Config.apiHttpMethod,
                 url: cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK'
             })

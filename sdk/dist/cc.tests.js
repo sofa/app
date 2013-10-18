@@ -1,6 +1,6 @@
 cc.Config = {
     loggingEnabled: true,
-    storeId: 53787,
+    storeCode: '53787',
     originalUrl:'http://couchcommerce.shopwaredemo.de/',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
@@ -966,7 +966,7 @@ asyncTest('can get products', function() {
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -993,7 +993,7 @@ asyncTest('can get a single product', function() {
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1020,7 +1020,7 @@ asyncTest('can get the next product of the same category (with cached products)'
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1053,7 +1053,7 @@ asyncTest('can get the next product of the same category (WITHOUT cached product
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1085,7 +1085,7 @@ asyncTest('returns "null" for the next product when reached the end', function()
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1118,7 +1118,7 @@ asyncTest('returns the first product of the category for the next product when r
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1151,7 +1151,7 @@ asyncTest('can get the previous product of the same category (with cached produc
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1184,7 +1184,7 @@ asyncTest('can get the previous product of the same category (WITHOUT cached pro
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1216,7 +1216,7 @@ asyncTest('returns null for the previous product when reached the start', functi
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
@@ -1249,7 +1249,7 @@ asyncTest('returns the last product of the category for the previous product whe
     //but on the other hand, how should it work otherwise?
     var url =cc.Config.apiUrl +
                 '?&stid=' +
-                cc.Config.storeId +
+                cc.Config.storeCode +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK';
 
