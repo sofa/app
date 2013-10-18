@@ -23,7 +23,6 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     @extend %cc-button-base;
 
     border: 1px solid darken($default-button-background-color, 10%);
-    font-size: $font-size-big;
     color: #FFFFFF;
     background: $default-button-background-color;
     border-bottom: 0;
