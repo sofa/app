@@ -8,11 +8,15 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     //since it keeps the text centered
     padding: 12px;
     text-align: center;
-    width: 100%;
     //This is so that we can use <a> tags as buttons as well
     display: inline-block;
 
     background: none;
+}
+
+%cc-button-base--stretched{
+    @extend %cc-button-base;
+    width: 100%;
 }
 
 .cc-button-base--disabled, %cc-button-base--disabled{
@@ -42,8 +46,19 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     }
 }
 
+.cc-couch-action-button--stretched{
+    @extend .cc-couch-action-button;
+    @extend %cc-button-base--stretched;
+}
+
 .cc-couch-action-button--disabled{
+    @extend .cc-couch-action-button;
     @extend %cc-button-base--disabled;
+}
+
+.cc-couch-action-button--disabled--stretched{
+    @extend .cc-couch-action-button--disabled;
+    @extend %cc-button-base--stretched;
 }
 
 .cc-couch-default-button-on-content{
@@ -63,8 +78,18 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     }
 }
 
+.cc-couch-default-button-on-content--stretched{
+    @extend .cc-couch-default-button-on-content;
+    @extend %cc-button-base--stretched;
+}
+
 .cc-couch-default-button-on-content--disabled{
     @extend %cc-button-base--disabled;
+}
+
+.cc-couch-default-button-on-content--disabled--stretched{
+    @extend .cc-couch-default-button-on-content--disabled;
+    @extend %cc-button-base--stretched;
 }
 
 .cc-couch-default-button-on-background{
@@ -84,8 +109,18 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     }
 }
 
+.cc-couch-default-button-on-background--stretched{
+    @extend .cc-couch-default-button-on-background;
+    @extend %cc-button-base--stretched;
+}
+
 .cc-couch-default-button-on-background--disabled{
     @extend %cc-button-base--disabled;
+}
+
+.cc-couch-default-button-on-background--disabled--stretched{
+    @extend .cc-couch-default-button-on-background--disabled;
+    @extend %cc-button-base--stretched;
 }
 
 .cc-paypal-button{

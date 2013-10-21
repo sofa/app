@@ -65,8 +65,8 @@
 
     <a  ng-click="acceptedAgreements() && proceed()" 
         ng-disabled="!vm.acceptedAgreement" 
-        ng-class="{ 'cc-couch-action-button--disabled':!acceptedAgreements()}" 
-        class="cc-couch-action-button">{{ ln.buyButton }}
+        ng-class="acceptedAgreements() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'" 
+        >{{ ln.buyButton }}
     </a>
 
     <cca-footer></cca-footer>

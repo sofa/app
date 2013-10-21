@@ -147,14 +147,14 @@
 
     <div class="cc-checkout-navigation">
         <div class="cc-checkout-navigation__left-col">
-            <a ng-click="navigationService.navigateToCart()" class="cc-couch-default-button-on-background">
+            <a ng-click="navigationService.navigateToCart()" class="cc-couch-default-button-on-background--stretched">
                 <i class="icon-chevron-left"></i>
             </a>
         </div>
         <!-- Poor hack: We just want to have some space between the cols-->
         <div class="cc-checkout-navigation__middle-col"></div>
         <div class="cc-checkout-navigation__right-col">
-            <a ng-click="canProceed() && proceed()" ng-class="{ 'cc-couch-action-button--disabled':!canProceed() }" class="cc-couch-action-button">{{ ln.nextStep }}</a>
+            <a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'">{{ ln.nextStep }}</a>
         </div>
     </div>
 
