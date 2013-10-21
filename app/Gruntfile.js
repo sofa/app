@@ -30,6 +30,7 @@ module.exports = function(grunt) {
                 '../sdk/src/core/**/*.js',
                 '../sdk/src/services/**/*.js',
                 '../sdk/src/directives/**/*.js',
+                '../sdk/src/decorators/**/*.js',
                 '../sdk/src/filter/**/*.js',
                 '!../sdk/src/**/demos/**/*',
                 '../sdk/dist/cc.angular.templates.js'

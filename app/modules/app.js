@@ -11,6 +11,7 @@ cc.isTabletSize = cc.deviceService.isTabletSize();
 angular.module('CouchCommerceApp', [
     'ngSanitize',
     'ui.state',
+    'sdk.decorators.$rootScope',
     'sdk.services.couchService',
     'sdk.services.navigationService',
     'sdk.services.basketService',
