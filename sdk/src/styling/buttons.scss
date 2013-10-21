@@ -11,6 +11,8 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     width: 100%;
     //This is so that we can use <a> tags as buttons as well
     display: inline-block;
+
+    background: none;
 }
 
 .cc-button-base--disabled, %cc-button-base--disabled{
