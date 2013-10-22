@@ -15,12 +15,9 @@ angular.module('sdk.decorators.$rootScope', []);
                 
                 //Read this for more info:
                 //http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs/19498009#19498009
-                $delegate.$saveOn = function(name, listener, scope){
+                $delegate.$onRootScope = function(name, listener){
                     var unsubscribe = $delegate.$on(name, listener);
-
-                    if (scope){
-                        scope.$on('$destroy', unsubscribe);
-                    }
+                    this.$on('$destroy', unsubscribe);
                 };
 
                 return $delegate;
