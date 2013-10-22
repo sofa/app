@@ -13,9 +13,9 @@ cc.define('cc.mocks.httpService', function($q){
 
 
         var responseMock = mocks[config.method][config.url];
-
-        if (responseMock === undefined && config.data !== undefined){
-            var endpointKey = createEndpointKey(config.url, config.data);
+        var configData = config.data || config.params;
+        if (responseMock === undefined && configData !== undefined){
+            var endpointKey = createEndpointKey(config.url, configData);
             responseMock = mocks[config.method][endpointKey];
         }
 

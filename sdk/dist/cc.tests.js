@@ -58,9 +58,9 @@ cc.define('cc.mocks.httpService', function($q){
 
 
         var responseMock = mocks[config.method][config.url];
-
-        if (responseMock === undefined && config.data !== undefined){
-            var endpointKey = createEndpointKey(config.url, config.data);
+        var configData = config.data || config.params;
+        if (responseMock === undefined && configData !== undefined){
+            var endpointKey = createEndpointKey(config.url, configData);
             responseMock = mocks[config.method][endpointKey];
         }
 
@@ -1317,7 +1317,7 @@ module('cc.searchService.tests');
 cc.Config.searchDebounceMs = 50;
 
 var _configService = new cc.ConfigService();
-var _searchUrl = _configService.get('searchUrl');
+var _searchUrl = _configService.get('searchUrl') + '?callback=JSON_CALLBACK';
 var _storeCode = _configService.get('storeCode');
 var _searchFields = 'text, categoryUrlKey, categoryName, productUrlKey';
 
