@@ -11,5 +11,6 @@ angular.module('sdk.directives', [
     'sdk.directives.ccScrollingShadow',
     'sdk.directives.ccScrollFix',
     'sdk.directives.ccElasticViews',
-    'sdk.directives.ccLoadingSpinner'
+    'sdk.directives.ccLoadingSpinner',
+    'sdk.directives.ccInclude'
     ]);
