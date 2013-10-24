@@ -5,23 +5,8 @@
 .cc-category-list__row{
     @extend %cc-text-list__row;
 
-    &.cc-highlight:after,
-    .cc-category-list__row-highlighter{
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        opacity: 0.5;
-        z-index: 1;
-    }
-
-    &.cc-highlight:after{
-        background: $highlight-color;
-    }
-
-    .cc-category-list__row-highlighter{
+    &.cc-highlight {
+        @extend .cc-highlight;
         @extend .cc-highlight--animated;
     }
 }

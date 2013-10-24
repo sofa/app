@@ -5,9 +5,10 @@
             ng-class="{ 'cc-product-grid__row--odd' : $odd,
                         'cc-product-grid__row--even' : $even }">
             <div class="cc-product-grid__row-wrapper" 
-                 ng-click="goToProduct(product, $event)">
+                 ng-click="goToProduct(product, $event)" ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }">
             <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
-            <div ng-class="{ 'cc-product-grid__row-highlighter': backStepHighlightService.isHighlighted(product) }"></div>
+            <div class="cc-product-grid__row-highlight-helper"></div>
+
             <div class="cc-product-grid__row-price">
                 {{product.price | currency}}
             </div>

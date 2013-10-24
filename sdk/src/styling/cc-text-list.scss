@@ -29,9 +29,14 @@ $cc-text-list__row---border-radius: $primary-border-radius;
         }
     }
 
-    &.cc-highlight{
-        background: $highlight-color;
+    &.cc-highlight{ 
+        /* Forward */
+
+        [class^="icon-"], [class*=" icon-"] {
+            color: $highlight-text-color;
+        }
     }
+
 
 }
 

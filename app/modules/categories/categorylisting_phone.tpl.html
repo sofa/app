@@ -3,9 +3,9 @@
     <ul class="cc-category-list">
         <li ng-repeat="category in category.children"
             ng-click="goToCategory(category, $event)"
+            ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }" 
             class="cc-category-list__row" >
-            <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
-            <div ng-class="{ 'cc-category-list__row-highlighter': backStepHighlightService.isHighlighted(category) }"></div>
+
             <div class="cc-category-list__row-content">
                 {{category.label}}
                 <i class="cc-category-list__row-icon icon-chevron-right"></i>
