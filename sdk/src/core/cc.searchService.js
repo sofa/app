@@ -1,4 +1,4 @@
-cc.define('cc.SearchService', function(configService, $http, $q){
+cc.define('cc.SearchService', function(configService, $http, $q, applier){
 
     'use strict';
 
@@ -6,38 +6,80 @@ cc.define('cc.SearchService', function(configService, $http, $q){
         lastRequestToken    = null,
         storeCode           = configService.get('storeCode'),
         debounceMs          = configService.get('searchDebounceMs', 300),
-        endpoint            = configService.get('searchUrl');
+        endpoint            = configService.get('searchUrl') + '?callback=JSON_CALLBACK';
 
-    self.search = function(searchStr){
+    self.search = function(searchStr, grouping){
 
         var deferredResponse = $q.defer();
 
-        debouncedInnerSearch(deferredResponse, searchStr);
+        debouncedInnerSearch(deferredResponse, searchStr, grouping);
 
         return deferredResponse.promise;
     };
 
-    var innerSearch = function(deferredResponse, searchStr){
+    var innerSearch = function(deferredResponse, searchStr, grouping){
 
         lastRequestToken = cc.Util.createGuid();
 
         var requestToken = lastRequestToken;
 
-        $http({
-            method: 'JSONP',
-            url: endpoint,
-            data: {
-                q: createSearchCommand(normalizeUmlauts(searchStr)),
-                fetch: 'text, categoryUrlKey, categoryName, productUrlKey'
-            }
-        })
-        .then(function(response){
-            if (requestToken === lastRequestToken){
-                deferredResponse.resolve(response);
-            }
-        });
+        if (!searchStr){
+            deferredResponse.resolve({
+                data: {
+                    results: [],
+                    groupedResults: []
+                }
+            });
+
+        }
+        else{
+            $http({
+                method: 'JSONP',
+                url: endpoint,
+                params: {
+                    q: createSearchCommand(normalizeUmlauts(searchStr)),
+                    fetch: 'text, categoryUrlKey, categoryName, productUrlKey'
+                }
+            })
+            .then(function(response){
+                if (requestToken === lastRequestToken){
+                    if (grouping){
+                        groupResult(response, grouping);
+                    }
+                    deferredResponse.resolve(response);
+                }
+            });
+        }
+
+        //in an angular context, we need to call the applier to
+        //make $http run. For non angular builds, no applier is needed.
+        if(applier){
+            applier();
+        }
 
         return deferredResponse.promise;
+    };
+
+    var groupResult = function(response, grouping){
+        var results = response.data.results;
+        var grouped = results.reduce(function(prev, curr, index, arr) {
+                            if (!prev[curr.categoryUrlKey]){
+                                var group = prev[curr.categoryUrlKey] = {
+                                    groupKey: curr.categoryUrlKey,
+                                    groupText: curr.categoryName,
+                                    items: []
+                                };
+
+                                prev.items.push(group);
+                            }
+
+                            prev[curr.categoryUrlKey].items.push(curr);
+
+                            return prev;
+
+                        }, {items: []});
+        //we only care about the array. The object was just for fast lookups!
+        response.data.groupedResults = grouped.items;
     };
 
     var debouncedInnerSearch = cc.Util.debounce(innerSearch, debounceMs);

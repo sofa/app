@@ -29,7 +29,7 @@ asyncTest('normalizes umlauts', function() {
 
     var searchCommand = '(text:' + normalizedUmlauts + '* OR reverse_text:' + reversedNormalizedUmlauts + '*) AND storeCode:' + _configService.get('storeCode');
     httpService.when('JSONP', _searchUrl, { q: searchCommand, fetch: _searchFields }).respond({
-        result: [
+        results: [
             'car',
             'carmaker'
         ]
@@ -43,10 +43,10 @@ asyncTest('normalizes umlauts', function() {
         .search(umlauts)
         .then(function(response){
             ok(response, 'has response');
-            var result = response.data.result;
-            ok(result !== undefined, 'has payload');
-            equal(result[0], 'car', 'has result');
-            equal(result[1], 'carmaker', 'has result');
+            var results = response.data.results;
+            ok(results !== undefined, 'has payload');
+            equal(results[0], 'car', 'has result');
+            equal(results[1], 'carmaker', 'has result');
         });
 
     setTimeout(function(){
@@ -88,7 +88,7 @@ asyncTest('calls searchService.search() 3 times but only makes 2 request which r
     //that's the response for the first request, it takes longer then the second
     //so that it arrives *after* the second request
     httpService.when('JSONP', _searchUrl, { q: '(text:car* OR reverse_text:rac*) AND storeCode:' + _storeCode, fetch: _searchFields }).respond({
-        result: [
+        results: [
             'car',
             'carmaker'
         ]
@@ -96,7 +96,7 @@ asyncTest('calls searchService.search() 3 times but only makes 2 request which r
 
     //the response for the second request returns much quicker.
     httpService.when('JSONP', _searchUrl, { q: '(text:carm* OR reverse_text:mrac*) AND storeCode:' + _storeCode, fetch: _searchFields }).respond({
-        result: [
+        results: [
             'carmaker'
         ]
     }, 50);
@@ -128,9 +128,9 @@ asyncTest('calls searchService.search() 3 times but only makes 2 request which r
             .then(function(response){
                 handledRequests++;
                 ok(response, 'has response');
-                var result = response.data.result;
-                ok(result !== undefined, 'has payload');
-                equal(result[0], 'carmaker', 'has result');
+                var results = response.data.results;
+                ok(results !== undefined, 'has payload');
+                equal(results[0], 'carmaker', 'has result');
             });
     }, 50);
 
@@ -162,14 +162,14 @@ asyncTest('calls searchService.search() 2 times and also makes 2 request to the 
     var httpService = createHttpService();
 
     httpService.when('JSONP', _searchUrl, { q: '(text:car* OR reverse_text:rac*) AND storeCode:' + _storeCode, fetch: _searchFields }).respond({
-        result: [
+        results: [
             'car',
             'carmaker'
         ]
     }, 25);
 
     httpService.when('JSONP', _searchUrl, { q: '(text:carm* OR reverse_text:mrac*) AND storeCode:' + _storeCode, fetch: _searchFields }).respond({
-        result: [
+        results: [
             'carmaker'
         ]
     }, 25);
@@ -188,10 +188,10 @@ asyncTest('calls searchService.search() 2 times and also makes 2 request to the 
             //be cancelled out by the request for 'carm'
             handledRequests++;
             ok(response, 'has response');
-            var result = response.data.result;
-            ok(result !== undefined, 'has payload');
-            equal(result[0], 'car', 'has result');
-            equal(result[1], 'carmaker', 'has result');
+            var results = response.data.results;
+            ok(results !== undefined, 'has payload');
+            equal(results[0], 'car', 'has result');
+            equal(results[1], 'carmaker', 'has result');
         });
 
     setTimeout(function(){
@@ -200,9 +200,9 @@ asyncTest('calls searchService.search() 2 times and also makes 2 request to the 
             .then(function(response){
                 handledRequests++;
                 ok(response, 'has response');
-                var result = response.data.result;
-                ok(result !== undefined, 'has payload');
-                equal(result[0], 'carmaker', 'has result');
+                var results = response.data.results;
+                ok(results !== undefined, 'has payload');
+                equal(results[0], 'carmaker', 'has result');
             });
     }, 100);
 
@@ -216,5 +216,81 @@ asyncTest('calls searchService.search() 2 times and also makes 2 request to the 
         ok(httpCallParams.url === _searchUrl, 'hits configured entpoint');
 
     }, 250);
+});
+
+asyncTest('groupes response by the given grouping definition', function() {
+    expect(11);
+    var httpService = createHttpService();
+
+    var searchString = "f";
+    var searchCommand = '(text:' + searchString + '* OR reverse_text:' + searchString + '*) AND storeCode:' + _configService.get('storeCode');
+    httpService.when('JSONP', _searchUrl, { q: searchCommand, fetch: _searchFields }).respond({
+        results: [
+            { 
+                categoryName: 'A',
+                categoryUrlKey: '_A',
+                text: 'Product of A 1'
+            },
+            { 
+                categoryName: 'B',
+                categoryUrlKey: '_B',
+                text: 'Product of B 1'
+            },
+            { 
+                categoryName: 'A',
+                categoryUrlKey: '_A',
+                text: 'Product of A 2'
+            }
+        ]
+    });
+
+    var searchService = new cc.SearchService(_configService, httpService, new cc.QService());
+
+    var $q = new cc.QService();
+
+    searchService
+        .search(searchString, { groupKey: 'categoryUrlKey', groupText: 'categoryName'})
+        .then(function(response){
+            ok(response, 'has response');
+            var results = response.data.results;
+            var groupedResults = response.data.groupedResults;
+            ok(results !== undefined, 'has payload');
+            equal(results[0].text, 'Product of A 1', 'has result');
+            equal(results[1].text, 'Product of B 1', 'has result');
+
+            equal(groupedResults[0].groupKey, '_A', 'has grouped result');
+            equal(groupedResults[1].groupKey, '_B', 'has grouped result');
+            
+            equal(groupedResults[0].groupText, 'A', 'has grouped result');
+            equal(groupedResults[1].groupText, 'B', 'has grouped result');
+
+            equal(groupedResults[0].items.length, 2, 'has 2 item');
+            equal(groupedResults[1].items.length, 1, 'has 1 item');
+
+            /*
+            [
+                {
+                    groupKey: key-of-category,
+                    groupText: text of category,
+                    items: [
+                            // just as in results
+                           ]
+                },{
+                    groupKey: key-of-2nd-category,
+                    groupText: text of 2nd category,
+                    items: [
+                            // just as in results
+                           ]
+                }
+            ]
+            */
+
+        });
+
+    setTimeout(function(){
+        start();
+        var httpCallParams = httpService.getLastCallParams();
+        ok(httpCallParams.url === _searchUrl, 'hits configured entpoint');
+    }, 100);
 });
 
