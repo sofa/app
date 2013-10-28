@@ -20,6 +20,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.checkoutService',
     'sdk.services.userService',
     'sdk.services.configService',
+    'sdk.services.searchService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',
@@ -238,6 +239,13 @@ var categoryStateConfig;
         $urlRouterProvider.otherwise('/');
     }])
     .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService){
+
+        //Todo: Check what can be moved over to the MainController
+        //Most things can, but things like language keys, when used from within
+        //an isolated scope, directly turn to the $rootScope (as isolated scopes
+        //don't inherit from a parent scope). We can fix this by providing a 
+        //languageService similar to the configService and then use this for such
+        //cases.
         $rootScope.ln = cc.Lang;
         $rootScope.cfg = cc.Config;
         $rootScope.slideDirectionService = slideDirectionService;

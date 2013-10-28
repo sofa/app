@@ -207,6 +207,12 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     color: $background-text-color;
 }
 
+.cc-view-wrapper--unpadded{
+    @extend .cc-view-wrapper;
+    padding-left: 0;
+    padding-right: 0;
+}
+
 //generic seperator lines that magically allways look awesome
 //(it could be tweaked for black and white though)
 .cc-line-seperator, %cc-line-seperator{

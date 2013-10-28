@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'HeaderController',
     [
-        '$scope', '$location', 'navigationService', 'couchService', 'basketService',
-        function HeaderController($scope, $location, navigationService, couchService, basketService) {
+        '$rootScope', '$scope', '$location', 'navigationService', 'couchService', 'basketService',
+        function HeaderController($rootScope, $scope, $location, navigationService, couchService, basketService) {
 
             'use strict';
 
@@ -23,7 +23,7 @@ angular
                 .on('itemRemoved', updateBasketItemCount);
 
             $scope.showSearch = function(){
-                alert('its coming...soon!');
+                $rootScope.$emit('header.searchButtonClicked');
             };
 
         }

@@ -116,8 +116,10 @@ cc.Lang = {
         tsOverlayTitle: "Vertrauenswürdiger, sicherer, und zuverlässiger Shop",
         tsOverlayExplanation: "<p>Trusted Shops hat diesen Shop auf über 100 Qualitätskriterien wie Bonität, Preistransparenz, Kundenservice und Datenschutz geprüft.</p><p>Die Trusted Shops Garantie sichert Sie gegen Verlust Ihrer Zahlung bei Nicht-Lieferung oder Rückgabe der Ware ab.</p>",
         tsOverlayZertifikatTitle: "TRUSTED SHOPS ZERTIFIKAT",
-        tsOverlayDetailsButton: "Details zum Zertifikat"
+        tsOverlayDetailsButton: "Details zum Zertifikat",
 
-
+        //search
+        searchProductFoundIn:'Produkt gefunden in',
+        searchProductsFoundIn:'Produkte gefunden in'
 
     };

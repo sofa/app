@@ -1,0 +1,31 @@
+.cc-search-result__group-list-item-header{
+    padding: $primary-padding;
+    position: relative;
+    border-bottom: 1px solid $background-border-color;
+    border-top: 1px solid $background-border-color;
+    font-weight: bold;
+}
+
+.cc-search-result__group-list-item-header-icon{
+    @extend .cc-text-list__row-icon;
+}
+
+.cc-search-result__item-list{
+    background: $content-background-color;
+}
+
+.cc-search-result__list-item{
+    padding: $primary-padding;
+    position: relative;
+    margin-left: 60px;
+    border-bottom: 1px solid $content-border-color;
+
+    &:last-child{
+        border: none;
+    }
+
+}
+
+.cc-search-result__list-item-icon{
+    @extend .cc-text-list__row-icon;
+}

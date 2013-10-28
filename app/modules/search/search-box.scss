@@ -1,0 +1,74 @@
+.cc-search-box{
+    width: 100%;
+    background: $toolbar-background-color;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+
+    display: table;
+    height: 100%;
+
+    //we need a blur radius of at least 1px for box-shadow to work on Android 2.3
+    //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
+    @include vendor-prefix('box-shadow', 0px 3px 1px $toolbar-border-color);
+}
+
+.cc-search-box--closed{
+    @extend .cc-search-box;
+    display: none;
+}
+
+.cc-search-box--opened{
+    @extend .cc-search-box;
+}
+
+.cc-search-box__spacer{
+    display: table-cell;
+    width: 5px;
+}
+
+.cc-search-box__input-wrapper{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.cc-search-box__input{
+    @extend .cc-text-box;
+    //fix me, this seems rediculous
+    @extend .cc-text-box-on-background;
+    //position: absolute;
+    
+    height: 30px;
+    right: 10px;
+    left: 20px;
+    width: 100%;
+    padding: 0 10px 0 30px;
+}
+
+.cc-search-box__input-cancel-icon{
+    position: absolute;
+    font-size: $cc-header---icon-height;
+    top: 50%;
+    margin-top: -($cc-header---icon-height / 2);
+    //what a cruel world. We need to make this relative to
+    //the whole cc-search-box to work with Android 2.3.
+    //Making it relative to the cc-search-box__input-wrapper doesn't work.
+    right: 20px;
+    //the clear icon should be in sync with the border color
+    color: $content-border-color;
+}
+
+.cc-modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    opacity: 0.5;
+    z-index: 99;
+}

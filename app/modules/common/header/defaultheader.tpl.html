@@ -1,4 +1,4 @@
-<div class="cc-header" ng-controller="HeaderController">
+<div class="cc-header cc-fixed-element" ng-controller="HeaderController">
     <div class="cc-header__icon-wrapper">
         <i class="cc-header__icon icon-chevron-left" 
            ng-click="navigationService.goUp()"
@@ -16,4 +16,5 @@
             <span class="cc-header__icon-badge--cart" ng-bind="basketItemCount"ng-show="basketItemCount > 0"></span>
         </i>
     </div>
+    <div cc-include="tpl.SEARCH_BOX"></div>
 </div>
