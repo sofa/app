@@ -193,6 +193,18 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     width:100%;
 }
 
+//On Android 2, those two styles cause the page to jump around
+//when focusing input elements. This totaly breaks things like
+//checkout forms for such users. We normally set those for better
+//performance but we disable them for Android 2.x
+//https://github.com/scottjehl/Device-Bugs/issues/32
+.cc-os-android.cc-osv-2{
+    .cc-full-width-height .cc-view-wrapper{
+        -webkit-backface-visibility: initial;
+        -webkit-transform-style: initial;
+    }
+}
+
 //if we have a fixed toolbar, we need to push the view-wrapper
 //45px to the bottom (the height of the toolbar)
 .cc-supports-position-fixed{
