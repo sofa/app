@@ -203,7 +203,7 @@ module.exports = function(grunt) {
             var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
             return v.toString(16);
         });
-        grunt.config.set('appJsName', 'app.min.' + guid + 'js');
+        grunt.config.set('appJsName', 'app.min.' + guid + '.js');
     });
 
     grunt.registerMultiTask('script', function(){
