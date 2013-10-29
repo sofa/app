@@ -2,12 +2,13 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$location', 'couchService', 'basketService', 'navigationService', 'product', '$dialog',
-        function ProductController($scope, $location, couchService, basketService, navigationService, product, $dialog) {
+        '$scope', '$location', 'couchService', 'basketService', 'navigationService', 'product', '$dialog', '$sce',
+        function ProductController($scope, $location, couchService, basketService, navigationService, product, $dialog, $sce) {
 
             'use strict';
 
             $scope.product = product;
+            $scope.$sce = $sce;
 
             $scope.variants = {
                 selectedVariant : null,
