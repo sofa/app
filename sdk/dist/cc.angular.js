@@ -3022,10 +3022,15 @@ angular.module('sdk.decorators.$rootScope', []);
                 
                 //Read this for more info:
                 //http://stackoverflow.com/questions/11252780/whats-the-correct-way-to-communicate-between-controllers-in-angularjs/19498009#19498009
-                $delegate.constructor.prototype.$onRootScope = function(name, listener){
-                    var unsubscribe = $delegate.$on(name, listener);
-                    this.$on('$destroy', unsubscribe);
-                };
+
+                Object.defineProperty($delegate.constructor.prototype, '$onRootScope', {
+                    value: function(name, listener){
+                        var unsubscribe = $delegate.$on(name, listener);
+                        this.$on('$destroy', unsubscribe);
+                    },
+                    enumerable: false
+                });
+
 
                 return $delegate;
             }]);
