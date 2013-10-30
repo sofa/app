@@ -1052,7 +1052,9 @@ cc.define('cc.DeviceService', function($window){
 
     var ua = navigator.userAgent,
         htmlTag,
-        uaindex;
+        uaindex,
+        userOS,
+        userOSver;
 
     var MODERN_FLEXBOX_SUPPORT = 'cc-supports-modern-flexbox';
 
