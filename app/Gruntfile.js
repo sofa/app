@@ -8,6 +8,11 @@ module.exports = function(grunt) {
                 cwd: '../',
                 distDir: 'app/dist'
             }
+        },
+        deploy: {
+            options: {
+                releaseBranch: 'deployment'
+            }
         }
     };
 
@@ -177,11 +182,35 @@ module.exports = function(grunt) {
             }
         },
         releaseBranchPre: gruntReleaseOptions,
-        releaseBranch: gruntReleaseOptions
+        releaseBranch: gruntReleaseOptions,
+        shell: {
+            dist: {
+                options: {
+                    stdout: true,
+                    stderr: true,
+                    failOnError: true
+                },
+                //The backend needs to have both the raw source folders (it needs access to the scss files!)
+                //but it also needs to grab the final dist of the app. So what we do is we don't follow
+                //the regular release branch pattern where we just move the contents of the dist folder
+                //on the root level and delete all source files but instead we just add the dist folder
+                //to the version control for the deployment branch/tag.
+                command: function(){
+                    var version = grunt.option('version');
+
+                    if (typeof version === 'undefined'){
+                        grunt.log.error('You need to specify a version with --version....stupid!');
+                        return;
+                    }
+
+                    return 'git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release" && git tag ' + version + ' && git push --tags';
+                }
+            }
+        }
     });
 
     grunt.registerTask('lastHint', function(){
-        grunt.log.writeln('Please make a final review and then type `git push -f origin release`');
+        grunt.log.writeln('Now go and tag + push the version (e.g. git tag 1.23.1 && git push --tags)');
     });
 
     grunt.registerTask('default', ['build', 'watch']);
@@ -193,6 +222,8 @@ module.exports = function(grunt) {
     grunt.registerTask('production--unique', ['name-unique', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify', 'script:production', 'concat:index']);
 
     grunt.registerTask('release', ['releaseBranchPre', 'production--unique', 'releaseBranch']);
+
+    grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'shell:dist','lastHint']);
 
     grunt.registerTask('name-min', function(){
         grunt.config.set('appJsName', 'app.min.js');
@@ -231,5 +262,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-shell');
 
 };
