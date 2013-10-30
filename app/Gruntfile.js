@@ -196,7 +196,7 @@ module.exports = function(grunt) {
                 //on the root level and delete all source files but instead we just add the dist folder
                 //to the version control for the deployment branch/tag.
                 command: function(){
-                    var version = grunt.option('version');
+                    var version = grunt.option('app-version');
 
                     if (typeof version === 'undefined'){
                         grunt.log.error('You need to specify a version with --version....stupid!');
