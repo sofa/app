@@ -209,10 +209,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('lastHint', function(){
-        grunt.log.writeln('Now go and tag + push the version (e.g. git tag 1.23.1 && git push --tags)');
-    });
-
     grunt.registerTask('default', ['build', 'watch']);
 
     grunt.registerTask('build', ['clean', 'html2js', 'jshint', 'script:dev', 'concat:index', 'sass', 'copy']);
@@ -223,7 +219,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('release', ['releaseBranchPre', 'production--unique', 'releaseBranch']);
 
-    grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'shell:dist','lastHint']);
+    grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'shell:dist']);
 
     grunt.registerTask('name-min', function(){
         grunt.config.set('appJsName', 'app.min.js');
