@@ -2,8 +2,7 @@
 <html lang="en" 
   ng-class="{'cc-tablet-size' : isTabletSize }" 
   ng-app="CouchCommerceApp"
-  ng-controller="MainController"
-  class="cc-scroller--if-no-fixed">
+  ng-controller="MainController">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -13,7 +12,7 @@
 <!--   <link rel="stylesheet" href="http://rawgithub.com/revolunet/angular-carousel/master/dist/angular-carousel.min.css"/> -->
 </head>
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
-<body ontouchstart="" class="cc-scroller--if-no-fixed">
+<body ontouchstart="">
   <!-- TODO: we would love to move this into a main.tpl.html but it seems not to be possible by default -->
   <div ng-include="tpl.HEADER"></div>
   <div cc-include="tpl.SEARCH_RESULT"></div>
