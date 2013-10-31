@@ -30,31 +30,21 @@ angular
                 }
             }
 
-            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals){
 
-                var previousIndex = fromRoute && fromRoute.screenIndex !== undefined ? fromRoute.screenIndex : minScreenIndex,
-                    currentIndex = toRoute && toRoute.screenIndex !== undefined ? toRoute.screenIndex : minScreenIndex;
+            $rootScope.$on('stateChangeService.stateChangeSuccess', function(evt, data){
 
-                //we are moving between two category listings
-                if(previousIndex === 0 && currentIndex === 0){
-                    var fromRouteCategory = fromLocals.globals.category;
-                    var toRouteCategory = toLocals.globals.category;
+                var previousIndex = data.previousIndex,
+                    currentIndex  = data.currentIndex;
 
-                    var toRouteIsChild = toRouteCategory.parent === fromRouteCategory;
-                    var toRouteIsParent = fromRouteCategory.parent === toRouteCategory;
-
-                    if(toRouteIsChild){
-                        direction = 'rtl';
-                    }
-
-                    if(toRouteIsParent){
-                        direction = 'ltr';
-                    }
+                if(data.move === 'categoryToChildCategory'){
+                    direction = 'rtl';
                 }
-                //we are moving between two views of the pages section
-                else if (previousIndex === -1 && currentIndex === -1){
-                    var fromRoutePageId = fromParams.pageId;
-                    var toRoutePageId = toParams.pageId;
+                else if(data.move === 'categoryToParentCategory'){
+                    direction = 'ltr';
+                }
+                else if(data.move === 'pagesToPages'){
+                    var fromRoutePageId = data.originalEvent.fromParams.pageId;
+                    var toRoutePageId = data.originalEvent.toParams.pageId;
 
                     var fromRouteScreenIndex = pagesService.getPageConfig(fromRoutePageId).screenIndex;
                     var toRouteScreenIndex = pagesService.getPageConfig(toRoutePageId).screenIndex;
@@ -64,6 +54,7 @@ angular
                 else{
                     direction = getDirectionFromIndexes(previousIndex, currentIndex);
                 }
+
             });
 
             var getDirectionFromIndexes = function(fromIndex, toIndex){
