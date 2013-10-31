@@ -7,26 +7,18 @@ angular
             var self                        = {},
                 flaggingDurationMs          = 600,
                 flags                       = {},
-                timeouts                    = {},
-                CATEGORY_SCREEN_INDEX       = 0,
-                PRODUCT_LIST_SCREEN_INDEX   = 1,
-                PRODUCT_SCREEN_INDEX        = 2;
+                timeouts                    = {};
 
 
-            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals){
-
-                var previousIndex   = fromRoute && fromRoute.screenIndex,
-                    currentIndex    = toRoute && toRoute.screenIndex;
-
-                if(previousIndex === PRODUCT_SCREEN_INDEX && currentIndex === PRODUCT_LIST_SCREEN_INDEX){
-                    flags.product =  fromLocals.globals.product;
+            $rootScope.$on('stateChangeService.stateChangeSuccess', function(evt, data){
+                if(data.move === 'productToProducts'){
+                    flags.product = data.originalEvent.fromLocals.globals.product;
                 }
-                else if(previousIndex === PRODUCT_LIST_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX){
-                    flags.category = fromParams.category;
+                else if(data.move === 'productsToCategory'){
+                    flags.category = data.originalEvent.fromParams.category;
                 }
-                //TODO: Should we test for a parent child relationship?
-                else if(previousIndex === CATEGORY_SCREEN_INDEX && currentIndex === CATEGORY_SCREEN_INDEX) {
-                    flags.category = fromParams.category;
+                else if(data.move === 'categoryToParentCategory'){
+                    flags.category = data.originalEvent.fromParams.category;
                 }
             });
 
