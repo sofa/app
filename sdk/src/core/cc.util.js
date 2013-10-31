@@ -217,6 +217,9 @@ cc.Util = {
           return v.toString(16);
       });
     },
+    capitalize: function(str){
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    },
     Array: {
         remove: function(arr, item){
             var index = arr.indexOf(item);
