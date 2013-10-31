@@ -26,12 +26,20 @@ angular
                 }
             };
 
-            $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals){
+            $rootScope.$on('stateChangeService.stateChangeSuccess', function(evt, data){
 
-                //why does $location.hash() report back an empty string?
-                var url     = location.href;
-                var cachedValue = cache[url];
+                var url         = null,
+                    cachedValue = null;
 
+                if (    data.move === 'productToProducts' ||
+                        data.move === 'productsToCategory' ||
+                        data.move === 'categoryToParentCategory'){
+
+                    url = $location.absUrl();
+                    cachedValue = cache[url];
+                }
+
+                //TODO:
                 //I'm not entirely sure why we need to defer here. In any case, we should
                 //use rAF then.
                 $timeout(function(){
