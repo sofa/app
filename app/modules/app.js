@@ -27,7 +27,7 @@ angular.module('CouchCommerceApp', [
     // 'angular-carousel',
     'templates'
     ])
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
+    .config(['$stateProvider', '$urlRouterProvider', 'screenIndexes', function($stateProvider, $urlRouterProvider, screenIndexes){
 
     'use strict';
 
@@ -48,7 +48,7 @@ var categoryStateConfig;
                     url: '/cat',
                     templateUrl: 'modules/categories/categorylisting_tablet.tpl.html',
                     controller: 'CategoryControllerTablet',
-                    screenIndex: 0,
+                    screenIndex: screenIndexes.category,
                     resolve: {
                         category: ['couchService', '$stateParams', function(couchService, $stateParams){
                             return couchService.getCategory($stateParams.category);
@@ -150,7 +150,7 @@ var categoryStateConfig;
                 url: '/',
                 templateUrl: 'modules/categories/categorylisting_phone.tpl.html',
                 controller: 'CategoryController',
-                screenIndex: 0,
+                screenIndex: screenIndexes.category,
                 resolve: {
                     category: ['couchService', '$stateParams', function(couchService, $stateParams){
                         return couchService.getCategory($stateParams.category);
@@ -180,7 +180,7 @@ var categoryStateConfig;
                         return couchService.getCategory($stateParams.category);
                     }]
                 },
-                screenIndex: 1
+                screenIndex: screenIndexes.products
             });
 
         $stateProvider
@@ -193,7 +193,7 @@ var categoryStateConfig;
                         return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
                     }]
                 },
-                screenIndex: 2
+                screenIndex: screenIndexes.product
             });
 
         $stateProvider
@@ -201,7 +201,7 @@ var categoryStateConfig;
                 url: '/cart',
                 templateUrl: 'modules/cart/cart.tpl.html',
                 controller: 'CartController',
-                screenIndex: 3
+                screenIndex: screenIndexes.cart
             });
 
         $stateProvider
@@ -209,7 +209,7 @@ var categoryStateConfig;
                 url: '/checkout',
                 templateUrl: 'modules/checkout/checkout.tpl.html',
                 controller: 'CheckoutController',
-                screenIndex: 4
+                screenIndex: screenIndexes.checkout
             });
 
         $stateProvider
@@ -217,7 +217,7 @@ var categoryStateConfig;
                 url: '/summary/:token',
                 templateUrl: 'modules/summary/summary.tpl.html',
                 controller: 'SummaryController',
-                screenIndex: 5
+                screenIndex: screenIndexes.summary
             });
 
         $stateProvider
@@ -225,7 +225,7 @@ var categoryStateConfig;
                 url: '/thankyou',
                 templateUrl: 'modules/thankyou/thankyou.tpl.html',
                 controller: function(){},
-                screenIndex: 6
+                screenIndex: screenIndexes.thankyou
             });
 
         $stateProvider
@@ -233,7 +233,7 @@ var categoryStateConfig;
                 url: '/pages/:pageId',
                 templateUrl: 'modules/pages/pages.tpl.html',
                 controller: 'PagesController as pagesVm',
-                screenIndex: -1
+                screenIndex: screenIndexes.pages
             });
 
         $urlRouterProvider.otherwise('/');

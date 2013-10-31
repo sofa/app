@@ -1,22 +1,10 @@
 angular
     .module('CouchCommerceApp')
-    .factory('stateChangeService',['$rootScope', function ($rootScope) {
+    .factory('stateChangeService',['$rootScope', 'screenIndexes', function ($rootScope, screenIndexes) {
 
             'use strict';
 
             var self = {};
-
-            var map = {
-                '-999999': 'unknown',
-                '-1'     : 'pages',
-                '0'      : 'category',
-                '1'      : 'products',
-                '2'      : 'product',
-                '3'      : 'cart',
-                '4'      : 'checkout',
-                '5'      : 'summary',
-                '6'      : 'thankyou'
-            };
 
             $rootScope.$on('$stateChangeSuccess', function(evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals){
 
@@ -31,8 +19,8 @@ angular
                 };
 
                 //TODO: I don't think it's the correct way to rely on the screenIndex.
-                var previousIndex = fromRoute && fromRoute.screenIndex !== undefined ? fromRoute.screenIndex : minScreenIndex,
-                    currentIndex = toRoute && toRoute.screenIndex !== undefined ? toRoute.screenIndex : minScreenIndex;
+                var previousIndex = fromRoute && fromRoute.screenIndex !== undefined ? fromRoute.screenIndex : screenIndexes.unknown,
+                    currentIndex = toRoute && toRoute.screenIndex !== undefined ? toRoute.screenIndex : screenIndexes.unknown;
 
                 var eventData = {
                     move: null,
@@ -60,7 +48,7 @@ angular
                     }
                 }
                 else{
-                    eventData.move = map[previousIndex] + 'To' + cc.Util.capitalize(map[currentIndex]);
+                    eventData.move = screenIndexes[previousIndex] + 'To' + cc.Util.capitalize(screenIndexes[currentIndex]);
                     $rootScope.$emit('stateChangeService.stateChangeSuccess', eventData);
                 }
             });
