@@ -217,7 +217,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('production--unique', ['name-unique', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify', 'script:production', 'concat:index']);
 
-    grunt.registerTask('release', ['releaseBranchPre', 'production--unique', 'releaseBranch']);
+    grunt.registerTask('release', ['releaseBranchPre', 'production--unique', 'releaseBranch:app']);
 
     grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'shell:dist']);
 
