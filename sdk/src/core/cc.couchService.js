@@ -1,4 +1,4 @@
-cc.define('cc.CouchService', function($http, $q){
+cc.define('cc.CouchService', function($http, $q, configService){
 
     'use strict';
 
@@ -50,7 +50,7 @@ cc.define('cc.CouchService', function($http, $q){
 
         if(!products[categoryUrlId]){
             return $http({
-                method: cc.Config.apiHttpMethod,
+                method: configService.get('apihttpMethod', 'jsonp'),
                 url: cc.Config.apiUrl +
                 '?&stid=' +
                 cc.Config.storeCode +

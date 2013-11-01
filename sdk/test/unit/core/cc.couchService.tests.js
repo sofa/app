@@ -48,8 +48,12 @@ var createHttpService = function(){
     return new cc.mocks.httpService(new cc.QService());
 };
 
+var createCouchService = function(httpService){
+    return new cc.CouchService(httpService, new cc.QService(), new cc.ConfigService());
+};
+
 test('can create CouchService instance', function() {
-    var couchService = new cc.CouchService(createHttpService(), new cc.QService());
+    var couchService = createCouchService(createHttpService());
     ok(couchService, 'Created couchService instance' );
 });
 
@@ -69,7 +73,7 @@ asyncTest('can get products', function() {
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProducts(categoryUrlId)
@@ -96,7 +100,7 @@ asyncTest('can get a single product', function() {
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
@@ -123,7 +127,7 @@ asyncTest('can get the next product of the same category (with cached products)'
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
@@ -156,7 +160,7 @@ asyncTest('can get the next product of the same category (WITHOUT cached product
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     var product = {
         urlKey: productUrlId,
@@ -188,7 +192,7 @@ asyncTest('returns "null" for the next product when reached the end', function()
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
@@ -221,7 +225,7 @@ asyncTest('returns the first product of the category for the next product when r
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
@@ -254,7 +258,7 @@ asyncTest('can get the previous product of the same category (with cached produc
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
@@ -287,7 +291,7 @@ asyncTest('can get the previous product of the same category (WITHOUT cached pro
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     var product = {
         urlKey: productUrlId,
@@ -319,7 +323,7 @@ asyncTest('returns null for the previous product when reached the start', functi
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
@@ -352,7 +356,7 @@ asyncTest('returns the last product of the category for the previous product whe
 
     httpService.when(cc.Config.apiHttpMethod, url).respond(productData);
 
-    var couchService = new cc.CouchService(httpService, new cc.QService());
+    var couchService = createCouchService(httpService);
 
     couchService
         .getProduct(categoryUrlId, productUrlId)
