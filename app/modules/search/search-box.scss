@@ -13,8 +13,9 @@
     height: 100%;
 
     //we need a blur radius of at least 1px for box-shadow to work on Android 2.3
+    //also we can't use border-bottom here as the search-box currently is a child element of the header
     //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
-    @include vendor-prefix('box-shadow', 0px 3px 1px $toolbar-border-color);
+    @include vendor-prefix('box-shadow', 0px $border-bottom-width 1px $toolbar-border-color);
 }
 
 .cc-search-box--closed{

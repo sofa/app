@@ -20,7 +20,15 @@
     100% {background: none;}
 }
 
+.cc-button--pressed {
+    &:active, &.ng-click-active{
 
+        -webkit-box-shadow: 0 1px 1px 0 transparent;
+        box-shadow: 0 1px 0 0 transparent;
 
+        margin-top: 2px;
+        margin-bottom: -2px;
+    }
+}
 
 
