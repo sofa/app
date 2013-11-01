@@ -31,8 +31,16 @@ var mrPinkBackendRepresentation = {
                                     "countryLabel":"United States"
                                 };
 
+var createCheckoutService = function(httpService, basketService){
+    var configService = new cc.ConfigService();
+    if(basketService){
+        basketService = new cc.BasketService(new cc.LocalStorageService(), new cc.ConfigService());
+    }
+    return new cc.CheckoutService(httpService, new cc.QService(), basketService, new cc.LoggingService(configService), configService);
+};
+
 test('can create CheckoutService instance', function() {
-    var checkoutService = new cc.CheckoutService(createHttpService(), new cc.QService());
+    var checkoutService = createCheckoutService(createHttpService());
     ok(checkoutService, 'Created checkoutService instance' );
 });
 
@@ -45,7 +53,7 @@ asyncTest('getSupportCheckoutMethod sends correct data to the backend', function
         .when('POST', cc.Config.checkoutUrl + 'ajax.php')
         .respond({});
 
-    var basketService = new cc.BasketService(new cc.LocalStorageService());
+    var basketService = new cc.BasketService(new cc.LocalStorageService(), new cc.ConfigService());
     basketService.clear();
     var product = new cc.models.Product();
     product.name = 'Testproduct';
@@ -53,7 +61,7 @@ asyncTest('getSupportCheckoutMethod sends correct data to the backend', function
 
     var basketItem = basketService.addItem(product, 1);
 
-    var checkoutService = new cc.CheckoutService(httpService, new cc.QService(), basketService);
+    var checkoutService = createCheckoutService(httpService, basketService);
 
     var checkoutModel = {
         billingAddress: cc.Util.clone(mrPinkAppRepresentation),
@@ -95,9 +103,9 @@ asyncTest('checkoutWithCouchCommerce returns a promise with a token', function()
         .when('POST', cc.Config.checkoutUrl + 'ajax.php')
         .respond('({"token":"CC_4ee08a71c70c007ce92a0b941eb059fe"})');
 
-    var basketService = new cc.BasketService(new cc.LocalStorageService());
+    var basketService = new cc.BasketService(new cc.LocalStorageService(), new cc.ConfigService());
 
-    var checkoutService = new cc.CheckoutService(httpService, new cc.QService(), basketService);
+    var checkoutService = createCheckoutService(httpService, basketService);
 
     var checkoutModel = {
         billingAddress: {
@@ -132,9 +140,9 @@ asyncTest('getSummary transforms addresses in standard format', function() {
         .when('POST', cc.Config.checkoutUrl + 'summaryst.php')
         .respond(response);
 
-    var basketService = new cc.BasketService(new cc.LocalStorageService());
+    var basketService = new cc.BasketService(new cc.LocalStorageService(), new cc.ConfigService());
 
-    var checkoutService = new cc.CheckoutService(httpService, new cc.QService(), basketService);
+    var checkoutService = createCheckoutService(httpService, basketService);
 
     checkoutService
         .getSummary('someToken')

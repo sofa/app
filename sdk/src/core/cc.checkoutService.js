@@ -5,7 +5,8 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     var self = {};
 
     var FORM_DATA_HEADERS = {'Content-Type': 'application/x-www-form-urlencoded'},
-        FULL_CHECKOUT_URL = cc.Config.checkoutUrl + 'ajax.php';
+        CHECKOUT_URL      = configService.get('checkoutUrl'),
+        FULL_CHECKOUT_URL = configService.get('checkoutUrl') + 'ajax.php';
 
     var lastUsedPaymentMethod,
         lastUsedShippingMethod;
@@ -288,7 +289,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     self.getSummary = function(token){
         return $http({
             method: 'POST',
-            url: cc.Config.checkoutUrl + 'summaryst.php',
+            url: CHECKOUT_URL + 'summaryst.php',
             headers: FORM_DATA_HEADERS,
             transformRequest: toFormData,
             data: {
@@ -310,7 +311,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     self.activateOrder = function(token){
         return $http({
             method: 'POST',
-            url: cc.Config.checkoutUrl + 'docheckoutst.php',
+            url: CHECKOUT_URL + 'docheckoutst.php',
             headers: FORM_DATA_HEADERS,
             transformRequest: toFormData,
             data: {

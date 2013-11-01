@@ -1,6 +1,6 @@
 angular
-    .module('sdk.filter.currency', [])
-    .filter('currency', function(){
+    .module('sdk.filter.currency', ['sdk.services.configService'])
+    .filter('currency', ['configService', function(configService){
 
 
         //the currency can be specified by either the html entity,
@@ -20,9 +20,11 @@ angular
             }
         };
 
+        var CURRENCY_SIGN = configService.get('currencySign');
+
         return function(val){
 
-            var currency = cc.Config.currencySign || '&euro;';
+            var currency = CURRENCY_SIGN || '&euro;';
 
             var currencyKey = cc.Util.findKey(currencyMap, function(item){
                                     return item.synonyms.indexOf(currency) > -1; 
@@ -42,4 +44,4 @@ angular
                 return fixedVal;
             }
         };
-    });
+    }]);

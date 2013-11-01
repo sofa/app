@@ -8,6 +8,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
         productComparer = new cc.comparer.ProductComparer();
 
 
+    var MEDIA_FOLDER        = configService.get('mediaFolder'),
+        MEDIA_IMG_EXTENSION = configService.get('mediaImgExtension'),
+        API_URL             = configService.get('apiUrl'),
+        //this is not exposed to the SAAS hosted product, hence the default value
+        API_HTTP_METHOD     = configService.get('apihttpMethod', 'jsonp'),
+        STORE_CODE          = configService.get('storeCode'),
+        CATEGORY_JSON       = configService.get('categoryJson');
+
     /**
      * Fetches the category with the given categoryUrlId
      * If no category is specified, the method
@@ -50,10 +58,10 @@ cc.define('cc.CouchService', function($http, $q, configService){
 
         if(!products[categoryUrlId]){
             return $http({
-                method: configService.get('apihttpMethod', 'jsonp'),
-                url: cc.Config.apiUrl +
+                method: API_HTTP_METHOD,
+                url: API_URL +
                 '?&stid=' +
-                cc.Config.storeCode +
+                STORE_CODE +
                 '&cat=' + categoryUrlId +
                 '&callback=JSON_CALLBACK'
             })
@@ -202,7 +210,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
     var fetchAllCategories = function(){
         return $http({
             method: 'get',
-            url: cc.Config.categoryJson
+            url: CATEGORY_JSON
         })  
         .then(function(data){
             self.categories = data.data;
@@ -218,7 +226,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
         var iterator = new cc.util.TreeIterator(categories, 'children');
         iterator.iterateChildren(function(category, parent){
             category.parent = parent;
-            category.image = cc.Config.mediaFolder + category.urlId + "." + cc.Config.mediaImgExtension;
+            category.image = MEDIA_FOLDER + category.urlId + "." + MEDIA_IMG_EXTENSION;
         });
     };
 

@@ -1,12 +1,15 @@
-cc.define('cc.PagesService', function($http, $q){
+cc.define('cc.PagesService', function($http, $q, configService){
 
     'use strict';
 
     var self = {};
 
+    var RESOURCE_URL = configService.get('resourceUrl'),
+        ABOUT_PAGES  = configService.get('aboutPages');
+
     self.getPage = function(id){
         return $http
-                .get(cc.Config.resourceUrl + id + '.html')
+                .get(RESOURCE_URL + id + '.html')
                 .then(function(result){
                     if (result.data){
 
@@ -21,7 +24,7 @@ cc.define('cc.PagesService', function($http, $q){
     };
 
     self.getPageConfig = function(id){
-        var page = cc.Config.aboutPages.filter(function(page){
+        var page = ABOUT_PAGES.filter(function(page){
             return page.id === id;
         });
 

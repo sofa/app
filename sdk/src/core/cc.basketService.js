@@ -1,4 +1,4 @@
-cc.define('cc.BasketService', function(storageService, options){
+cc.define('cc.BasketService', function(storageService, configService, options){
 
     'use strict';
 
@@ -14,6 +14,11 @@ cc.define('cc.BasketService', function(storageService, options){
                        productAVariant === productBVariant &&
                        productAOptionId === productBOptionId;
             };
+
+
+    var SHIPPING_COST       = configService.get('shippingCost'),
+        SHIPPING_TAX        = configService.get('shippingTax'),
+        FREE_SHIPPING_FROM  = configService.get('freeShippingFrom');
 
     
     //allow this service to raise events
@@ -229,9 +234,9 @@ cc.define('cc.BasketService', function(storageService, options){
      */
 
     self.getSummary = function(options){
-        var shipping            = cc.Config.shippingCost,
-            shippingTax         = cc.Config.shippingTax,
-            freeShippingFrom    = cc.Config.freeShippingFrom,
+        var shipping            = SHIPPING_COST,
+            shippingTax         = SHIPPING_TAX,
+            freeShippingFrom    = FREE_SHIPPING_FROM,
             quantity            = 0,
             sum                 = 0,
             vat                 = 0,

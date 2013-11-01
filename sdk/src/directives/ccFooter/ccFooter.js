@@ -1,13 +1,19 @@
-angular.module('sdk.directives.ccFooter', ['src/directives/ccFooter/ccfooter.tpl.html']);
+angular.module('sdk.directives.ccFooter', [
+    'src/directives/ccFooter/ccfooter.tpl.html',
+    'sdk.services.configService'
+]);
+
 angular
     .module('sdk.directives.ccFooter')
-    .directive('ccFooter', function() {
+    .directive('ccFooter', ['configService', function(configService) {
 
         'use strict';
 
         var defaultIfUndefined = function(scope, property, defaultVal){
             scope[property] = scope[property] === undefined ? defaultVal : scope[property];
         };
+
+        var ABOUT_PAGES = configService.get('aboutPages');
 
         return {
             restrict: 'EA',
@@ -18,11 +24,11 @@ angular
             },
             templateUrl: 'src/directives/ccFooter/ccfooter.tpl.html',
             link: function(scope, element, attrs){
-                defaultIfUndefined(scope, 'items', cc.Config.aboutPages);
+                defaultIfUndefined(scope, 'items', ABOUT_PAGES);
 
                 scope.goTo = function(item){
                     window.location.href = '#/pages/' + item.id;
                 };
             }
         };
-    });
+    }]);

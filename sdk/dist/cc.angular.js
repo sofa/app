@@ -127,13 +127,14 @@ angular.module("src/directives/ccZippy/cczippy.tpl.html", []).run(["$templateCac
 
 angular.module('sdk.services.basketService', [
         // TODO: Investigate. I'm not sold this should be handled on this level. 
-        store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService'
+        store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService',
+        'sdk.services.configService'
     ]);
 
 angular
     .module('sdk.services.basketService')
-    .factory('basketService', ['storageService', function(storageService){
-        return new cc.BasketService(storageService);
+    .factory('basketService', ['storageService', 'configService', function(storageService, configService){
+        return new cc.BasketService(storageService, configService);
 }]);
 
 
@@ -316,12 +317,12 @@ angular
 
 
 
-angular.module('sdk.services.pagesService', []);
+angular.module('sdk.services.pagesService', ['sdk.services.configService']);
 
 angular
     .module('sdk.services.pagesService')
-    .factory('pagesService', ['$http', '$q', function($http, $q){
-        return new cc.PagesService($http, $q);
+    .factory('pagesService', ['$http', '$q', 'configService', function($http, $q, configService){
+        return new cc.PagesService($http, $q, configService);
 }]);
 
 
@@ -2415,16 +2416,22 @@ angular.module('sdk.directives.ccFixedToolbarsView')
             templateUrl: 'src/directives/ccFixedToolbarsView/fixedtoolbarsview.html'
         };
     });
-angular.module('sdk.directives.ccFooter', ['src/directives/ccFooter/ccfooter.tpl.html']);
+angular.module('sdk.directives.ccFooter', [
+    'src/directives/ccFooter/ccfooter.tpl.html',
+    'sdk.services.configService'
+]);
+
 angular
     .module('sdk.directives.ccFooter')
-    .directive('ccFooter', function() {
+    .directive('ccFooter', ['configService', function(configService) {
 
         'use strict';
 
         var defaultIfUndefined = function(scope, property, defaultVal){
             scope[property] = scope[property] === undefined ? defaultVal : scope[property];
         };
+
+        var ABOUT_PAGES = configService.get('aboutPages');
 
         return {
             restrict: 'EA',
@@ -2435,14 +2442,14 @@ angular
             },
             templateUrl: 'src/directives/ccFooter/ccfooter.tpl.html',
             link: function(scope, element, attrs){
-                defaultIfUndefined(scope, 'items', cc.Config.aboutPages);
+                defaultIfUndefined(scope, 'items', ABOUT_PAGES);
 
                 scope.goTo = function(item){
                     window.location.href = '#/pages/' + item.id;
                 };
             }
         };
-    });
+    }]);
 angular.module('sdk.directives.ccInclude', []);
 
 angular.module('sdk.directives.ccInclude')
@@ -3039,8 +3046,8 @@ angular.module('sdk.decorators.$rootScope', []);
 
 
 angular
-    .module('sdk.filter.currency', [])
-    .filter('currency', function(){
+    .module('sdk.filter.currency', ['sdk.services.configService'])
+    .filter('currency', ['configService', function(configService){
 
 
         //the currency can be specified by either the html entity,
@@ -3060,9 +3067,11 @@ angular
             }
         };
 
+        var CURRENCY_SIGN = configService.get('currencySign');
+
         return function(val){
 
-            var currency = cc.Config.currencySign || '&euro;';
+            var currency = CURRENCY_SIGN || '&euro;';
 
             var currencyKey = cc.Util.findKey(currencyMap, function(item){
                                     return item.synonyms.indexOf(currency) > -1; 
@@ -3082,7 +3091,7 @@ angular
                 return fixedVal;
             }
         };
-    });
+    }]);
 
 angular.module('sdk.filter',    [
                                     'sdk.filter.currency'
