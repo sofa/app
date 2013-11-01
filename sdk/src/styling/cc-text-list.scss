@@ -41,7 +41,7 @@ $cc-text-list__row---border-radius: $primary-border-radius;
 }
 
 .cc-text-list__row-content, %cc-text-list__row-content{
-    margin-left: $primary-padding;
+    margin-left: round($primary-padding*1.66);
     border-bottom: 1px solid $content-border-color;
     padding: 13px 0 13px 0;
     font-size: $font-size-big;
@@ -49,11 +49,11 @@ $cc-text-list__row---border-radius: $primary-border-radius;
 
 .cc-text-list__row-icon, %cc-text-list__row-icon{
     position: absolute;
-    right: 5px;
+    right: round($primary-padding*.8);
     top: 50%;
     //intentionally! We want the icon to use the same color as the border
     color: $content-border-color;
-    margin-top: -12px;
-    font-size: 24px;
+    margin-top: -.4em;
+    font-size: .85em;
 }
 
