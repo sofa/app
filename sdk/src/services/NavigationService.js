@@ -103,7 +103,7 @@ angular
         };
 
         var navigateToParentCategory = function(category){
-            if (category.parent){
+            if (category.parent && category.parent.parent){
                 self.navigateToCategory(category.parent.urlId);
             }
             else{
