@@ -1,4 +1,5 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
+    <cc-inject target="aboveContent"></cc-inject>
     <h1 class="cc-title--huge">{{ headline }}</h1>
     <ul class="cc-category-list">
         <li ng-repeat="category in category.children"
@@ -13,6 +14,8 @@
 
         </li>
     </ul>
+    <cc-inject target="aboveFooter"></cc-inject>
     <cca-footer></cca-footer>
+    <cc-inject target="beneathFooter"></cc-inject>
 </div>
 

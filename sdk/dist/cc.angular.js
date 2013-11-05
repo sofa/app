@@ -179,6 +179,52 @@ angular
 
 
 
+angular.module('sdk.services.injectsService', ['sdk.services.configService']);
+
+angular
+    .module('sdk.services.injectsService')
+    .factory('injectsService', ['$location', 'configService', function($location, configService){
+
+        'use strict';
+
+        var self = {};
+
+        var RESOURCE_URL     = configService.get('resourceUrl');
+
+        //we build a map of the injects for faster lookups.
+        var injects = configService
+                        .get('injects', [])
+                        .reduce(function(previous, current){
+                            var key = current.url + '_' + current.target;
+                            previous[key] = {
+                                template: current.template,
+                                target: current.target
+                            };
+                            return previous;
+                        }, {});
+
+        var getKey = function(injectionPoint){
+            return $location.url() + '_' + injectionPoint;
+        };
+
+        self.hasInject = function(injectionPoint){
+            return !cc.Util.isUndefined(injects[getKey(injectionPoint)]);
+        };
+
+        self.getTemplate = function(injectionPoint){
+
+            if (self.hasInject(injectionPoint)){
+                return RESOURCE_URL + injects[getKey(injectionPoint)].template;
+            }
+
+            return null;
+        };
+
+        return self;
+}]);
+
+
+
 angular.module('sdk.services.loggingService', ['sdk.services.configService']);
 
 angular
@@ -2469,6 +2515,38 @@ angular.module('sdk.directives.ccInclude')
                 }
             };
     }]);
+angular.module('sdk.directives.ccInject', []);
+
+angular
+    .module('sdk.directives.ccInject')
+    .directive('ccInject', ['$templateCache', '$http', '$compile', 'injectsService', function($templateCache, $http, $compile, injectsService) {
+
+        'use strict';
+
+        return {
+            restrict: 'EA',
+            replace: true,
+            scope: {
+                target: '@'
+            },
+            link: function(scope, element, attrs){
+                scope.injectsService = injectsService;
+
+                var templateUrl = injectsService.getTemplate(scope.target);
+
+                if (templateUrl === null){
+                    element.remove();
+                }
+                else{
+                    $http
+                        .get(templateUrl, {cache: $templateCache})
+                        .success(function (tplContent) {
+                            element.replaceWith($compile(tplContent)(scope));
+                        });
+                }
+            }
+        };
+    }]);
 angular.module('sdk.directives.ccIosPositionFixedInputFix', []);
 
 //This fixes a pretty well known bug in iOS where elements with fixed positioning
@@ -3010,7 +3088,8 @@ angular.module('sdk.directives', [
     'sdk.directives.ccElasticViews',
     'sdk.directives.ccLoadingSpinner',
     'sdk.directives.ccInclude',
-    'sdk.directives.ccIosPositionFixedInputFix'
+    'sdk.directives.ccIosPositionFixedInputFix',
+    'sdk.directives.ccInject'
     ]);
 angular.module('sdk.decorators.$rootScope', []);
 

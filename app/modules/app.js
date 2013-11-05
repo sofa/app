@@ -21,6 +21,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.userService',
     'sdk.services.configService',
     'sdk.services.searchService',
+    'sdk.services.injectsService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',

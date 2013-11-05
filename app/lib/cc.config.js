@@ -43,6 +43,13 @@ cc.Config = {
                 id:'something'
             }
     ],
+    injects: [
+        {
+            url: '/',
+            template: 'some-teaser.html',
+            target: 'aboveContent' //aboveContent, aboveFooter, beneathFooter
+        }
+    ],
     trustedShopsEnabled: true,
     trustedShopsId: 'X35A8844FD4E62A875C2C9E1C05C39CD4'
 };
