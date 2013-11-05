@@ -13,7 +13,7 @@ cc.Config = {
     mediaFolder:'http://cc1.couchcommerce.com/media/couchdemoshop/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
-    resourceUrl:'http://localhost:8888/couchcommerce/couchcommerce-frontend/app/data/pages/',
+    resourceUrl:'../data/pages/',
     shippingCost:5,
     shippingTax:19,
     shippingFreeFrom: null,
