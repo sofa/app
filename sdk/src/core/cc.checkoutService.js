@@ -320,7 +320,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             }
         })
         .then(function(response){
-            return toJson(response.data);
+            var json = toJson(response.data);
+
+            basketService.clear();
+
+            return json;
         }, function(fail){
             loggingService.error([
                 '[CheckoutService: checkoutWithCouchCommerce]',
