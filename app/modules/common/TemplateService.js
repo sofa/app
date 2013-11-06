@@ -5,5 +5,6 @@ angular
         TOTALBOX: 'modules/common/totalbox/totalbox.tpl.html',
         HEADER: 'modules/common/header/defaultheader.tpl.html',
         SEARCH_BOX: 'modules/search/search-box.tpl.html',
-        SEARCH_RESULT: 'modules/search/search-result.tpl.html'
+        SEARCH_RESULT: 'modules/search/search-result.tpl.html',
+        SHELL: 'modules/common/shell/shell.tpl.html'
     });
