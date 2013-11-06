@@ -199,7 +199,7 @@ module.exports = function(grunt) {
                     var version = grunt.option('app-version');
 
                     if (typeof version === 'undefined'){
-                        grunt.log.error('You need to specify a version with --version....stupid!');
+                        grunt.log.error('You need to specify a version with --app-version....stupid!');
                         return;
                     }
 
