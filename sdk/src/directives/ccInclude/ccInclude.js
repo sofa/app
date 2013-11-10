@@ -12,7 +12,7 @@ angular.module('sdk.directives.ccInclude')
                     $http
                         .get(templateUrl, {cache: $templateCache})
                         .success(function (tplContent) {
-                            element.replaceWith($compile(tplContent)(scope));
+                            element.replaceWith($compile(tplContent.trim())(scope));
                         });
                 }
             };
