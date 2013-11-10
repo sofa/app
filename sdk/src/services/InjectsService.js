@@ -22,18 +22,26 @@ angular
                             return previous;
                         }, {});
 
-        var getKey = function(injectionPoint){
-            return $location.url() + '_' + injectionPoint;
+        var getKey = function(injectionPoint, url){
+            return assureUrl(url) + '_' + injectionPoint;
         };
 
-        self.hasInject = function(injectionPoint){
-            return !cc.Util.isUndefined(injects[getKey(injectionPoint)]);
+        var assureUrl = function(url){
+            return url || $location.url();
+        };
+
+        self.hasInject = function(injectionPoint, url){
+            return !cc.Util.isUndefined(injects[getKey(injectionPoint, url)]);
         };
 
         self.getTemplate = function(injectionPoint){
 
             if (self.hasInject(injectionPoint)){
                 return RESOURCE_URL + injects[getKey(injectionPoint)].template;
+            }
+
+            if (self.hasInject(injectionPoint, '*')){
+                return RESOURCE_URL + injects[getKey(injectionPoint, '*')].template;
             }
 
             return null;
