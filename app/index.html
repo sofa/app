@@ -15,7 +15,7 @@
     <!-- initially we used ng-include on the body. Unfortunately this broke deep linking for products/product
     However, our goal is to not introduce an unneeded wrapping div as it further stresses the mental overload
     that already comes with the complex task of creating robust fixed toolbars + fallback + a scrolling container.
-    We know achieve the same as with ng-include on the body by using cc-include on a child div (the child div
+    We now achieve the same as with ng-include on the body by using cc-include on a child div (the child div
     will be replaced after the directive does it's thing)  -->
     <div cc-include="tpl.SHELL"></div>
     <%= grunt.config.get('scriptString') %>
