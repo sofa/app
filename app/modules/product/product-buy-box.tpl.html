@@ -10,7 +10,10 @@
     <div class="cc-product-buy-box__info">
         <div class="cc-product-buy-box__info-left" ng-bind="productTaxText"></div>
         <div class="cc-product-buy-box__info-right">
-            <div>{{ cfg.shippingText }}<div>
+            <div ng-if="cfg.shippingCost !== null"> {{shippingCosts}}</div>
+            <div ng-if="cfg.shippingCost === null">
+                <a class="cc-link" ng-click="navigationService.navigateToShippingCostsPage()">{{ln.shippingCostsGeneric}}</a>
+            </div>    
             <div>{{product.getBasePriceInfo()}}<div>
         </div>
     </div>

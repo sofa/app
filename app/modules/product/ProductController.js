@@ -2,11 +2,12 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$location', 'couchService', 'basketService', 'navigationService', 'product', '$dialog', '$sce',
-        function ProductController($scope, $location, couchService, basketService, navigationService, product, $dialog, $sce) {
+        '$scope', '$filter', '$location', 'configService', 'couchService', 'basketService', 'navigationService', 'product', '$dialog', '$sce',
+        function ProductController($scope, $filter, $location, configService, couchService, basketService, navigationService, product, $dialog, $sce) {
 
             'use strict';
 
+            $scope.navigationService = navigationService;
             $scope.product = product;
             $scope.$sce = $sce;
 
@@ -18,6 +19,9 @@ angular
             $scope.onThumbnailSelected = function(product, image){
                 product.selectedImage = image;
             };
+            
+            var formattedShippingCosts = $filter('currency')(configService.get('shippingCost'));
+            $scope.shippingCosts = $scope.ln.shippingCosts.replace('{shipping}', formattedShippingCosts);
 
             //keep that in for debugging variants
             // $scope.product.variants = [

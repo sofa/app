@@ -59,7 +59,8 @@ cc.Lang = {
         summaryShipping:'Versandkosten',
         summaryTaxLabel:'enthaltene MwSt.',
         summaryGrandTotalLabel:'Gesamtpreis',
-
+        shippingCosts:'zzgl. {shipping} Versandkosten',
+        shippingCostsGeneric:'zzgl. Versandkosten',
 
         buyButton:'Kaufen',                         // NEW
 

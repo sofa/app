@@ -14,6 +14,16 @@ angular
 
             var updateModels = function(){
                 $scope.summary = basketService.getSummary();
+
+                //that's a bit of a hack. We use the total box for both cart
+                //and summary page. In the summary page we always have a server generated
+                //shipping. However, in the cart we might want to show a link to the
+                //shipping costs page. The total box checks for shipping === null to
+                //either show the link or the value.
+                if(configService.get('shippingCost') === null){
+                    $scope.summary.shipping = null;
+                }
+
                 $scope.items = basketService.getItems();
                 $scope.isEmpty = $scope.items.length === 0;
             };

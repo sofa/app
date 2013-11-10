@@ -249,7 +249,7 @@ angular.module('sdk.services.navigationService', []);
 
 angular
     .module('sdk.services.navigationService')
-    .factory('navigationService', ['$location', '$window', 'couchService', function($location, $window, couchService){
+    .factory('navigationService', ['$location', '$window', 'configService', 'couchService', function($location, $window, configService, couchService){
 
         'use strict';
 
@@ -302,6 +302,10 @@ angular
 
         self.navigateToSummary = function(token){
             $location.path('/summary/' + token);
+        };
+
+        self.navigateToShippingCostsPage = function(){
+            $location.path('/pages/' + configService.get('linkShippingCosts', ''));
         };
 
         self.getCategoryUrlId = function(){
