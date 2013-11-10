@@ -239,8 +239,8 @@ var categoryStateConfig;
 
         $urlRouterProvider.otherwise('/');
     }])
-    //just to kick off the service
-    .run(['stateChangeService', function(){}])
+    //just to kick off the services
+    .run(['stateChangeService', 'viewClassService', function(){}])
     .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', 'scrollPositionService', function($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService, scrollPositionService){
 
         //Todo: Check what can be moved over to the MainController
