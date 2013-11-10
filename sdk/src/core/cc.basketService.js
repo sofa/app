@@ -234,7 +234,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
      */
 
     self.getSummary = function(options){
-        var shipping            = SHIPPING_COST,
+        var shipping            = SHIPPING_COST || 0,
             shippingTax         = SHIPPING_TAX,
             freeShippingFrom    = FREE_SHIPPING_FROM,
             quantity            = 0,

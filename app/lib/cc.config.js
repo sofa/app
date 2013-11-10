@@ -14,7 +14,7 @@ cc.Config = {
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
     resourceUrl:'../data/pages/',
-    shippingCost:5,
+    shippingCost:null,
     shippingTax:19,
     shippingFreeFrom: null,
     currency:'EUR',

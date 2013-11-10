@@ -415,6 +415,45 @@ test('calculates summary', function() {
     ok(summary.shipping === 5, 'uses shipping costs from config');
 });
 
+test('can calculate summary with shippingCost null', function() {
+    //FIXME: doesn't feel right to directly fiddle with cc.Config
+    var oldShippingCost = cc.Config.shippingCost;
+    cc.Config.shippingCost = null;
+    var basketService = createBasketService();
+    basketService.clear();
+
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 1;
+    product.price = 4.65;
+    product.tax = 19;
+
+    var product2 = new cc.models.Product();
+    product2.name = 'Testproduct';
+    product2.id = 2;
+    product2.price = 12.28;
+    product2.tax = 7;
+
+    basketService.addItem(product, 1);
+    basketService.addItem(product, 4);
+
+    basketService.addItem(product2, 2);
+    basketService.addItem(product2, 3);
+
+    var summary = basketService.getSummary();
+    var itemCount = basketService.getItems().length;
+
+    ok(itemCount === 2, 'has two basketItems');
+    ok(summary.quantity === 10, 'has a quantity of 15');
+    ok(summary.sum === 84.65, 'calculates sum correctly');
+    ok(summary.vat === 7.70, 'calculates VAT correctly');
+    ok(summary.total === 84.65, 'calculates total correctly');
+    ok(summary.shipping === 0, 'uses shipping costs from config');
+
+    cc.Config.shippingCost = oldShippingCost;
+});
+
+
 test('calculates summary', function() {
     var basketService = createBasketService();
     basketService.clear();
