@@ -10,13 +10,21 @@ angular
 
             self.isOpen = false;
 
+            self.searchTerm = '';
+
             self.abort = function(){
                 self.searchTerm = '';
                 self.isOpen = false;
             };
 
             self.clear = function(){
-                self.searchTerm = '';
+
+                if (self.searchTerm.length === 0){
+                    self.abort();
+                }
+                else{
+                    self.searchTerm = '';
+                }
             };
 
             self.clear();
