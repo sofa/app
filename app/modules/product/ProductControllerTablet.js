@@ -16,10 +16,18 @@ angular
             //this makes it easier to share template snippets across the app
             $scope.product = splitViewDataService.product;
 
+            //the scope price will be updated when variants change
+            $scope.price = product.price;
+
             $scope.variants = {
                 selectedVariant : null,
                 selectedProperties: null
             };
+
+            //update the price when the selected variant changes
+            $scope.$watch('variants.selectedVariant', function(variant){
+                $scope.price = variant && variant.price !== undefined ? variant.price : $scope.product.price;
+            });
 
             $scope.onThumbnailSelected = function(product, image){
                 product.selectedImage = image;
