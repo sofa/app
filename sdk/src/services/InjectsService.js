@@ -8,7 +8,7 @@ angular
 
         var self = {};
 
-        var RESOURCE_URL     = configService.get('resourceUrl');
+        var RESOURCE_URL     = configService.get('resourceUrl') + 'html/';
 
         //we build a map of the injects for faster lookups.
         var injects = configService

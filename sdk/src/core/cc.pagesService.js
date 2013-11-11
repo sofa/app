@@ -4,7 +4,7 @@ cc.define('cc.PagesService', function($http, $q, configService){
 
     var self = {};
 
-    var RESOURCE_URL = configService.get('resourceUrl'),
+    var RESOURCE_URL = configService.get('resourceUrl') + 'html/',
         ABOUT_PAGES  = configService.get('aboutPages');
 
     self.getPage = function(id){
