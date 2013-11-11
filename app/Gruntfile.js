@@ -196,15 +196,18 @@ module.exports = function(grunt) {
                 //on the root level and delete all source files but instead we just add the dist folder
                 //to the version control for the deployment branch/tag.
                 command: function(){
-                    var version = grunt.option('app-version');
-
-                    if (typeof version === 'undefined'){
-                        grunt.log.error('You need to specify a version with --app-version....stupid!');
-                        return;
-                    }
-
+                    var version = grunt.config.get('appVersion');
+                    
+                    //useful for debugging without tagging and pushing
+                    //return 'git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release"';
                     return 'git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release" && git tag ' + version + ' && git push --tags';
                 }
+            }
+        },
+        changelog: {
+            options: {
+                github: 'https://github.com/couchcommerce/frontend-spike',
+                previousTagCmd: 'git tag | sort -n -t. -k1,1 -k2,2 -k3,3 | tail -1'
             }
         }
     });
@@ -219,10 +222,22 @@ module.exports = function(grunt) {
 
     grunt.registerTask('release', ['releaseBranchPre:app', 'production--unique', 'releaseBranch:app']);
 
-    grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'shell:dist']);
+    grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'set-version', 'changelog', 'shell:dist']);
 
     grunt.registerTask('name-min', function(){
         grunt.config.set('appJsName', 'app.min.js');
+    });
+
+    grunt.registerTask('set-version', function(){
+        var version = grunt.option('app-version');
+
+        if (typeof version === 'undefined'){
+            grunt.fail.warn('You need to specify a version with --app-version....stupid!');
+            return;
+        }
+
+        grunt.config.set('appVersion', version);
+        grunt.config.set('changelog.options.version', version);
     });
 
     grunt.registerTask('name-unique', function(){
@@ -259,5 +274,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-shell');
+    grunt.loadTasks('./grunt-conventional-changelog/tasks');
 
 };
