@@ -16,7 +16,7 @@ angular
                         .reduce(function(previous, current){
                             var key = current.url + '_' + current.target;
                             previous[key] = {
-                                template: current.template,
+                                template: current.template + '.html',
                                 target: current.target
                             };
                             return previous;

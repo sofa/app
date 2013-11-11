@@ -45,7 +45,7 @@ cc.Config = {
     injects: [
         {
             url: '*',
-            template: 'some-teaser.html',
+            template: 'some-teaser',
             target: 'aboveContent' //aboveContent, aboveFooter, beneathFooter
         }
     ],
