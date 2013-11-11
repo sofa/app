@@ -12,7 +12,7 @@
 .cc-content-box{
     font-size: $font-size-medium;
     background: $content-background-color;
-    border-radius: 15px;
+    border-radius: $primary-border-radius;
         //android 2.3 needs blur for box shadow
     -webkit-box-shadow: 0 ($border-bottom-width) 1px 0 $content-border-color;
     box-shadow: 0 ($border-bottom-width) 0 0 $content-border-color;

@@ -3,7 +3,7 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
 
 
 .cc-button-base, %cc-button-base{
-    @include vendor-prefix('border-radius', 15px);
+    @include vendor-prefix('border-radius', $primary-border-radius);
     //using a top and bottom padding is better than setting a fixed height
     //since it keeps the text centered
     padding: 12px;

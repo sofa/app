@@ -32,7 +32,7 @@
 .cc-product-grid__row-wrapper{
     width: 100%;
     background-color: $content-background-color;
-    border-radius: 15px;
+    border-radius: $primary-border-radius;
 
     border-bottom: 0;
     //android 2.3 needs blur for box shadow
@@ -80,7 +80,7 @@
     //we invert the colors here
     background: $content-text-color;
     color: $content-background-color;
-    border-top-right-radius: 15px;
+    border-top-right-radius: $primary-border-radius;
     padding: 5px;
     position: relative;
     z-index: 4;

@@ -63,7 +63,7 @@ $cc-header---half-icon-height: round($cc-header---icon-height / 2);
     -webkit-box-shadow: 0 $border-bottom-width 1px 0 try-darker($toolbar-border-color, 5%);
     box-shadow: 0 $border-bottom-width 0 0 try-darker($toolbar-border-color, 5%);
 
-    border-radius: 15px;
+    border-radius: $primary-border-radius;
 
     position: relative;
 
