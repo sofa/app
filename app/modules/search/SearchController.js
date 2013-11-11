@@ -32,18 +32,7 @@ angular
 
             vm.searchUiState = searchUiState;
 
-            $scope.abort = function(){
-                searchUiState.isOpen = false;
-                $scope.clear();
-            };
-
-            $scope.clear = function(){
-                vm.searchTerm = '';
-            };
-
-            $scope.clear();
-
-            $scope.$watch('vm.searchTerm', function(searchTerm){
+            $scope.$watch('vm.searchUiState.searchTerm', function(searchTerm){
 
                 searchService
                     .search(searchTerm, { groupKey: 'categoryUrlKey', groupText: 'categoryName'})

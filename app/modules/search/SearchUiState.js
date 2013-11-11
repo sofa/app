@@ -10,6 +10,17 @@ angular
 
             self.isOpen = false;
 
+            self.abort = function(){
+                self.searchTerm = '';
+                self.isOpen = false;
+            };
+
+            self.clear = function(){
+                self.searchTerm = '';
+            };
+
+            self.clear();
+
             self.setResults = function(newResults){
                 self.results = newResults;
             };

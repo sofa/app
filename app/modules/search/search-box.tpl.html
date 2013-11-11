@@ -1,15 +1,14 @@
 <div ng-class="{'cc-search-box--opened': vm.searchUiState.isOpen, 'cc-search-box--closed' : !vm.searchUiState.isOpen }" ng-controller="SearchController as vm">
     <div class="cc-header__icon-wrapper">
         <i class="cc-header__icon icon-arrow-left" 
-           ng-click="abort()"></i>
+           ng-click="searchUiState.abort()"></i>
     </div>
     <!-- the use of such spacer elements is super ugly but the only way I have found to get it working the way we want it even in Android 2.x -->
     <div class="cc-search-box__spacer"></div>
     <div class="cc-search-box__input-wrapper">
-        <i ng-click="clear()" class="cc-search-box__input-cancel-icon icon-remove-sign"></i>
+        <i ng-click="searchUiState.clear()" class="cc-search-box__input-cancel-icon icon-remove-sign"></i>
         <input 
-            id="foo"
-            ng-model="vm.searchTerm"
+            ng-model="searchUiState.searchTerm"
             class="cc-search-box__input" 
             type="text"
             cc-ios-position-fixed-input-fix>
@@ -17,4 +16,4 @@
     <div class="cc-search-box__spacer"></div>
 </div>
 
-<div class="cc-modal" ng-show="searchUiState.isOpen && !searchUiState.hasResults()"></div>
+<div class="cc-modal" ng-click="searchUiState.abort()" ng-show="searchUiState.isOpen && !searchUiState.hasResults()"></div>
