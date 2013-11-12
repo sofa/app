@@ -34,6 +34,9 @@ angular
 
             return {
                 restrict: 'A',
+                scope: {
+                    image: '='
+                },
                 link: function(scope, $element, attrs) {
 
                     var body = angular.element(document.body);
@@ -48,11 +51,9 @@ angular
                         $element = parent;
 
 
-                        scope.$watch('product', function(newValue, oldValue) {
-                            if (newValue && newValue.selectedImage) {
-                                $element.css('background-image', 'url('+newValue.selectedImage.url+')');
-                            }
-                        }, true);
+                        scope.$watch('image', function(newValue, oldValue) {
+                            $element.css('background-image', 'url('+ newValue +')');
+                        });
 
                         appContent = angular.element(document.querySelector('body > div'));
 
@@ -203,6 +204,14 @@ angular
                             mask.css("opacity", opacity);
                         };
 
+                        var setImageDimensionsAndVisibility = function(img, left, top, width, height){
+                            img.style.left = left + 'px';
+                            img.style.top = top + 'px';
+                            img.style.width = width + 'px';
+                            img.style.height = height + 'px';
+                            img.style.visibility = 'visible';
+                        };
+
                         var lerpToPosition = function(targetX, targetY, targetW, targetH, done, interrupt) {
                             if (inAnimation) return;
 
@@ -244,10 +253,11 @@ angular
                                 var currentLerpedWidth = lerp(startW, targetW, easing(lerpFactor));
                                 var currentLerpedHeight = lerp(startH, targetH, easing(lerpFactor));
 
-                                theImage.style.left = currentLerpedX + 'px';
-                                theImage.style.top = currentLerpedY + 'px';
-                                theImage.width = currentLerpedWidth;
-                                theImage.height = currentLerpedHeight;
+                                setImageDimensionsAndVisibility(theImage, 
+                                                                currentLerpedX, 
+                                                                currentLerpedY, 
+                                                                currentLerpedWidth, 
+                                                                currentLerpedHeight);
 
                                 if (currentAnimTime < animTime && inAnimation) {
                                     updateOpacity(currentLerpedWidth, currentLerpedHeight);
@@ -347,13 +357,19 @@ angular
 
                             theImage.style.left = currentOffsetX + 'px';
                             theImage.style.top = currentOffsetY + 'px';
-                            theImage.width = currentWidth;
-                            theImage.height = currentHeight;
+                            theImage.style.width = currentWidth + 'px';
+                            theImage.style.height = currentHeight + 'px';
+
+                            setImageDimensionsAndVisibility(theImage, 
+                                currentOffsetX, 
+                                currentOffsetY, 
+                                currentWidth, 
+                                currentHeight);
                         };
 
-                        scope.$watch('product', function(newValue, oldValue) {
+                        scope.$watch('image', function(newValue, oldValue) {
 
-                            if (newValue && newValue.selectedImage) {
+                            if (newValue) {
 
                                 // We need the image with and height, so link it to the native onload function
                                 // This will automatically be refired when angular changes the src attr
@@ -367,6 +383,8 @@ angular
 
                                     return true;
                                 };
+
+                                $element[0].src = newValue;
                             }
 
                         }, true);
@@ -469,11 +487,11 @@ angular
                                 newOffsetY = currentOffsetY + translateTotalY;
 
                                 // Set the image attributes on the page
-                                theImage.style.left = newOffsetX + 'px';
-                                theImage.style.top = newOffsetY + 'px';
-                                theImage.width = newWidth;
-                                theImage.height = newHeight;
-
+                                setImageDimensionsAndVisibility(theImage, 
+                                    newOffsetX, 
+                                    newOffsetY, 
+                                    newWidth, 
+                                    newHeight);
                             }
 
                             if (flavourLevel === flavourLevelEnum.FULL) inAnimation = false;
