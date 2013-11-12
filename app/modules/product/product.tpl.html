@@ -7,11 +7,11 @@
 
             <div class="cc-product-view-image-wrapper">
                 <i class="icon-2x cc-product-view-image__expand-icon"></i>
-                <img cc-image-zoom ng-src="{{product.selectedImage.url}}" class="cc-product-view-image">
+                <img cc-image-zoom image="selectedImage.url" class="cc-product-view-image">
              </div>
 
             <cc-thumbnail-bar
-                ng-show="$parent.product.hasMultipleImages()"
+                ng-show="$parent.images.length > 1"
                 class="cc-thumbnail-bar-on-background"
                 images="product.getAllImages()"
                 on-change="onThumbnailSelected(product, image)"

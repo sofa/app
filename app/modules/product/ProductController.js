@@ -16,6 +16,8 @@ angular
 
             //the scope price will be updated when variants change
             $scope.price = product.price;
+            $scope.images = product.images;
+            //$scope.selectedImage = $scope.images.length > 0 && $scope.images[0];
 
             $scope.$sce = $sce;
 
@@ -27,11 +29,15 @@ angular
             //update the price when the selected variant changes
             $scope.$watch('variants.selectedVariant', function(variant){
                 $scope.price = variant && variant.price !== undefined ? variant.price : $scope.product.price;
+                if (variant && variant.images && variant.images[0]){
+                    $scope.images = variant.images;
+                    $scope.selectedImage = $scope.images[0];
+                }
             });
 
 
             $scope.onThumbnailSelected = function(product, image){
-                product.selectedImage = image;
+                $scope.selectedImage = image;
             };
             
             var formattedShippingCosts = $filter('currency')(configService.get('shippingCost'));
