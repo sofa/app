@@ -166,8 +166,6 @@ var categoryStateConfig;
             .state('category', angular.extend({}, categoryStateConfig, { url: '/cat/:category' }));
     }
 
-
-
         $stateProvider
             .state('products', {
                 url: '/cat/:category/products',

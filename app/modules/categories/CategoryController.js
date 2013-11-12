@@ -9,6 +9,10 @@ angular
 
             'use strict';
 
+            if(!category){
+                return;
+            }
+
             $scope.backStepHighlightService = backStepHighlightService;
 
             $scope.goToCategory = function(category, $event){

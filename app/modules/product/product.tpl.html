@@ -1,47 +1,53 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
     <div rn-carousel-infinite rn-carousel-current="product" rn-carousel-prev="getPrevProduct(item)" rn-carousel-next="getNextProduct(item)">
         <cc-inject target="aboveContent"></cc-inject>
-        <h1 class="cc-title--huge">{{product.name}}</h1>
 
-        <div class="cc-product-view-image-wrapper">
-            <i class="icon-2x cc-product-view-image__expand-icon"></i>
-            <img cc-image-zoom ng-src="{{product.selectedImage.url}}" class="cc-product-view-image">
-         </div>
+        <div ng-if="product">
+            <h1 class="cc-title--huge">{{product.name}}</h1>
 
-        <cc-thumbnail-bar
-            ng-show="product.hasMultipleImages()"
-            class="cc-thumbnail-bar-on-background"
-            images="product.getAllImages()"
-            on-change="onThumbnailSelected(product, image)"
-            >
-        </cc-thumbnail-bar>
+            <div class="cc-product-view-image-wrapper">
+                <i class="icon-2x cc-product-view-image__expand-icon"></i>
+                <img cc-image-zoom ng-src="{{product.selectedImage.url}}" class="cc-product-view-image">
+             </div>
 
-        <cc-variant-selector
-            class="cc-variant-selector-on-background "
-            choose-text="ln.choose"
-            variants="product.variants"
-            variant="variants.selectedVariant"
-            selected-properties="variants.selectedProperties">
-        </cc-variant-selector>
+            <cc-thumbnail-bar
+                ng-show="product.hasMultipleImages()"
+                class="cc-thumbnail-bar-on-background"
+                images="product.getAllImages()"
+                on-change="onThumbnailSelected(product, image)"
+                >
+            </cc-thumbnail-bar>
 
-        <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
+            <cc-variant-selector
+                class="cc-variant-selector-on-background "
+                choose-text="ln.choose"
+                variants="product.variants"
+                variant="variants.selectedVariant"
+                selected-properties="variants.selectedProperties">
+            </cc-variant-selector>
 
-        <div class="cc-content-box--padded--stick-right cc-on-content cc-unstyled">
+            <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
 
-            <cc-zippy caption="ln.productDetails" init-opened="true">
-                <div ng-bind-html="$sce.trustAsHtml(product.description)"></div>
-            </cc-zippy>
+            <div class="cc-content-box--padded--stick-right cc-on-content cc-unstyled">
 
-            <cc-zippy caption="ln.productSpecifications">
-                <table class="cc-product-view-attributes">
-                    <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
-                        <td class="cc-product-view-attributes-row-key">{{key}}</td>
-                        <td class="cc-product-view-attributes-row-value">{{value}}</td>
-                    </tr>
-                </table>
-            </cc-zippy>
+                <cc-zippy caption="ln.productDetails" init-opened="true">
+                    <div ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+                </cc-zippy>
 
+                <cc-zippy caption="ln.productSpecifications">
+                    <table class="cc-product-view-attributes">
+                        <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
+                            <td class="cc-product-view-attributes-row-key">{{key}}</td>
+                            <td class="cc-product-view-attributes-row-value">{{value}}</td>
+                        </tr>
+                    </table>
+                </cc-zippy>
+
+            </div>
         </div>
+
+        <div ng-if="!product" ng-include="tpl.404"></div>
+
         <cc-inject target="aboveFooter"></cc-inject>
         <cca-footer></cca-footer>
         <cc-inject target="beneathFooter"></cc-inject>

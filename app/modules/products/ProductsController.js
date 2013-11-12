@@ -35,6 +35,6 @@ angular
             $scope.navigationService = navigationService;
             $scope.products = products;
             $scope.categoryUrlId = $stateParams.category;
-            $scope.headline = category.label;
+            $scope.headline = category && category.label;
         }
     ]);

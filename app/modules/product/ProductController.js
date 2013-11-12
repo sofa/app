@@ -7,6 +7,10 @@ angular
 
             'use strict';
 
+            if (!product){
+                return;
+            }
+
             $scope.navigationService = navigationService;
             $scope.product = product;
 

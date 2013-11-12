@@ -7,6 +7,10 @@ angular
 
             'use strict';
 
+            if (!product){
+                return;
+            }
+
             splitViewDataService.setLeftBoxAsProducts();
             splitViewDataService.rightCategory = null;
             splitViewDataService.products = products;

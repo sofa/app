@@ -9,6 +9,10 @@ angular
 
             'use strict';
 
+            if(!category){
+                return;
+            }
+
             $scope.backStepHighlightService = backStepHighlightService;
 
             splitViewDataService.rightCategory = null;

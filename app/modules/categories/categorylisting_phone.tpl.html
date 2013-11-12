@@ -1,19 +1,24 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
     <cc-inject target="aboveContent"></cc-inject>
-    <h1 class="cc-title--huge">{{ headline }}</h1>
-    <ul class="cc-category-list">
-        <li ng-repeat="category in category.children"
-            ng-click="goToCategory(category, $event)"
-            ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }" 
-            class="cc-category-list__row" >
 
-            <div class="cc-category-list__row-content">
-                {{category.label}}
-                <i class="cc-category-list__row-icon icon-chevron-right"></i>
-            </div>
+    <div ng-if="category">
+        <h1 class="cc-title--huge">{{ headline }}</h1>
+        <ul class="cc-category-list">
+            <li ng-repeat="category in category.children"
+                ng-click="goToCategory(category, $event)"
+                ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }" 
+                class="cc-category-list__row" >
 
-        </li>
-    </ul>
+                <div class="cc-category-list__row-content">
+                    {{category.label}}
+                    <i class="cc-category-list__row-icon icon-chevron-right"></i>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+    <div ng-if="!category" ng-include="tpl.404"></div>
+
     <cc-inject target="aboveFooter"></cc-inject>
     <cca-footer></cca-footer>
     <cc-inject target="beneathFooter"></cc-inject>
