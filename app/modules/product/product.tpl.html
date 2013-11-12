@@ -11,7 +11,7 @@
              </div>
 
             <cc-thumbnail-bar
-                ng-show="product.hasMultipleImages()"
+                ng-show="$parent.product.hasMultipleImages()"
                 class="cc-thumbnail-bar-on-background"
                 images="product.getAllImages()"
                 on-change="onThumbnailSelected(product, image)"
