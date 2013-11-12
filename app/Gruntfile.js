@@ -199,8 +199,8 @@ module.exports = function(grunt) {
                     var version = grunt.config.get('appVersion');
                     
                     //useful for debugging without tagging and pushing
-                    //return 'git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release"';
-                    return 'git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release" && git tag ' + version + ' && git push --tags';
+                    //return 'git add -A && git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release"';
+                    return 'git add -A && git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release" && git tag ' + version + ' && git push --tags';
                 }
             }
         },
