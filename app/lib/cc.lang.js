@@ -82,6 +82,7 @@ cc.Lang = {
         checkout: 'Checkout',
         surChargeWarning:'Es fallen zusätzliche Gebühren in Höhe von {surcharge} an',
         surcharge:'Zusätzliche Gebühren',
+        discountWarning: 'Durch Auswahl von Vorlasse gewähren wir einen Discount von {surcharge}',
         // This is temporally disabled until we use the new
         // checkout process
         paymentMethod_paypalexpress: 'PayPal',

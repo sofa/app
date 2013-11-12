@@ -40,14 +40,20 @@ angular
             };
 
             var checkSurcharge = function(){
-                if (checkoutModel.selectedPaymentMethod &&
-                    checkoutModel.selectedPaymentMethod.surcharge > 0){
+                if ( $scope.summary.surcharge ) {
                     //to keep compatibility to our current language file we need to
                     //deal with the {surcharge} marker in the language value and replace it with the
                     //surcharge value
-                    checkoutModel.surchargeHint = $scope.ln.surChargeWarning
-                                                            .replace(/{\s*surcharge\s*}/,
-                                                                checkoutModel.selectedPaymentMethod.surcharge + ' ' + cc.Config.currencySign);
+                    if ( $scope.summary.surcharge > 0 ) {
+                        checkoutModel.surchargeHint = $scope.ln.surChargeWarning
+                                                        .replace(/{\s*surcharge\s*}/,
+                                                        $scope.summary.surchargeStr + ' ' + cc.Config.currencySign);
+                    }
+                    else if ( $scope.summary.surcharge < 0 ) {
+                        checkoutModel.surchargeHint = $scope.ln.discountWarning
+                                                        .replace(/{\s*surcharge\s*}/,
+                                                        Math.abs(parseFloat($scope.summary.surchargeStr)).toFixed(2) + ' ' + cc.Config.currencySign);
+                    }
                 }
                 else{
                     checkoutModel.surchargeHint = '';
@@ -86,8 +92,8 @@ angular
                         return;
                     }
                     validateCheckout();
-                    checkSurcharge();
                     updateSummary();
+                    checkSurcharge();
                     saveAddresses();
                 });
             });

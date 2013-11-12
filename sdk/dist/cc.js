@@ -123,7 +123,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
         storePrefix = 'basketService_',
         storeItemsName = storePrefix + 'items',
         items = sanitizeSavedData(storageService.get(storeItemsName)) || [],
-        productIdentityFn = options && cc.Util.isFunction(options.productIdentityFn) ? 
+        productIdentityFn = options && cc.Util.isFunction(options.productIdentityFn) ?
             options.productIdentityFn : function(productA, productAVariant, productAOptionId,
                                                  productB, productBVariant, productBOptionId){
 
@@ -137,7 +137,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
         SHIPPING_TAX        = configService.get('shippingTax'),
         FREE_SHIPPING_FROM  = configService.get('freeShippingFrom');
 
-    
+
     //allow this service to raise events
     cc.observable.mixin(self);
 
@@ -169,10 +169,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     writeToStore();
 
     /**
-     * Adds an item to the basket. Returns the added 'BasketItem' 
-     * 
+     * Adds an item to the basket. Returns the added 'BasketItem'
+     *
      * Options:
-     * 
+     *
      *   - `product` the Product object itself
      *   - `quantity` the number of times the product should be added
      *   - `variant` the variant the product should be added with
@@ -201,10 +201,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
 
     /**
      * A shorthand for:
-     * basketService.increase(basketItem, 1) 
-     * 
+     * basketService.increase(basketItem, 1)
+     *
      * Options:
-     * 
+     *
      *   - `basketItem` the basketItem that should be increased by one
      */
     self.increaseOne = function(basketItem){
@@ -213,10 +213,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
 
     /**
      * A shorthand for:
-     * basketService.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId) 
-     * 
+     * basketService.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId)
+     *
      * Options:
-     * 
+     *
      *   - `basketItem` the basketItem that should be increased by one
      */
     self.increase = function(basketItem, number){
@@ -224,10 +224,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Checks if an product exists in the basket 
-     * 
+     * Checks if an product exists in the basket
+     *
      * Options:
-     * 
+     *
      *   - `product` the Product object itself
      *   - `variant` the variant the basket should be checked for
      *   - `optionId` the optionId the basket should be checked for
@@ -245,10 +245,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Removes an item from the basket 
-     * 
+     * Removes an item from the basket
+     *
      * Options:
-     * 
+     *
      *   - `product` the Product that should be removed from the basket
      *   - `quantity` the quantity that should be removed from the basket
      *   - `variant` the variant that should be removed from the basket
@@ -258,9 +258,9 @@ cc.define('cc.BasketService', function(storageService, configService, options){
         var basketItem = self.find(createProductPredicate(product, variant, optionId));
 
         if (!basketItem){
-            throw new Error('Product id: ' + product.id + 
-                ' , variant: ' + variant + 
-                ', optionId: ' + optionId + 
+            throw new Error('Product id: ' + product.id +
+                ' , variant: ' + variant +
+                ', optionId: ' + optionId +
                 '  does not exist in the basket');
         }
 
@@ -283,10 +283,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
 
     /**
      * A shorthand for:
-     * basketService.decrease(basketItem, 1) 
-     * 
+     * basketService.decrease(basketItem, 1)
+     *
      * Options:
-     * 
+     *
      *   - `basketItem` the basketItem that should be decreased by one
      */
     self.decreaseOne = function(basketItem){
@@ -295,10 +295,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
 
     /**
      * A shorthand for:
-     * basketService.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId) 
-     * 
+     * basketService.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId)
+     *
      * Options:
-     * 
+     *
      *   - `basketItem` the basketItem that should be decreased by one
      */
     self.decrease = function(basketItem, number){
@@ -306,13 +306,13 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Removes all items from the basket 
-     * 
+     * Removes all items from the basket
+     *
      * Options:
-     * 
+     *
      */
     self.clear = function(){
-        
+
         items.length = 0;
 
         writeToStore();
@@ -324,10 +324,10 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Finds a basket item by the given predicate function 
-     * 
+     * Finds a basket item by the given predicate function
+     *
      * Options:
-     * 
+     *
      *   - `predicate` function to test the basketItem against
      */
 
@@ -337,8 +337,8 @@ cc.define('cc.BasketService', function(storageService, configService, options){
 
 
     /**
-     * Returns all basket items 
-     * 
+     * Returns all basket items
+     *
      */
 
     self.getItems = function(){
@@ -346,22 +346,25 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Returns a summary object of the current basket state 
-     * 
+     * Returns a summary object of the current basket state
+     *
      */
 
     self.getSummary = function(options){
-        var shipping            = SHIPPING_COST || 0,
-            shippingTax         = SHIPPING_TAX,
-            freeShippingFrom    = FREE_SHIPPING_FROM,
-            quantity            = 0,
-            sum                 = 0,
-            vat                 = 0,
-            discount            = 0,
-            surcharge           =   options && options.paymentMethod &&
-                                    cc.Util.isNumber(options.paymentMethod.surcharge) ? 
+        var shipping             = SHIPPING_COST || 0,
+            shippingTax          = SHIPPING_TAX,
+            freeShippingFrom     = FREE_SHIPPING_FROM,
+            quantity             = 0,
+            sum                  = 0,
+            vat                  = 0,
+            discount             = 0,
+            surcharge            =  options && options.paymentMethod &&
+                                    cc.Util.isNumber(options.paymentMethod.surcharge) ?
                                     options.paymentMethod.surcharge : 0,
-            total               = 0;
+            surcharge_percentage =  options && options.paymentMethod &&
+                                    cc.Util.isNumber(options.paymentMethod.surcharge_percentage) ?
+                                    options.paymentMethod.surcharge_percentage : 0,
+            total                = 0;
 
         items.forEach(function(item){
             var itemQuantity = parseInt(item.quantity, 10);
@@ -383,7 +386,13 @@ cc.define('cc.BasketService', function(storageService, configService, options){
             shipping = options.shippingMethod.price;
         }
 
-        total = sum + shipping + surcharge + discount;
+        total = sum + shipping + discount;
+
+        if ( surcharge_percentage ) {
+            surcharge = total * (surcharge_percentage/100.0);
+        }
+
+        total += surcharge;
 
         vat += parseFloat(Math.round((shipping * shippingTax / (100 + shippingTax) ) * 100) / 100);
 
@@ -420,7 +429,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
     var lastUsedPaymentMethod,
         lastUsedShippingMethod;
-    
+
     //allow this service to raise events
     cc.observable.mixin(self);
 
@@ -549,10 +558,13 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
                     //We need to fix some types. It's a bug in the backend
                     //https://github.com/couchcommerce/admin/issues/42
-                                                
+
                     data.paymentMethods = data.paymentMethods
                                             .map(function(method){
                                                 method.surcharge = parseFloat(method.surcharge);
+                                                if ( method.surcharge_percentage ) {
+                                                    method.surcharge_percentage = parseFloat(method.surcharge_percentage);
+                                                }
                                                 return method;
                                             });
 

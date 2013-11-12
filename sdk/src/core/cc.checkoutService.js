@@ -10,7 +10,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
     var lastUsedPaymentMethod,
         lastUsedShippingMethod;
-    
+
     //allow this service to raise events
     cc.observable.mixin(self);
 
@@ -139,10 +139,13 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
                     //We need to fix some types. It's a bug in the backend
                     //https://github.com/couchcommerce/admin/issues/42
-                                                
+
                     data.paymentMethods = data.paymentMethods
                                             .map(function(method){
                                                 method.surcharge = parseFloat(method.surcharge);
+                                                if ( method.surcharge_percentage ) {
+                                                    method.surcharge_percentage = parseFloat(method.surcharge_percentage);
+                                                }
                                                 return method;
                                             });
 
