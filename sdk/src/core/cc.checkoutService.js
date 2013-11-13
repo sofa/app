@@ -169,6 +169,10 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
     self.checkoutWithCouchCommerce = function(checkoutModel){
 
+        if(checkoutModel.addressEqual){
+            checkoutModel.shippingAddress = checkoutModel.billingAddress;
+        }
+
         var requestModel = createRequestData(checkoutModel);
         requestModel.task = 'CHECKOUT';
 
