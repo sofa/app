@@ -39,6 +39,10 @@ angular
                 },
                 link: function(scope, $element, attrs) {
 
+                    scope.$on('$destroy', function() {
+                        exitFullscreen();
+                    });
+
                     var body = angular.element(document.body);
 
                     var viewWrapper;
