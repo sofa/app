@@ -1,6 +1,6 @@
 angular
     .module('CouchCommerceApp')
-    .factory('stateChangeService',['$rootScope', 'screenIndexes', function ($rootScope, screenIndexes) {
+    .factory('stateChangeService',['$rootScope', 'screenIndexes', 'couchService', function ($rootScope, screenIndexes, couchService) {
 
             'use strict';
 
@@ -34,11 +34,11 @@ angular
                     var fromRouteCategory = fromLocals.globals.category;
                     var toRouteCategory = toLocals.globals.category;
 
-                    if(toRouteCategory.parent === fromRouteCategory){
+                    if(couchService.isAParentOfB(fromRouteCategory, toRouteCategory)){
                         eventData.move = 'categoryToChildCategory';
                         $rootScope.$emit('stateChangeService.stateChangeSuccess', eventData);
                     }
-                    else if(fromRouteCategory.parent === toRouteCategory){
+                    else if(couchService.isAChildOfB(fromRouteCategory, toRouteCategory)){
                         eventData.move = 'categoryToParentCategory';
                         $rootScope.$emit('stateChangeService.stateChangeSuccess', eventData);
                     }
