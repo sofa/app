@@ -16,6 +16,35 @@ cc.define('cc.CouchService', function($http, $q, configService){
         STORE_CODE          = configService.get('storeCode'),
         CATEGORY_JSON       = configService.get('categoryJson');
 
+
+    /**
+     * Checks whether a given category is the parent
+     * of another category taking n hops into account
+     * 
+     * Options:
+     * 
+     *   - `a` category a
+     *   - `b` category b 
+     */
+    self.isAParentOfB = function(categoryA, categoryB){
+        //short circuit if it's a direct parent, if not recursively check
+        return categoryB.parent === categoryA || 
+               (categoryB.parent && self.isAParentOfB(categoryA, categoryB.parent)) === true;
+    };
+
+    /**
+     * Checks whether a given category is the child
+     * of another category taking n hops into account
+     * 
+     * Options:
+     * 
+     *   - `a` category a
+     *   - `b` category b 
+     */
+    self.isAChildOfB = function(categoryA, categoryB){
+        return self.isAParentOfB(categoryB, categoryA);
+    };
+
     /**
      * Fetches the category with the given categoryUrlId
      * If no category is specified, the method

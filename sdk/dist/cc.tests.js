@@ -1011,6 +1011,80 @@ test('can create CouchService instance', function() {
     ok(couchService, 'Created couchService instance' );
 });
 
+test('it should detect direct parent<->child relationships', function() {
+
+    var a = {
+        urlId: 'a'
+    };
+
+    var b = {
+        urlId: 'b',
+        parent: a
+    };
+
+    var couchService = createCouchService(createHttpService());
+
+    ok(couchService.isAParentOfB(a, b), 'a is a parent of b' );
+    ok(couchService.isAParentOfB(b, a) === false, 'b is not a parent of a');
+
+    ok(couchService.isAChildOfB(b, a), 'b is a child of a' );
+    ok(couchService.isAChildOfB(a, b) === false, 'a is not a child of b');
+});
+
+test('it should detect indirect parent<->child relationships', function() {
+
+    var a = {
+        urlId: 'a'
+    };
+
+    var b = {
+        urlId: 'b',
+        parent: a
+    };
+
+    var c = {
+        urlId: 'c',
+        parent: b
+    };
+
+    var couchService = createCouchService(createHttpService());
+
+    ok(couchService.isAParentOfB(a, c), 'a is a parent of c' );
+    ok(couchService.isAParentOfB(c, a) === false, 'c is not a parent of a');
+
+    ok(couchService.isAChildOfB(c, a), 'c is a child of a' );
+    ok(couchService.isAChildOfB(a, c) === false, 'a is not a child of c');
+});
+
+test('it should detect no relationship', function() {
+
+    var a = {
+        urlId: 'a'
+    };
+
+    var b = {
+        urlId: 'b',
+        parent: a
+    };
+
+    var a2 = {
+        urlId: 'a2'
+    };
+
+    var b2 = {
+        urlId: 'b2',
+        parent: a2
+    };
+
+    var couchService = createCouchService(createHttpService());
+
+    ok(couchService.isAParentOfB(a, b2) === false, 'a is not a parent of b2');
+    ok(couchService.isAChildOfB(a, b2) === false, 'a is not a child of b2');
+
+    ok(couchService.isAParentOfB(b2, a) === false, 'b2 is not a parent of a');
+    ok(couchService.isAChildOfB(b2, a) === false, 'b2 is not a child of a');
+});
+
 asyncTest('can get products', function() {
     expect(1);
     var httpService = createHttpService();
