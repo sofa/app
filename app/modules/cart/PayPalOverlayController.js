@@ -33,7 +33,7 @@ angular
 
             $scope.proceed = function(){
                 $dialog.loading();
-                checkoutService.checkoutWithPayPal(vm.selectedShippingMethod);
+                checkoutService.checkoutWithPayPal(vm.selectedShippingMethod, vm.selectedCountry);
             };
         }
     ]);

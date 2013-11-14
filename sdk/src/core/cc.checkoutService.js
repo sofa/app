@@ -203,11 +203,17 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
-    self.checkoutWithPayPal = function(shippingMethod){
+    self.checkoutWithPayPal = function(shippingMethod, shippingCountry){
 
         var checkoutModel = {
             selectedShippingMethod: shippingMethod,
-            selectedPaymentMethod: { method: 'paypal' }
+            selectedPaymentMethod: { method: 'paypal' },
+            shippingAddress: {
+                country: shippingCountry
+            },
+            billingAddress: {
+                country: shippingCountry
+            }
         };
 
         var requestModel = createRequestData(checkoutModel);
