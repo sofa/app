@@ -116,8 +116,8 @@ asyncTest('checkoutWithCouchCommerce returns a promise with a token', function()
         },
         supportedShippingMethods: [],
         supportedPaymentMethods: [],
-        selectedPaymentMethod: null,
-        selectedShippingMethod: null,
+        selectedPaymentMethod: {},
+        selectedShippingMethod: {},
         addressEqual: true
     };
 

@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('SummaryController',
     [
-        '$scope', 'navigationService', 'checkoutService', '$dialog', '$stateParams', 'trustedShopsService',
-        function SummaryController($scope, navigationService, checkoutService, $dialog, $stateParams, trustedShopsService) {
+        '$scope', 'navigationService', 'checkoutService', '$dialog', '$stateParams', 'trustedShopsService', '$state',
+        function SummaryController($scope, navigationService, checkoutService, $dialog, $stateParams, trustedShopsService, $state) {
 
             'use strict';
 
@@ -22,6 +22,7 @@ angular
             checkoutService
                 .getSummary($stateParams.token)
                 .then(function(result){
+
                     vm.invoiceAddress   = result.invoiceAddress;
                     vm.shippingAddress  = result.shippingAddress;
                     vm.paymentMethod    = result.response.paymentMethod;
@@ -30,14 +31,6 @@ angular
                     //we directly set this one on the scope to gain reuse of the included template
                     $scope.summary      = result.summary;
 
-                    //We need to map payment identifier from our identifiers to the ones trust shops uses.
-                    //Ideally the backend will send those.
-                    vm.trustedShopsPaymentIdentifier = "";
-                    switch(vm.paymentMethod) {
-                        case "PayPal":
-                            vm.trustedShopsPaymentIdentifier = "PAYPAL";
-                            break;
-                    }
                 }, function(){
                     $dialog
                         .messageBox(
@@ -60,7 +53,7 @@ angular
                 checkoutService
                     .activateOrder($stateParams.token)
                     .then(function(data){
-                        vm.page = vm.THANK_YOU_PAGE;
+                        $state.transitionTo('thankyou');
                     });
             };
         }

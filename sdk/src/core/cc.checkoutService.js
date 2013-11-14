@@ -9,7 +9,8 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         FULL_CHECKOUT_URL = configService.get('checkoutUrl') + 'ajax.php';
 
     var lastUsedPaymentMethod,
-        lastUsedShippingMethod;
+        lastUsedShippingMethod,
+        lastSummaryResponse;
 
     //allow this service to raise events
     cc.observable.mixin(self);
@@ -191,6 +192,12 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             if(response.data){
                 data = toJson(response.data);
                 data = data.token || null;
+
+                var redirect = checkoutModel.selectedPaymentMethod.redirect;
+                if (redirect && data) {
+                    window.location.href = configService.get('checkoutUrl') + redirect + "?token=" + data;
+                    return 'REDIRECT';
+                }
             }
             return data;
         }, function(fail){
@@ -316,8 +323,15 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             data.invoiceAddress = convertAddress(data.response.billing);
             data.shippingAddress = convertAddress(data.response.shipping);
             data.summary = convertSummary(data.response.totals);
+
+            lastSummaryResponse = data;
+
             return data;
         });
+    };
+
+    self.getLastSummary = function() {
+        return lastSummaryResponse;
     };
 
     //that's the final step to actually create the order on the backend

@@ -219,13 +219,30 @@ var categoryStateConfig;
                 screenIndex: screenIndexes.summary
             });
 
+        var thankyouStateConfig = {
+            templateUrl: 'modules/thankyou/thankyou.tpl.html',
+            controller: 'ThankyouController',
+            screenIndex: screenIndexes.thankyou,
+            resolve: {
+                summaryResponse: ['checkoutService', function(checkoutService){
+                    return checkoutService.getLastSummary();
+                }]
+            }
+        };
+
         $stateProvider
-            .state('thankyou', {
-                url: '/thankyou',
-                templateUrl: 'modules/thankyou/thankyou.tpl.html',
-                controller: function(){},
-                screenIndex: screenIndexes.thankyou
-            });
+            .state('thankyou', thankyouStateConfig);
+
+        $stateProvider
+            .state('thankyouWithToken', angular.extend({}, thankyouStateConfig, {
+                url: '/thankyou/:token',
+                resolve: {
+                    summaryResponse: ['checkoutService', '$stateParams', function(checkoutService, $stateParams){
+                        return checkoutService.getSummary($stateParams.token);
+                    }]
+                }
+            }));
+
 
         $stateProvider
             .state('pages', {
@@ -244,7 +261,7 @@ var categoryStateConfig;
         //Todo: Check what can be moved over to the MainController
         //Most things can, but things like language keys, when used from within
         //an isolated scope, directly turn to the $rootScope (as isolated scopes
-        //don't inherit from a parent scope). We can fix this by providing a 
+        //don't inherit from a parent scope). We can fix this by providing a
         //languageService similar to the configService and then use this for such
         //cases.
         $rootScope.ln = cc.Lang;

@@ -1,0 +1,37 @@
+<div class="cc-scroller--if-fixed cc-view-wrapper cc-center">
+    <h1 class="cc-title--huge" >{{ ln.thankYouTitle }}</h1>
+    <div>{{ ln.thankTouText }}</div>
+        <a
+        ng-click="navigationService.navigateToRootCategory()"
+        class="cc-couch-action-button">{{ ln.continueShopping }}
+    </a>
+
+    <div ng-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-thankyou">
+        <div>
+            <img class="cc-trusted-shops-dialog__image" ng-src="https://www.trustedshops.de/certificate/images/logo/trustedshops_{{ trustedShopsService.locale }}.jpg">
+
+            <div ng-bind-html="ln.tsRegistrationBuyerProtection"></div>
+        </div>
+
+        <form id="formTShops" name="formTShops" method="post"+
+                action="https://www.trustedshops.com/shop/protection.php"+
+                target="_blank">
+
+            <input name="_charset_" type="hidden" value="">
+            <input name="shop_id" type="hidden" value="{{ cfg.trustedShopsId }}">
+            <input name="email" type="hidden" value="">
+            <input name="amount" type="hidden" value="{{ vm.summary.total }}">
+            <input name="curr" type="hidden" value="{{ cfg.currency }}">
+            <input name="paymentType" type="hidden" value="{{ vm.trustedShopsPaymentIdentifier }}">
+            <input name="kdnr" type="hidden" value="-">
+            <input name="ordernr" type="hidden" value="-">
+
+            <input type="submit" class="cc-couch-action-button" value="{{ ln.tsButtonBuyerProtection }}">
+        </form>
+    </div>
+
+    <!-- TODO: get rid of this z-index hack -->
+    <div class="cc-expand" style="z-index: -1">
+        <cca-footer class="cc-cart-footer"></cca-footer>
+    </div>
+</div>

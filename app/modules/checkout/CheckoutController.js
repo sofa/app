@@ -108,7 +108,9 @@ angular
                 checkoutService
                     .checkoutWithCouchCommerce(checkoutModel)
                     .then(function(token){
-                        navigationService.navigateToSummary(token);
+                        if(token !== 'REDIRECT'){
+                            navigationService.navigateToSummary(token);
+                        }
                     }, function(){
                         $dialog
                             .messageBox(
