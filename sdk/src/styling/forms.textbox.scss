@@ -1,20 +1,29 @@
+input {
+    font-family: $font1;
+    line-height:1.5;
+    font-size:16px;
+}
+
 .cc-text-box-on-background .cc-text-box, 
 .cc-text-box-on-background.cc-text-box{
 
     //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 (-$border-bottom-width) 1px 0 $content-border-color;
-    box-shadow: 0 (-$border-bottom-width) 0 0 $content-border-color;
+    -webkit-box-shadow: inset 0 $border-bottom-width 1px 0 $content-border-color;
+    box-shadow: inset 0 $border-bottom-width 0 0 $content-border-color;
     //this might sound strange on first glance. However, it makes
     //perfect sense to give form elements that are placed on the background the content-background-color.
     //that's exactly the purpose of the content-background-color. To style areas that sit on the background.
     //In other words, text boxes and select boxes are are content areas.
     background: $content-background-color;
+
+    border: 2px solid $background-color;
 }
 
 $text-box-default-border: #646666;
 
 .cc-text-box{
-    border: none;
+    color: $content-text-color;
+    border: 2px solid transparent;
     width: 100%;
     font-size: $font-size-medium;
     padding: 10px;
@@ -27,8 +36,9 @@ $text-box-default-border: #646666;
 }
 
 .cc-text-box:focus{
-    border: 1px solid $info-area-background-color;
-    box-shadow: inset 0 0 3px 3px lighten($info-area-background-color, 5%);
+    border: 2px solid rgba($highlight-color, 1);
+    -webkit-box-shadow: inset 0 $border-bottom-width 1px 0 rgba($highlight-color, .8);
+    box-shadow: inset 0 $border-bottom-width 0 0 rgba($highlight-color, .8);
 }
 
 .cc-text-box:disabled{
