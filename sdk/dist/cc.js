@@ -485,11 +485,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         }
 
         if (modelCopy.selectedPaymentMethod && modelCopy.selectedPaymentMethod.method){
-            requestModel.paymentMethod = JSON.stringify(modelCopy.selectedPaymentMethod.method);
+            requestModel.paymentMethod = modelCopy.selectedPaymentMethod.method;
         }
 
         if(modelCopy.selectedShippingMethod && modelCopy.selectedShippingMethod.method){
-            requestModel.shippingMethod = JSON.stringify(modelCopy.selectedShippingMethod.method);
+            requestModel.shippingMethod = modelCopy.selectedShippingMethod.method;
         }
 
         requestModel.quote = JSON.stringify(createQuoteData());
@@ -616,8 +616,8 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     self.checkoutWithPayPal = function(shippingMethod){
 
         var checkoutModel = {
-            shippingMethod: shippingMethod,
-            paymentMethod: 'paypal'
+            selectedShippingMethod: shippingMethod,
+            selectedPaymentMethod: { method: 'paypal' }
         };
 
         var requestModel = createRequestData(checkoutModel);
