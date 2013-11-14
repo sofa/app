@@ -45,3 +45,8 @@ Prerequisites:
 
 grunt will keep running in both terminal sessions. Keep it running, it does all the heavy
 lifting behind the scenes.
+
+#Contribute
+
+We'd love you to contribute. Please make sure to read the [contribute guide line](https://github.com/couchcommerce/frontend-spike/wiki/Contribute)
+
