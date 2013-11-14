@@ -32,7 +32,7 @@ $cc-text-list__row---border-radius: $primary-border-radius;
     &.cc-highlight{ 
         /* Forward */
 
-        [class^="icon-"], [class*=" icon-"] {
+        .fa {
             color: $highlight-text-color;
         }
     }

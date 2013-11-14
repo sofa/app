@@ -23,8 +23,8 @@ angular.module('sdk.directives.ccZippy')
                 var element = $element[0],
                     $caption = angular.element(element.querySelectorAll('.cc-zippy-caption')[0]),
                     $icon = angular.element(element.querySelectorAll('.cc-zippy-icon')[0]),
-                    openedIconClass = 'icon-chevron-up',
-                    closedIconClass = 'icon-chevron-down';
+                    openedIconClass = 'fa fa-chevron-up',
+                    closedIconClass = 'fa fa-chevron-down';
 
                 defaultIfUndefined(scope, 'caption', 'default');
 

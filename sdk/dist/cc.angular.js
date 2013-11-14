@@ -45,7 +45,7 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "        ng-click=\"goTo(item)\" >\n" +
     "        <div class=\"cc-footer-list__row-content\">\n" +
     "            {{ item.title }}\n" +
-    "            <i class=\"cc-footer-list__row-icon icon-chevron-right\"></i>\n" +
+    "            <i class=\"cc-footer-list__row-icon fa fa-chevron-right\"></i>\n" +
     "        </div>\n" +
     "    </li>\n" +
     "</ul>");
@@ -71,7 +71,7 @@ angular.module("src/directives/ccSelectBox/ccselectbox.tpl.html", []).run(["$tem
     "<div class=\"cc-select-box-select-wrapper\">\n" +
     "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(_selectedValue)\"></span>\n" +
     "     <span class=\"cc-select-box-display-value\" ng-hide=\"_selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
-    "     <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
+    "     <i class=\"cc-select-box-select-icon fa fa-chevron-down\"></i>\n" +
     "    <select name=\"{{propertyName}}\"\n" +
     "            class=\"cc-select-box-native-select\" \n" +
     "            ng-model=\"_selectedValue\" \n" +
@@ -101,7 +101,7 @@ angular.module("src/directives/ccVariantSelector/ccvariantselector.tpl.html", []
     "         ng-repeat=\"property in properties\">\n" +
     "         <span class=\"cc-select-box-display-value\" ng-bind=\"selectedProperties[property]\"></span>\n" +
     "         <span class=\"cc-select-box-display-value\" ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
-    "         <i class=\"cc-select-box-select-icon icon-chevron-down\"></i>\n" +
+    "         <i class=\"cc-select-box-select-icon fa fa-chevron-down\"></i>\n" +
     "        <select name=\"{{property}}\"\n" +
     "                class=\"cc-select-box-native-select\" \n" +
     "                ng-model=\"selectedProperties[property]\" \n" +
@@ -3058,8 +3058,8 @@ angular.module('sdk.directives.ccZippy')
                 var element = $element[0],
                     $caption = angular.element(element.querySelectorAll('.cc-zippy-caption')[0]),
                     $icon = angular.element(element.querySelectorAll('.cc-zippy-icon')[0]),
-                    openedIconClass = 'icon-chevron-up',
-                    closedIconClass = 'icon-chevron-down';
+                    openedIconClass = 'fa fa-chevron-up',
+                    closedIconClass = 'fa fa-chevron-down';
 
                 defaultIfUndefined(scope, 'caption', 'default');
 
