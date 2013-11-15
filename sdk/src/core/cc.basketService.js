@@ -62,6 +62,11 @@ cc.define('cc.BasketService', function(storageService, configService, options){
      *   - `optionId` the optionId the product should be added with
      */
     self.addItem = function(product, quantity, variant, optionId){
+
+        if(product.isOutOfStock()){
+            throw new Error('product out of stock');
+        }
+
         var basketItem = self.find(createProductPredicate(product, variant, optionId)),
             exists = !cc.Util.isUndefined(basketItem);
 

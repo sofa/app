@@ -25,6 +25,23 @@ test('can add item', function() {
 
 });
 
+test('trying to add an item that is out of stock raises exception', function() {
+    var basketService = createBasketService();
+    basketService.clear();
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 10;
+    product.qty = 0;
+    
+    throws(function(){
+        var basketItem = basketService.addItem(product, 1);
+    }, Error);
+
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 0, 'has a summary of none');
+});
+
 test('removing the last item removes the whole basket item', function() {
     var basketService = createBasketService();
     basketService.clear();
