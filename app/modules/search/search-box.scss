@@ -1,3 +1,5 @@
+
+
 .cc-search-box{
     width: 100%;
     background: $toolbar-background-color;
@@ -8,7 +10,6 @@
     right: 0;
     bottom: 0;
     z-index: 999;
-
     display: table;
     height: 100%;
 
@@ -43,22 +44,27 @@
     @extend .cc-text-box-on-background;
     //position: absolute;
     
-    height: 30px;
-    right: 10px;
-    left: 20px;
+    margin: 0;
+    border: 1px solid $toolbar-border-color;
+    height: $cc-header---element-height;
+    -webkit-box-shadow: inset 0 $border-bottom-width 1px 0 try-lighter($toolbar-border-color, 5%);
+    box-shadow: inset 0 $border-bottom-width 0 0 try-lighter($toolbar-border-color, 5%);
     width: 100%;
-    padding: 0 10px 0 30px;
+    padding: 0 10px 0 $primary-border-radius;
 }
 
 .cc-search-box__input-cancel-icon{
     position: absolute;
     font-size: $cc-header---icon-height;
     top: 50%;
-    margin-top: -($cc-header---icon-height / 2);
+    height: $cc-header---element-height;
+    line-height: $cc-header---element-height;
+    
+    margin-top: -($cc-header---element-height / 2);
     //what a cruel world. We need to make this relative to
     //the whole cc-search-box to work with Android 2.3.
     //Making it relative to the cc-search-box__input-wrapper doesn't work.
-    right: 20px;
+    right: $primary-border-radius;
     //the clear icon should be in sync with the border color
     color: $content-border-color;
 }

@@ -1,7 +1,8 @@
 
-$cc-header---icon-padding: round(($cc-header---height * .15));
+$cc-header---icon-padding: round(($cc-header---height * .17));
 $cc-header---icon-height: round($cc-header---height * .43);
 $cc-header---half-icon-height: round($cc-header---icon-height / 2);
+$cc-header---element-height: 2 * $cc-header---icon-padding + $cc-header---icon-height;
 
 
 .cc-header{
@@ -56,6 +57,8 @@ $cc-header---half-icon-height: round($cc-header---icon-height / 2);
 
     padding: ($cc-header---icon-padding - 1) round($cc-header---icon-padding * 1.3) ($cc-header---icon-padding + 1);
     width: $cc-header---height;
+    height: $cc-header---element-height;
+
 
     font-size: $cc-header---icon-height;
 
@@ -64,6 +67,10 @@ $cc-header---half-icon-height: round($cc-header---icon-height / 2);
     //android 2.3 needs blur for box shadow
     -webkit-box-shadow: 0 $border-bottom-width 1px 0 try-darker($toolbar-border-color, 5%);
     box-shadow: 0 $border-bottom-width 0 0 try-darker($toolbar-border-color, 5%);
+
+    /* top margin depends on box-shadow size  */
+    /* because of the parent table-cell vertical-align-middle property you should double margin values */
+    margin: -($border-bottom-width) 0 0 0; 
 
     border-radius: $primary-border-radius;
 
