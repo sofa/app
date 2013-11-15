@@ -154,6 +154,20 @@ cc.Util = {
       });
       return result;
     },
+    every: function(collection, callback, thisArg){
+        var result = true;
+
+        callback = cc.Util.createCallback(callback, thisArg);
+      
+        cc.Util.forOwn(collection, function(value, key, object){
+            if (!callback(value, key, object)){
+                result = false;
+                return false;
+            }
+        });
+
+        return result;
+    },
     //this method is ripped out from lo-dash
     forOwn: function(collection, callback) {
         var index,
