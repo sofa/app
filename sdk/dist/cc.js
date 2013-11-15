@@ -179,6 +179,11 @@ cc.define('cc.BasketService', function(storageService, configService, options){
      *   - `optionId` the optionId the product should be added with
      */
     self.addItem = function(product, quantity, variant, optionId){
+
+        if(product.isOutOfStock()){
+            throw new Error('product out of stock');
+        }
+
         var basketItem = self.find(createProductPredicate(product, variant, optionId)),
             exists = !cc.Util.isUndefined(basketItem);
 
@@ -1451,6 +1456,30 @@ cc.models.Product.prototype.getBasePriceInfo = function(){
 cc.models.Product.prototype.hasVariants = function(){
     return this.variants && this.variants.length > 0;
 };
+
+cc.models.Product.prototype.isOutOfStock = function(){
+
+    //this means, it's always in stock
+    if(this.qty === undefined || this.qty === null){
+        return false;
+    }
+
+    //a product is considered out of stock if either the
+    //quantity is less or equal zero or all of it's variants have
+    //a stock of less or equal zero
+    return this.qty <= 0 || this.areAllVariantsOutOfStock();
+};
+
+cc.models.Product.prototype.areAllVariantsOutOfStock = function(){
+    if(this.hasVariants()){
+        return cc.Util.every(this.variants, function(variant){
+            return variant.stock <= 0;
+        });
+    }
+
+    return false;
+};
+
 cc.define('cc.Observable', function(){
 
     'use strict';
@@ -2235,6 +2264,20 @@ cc.Util = {
         }
       });
       return result;
+    },
+    every: function(collection, callback, thisArg){
+        var result = true;
+
+        callback = cc.Util.createCallback(callback, thisArg);
+      
+        cc.Util.forOwn(collection, function(value, key, object){
+            if (!callback(value, key, object)){
+                result = false;
+                return false;
+            }
+        });
+
+        return result;
     },
     //this method is ripped out from lo-dash
     forOwn: function(collection, callback) {

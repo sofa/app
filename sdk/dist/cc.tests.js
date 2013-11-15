@@ -345,6 +345,23 @@ test('can add item', function() {
 
 });
 
+test('trying to add an item that is out of stock raises exception', function() {
+    var basketService = createBasketService();
+    basketService.clear();
+    var product = new cc.models.Product();
+    product.name = 'Testproduct';
+    product.id = 10;
+    product.qty = 0;
+    
+    throws(function(){
+        var basketItem = basketService.addItem(product, 1);
+    }, Error);
+
+    var summary = basketService.getSummary();
+
+    ok(summary.quantity === 0, 'has a summary of none');
+});
+
 test('removing the last item removes the whole basket item', function() {
     var basketService = createBasketService();
     basketService.clear();
@@ -1401,6 +1418,76 @@ asyncTest('returns the last product of the category for the previous product whe
 });
 
 
+module('cc.models.product.tests');
+
+test('it should be marked as out of stock', function() {
+
+    var product = new cc.models.Product();
+    product.qty = 0;
+
+    equal(product.isOutOfStock(), true, 'product is out of stock');
+});
+
+
+test('it should be marked as out of stock (2)', function() {
+
+    var product = new cc.models.Product();
+    product.qty = -1;
+
+    equal(product.isOutOfStock(), true, 'product is out of stock');
+});
+
+test('it should be marked as out of stock (all variants have a stock of 0', function() {
+
+    var product = new cc.models.Product();
+    product.qty = 1;
+
+    product.variants =  [{
+                            //we need to mock it as strings until the backend is fixed
+                            stock: '0'
+                        },{
+                            stock: '0'
+                        }];
+
+    equal(product.isOutOfStock(), true, 'product is out stock');
+});
+
+test('it should be marked as in stock (some variants have stock', function() {
+
+    var product = new cc.models.Product();
+    product.qty = 1;
+
+    product.variants =  [{
+                            //we need to mock it as strings until the backend is fixed
+                            stock: '1'
+                        },{
+                            stock: '0'
+                        }];
+
+    equal(product.isOutOfStock(), false, 'product is in stock');
+});
+
+
+test('it should be marked as in stock', function() {
+
+    var product = new cc.models.Product();
+    product.qty = 1;
+
+    equal(product.isOutOfStock(), false, 'product is in stock');
+});
+
+test('it should be marked as in stock (no qty)', function() {
+
+    var product = new cc.models.Product();
+    equal(product.isOutOfStock(), false, 'product is in stock');
+});
+
+test('it should be marked as in stock (qty is null)', function() {
+
+    var product = new cc.models.Product();
+    product.qty = null;
+    equal(product.isOutOfStock(), false, 'product is in stock');
+});
 module('cc.qService.tests');
 
 test('can create qService instance', function() {
@@ -1735,4 +1822,44 @@ asyncTest('groupes response by the given grouping definition', function() {
         ok(httpCallParams.url === _searchUrl, 'hits configured entpoint');
     }, 100);
 });
+
+
+module('cc.Util.tests');
+
+test('every returns true or false correctly', function() {
+
+    var testData = [{
+                        qty: 1
+                    },{
+                        qty: 1
+                    },{
+                        qty: 1
+                    }];
+
+    var result = cc.Util.every(testData, function(item){
+        return item.qty === 1;
+    });
+
+    var proof = cc.Util.every(testData, function(item){
+        return item.qty < 1;
+    });
+    
+    ok(result, 'all have a qty of 1');
+    ok(!proof, 'not all have a qty with less than 1');
+
+    var otherData = [{
+                    qty: 1
+                },{
+                    qty: 2
+                },{
+                    qty: 1
+                }];
+
+    var otherResult = cc.Util.every(otherData, function(item){
+        return item.qty === 1;
+    });
+
+    ok(!proof, 'not all have a qty of 1');
+});
+
 
