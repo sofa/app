@@ -49,3 +49,26 @@ cc.models.Product.prototype.getBasePriceInfo = function(){
 cc.models.Product.prototype.hasVariants = function(){
     return this.variants && this.variants.length > 0;
 };
+
+cc.models.Product.prototype.isOutOfStock = function(){
+
+    //this means, it's always in stock
+    if(this.qty === undefined || this.qty === null){
+        return false;
+    }
+
+    //a product is considered out of stock if either the
+    //quantity is less or equal zero or all of it's variants have
+    //a stock of less or equal zero
+    return this.qty <= 0 || this.areAllVariantsOutOfStock();
+};
+
+cc.models.Product.prototype.areAllVariantsOutOfStock = function(){
+    if(this.hasVariants()){
+        return cc.Util.every(this.variants, function(variant){
+            return variant.stock <= 0;
+        });
+    }
+
+    return false;
+};
