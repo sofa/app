@@ -3,7 +3,7 @@
         <cc-inject target="aboveContent"></cc-inject>
 
         <div ng-if="product">
-            <h1 class="cc-title--huge">{{product.name}}</h1>
+            <h1 class="cc-title--huge" ng-bind-html="product.name"></h1>
 
             <div class="cc-product-view-image-wrapper">
                 <i class="icon-2x cc-product-view-image__expand-icon"></i>
