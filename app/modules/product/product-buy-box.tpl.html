@@ -3,10 +3,11 @@
         {{ price | currency }}
     </div>
     <a 
-        ng-click="addToBasket(product)" 
+        ng-click="addToBasket(product)"
+        ng-if="!product.isOutOfStock()"
         class="cc-product-buy-box__add-to-cart">{{ln.addToCart}}
     </a>
-
+    <span class="cc-product-buy-box__sold-out"> {{ ln.soldOut }}</span>
     <div class="cc-product-buy-box__info">
         <div class="cc-product-buy-box__info-left" ng-bind="productTaxText"></div>
         <div class="cc-product-buy-box__info-right">

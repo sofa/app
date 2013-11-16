@@ -19,6 +19,13 @@
     float: right;
 }
 
+.cc-product-buy-box__sold-out{
+    @extend %cc-button-base;
+    float: right;
+    background: $warning-background-color;
+    color: $warning-text-color;
+}
+
 .cc-product-buy-box__info-left{
     float: left;
 }
