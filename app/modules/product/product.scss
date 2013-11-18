@@ -82,16 +82,18 @@
     color: $content-border-color;
 }
 
-.cc-zippy-caption{
-    margin: 5px 0 5px 0;
-    border-bottom: 1px solid $content-border-color;
-    //TODO: Look into eliminating !important here
-    padding: 15px 0 15px 0 !important;
-    font-size: $font-size-big;
-}
+.cc-view-product{
+    .cc-zippy-caption{
+        margin: 5px 0 5px 0;
+        border-bottom: 1px solid $content-border-color;
+        //TODO: Look into eliminating !important here
+        padding: 15px 0 15px 0;
+        font-size: $font-size-big;
+    }
 
-.cc-zippy-content{
-    padding-right: 25px !important;
+    .cc-zippy-content{
+        padding-right: 25px;;
+    }
 }
 
 td.cc-product-view-attributes-row-key{
