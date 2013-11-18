@@ -115,12 +115,12 @@ angular.module('sdk.directives.ccSelectBox')
                         if (!value){
                             return value;
                         }
-
+                        var tempValue = value;
                         properties.forEach(function(node){
-                            value = value[node];
+                            tempValue = tempValue[node];
                         });
 
-                        return value;
+                        return tempValue;
                     };
                 }
             }
