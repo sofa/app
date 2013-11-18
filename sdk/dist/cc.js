@@ -858,7 +858,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
         MEDIA_IMG_EXTENSION = configService.get('mediaImgExtension'),
         API_URL             = configService.get('apiUrl'),
         //this is not exposed to the SAAS hosted product, hence the default value
-        API_HTTP_METHOD     = configService.get('apihttpMethod', 'jsonp'),
+        API_HTTP_METHOD     = configService.get('apiHttpMethod', 'jsonp'),
         STORE_CODE          = configService.get('storeCode'),
         CATEGORY_JSON       = configService.get('categoryJson');
 
