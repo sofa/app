@@ -33,6 +33,7 @@ $text-box-default-border: #646666;
     outline-style: none;
     height: 50px;
     -webkit-user-select: text;
+    -webkit-appearance: none;
 }
 
 .cc-text-box:focus{
