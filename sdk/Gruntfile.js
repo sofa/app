@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         distdir: 'dist',
         src: {
             cc: ['src/core/cc.js','src/core/**/*.js'],
-            ccTests: ['test/**/*.js'],
+            ccTests: ['test/**/*.js','!test/karma/**/*'],
             ccAngular:  [
                             'src/services/**/*.js',
                             'src/directives/**/*.js',
@@ -82,6 +82,42 @@ module.exports = function(grunt) {
         qunit: {
             all: ['test/**/*.html']
         },
+        karma: {
+            options: {
+                files:  [
+                            'vendor/angular.js',
+                            'vendor/angular-sanitize.js',
+                            'vendor/angular-mocks.js',
+                            'vendor/angular-scenario.js',
+                            //how could we just link to src.cc here?
+                            'src/core/cc.js',
+                            'src/core/**/*.js',
+                            //how could we just link to src.ccAngular here?
+                            'src/services/**/*.js',
+                            'src/directives/**/*.js',
+                            'src/decorators/**/*.js',
+                            'src/filter/**/*.js',
+                            '<%= distdir %>/cc.angular.templates.js',
+                            //the actual test files
+                            'test/karma/**/*.spec.js'
+                        ],
+                basePath: '',
+                frameworks: ['jasmine'],
+                reporters: ['progress'],
+                port: 9876,
+                colors: true,
+                //logLevel: config.LOG_INFO,
+                autoWatch: true,
+                browsers: ['Chrome'],
+                captureTimeout: 60000
+            },
+            dev: {
+                singleRun: false
+            },
+            build: {
+                singleRun: true
+            }
+        },
         watch:{
             all: {
                 files:['<%= src.cc %>', '<%= src.ccAngular %>', '<%= src.ccTests %>', '<%= src.ccTemplates %>'],
@@ -105,6 +141,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-karma');
 
     grunt.registerTask('index-template-tests', function(){
         
@@ -131,6 +168,6 @@ module.exports = function(grunt) {
     // Default task(s).
     grunt.registerTask('docs', ['shell']);
     grunt.registerTask('default', ['jshint', 'build', 'watch']);
-    grunt.registerTask('build', ['clean', 'html2js', 'concat', 'script', 'index-template-tests', 'qunit']);
+    grunt.registerTask('build', ['clean', 'html2js', 'concat', 'script', 'index-template-tests', 'qunit', 'karma:build']);
 
 };
