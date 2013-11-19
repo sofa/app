@@ -9,13 +9,15 @@ angular
 
             'use strict';
 
+            var lastUsedPaymentMethod = checkoutService.getLastUsedPaymentMethod();
+
             //should we abstract this into something reusable for the SDK?
             var checkoutModel = {
                 billingAddress: userService.getInvoiceAddress(),
                 shippingAddress: userService.getShippingAddress(),
                 supportedShippingMethods: [],
                 supportedPaymentMethods: [],
-                selectedPaymentMethod: checkoutService.getLastUsedPaymentMethod(),
+                selectedPaymentMethod: lastUsedPaymentMethod && lastUsedPaymentMethod.method !== 'paypal_express' ? lastUsedPaymentMethod : null,
                 selectedShippingMethod: checkoutService.getLastUsedShippingMethod(),
                 addressEqual: true,
                 surchargeHint: ''
@@ -33,6 +35,13 @@ angular
                     .getSupportedCheckoutMethods(checkoutModel)
                     .then(function(data){
                         if(data){
+
+                            if (!checkoutModel.selectedPaymentMethod && 
+                                data.paymentMethods.length > 1 &&
+                                data.paymentMethods[0].method === 'paypal_express'){
+                                checkoutModel.selectedPaymentMethod = data.paymentMethods[1];
+                            }
+
                             checkoutModel.supportedPaymentMethods = data.paymentMethods;
                             checkoutModel.supportedShippingMethods = data.shippingMethods;
                         }
