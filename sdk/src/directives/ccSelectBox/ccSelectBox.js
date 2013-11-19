@@ -33,6 +33,12 @@ angular.module('sdk.directives.ccSelectBox')
                     return;
                 }
 
+                var allowNull = attrs.allowNull !== undefined;
+
+                //defines if an empty value should be omitted
+                scope._omitNull = attrs.omitNull !== undefined;
+
+
                 //Not sure, if we are doing the right thing here concerning ngModel.
                 //However, it seems to work quite well for now and it's not that much work.
 
@@ -45,24 +51,33 @@ angular.module('sdk.directives.ccSelectBox')
                 //2. we listen on scope._selectedValue manually and control the ngModelController
                 //accordingly
 
-                //This seems rather hacky. It works around the situation where we:
-                //  - don't have a null value
-                //  - the selected value (via ngModel) is null
-                //The problem here is, that when the data is set, it doesn't preselect
-                //the first item. Even worse, the select element *is* set to the first
-                //element but angular does not care about it. If you then click into the select
-                //and choose the already selected first value nothing gets propagated as angular
-                //no change event is triggered.
-                //We fix this by listening on the data, when it comes in and the _selectedValue
-                //is still null, we set it to the first item and instantly unbind.
-                var unwatch = scope.$watch('data', function(data){
-                    //wow, we really need unit tests for all this mess. The contains check is needed for
-                    //such cases where a _selectedValue is present but then the data changes and the value
-                    //is no longer part of the data. We then reset the _selectedValue to the first value of
-                    //the data source.
-                    if (data.length > 0 && (scope._selectedValue === null || !contains(data, scope._selectedValue))){
+                var unwatch = scope.$watchCollection('data', function(data){
+                    
+                    //this is the case where we need to set the selectedValue to the first value because it 
+                    //previously was null and now we are getting data values and omitNull forces us to set
+                    //a non null value
+                    if (data.length > 0 && scope._selectedValue === null && scope._omitNull){
                         scope._selectedValue = data[0];
-                        unwatch();
+                    }
+                    //this is the case where we had a value but it's been removed from the datasource
+                    //in that case we either need to set it to null or the first value from the datasource
+                    //depending on whether omitNull is true or not
+                    else if(data.length > 0){
+                        var tempValue = cc.Util.find(data, function(item){
+                            return angular.equals(item, scope._selectedValue);
+                        });
+
+                        //this is the case where we had a value but it's been removed from the datasource
+                        //in that case we either need to set it to null or the first value from the datasource
+                        //depending on whether omitNull is true or not
+                        if (!tempValue){
+                            scope._selectedValue = scope._omitNull ? data[0] : null;
+                        }
+                        //this is the case where the datasource was changed and an equal value to the previous
+                        //selected exists but it's not the same reference
+                        else if(tempValue && tempValue !== scope._selectedValue){
+                            scope._selectedValue = tempValue;
+                        }
                     }
                 });
 
@@ -77,11 +92,6 @@ angular.module('sdk.directives.ccSelectBox')
 
                     return false;
                 };
-
-                var allowNull = attrs.allowNull !== undefined;
-
-                //defines if an empty value should be omitted
-                scope._omitNull = attrs.omitNull !== undefined;
 
                 var displayValueFormatter = scope.displayValueExp();
 
