@@ -1,0 +1,40 @@
+angular
+    .module('CouchCommerceApp')
+    .factory('payPalOverlayService',['$dialog', 'checkoutService', function ($dialog, checkoutService) {
+
+            'use strict';
+
+            var self = {};
+
+            self.startPayPalCheckout = function(){
+                $dialog.
+                    loading();
+
+                checkoutService
+                    .getShippingMethodsForPayPal()
+                    .then(function(data){
+
+                        $dialog.closeLoading();
+
+                        if (data.shippingMethods.length === 1 && configService.getSupportedCountries().length === 1){
+                            checkoutService.checkoutWithPayPal(data.shippingMethods[0]);
+                        }
+                        else {
+                            $dialog.dialog({
+                                templateUrl: 'modules/cart/paypaloverlay.tpl.html',
+                                controller: 'PayPalOverlayController',
+                                backdropClick: true,
+                                resolve: {
+                                    checkoutInfo: function() {
+                                        return data;
+                                    }
+                                }
+                            })
+                            .open();
+                        }
+                    });
+            };
+
+            return self;
+        }
+    ]);

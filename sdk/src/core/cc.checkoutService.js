@@ -115,11 +115,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         var requestModel = createRequestData(checkoutModel);
         requestModel.task = 'GETPAYMENTMETHODS';
 
-        if (checkoutModel.selectedPaymentMethod){
+        if (cc.Util.isObject(checkoutModel.selectedPaymentMethod)){
             lastUsedPaymentMethod = checkoutModel.selectedPaymentMethod;
         }
 
-        if (checkoutModel.selectedShippingMethod){
+        if (cc.Util.isObject(checkoutModel.selectedShippingMethod)){
             lastUsedShippingMethod = checkoutModel.selectedShippingMethod;
         }
 

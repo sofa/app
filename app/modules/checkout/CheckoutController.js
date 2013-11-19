@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('CheckoutController',
     [
-        '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', '$dialog',
-        function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, $dialog) {
+        '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', '$dialog', 'payPalOverlayService',
+        function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, $dialog, payPalOverlayService) {
 
             'use strict';
 
@@ -29,6 +29,7 @@ angular
             $scope.navigationService = navigationService;
 
             $scope.checkoutModel = checkoutModel;
+
 
             var validateCheckout = function(){
                 checkoutService
@@ -94,10 +95,10 @@ angular
                 'checkoutModel.billingAddress.country',
                 'checkoutModel.shippingAddress.country'
             ].forEach(function(exp){
-                $scope.$watch(exp, function(oldValue, newValue){
+                $scope.$watch(exp, function(newValue, oldValue){
                     //we need to check for equality rather than for reference equality
                     //to avoid unneccesary processing.
-                    if(angular.equals(oldValue, newValue)){
+                    if(angular.equals(newValue, oldValue)){
                         return;
                     }
                     validateCheckout();
@@ -105,6 +106,12 @@ angular
                     checkSurcharge();
                     saveAddresses();
                 });
+            });
+
+            $scope.$watch('checkoutModel.selectedPaymentMethod', function(newValue, oldValue){
+                if(!angular.equals(newValue, oldValue) && newValue && newValue.method === 'paypal_express'){
+                    payPalOverlayService.startPayPalCheckout();
+                }
             });
 
             $scope.canProceed = function(){
