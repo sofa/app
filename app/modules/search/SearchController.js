@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('SearchController',
     [
-        '$scope', 'searchService', 'searchUiState', '$rootScope', '$dialog',
-        function SearchController($scope, searchService, searchUiState, $rootScope, $dialog) {
+        '$scope', 'searchService', 'searchUiState', '$rootScope',
+        function SearchController($scope, searchService, searchUiState, $rootScope) {
 
             'use strict';
 

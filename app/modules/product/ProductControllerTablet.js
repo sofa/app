@@ -2,8 +2,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductControllerTablet',
     [
-        '$scope', 'splitViewDataService', '$location', 'couchService', 'basketService', 'navigationService', 'product', 'products', '$dialog',
-        function ProductController($scope, splitViewDataService, $location, couchService, basketService, navigationService, product, products, $dialog) {
+        '$scope', 'splitViewDataService', '$location', 'couchService', 'basketService', 'navigationService', 'product', 'products', 'dialog',
+        function ProductController($scope, splitViewDataService, $location, couchService, basketService, navigationService, product, products, dialog) {
 
             'use strict';
 
@@ -87,13 +87,12 @@ angular
                         }
                     }
 
-                    $dialog
+                    dialog
                         .messageBox(
                             $scope.ln.btnWarning,
                             cc.Lang.missingVariantAttributeText + missingProperties,
                             [{result: 'ok', label: $scope.ln.btnOk}]
-                        )
-                        .open();
+                        );
 
                     return;
                 }

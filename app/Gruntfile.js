@@ -108,7 +108,8 @@ module.exports = function(grunt) {
                     angular: true
                 },
                 ignores: [
-                    'modules/common/router/angular-ui-router.js'
+                    'modules/common/router/angular-ui-router.js',
+                    'modules/common/dialog/ui-bootstrap-modal-tpls-0.6.0.js'
                 ]
             }
         },

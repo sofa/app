@@ -10,7 +10,7 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('ccaFooter', ['configService', '$dialog', function(configService, $dialog) {
+    .directive('ccaFooter', ['configService', 'dialog', function(configService, dialog) {
 
         'use strict';
 
@@ -29,11 +29,10 @@ angular
                 };
 
                 $scope.showTrustedShopsCertificate = function(){
-                    $dialog.dialog({
+                    dialog.open({
                         templateUrl: 'modules/trustedshops/tsoverlay.tpl.html',
                         controller: 'TrustedShopsController'
-                    })
-                    .open();
+                    });
                 };
             }
         };

@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('CheckoutController',
     [
-        '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', '$dialog', 'payPalOverlayService',
-        function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, $dialog, payPalOverlayService) {
+        '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', 'dialog', 'payPalOverlayService',
+        function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, dialog, payPalOverlayService) {
 
             'use strict';
 
@@ -128,13 +128,12 @@ angular
                             navigationService.navigateToSummary(token);
                         }
                     }, function(){
-                        $dialog
+                        dialog
                             .messageBox(
                                 $scope.ln.btnWarning,
                                 $scope.ln.errorGettingPaymentDetails,
                                 [{result: 'ok', label: $scope.ln.btnOk}]
-                            )
-                            .open();
+                            );
                     });
             };
         }

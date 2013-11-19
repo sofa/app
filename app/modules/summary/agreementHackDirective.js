@@ -2,7 +2,7 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('agreement', ['$rootScope', '$compile', '$dialog', 'pagesService', 'configService', function($rootScope, $compile, $dialog, pagesService, configService) {
+    .directive('agreement', ['$rootScope', '$compile', 'dialog', 'pagesService', 'configService', function($rootScope, $compile, dialog, pagesService, configService) {
 
         'use strict';
 
@@ -10,13 +10,12 @@ angular
             pagesService
                 .getPage(pageId)
                 .then(function(page){
-                    $dialog
+                    dialog
                         .messageBox(
                             page.title,
                             page.content,
                             [{result: 'ok', label: $rootScope.ln.btnOk}]
-                        )
-                        .open();
+                        );
                 });
         };
 

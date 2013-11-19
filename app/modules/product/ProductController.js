@@ -2,8 +2,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$filter', '$location', 'configService', 'couchService', 'basketService', 'navigationService', 'product', '$dialog', '$sce',
-        function ProductController($scope, $filter, $location, configService, couchService, basketService, navigationService, product, $dialog, $sce) {
+        '$scope', '$filter', '$location', 'configService', 'couchService', 'basketService', 'navigationService', 'product', 'dialog', '$sce',
+        function ProductController($scope, $filter, $location, configService, couchService, basketService, navigationService, product, dialog, $sce) {
 
             'use strict';
 
@@ -106,13 +106,12 @@ angular
                         }
                     }
 
-                    $dialog
+                    dialog
                         .messageBox(
                             $scope.ln.btnWarning,
                             cc.Lang.missingVariantAttributeText + missingProperties,
                             [{result: 'ok', label: $scope.ln.btnOk}]
-                        )
-                        .open();
+                        );
 
                     return;
                 }

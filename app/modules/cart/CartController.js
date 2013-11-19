@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('CartController',
     [
-        '$scope','basketService', 'navigationService', '$dialog', 'checkoutService', 'configService', 'payPalOverlayService',
-        function CartController($scope, basketService, navigationService, $dialog, checkoutService, configService, payPalOverlayService) {
+        '$scope','basketService', 'navigationService', 'checkoutService', 'configService', 'payPalOverlayService', 'dialog',
+        function CartController($scope, basketService, navigationService, checkoutService, configService, payPalOverlayService, dialog) {
             'use strict';
 
             $scope.basketService = basketService;
@@ -40,15 +40,15 @@ angular
                     basketService.decreaseOne(item);
                 }
                 else {
-                    $dialog
+                    dialog
                         .messageBox(
-                            $scope.ln.btnWarning,
-                            $scope.ln.cartDelMsg,
+                            $scope.ln.btnWarning, 
+                            $scope.ln.cartDelMsg, 
                             [{result: 'cancel', label: $scope.ln.btnCancel}, {result: 'ok', label: $scope.ln.btnYes}]
                         )
-                        .open()
+                        .result
                         .then(function(result){
-                            if (result === 'ok'){
+                            if(result === 'ok'){
                                 basketService.decreaseOne(item);
                             }
                         });

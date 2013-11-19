@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('SummaryController',
     [
-        '$scope', 'navigationService', 'checkoutService', '$dialog', '$stateParams', 'trustedShopsService', '$state',
-        function SummaryController($scope, navigationService, checkoutService, $dialog, $stateParams, trustedShopsService, $state) {
+        '$scope', 'navigationService', 'checkoutService', 'dialog', '$stateParams', 'trustedShopsService', '$state',
+        function SummaryController($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state) {
 
             'use strict';
 
@@ -32,13 +32,12 @@ angular
                     $scope.summary      = result.summary;
 
                 }, function(){
-                    $dialog
+                    dialog
                         .messageBox(
                             $scope.ln.btnWarning,
                             $scope.ln.errorGettingPaymentDetails,
                             [{result: 'ok', label: $scope.ln.btnOk}]
-                        )
-                        .open();
+                        );
                 });
 
             vm.showAgeAgreement = !!cc.Config.showAgeAgreement;
