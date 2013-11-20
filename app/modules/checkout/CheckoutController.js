@@ -82,11 +82,10 @@ angular
                 userService.updateShippingAddress(checkoutModel.shippingAddress);
             };
 
-            //validate the checkout on load
+            //those methods we want to run everytime the user enters the view
             validateCheckout();
-
-            //set summary on load
             updateSummary();
+            checkSurcharge();
 
             //validate the checkout, each time one of the following changes
             [
