@@ -11,7 +11,9 @@ $cc-header---half-icon-height: round($cc-header---icon-height / 2);
     width: 100%;
     position: relative;
     display: table;
-    border-bottom: $border-bottom-width solid $toolbar-border-color;
+    //we need a blur radius of at least 1px for box-shadow to work on Android 2.3
+    //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
+    @include vendor-prefix('box-shadow', 0px $border-bottom-width 1px $toolbar-border-color);
 }
 
 .cc-supports-position-fixed{
