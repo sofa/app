@@ -1,6 +1,6 @@
 angular
     .module('CouchCommerceApp')
-    .controller('NewMessageBoxController', ['$scope', '$modalInstance', 'model', function($scope, $modalInstance, model){
+    .controller('MessageBoxController', ['$scope', '$modalInstance', 'model', function($scope, $modalInstance, model){
         $scope.title = model.title;
         $scope.message = model.message;
         $scope.buttons = model.buttons;
@@ -18,7 +18,7 @@ angular
         self.messageBox = function(title, message, buttons, modalOptions){
             var options = {
                 templateUrl: 'modules/common/dialog/dialog.tpl.html', 
-                controller: 'NewMessageBoxController', 
+                controller: 'MessageBoxController', 
                 resolve:{
                     model: function() {
                         return {
@@ -41,7 +41,7 @@ angular
         self.loading = function(title, message, buttons, modalOptions){
             var options = {
                 templateUrl: 'modules/common/dialog/loadingdialog.tpl.html', 
-                controller: 'NewMessageBoxController',
+                controller: 'MessageBoxController',
                 dialogClass: '',
                 keyboard: false,
                 backdropClick: false,
