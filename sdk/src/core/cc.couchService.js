@@ -5,8 +5,8 @@ cc.define('cc.CouchService', function($http, $q, configService){
     var self = {},
         products = {},
         currentCategory = null,
-        productComparer = new cc.comparer.ProductComparer();
-
+        productComparer = new cc.comparer.ProductComparer(),
+        categoryMap = null;
 
     var MEDIA_FOLDER        = configService.get('mediaFolder'),
         MEDIA_IMG_EXTENSION = configService.get('mediaImgExtension'),
@@ -56,22 +56,22 @@ cc.define('cc.CouchService', function($http, $q, configService){
      * 
      */
     self.getCategory = function(category){
-        if (!category && !self.categories){
+        if (!category && !categoryMap){
             return fetchAllCategories();
         }
-        else if(!category && self.categories){
+        else if(!category && categoryMap){
             var deferredCategories = $q.defer();
-            deferredCategories.resolve(self.categories);
+            deferredCategories.resolve(categoryMap.rootCategory);
             return deferredCategories.promise;
         }
-        else if(category && category.length > 0 && !self.categories){
+        else if(category && category.length > 0 && !categoryMap){
             return fetchAllCategories()
                     .then(function(data){
-                        return findChildCategory(data, category);
+                        return categoryMap.getCategory(category);
                     });
         }
-        else if(category && category.length > 0 && self.categories){
-            return findChildCategoriesAndReturnPromise(self.categories, category);
+        else if(category && category.length > 0 && categoryMap){
+            return $q.when(categoryMap.getCategory(category));
         }
     };
 
@@ -242,10 +242,12 @@ cc.define('cc.CouchService', function($http, $q, configService){
             url: CATEGORY_JSON
         })  
         .then(function(data){
-            self.categories = data.data;
-            augmentCategories(self.categories);
-            currentCategory = self.categories;
-            return data.data;
+            var rootCategory = data.data;
+            categoryMap = new cc.util.CategoryMap();
+            categoryMap.rootCategory = rootCategory;
+            augmentCategories(rootCategory);
+            currentCategory = rootCategory;
+            return rootCategory;
         });
     };
 
@@ -256,30 +258,8 @@ cc.define('cc.CouchService', function($http, $q, configService){
         iterator.iterateChildren(function(category, parent){
             category.parent = parent;
             category.image = MEDIA_FOLDER + category.urlId + "." + MEDIA_IMG_EXTENSION;
+            categoryMap.addCategory(category);
         });
-    };
-
-    var findChildCategoriesAndReturnPromise = function(data, rootCategory){
-        var childCategory = findChildCategory(data, rootCategory);
-        var deferred = $q.defer();
-        deferred.resolve(childCategory);
-        return deferred.promise;
-    };
-
-    var findChildCategory = function(rootCategory, urlId){
-        var iterator = new cc.util.TreeIterator(rootCategory, 'children');
-        var matchedCategory;
-
-        iterator.iterateChildren(function(category){
-            if(category.urlId === urlId){
-                matchedCategory = category;
-                return false;
-            }
-        });
-
-        currentCategory = matchedCategory;
-
-        return matchedCategory;
     };
 
     return self;

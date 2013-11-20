@@ -1014,6 +1014,28 @@ var productData = {
 ]
 };
 
+var categories = {
+        'label': 'root',
+        'urlId': 'root',
+        'children': [{
+            'label': 'child 1',
+            'urlId': 'child1',
+            'children': [{
+                'label': 'child2',
+                'urlId': 'child2'
+            }]
+        }, {
+            'label': 'child 2',
+            'urlId': 'child2',
+            'children': [{
+                'label': 'grandchild 4',
+                'urlId': 'grandchild4'
+            }, {
+                'label': 'grandchild 5',
+                'urlId': 'grandchild5'
+            }]
+        }]
+    };
 
 var createHttpService = function(){
     return new cc.mocks.httpService(new cc.QService());
@@ -1100,6 +1122,48 @@ test('it should detect no relationship', function() {
 
     ok(couchService.isAParentOfB(b2, a) === false, 'b2 is not a parent of a');
     ok(couchService.isAChildOfB(b2, a) === false, 'b2 is not a child of a');
+});
+
+
+asyncTest('can get category', function() {
+    expect(1);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'child1';
+
+    var url =cc.Config.categoryJson;
+
+    httpService.when('get', url).respond(categories);
+
+    var couchService = createCouchService(httpService);
+
+    couchService
+        .getCategory(categoryUrlId)
+        .then(function(data){
+            ok(data.label === 'child 1', 'got root category');
+            start();
+        });
+});
+
+asyncTest('if a category has aliases it should return the category with children', function() {
+    expect(2);
+    var httpService = createHttpService();
+
+    var categoryUrlId = 'child2';
+
+    var url =cc.Config.categoryJson;
+
+    httpService.when('get', url).respond(categories);
+
+    var couchService = createCouchService(httpService);
+
+    couchService
+        .getCategory(categoryUrlId)
+        .then(function(data){
+            ok(data.label === 'child 2', 'got root category');
+            ok(data.children && data.children.length === 2, 'returned the category with children');
+            start();
+        });
 });
 
 asyncTest('can get products', function() {
