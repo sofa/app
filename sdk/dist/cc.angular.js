@@ -2544,6 +2544,12 @@ angular
             link: function(scope, element, attrs){
                 scope.injectsService = injectsService;
 
+                //if it's an inject on the product page, automatically expose
+                //the product to the inject
+                if (scope.$parent.product){
+                    scope.product = scope.$parent.product;
+                }
+
                 var templateUrl = injectsService.getTemplate(scope.target);
 
                 if (templateUrl === null){
