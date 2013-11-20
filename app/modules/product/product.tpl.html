@@ -4,6 +4,8 @@
 
         <div ng-if="product">
             <h1 class="cc-title--huge" ng-bind-html="product.name"></h1>
+            
+            <cc-inject target="beneathTitle"></cc-inject>
 
             <div class="cc-product-view-image-wrapper">
                 <img cc-image-zoom image="selectedImage.url" class="cc-product-view-image">
