@@ -5,7 +5,7 @@ cc.Config = {
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
     apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
-    checkoutUrl:'http://couchdemoshop.couchcommerce.com/checkout/v2/',
+    checkoutUrl:'http://couchdemoshop.couchcommerce.com/checkout/v3/',
     apiHttpMethod: 'jsonp',
     categoryJson: 'data/couchdemoshop/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
