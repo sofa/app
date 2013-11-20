@@ -60,9 +60,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
             return fetchAllCategories();
         }
         else if(!category && categoryMap){
-            var deferredCategories = $q.defer();
-            deferredCategories.resolve(categoryMap.rootCategory);
-            return deferredCategories.promise;
+            return $q.when(categoryMap.rootCategory);
         }
         else if(category && category.length > 0 && !categoryMap){
             return fetchAllCategories()
@@ -103,15 +101,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
             });
         }
 
-        var deferredProducts = $q.defer();
-        deferredProducts.resolve(products[categoryUrlId]);
-        return deferredProducts.promise;
-    };
-
-    var resolveWith = function(data){
-        var deferred = $q.defer();
-        deferred.resolve(data);
-        return deferred.promise;
+        return $q.when(products[categoryUrlId]);
     };
 
     //it's a bit akward that we need to do that. It should be adressed
@@ -176,12 +166,12 @@ cc.define('cc.CouchService', function($http, $q, configService){
         var cachedProducts = products[product.categoryUrlId];
 
         if (cachedProducts){
-            return resolveWith(productFindFn(cachedProducts, product));
+            return $q.when(productFindFn(cachedProducts, product));
         }
         else {
             return  self.getProducts(product.categoryUrlId)
                         .then(function(catProducts){
-                            return resolveWith(productFindFn(catProducts, product));
+                            return productFindFn(catProducts, product);
                         });
         }
     };
@@ -216,9 +206,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
                         });
         }
 
-        var deferredProduct = $q.defer();
-        deferredProduct.resolve(getProduct(products[categoryUrlId], productUrlId));
-        return deferredProduct.promise;
+        return $q.when(getProduct(products[categoryUrlId], productUrlId));
     };
 
     var getProduct = function(products, productUrlId){
