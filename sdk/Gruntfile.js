@@ -19,13 +19,6 @@ module.exports = function(grunt) {
                         ],
             ccTemplates: ['src/**/*.tpl.html', '!src/**/demos/**/*.tpl.html']
         },
-        shell:{
-            doxx:{
-                command:'./node_modules/doxx/bin/doxx --template docs/template.jade --source src --target docs',
-                stdout:true,
-                stderr:true
-            }
-        },
         clean: ['<%= distdir %>/*'],
         jshint: {
           all: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
@@ -166,7 +159,6 @@ module.exports = function(grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('docs', ['shell']);
     grunt.registerTask('default', ['jshint', 'build', 'watch']);
     grunt.registerTask('build', ['clean', 'html2js', 'concat', 'script', 'index-template-tests', 'qunit', 'karma:build']);
 
