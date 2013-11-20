@@ -18,7 +18,9 @@
     background-color: $footer-background-color;
 
     &:last-child{
-        border-bottom-color: $footer-border-color;
+        //android 2.3 needs blur for box shadow
+        -webkit-box-shadow: 0 $border-bottom-width 1px 0 $footer-border-color;
+        box-shadow: 0 $border-bottom-width 0 0 $footer-border-color;
     }
 }
 
