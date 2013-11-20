@@ -20,7 +20,8 @@ angular
 
             basketService
                 .on('itemAdded', updateBasketItemCount)
-                .on('itemRemoved', updateBasketItemCount);
+                .on('itemRemoved', updateBasketItemCount)
+                .on('cleared', updateBasketItemCount);
 
             $scope.showSearch = function(){
                 $rootScope.$emit('header.searchButtonClicked');
