@@ -1,6 +1,7 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
     <h1 class="cc-title--huge" ng-bind="ln.checkout"></h1>
     
+    <p class="cc-form-label">{{ln.paymentMethod}}</p>
     <cc-select-box
         class="cc-select-box-on-background" 
         ng-model="checkoutModel.selectedPaymentMethod" 
@@ -12,6 +13,7 @@
         data="checkoutModel.supportedPaymentMethods">
     </cc-select-box>
 
+    <p class="cc-form-label">{{ln.shippingMethod}}</p>
     <cc-select-box
         class="cc-select-box-on-background" 
         ng-model="checkoutModel.selectedShippingMethod" 
