@@ -13,6 +13,8 @@ angular
 
             'use strict';
 
+            var PAYPAL_EXPRESS_ID = 'paypal_express';
+
             var lastUsedPaymentMethod = checkoutService.getLastUsedPaymentMethod();
 
             //should we abstract this into something reusable for the SDK?
@@ -21,7 +23,7 @@ angular
                 shippingAddress: userService.getShippingAddress(),
                 supportedShippingMethods: [],
                 supportedPaymentMethods: [],
-                selectedPaymentMethod: lastUsedPaymentMethod && lastUsedPaymentMethod.method !== 'paypal_express' ? lastUsedPaymentMethod : null,
+                selectedPaymentMethod: lastUsedPaymentMethod && lastUsedPaymentMethod.method !== PAYPAL_EXPRESS_ID ? lastUsedPaymentMethod : null,
                 selectedShippingMethod: checkoutService.getLastUsedShippingMethod(),
                 addressEqual: true,
                 surchargeHint: ''
@@ -44,7 +46,7 @@ angular
 
                             if (!checkoutModel.selectedPaymentMethod && 
                                 data.paymentMethods.length > 1 &&
-                                data.paymentMethods[0].method === 'paypal_express'){
+                                data.paymentMethods[0].method === PAYPAL_EXPRESS_ID){
                                 checkoutModel.selectedPaymentMethod = data.paymentMethods[1];
                             }
 
@@ -52,6 +54,12 @@ angular
                             checkoutModel.supportedShippingMethods = data.shippingMethods;
                         }
                     });
+            };
+
+            var findFirstNonePayPalMethod = function(paymentMethods){
+                return cc.Util.find(paymentMethods, function(method){
+                    return method.method !== PAYPAL_EXPRESS_ID;
+                });
             };
 
             var checkSurcharge = function(){
@@ -113,8 +121,13 @@ angular
             });
 
             $scope.$watch('checkoutModel.selectedPaymentMethod', function(newValue, oldValue){
-                if(!angular.equals(newValue, oldValue) && newValue && newValue.method === 'paypal_express'){
-                    payPalOverlayService.startPayPalCheckout();
+                if(!angular.equals(newValue, oldValue) && newValue && newValue.method === PAYPAL_EXPRESS_ID){
+                    payPalOverlayService
+                        .startPayPalCheckout()
+                        //todo change this to catch() once we update angular
+                        .then(null, function(){
+                            checkoutModel.selectedPaymentMethod = findFirstNonePayPalMethod(checkoutModel.supportedPaymentMethods);
+                        });
                 }
             });
 

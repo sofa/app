@@ -1,12 +1,15 @@
 angular
     .module('CouchCommerceApp')
-    .factory('payPalOverlayService',['dialog', 'checkoutService', 'configService', function (dialog, checkoutService, configService) {
+    .factory('payPalOverlayService',['$q', 'dialog', 'checkoutService', 'configService', function ($q, dialog, checkoutService, configService) {
 
             'use strict';
 
             var self = {};
 
             self.startPayPalCheckout = function(){
+
+                var deferred = $q.defer();
+
                 dialog.
                     loading();
 
@@ -29,9 +32,16 @@ angular
                                         return data;
                                     }
                                 }
+                            })
+                            .result
+                            //todo change this to catch() once we update angular
+                            .then(null,function(result){
+                                deferred.reject(result);
                             });
                         }
                     });
+
+                return deferred.promise;
             };
 
             return self;
