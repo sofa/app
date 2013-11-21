@@ -1,6 +1,6 @@
 angular
     .module('CouchCommerceApp')
-    .factory('payPalOverlayService',['dialog', 'checkoutService', function (dialog, checkoutService) {
+    .factory('payPalOverlayService',['dialog', 'checkoutService', 'configService', function (dialog, checkoutService, configService) {
 
             'use strict';
 
