@@ -4,7 +4,7 @@ cc.Config = {
     originalUrl:'http://haremdas.storeofshop.com',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
-    apiUrl: 'http://cc1.couchcommerce.com/apiv6/products/',
+    apiUrl: 'http://cc1.couchcommerce.com/apiv7/products/',
     checkoutUrl:'http://haremdas.couchcommerce.com/checkout/v3/',
     apiHttpMethod: 'jsonp',
     categoryJson: 'data/haremdas/categories.json',
