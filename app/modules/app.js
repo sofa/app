@@ -22,6 +22,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.configService',
     'sdk.services.searchService',
     'sdk.services.injectsService',
+    'sdk.services.trackingService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',
@@ -275,4 +276,12 @@ var categoryStateConfig;
         deviceService.flagOs();
         deviceService.flagPositionFixedSupport();
         deviceService.flagModernFlexboxSupport();
+    }])
+    .run(['trackingService', 'configService', function(trackingService, configService){
+        trackingService.addTracker(new cc.tracker.GoogleAnalyticsTracker({
+            accountNumber: configService.get('googleAnalytics'),
+            domainName: configService.get('googleAnalyticsSetDomain'),
+            conversionId: configService.get('googleConversionId'),
+            conversionLabel: configService.get('googleConversionLabel')
+        }));
     }]);

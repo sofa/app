@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('ThankyouController',
     [
-        '$scope', 'navigationService', 'trustedShopsService', 'summaryResponse',
-        function ThankyouController($scope, navigationService, trustedShopsService, summaryResponse) {
+        '$scope', 'navigationService', 'trustedShopsService', 'summaryResponse', 'trackingService',
+        function ThankyouController($scope, navigationService, trustedShopsService, summaryResponse, trackingService) {
 
             'use strict';
 
@@ -18,5 +18,10 @@ angular
             vm.trustedShopsPaymentIdentifier = trustedShopsService
                                                     .convertPaymentIdentifier(summaryResponse.response.paymentMethod);
 
+            trackingService.trackEvent({
+                category: 'event',
+                action: 'google_conversion',
+                value: vm.summary.total
+            });
         }
     ]);

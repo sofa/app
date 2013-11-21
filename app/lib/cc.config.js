@@ -52,5 +52,9 @@ cc.Config = {
     trustedShopsEnabled: true,
     trustedShopsId: 'X35A8844FD4E62A875C2C9E1C05C39CD4',
     showPayPalButton: true,
-    showCheckoutButton: true
+    showCheckoutButton: true,
+    googleAnalytics:'UA-42659602-1',
+    googleAnalyticsSetDomain:'couchdemoshop.couchcommerce.com',
+    googleConversionId:1072140179,
+    googleConversionLabel:'r8ogCLjfZBCTn57_Aw'
 };

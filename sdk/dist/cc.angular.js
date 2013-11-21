@@ -257,7 +257,8 @@ angular.module('sdk.services.navigationService', []);
 
 angular
     .module('sdk.services.navigationService')
-    .factory('navigationService', ['$location', '$window', 'configService', 'couchService', function($location, $window, configService, couchService){
+    .factory('navigationService', ['$location', '$window', 'configService', 'couchService', 'trackingService',
+        function($location, $window, configService, couchService, trackingService){
 
         'use strict';
 
@@ -284,36 +285,49 @@ angular
             return regex.test($location.path());
         };
 
+        var navigateToUrl = function(url) {
+            trackingService.trackEvent({
+                category: 'pageView',
+                label: url
+            });
+            $location.path(url);
+        };
+
         self.navigateToProducts = function(categoryUrlId){
-            $location.path('/cat/' + categoryUrlId + '/products');
+            navigateToUrl('/cat/' + categoryUrlId + '/products');
         };
 
         self.navigateToProduct = function(product){
-            $location.path('cat/' + product.categoryUrlId + '/product/' + product.urlKey);
+            navigateToUrl('/cat/' + product.categoryUrlId + '/product/' + product.urlKey);
         };
 
         self.navigateToCategory = function(categoryUrlId){
-            $location.path('/cat/' + categoryUrlId);
+            navigateToUrl('/cat/' + categoryUrlId);
         };
 
         self.navigateToRootCategory = function(){
-            $location.path('');
+            navigateToUrl('');
         };
 
         self.navigateToCart = function(){
-            $location.path('/cart');
+            navigateToUrl('/cart');
         };
 
         self.navigateToCheckout = function(){
-            $location.path('/checkout');
+            navigateToUrl('/checkout');
         };
 
         self.navigateToSummary = function(token){
             $location.path('/summary/' + token);
+            trackingService.trackEvent({
+                category: 'pageView',
+                // No token here as it would flood the analytics
+                label: "/summary"
+            });
         };
 
         self.navigateToShippingCostsPage = function(){
-            $location.path('/pages/' + configService.get('linkShippingCosts', ''));
+            navigateToUrl('/pages/' + configService.get('linkShippingCosts', ''));
         };
 
         self.getCategoryUrlId = function(){
@@ -351,7 +365,7 @@ angular
             else{
                 //TODO: The method is actually designed to go up in the tree
                 //structure of a category/product tree. However, this is as a
-                //here as a fallback so that e.g. when the user is on the 
+                //here as a fallback so that e.g. when the user is on the
                 //shopping cart the back button works as a history back.
                 //We should overthink our whole approach here. And almost
                 //cetainly we should move the whole service out of the SDK
@@ -369,6 +383,11 @@ angular
                 self.navigateToRootCategory();
             }
         };
+
+        trackingService.trackEvent({
+            category: 'pageView',
+            label: $location.path()
+        });
 
         return self;
 }]);
@@ -410,6 +429,13 @@ angular
 
 
 
+angular.module('sdk.services.trackingService', []);
+
+angular
+    .module('sdk.services.trackingService')
+    .factory('trackingService', ['$window', '$http', function($window, $http){
+        return new cc.TrackingService($window, $http);
+}]);
 angular.module('sdk.services.userService', [
         // TODO: Investigate. I'm not sold this should be handled on this level. 
         store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService',
