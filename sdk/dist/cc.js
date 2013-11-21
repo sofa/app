@@ -2291,7 +2291,7 @@ cc.Util = {
 
         for (index in iterable) {
             if (Object.prototype.hasOwnProperty.call(iterable, index)) {
-                if (callback(iterable[index], index, collection) === cc.Util.indicatorObject) {
+                if (callback(iterable[index], index, collection) === false) {
                     return result;
                 }
             }
