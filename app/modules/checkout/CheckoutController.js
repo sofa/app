@@ -133,7 +133,9 @@ angular
 
             $scope.canProceed = function(){
                 return  $scope.billingAddressForm.$valid &&
-                        (checkoutModel.addressEqual || $scope.shippingAddressForm.$valid);
+                        (checkoutModel.addressEqual || $scope.shippingAddressForm.$valid) &&
+                        checkoutModel.selectedPaymentMethod &&
+                        checkoutModel.selectedPaymentMethod.method !== PAYPAL_EXPRESS_ID;
             };
 
             $scope.proceed = function(){
