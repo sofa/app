@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('PayPalOverlayController',
     [
-        '$scope','basketService', 'navigationService', 'configService', 'checkoutService', 'dialog', 'checkoutInfo',
-        function PayPalOverlayController($scope, basketService, navigationService, configService, checkoutService, dialog, checkoutInfo) {
+        '$scope', 'configService', 'checkoutService', 'dialog', 'checkoutInfo', 'shippingMethodFormatter',
+        function PayPalOverlayController($scope, configService, checkoutService, dialog, checkoutInfo, shippingMethodFormatter) {
             'use strict';
 
             var vm = {
@@ -19,6 +19,7 @@ angular
             $scope.vm = vm;
 
             $scope.configService = configService;
+            $scope.shippingMethodFormatter = shippingMethodFormatter;
 
             $scope.$watch('vm.selectedCountry', function(){
                 //don't let the user proceed if we have inflight requests

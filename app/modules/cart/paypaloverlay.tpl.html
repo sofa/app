@@ -19,7 +19,7 @@
         omit-null
         choose-text="ln.choose" 
         property-name="ln.shippingMethod" 
-        display-value-exp="'title'" 
+        display-value-exp="shippingMethodFormatter" 
         data="vm.supportedShippingMethods">
     </cc-select-box>
     <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>

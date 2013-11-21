@@ -4,8 +4,12 @@ angular
     .module('CouchCommerceApp')
     .controller('CheckoutController',
     [
-        '$scope','basketService', 'navigationService', 'checkoutService', 'userService', 'configService', 'dialog', 'payPalOverlayService',
-        function CheckoutController($scope, basketService, navigationService, checkoutService, userService, configService, dialog, payPalOverlayService) {
+        '$scope','basketService', 'navigationService', 
+        'checkoutService', 'userService', 'configService', 
+        'dialog', 'payPalOverlayService', 'shippingMethodFormatter',
+        function CheckoutController($scope, basketService, navigationService, 
+                                    checkoutService, userService, configService, 
+                                    dialog, payPalOverlayService, shippingMethodFormatter) {
 
             'use strict';
 
@@ -30,6 +34,7 @@ angular
 
             $scope.checkoutModel = checkoutModel;
 
+            $scope.shippingMethodFormatter = shippingMethodFormatter;
 
             var validateCheckout = function(){
                 checkoutService
