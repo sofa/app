@@ -25,7 +25,7 @@ angular
                 //don't let the user proceed if we have inflight requests
                 vm.canProceed = false;
                 checkoutService
-                    .getShippingMethodsForPayPal()
+                    .getShippingMethodsForPayPal(vm.selectedCountry)
                     .then(function(data){
                         vm.canProceed = true;
                         vm.supportedShippingMethods = data.shippingMethods;
