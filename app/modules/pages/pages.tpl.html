@@ -5,10 +5,15 @@
             <h1 class="cc-title--huge" ng-bind="pagesVm.page.title"></h1>
             <a class="cc-pages-send-as-mail fa fa-envelope fa-large" href="{{pagesVm.mailTo}}"></a>
         </div>
+
         <div ng-bind-html="pagesVm.page.content" class="cc-content-box--padded"></div>
     </div>
 
-    <div ng-include="tpl.404" ng-if="!pagesVm.page.content"></div>
+    <div ng-if="pagesVm.isLoading" class="cc-pages-loading-box">
+        <cc-loading-spinner class="cc-pages-loading-box__spinner"></cc-loading-spinner>
+    </div>
+
+    <div ng-include="tpl.404" ng-if="!pagesVm.page.content && !pagesVm.isLoading"></div>
 
     <cca-footer></cca-footer>
 </div>

@@ -6,3 +6,13 @@
 .cc-pages-send-as-mail:visited{
     color: $background-text-color;
 }
+
+.cc-pages-loading-box{
+    @extend .cc-content-box--padded;
+    position: relative;
+}
+
+.cc-pages-loading-box__spinner{
+    left: 50%;
+    margin-left: -64px;
+}
