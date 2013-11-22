@@ -23,6 +23,23 @@ angular
                 .getSummary($stateParams.token)
                 .then(function(result){
 
+                    if(result.response.error){
+                        dialog
+                            .messageBox(
+                                $scope.ln.errorGettingPaymentDetails, 
+                                result.response.error.paymentErrorMsg, 
+                                [{result: 'ok', label: $scope.ln.btnOk}]
+                            )
+                            .result
+                            .then(function(result){
+                                if(result === 'ok'){
+                                    navigationService.navigateToCart();
+                                }
+                            });
+
+                        return;
+                    }
+
                     vm.invoiceAddress   = result.invoiceAddress;
                     vm.shippingAddress  = result.shippingAddress;
                     vm.paymentMethod    = result.response.paymentMethod;
