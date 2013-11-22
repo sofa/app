@@ -5,6 +5,7 @@
 @import '../../sdk/src/styling/private-settings.scss';
 @import '../../sdk/src/directives/ccSelectBox/cc-select-box-config.scss';
 @import 'libs/ccSelectBox/cc-select-box-couch-config.scss';
+@import '../../sdk/src/styling/theme-config.scss';
 @import '../../sdk/src/styling/base.scss';
 @import '../../sdk/src/styling/buttons.scss';
 @import '../../sdk/src/styling/animations.scss';
@@ -39,6 +40,7 @@
 @import '../modules/search/search-box.scss';
 @import '../modules/search/search-result.scss';
 
+@import 'theme.scss';
 @import 'customer.scss';
 
 
