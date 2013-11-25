@@ -9,6 +9,14 @@
     transform: scale(0.6);
 }
 
+.cc-loading-spinner--centered{
+    position: absolute;
+    top: 50%;
+    margin-top: -64px;
+    left: 50%;
+    margin-left: -64px;
+}
+
 .cc-loading-spinner__circle {
     position: absolute;
     background-color: #FFFFFF;
