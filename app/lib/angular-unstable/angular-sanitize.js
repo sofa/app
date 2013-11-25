@@ -345,7 +345,13 @@ function htmlParser( html, handler ) {
 var hiddenPre=document.createElement("pre");
 function decodeEntities(value) {
   hiddenPre.innerHTML=value.replace(/</g,"&lt;");
-  return hiddenPre.innerText || hiddenPre.textContent || '';
+  // innerText depends on styling as it doesn't display hidden elements.
+  // Therefore, it's better to use textContent not to cause unnecessary
+  // reflows. However, IE<9 don't support textContent so the innerText
+  // fallback is necessary. Note that we need to check for undefine
+  // and not just reverse the order of these two since for an empty string
+  // innerText would still be checked and a reflow would occur.
+  return (hiddenPre.textContent !== undefined ? hiddenPre.textContent : hiddenPre.innerText) || '';
 }
 
 /**
