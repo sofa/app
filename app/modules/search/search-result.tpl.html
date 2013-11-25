@@ -13,7 +13,13 @@
                         ng-repeat="product in result.items"
                         ng-click="vm.goToProduct(product)" 
                         class="cc-search-result__list-item">
-                        <span ng-bind="product.text"></span>
+                        <div class="cc-search-result__list-item-product-image"
+                             style="background-image:url({{product.productImageUrl}});">
+                        </div>
+
+                        <div class="cc-search-result__list-item-text-wrapper">
+                            <span ng-bind="product.text"></span>
+                        </div>
                     </li>
                 </ul>
             </li>

@@ -12,18 +12,43 @@
 
 .cc-search-result__item-list{
     background: $content-background-color;
+    display: table;
+    width: 100%;
+    border-collapse:separate; 
+    border-spacing:3px;
 }
 
 .cc-search-result__list-item{
-    padding: $primary-padding;
-    position: relative;
-    margin-left: 60px;
-    border-bottom: 1px solid $content-border-color;
+    display: table-row;
 
     &:last-child{
-        border: none;
+        .cc-search-result__list-item-text-wrapper:after{
+            content: none;
+        }
     }
+}
 
+.cc-search-result__list-item-product-image{
+    width: 50px;
+    height: 50px;
+    background-size: contain;
+    display: table-cell;
+}
+
+.cc-search-result__list-item-text-wrapper{
+    display: table-cell;
+    vertical-align: middle;
+    padding-left: $primary-padding;
+    position: relative;
+
+    &:after{
+        content: "";
+        position: absolute;
+        border-bottom: 1px solid $content-border-color;
+        left: $primary-padding;
+        right: 0;
+        bottom: 0;
+    }
 }
 
 .cc-search-result__list-item-icon{
