@@ -1599,7 +1599,7 @@ cc.Config.searchDebounceMs = 50;
 var _configService = new cc.ConfigService();
 var _searchUrl = _configService.get('searchUrl') + '?callback=JSON_CALLBACK';
 var _storeCode = _configService.get('storeCode');
-var _searchFields = 'text, categoryUrlKey, categoryName, productUrlKey';
+var _searchFields = 'text, categoryUrlKey, categoryName, productUrlKey, productImageUrl';
 
 var createHttpService = function(){
     return new cc.mocks.httpService(new cc.QService());
