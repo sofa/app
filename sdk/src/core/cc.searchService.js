@@ -38,7 +38,7 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
                 url: endpoint,
                 params: {
                     q: createSearchCommand(normalizeUmlauts(searchStr)),
-                    fetch: 'text, categoryUrlKey, categoryName, productUrlKey'
+                    fetch: 'text, categoryUrlKey, categoryName, productUrlKey, productImageUrl'
                 }
             })
             .then(function(response){
