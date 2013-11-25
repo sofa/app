@@ -4,11 +4,11 @@ angular
     .module('CouchCommerceApp')
     .controller('CheckoutController',
     [
-        '$scope','basketService', 'navigationService', 
-        'checkoutService', 'userService', 'configService', 
+        '$scope','basketService', 'navigationService',
+        'checkoutService', 'userService', 'configService',
         'dialog', 'payPalOverlayService', 'shippingMethodFormatter',
-        function CheckoutController($scope, basketService, navigationService, 
-                                    checkoutService, userService, configService, 
+        function CheckoutController($scope, basketService, navigationService,
+                                    checkoutService, userService, configService,
                                     dialog, payPalOverlayService, shippingMethodFormatter) {
 
             'use strict';
@@ -44,7 +44,7 @@ angular
                     .then(function(data){
                         if(data){
 
-                            if (!checkoutModel.selectedPaymentMethod && 
+                            if (!checkoutModel.selectedPaymentMethod &&
                                 data.paymentMethods.length > 1 &&
                                 data.paymentMethods[0].method === PAYPAL_EXPRESS_ID){
                                 checkoutModel.selectedPaymentMethod = data.paymentMethods[1];
@@ -143,9 +143,7 @@ angular
                 checkoutService
                     .checkoutWithCouchCommerce(checkoutModel)
                     .then(function(token){
-                        if(token !== 'REDIRECT'){
-                            navigationService.navigateToSummary(token);
-                        }
+                        navigationService.navigateToSummary(token);
                     }, function(){
                         dialog
                             .messageBox(

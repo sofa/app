@@ -436,6 +436,8 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         lastUsedShippingMethod,
         lastSummaryResponse;
 
+    var redirect = null;
+
     //allow this service to raise events
     cc.observable.mixin(self);
 
@@ -443,9 +445,9 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     var toFormData = function(obj) {
         var str = [];
         for(var p in obj){
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
         }
-        return str.join("&");
+        return str.join('&');
     };
 
     //The backend is not returning valid JSON.
@@ -616,12 +618,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             if(response.data){
                 data = toJson(response.data);
                 data = data.token || null;
-
-                var redirect = checkoutModel.selectedPaymentMethod.redirect;
-                if (redirect && data) {
-                    window.location.href = configService.get('checkoutUrl') + redirect + "?token=" + data;
-                    return 'REDIRECT';
-                }
             }
             return data;
         }, function(fail){
@@ -670,7 +666,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
                 window.location.href = configService.get('checkoutUrl');
             }
             else{
-                return $q.reject(new Error("invalid server response"));
+                return $q.reject(new Error('invalid server response'));
             }
         })
         .then(null,function(fail){
@@ -750,6 +746,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
             lastSummaryResponse = data;
 
+            // For providers such as CouchPay
+            if ( data.response.redirect ) {
+                redirect = data.response.redirect;
+            }
+
             return data;
         });
     };
@@ -774,6 +775,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             var json = toJson(response.data);
 
             basketService.clear();
+
+            if ( redirect ) {
+                window.location.href = configService.get('checkoutUrl') + redirect + '?token=' + token;
+                throw "stop execution";
+            }
 
             return json;
         }, function(fail){
