@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'CategoryController',
     [
-        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService', 'trackingService',
-        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, trackingService) {
+        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService',
+        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService) {
 
             'use strict';
 
