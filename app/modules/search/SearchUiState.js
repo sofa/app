@@ -12,14 +12,20 @@ angular
 
             self.searchTerm = '';
 
+            self.isRunningSearch = false;
+
             self.abort = function(){
                 self.searchTerm = '';
                 self.isOpen = false;
             };
 
+            self.hasSearchTerm = function(){
+                return self.searchTerm.length > 0;
+            };
+
             self.clear = function(){
 
-                if (self.searchTerm.length === 0){
+                if (!self.hasSearchTerm()){
                     self.abort();
                 }
                 else{
@@ -35,6 +41,12 @@ angular
 
             self.hasResults = function(){
                 return self.results.length > 0;
+            };
+
+            self.hasNoMatch = function(){
+                return !self.hasResults() &&
+                       !self.isRunningSearch &&
+                       self.hasSearchTerm();
             };
 
             return self;

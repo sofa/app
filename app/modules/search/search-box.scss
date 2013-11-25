@@ -79,3 +79,9 @@
     opacity: 0.5;
     z-index: 99;
 }
+
+.cc-modal-background{
+    @extend .cc-modal;
+    background: $background-color;
+    opacity: 1;
+}

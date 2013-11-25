@@ -16,4 +16,22 @@
     <div class="cc-search-box__spacer"></div>
 </div>
 
-<div class="cc-modal" ng-click="searchUiState.abort()" ng-show="searchUiState.isOpen && !searchUiState.hasResults()"></div>
+<div class="cc-modal" 
+     ng-click="searchUiState.abort()" 
+     ng-show="searchUiState.isOpen && !searchUiState.hasResults()">
+
+    <cc-loading-spinner class="cc-loading-spinner--centered"
+                        ng-show="searchUiState.isRunningSearch">
+    </cc-loading-spinner>
+
+</div>
+
+<div class="cc-modal-background" 
+     ng-show="searchUiState.hasNoMatch()">
+
+    <div class="cc-center-wrapper">
+        <span class="cc-center-wrapper__centered-child cc-on-background" 
+              ng-bind="ln.searchNotFound"></span>
+    </div>
+
+ </div>

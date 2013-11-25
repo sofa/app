@@ -33,10 +33,12 @@ angular
             vm.searchUiState = searchUiState;
 
             $scope.$watch('vm.searchUiState.searchTerm', function(searchTerm){
+                searchUiState.isRunningSearch = true;
 
                 searchService
                     .search(searchTerm, { groupKey: 'categoryUrlKey', groupText: 'categoryName'})
                     .then(function(response){
+                        searchUiState.isRunningSearch = false;
                         searchUiState.setResults(response.data.groupedResults);
                     });
             });

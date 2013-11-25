@@ -122,6 +122,7 @@ cc.Lang = {
 
         //search
         searchProductFoundIn:'Produkt gefunden in',
-        searchProductsFoundIn:'Produkte gefunden in'
+        searchProductsFoundIn:'Produkte gefunden in',
+        searchNotFound: 'Keine Ergebnisse gefunden.'
 
     };
