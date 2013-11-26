@@ -80,23 +80,28 @@ $cc-header---element-height: 2 * $cc-header---icon-padding + $cc-header---icon-h
 }
 
 //lots of hardcoded colors for the badge. Can we get rid of them?
-.cc-header__icon-badge{
+.cc-header__icon-badge{    
     position: absolute;
     font-size: $font-size-small;
-    line-height: normal;
-    min-width: 22px;
+    line-height: $font-size-small;
     text-align: center;
-    background: #E07F73;
-    color: #ffffff;
-    border-radius: 15px;
-    border-bottom: 3px solid #953D48;
+    background: $highlight-color;
+    color: $highlight-text-color;
     padding: 4px;
     text-shadow: none;
+    border: 1px solid $toolbar-border-color;
+    /* min-width = height = font-size + padding + border */
+    min-width: ($font-size-small + 8px + 2px);
+    /* radius = height / 2 */
+    border-radius: round(($font-size-small + 8px + 2px)/2);
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $border-bottom-width 1px 0 try-darker($toolbar-border-color, 5%);
+    box-shadow: 0 $border-bottom-width 0 0 try-darker($toolbar-border-color, 5%);
 }
 
 .cc-header__icon-badge--cart{
     @extend .cc-header__icon-badge;
-    top: -8px;
+    top: -6px;
     right: 2px;
 }
 
