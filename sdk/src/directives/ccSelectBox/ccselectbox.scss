@@ -1,77 +1,5 @@
 
-.cc-select-box-on-background .cc-select-box-select-wrapper, 
-.cc-select-box-on-background.cc-select-box-select-wrapper,
-%cc-select-box-on-background{
-
-    //this might sound strange on first glance. However, it makes
-    //perfect sense to give form elements that are placed on the background the content-background-color.
-    //that's exactly the purpose of the content-background-color. To style areas that sit on the background.
-    background: $content-background-color;
-
-    .cc-select-box-select-icon{
-        color: $content-border-color;
-    }
-}
-
-.cc-select-box-on-content .cc-select-box-select-wrapper, 
-.cc-select-box-on-content.cc-select-box-select-wrapper,
-%cc-select-box-on-content{
-
-    @include try-darker("background", $content-background-color, 10%);
-}
-
-.cc-select-box-display-value{
-    font-size: $font-size-medium;
-}
-
-$cc-select-box-height: 50px;
-
-.cc-select-box-select-wrapper{
-    position: relative;
-    width: 100%;
-    height: $cc-select-box-height;
-    line-height: $cc-select-box-height;
-    text-align: center;
-    border-radius: $primary-border-radius;
-    margin: 0 0 5px 0;
-
-    //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
-    box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
-}
-
-.cc-grouped, cc-grouped{
-    margin: 5px 0 5px 0;
-    //unknown elements don't have that as default
-    display: block;
-}
-
-.cc-grouped .cc-select-box-select-wrapper, cc-grouped .cc-select-box-select-wrapper{
-    border-radius: 0px;
-    margin: 0px;
-}
-
-//we don't need to scope :first-child and :last-child to cc-grouped because even
-//if the styles are applied without the parent being a cc-grouped, the radius
-//is the default style of the cc-select-box-select-wrapper. We omit that for selector performance.
-.cc-select-box-select-wrapper:first-child{
-    border-top-left-radius: $primary-border-radius;
-    border-top-right-radius: $primary-border-radius;
-}
-
-.cc-select-box-select-wrapper:last-child{
-    border-bottom-left-radius: $primary-border-radius;
-    border-bottom-right-radius: $primary-border-radius;
-}
-
-.cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
-cc-grouped .cc-select-box-select-wrapper + .cc-select-box-select-wrapper,
-.cc-grouped .cc-text-box + .cc-select-box-select-wrapper,
-cc-grouped .cc-text-box + .cc-select-box-select-wrapper{
-    border-top: none;
-}
-
-.cc-select-box-native-select{
+%cc-select-box__native-select{
     opacity: 0;
     position: absolute;
     left: 0;
@@ -82,7 +10,7 @@ cc-grouped .cc-text-box + .cc-select-box-select-wrapper{
     -webkit-appearance: none;
 }
 
-.cc-select-box-select-icon{
+%cc-select-box__select-icon{
     position: absolute;
     right: 10px;
     top: 50%;
@@ -90,14 +18,61 @@ cc-grouped .cc-text-box + .cc-select-box-select-wrapper{
     margin-top: -12px;
 }
 
-.cc-select-box-select-wrapper.ng-invalid{
-    margin-bottom: 50px;
 
-    .cc-validation__message--fail{
-        display: inline-block;
-        line-height: 1;
-        position: absolute;
-        left: 5px;
-        top: $cc-select-box-height;
+@mixin cc-select-box($cc-select-box__name,
+                     $cc-select-box__modifier,
+                     $cc-select-box__background,
+                     $cc-select-box__color,
+                     $cc-select-box__font-size,
+                     $cc-select-box__height,
+                     $cc-select-box__border-radius,
+                     $cc-select-box__border-color,
+                     $cc-select-box__border-bottom-width){
+
+
+
+    .#{$cc-select-box__name}#{$cc-select-box__modifier}{
+        position: relative;
+        width: 100%;
+        height: $cc-select-box__height;
+        line-height: $cc-select-box__height;
+        text-align: center;
+        border-radius: $cc-select-box__border-radius;
+        margin: 0 0 5px 0;
+        background: $cc-select-box__background;
+
+        //android 2.3 needs blur for box shadow
+        -webkit-box-shadow: 0 $cc-select-box__border-bottom-width 1px 0 $cc-select-box__border-color;
+        box-shadow: 0 $cc-select-box__border-bottom-width 0 0 $cc-select-box__border-color;
+
+
+        //no need to duplicate styles if there is nothing dynamic at all, hence the @extend!
+        .#{$cc-select-box__name}__select-icon{
+            @extend %cc-select-box__select-icon;
+            color: $cc-select-box__color
+        }
+
+        //no need to duplicate styles if there is nothing dynamic at all, hence the @extend!
+        .#{$cc-select-box__name}__native-select{
+            @extend %cc-select-box__native-select;
+        }
+
+        .#{$cc-select-box__name}__display-value{
+            font-size: $cc-select-box__font-size;
+            color: $cc-select-box__color;
+        }
+
+    }
+
+    .#{$cc-select-box__name}#{$cc-select-box__modifier}.ng-invalid{
+        margin-bottom: 50px;
+
+        .cc-validation__message--fail{
+            display: inline-block;
+            line-height: 1;
+            position: absolute;
+            left: 5px;
+            top: $cc-select-box__height;
+        }
     }
 }

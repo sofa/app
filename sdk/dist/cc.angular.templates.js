@@ -66,12 +66,12 @@ angular.module("src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html", []).
 
 angular.module("src/directives/ccSelectBox/ccselectbox.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccSelectBox/ccselectbox.tpl.html",
-    "<div class=\"cc-select-box-select-wrapper\">\n" +
-    "     <span class=\"cc-select-box-display-value\" ng-bind=\"displayFn(_selectedValue)\"></span>\n" +
-    "     <span class=\"cc-select-box-display-value\" ng-hide=\"_selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
-    "     <i class=\"cc-select-box-select-icon fa fa-chevron-down\"></i>\n" +
+    "<div class=\"cc-select-box\">\n" +
+    "     <span class=\"cc-select-box__display-value\" ng-bind=\"displayFn(_selectedValue)\"></span>\n" +
+    "     <span class=\"cc-select-box__display-value\" ng-hide=\"_selectedValue\">{{chooseText}} {{propertyName}}</span>\n" +
+    "     <i class=\"cc-select-box__select-icon fa fa-chevron-down\"></i>\n" +
     "    <select name=\"{{propertyName}}\"\n" +
-    "            class=\"cc-select-box-native-select\" \n" +
+    "            class=\"cc-select-box__native-select\" \n" +
     "            ng-model=\"_selectedValue\" \n" +
     "            ng-options=\"displayFn(val) for val in data\">\n" +
     "        <option ng-if=\"!_omitNull\" value=\"\">-- {{chooseText}} {{propertyName}} --</option>\n" +
@@ -95,13 +95,13 @@ angular.module("src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html", []).run(
 angular.module("src/directives/ccVariantSelector/ccvariantselector.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccVariantSelector/ccvariantselector.tpl.html",
     "<div class=\"cc-variant-selector\">\n" +
-    "    <div class=\"cc-select-box-select-wrapper\"\n" +
+    "    <div class=\"cc-select-box\"\n" +
     "         ng-repeat=\"property in properties\">\n" +
-    "         <span class=\"cc-select-box-display-value\" ng-bind=\"selectedProperties[property]\"></span>\n" +
-    "         <span class=\"cc-select-box-display-value\" ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
-    "         <i class=\"cc-select-box-select-icon fa fa-chevron-down\"></i>\n" +
+    "         <span class=\"cc-select-box__display-value\" ng-bind=\"selectedProperties[property]\"></span>\n" +
+    "         <span class=\"cc-select-box__display-value\" ng-hide=\"selectedProperties[property]\">{{chooseText}} {{property}}</span>\n" +
+    "         <i class=\"cc-select-box__select-icon fa fa-chevron-down\"></i>\n" +
     "        <select name=\"{{property}}\"\n" +
-    "                class=\"cc-select-box-native-select\" \n" +
+    "                class=\"cc-select-box__native-select\" \n" +
     "                ng-model=\"selectedProperties[property]\" \n" +
     "                ng-options=\"val for val in variants|ccVariantFilter:selectedProperties:property\">\n" +
     "            <option value=\"\">-- {{chooseText}} {{property}} --</option>\n" +
