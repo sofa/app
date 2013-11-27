@@ -38,11 +38,11 @@ angular.module("src/directives/ccElasticViews/elasticViews.tpl.html", []).run(["
 angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccFooter/ccfooter.tpl.html",
     "<ul class=\"cc-footer-list\">\n" +
-    "    <li ng-repeat=\"item in items\"\n" +
+    "    <li bindonce=\"item\" ng-repeat=\"item in items\"\n" +
     "        class=\"cc-footer-list__row\"\n" +
     "        ng-click=\"goTo(item)\" >\n" +
     "        <div class=\"cc-footer-list__row-content\">\n" +
-    "            {{ item.title }}\n" +
+    "            <span bo-text=\"item.title\"></span>\n" +
     "            <i class=\"cc-footer-list__row-icon fa fa-chevron-right\"></i>\n" +
     "        </div>\n" +
     "    </li>\n" +

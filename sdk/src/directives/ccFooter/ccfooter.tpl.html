@@ -1,9 +1,9 @@
 <ul class="cc-footer-list">
-    <li ng-repeat="item in items"
+    <li bindonce="item" ng-repeat="item in items"
         class="cc-footer-list__row"
         ng-click="goTo(item)" >
         <div class="cc-footer-list__row-content">
-            {{ item.title }}
+            <span bo-text="item.title"></span>
             <i class="cc-footer-list__row-icon fa fa-chevron-right"></i>
         </div>
     </li>
