@@ -33,124 +33,9 @@ angular.module('CouchCommerceApp', [
     ])
     .config(['$stateProvider', '$urlRouterProvider', 'screenIndexes', function($stateProvider, $urlRouterProvider, screenIndexes){
 
-    'use strict';
+        'use strict';
 
-var categoryStateConfig;
-
-    if (false){
-
-        $stateProvider
-            .state('catchEmptyRoot',{
-                    url: '/',
-                    controller: ['$state', function($state){
-                        $state.transitionTo('cat.filled.list');
-                    }]
-            });
-
-        $stateProvider
-            .state('cat',{
-                    url: '/cat',
-                    templateUrl: 'modules/categories/categorylisting_tablet.tpl.html',
-                    controller: 'CategoryControllerTablet',
-                    screenIndex: screenIndexes.category,
-                    resolve: {
-                        category: ['couchService', '$stateParams', function(couchService, $stateParams){
-                            return couchService.getCategory($stateParams.category);
-                        }]
-                    }
-            })
-            .state('cat.filled',{
-                views: {
-                    '': {
-                        templateUrl: 'modules/categories/categorylisting_content_tablet.tpl.html',
-                        controller: ['splitViewDataService', '$scope', 'navigationService', 'splitViewSlideDirectionService', '$state', 'selectionService', '$stateParams', function(splitViewDataService, $scope, navigationService, splitViewSlideDirectionService, $state, selectionService, $stateParams){
-                            $scope.viewData = splitViewDataService;
-                            $scope.splitViewSlideDirectionService = splitViewSlideDirectionService;
-                            $scope.$state = $state;
-
-                            $scope.navigateToProduct = function(product, $index, $event){
-                                selectionService.select('products_' + $stateParams.category, angular.element($event.currentTarget));
-                                navigationService.navigateToProduct(product);
-                                splitViewSlideDirectionService.setCurrentIndex($state.current.name, $index);
-                            };
-                        }]
-
-                    }
-                }
-            })
-            .state('cat.filled.list',{
-                url: '/:category',
-                views: {
-                    '': {
-                        templateUrl: 'modules/categories/categorylisting_content_subcategories_tablet.tpl.html',
-                        resolve: {
-                            category: ['couchService', '$stateParams', function(couchService, $stateParams){
-                                return couchService.getCategory($stateParams.category);
-                            }]
-                        },
-                        controller: ['category', '$scope', 'splitViewDataService', '$stateParams', function(category, $scope, splitViewDataService, $stateParams){
-                            $scope.viewData = splitViewDataService;
-
-                            splitViewDataService.setLeftBoxAsCategories();
-                            splitViewDataService.leftCategory = category.parent || category;
-                            //if there is no category in the $stateParams why is this state even activated?
-                            //whatever, we don't want the openCategory to be set if there is no $stateParams.category set
-                            splitViewDataService.rightCategory = $stateParams.category && category;
-                        }]
-                    }
-                }
-            })
-            .state('cat.filled.products',{
-                url: '/:category/products',
-                views: {
-                    '': {
-                        templateUrl: 'modules/products/products_tablet.tpl.html',
-                        resolve: {
-                            category: ['couchService', '$stateParams', function(couchService, $stateParams){
-                                return couchService.getCategory($stateParams.category);
-                            }],
-                            products: ['couchService', '$stateParams', function(couchService, $stateParams){
-                                return couchService.getProducts($stateParams.category);
-                            }]
-                        },
-                        controller: ['category', 'products', '$scope', 'splitViewDataService', 'navigationService', 'splitViewSlideDirectionService', '$state', function(category, products, $scope, splitViewDataService, navigationService, splitViewSlideDirectionService, $state){
-                            //splitViewDataService.category = category.parent || category;
-                            $scope.viewData = splitViewDataService;
-                            splitViewDataService.leftCategory = category.parent;
-                            splitViewDataService.setLeftBoxAsCategories();
-                            splitViewDataService.rightCategory = null;
-                            splitViewDataService.products = products;
-                            $scope.navigateToProduct = function(product, $index){
-                                navigationService.navigateToProduct(product);
-                                splitViewSlideDirectionService.setCurrentIndex($state.current.name, $index);
-                            };
-                            //$scope.navigationService = navigationService;
-                            //$scope.splitViewSlideDirectionService = splitViewSlideDirectionService;
-                        }]
-                    }
-                }
-            })
-            .state('cat.filled.product',{
-                url: '/:category/product/:productUrlKey',
-                views: {
-                    '': {
-                        templateUrl: 'modules/product/product_tablet.tpl.html',
-                        resolve: {
-                            products: ['couchService', '$stateParams', function(couchService, $stateParams){
-                                return couchService.getProducts($stateParams.category);
-                            }],
-                            product: ['couchService', '$stateParams', function(couchService, $stateParams){
-                                return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
-                            }]
-                        },
-                        controller: 'ProductControllerTablet'
-                    }
-                }
-            });
-
-    }
-    else {
-        categoryStateConfig = {
+        var categoryStateConfig = {
                 url: '/',
                 templateUrl: 'modules/categories/categorylisting_phone.tpl.html',
                 controller: 'CategoryController',
@@ -167,7 +52,6 @@ var categoryStateConfig;
 
         $stateProvider
             .state('category', angular.extend({}, categoryStateConfig, { url: '/cat/:category' }));
-    }
 
         $stateProvider
             .state('products', {
