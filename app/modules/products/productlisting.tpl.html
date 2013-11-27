@@ -2,16 +2,15 @@
     <cc-inject target="aboveContent"></cc-inject>
     <h1 class="cc-title--huge" ng-bind-html="headline"></h1>
     <ul class="cc-product-grid">
-        <li ng-repeat="product in products"
-            ng-class="{ 'cc-product-grid__row--odd' : $odd,
+        <li bindonce="product" ng-repeat="product in products"
+            bo-class="{ 'cc-product-grid__row--odd' : $odd,
                         'cc-product-grid__row--even' : $even }">
             <div class="cc-product-grid__row-wrapper" 
                  ng-click="goToProduct(product, $event)" ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }">
             <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
             <div class="cc-product-grid__row-highlight-helper"></div>
 
-            <div class="cc-product-grid__row-price">
-                {{product.price | currency}}
+            <div class="cc-product-grid__row-price" bo-text="product.price | currency">
             </div>
             <div class="cc-product-grid__row-image" 
                  style="background-image: url({{product.getImage('small')}})">

@@ -1,11 +1,12 @@
-<div>
+<div bindonce>
     <cc-footer></cc-footer>
 
-    <div ng-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-icon" ng-click="showTrustedShopsCertificate()"></div>
+    <div bo-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-icon" ng-click="showTrustedShopsCertificate()"></div>
 
-    <div ng-if="showAppExitLink" class="cc-exit-link">
+    <div bindonce="showAppExitLink" bo-if="showAppExitLink" class="cc-exit-link">
         <span ng-click="exitWebApp()">
-            {{ln.showDesktopView}} <i class="cc-exit-link__icon fa fa-external-link"></i>
+            <span bo-text="ln.showDesktopView"></span> 
+            <i class="cc-exit-link__icon fa fa-external-link"></i>
         </span>
     </div>
 </div>

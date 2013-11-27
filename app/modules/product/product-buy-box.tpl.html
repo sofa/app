@@ -1,16 +1,17 @@
-<div class="cc-product-buy-box">
+<div class="cc-product-buy-box" bindonce="ln">
     <div class="cc-product-buy-box__price">
         {{ price | currency }}
     </div>
     <a 
         ng-click="addToBasket(product)"
         ng-if="!product.isOutOfStock()"
-        class="cc-product-buy-box__add-to-cart">{{ln.addToCart}}
+        class="cc-product-buy-box__add-to-cart"
+        bo-text="ln.addToCart">
     </a>
     <span 
         ng-if="product.isOutOfStock()" 
-        class="cc-product-buy-box__sold-out"> 
-        {{ ln.soldOut }}
+        class="cc-product-buy-box__sold-out"
+        bo-text="ln.soldOut"> 
     </span>
     <div class="cc-product-buy-box__info">
         <div class="cc-product-buy-box__info-left">
@@ -23,7 +24,6 @@
         </div>
         <div class="cc-product-buy-box__info-right">
             {{ product.delivery }}
-
         </div>
     </div>
 </div>

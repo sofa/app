@@ -29,9 +29,9 @@
 <div class="cc-modal-background" 
      ng-show="searchUiState.hasNoMatch()">
 
-    <div class="cc-center-wrapper">
+    <div bindonce="ln" class="cc-center-wrapper">
         <span class="cc-center-wrapper__centered-child cc-on-background" 
-              ng-bind="ln.searchNotFound"></span>
+              bo-text="ln.searchNotFound"></span>
     </div>
 
  </div>

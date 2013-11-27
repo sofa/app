@@ -1,7 +1,7 @@
-<div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
-    <h1 class="cc-title--huge" ng-bind="ln.checkout"></h1>
+<div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper" bindonce="ln">
+    <h1 class="cc-title--huge" bo-text="ln.checkout"></h1>
     
-    <p class="cc-form-label">{{ln.paymentMethod}}</p>
+    <p class="cc-form-label" bo-text="ln.paymentMethod"></p>
     <cc-select-box
         ng-model="checkoutModel.selectedPaymentMethod" 
         choose-text="ln.choose" 
@@ -12,7 +12,7 @@
         data="checkoutModel.supportedPaymentMethods">
     </cc-select-box>
 
-    <p class="cc-form-label">{{ln.shippingMethod}}</p>
+    <p class="cc-form-label" bo-text="ln.shippingMethod"></p>
     <cc-select-box
         ng-model="checkoutModel.selectedShippingMethod" 
         allow-null
@@ -28,7 +28,7 @@
         {{ checkoutModel.surchargeHint }}
     </div>
 
-    <h3>{{ln.billingAddress}}</h3>
+    <h3 bo-text="ln.billingAddress"></h3>
     <form name="billingAddressForm" novalidate class="cc-text-box-on-background">
         <p class="cc-form-label">{{ln.formCompany}}</p>
         <input ng-model="checkoutModel.billingAddress.company" class="cc-text-box" type="text" placeholder="Musterfirma GmbH"/>
@@ -83,7 +83,7 @@
     </form>
 
 
-    <h3>{{ln.shippingAddress}}</h3>
+    <h3 bo-text="ln.shippingAddress"></h3>
 
     <cc-check-box class="cc-check-box-on-background" value="checkoutModel.addressEqual" label="'Wie Rechnungsadresse'"></cc-check-box>
 
@@ -154,7 +154,7 @@
         <!-- Poor hack: We just want to have some space between the cols-->
         <div class="cc-checkout-navigation__middle-col"></div>
         <div class="cc-checkout-navigation__right-col">
-            <a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'">{{ ln.nextStep }}</a>
+            <a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'" bo-text="ln.nextStep"></a>
         </div>
     </div>
 
