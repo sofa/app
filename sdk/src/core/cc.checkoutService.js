@@ -326,6 +326,9 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             if ( data.response.redirect ) {
                 redirect = data.response.redirect;
             }
+            else {
+                redirect = null;
+            }
 
             return data;
         });
