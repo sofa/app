@@ -124,6 +124,29 @@ test('it should detect indirect parent<->child relationships', function() {
     ok(couchService.isAChildOfB(a, c) === false, 'a is not a child of c');
 });
 
+test('it should detect a being a child alias of b', function() {
+
+    var a = {
+        urlId: 'a'
+    };
+
+    var b = {
+        urlId: 'b',
+        children:[
+            { urlId: 'x'},
+            { urlId: 'a'}
+        ]
+    };
+
+    var couchService = createCouchService(createHttpService());
+
+    ok(couchService.isAChildAliasOfB(a, b), 'a is a child alias of b');
+    // ok(couchService.isAParentOfB(b, a) === false, 'b is not a parent of a');
+
+    // ok(couchService.isAChildOfB(b, a), 'b is a child of a' );
+    // ok(couchService.isAChildOfB(a, b) === false, 'a is not a child of b');
+});
+
 test('it should detect no relationship', function() {
 
     var a = {

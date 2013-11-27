@@ -16,6 +16,26 @@ cc.define('cc.CouchService', function($http, $q, configService){
         STORE_CODE          = configService.get('storeCode'),
         CATEGORY_JSON       = configService.get('categoryJson');
 
+    /**
+     * Checks whether a given category a exists as an child
+     * on another category b. Taking only direct childs into account.
+     * 
+     * Options:
+     * 
+     *   - `a` category a
+     *   - `b` category b 
+     */
+    self.isAChildAliasOfB = function(categoryA, categoryB){
+        if (!categoryB.children || categoryB.children.length === 0){
+            return false;
+        }
+
+        var alias = cc.Util.find(categoryB.children, function(child){
+            return child.urlId === categoryA.urlId;
+        });
+
+        return !cc.Util.isUndefined(alias);
+    };
 
     /**
      * Checks whether a given category is the parent
