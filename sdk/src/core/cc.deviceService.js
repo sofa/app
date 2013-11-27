@@ -100,6 +100,13 @@ cc.define('cc.DeviceService', function($window){
     };
 
     self.hasModernFlexboxSupport = function(){
+
+        // Firefox currently has a flexbox bug
+        // See http://stackoverflow.com/a/17435156/956278
+        if ( ua.match(/Firefox/i) ) {
+            return false;
+        }
+
         var supportedValues =   [
                                     '-webkit-flex',
                                     '-moz-flex',
