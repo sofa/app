@@ -23,6 +23,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.searchService',
     'sdk.services.injectsService',
     'sdk.services.trackingService',
+    'sdk.services.requestAnimationFrame',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',

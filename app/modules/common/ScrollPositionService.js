@@ -1,6 +1,6 @@
 angular
     .module('CouchCommerceApp')
-    .factory('scrollPositionService',['$rootScope', '$location', '$state', '$timeout', 'deviceService', function ($rootScope, $location, $state, $timeout, deviceService) {
+    .factory('scrollPositionService',['$rootScope', '$location', '$state', 'deviceService', 'requestAnimationFrame', function ($rootScope, $location, $state, deviceService, requestAnimationFrame) {
 
             'use strict';
 
@@ -39,12 +39,9 @@ angular
                     cachedValue = cache[url];
                 }
 
-                //TODO:
-                //I'm not entirely sure why we need to defer here. In any case, we should
-                //use rAF then.
-                $timeout(function(){
+                requestAnimationFrame(function(){
                     scroller.scrollTop = cachedValue ? cachedValue.scrollOffset : 0;
-                },1);
+                });
             });
 
             return self;
