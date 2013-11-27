@@ -41,6 +41,7 @@ module.exports = function(grunt) {
                 '../sdk/dist/cc.angular.templates.js'
             ],
             app:[
+                'lib/bindonce.js',
                 'modules/**/*.js', 
                 '<%= templateFile %>'
             ]

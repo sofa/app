@@ -27,6 +27,7 @@ angular.module('CouchCommerceApp', [
     'sdk.filter',
     'ui.bootstrap',
     // 'angular-carousel',
+    'pasvaz.bindonce',
     'templates'
     ])
     .config(['$stateProvider', '$urlRouterProvider', 'screenIndexes', function($stateProvider, $urlRouterProvider, screenIndexes){
