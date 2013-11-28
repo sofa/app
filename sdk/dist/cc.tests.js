@@ -735,20 +735,32 @@ test('calculates summary', function() {
     product2.price = 12.28;
     product2.tax = 7;
 
+    var product3 = new cc.models.Product();
+    product3.name = 'Testproduct';
+    product3.id = 3;
+    product3.price = 9.00;
+    product3.tax = 7;
+
+    var variant = {
+        price: 10.00
+    };
+
     basketService.addItem(product, 1);
     basketService.addItem(product, 4);
 
     basketService.addItem(product2, 2);
     basketService.addItem(product2, 3);
 
+    basketService.addItem(product3, 1, variant);
+
     var summary = basketService.getSummary();
     var itemCount = basketService.getItems().length;
 
-    ok(itemCount === 2, 'has two basketItems');
-    ok(summary.quantity === 10, 'has a quantity of 15');
-    ok(summary.sum === 84.65, 'calculates sum correctly');
-    ok(summary.vat === 8.50, 'calculates VAT correctly');
-    ok(summary.total === 89.65, 'calculates total correctly');
+    ok(itemCount === 3, 'has two basketItems');
+    ok(summary.quantity === 11, 'has a quantity of 15');
+    ok(summary.sum === 94.65, 'calculates sum correctly');
+    ok(summary.vat === 9.15, 'calculates VAT correctly');
+    ok(summary.total === 99.65, 'calculates total correctly');
     ok(summary.shipping === 5, 'uses shipping costs from config');
 });
 

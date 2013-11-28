@@ -375,7 +375,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
             var itemQuantity = parseInt(item.quantity, 10);
             var product = item.product;
             //attention this doesn't take variants into account yet!
-            var price = product.price;
+            var price = item.variant && cc.Util.isNumber(item.variant.price) ? item.variant.price : product.price;
             var tax = parseInt(product.tax, 10);
             quantity += itemQuantity;
             sum += price * itemQuantity;
