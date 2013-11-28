@@ -324,7 +324,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
             // For providers such as CouchPay
             if ( data.response.redirect ) {
-                redirect = data.response.redirect;
+                redirect = { token: token, redirect: data.response.redirect };
             }
             else {
                 redirect = null;
@@ -355,8 +355,8 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
             basketService.clear();
 
-            if ( redirect ) {
-                window.location.href = configService.get('checkoutUrl') + redirect + '?token=' + token;
+            if (redirect && redirect.token === token) {
+                window.location.href = configService.get('checkoutUrl') + redirect.redirect + '?token=' + token;
                 throw "stop execution";
             }
 
