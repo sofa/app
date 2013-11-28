@@ -1,6 +1,6 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
     <cc-inject target="aboveContent"></cc-inject>
-    <h1 class="cc-title--huge" ng-bind-html="headline"></h1>
+    <h1 class="cc-title--huge" bindonce="headline" bo-text="headline"></h1>
     <ul class="cc-product-grid">
         <li bindonce="product" ng-repeat="product in products"
             bo-class="{ 'cc-product-grid__row--odd' : $odd,
@@ -15,7 +15,7 @@
             <div class="cc-product-grid__row-image" 
                  style="background-image: url({{product.getImage('small')}})">
             </div>
-            <div class="cc-product-grid__row-text" ng-bind-html="product.name"></div>
+            <div class="cc-product-grid__row-text" bo-text="product.name"></div>
             <div>
         </li>
     </ul>

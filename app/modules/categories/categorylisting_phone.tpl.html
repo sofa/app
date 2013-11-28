@@ -1,8 +1,8 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
     <cc-inject target="aboveContent"></cc-inject>
 
-    <div ng-if="category">
-        <h1 class="cc-title--huge" ng-bind-html="headline"></h1>
+    <div bindonce="category" ng-if="category">
+        <h1 class="cc-title--huge" bo-text="headline"></h1>
         <ul class="cc-category-list">
             <li ng-repeat="category in category.children"
                 ng-click="goToCategory(category, $event)"
@@ -10,7 +10,7 @@
                 class="cc-category-list__row" >
 
                 <div class="cc-category-list__row-content">
-                    <span ng-bind-html="category.label"></span>
+                    <span bo-text="category.label"></span>
                     <i class="cc-category-list__row-icon fa fa-chevron-right"></i>
                 </div>
 

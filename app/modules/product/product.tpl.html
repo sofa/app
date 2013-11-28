@@ -2,8 +2,8 @@
     <div rn-carousel-infinite rn-carousel-current="product" rn-carousel-prev="getPrevProduct(item)" rn-carousel-next="getNextProduct(item)">
         <cc-inject target="aboveContent"></cc-inject>
 
-        <div ng-if="product">
-            <h1 class="cc-title--huge" ng-bind-html="product.name"></h1>
+        <div bindonce="product" ng-if="product">
+            <h1 class="cc-title--huge" bo-text="product.name"></h1>
             
             <cc-inject target="beneathTitle"></cc-inject>
 
