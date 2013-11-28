@@ -3,7 +3,7 @@
         <div class="cc-product-buy-box__price">
             {{ price | currency }}
         </div>
-        <div class="cc-product-buy-box__price-old" ng-show="product.hasOldPrice()">
+        <div class="cc-product-buy-box__price-old" bindonce="product" bo-if="product.hasOldPrice()">
             {{ product.priceOld | currency }}
         </div>
     </div>
@@ -27,8 +27,9 @@
             </div>
             <div>{{product.getBasePriceInfo()}}</div>
         </div>
-        <div class="cc-product-buy-box__info-right">
-            {{ product.delivery }}
+        <div bindonce="product" 
+             class="cc-product-buy-box__info-right"
+             bo-text="product.delivery">
         </div>
     </div>
 </div>
