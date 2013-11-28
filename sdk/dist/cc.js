@@ -375,7 +375,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
             var itemQuantity = parseInt(item.quantity, 10);
             var product = item.product;
             //attention this doesn't take variants into account yet!
-            var price = item.variant && cc.Util.isNumber(item.variant.price) ? item.variant.price : product.price;
+            var price = item.getPrice();
             var tax = parseInt(product.tax, 10);
             quantity += itemQuantity;
             sum += price * itemQuantity;
@@ -1426,8 +1426,12 @@ cc.define('cc.models.BasketItem', function(){
     return self;
 });
 
+cc.models.BasketItem.prototype.getPrice = function(){
+    return this.variant && cc.Util.isNumber(this.variant.price) ? this.variant.price : this.product.price;
+};
+
 cc.models.BasketItem.prototype.getTotal = function(){
-    return cc.Util.round(this.quantity * this.product.price, 2);
+    return cc.Util.round(this.quantity * this.getPrice(), 2);
 };
 
 cc.models.BasketItem.prototype.getVariantID = function(){

@@ -1517,6 +1517,22 @@ asyncTest('returns the last product of the category for the previous product whe
 });
 
 
+module('cc.models.basketItem.tests');
+
+test('it should calculate total with the price of the variant', function() {
+
+    var product = new cc.models.Product();
+    product.price = 9;
+
+    var basketItem = new cc.models.BasketItem();
+    basketItem.product = product;
+    basketItem.variant = {
+        price: 10
+    };
+    basketItem.quantity = 2;
+
+    equal(basketItem.getTotal(), 20, 'uses price of variant');
+});
 module('cc.models.product.tests');
 
 test('it should be marked as out of stock', function() {

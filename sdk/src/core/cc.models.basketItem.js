@@ -9,8 +9,12 @@ cc.define('cc.models.BasketItem', function(){
     return self;
 });
 
+cc.models.BasketItem.prototype.getPrice = function(){
+    return this.variant && cc.Util.isNumber(this.variant.price) ? this.variant.price : this.product.price;
+};
+
 cc.models.BasketItem.prototype.getTotal = function(){
-    return cc.Util.round(this.quantity * this.product.price, 2);
+    return cc.Util.round(this.quantity * this.getPrice(), 2);
 };
 
 cc.models.BasketItem.prototype.getVariantID = function(){
