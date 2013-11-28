@@ -17,7 +17,6 @@ angular
             //the scope price will be updated when variants change
             $scope.price = product.price;
             $scope.images = product.getAllImages();
-            //$scope.selectedImage = $scope.images.length > 0 && $scope.images[0];
 
             $scope.$sce = $sce;
 
