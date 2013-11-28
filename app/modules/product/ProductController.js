@@ -39,7 +39,7 @@ angular
             $scope.onThumbnailSelected = function(product, image){
                 $scope.selectedImage = image;
             };
-            
+
             var formattedShippingCosts = $filter('currency')(configService.get('shippingCost'));
             $scope.shippingCosts = $scope.ln.shippingCosts.replace('{shipping}', formattedShippingCosts);
 

@@ -9,9 +9,27 @@
     width: 100%;
 }
 
+.cc-product-buy-box-price-wrapper {
+    float:left;
+}
+
 .cc-product-buy-box__price{
-    float: left;
     font-size: $font-size-huge;
+}
+
+.cc-product-buy-box__price-old{
+    margin-left: 20px;
+    font-size: $font-size-big;
+    text-decoration:line-through;
+}
+
+@media only screen and (min-width: 500px) {
+    .cc-product-buy-box__price{
+        float: left;
+    }
+    .cc-product-buy-box__price-old{
+        float: left;
+    }
 }
 
 .cc-product-buy-box__add-to-cart{
