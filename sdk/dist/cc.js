@@ -1427,7 +1427,7 @@ cc.define('cc.models.BasketItem', function(){
 });
 
 cc.models.BasketItem.prototype.getPrice = function(){
-    return this.variant && cc.Util.isNumber(this.variant.price) ? this.variant.price : this.product.price;
+    return this.variant && cc.Util.isNumeric(this.variant.price) ? this.variant.price : this.product.price;
 };
 
 cc.models.BasketItem.prototype.getTotal = function(){
@@ -2446,6 +2446,9 @@ cc.Util = {
     },
     isNumber: function(value){
       return typeof value === 'number';
+    },
+    isNumeric: function(value){
+      return !isNaN(parseFloat(value)) && isFinite(value);
     },
     isArray: function(value){
         return toString.call(value) === '[object Array]';

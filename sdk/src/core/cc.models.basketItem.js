@@ -10,7 +10,7 @@ cc.define('cc.models.BasketItem', function(){
 });
 
 cc.models.BasketItem.prototype.getPrice = function(){
-    return this.variant && cc.Util.isNumber(this.variant.price) ? this.variant.price : this.product.price;
+    return this.variant && cc.Util.isNumeric(this.variant.price) ? this.variant.price : this.product.price;
 };
 
 cc.models.BasketItem.prototype.getTotal = function(){

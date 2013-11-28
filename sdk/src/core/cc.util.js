@@ -212,6 +212,9 @@ cc.Util = {
     isNumber: function(value){
       return typeof value === 'number';
     },
+    isNumeric: function(value){
+      return !isNaN(parseFloat(value)) && isFinite(value);
+    },
     isArray: function(value){
         return toString.call(value) === '[object Array]';
     },
