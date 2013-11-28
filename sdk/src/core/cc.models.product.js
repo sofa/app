@@ -46,6 +46,11 @@ cc.models.Product.prototype.getBasePriceInfo = function(){
     return '';
 };
 
+
+cc.models.Product.prototype.hasOldPrice = function(){
+    return cc.Util.isNumeric(this.priceOld) && this.priceOld > 0;
+};
+
 cc.models.Product.prototype.hasVariants = function(){
     return this.variants && this.variants.length > 0;
 };
