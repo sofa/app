@@ -18,7 +18,7 @@
                             {{item.product.name}}
                         </h2>
                         <div class="">
-                            {{ln.listItemPrice}} {{item.product.price | currency}}
+                            {{ln.listItemPrice}} {{item.getPrice() | currency}}
                         </div>
                         <div class="cc-cart-list__row-variants">
                             <div ng-repeat="(variantProperty, variantPropertyValue) in item.variant.properties">
