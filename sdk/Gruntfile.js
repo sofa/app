@@ -82,8 +82,11 @@ module.exports = function(grunt) {
                             'vendor/angular-sanitize.js',
                             'vendor/angular-mocks.js',
                             'vendor/angular-scenario.js',
+  
                             //how could we just link to src.cc here?
                             'src/core/cc.js',
+                            //the test config
+                            'test/cc.config.js',
                             'src/core/**/*.js',
                             //how could we just link to src.ccAngular here?
                             'src/services/**/*.js',
