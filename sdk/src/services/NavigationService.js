@@ -1,38 +1,19 @@
 angular.module('sdk.services.navigationService', [
         'sdk.services.navigationService',
         'sdk.services.couchService',
-        'sdk.services.trackingService'
+        'sdk.services.trackingService',
+        'sdk.services.urlConstructionService',
+        'sdk.services.urlParserService'
     ]);
 
 angular
     .module('sdk.services.navigationService')
-    .factory('navigationService', ['$location', '$window', 'configService', 'couchService', 'trackingService',
-        function($location, $window, configService, couchService, trackingService){
+    .factory('navigationService', ['$location', '$window', 'couchService', 'trackingService', 'urlConstructionService', 'urlParserService',
+        function($location, $window, couchService, trackingService, urlConstructionService, urlParserService){
 
         'use strict';
 
         var self = {};
-
-        var views = {
-            product: /\/cat\/.*\/product\//i,
-            products: /\/cat\/.*\/products/i,
-            categories: /\/cat\/[^/]+$/i
-        };
-
-        var utilityRegex = {
-            urlBeforeCategory: /.*cat\//,
-            urlRightFromSlash: /\/.*/
-        };
-
-        self.isView = function(viewName){
-            var regex = views[viewName];
-
-            if(!regex){
-                throw new Error(viewName + "unknown");
-            }
-
-            return regex.test($location.path());
-        };
 
         var navigateToUrl = function(url) {
             trackingService.trackEvent({
@@ -43,31 +24,31 @@ angular
         };
 
         self.navigateToProducts = function(categoryUrlId){
-            navigateToUrl('/cat/' + categoryUrlId + '/products');
+            navigateToUrl(urlConstructionService.createUrlForProducts(categoryUrlId));
         };
 
         self.navigateToProduct = function(product){
-            navigateToUrl('/cat/' + product.categoryUrlId + '/product/' + product.urlKey);
+            navigateToUrl(urlConstructionService.createUrlForProduct(product));
         };
 
         self.navigateToCategory = function(categoryUrlId){
-            navigateToUrl('/cat/' + categoryUrlId);
+            navigateToUrl(urlConstructionService.createUrlForCategory(categoryUrlId));
         };
 
         self.navigateToRootCategory = function(){
-            navigateToUrl('');
+            navigateToUrl(urlConstructionService.createUrlForRootCategory());
         };
 
         self.navigateToCart = function(){
-            navigateToUrl('/cart');
+            navigateToUrl(urlConstructionService.createUrlForCart());
         };
 
         self.navigateToCheckout = function(){
-            navigateToUrl('/checkout');
+            navigateToUrl(urlConstructionService.createUrlForCheckout());
         };
 
         self.navigateToSummary = function(token){
-            $location.path('/summary/' + token);
+            $location.path(urlConstructionService.createUrlForSummary(token));
             trackingService.trackEvent({
                 category: 'pageView',
                 // No token here as it would flood the analytics
@@ -76,36 +57,25 @@ angular
         };
 
         self.navigateToShippingCostsPage = function(){
-            navigateToUrl('/pages/' + configService.get('linkShippingCosts', ''));
-        };
-
-        self.getCategoryUrlId = function(){
-            return $location.path()
-                .replace(utilityRegex.urlBeforeCategory,'')
-                .replace(utilityRegex.urlRightFromSlash, '');
-        };
-
-        self.isRootCategory = function(){
-            var path = $location.path();
-            return path === '/' || path === '/cat/' ;
+            navigateToUrl(urlConstructionService.createUrlForShippingCostsPage());
         };
 
         self.goUp = function(){
             var currentCategoryUrlId,
                 currentCategory;
 
-            if(self.isView('product')){
-                currentCategoryUrlId = self.getCategoryUrlId();
+            if(urlParserService.isView('product')){
+                currentCategoryUrlId = urlParserService.getCategoryUrlId();
                 self.navigateToProducts(currentCategoryUrlId);
             }
-            else if (self.isView('products')){
-                currentCategoryUrlId = self.getCategoryUrlId();
+            else if (urlParserService.isView('products')){
+                currentCategoryUrlId = urlParserService.getCategoryUrlId();
                 couchService.getCategory(currentCategoryUrlId)
                     .then(function(category){
                         navigateToParentCategory(category);
                     });
             }
-            else if(self.isView('categories')){
+            else if(urlParserService.isView('categories')){
                 currentCategory = couchService.getCurrentCategory();
                 navigateToParentCategory(currentCategory);
             }

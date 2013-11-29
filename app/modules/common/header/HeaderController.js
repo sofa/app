@@ -4,13 +4,14 @@ angular
     .module('CouchCommerceApp')
     .controller( 'HeaderController',
     [
-        '$rootScope', '$scope', '$location', 'navigationService', 'couchService', 'basketService',
-        function HeaderController($rootScope, $scope, $location, navigationService, couchService, basketService) {
+        '$rootScope', '$scope', '$location', 'navigationService', 'couchService', 'basketService', 'urlParserService',
+        function HeaderController($rootScope, $scope, $location, navigationService, couchService, basketService, urlParserService) {
 
             'use strict';
 
             $scope.basketItemCount = 0;
             $scope.navigationService = navigationService;
+            $scope.urlParserService = urlParserService;
 
             var updateBasketItemCount = function(){
                 $scope.basketItemCount = basketService.getSummary().quantity;

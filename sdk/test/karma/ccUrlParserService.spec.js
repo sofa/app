@@ -1,6 +1,6 @@
-describe('Testing the NavigationService', function() {
+describe('Testing the UrlParserService', function() {
 
-    var _navigationService,
+    var _urlParserService,
         _$location;
 
     var  PRODUCT_URL        = 'http://localhost:8888/couchcommerce/couchcommerce-frontend/app/dist/#/cat/deutsch-freizeitwelten-vintage/product/fahrerbrille-chronos',
@@ -10,10 +10,10 @@ describe('Testing the NavigationService', function() {
          PAGES_URL          = 'http://localhost:8888/couchcommerce/couchcommerce-frontend/app/dist/#/pages/neptune',
          PAGES_PRODUCT_URL  = 'http://localhost:8888/couchcommerce/couchcommerce-frontend/app/dist/#/pages/product';
 
-    beforeEach(module('sdk.services.navigationService'));
+    beforeEach(module('sdk.services.urlParserService'));
 
-    beforeEach(inject(function(navigationService, $location) {
-        _navigationService = navigationService;
+    beforeEach(inject(function(urlParserService, $location) {
+        _urlParserService = urlParserService;
         _$location = $location;
     }));
 
@@ -21,26 +21,34 @@ describe('Testing the NavigationService', function() {
 
         spyOn(_$location, 'path').andReturn(PRODUCT_URL);
 
-        expect(_navigationService.isView('product')).toBe(true);
-        expect(_navigationService.isView('products')).toBe(false);
-        expect(_navigationService.isView('categories')).toBe(false);
+        expect(_urlParserService.isView('product')).toBe(true);
+        expect(_urlParserService.isView('products')).toBe(false);
+        expect(_urlParserService.isView('categories')).toBe(false);
     });
 
     it('it should detect it as products url', function() {
 
         spyOn(_$location, 'path').andReturn(PRODUCTS_URL);
 
-        expect(_navigationService.isView('product')).toBe(false);
-        expect(_navigationService.isView('products')).toBe(true);
-        expect(_navigationService.isView('categories')).toBe(false);
+        expect(_urlParserService.isView('product')).toBe(false);
+        expect(_urlParserService.isView('products')).toBe(true);
+        expect(_urlParserService.isView('categories')).toBe(false);
     });
 
     it('it should detect it as products url', function() {
 
         spyOn(_$location, 'path').andReturn(CATEGORIES_URL);
 
-        expect(_navigationService.isView('product')).toBe(false);
-        expect(_navigationService.isView('products')).toBe(false);
-        expect(_navigationService.isView('categories')).toBe(true);
+        expect(_urlParserService.isView('product')).toBe(false);
+        expect(_urlParserService.isView('products')).toBe(false);
+        expect(_urlParserService.isView('categories')).toBe(true);
     });
+
+    it('it can extract productUrlId from url', function() {
+
+        spyOn(_$location, 'path').andReturn(PRODUCT_URL);
+
+        expect(_urlParserService.getProductUrlId()).toBe('fahrerbrille-chronos');
+    });
+    
 });
