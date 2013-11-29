@@ -2180,6 +2180,87 @@ cc.define('cc.TrackingService', function($window, $http){
 
     return self;
 });
+cc.define('cc.UrlConstructionService', function(configService){
+    var self = {};
+
+    self.createUrlForProducts = function(categoryUrlId){
+        return '/cat/' + categoryUrlId + '/products';
+    };
+
+    self.createUrlForProduct = function(product){
+        return '/cat/' + product.categoryUrlId + '/product/' + product.urlKey;
+    };
+
+    self.createUrlForCategory = function(categoryUrlId){
+        return '/cat/' + categoryUrlId;
+    };
+
+    self.createUrlForRootCategory = function(){
+        return '';
+    };
+
+    self.createUrlForCart = function(){
+        return '/cart';
+    };
+
+    self.createUrlForCheckout = function(){
+        return '/checkout';
+    };
+
+    self.createUrlForSummary = function(token){
+        return '/summary/' + token;
+    };
+
+    self.createUrlForShippingCostsPage = function(){
+        return '/pages/' + configService.get('linkShippingCosts', '');
+    };
+
+    return self;
+});
+cc.define('cc.UrlParserService', function($location){
+    var self = {};
+
+    var views = {
+        product: /\/cat\/.*\/product\//i,
+        products: /\/cat\/.*\/products/i,
+        categories: /\/cat\/[^/]+$/i
+    };
+
+    var utilityRegex = {
+        urlBeforeCategory: /.*cat\//,
+        urlBeforeProduct: /.*\/product\//,
+        urlRightFromSlash: /\/.*/
+    };
+
+    self.isView = function(viewName){
+        var regex = views[viewName];
+
+        if(!regex){
+            throw new Error(viewName + "unknown");
+        }
+
+        return regex.test($location.path());
+    };
+
+    self.isRootCategory = function(){
+        var path = $location.path();
+        return path === '/' || path === '/cat/' ;
+    };
+
+    self.getCategoryUrlId = function(){
+        return $location.path()
+                        .replace(utilityRegex.urlBeforeCategory,'')
+                        .replace(utilityRegex.urlRightFromSlash, '');
+    };
+
+    self.getProductUrlId = function(){
+        return $location.path()
+                        .replace(utilityRegex.urlBeforeProduct,'')
+                        .replace(utilityRegex.urlRightFromSlash, '');
+    };
+
+    return self;
+});
 cc.define('cc.UserService', function(storageService, configService){
 
     'use strict';

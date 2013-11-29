@@ -1,6 +1,6 @@
 (function(window, cc, angular, undefined){
 
-angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccAddress/ccaddress.tpl.html",
@@ -12,6 +12,16 @@ angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templat
     "    <div>{{data.country.label}}</div>\n" +
     "</div>\n" +
     "");
+}]);
+
+angular.module("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html",
+    "<ul>\n" +
+    "    <li class=\"cc-breadcrumbs__entry\" \n" +
+    "        ng-repeat=\"entry in data\" \n" +
+    "        ng-bind=\"entry.title\">\n" +
+    "    </li>\n" +
+    "</ul>");
 }]);
 
 angular.module("src/directives/ccCheckBox/cccheckbox.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -253,37 +263,22 @@ angular
 
 
 
-angular.module('sdk.services.navigationService', []);
+angular.module('sdk.services.navigationService', [
+        'sdk.services.navigationService',
+        'sdk.services.couchService',
+        'sdk.services.trackingService',
+        'sdk.services.urlConstructionService',
+        'sdk.services.urlParserService'
+    ]);
 
 angular
     .module('sdk.services.navigationService')
-    .factory('navigationService', ['$location', '$window', 'configService', 'couchService', 'trackingService',
-        function($location, $window, configService, couchService, trackingService){
+    .factory('navigationService', ['$location', '$window', 'couchService', 'trackingService', 'urlConstructionService', 'urlParserService',
+        function($location, $window, couchService, trackingService, urlConstructionService, urlParserService){
 
         'use strict';
 
         var self = {};
-
-        var views = {
-            product: /\/cat\/.*\/product\//i,
-            products: /\/cat\/.*\/products/i,
-            categories: /\/cat\//i
-        };
-
-        var utilityRegex = {
-            urlBeforeCategory: /.*cat\//,
-            urlRightFromSlash: /\/.*/
-        };
-
-        self.isView = function(viewName){
-            var regex = views[viewName];
-
-            if(!regex){
-                throw new Error(viewName + "unknown");
-            }
-
-            return regex.test($location.path());
-        };
 
         var navigateToUrl = function(url) {
             trackingService.trackEvent({
@@ -294,31 +289,31 @@ angular
         };
 
         self.navigateToProducts = function(categoryUrlId){
-            navigateToUrl('/cat/' + categoryUrlId + '/products');
+            navigateToUrl(urlConstructionService.createUrlForProducts(categoryUrlId));
         };
 
         self.navigateToProduct = function(product){
-            navigateToUrl('/cat/' + product.categoryUrlId + '/product/' + product.urlKey);
+            navigateToUrl(urlConstructionService.createUrlForProduct(product));
         };
 
         self.navigateToCategory = function(categoryUrlId){
-            navigateToUrl('/cat/' + categoryUrlId);
+            navigateToUrl(urlConstructionService.createUrlForCategory(categoryUrlId));
         };
 
         self.navigateToRootCategory = function(){
-            navigateToUrl('');
+            navigateToUrl(urlConstructionService.createUrlForRootCategory());
         };
 
         self.navigateToCart = function(){
-            navigateToUrl('/cart');
+            navigateToUrl(urlConstructionService.createUrlForCart());
         };
 
         self.navigateToCheckout = function(){
-            navigateToUrl('/checkout');
+            navigateToUrl(urlConstructionService.createUrlForCheckout());
         };
 
         self.navigateToSummary = function(token){
-            $location.path('/summary/' + token);
+            $location.path(urlConstructionService.createUrlForSummary(token));
             trackingService.trackEvent({
                 category: 'pageView',
                 // No token here as it would flood the analytics
@@ -327,38 +322,25 @@ angular
         };
 
         self.navigateToShippingCostsPage = function(){
-            navigateToUrl('/pages/' + configService.get('linkShippingCosts', ''));
-        };
-
-        self.getCategoryUrlId = function(){
-            return $location.path()
-                .replace(utilityRegex.urlBeforeCategory,'')
-                .replace(utilityRegex.urlRightFromSlash, '');
-        };
-
-        self.isRootCategory = function(){
-            var path = $location.path();
-            return path === '/' || path === '/cat/' ;
+            navigateToUrl(urlConstructionService.createUrlForShippingCostsPage());
         };
 
         self.goUp = function(){
             var currentCategoryUrlId,
                 currentCategory;
 
-            //TODO fix me our regex suck and that's why we need to check here
-            //in a specific order
-            if(self.isView('product')){
-                currentCategoryUrlId = self.getCategoryUrlId();
+            if(urlParserService.isView('product')){
+                currentCategoryUrlId = urlParserService.getCategoryUrlId();
                 self.navigateToProducts(currentCategoryUrlId);
             }
-            else if (self.isView('products')){
-                currentCategoryUrlId = self.getCategoryUrlId();
+            else if (urlParserService.isView('products')){
+                currentCategoryUrlId = urlParserService.getCategoryUrlId();
                 couchService.getCategory(currentCategoryUrlId)
                     .then(function(category){
                         navigateToParentCategory(category);
                     });
             }
-            else if(self.isView('categories')){
+            else if(urlParserService.isView('categories')){
                 currentCategory = couchService.getCurrentCategory();
                 navigateToParentCategory(currentCategory);
             }
@@ -456,6 +438,28 @@ angular
     .factory('trackingService', ['$window', '$http', function($window, $http){
         return new cc.TrackingService($window, $http);
 }]);
+angular.module('sdk.services.urlConstructionService', [
+        'sdk.services.configService'
+    ]);
+
+angular
+    .module('sdk.services.urlConstructionService')
+    .factory('urlConstructionService', ['configService', function(configService){
+        return new cc.UrlConstructionService(configService);
+}]);
+
+
+
+angular.module('sdk.services.urlParserService', []);
+
+angular
+    .module('sdk.services.urlParserService')
+    .factory('urlParserService', ['$location', function($location){
+        return new cc.UrlParserService($location);
+}]);
+
+
+
 angular.module('sdk.services.userService', [
         // TODO: Investigate. I'm not sold this should be handled on this level. 
         store.enabled ? 'sdk.services.localStorageService' : 'sdk.services.memoryStorageService',
@@ -486,6 +490,84 @@ angular.module('sdk.directives.ccAddress')
             templateUrl: 'src/directives/ccAddress/ccaddress.tpl.html'
         };
     });
+
+angular.module('sdk.directives.ccBreadcrumbs', [
+        'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html',
+        'sdk.services.urlParserService',
+        'sdk.services.urlConstructionService',
+        'sdk.services.couchService'
+    ]);
+
+angular.module('sdk.directives.ccBreadcrumbs')
+    .directive('ccBreadcrumbs', ['$location', 'urlParserService', 'urlConstructionService', 'couchService', function($location, urlParserService, urlConstructionService, couchService) {
+
+        'use strict';
+
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: 'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html',
+            scope: {
+                data: '=?'
+            },
+            link: function($scope, $element, attrs){
+
+                var categoryToLinkTitleList = function(category){
+                    var list = [];
+
+                    var doIt = function(currentCategory){
+                        if(currentCategory.parent){
+                            list.unshift({
+                                title: currentCategory.label,
+                                link: currentCategory.urlId
+                            });
+
+                            doIt(currentCategory.parent);
+                        }
+                    };
+
+                    doIt(category);
+
+                    return list;
+                };
+
+                var prependRootLink = function(list){
+                    //get rid of hardcoded stuff
+                    list.unshift({
+                        title: 'Startseite',
+                        link: '/'
+                    });
+
+                    return list;
+                };
+
+                $scope.$watch(function(){
+                    return $location.path();
+                }, function(){
+                    if(!urlParserService.isRootCategory() ||
+                        urlParserService.isView('categories') ||
+                        urlParserService.isView('products') ||
+                        urlParserService.isView('product')){
+
+                        var categoryUrlId = urlParserService.getCategoryUrlId();
+
+                        couchService
+                            .getCategory(categoryUrlId)
+                            .then(function(category){
+                                var data = prependRootLink(
+                                                categoryToLinkTitleList(category));
+
+                                if (urlParserService.isView('products')){
+                                    data.pop();
+                                }
+
+                                $scope.data = data;
+                            });
+                    }
+                });
+            }
+        };
+    }]);
 
 angular.module('sdk.directives.ccCheckBox', ['src/directives/ccCheckBox/cccheckbox.tpl.html']);
 
@@ -3148,22 +3230,23 @@ angular.module('sdk.directives.ccZippy')
         };
     });
 angular.module('sdk.directives', [
-    'sdk.directives.ccFixedToolbarsView',
-    'sdk.directives.ccZippy',
-    'sdk.directives.ccFooter',
-    'sdk.directives.ccSelectBox',
-    'sdk.directives.ccCheckBox',
-    'sdk.directives.ccAddress',
-    'sdk.directives.ccLazyValidation',
-    'sdk.directives.ccVariantSelector',
-    'sdk.directives.ccThumbnailBar',
-    'sdk.directives.ccScrollingShadow',
-    'sdk.directives.ccScrollFix',
-    'sdk.directives.ccElasticViews',
-    'sdk.directives.ccLoadingSpinner',
-    'sdk.directives.ccInclude',
-    'sdk.directives.ccIosPositionFixedInputFix',
-    'sdk.directives.ccInject'
+        'sdk.directives.ccFixedToolbarsView',
+        'sdk.directives.ccZippy',
+        'sdk.directives.ccFooter',
+        'sdk.directives.ccSelectBox',
+        'sdk.directives.ccCheckBox',
+        'sdk.directives.ccAddress',
+        'sdk.directives.ccLazyValidation',
+        'sdk.directives.ccVariantSelector',
+        'sdk.directives.ccThumbnailBar',
+        'sdk.directives.ccScrollingShadow',
+        'sdk.directives.ccScrollFix',
+        'sdk.directives.ccElasticViews',
+        'sdk.directives.ccLoadingSpinner',
+        'sdk.directives.ccInclude',
+        'sdk.directives.ccIosPositionFixedInputFix',
+        'sdk.directives.ccInject',
+        'sdk.directives.ccBreadcrumbs'
     ]);
 angular.module('sdk.decorators.$rootScope', []);
 
