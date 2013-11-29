@@ -42,18 +42,30 @@ module.exports = function(grunt) {
             ],
             app:[
                 'lib/bindonce.js',
-                'modules/**/*.js', 
+                'modules/**/*.js',
                 '<%= templateFile %>'
             ]
         },
         uglify: {
-          // options: {
-          //   banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-          // },
-          build: {
-            src: 'dist/js/app.js',
-            dest: 'dist/js/<%= appJsName %>'
-          }
+            // options: {
+            //   banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+            // },
+            build: {
+                files: {
+                    'dist/js/<%= appJsName %>': 'dist/js/app.js'
+                }
+            },
+            debug: {
+                options: {
+                    compress: false,
+                    preserveComments: 'all',
+                    mangle: false,
+                    beautify: true
+                },
+                files: {
+                    'dist/js/<%= appJsName %>': 'dist/js/app.js'
+                }
+            }
         },
         clean: ['<%= distdir %>/*'],
         concat:{
@@ -199,9 +211,9 @@ module.exports = function(grunt) {
                 //to the version control for the deployment branch/tag.
                 command: function(){
                     var version = grunt.config.get('appVersion');
-                    
+
                     //useful for debugging without tagging and pushing
-                    //return 'git add -A && git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release"';
+                    // return 'git add -A && git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release"';
                     return 'git add -A && git add -f dist && git commit -m "chore(*): adding dist folder for ' + version + ' release" && git tag ' + version + ' && git push --tags';
                 }
             }
@@ -219,12 +231,14 @@ module.exports = function(grunt) {
     grunt.registerTask('build', ['clean', 'html2js', 'jshint', 'script:dev', 'concat:index', 'sass', 'copy']);
 
     grunt.registerTask('production', ['name-min', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify', 'script:production', 'concat:index']);
+    grunt.registerTask('production-debug', ['name-min', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify:debug', 'script:production', 'concat:index']);
 
     grunt.registerTask('production--unique', ['name-unique', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify', 'script:production', 'concat:index']);
 
     grunt.registerTask('release', ['releaseBranchPre:app', 'production--unique', 'releaseBranch:app']);
 
     grunt.registerTask('deploy', ['releaseBranchPre:deploy', 'production', 'set-version', 'changelog', 'shell:dist']);
+    grunt.registerTask('deploy-debug', ['releaseBranchPre:deploy', 'production-debug', 'set-version', 'changelog', 'shell:dist']);
 
     grunt.registerTask('name-min', function(){
         grunt.config.set('appJsName', 'app.min.js');
@@ -254,8 +268,8 @@ module.exports = function(grunt) {
         var path = require('path');
         var relativeTo = this.data.relativeTo || '';
         var scriptTags = this.filesSrc
-                            .map(function(val){ 
-                                return '<script src="' + path.relative(relativeTo, val) + '"></script>'; 
+                            .map(function(val){
+                                return '<script src="' + path.relative(relativeTo, val) + '"></script>';
                             })
                             .join('\n');
 
