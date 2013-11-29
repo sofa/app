@@ -1,4 +1,8 @@
-angular.module('sdk.services.navigationService', []);
+angular.module('sdk.services.navigationService', [
+        'sdk.services.navigationService',
+        'sdk.services.couchService',
+        'sdk.services.trackingService'
+    ]);
 
 angular
     .module('sdk.services.navigationService')
@@ -12,7 +16,7 @@ angular
         var views = {
             product: /\/cat\/.*\/product\//i,
             products: /\/cat\/.*\/products/i,
-            categories: /\/cat\//i
+            categories: /\/cat\/[^/]+$/i
         };
 
         var utilityRegex = {
@@ -90,8 +94,6 @@ angular
             var currentCategoryUrlId,
                 currentCategory;
 
-            //TODO fix me our regex suck and that's why we need to check here
-            //in a specific order
             if(self.isView('product')){
                 currentCategoryUrlId = self.getCategoryUrlId();
                 self.navigateToProducts(currentCategoryUrlId);
