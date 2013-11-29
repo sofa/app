@@ -64,7 +64,7 @@
         </div>
 
     <a  ng-click="acceptedAgreements() && proceed()"
-        ng-disabled="!vm.acceptedAgreement"
+        ng-disabled="!acceptedAgreements()"
         ng-class="acceptedAgreements() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'"
         >{{ ln.buyButton }}
     </a>
