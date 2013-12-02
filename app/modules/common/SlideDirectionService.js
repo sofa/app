@@ -58,7 +58,7 @@ angular
             });
 
             var getDirectionFromIndexes = function(fromIndex, toIndex){
-                return toIndex > fromIndex ? 'rtl' : 'ltr';
+                return (toIndex > fromIndex) || (toIndex === fromIndex) ? 'rtl' : 'ltr';
             };
 
             $self.getDirection = function(){
