@@ -41,8 +41,23 @@ angular.module('CouchCommerceApp', [
                 controller: 'CategoryController',
                 screenIndex: screenIndexes.category,
                 resolve: {
-                    category: ['couchService', '$stateParams', function(couchService, $stateParams){
-                        return couchService.getCategory($stateParams.category);
+                    category: ['couchService', '$stateParams', 'navigationService', '$q', function(couchService, $stateParams, navigationService, $q){
+
+                        return couchService
+                                .getCategory($stateParams.category)
+                                .then(function(category){
+
+                                    //we need to make that check here *before* the CategoryController
+                                    //is intialized. Otherwise we will have double transitions in such
+                                    //cases.
+                                    if(!category.children){
+                                        navigationService.navigateToProducts(category.urlId);
+                                        
+                                        return $q.reject();
+                                    }
+
+                                    return category;
+                                });
                     }]
                 }
             };

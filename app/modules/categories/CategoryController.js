@@ -39,13 +39,7 @@ angular
                     });
             };
 
-            if (!category.children){
-                navigationService.navigateToProducts(category.urlId);
-            }
-            else{
-                $scope.category = category;
-                $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;
-            }
-
+            $scope.category = category;
+            $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;
         }
     ]);
