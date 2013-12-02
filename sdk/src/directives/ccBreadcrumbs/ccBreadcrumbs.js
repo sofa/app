@@ -7,7 +7,7 @@ angular.module('sdk.directives.ccBreadcrumbs', [
     ]);
 
 angular.module('sdk.directives.ccBreadcrumbs')
-    .directive('ccBreadcrumbs', ['$location', 'urlParserService', 'urlConstructionService', 'couchService', function($location, urlParserService, urlConstructionService, couchService) {
+    .directive('ccBreadcrumbs', ['$location', 'urlParserService', 'urlConstructionService', 'couchService', 'navigationService', function($location, urlParserService, urlConstructionService, couchService, navigationService) {
 
         'use strict';
 
@@ -27,7 +27,7 @@ angular.module('sdk.directives.ccBreadcrumbs')
                         if(currentCategory.parent){
                             list.unshift({
                                 title: currentCategory.label,
-                                link: currentCategory.urlId
+                                link: urlConstructionService.createUrlForCategory(currentCategory.urlId)
                             });
 
                             doIt(currentCategory.parent);
@@ -47,6 +47,10 @@ angular.module('sdk.directives.ccBreadcrumbs')
                     });
 
                     return list;
+                };
+
+                $scope.navigateTo = function(entry){
+                    $location.path(entry.link);
                 };
 
                 $scope.$watch(function(){

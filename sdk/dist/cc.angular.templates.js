@@ -16,8 +16,8 @@ angular.module("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html", []).run([
   $templateCache.put("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html",
     "<ul>\n" +
     "    <li class=\"cc-breadcrumbs__entry\" \n" +
-    "        ng-repeat=\"entry in data\" \n" +
-    "        ng-bind=\"entry.title\">\n" +
+    "        ng-repeat=\"entry in data\">\n" +
+    "        <a ng-click=\"navigateTo(entry)\" ng-bind=\"entry.title\"></a>\n" +
     "    </li>\n" +
     "</ul>");
 }]);

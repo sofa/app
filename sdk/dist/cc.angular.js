@@ -18,8 +18,8 @@ angular.module("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html", []).run([
   $templateCache.put("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html",
     "<ul>\n" +
     "    <li class=\"cc-breadcrumbs__entry\" \n" +
-    "        ng-repeat=\"entry in data\" \n" +
-    "        ng-bind=\"entry.title\">\n" +
+    "        ng-repeat=\"entry in data\">\n" +
+    "        <a ng-click=\"navigateTo(entry)\" ng-bind=\"entry.title\"></a>\n" +
     "    </li>\n" +
     "</ul>");
 }]);
@@ -499,7 +499,7 @@ angular.module('sdk.directives.ccBreadcrumbs', [
     ]);
 
 angular.module('sdk.directives.ccBreadcrumbs')
-    .directive('ccBreadcrumbs', ['$location', 'urlParserService', 'urlConstructionService', 'couchService', function($location, urlParserService, urlConstructionService, couchService) {
+    .directive('ccBreadcrumbs', ['$location', 'urlParserService', 'urlConstructionService', 'couchService', 'navigationService', function($location, urlParserService, urlConstructionService, couchService, navigationService) {
 
         'use strict';
 
@@ -519,7 +519,7 @@ angular.module('sdk.directives.ccBreadcrumbs')
                         if(currentCategory.parent){
                             list.unshift({
                                 title: currentCategory.label,
-                                link: currentCategory.urlId
+                                link: urlConstructionService.createUrlForCategory(currentCategory.urlId)
                             });
 
                             doIt(currentCategory.parent);
@@ -539,6 +539,10 @@ angular.module('sdk.directives.ccBreadcrumbs')
                     });
 
                     return list;
+                };
+
+                $scope.navigateTo = function(entry){
+                    $location.path(entry.link);
                 };
 
                 $scope.$watch(function(){
