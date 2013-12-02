@@ -754,7 +754,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
         if ($state.transition !== transition) return TransitionSuperseded;
 
         $state.transition = null;
-        $rootScope.$broadcast('$stateChangeError', to.self, toParams, toResolved, from.self, fromParams, fromResolved, error);
+        $rootScope.$broadcast('$stateChangeError', to.self, toParams, from.self, fromParams, error);
 
         return $q.reject(error);
       });
