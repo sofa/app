@@ -29,10 +29,10 @@
 
             <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
 
-            <div class="cc-content-box--padded--stick-right cc-on-content cc-unstyled">
+            <div class="cc-content-box--padded--stick-right cc-on-content">
 
                 <cc-zippy caption="ln.productDetails" init-opened="true">
-                    <div class="cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+                    <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
                 </cc-zippy>
 
                 <cc-zippy caption="ln.productSpecifications">
