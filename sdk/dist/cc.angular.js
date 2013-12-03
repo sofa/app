@@ -2696,6 +2696,36 @@ angular
             }
         };
     }]);
+angular.module('sdk.directives.ccIosInputFocusFix', []);
+
+// On iOS, when you focus an input and then rotate the screen, the layout
+// tends to mess up. To fix it we force a DOM refresh on orientation change.
+
+angular.module('sdk.directives.ccIosInputFocusFix')
+    .directive('ccIosInputFocusFix', ['searchService', 'deviceService',
+        function(searchService, deviceService) {
+
+        'use strict';
+
+        return {
+                restrict: 'A',
+                link: function (scope, element, attributes, controllers) {
+                    window.addEventListener('orientationchange', function() {
+                        if ( searchService.uiActive && deviceService.getOs() === "iOS" ) {
+                            setTimeout(function() {
+                                document.body.style.display = "none";
+                                setTimeout(function() {
+                                    document.body.style.display = "block";
+                                }, 1);
+                            }, 1000);
+                            // The number 1000 here is magic, because this hack needs to happen somewhere after the orientationchange.
+                            // It is unlikely that orientationchanges will ever exceed 1000ms since devices only get faster and
+                            // this is only targeted towards iOS devices which react in a consistent way.
+                        }
+                    });
+                }
+            };
+    }]);
 angular.module('sdk.directives.ccIosPositionFixedInputFix', []);
 
 //This fixes a pretty well known bug in iOS where elements with fixed positioning
@@ -3240,24 +3270,25 @@ angular.module('sdk.directives.ccZippy')
         };
     });
 angular.module('sdk.directives', [
-        'sdk.directives.ccFixedToolbarsView',
-        'sdk.directives.ccZippy',
-        'sdk.directives.ccFooter',
-        'sdk.directives.ccSelectBox',
-        'sdk.directives.ccCheckBox',
-        'sdk.directives.ccAddress',
-        'sdk.directives.ccLazyValidation',
-        'sdk.directives.ccVariantSelector',
-        'sdk.directives.ccThumbnailBar',
-        'sdk.directives.ccScrollingShadow',
-        'sdk.directives.ccScrollFix',
-        'sdk.directives.ccElasticViews',
-        'sdk.directives.ccLoadingSpinner',
-        'sdk.directives.ccInclude',
-        'sdk.directives.ccIosPositionFixedInputFix',
-        'sdk.directives.ccInject',
-        'sdk.directives.ccBreadcrumbs'
-    ]);
+    'sdk.directives.ccFixedToolbarsView',
+    'sdk.directives.ccZippy',
+    'sdk.directives.ccFooter',
+    'sdk.directives.ccSelectBox',
+    'sdk.directives.ccCheckBox',
+    'sdk.directives.ccAddress',
+    'sdk.directives.ccLazyValidation',
+    'sdk.directives.ccVariantSelector',
+    'sdk.directives.ccThumbnailBar',
+    'sdk.directives.ccScrollingShadow',
+    'sdk.directives.ccScrollFix',
+    'sdk.directives.ccElasticViews',
+    'sdk.directives.ccLoadingSpinner',
+    'sdk.directives.ccInclude',
+    'sdk.directives.ccIosPositionFixedInputFix',
+    'sdk.directives.ccIosInputFocusFix',
+    'sdk.directives.ccInject',
+    'sdk.directives.ccBreadcrumbs'
+]);
 angular.module('sdk.decorators.$rootScope', []);
 
     angular

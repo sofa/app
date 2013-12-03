@@ -1995,6 +1995,10 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
         debounceMs          = configService.get('searchDebounceMs', 300),
         endpoint            = configService.get('searchUrl') + '?callback=JSON_CALLBACK&len=100';
 
+    // The uiActive variable is used to notify the sdk that the app is currently activating
+    // a search view so precautions can be made (e.g. an orientationchange bugfix on iOS)
+    self.uiActive = false;
+
     self.search = function(searchStr, grouping){
 
         var deferredResponse = $q.defer();

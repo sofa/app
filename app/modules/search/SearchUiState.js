@@ -1,14 +1,12 @@
 angular
     .module('CouchCommerceApp')
-    .factory('searchUiState',[function () {
+    .factory('searchUiState', ['searchService', function(searchService) {
 
             'use strict';
 
             var self = {};
-            
-            self.results = [];
 
-            self.isOpen = false;
+            self.results = [];
 
             self.searchTerm = '';
 
@@ -16,7 +14,7 @@ angular
 
             self.abort = function(){
                 self.searchTerm = '';
-                self.isOpen = false;
+                searchService.uiActive = false;
             };
 
             self.hasSearchTerm = function(){

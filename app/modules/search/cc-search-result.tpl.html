@@ -1,17 +1,17 @@
-<div ng-controller="SearchResultController as vm" ng-show="vm.searchUiState.isOpen && vm.searchUiState.hasResults()" class="cc-scroller--if-fixed cc-full-width-height cc-search-result">
+<div ng-controller="SearchResultController as vm" ng-show="vm.searchService.uiActive && vm.searchUiState.hasResults()" class="cc-scroller--if-fixed cc-full-width-height cc-search-result">
     <div class="cc-view-wrapper--unpadded">
         <ul class="cc-search-result__group-list">
             <li class="cc-search-result__group-list-item" ng-repeat="result in vm.searchUiState.results">
-                <div 
+                <div
                     class="cc-search-result__group-list-item-header"
                     ng-click="vm.goToCategory(result)">
                     <span ng-bind="vm.createGroupText(result)"></span>
                     <i class="cc-search-result__group-list-item-header-icon fa fa-chevron-right"></i>
                 </div>
                 <ul class="cc-search-result__item-list">
-                    <li 
+                    <li
                         ng-repeat="product in result.items"
-                        ng-click="vm.goToProduct(product)" 
+                        ng-click="vm.goToProduct(product)"
                         class="cc-search-result__list-item">
                         <div class="cc-search-result__list-item-product-image"
                              style="background-image:url({{product.productImageUrl}});">
