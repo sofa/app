@@ -17,6 +17,8 @@
     //also we can't use border-bottom here as the search-box currently is a child element of the header
     //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
     @include vendor-prefix('box-shadow', 0px $border-bottom-width 1px $toolbar-border-color);
+    //the unprefixed version doesn't need the blur
+    box-shadow: 0px $border-bottom-width 0px $toolbar-border-color;
 }
 
 .cc-search-box--closed{
