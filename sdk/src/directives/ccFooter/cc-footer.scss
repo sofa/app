@@ -1,37 +1,40 @@
+// ATTENTION: The footer derives from cc-text-list and therefore has access
+// to all config variables exposed by cc-text-list. It also brings new ones.
+
 .cc-footer-list{
     @extend %cc-text-list;
     margin-top: 50px;
-    color: $footer-text-color;
+    color: $cc-footer-list__color;
 }
 
 //we sometimes need this on empty screens where we have
 //no content but still want the footer to be placed on the bottom
 .cc-footer-list--docked{
     position: absolute;
-    left: $primary-padding;
-    right: $primary-padding;
+    left: $cc-footer-list--docked__left;
+    right: $cc-footer-list--docked__right;
     bottom: 0;
 }
 
 .cc-footer-list__row{
     @extend %cc-text-list__row;
     background-color: $footer-background-color;
+    border-color: $cc-footer-list__border-color;
 
     &:last-child{
         //android 2.3 needs blur for box shadow
-        -webkit-box-shadow: 0 $border-bottom-width 1px 0 $footer-border-color;
-        box-shadow: 0 $border-bottom-width 0 0 $footer-border-color;
+        -webkit-box-shadow: 0 $cc-text-list__border-bottom-width 1px 0 $cc-footer-list__border-color;
+        box-shadow: 0 $cc-text-list__border-bottom-width 0 0 $cc-footer-list__border-color;
     }
 }
 
-
 .cc-footer-list__row-content{
     @extend .cc-text-list__row-content;
-    border-bottom-color: $footer-border-color;
+    border-bottom-color: $cc-footer-list__border-color;
 }
 
 .cc-footer-list__row-icon{
     @extend %cc-text-list__row-icon;
     //intentionally! We want the icon to use the same color as the border
-    color: $footer-border-color;
+    color: $cc-text-list__icon-color;
 }

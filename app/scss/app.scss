@@ -9,9 +9,11 @@
 //component configs
 @import '../../sdk/src/directives/ccSelectBox/cc-select-box-config.scss';
 @import '../../sdk/src/styling/cc-text-list-config.scss';
+@import '../../sdk/src/directives/ccFooter/cc-footer-config.scss';
 //component config overwrites
 @import 'libs/ccSelectBox/cc-select-box-couch-config.scss';
 @import 'libs/ccTextList/cc-text-list-couch-config.scss';
+@import 'libs/ccFooter/cc-footer-couch-config.scss';
 //theme config
 @import 'themes/default/theme-config.scss';
 //sdk components
