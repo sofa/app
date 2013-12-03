@@ -1,0 +1,13 @@
+$cc-text-list__color: $content-text-color;
+$cc-text-list__icon-color: $content-border-color;
+$cc-text-list__font-size: $font-size-big;
+$cc-text-list__background: $content-background-color;
+$cc-text-list__highlight-icon-color: $highlight-text-color;
+$cc-text-list__border-top-left-radius: $primary-border-radius;
+$cc-text-list__border-top-right-radius: $primary-border-radius;
+$cc-text-list__border-bottom-right-radius: $primary-border-radius;
+$cc-text-list__border-bottom-left-radius: $primary-border-radius;
+$cc-text-list__border-bottom-width: $border-bottom-width;
+$cc-text-list__border-color: $content-border-color;
+$cc-text-list__text-left-margin: round($primary-padding*1.66);
+$cc-text-list__icon-right-margin: round($primary-padding*.8);
