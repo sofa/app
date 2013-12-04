@@ -233,7 +233,7 @@ module.exports = function(grunt) {
     grunt.registerTask('production', ['name-min', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify', 'script:production', 'concat:index']);
     grunt.registerTask('production-debug', ['name-min', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify:debug', 'script:production', 'concat:index']);
 
-    grunt.registerTask('production--unique', ['name-unique', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify', 'script:production', 'concat:index']);
+    grunt.registerTask('production--unique', ['name-unique', 'clean', 'html2js', 'jshint', 'concat:production', 'sass', 'copy', 'uglify:build', 'script:production', 'concat:index']);
 
     grunt.registerTask('release', ['releaseBranchPre:app', 'production--unique', 'releaseBranch:app']);
 
