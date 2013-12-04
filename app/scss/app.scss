@@ -9,6 +9,7 @@
 //component configs
 @import '../../sdk/src/directives/ccSelectBox/cc-select-box-config.scss';
 @import '../../sdk/src/styling/cc-text-list-config.scss';
+@import '../../sdk/src/styling/cc-text-box-config.scss';
 @import '../../sdk/src/directives/ccFooter/cc-footer-config.scss';
 
 @import '../modules/products/cc-product-grid-config.scss';
@@ -17,6 +18,7 @@
 @import 'libs/ccSelectBox/cc-select-box-couch-config.scss';
 @import 'libs/ccTextList/cc-text-list-couch-config.scss';
 @import 'libs/ccFooter/cc-footer-couch-config.scss';
+@import 'libs/ccTextBox/cc-text-box-couch-config.scss';
 //theme config
 @import 'themes/default/theme-config.scss';
 //sdk components
@@ -28,8 +30,8 @@
 @import '../../sdk/src/styling/listings.scss';
 @import '../../sdk/src/styling/titles.scss';
 @import '../../sdk/src/styling/alignment.scss';
-@import '../../sdk/src/styling/forms.textbox.scss';
 @import '../../sdk/src/styling/forms.label.scss';
+@import '../../sdk/src/styling/cc-text-box.scss';
 @import '../../sdk/src/styling/cc-text-list.scss';
 @import '../../sdk/src/styling/tables.scss';
 @import '../../sdk/src/styling/centering.scss';

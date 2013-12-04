@@ -1,0 +1,17 @@
+$cc-text-box__font-family: $font1;
+$cc-text-box__font-size: $font-size-medium;
+$cc-text-box__color: $content-text-color;
+$cc-text-box__border-top-width: $border-bottom-width;
+$cc-text-box__border-top-color: $content-border-color;
+//this is basically a hack to avoid text jumping between :focused style
+$cc-text-box__border-right-color: $background-color;
+$cc-text-box__border-bottom-color: $background-color;
+$cc-text-box__border-left-color: $background-color;
+
+$cc-text-box__background: $content-background-color;
+$cc-text-box__border-radius: $primary-border-radius;
+
+$cc-text-box--focused__border-top-color: rgba($highlight-color, .8);
+$cc-text-box--focused__border-right-color: rgba($highlight-color, .8);
+$cc-text-box--focused__border-bottom-color: rgba($highlight-color, .8);
+$cc-text-box--focused__border-left-color: rgba($highlight-color, .8);

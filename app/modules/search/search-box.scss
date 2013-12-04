@@ -42,13 +42,10 @@
 
 .cc-search-box__input{
     @extend .cc-text-box;
-    //fix me, this seems rediculous
-    @extend .cc-text-box-on-background;
-    //position: absolute;
-    
+
     margin: 0;
-    border: 1px solid $toolbar-border-color;
     height: $cc-header---element-height;
+    border-color: $toolbar-background-color;
     -webkit-box-shadow: inset 0 $border-bottom-width 1px 0 try-lighter($toolbar-border-color, 5%);
     box-shadow: inset 0 $border-bottom-width 0 0 try-lighter($toolbar-border-color, 5%);
     width: 100%;
