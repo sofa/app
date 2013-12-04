@@ -12,6 +12,7 @@
 @import '../../sdk/src/directives/ccFooter/cc-footer-config.scss';
 
 @import '../modules/products/cc-product-grid-config.scss';
+@import '../modules/common/contentbox/cc-content-box-config.scss';
 //component config overwrites
 @import 'libs/ccSelectBox/cc-select-box-couch-config.scss';
 @import 'libs/ccTextList/cc-text-list-couch-config.scss';
@@ -43,6 +44,7 @@
 @import '../modules/common/totalbox/totalbox.scss';
 @import '../modules/common/footer/cca-footer.scss';
 @import '../modules/common/404/404.scss';
+@import '../modules/common/contentbox/cc-content-box.scss';
 @import '../modules/pages/pages.scss';
 @import '../modules/categories/categorylisting.scss';
 @import '../modules/products/cc-product-grid.scss';

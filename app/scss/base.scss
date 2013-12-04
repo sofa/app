@@ -9,25 +9,6 @@
     margin-top: $primary-padding;
 }
 
-.cc-content-box{
-    font-size: $font-size-medium;
-    background: $content-background-color;
-    border-radius: $primary-border-radius;
-        //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 ($border-bottom-width) 1px 0 $content-border-color;
-    box-shadow: 0 ($border-bottom-width) 0 0 $content-border-color;
-    margin: $primary-padding 0 $primary-padding 0;
-}
-
-.cc-content-box--padded{
-    @extend .cc-content-box;
-    padding: $primary-padding;
-}
-
-.cc-content-box--padded--stick-right{
-    @extend .cc-content-box--padded;
-    padding-right: 0;
-}
 
 //not sure yet where would be the best location for this kind of component bootstrapping
 @include cc-select-box($cc-select-box__name: 'cc-select-box',
