@@ -71,7 +71,7 @@ angular.module('CouchCommerceApp', [
         $stateProvider
             .state('products', {
                 url: '/cat/:category/products',
-                templateUrl: 'modules/products/productlisting.tpl.html',
+                templateUrl: 'modules/products/cc-product-grid.tpl.html',
                 controller: 'ProductsController',
                 resolve: {
                     products: ['couchService', '$stateParams', function(couchService, $stateParams){

@@ -1,0 +1,14 @@
+$cc-product-grid__border-top-width: 0px;
+$cc-product-grid__border-right-width: 0px;
+$cc-product-grid__border-left-width: 0px;
+$cc-product-grid__border-bottom-width: $border-bottom-width;
+$cc-product-grid__border-radius: $primary-border-radius;
+$cc-product-grid__border-color: $content-border-color;
+$cc-product-grid__color: $content-text-color;
+$cc-product-grid__background: $content-background-color;
+$cc-product-grid__space-between-boxes: $primary-padding;
+
+//we invert the colors here
+$cc-product-grid__price-tag-background: $content-text-color;
+$cc-product-grid__price-tag-color: $content-background-color;
+$cc-product-grid__price-tag-top-right-border-radius: $primary-border-radius;

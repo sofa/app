@@ -11,12 +11,11 @@
     }
 }
 
-
 .cc-product-grid{
     overflow: auto;
     margin: 10px 0 10px 0;
     list-style: none;
-    color: $content-text-color;
+    color: $cc-product-grid__color;
 }
 
 .cc-product-grid__row{
@@ -31,13 +30,18 @@
 
 .cc-product-grid__row-wrapper{
     width: 100%;
-    background-color: $content-background-color;
-    border-radius: $primary-border-radius;
-
+    background: $cc-product-grid__background;
+    border-radius: $cc-product-grid__border-radius;
+    border-color: $cc-product-grid__border-color;
+    border-style: solid;
+    border-width: 0;
+    border-left-width: $cc-product-grid__border-left-width;
+    border-right-width: $cc-product-grid__border-right-width;
+    border-top-width: $cc-product-grid__border-top-width;
     border-bottom: 0;
     //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
-    box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
+    -webkit-box-shadow: 0 $cc-product-grid__border-bottom-width 1px 0 $cc-product-grid__border-color;
+    box-shadow: 0 $cc-product-grid__border-bottom-width 0 0 $cc-product-grid__border-color;
 
     position: relative;
 
@@ -52,7 +56,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: $primary-border-radius;
+    border-radius: $cc-product-grid__border-radius;
     z-index: 1;
 
     @extend .cc-highlight--animated;
@@ -65,22 +69,21 @@
     @extend .cc-product-grid__row;
     //the space visible between boxes is the sum of the left padding of one box
     //and the right padding of the other box. Therefore we devide by 2.
-    padding-left: $primary-padding/2;
+    padding-left: $cc-product-grid__space-between-boxes/2;
 }
 
 .cc-product-grid__row--even{
     @extend .cc-product-grid__row;
     //the space visible between boxes is the sum of the left padding of one box
     //and the right padding of the other box. Therefore we devide by 2.
-    padding-right: $primary-padding/2;
+    padding-right: $cc-product-grid__space-between-boxes/2;
 }
 
 .cc-product-grid__row-price{
     float:right;
-    //we invert the colors here
-    background: $content-text-color;
-    color: $content-background-color;
-    border-top-right-radius: $primary-border-radius;
+    background: $cc-product-grid__price-tag-background;
+    color: $cc-product-grid__price-tag-color;
+    border-top-right-radius: $cc-product-grid__price-tag-top-right-border-radius;
     padding: 5px;
     position: relative;
     z-index: 4;
