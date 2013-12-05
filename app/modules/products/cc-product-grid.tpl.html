@@ -3,8 +3,7 @@
     <h1 class="cc-title--huge" bindonce="headline" bo-text="headline"></h1>
     <ul class="cc-product-grid">
         <li bindonce="product" ng-repeat="product in products"
-            bo-class="{ 'cc-product-grid__row--odd' : $odd,
-                        'cc-product-grid__row--even' : $even }">
+            class="cc-product-grid__row">
             <div class="cc-product-grid__row-wrapper" 
                  ng-click="goToProduct(product, $event)" ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }">
             <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
