@@ -1,0 +1,20 @@
+
+// for low contrast color sets we want to add some borders to some of our
+// components.
+@if $background-color == $content-background-color{
+    $cc-content-box__border-left-width: 1px;
+    $cc-content-box__border-right-width: 1px;
+    $cc-content-box__border-top-width: 1px;
+
+    $cc-text-list__border-left-width: 1px;
+    $cc-text-list__border-right-width: 1px;
+    $cc-text-list__border-top-width: 1px;
+
+    $cc-select-box__border-left-width: 1px;
+    $cc-select-box__border-right-width: 1px;
+    $cc-select-box__border-top-width: 1px;
+    
+    $cc-text-box__border-left-color: $cc-text-box__border-top-color;
+    $cc-text-box__border-right-color: $cc-text-box__border-top-color;
+    $cc-text-box__border-bottom-color: $cc-text-box__border-top-color;
+}
