@@ -40,6 +40,13 @@
         border-radius: $cc-select-box__border-radius;
         margin: 0 0 5px 0;
         background: $cc-select-box__background;
+        border-style: solid;
+        border-width: 0;
+        border-color: $cc-select-box__border-color;
+
+        border-top-width: $cc-select-box__border-top-width;
+        border-right-width: $cc-select-box__border-right-width;
+        border-left-width: $cc-select-box__border-left-width;
 
         //android 2.3 needs blur for box shadow
         -webkit-box-shadow: 0 $cc-select-box__border-bottom-width 1px 0 $cc-select-box__border-color;
