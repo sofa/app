@@ -115,7 +115,7 @@ $cc-header---element-height: 2 * $cc-header---icon-padding + $cc-header---icon-h
 
     background-image: $logo-small;
 
-    @media (min-width:600px){
+    @include breakpoint(wide){
         background-image: $logo-big;
     }
 }
