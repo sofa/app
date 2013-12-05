@@ -4,14 +4,14 @@ angular
     .module('CouchCommerceApp')
     .controller('TrustedShopsController',
     [
-        '$scope', 'dialog', 'trustedShopsService',
-        function TrustedShopsController($scope, dialog, trustedShopsService) {
+        '$scope', '$modalInstance', 'trustedShopsService',
+        function TrustedShopsController($scope, $modalInstance, trustedShopsService) {
             'use strict';
 
             $scope.locale = trustedShopsService.locale;
 
             $scope.ok = function () {
-               dialog.close();
+               $modalInstance.close();
             };
         }
     ]);
