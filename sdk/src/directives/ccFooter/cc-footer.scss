@@ -38,3 +38,28 @@
     //intentionally! We want the icon to use the same color as the border
     color: $cc-text-list__icon-color;
 }
+
+@include breakpoint(tablet){
+    .cc-footer-list{
+        text-align: center;
+    }
+
+    .cc-footer-list__row{
+        display: inline-block;
+        background: none;
+        
+        &:last-child{
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+    }
+
+    .cc-footer-list__row-content{
+        border: none;
+        text-decoration: underline;
+    }
+
+    .cc-footer-list__row-icon{
+        display: none;
+    }
+}
