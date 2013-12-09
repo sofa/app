@@ -42,6 +42,7 @@
 @include breakpoint(tablet){
     .cc-footer-list{
         text-align: center;
+        color: $cc-footer-list--tablet__color;
     }
 
     .cc-footer-list__row{
