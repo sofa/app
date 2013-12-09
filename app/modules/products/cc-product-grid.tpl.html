@@ -1,8 +1,18 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
     <cc-inject target="aboveContent"></cc-inject>
     <h1 class="cc-title--huge" bindonce="headline" bo-text="headline"></h1>
+
+    <cc-select-box
+        ng-model="sortModel.sortBy" 
+        allow-null
+        choose-text="ln.sortBy" 
+        display-value-exp="'title'" 
+        data="sortModel.sortTypes">
+    </cc-select-box>
+
     <ul class="cc-product-grid">
-        <li bindonce="product" ng-repeat="product in products"
+        <li bindonce="product" 
+            ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
             class="cc-product-grid__row">
             <div class="cc-product-grid__row-wrapper" 
                  ng-click="goToProduct(product, $event)" ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }">

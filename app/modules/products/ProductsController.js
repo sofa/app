@@ -31,6 +31,22 @@ angular
                 navigationService.navigateToProduct(product);
             };
 
+            var sortModel = $scope.sortModel = {};
+            sortModel.sortBy = null;
+            sortModel.sortTypes =   [
+                                        {
+                                            title: $scope.ln.sortPriceAsc,
+                                            key: 'price',
+                                            reverse: false
+                                        },
+                                        {
+                                            title: $scope.ln.sortPriceDesc,
+                                            key: 'price',
+                                            reverse: true
+                                        }
+                                    ];
+
+
             $scope.backStepHighlightService = backStepHighlightService;
             $scope.navigationService = navigationService;
             $scope.products = products;

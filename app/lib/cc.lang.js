@@ -123,6 +123,8 @@ cc.Lang = {
         //search
         searchProductFoundIn:'Produkt gefunden in',
         searchProductsFoundIn:'Produkte gefunden in',
-        searchNotFound: 'Keine Ergebnisse gefunden.'
-
+        searchNotFound: 'Keine Ergebnisse gefunden.',
+        sortBy: 'sortieren nach',
+        sortPriceAsc: 'Preis aufsteigend',
+        sortPriceDesc: 'Preis absteigend'
     };
