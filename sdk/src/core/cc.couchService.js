@@ -129,6 +129,9 @@ cc.define('cc.CouchService', function($http, $q, configService){
     var augmentProducts = function(products, categoryUrlId){
         return products.map(function(product){
             product.categoryUrlId = categoryUrlId;
+            // the backend is sending us prices as strings.
+            // we need to fix that up for sorting and other things to work
+            product.price = parseFloat(product.price, 10);
             return cc.Util.extend(new cc.models.Product(), product);
         });
     };
