@@ -37,7 +37,7 @@ angular.module('CouchCommerceApp', [
 
         var categoryStateConfig = {
                 url: '/',
-                templateUrl: 'modules/categories/categorylisting_phone.tpl.html',
+                templateUrl: cc.isTabletSize ? 'modules/categories/cc-category-grid.tpl.html' : 'modules/categories/cc-category-list.tpl.html',
                 controller: 'CategoryController',
                 screenIndex: screenIndexes.category,
                 resolve: {

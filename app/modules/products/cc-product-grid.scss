@@ -91,19 +91,10 @@
         color: inherit;
     }
 }
-.cc-highlight .cc-product-grid__row-highlight-helper {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: $cc-product-grid__border-radius;
-    z-index: 1;
 
-    @extend .cc-highlight--animated;
-    @extend .cc-highlight;
-    opacity: .66; /* deprecated */
+.cc-highlight .cc-product-grid__row-highlight-helper {
+    @extend %cc-box-highlight-helper;
+    border-radius: $cc-product-grid__border-radius;
 }
 
 .cc-product-grid__row-price{
