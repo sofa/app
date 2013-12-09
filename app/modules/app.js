@@ -50,7 +50,7 @@ angular.module('CouchCommerceApp', [
                                     //we need to make that check here *before* the CategoryController
                                     //is intialized. Otherwise we will have double transitions in such
                                     //cases.
-                                    if(!category.children){
+                                    if(category && !category.children){
                                         navigationService.navigateToProducts(category.urlId);
                                         
                                         return $q.reject();
