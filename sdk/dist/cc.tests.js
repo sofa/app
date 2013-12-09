@@ -1582,7 +1582,7 @@ test('it should be marked as out of stock (all variants have a stock of 0', func
     equal(product.isOutOfStock(), true, 'product is out stock');
 });
 
-test('it should be marked as in stock (some variants have stock', function() {
+test('it should be marked as in stock (some variants have stock)', function() {
 
     var product = new cc.models.Product();
     product.qty = 1;
@@ -1597,6 +1597,20 @@ test('it should be marked as in stock (some variants have stock', function() {
     equal(product.isOutOfStock(), false, 'product is in stock');
 });
 
+test('it should be marked as in stock (some variants have stock, ignoring 0 qty)', function() {
+
+    var product = new cc.models.Product();
+    product.qty = 0;
+
+    product.variants =  [{
+                            //we need to mock it as strings until the backend is fixed
+                            stock: '1'
+                        },{
+                            stock: '0'
+                        }];
+
+    equal(product.isOutOfStock(), false, 'product is in stock');
+});
 
 test('it should be marked as in stock', function() {
 

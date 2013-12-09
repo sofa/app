@@ -62,10 +62,12 @@ cc.models.Product.prototype.isOutOfStock = function(){
         return false;
     }
 
-    //a product is considered out of stock if either the
-    //quantity is less or equal zero or all of it's variants have
-    //a stock of less or equal zero
-    return this.qty <= 0 || this.areAllVariantsOutOfStock();
+    // a product is considered out of stock if:
+
+    // -it has no variants and the qty is less or equal zero
+    // -it has variants and all of them have a stock of less or equal zero
+
+    return (!this.hasVariants() && this.qty <= 0) || this.areAllVariantsOutOfStock();
 };
 
 cc.models.Product.prototype.areAllVariantsOutOfStock = function(){
