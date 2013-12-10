@@ -17,7 +17,7 @@ angular
 
         self.messageBox = function(title, message, buttons, modalOptions){
             var options = {
-                templateUrl: 'modules/common/dialog/dialog.tpl.html', 
+                templateUrl: 'modules/common/dialog/cc-dialog.tpl.html', 
                 controller: 'MessageBoxController', 
                 resolve:{
                     model: function() {
@@ -40,7 +40,7 @@ angular
         var loadingModal;
         self.loading = function(title, message, buttons, modalOptions){
             var options = {
-                templateUrl: 'modules/common/dialog/loadingdialog.tpl.html', 
+                templateUrl: 'modules/common/dialog/cc-loading-dialog.tpl.html', 
                 controller: 'MessageBoxController',
                 dialogClass: '',
                 keyboard: false,
