@@ -5,7 +5,7 @@
 
 .cc-cart-quantity-selector{
     float: right;
-    font-size: $font-size-big;
+    font-size: $cc-cart__quantity-selector-font-size;
 }
 
 .cc-cart-empty-hint{
@@ -34,7 +34,7 @@
 .cc-cart-list__row {
     display: table-row;
     height: 200px;
-    border-bottom: 1px solid $content-border-color;
+    border-bottom: 1px solid $cc-cart-list__row-border-bottom-color;
 }
 
 .cc-cart-list__row:last-child{
@@ -52,10 +52,10 @@
 .cc-cart-list__row-content{
     width: 70%;
     display: table-cell;
-    padding: 0 0 $primary-padding $primary-padding;
+    padding: 0 0 $cc-cart-list__row-content-padding $cc-cart-list__row-content-padding;
 }
 
 .cc-cart-list__row-total{
     text-align: right;
-    font-size: $font-size-big;
+    font-size: $cc-cart-list__row-total-font-size;
 }
