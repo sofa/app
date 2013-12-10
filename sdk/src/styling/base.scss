@@ -149,18 +149,6 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     position: relative;
 }
 
-.cc-toolbar{
-    @extend %cc-container;
-    height: $cc-header---height;
-    width: 100%;
-}
-
-.cc-footer{
-    height: $cc-header---height;
-    width: 100%;
-    background: #a456a4
-}
-
 .cc-docking-vertical{
     display: -webkit-box;
     -webkit-box-flex: 1;
@@ -190,45 +178,6 @@ table { width:auto; border-collapse: collapse;border-spacing: 0; }
     -webkit-box-orient: vertical;
     -webkit-box-align: stretch;
     height: 100%;
-}
-
-.cc-full-width-height .cc-view-wrapper{
-    // some tweaks for less flickering
-    -webkit-backface-visibility: hidden;
-    -webkit-transform-style: preserve-3d;
-    width:100%;
-}
-
-//On Android 2, those two styles cause the page to jump around
-//when focusing input elements. This totaly breaks things like
-//checkout forms for such users. We normally set those for better
-//performance but we disable them for Android 2.x
-//https://github.com/scottjehl/Device-Bugs/issues/32
-.cc-os-android.cc-osv-2{
-    .cc-full-width-height .cc-view-wrapper{
-        -webkit-backface-visibility: initial;
-        -webkit-transform-style: initial;
-    }
-}
-
-//if we have a fixed toolbar, we need to push the view-wrapper
-//45px to the bottom (the height of the toolbar)
-.cc-supports-position-fixed{
-    .cc-view-wrapper{
-        padding-top: $cc-header---height;
-    }
-}
-
-.cc-view-wrapper{
-    padding: $primary-padding;
-    height: 100%;
-    color: $background-text-color;
-}
-
-.cc-view-wrapper--unpadded{
-    @extend .cc-view-wrapper;
-    padding-left: 0;
-    padding-right: 0;
 }
 
 //generic seperator lines that magically allways look awesome
