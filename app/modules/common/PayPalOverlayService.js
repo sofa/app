@@ -24,7 +24,7 @@ angular
                         }
                         else {
                             dialog.open({
-                                templateUrl: 'modules/cart/paypaloverlay.tpl.html',
+                                templateUrl: 'modules/cart/cc-paypal-overlay.tpl.html',
                                 controller: 'PayPalOverlayController',
                                 backdropClick: true,
                                 resolve: {
