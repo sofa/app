@@ -18,7 +18,7 @@ angular
             restrict: 'EA',
             replace: true,
             scope: true,
-            templateUrl: 'modules/common/footer/ccaFooter.tpl.html',
+            templateUrl: 'modules/common/footer/cca-footer.tpl.html',
             link: function($scope, element, attrs){
 
                 $scope.showAppExitLink = configService.get('showAppExitLink', false);
