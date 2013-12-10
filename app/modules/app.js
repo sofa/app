@@ -100,7 +100,7 @@ angular.module('CouchCommerceApp', [
         $stateProvider
             .state('cart', {
                 url: '/cart',
-                templateUrl: 'modules/cart/cart.tpl.html',
+                templateUrl: 'modules/cart/cc-cart.tpl.html',
                 controller: 'CartController',
                 screenIndex: screenIndexes.cart
             });
