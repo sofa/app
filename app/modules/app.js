@@ -108,7 +108,7 @@ angular.module('CouchCommerceApp', [
         $stateProvider
             .state('checkout', {
                 url: '/checkout',
-                templateUrl: 'modules/checkout/checkout.tpl.html',
+                templateUrl: 'modules/checkout/cc-checkout.tpl.html',
                 controller: 'CheckoutController',
                 screenIndex: screenIndexes.checkout
             });
