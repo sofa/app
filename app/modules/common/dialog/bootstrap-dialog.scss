@@ -129,13 +129,19 @@
 }
 @media (max-width: 480px) {
   .modal {
-    top: 10px;
-    left: 10px;
-    right: 10px;
+    top: 3%;
+    left: 3%;
+    right: 3%;
+    bottom: 3%;
   }
   .modal-header .close {
     padding: 10px;
     margin: -10px;
+  }
+  .modal-body{
+    height: 60%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
