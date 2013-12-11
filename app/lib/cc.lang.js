@@ -50,6 +50,9 @@ cc.Lang = {
         formCountry:'Land',
         formEmail:'E-mail Adresse',
         formTelephone:'Telefonnummer',
+        formSalutation: 'Anrede',
+        salutationFemale: 'Frau',
+        salutationMale: 'Herr',
         shippongMethod:'Versand',
         listItemQty:'Anzahl:',
         listItemPrice:'Einzelpreis:',
@@ -106,6 +109,7 @@ cc.Lang = {
         invalidInput_City: 'Bitte geben Sie Ihren Wohnort ein',
         invalidInput_Country: 'Bitte geben Sie Ihre Land ein',
         invalidInput_Email: 'Bitte geben Sie eine gültige E-Mail Adresse ein',
+        invalidInput_Salutation: 'Bitte wählen Sie eine Anrede aus',
         welcomeText: 'Willkommen im Couch Demo Shop',
         showDesktopView:'Web-App verlassen',
 

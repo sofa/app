@@ -26,7 +26,9 @@ angular
                 selectedPaymentMethod: lastUsedPaymentMethod && lastUsedPaymentMethod.method !== PAYPAL_EXPRESS_ID ? lastUsedPaymentMethod : null,
                 selectedShippingMethod: checkoutService.getLastUsedShippingMethod(),
                 addressEqual: true,
-                surchargeHint: ''
+                surchargeHint: '',
+                salutations: [$scope.ln.salutationMale, $scope.ln.salutationFemale],
+                salutation: null
             };
 
             $scope.checkoutService = checkoutService;

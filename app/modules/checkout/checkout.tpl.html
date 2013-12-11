@@ -32,6 +32,16 @@
     <form name="billingAddressForm" novalidate class="cc-text-box-on-background">
         <p class="cc-form-label">{{ln.formCompany}}</p>
         <input ng-model="checkoutModel.billingAddress.company" class="cc-text-box" type="text" placeholder="Musterfirma GmbH"/>
+        <p class="cc-form-label">{{ln.formSalutation}}*</p>
+        <cc-select-box
+            name="salutation"
+            ng-model="checkoutModel.billingAddress.salutation"
+            class="cc-select-box-on-background"
+            choose-text="ln.choose"
+            property-name="ln.formSalutation"
+            fail-message="ln.invalidInput_Salutation"
+            data="checkoutModel.salutations">
+        </cc-select-box>
         <p class="cc-form-label">{{ln.formSurname}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
@@ -91,7 +101,16 @@
 
         <p class="cc-form-label">{{ln.formCompany}}</p>
         <input ng-model="checkoutModel.shippingAddress.company" class="cc-text-box" type="text" placeholder="Musterfirma"/>
-        
+        <p class="cc-form-label">{{ln.formSalutation}}*</p>
+        <cc-select-box
+            name="salutation"
+            ng-model="checkoutModel.shippingAddress.salutation"
+            class="cc-select-box-on-background"
+            choose-text="ln.choose"
+            property-name="ln.formSalutation"
+            fail-message="ln.invalidInput_Salutation"
+            data="checkoutModel.salutations">
+        </cc-select-box>
         <p class="cc-form-label">{{ln.formSurname}}*</p>
         <span class="cc-validation">
             <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
@@ -132,7 +151,7 @@
             class="cc-select-box-on-background" 
             ng-model="checkoutModel.shippingAddress.country" 
             choose-text="ln.choose" 
-            omit-null
+            fail-message="ln.invalidInput_Salutation"
             display-value-exp="'label'" 
             data="configService.getSupportedCountries()">
         </cc-select-box>
