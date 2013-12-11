@@ -3012,6 +3012,7 @@ angular.module('sdk.directives.ccSelectBox')
 
                 var displayValueFormatter = scope.displayValueExp();
 
+                var firstRun = true;
                 if (ngModelController){
                     scope.$watch('_selectedValue', function(newValue){
                         ngModelController.$setViewValue(newValue);
@@ -3022,6 +3023,12 @@ angular.module('sdk.directives.ccSelectBox')
                         else{
                             ngModelController.$setValidity('value', true);
                         }
+
+                        if(firstRun){
+                            ngModelController.$setPristine();
+                        }
+
+                        firstRun = false;
                     });
                 }
 

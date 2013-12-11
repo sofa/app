@@ -71,10 +71,10 @@
 
     }
 
-    .#{$cc-select-box__name}#{$cc-select-box__modifier}.ng-invalid{
+    .#{$cc-select-box__name}#{$cc-select-box__modifier}.ng-invalid.ng-dirty{
         margin-bottom: 50px;
 
-        .ng-dirty + .cc-validation__message--fail{
+        .cc-validation__message--fail{
             display: inline-block;
             line-height: 1;
             position: absolute;
