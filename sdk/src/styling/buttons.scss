@@ -29,7 +29,7 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     @extend %cc-button-base;
 
     border: 1px solid darken($default-button-background-color, 10%);
-    color: #FFFFFF;
+    color: $default-button-text-color;
     background: $default-button-background-color;
     border-bottom: 0;
     //android 2.3 needs blur for box shadow
