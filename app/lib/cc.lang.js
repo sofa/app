@@ -96,6 +96,7 @@ cc.Lang = {
         shoppingCart: 'Warenkorb',
         summary: 'Zusammenfassung',
         pageDoesntExist: 'Diese Seite existiert nicht',
+        categoryHasNoProducts:'Diese Kategorie hat keine Produkte',
         nonEUInfo: 'Bei Lieferung in das Nicht-EU-Ausland können zusätzliche Zölle, Steuern und Gebühren anfallen',
         choose: 'wähle',
         invalidInput_Firstname: 'Bitte geben Sie Ihren Vornamen ein',
