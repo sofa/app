@@ -74,7 +74,7 @@
     .#{$cc-select-box__name}#{$cc-select-box__modifier}.ng-invalid{
         margin-bottom: 50px;
 
-        .cc-validation__message--fail{
+        .ng-dirty + .cc-validation__message--fail{
             display: inline-block;
             line-height: 1;
             position: absolute;
