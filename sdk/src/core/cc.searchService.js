@@ -6,7 +6,7 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
         lastRequestToken    = null,
         storeCode           = configService.get('storeCode'),
         debounceMs          = configService.get('searchDebounceMs', 300),
-        endpoint            = configService.get('searchUrl') + '?callback=JSON_CALLBACK';
+        endpoint            = configService.get('searchUrl') + '?callback=JSON_CALLBACK&len=100';
 
     self.search = function(searchStr, grouping){
 

@@ -1677,7 +1677,7 @@ module('cc.searchService.tests');
 cc.Config.searchDebounceMs = 50;
 
 var _configService = new cc.ConfigService();
-var _searchUrl = _configService.get('searchUrl') + '?callback=JSON_CALLBACK';
+var _searchUrl = _configService.get('searchUrl') + '?callback=JSON_CALLBACK&len=100';
 var _storeCode = _configService.get('storeCode');
 var _searchFields = 'text, categoryUrlKey, categoryName, productUrlKey, productImageUrl';
 
