@@ -1,11 +1,10 @@
-
 .cc-product-view-image-wrapper{
     height: 300px;
     width: 100%;
     margin-bottom: 10px;
     background-repeat: no-repeat;
-    background-color: $content-background-color;
-    border-radius: $primary-border-radius;
+    background-color: $cc-product-view__image-background-color;
+    border-radius: $cc-product-view__image-border-radius;
     background-size: contain;
     background-position: center center;
 
@@ -21,7 +20,7 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: $content-background-color;
+    background-color: $cc-product-view__image-background-color;
 }
 
 .cc-product-view-image-mask-view-fix {
@@ -39,7 +38,7 @@
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-    background-color: $content-background-color;
+    background-color: $cc-product-view__image-background-color;
     position: fixed;
     top: 0;
     left: 0;
@@ -63,7 +62,7 @@
     height: 100%;
     width: 100%;
     z-index: 1200;
-    background-color: $content-background-color;
+    background-color: $cc-product-view__image-background-color;
     opacity: 0.0;
     pointer-events: none;
 }
@@ -74,16 +73,16 @@
     right: 10px;
     //intentionally! We want to keep the fine line and the icon
     //to be the same color
-    color: $content-border-color;
+    color: $cc-product-view__zippy-icon-color;
 }
 
 .cc-view-product{
     .cc-zippy-caption{
         margin: 5px 0 5px 0;
-        border-bottom: 1px solid $content-border-color;
+        border-bottom: 1px solid $cc-product-view__zippy-border-color;
         //TODO: Look into eliminating !important here
         padding: 15px 0 15px 0;
-        font-size: $font-size-big;
+        font-size: $cc-product-view__zippy-caption-font-size;
     }
 
     .cc-zippy-content{

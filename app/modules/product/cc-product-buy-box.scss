@@ -3,8 +3,8 @@
 }
 
 .cc-product-buy-box__info{
-    padding-top: $primary-padding;
-    font-size: $font-size-small;
+    padding-top: $cc-product-buy-box__info-padding-top;
+    font-size: $cc-product-buy-box__font-size;
     display: inline-block;
     width: 100%;
 }
@@ -14,12 +14,12 @@
 }
 
 .cc-product-buy-box__price{
-    font-size: $font-size-huge;
+    font-size: $cc-product-buy-box__price;
 }
 
 .cc-product-buy-box__price-old{
     margin-left: 20px;
-    font-size: $font-size-big;
+    font-size: $cc-product-buy-box__price-old;
     text-decoration:line-through;
 }
 
@@ -40,8 +40,8 @@
 .cc-product-buy-box__sold-out{
     @extend %cc-button-base;
     float: right;
-    background: $warning-background-color;
-    color: $warning-text-color;
+    background: $cc-product-buy-box__sold-out-background;
+    color: $cc-product-buy-box__sold-out-color;
 }
 
 .cc-product-buy-box__info-left{

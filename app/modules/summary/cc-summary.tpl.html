@@ -18,19 +18,19 @@
 
     <h2 class="cc-title--medium">{{ln.billingAddress}}</h2>
     <cc-address data="vm.invoiceAddress"></cc-address>
-    <div class="cc-padded-line-seperator on-background"></div>
+    <div class="cc-line-seperator--padded"></div>
 
     <h2 class="cc-title--medium">{{ln.shippingAddress}}</h2>
     <cc-address data="vm.shippingAddress"></cc-address>
-    <div class="cc-padded-line-seperator on-background"></div>
+    <div class="cc-line-seperator--padded"></div>
 
     <h2 class="cc-title--medium">{{ln.paymentMethod}}</h2>
     <div>{{vm.paymentMethod}}</div>
-    <div class="cc-padded-line-seperator on-background"></div>
+    <div class="cc-line-seperator--padded on-background"></div>
 
     <h2 class="cc-title--medium">{{ln.shippingMethod}}</h2>
     <div>{{vm.shippingMethod}}</div>
-    <div class="cc-padded-line-seperator on-background"></div>
+    <div class="cc-line-seperator--padded on-background"></div>
 
     <!-- This borrows some classes from the cart. I think the real problem is the
     seperation of cart, summary and thankyou page. This should all live in one directory

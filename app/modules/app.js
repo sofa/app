@@ -87,7 +87,7 @@ angular.module('CouchCommerceApp', [
         $stateProvider
             .state('product', {
                 url: '/cat/:category/product/:productUrlKey',
-                templateUrl: 'modules/product/product.tpl.html',
+                templateUrl: 'modules/product/cc-product.tpl.html',
                 controller: 'ProductController',
                 resolve: {
                     product: ['couchService', '$stateParams', function(couchService, $stateParams){
@@ -116,13 +116,13 @@ angular.module('CouchCommerceApp', [
         $stateProvider
             .state('summary', {
                 url: '/summary/:token',
-                templateUrl: 'modules/summary/summary.tpl.html',
+                templateUrl: 'modules/summary/cc-summary.tpl.html',
                 controller: 'SummaryController',
                 screenIndex: screenIndexes.summary
             });
 
         var thankyouStateConfig = {
-            templateUrl: 'modules/thankyou/thankyou.tpl.html',
+            templateUrl: 'modules/thankyou/cc-thankyou.tpl.html',
             controller: 'ThankyouController',
             screenIndex: screenIndexes.thankyou,
             resolve: {

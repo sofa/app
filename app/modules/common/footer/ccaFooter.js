@@ -30,7 +30,7 @@ angular
 
                 $scope.showTrustedShopsCertificate = function(){
                     dialog.open({
-                        templateUrl: 'modules/trustedshops/tsoverlay.tpl.html',
+                        templateUrl: 'modules/trustedshops/cc-trusted-shops.tpl.html',
                         controller: 'TrustedShopsController'
                     });
                 };

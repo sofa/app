@@ -17,6 +17,9 @@
 @import 'themes/default/theme-config.scss';
 //sdk components
 @import '../../sdk/src/styling/base.scss';
+@import '../../sdk/src/styling/mobile-reset.scss';
+@import '../../sdk/src/styling/cc-line-seperator.scss';
+@import '../../sdk/src/styling/cc-modal.scss';
 @import '../../sdk/src/styling/cc-view-wrapper.scss';
 @import '../../sdk/src/styling/buttons.scss';
 @import '../../sdk/src/styling/animations.scss';
@@ -47,12 +50,12 @@
 @import '../modules/categories/cc-category-list.scss';
 @import '../modules/categories/cc-category-grid.scss';
 @import '../modules/products/cc-product-grid.scss';
-@import '../modules/product/product.scss';
-@import '../modules/product/product-buy-box.scss';
+@import '../modules/product/cc-product.scss';
+@import '../modules/product/cc-product-buy-box.scss';
 @import '../modules/cart/cc-cart.scss';
 @import '../modules/checkout/cc-checkout.scss';
-@import '../modules/summary/summary.scss';
-@import '../modules/trustedshops/trustedshops.scss';
+@import '../modules/summary/cc-summary.scss';
+@import '../modules/trustedshops/cc-trusted-shops.scss';
 @import '../modules/search/cc-search-box.scss';
 @import '../modules/search/cc-search-result.scss';
 
