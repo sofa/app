@@ -1,0 +1,42 @@
+$cc-header__background: $toolbar-background-color;
+$cc-header__height: $cc-header-base__height;
+$cc-header__border-bottom-width: $border-bottom-width;
+$cc-header__border-bottom-color: $toolbar-border-color;
+$cc-header__icon-right-padding-right: $half-primary-padding;
+$cc-header__icon-left-padding-left: $half-primary-padding;
+$cc-header__button-width: $cc-header-base__height + 2 + $half-primary-padding;
+$cc-header__icon-text-shadow: 2px 2px 0px $toolbar-border-color;
+$cc-header__icon-color: $toolbar-icon-color;
+$cc-header__icon-padding: ($cc-header-base__icon-padding - 1) round($cc-header-base__icon-padding * 1.3) ($cc-header-base__icon-padding + 1);
+$cc-header__icon-width: $cc-header-base__height;
+$cc-header__icon-height: $cc-header-base__element-height;
+$cc-header__icon-font-size: $cc-header-base__icon-height;
+$cc-header__icon-border-color: $toolbar-border-color;
+$cc-header__icon-border-bottom-color: try-darker($toolbar-border-color, 5%);
+$cc-header__icon-border-left-width: 1px;
+$cc-header__icon-border-top-width: 1px;
+$cc-header__icon-border-right-width: 1px;
+$cc-header__icon-border-bottom-width: $border-bottom-width;
+
+/* top margin depends on box-shadow size  */
+/* because of the parent table-cell vertical-align-middle property you should double margin values */
+$cc-header__icon-margin: -($border-bottom-width) 0 0 0;
+$cc-header__icon-border-radius: $primary-border-radius;
+
+
+$cc-header__icon-badge-border-bottom-color: try-darker($toolbar-border-color, 5%);
+$cc-header__icon-badge-font-size: $font-size-small;
+$cc-header__icon-badge-background: $highlight-color;
+$cc-header__icon-badge-color: $highlight-text-color;
+$cc-header__icon-badge-border-top-width: 1px;
+$cc-header__icon-badge-border-right-width: 1px;
+$cc-header__icon-badge-border-bottom-width: 2px;
+$cc-header__icon-badge-border-left-width: 1px;
+$cc-header__icon-badge-border-color: $toolbar-border-color;
+/* min-width = height = font-size + padding + border */
+$cc-header__icon-badge-min-width: ($font-size-small + 8px + 2px);
+/* radius = height / 2 */
+$cc-header__icon-badge-border-radius: round(($font-size-small + 8px + 2px)/2);
+
+$cc-header__logo-big: $logo-big;
+$cc-header__logo-small: $logo-small;

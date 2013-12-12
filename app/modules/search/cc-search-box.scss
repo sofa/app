@@ -1,21 +1,3 @@
-
-$cc-search-box__cancel-icon-font-size: $cc-header-base__icon-height;
-$cc-search-box__cancel-icon-height: $cc-header-base__element-height;
-$cc-search-box__input-height: $cc-header-base__element-height;
-
-$cc-search-box__background: $toolbar-background-color;
-$cc-search-box__border-bottom-color: $toolbar-border-color;
-$cc-search-box__border-bottom-width: $border-bottom-width;
-
-$cc-search-box__input-border-color: $toolbar-background-color;
-$cc-search-box__input-top-border-width: $border-bottom-width;
-$cc-search-box__input-top-border-color: try-lighter($toolbar-border-color, 5%);
-$cc-search-box__input-padding-left: $primary-padding;
-$cc-search-box__clear-icon-right: $primary-padding;
-$cc-search-box__clear-icon-color: $content-border-color;
-
-$cc-modal--background__background: $background-color;
-
 .cc-search-box{
     width: 100%;
     background: $cc-search-box__background;

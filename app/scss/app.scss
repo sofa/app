@@ -1,8 +1,6 @@
 @import '../../sdk/src/styling/mixins.scss';
 @import '../../sdk/src/styling/media-queries.scss';
 @import '../../sdk/src/styling/font-awesome.scss';
-//theme pre config
-@import 'themes/default/theme-pre-config.scss';
 //public app configs
 @import '../../sdk/src/styling/styleconfig.scss';
 //compatiblity layer
@@ -15,10 +13,8 @@
 @import '../../sdk/src/styling/cc-text-box-config.scss';
 @import '../../sdk/src/directives/ccFooter/cc-footer-config.scss';
 
-//theme config declarations
+//theme config
 @import 'themes/default/theme-config.scss';
-//theme post config
-@import 'themes/default/theme-post-config.scss';
 //sdk components
 @import '../../sdk/src/styling/base.scss';
 @import '../../sdk/src/styling/cc-view-wrapper.scss';
@@ -57,8 +53,8 @@
 @import '../modules/checkout/cc-checkout.scss';
 @import '../modules/summary/summary.scss';
 @import '../modules/trustedshops/trustedshops.scss';
-@import '../modules/search/search-box.scss';
-@import '../modules/search/search-result.scss';
+@import '../modules/search/cc-search-box.scss';
+@import '../modules/search/cc-search-result.scss';
 
 //theme overwrites
 @import 'themes/default/theme.scss';
