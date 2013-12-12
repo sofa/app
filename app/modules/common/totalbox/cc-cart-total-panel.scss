@@ -1,5 +1,5 @@
 .cc-cart-total-panel{
-    background: $content-background-color;
+    background: $cc-cart-total-panel__background;
     margin: 10px 0 10px 0;
     border-radius: 5px;
     overflow: hidden;
@@ -10,15 +10,15 @@
 }
 
 .cc-cart-total-panel__line:last-child{
-    border-top: 1px solid $content-border-color;
-    font-size: $font-size-huge;
+    border-top: 1px solid $cc-cart-total-panel__last-line-border-top-color;
+    font-size: $cc-cart-total-panel__font-size;
 }
 
-.cc-cart-total-panel-text{
+.cc-cart-total-panel__text{
     float: left;
     clear: both;
 }
 
-.cc-cart-total-panel-figure{
+.cc-cart-total-panel__figure{
     float: right;
 }
