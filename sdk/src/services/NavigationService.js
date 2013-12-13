@@ -60,6 +60,19 @@ angular
             navigateToUrl(urlConstructionService.createUrlForShippingCostsPage());
         };
 
+        var navigateToParentCategory = function(){
+            var currentCategoryUrlId = urlParserService.getCategoryUrlId();
+            couchService.getCategory(currentCategoryUrlId)
+                .then(function(category){
+                    if (category.parent && category.parent.parent){
+                        self.navigateToCategory(category.parent.urlId);
+                    }
+                    else{
+                        self.navigateToRootCategory();
+                    }
+                });
+        };
+
         self.goUp = function(){
             var currentCategoryUrlId,
                 currentCategory;
@@ -69,15 +82,10 @@ angular
                 self.navigateToProducts(currentCategoryUrlId);
             }
             else if (urlParserService.isView('products')){
-                currentCategoryUrlId = urlParserService.getCategoryUrlId();
-                couchService.getCategory(currentCategoryUrlId)
-                    .then(function(category){
-                        navigateToParentCategory(category);
-                    });
+                navigateToParentCategory();
             }
             else if(urlParserService.isView('categories')){
-                currentCategory = couchService.getCurrentCategory();
-                navigateToParentCategory(currentCategory);
+                navigateToParentCategory();
             }
             else{
                 //TODO: The method is actually designed to go up in the tree
@@ -90,15 +98,6 @@ angular
                 $window.history.back();
             }
 
-        };
-
-        var navigateToParentCategory = function(category){
-            if (category.parent && category.parent.parent){
-                self.navigateToCategory(category.parent.urlId);
-            }
-            else{
-                self.navigateToRootCategory();
-            }
         };
 
         trackingService.trackEvent({

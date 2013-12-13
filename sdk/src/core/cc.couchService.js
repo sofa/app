@@ -4,7 +4,6 @@ cc.define('cc.CouchService', function($http, $q, configService){
 
     var self = {},
         products = {},
-        currentCategory = null,
         productComparer = new cc.comparer.ProductComparer(),
         categoryMap = null;
 
@@ -243,10 +242,6 @@ cc.define('cc.CouchService', function($http, $q, configService){
         return null;
     };
 
-    self.getCurrentCategory = function(){
-        return currentCategory;
-    };
-
     var fetchAllCategories = function(){
         return $http({
             method: 'get',
@@ -257,7 +252,6 @@ cc.define('cc.CouchService', function($http, $q, configService){
             categoryMap = new cc.util.CategoryMap();
             categoryMap.rootCategory = rootCategory;
             augmentCategories(rootCategory);
-            currentCategory = rootCategory;
             return rootCategory;
         });
     };
