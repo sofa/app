@@ -6,7 +6,7 @@ angular.module('sdk.decorators.$rootScope', []);
             $provide.decorator('$rootScope', ['$delegate', function($delegate){
 
 
-                //we monkey patch the $rootScope to provide a $saveOn method that
+                //we monkey patch the $rootScope to provide a $onRootScope method that
                 //just works like the $on method but takes an additional parameter
                 //where a scope can be provided to listen for $destroy event in order
                 //to than automatically unregister the listener.
