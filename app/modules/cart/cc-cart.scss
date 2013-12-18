@@ -1,3 +1,8 @@
+.cc-cart__content-box{
+    @extend .cc-content-box--padded;
+    color: $cc-cart__content-box-color;
+}
+
 .cc-cart-button{
     @extend .cc-couch-default-button-on-content;
     width: 50px;
