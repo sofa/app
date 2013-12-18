@@ -3,6 +3,7 @@
 @import '../../config-snippets/cc-view-wrapper-base-var.scss';
 
 // app component config overwrites
+@import '../src/pages/cc-pages-config.scss';
 @import '../src/cart/cc-cart-config.scss';
 @import '../src/products/cc-product-grid-config.scss';
 @import '../src/categories/cc-category-grid-config.scss';

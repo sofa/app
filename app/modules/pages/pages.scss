@@ -1,18 +1,24 @@
-.cc-pages-send-as-mail{
+.cc-pages__send-as-mail{
     float: right;
-    color: $background-text-color;
+    margin: 8px 8px 0 0;
+    color: $cc-pages__send-as-mail-color;
 }
 
-.cc-pages-send-as-mail:visited{
-    color: $background-text-color;
+.cc-pages__send-as-mail:visited{
+    color: $cc-pages__send-as-mail-color;
 }
 
-.cc-pages-loading-box{
+.cc-pages__loading-box{
     @extend .cc-content-box--padded;
     position: relative;
 }
 
-.cc-pages-loading-box__spinner{
+.cc-pages__loading-box-spinner{
     left: 50%;
     margin-left: -64px;
+}
+
+.cc-pages__content-box{
+    @extend .cc-content-box--padded;
+    color: $cc-pages__content-box-color;
 }
