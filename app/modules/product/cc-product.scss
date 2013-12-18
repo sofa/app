@@ -76,6 +76,12 @@
     color: $cc-product-view__zippy-icon-color;
 }
 
+
+.cc-product-view__content-box{
+    @extend .cc-content-box--padded--stick-right;
+    color: $cc-product-view__content-box-color;
+}
+
 .cc-view-product{
     .cc-zippy-caption{
         margin: 5px 0 5px 0;
