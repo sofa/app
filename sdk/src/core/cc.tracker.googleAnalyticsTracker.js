@@ -45,8 +45,8 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
 
             if ( eventData.action === 'google_conversion' && options.conversionId ) {
                 var url = 'http://www.googleadservices.com/pagead/conversion/'+
-                    options.conversionId+'/?value='+eventData.value+'&amp;label='+
-                    options.conversionLabel+'&amp;guid=ON&amp;script=0';
+                    options.conversionId+'/?value='+eventData.value+'&label='+
+                    options.conversionLabel+'&guid=ON&script=0';
                 $http.get(url);
             }
         }
