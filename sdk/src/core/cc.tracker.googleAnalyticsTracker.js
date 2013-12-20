@@ -47,7 +47,8 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
                 var url = 'http://www.googleadservices.com/pagead/conversion/'+
                     options.conversionId+'/?value='+eventData.value+'&label='+
                     options.conversionLabel+'&guid=ON&script=0';
-                $http.get(url);
+                var image = new Image(1,1);
+                image.src = url;
             }
         }
 
