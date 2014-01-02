@@ -870,6 +870,14 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
     //that's the final step to actually create the order on the backend
     self.activateOrder = function(token){
+
+        // docheckoutst.php cannot be called here if a payment method redirects us
+        // as the backend needs to finalize the order
+        if (redirect && redirect.token === token) {
+            window.location.href = configService.get('checkoutUrl') + redirect.redirect + '?token=' + token;
+            throw "stop execution";
+        }
+
         return $http({
             method: 'POST',
             url: CHECKOUT_URL + 'docheckoutst.php',
@@ -882,13 +890,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         })
         .then(function(response){
             var json = toJson(response.data);
-
-            basketService.clear();
-
-            if (redirect && redirect.token === token) {
-                window.location.href = configService.get('checkoutUrl') + redirect.redirect + '?token=' + token;
-                throw "stop execution";
-            }
 
             return json;
         }, function(fail){
