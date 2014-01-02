@@ -1,5 +1,26 @@
 (function(window, undefined){
 
+/**
+ * @module Web App SDK
+ *
+ * @description
+ * The web app SDK module contains all SDK components you need to build your
+ * custom mobile shop based on CouchCommerce API's.
+ */
+
+/**
+ * @name cc
+ * @class
+ * @global
+ * @static
+ * @namespace
+ *
+ * @description
+ * The global `cc` object is a static instance that provides a basic API to create
+ * for example namespaces as well as methods for creating inheritance. 
+ * In general you'd never use this object directly, since the SDK takes care of
+ * that for you.
+ */
 var cc = window.cc = {};
 
 (function(){
@@ -7,20 +28,38 @@ var cc = window.cc = {};
     'use strict';
 
     /**
-     * Creates the given namespace within the cc namespace.
-     * The method returns an object that contains meta data
+     * @method namespace
+     * @memberof cc
      *
-     * - targetParent (object)
-     * - targetName (string)
-     * - bind (function) : a convenient function to bind
-                           a value to the namespace
+     * @description
+     * Creates the given namespace within the 'cc' namespace. The method returns
+     * an object that contains the following meta data:
+     *
+     * - targetParent `object` - Parent namespace object.
+     * - targetName `string` - Current namespace name.                             
+     * - bind `function` - A convenient function to bind a value to the namespace.
+     *
+     * Simply pass a string that represents a namespace using the dot notation.
+     * So a valid namespace would be 'foo.bar.bazinga' as well as 'foo'.
+     *
+     * It's not required to mention 'cc' as root in the namespace, since this
+     * method creates the given namespace automatically under 'cc' namespace.
      * 
-     * Options:
+     * In case 'cc' is given as root namespace, it gets stripped out, so its more
+     * a kind of syntactic sugar to mention 'cc' namespace.
+     *
+     * @example
+     * // creates a namespace for `cc.services.FooService`
+     * cc.namespace('cc.services.FooService');
      * 
-     *   - `namespaceString` e.g. 'cc.services.FooService'
-     * 
+     * @example
+     * // also creates a namespace for `cc.services.FooService`
+     * cc.namespace('services.FooService');
+     *
+     * @param {string} namespaceString A namespace string e.g. 'cc.services.FooService'.
+     * @returns {object} A meta data object containing information about the current
+     * and parent targets.
      */
-
     cc.namespace = function (namespaceString) {
         var parts = namespaceString.split('.'), parent = cc, i;
 
@@ -46,6 +85,7 @@ var cc = window.cc = {};
 
             parent = parent[parts[i]];
         }
+
         return {
             targetParent: targetParent,
             targetName: targetName,
@@ -55,32 +95,77 @@ var cc = window.cc = {};
         };
     };
 
+    /**
+     * @method define
+     * @memberof cc
+     *
+     * @description
+     * This method delegates to [cc.namespace]{@link cc#namespace} and binds a new
+     * value to it's given namespace. Because of delegation, rules for the given
+     * namespace are the same as for `cc.namespace`.
+     *
+     * As second argument you have to provide a constructor function that will be
+     * bound to the given namespace.
+     *
+     * @example
+     * // defining constructor for 'foo.bar'
+     * cc.define('foo.bar', function () {
+     *  // some logic
+     * });
+     *
+     * @example
+     * // of course it's also possible to use named functions
+     * var Greeter = function () {
+     *  return {
+     *    sayHello: function () {
+     *      console.log('hello');
+     *    }
+     *  };
+     * };
+     *
+     * cc.define('greeter', Greeter);
+     *
+     * @param {string} namespace A namespace string e.g. 'cc.services.FooService".
+     * @param {function} fn A constructor function that will be bound to the namespace.
+     */
     cc.define = function(namespace, fn){
         cc.namespace(namespace)
           .bind(fn);
     };
 
     /**
+     * @method inherits
+     * @memberof cc
+     *
+     * @description
      * Sets up an inheritance chain between two objects
-     * https://github.com/isaacs/inherits/blob/master/inherits.js
-     * Can be used like this:
+     * (See {@link https://github.com/isaacs/inherits/blob/master/inherits.js}).
      *
-     *   function Child () {
-     *    Child.super.call(this)
-     *    console.error([this
-     *                  ,this.constructor
-     *                  ,this.constructor === Child
-     *                  ,this.constructor.super === Parent
-     *                  ,Object.getPrototypeOf(this) === Child.prototype
-     *                  ,Object.getPrototypeOf(Object.getPrototypeOf(this))
-     *                   === Parent.prototype
-     *                  ,this instanceof Child
-     *                  ,this instanceof Parent])
-     *  }
-     *  function Parent () {}
-     *  inherits(Child, Parent)
-     *  new Child
+     * @example
+     * // creating a constructor
+     * function Child () {
+     *   Child.super.call(this)
+     *   console.error([this
+     *                ,this.constructor
+     *                ,this.constructor === Child
+     *                ,this.constructor.super === Parent
+     *                ,Object.getPrototypeOf(this) === Child.prototype
+     *                ,Object.getPrototypeOf(Object.getPrototypeOf(this))
+     *                 === Parent.prototype
+     *                ,this instanceof Child
+     *                ,this instanceof Parent])
+     * }
      *
+     * // creating another constructor
+     * function Parent () {}
+     *
+     * cc.inherits(Child, Parent)
+     * // getting an instance
+     * new Child
+     *
+     * @param {object} c Child constructor.
+     * @param {object} p Parent constructor.
+     * @param {object} proto Prototype object.
      */
 
      /*jshint asi: true*/
@@ -100,21 +185,42 @@ var cc = window.cc = {};
         c.super = p
     };
     /*jshint asi: false*/
-
 })();
 
-
-
-
-
-
+/**
+ * @name Array
+ * @class
+ * @namespace cc.Array
+ *
+ * @description
+ * This is more like a utility function to have a `[].remove()` method.
+ */
 cc.Array = {
+    /**
+     * @method remove
+     * @memberof cc.Array
+     *
+     * @description
+     * Removes a given item from a given array and returns the manipulated
+     * array.
+     *
+     * @example
+     * var arr = ['foo', 'bar'];
+     *
+     * var newArr = cc.Array.remove(arr, 'foo');
+     *
+     * @param {array} arr An array.
+     * @param {object} item The item to remove from the array.
+     *
+     * @return {array} Manipulated array.
+     */
     remove: function(arr, item){
             var index = arr.indexOf(item);
             arr.splice(index, 1);
             return arr;
         }
 };
+
 cc.define('cc.BasketService', function(storageService, configService, options){
 
     'use strict';
@@ -812,6 +918,15 @@ cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
                 a.id && b.id && a.id === b.id;
     };
 });
+/**
+ * @name ConfigService
+ * @class
+ * @namespace cc.ConfigService
+ *
+ * @description
+ * General configuration service which kind of behaves as a registry
+ * pattern to make configurations available on all layers.
+ */
 cc.define('cc.ConfigService', function(){
 
     'use strict';
@@ -819,8 +934,17 @@ cc.define('cc.ConfigService', function(){
     var self = {};
 
     /**
-     * Gets an array of supported countries for shipping and invoicing 
+     * @method getSupportedCountries
+     * @memberof cc.ConfigService
+     *
+     * @description
+     * Gets an array of supported countries for shipping and invoicing.
      * 
+     * @example
+     * // returns supported countries
+     * cc.ConfigService.getSupportedCountries();
+     *
+     * @return {array} Returns an array of strings for supported countries.
      */
     self.getSupportedCountries = function(){
         if (!cc.Config.countries){
@@ -832,19 +956,63 @@ cc.define('cc.ConfigService', function(){
     };
 
     /**
-     * Gets the default country for shipping and invoicing
+     * @method getDefaultCountry
+     * @memberof cc.ConfigService
+     *
+     * @description
+     * Gets the default country for shipping and invoicing.
      * 
+     * @example
+     * // returns default country
+     * cc.ConfigService.getDefaultCountry();
+     *
+     * @return {string} Default country.
      */
     self.getDefaultCountry = function(){
         var countries = self.getSupportedCountries();
         return countries.length === 0 ? null : countries[0];
     };
 
+    /**
+     * @method getLocalizedPayPalButtonClass
+     * @memberof cc.ConfigService
+     *
+     * @description
+     * Returns a localized paypal button css class.
+     *
+     * @example
+     * cc.ConfigService.getLocalizedPayPalButtonClass();
+     *
+     * @return {string} PayPal button class.
+     */
     self.getLocalizedPayPalButtonClass = function(disabled){
         return !disabled ? 'cc-paypal-button--' + self.get('locale') : 
                            'cc-paypal-button--' + self.get('locale') + '--disabled';
     };
 
+    /**
+     * @method get
+     * @memberof cc.ConfigService
+     *
+     * @description
+     * Generic getter function that returns a config value by a given key.
+     * If a default value is passed and no config setting with the given key
+     * exists, it is returned.
+     *
+     * @example
+     * // returns config setting for 'foo'
+     * cc.ConfigService.get('foo');
+     *
+     * @example
+     * // returns 5 if config for 'foo' doesn't exist
+     * cc.ConfigService.get('foo', 5);
+     *
+     * @param {string} key Key for a certain config value.
+     * @param {object} defaultValue A default value which will be returned
+     * if given key doesn't exist in config.
+     *
+     * @return {object} Associative object for `key`.
+     */
     self.get = function(key, defaultValue){
 
         var value = cc.Config[key];
@@ -858,6 +1026,7 @@ cc.define('cc.ConfigService', function(){
 
     return self;
 });
+
 cc.define('cc.CouchService', function($http, $q, configService){
 
     'use strict';
