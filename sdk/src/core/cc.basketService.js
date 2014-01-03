@@ -1,3 +1,13 @@
+/**
+ * @name BasketService
+ * @class
+ * @namespace cc.BasketService
+ *
+ * @description
+ * `cc.BasketService` is the interface to interact with a shopping cart. It provides
+ * methods to add, remove or update basket items. It also takes care of writing
+ * updates to an available storage service.
+ */
 cc.define('cc.BasketService', function(storageService, configService, options){
 
     'use strict';
@@ -52,14 +62,21 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     writeToStore();
 
     /**
-     * Adds an item to the basket. Returns the added 'BasketItem'
+     * @method addItem
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Adds an item to the basket. Returns the added basket item.
      *
-     *   - `product` the Product object itself
-     *   - `quantity` the number of times the product should be added
-     *   - `variant` the variant the product should be added with
-     *   - `optionId` the optionId the product should be added with
+     * @example
+     * basketService.addItem(product, 1, variants.selectedVariant);
+     *
+     * @param {object} product The product object itself.
+     * @param {number} quantity The number of times the product should be added.
+     * @param {object} variant The variant the product should be added with.
+     * @param {int} optionId The optionId the product should be added with.
+     *
+     * @return {object} The added basket item.
      */
     self.addItem = function(product, quantity, variant, optionId){
 
@@ -88,37 +105,71 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * A shorthand for:
-     * basketService.increase(basketItem, 1)
+     * @method increaseOne
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * This is actually a shorthand for {@link cc.BasketService#increase cc.BasketService.increase}. It increases the amount of given basket item by one.
      *
-     *   - `basketItem` the basketItem that should be increased by one
+     * @example
+     * cc.BasketService.increaseOne(basketItem);
+     * // is equivalent to
+     * cc.BasketService.increase(basketItem, 1);
+     *
+     * @param {object} basketItem The basketItem that should be increased by one.
+     *
+     * @return {object} basketItem Updated basket item.
      */
     self.increaseOne = function(basketItem){
         return self.increase(basketItem, 1);
     };
 
     /**
-     * A shorthand for:
-     * basketService.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId)
+     * @method increase
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Increases the quantity of a given basket item by a given value. Increases
+     * by one should be done with {@link cc.BasketService#increaseOne cc.BasketService.increaseOne}.
      *
-     *   - `basketItem` the basketItem that should be increased by one
+     * Behind the scenes, this method is actually a shorthand for
+     * `basketService.addItem()` with a particular configuration. Therefore this
+     * method returns the updated basket item for post processing.
+     *
+     * @example
+     * // getting an item
+     * var item = / *** /;
+     * // update item
+     * item = basetService.increase(item, 3);
+     *
+     * @param {object} basketItem Basket item to increase.
+     * @param {number} number Number to increase.
+     *
+     * @return {object} Updated basket item.
      */
     self.increase = function(basketItem, number){
         return self.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId);
     };
 
     /**
-     * Checks if an product exists in the basket
+     * @method exists
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Checks if an product exists in the basket. You have to pass the product to
+     * check for. Optionally you can pass a product variant and an option id.
+     * Returns `true` or `false` accordingly.
      *
-     *   - `product` the Product object itself
-     *   - `variant` the variant the basket should be checked for
-     *   - `optionId` the optionId the basket should be checked for
+     * @example
+     * if (basketService.exists(productX, variantA, optionB)) {
+     *  // do sth. with it.
+     * }
+     *
+     * @param {object} product The Product object itself.
+     * @param {object} variant The variant the basket should be checked for.
+     * @param {int} The optionId the basket should be checked for.
+     *
+     * @return {bool} True whether the product exists or not.
      */
     self.exists = function(product, variant, optionId){
         var basketItem = self.find(createProductPredicate(product, variant, optionId));
@@ -133,14 +184,21 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Removes an item from the basket
+     * @method removeItem
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Removes an item from the basket.
      *
-     *   - `product` the Product that should be removed from the basket
-     *   - `quantity` the quantity that should be removed from the basket
-     *   - `variant` the variant that should be removed from the basket
-     *   - `optionId` the optionId that should be removed from the basket
+     * @example
+     * basketService.removeItem(product, 1, foo, 3);
+     *
+     * @param {object} product The Product that should be removed from the basket.
+     * @param {number} quantity The quantity that should be removed from the basket.
+     * @param {object} variant The variant that should be removed from the basket.
+     * @param {int} optionId The optionId that should be removed from the basket.
+     *
+     * @return {object} Removed basket item.
      */
     self.removeItem = function(product, quantity, variant, optionId){
         var basketItem = self.find(createProductPredicate(product, variant, optionId));
@@ -170,34 +228,57 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * A shorthand for:
-     * basketService.decrease(basketItem, 1)
+     * @method decreaseOne
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Decreases the quantity of a given basket item by one. This is a shorthand
+     * method for {@link cc.BasketService#decrease cc.BasketService.decrease} and
+     * returns the updated basket item.
      *
-     *   - `basketItem` the basketItem that should be decreased by one
+     * @example
+     * var updatedItem = basketService.decreaseOne(item);
+     *
+     * @param {object} basketItem The basket item that should be decreased by one
+     *
+     * @return {object} The updated basket item.
      */
     self.decreaseOne = function(basketItem){
         return self.decrease(basketItem, 1);
     };
 
     /**
-     * A shorthand for:
-     * basketService.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId)
+     * @method decrease
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Decreases that quantity of a given basket item by a given number. This is
+     * shorthand method for {@link cc.BasketService#removeItem cc.BasketItem.removeItem}
+     * and therefore returns the updated basket item.
      *
-     *   - `basketItem` the basketItem that should be decreased by one
+     * @example
+     * var item = basketItem.decrease(item, 2);
+     *
+     * @param {object} basketItem The basketItem that should be decreased by one.
+     * @param {number} number Number to decrease.
+     *
+     * @return {object} Updated basket item.
      */
     self.decrease = function(basketItem, number){
         return self.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId);
     };
 
     /**
-     * Removes all items from the basket
+     * @method clear
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Removes all items from the basket.
      *
+     * @example
+     * basketService.clear();
+     *
+     * @return {object} BasketService instance for method chaining.
      */
     self.clear = function(){
 
@@ -212,32 +293,53 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Finds a basket item by the given predicate function
+     * @method find
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Finds a basket item by the given predicate function.
      *
-     *   - `predicate` function to test the basketItem against
+     * @example
+     * var needle = basketService.find(function () [
+     *
+     * });
+     *
+     * @param {function} predicate Function to test the basketItem against.
+     *
+     * @return {object} Found basket item.
      */
-
     self.find = function(predicate){
         return cc.Util.find(items, predicate);
     };
 
 
     /**
-     * Returns all basket items
+     * @method getItems
+     * @memberof cc.BasketService
      *
+     * @description
+     * Returns all basket items.
+     *
+     * @example
+     * var items = basketItem.getItems();
+     *
+     * @return {array} Basket items.
      */
-
     self.getItems = function(){
         return items;
     };
 
     /**
-     * Returns a summary object of the current basket state
+     * @method getSummary
+     * @memberof cc.BasketService
      *
+     * @description
+     * Returns a summary object of the current basket state.
+     *
+     * @param {object} options Options object.
+     *
+     * @return {object} Summary object.
      */
-
     self.getSummary = function(options){
         var shipping             = SHIPPING_COST || 0,
             shippingTax          = SHIPPING_TAX,
