@@ -1,8 +1,32 @@
+/**
+ * @name Util
+ * @namespace cc.Util
+ *
+ * @description
+ * Namespace containing utility functions for compatibility stuff etc.
+ *
+ */
 cc.Util = {
-    //http://docs.sencha.com/touch/2.2.0/source/Number2.html#Ext-Number-method-toFixed
+    /**
+     * @method isToFixedBroken
+     * @memberof cc.Util
+     *
+     * @description
+     * Checks if the <code>toFixed()</code> function in the current JavaScript
+     * environment is broken or not. For more info see {@link http://docs.sencha.com/touch/2.2.0/source/Number2.html#Ext-Number-method-toFixed }.
+     *
+     * @return {boolean} Whether its broken or not.
+     */
     isToFixedBroken: (0.9).toFixed() !== '1',
     indicatorObject: {},
-    //Used to determine if values are of the language type Object
+    
+    /**
+     * @member {object} objectTypes
+     * @memberof cc.Util
+     *
+     * @description
+     * Used to determine if values are of the language type Object
+     */
     objectTypes: {
         'boolean': false,
         'function': true,
@@ -11,6 +35,17 @@ cc.Util = {
         'string': false,
         'undefined': false
     },
+
+    /**
+     * @method domReady
+     * @memberof cc.Util
+     *
+     * @description
+     * Takes a function and executes it if the document is ready at this point.
+     * If its not, it registers the given function as callback.
+     *
+     * @param {function} fn Callback function to execute once DOM is ready.
+     */
     domReady: function(fn){
         if(document.readyState === "complete") {
             fn()
@@ -19,10 +54,34 @@ cc.Util = {
             window.addEventListener("load", fn, false);
         }
     },
+    /**
+     * @method round
+     * @memberof cc.Util
+     *
+     * @description
+     * Rounds a given value by a number of given places and returns it.
+     *
+     * @param {(float|number)} value Value to be round.
+     * @param {int} places Number of places to round the value.
+     *
+     * @return {float} Rounded value
+     */
     round: function(value, places){
         var multiplier = Math.pow(10, places);
         return (Math.round(value * multiplier) / multiplier);
     },
+    /**
+     * @method toFixed
+     * @memberof cc.Util
+     *
+     * @description
+     * Transformes a given value to a fixed value by a given precision.
+     *
+     * @param {(number|float)} value Value to fix.
+     * @param {number} precision Precision.
+     *
+     * @return {number} Transformed fixed value.
+     */
     toFixed: function(value, precision){
 
         value = cc.Util.isString(value) ? parseFloat(value) : value;
@@ -35,9 +94,18 @@ cc.Util = {
 
         return value.toFixed(precision);
     },
-    //this method is useful for cloning complex (read: nested) objects without having references 
-    //from the clone to the original object
-    //http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
+    /**
+     * @method clone
+     * @memberof cc.Util
+     *
+     * @description
+     * This method is useful for cloning complex (read: nested) objects without 
+     * having references from the clone to the original object.
+     * (See {@link http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object}).
+     *
+     * @param {object} obj Object to clone.
+     * @return {object} A clone of the given object.
+     */
     clone: function(obj) {
         // Handle the 3 simple types, and null or undefined
         if (null == obj || "object" != typeof obj) return obj;

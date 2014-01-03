@@ -1,6 +1,5 @@
 /**
  * @name Array
- * @class
  * @namespace cc.Array
  *
  * @description
@@ -10,6 +9,7 @@ cc.Array = {
     /**
      * @method remove
      * @memberof cc.Array
+     * @public
      *
      * @description
      * Removes a given item from a given array and returns the manipulated

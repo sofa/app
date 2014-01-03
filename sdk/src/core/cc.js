@@ -11,7 +11,7 @@
  * @class
  * @global
  * @static
- * @namespace
+ * @namespace cc
  *
  * @description
  * The global `cc` object is a static instance that provides a basic API to create
@@ -28,14 +28,11 @@ var cc = window.cc = {};
     /**
      * @method namespace
      * @memberof cc
+     * @public
      *
      * @description
      * Creates the given namespace within the 'cc' namespace. The method returns
-     * an object that contains the following meta data:
-     *
-     * - targetParent `object` - Parent namespace object.
-     * - targetName `string` - Current namespace name.                             
-     * - bind `function` - A convenient function to bind a value to the namespace.
+     * a `namespaceObject` that contains information about the namespace.
      *
      * Simply pass a string that represents a namespace using the dot notation.
      * So a valid namespace would be 'foo.bar.bazinga' as well as 'foo'.
@@ -55,7 +52,7 @@ var cc = window.cc = {};
      * cc.namespace('services.FooService');
      *
      * @param {string} namespaceString A namespace string e.g. 'cc.services.FooService'.
-     * @returns {object} A meta data object containing information about the current
+     * @returns {namespaceObject} A namespace object containing information about the current
      * and parent targets.
      */
     cc.namespace = function (namespaceString) {
@@ -84,6 +81,13 @@ var cc = window.cc = {};
             parent = parent[parts[i]];
         }
 
+        /**
+        * @typdef namespaceObject
+        * @type {object}
+        * @property {object} targetParent - Parent namespace object.
+        * @property {string} targetName - Current namespace name.
+        * @property {function} bind - A convenient function to bind a value to the namespace.
+        */
         return {
             targetParent: targetParent,
             targetName: targetName,
@@ -96,6 +100,7 @@ var cc = window.cc = {};
     /**
      * @method define
      * @memberof cc
+     * @public
      *
      * @description
      * This method delegates to [cc.namespace]{@link cc#namespace} and binds a new
@@ -134,6 +139,7 @@ var cc = window.cc = {};
     /**
      * @method inherits
      * @memberof cc
+     * @public
      *
      * @description
      * Sets up an inheritance chain between two objects
