@@ -137,6 +137,17 @@ cc.Util = {
 
         throw new Error("Unable to copy obj! Its type isn't supported.");
     },
+    /**
+     * @method extend
+     * @memberof cc.Util
+     *
+     * @description
+     * Extends the given object by members of additional given objects.
+     *
+     * @param {object} dst Destination object to extend.
+     *
+     * @return {object} Extended destination object.
+     */
     extend: function(dst) {
         //strange thing, we can't use forOwn here because
         //phantomjs raises TypeErrors that don't happen in the browser
