@@ -1,3 +1,10 @@
+/**
+ * @name ProductComparer
+ * @namespace cc.comparer.ProductComparer
+ *
+ * @description
+ *
+ */
 cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
 
     'use strict';

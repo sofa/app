@@ -1,10 +1,11 @@
 /**
  * @name CheckoutService
- * @class
  * @namespace cc.CheckoutService
  *
  * @description
- *
+ * The `cc.CheckoutService` provides methods to perform checkouts as well as giving
+ * you information about used and last used payment or shipping methods. There are
+ * several checkout types supported, all built behind a clean API.
  */
 cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService){
 
@@ -103,8 +104,10 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @memberof cc.CheckoutService
      *
      * @description
+     * Returns the last used payment method.
      *
      * @example
+     * checkoutService.getLastUsedPaymentMethod();
      *
      * @return {object} Last used payment method.
      */
@@ -117,8 +120,10 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @memberof cc.CheckoutService
      *
      * @description
+     * Returns the last used shipping method.
      *
      * @example
+     * checkoutService.getLastUsedShippingMethod()
      *
      * @return {object} Last used shipping method.
      */
@@ -131,12 +136,16 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @memberof cc.CheckoutService
      *
      * @description
+     * This method delegates to {@link cc.CheckoutService#getSupportedCheckoutMethods cc.CheckoutService.getSupportedCheckoutMethods} end returns the supported shipping
+     * methods for PayPal. One has to pass a shipping country to determine the
+     * supported shipping methods.
      *
      * @example
+     * var methods = checkoutService.getShippingMethodsForPayPal(shippingCountry);
      *
      * @param {int} shippingCountry Shipping country id.
      *
-     * @return {array} Shipping methods for PayPal.
+     * @return {object} A promise.
      */
     self.getShippingMethodsForPayPal = function(shippingCountry){
         var checkoutModel = {
@@ -157,8 +166,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @memberof cc.CheckoutService
      *
      * @description
-     *
-     * @example
+     * Returns supported checkout methods by a given checkout model.
      *
      * @param {object} checkoutModel A full featured checkout model.
      *
@@ -229,12 +237,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @method checkoutWithCouchCommerce
      * @memberof cc.CheckoutService
      *
-     * @description
-     *
-     * @example
-     *
-     * @param {object} checkoutModel A checkout model.
-     *
      * @return {object} A promise.
      */
     self.checkoutWithCouchCommerce = function(checkoutModel){
@@ -276,10 +278,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     /**
      * @method checkoutWithPayPal
      * @memberof cc.CheckoutService
-     *
-     * @description
-     *
-     * @example
      *
      * @param {object} shippingMethod Shipping method object.
      * @param {object) shippingCountry Country to ship.
@@ -381,12 +379,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @method getSummary
      * @memberof cc.CheckoutService
      *
-     * @description
-     *
-     * @example
-     *
-     * @param {object} token
-     *
      * @return {object} A promise.
      */
     self.getSummary = function(token){
@@ -425,10 +417,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
      * @method getLastSummary
      * @memberof cc.CheckoutService
      *
-     * @description
-     *
-     * @example
-     *
      * @return {object} Last summary response.
      */
     self.getLastSummary = function() {
@@ -438,12 +426,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
     /**
      * @method activateOrder
      * @memberof cc.CheckoutService
-     *
-     * @description
-     *
-     * @example
-     *
-     * @param {object} token
      *
      * @return {object} A promise.
      */
