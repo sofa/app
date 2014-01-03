@@ -257,10 +257,10 @@ angular
                                 var currentLerpedWidth = lerp(startW, targetW, easing(lerpFactor));
                                 var currentLerpedHeight = lerp(startH, targetH, easing(lerpFactor));
 
-                                setImageDimensionsAndVisibility(theImage, 
-                                                                currentLerpedX, 
-                                                                currentLerpedY, 
-                                                                currentLerpedWidth, 
+                                setImageDimensionsAndVisibility(theImage,
+                                                                currentLerpedX,
+                                                                currentLerpedY,
+                                                                currentLerpedWidth,
                                                                 currentLerpedHeight);
 
                                 if (currentAnimTime < animTime && inAnimation) {
@@ -364,10 +364,10 @@ angular
                             theImage.style.width = currentWidth + 'px';
                             theImage.style.height = currentHeight + 'px';
 
-                            setImageDimensionsAndVisibility(theImage, 
-                                currentOffsetX, 
-                                currentOffsetY, 
-                                currentWidth, 
+                            setImageDimensionsAndVisibility(theImage,
+                                currentOffsetX,
+                                currentOffsetY,
+                                currentWidth,
                                 currentHeight);
                         };
 
@@ -427,7 +427,7 @@ angular
                                 startDistanceBetweenFingers = Math.sqrt(Math.pow((startX1 - startX0), 2) + Math.pow((startY1 - startY0), 2));
                             }
 
-                            if (flavourLevel === flavourLevelEnum.FULL) inAnimation = false;
+                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) inAnimation = false;
 
                             if (!mask) {
                                 addMask();
@@ -491,14 +491,14 @@ angular
                                 newOffsetY = currentOffsetY + translateTotalY;
 
                                 // Set the image attributes on the page
-                                setImageDimensionsAndVisibility(theImage, 
-                                    newOffsetX, 
-                                    newOffsetY, 
-                                    newWidth, 
+                                setImageDimensionsAndVisibility(theImage,
+                                    newOffsetX,
+                                    newOffsetY,
+                                    newWidth,
                                     newHeight);
                             }
 
-                            if (flavourLevel === flavourLevelEnum.FULL) inAnimation = false;
+                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) inAnimation = false;
 
                             updateOpacity(newWidth, newHeight);
                         });
@@ -516,7 +516,7 @@ angular
 
                         $element.bind('touchend', function(event) {
 
-                            if (flavourLevel === flavourLevelEnum.FULL) inAnimation = false;
+                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) inAnimation = false;
 
                             if (flavourLevel !== flavourLevelEnum.FULL) {
                                 event.preventDefault();
