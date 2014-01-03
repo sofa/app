@@ -53,6 +53,7 @@
 .cc-product-view-image--expanded--visible{
     @extend .cc-product-view-image--expanded;
     opacity: 1;
+    visibility: visible;
 }
 
 .cc-product-view-image-mask{

@@ -9,28 +9,27 @@ angular
                 EXPANDED_VISIBLE_CLS    = 'cc-product-view-image--expanded--visible',
                 ANIMATON_DURATION_MS    = 500;
 
-            // To have as much compatibility as possible, we disable it by default
-            // and only enable it on devices which we have tested.
-            // In other cases, we fallback to a simple touch-to-go-fullscreen mode
+            // Some devices are able to zoom anything. However, since that is out of our control and it ruins the
+            // user experience anyway, we enable the full-flavour on those devices as well. Should other undesirable effects
+            // arise on other devices we will blacklist those.
             var flavourLevelEnum = {
                 SIMPLE: 1,
-                SIMPLE_WITH_MASK: 2,
-                FULL: 3
+                FULL: 2
             };
 
-            var flavourLevel = flavourLevelEnum.SIMPLE_WITH_MASK;
+            var flavourLevel = flavourLevelEnum.FULL;
 
             var os = deviceService.getOs();
-
-            if (os === "iOS") {
-                flavourLevel = flavourLevelEnum.FULL;
-            }
 
             if (os === "Android") {
                 if ( deviceService.isStockAndroidBrowser() ) {
                     flavourLevel = flavourLevelEnum.SIMPLE;
                 }
             }
+
+            var isTouchedInFullFlavourModeWithCertainAmountOfTouches = function(event, numTouches) {
+                return flavourLevel === flavourLevelEnum.FULL && event.touches.length === numTouches;
+            };
 
             return {
                 restrict: 'A',
@@ -59,16 +58,29 @@ angular
                             $element.css('background-image', 'url('+ newValue +')');
                         });
 
-                        appContent = angular.element(document.querySelector('body > div'));
+                        // Directly referencing the 2nd element seems a bit dirty here, but we are talking about
+                        // the order of the elements on the body level which are prone to very little change.
+                        // There is also no other way in selecting the right element as the child elements of the body
+                        // have no unique parameters to identify them.
+                        appContent = angular.element(document.querySelectorAll('body > div')[2]);
 
-                        var createClone = function($el){
-                            var $clone = $element.clone();
+                        var $clone;
+
+                        var isAllowedToInteract = true;
+
+                        var createHandler = function(){
+                            if ( !isAllowedToInteract ) {
+                                return;
+                            }
+
+                            $clone = $element.clone();
                             $clone.addClass(EXPANDED_CLS);
                             body.append($clone);
-                            //we need to set the whole underlying thing to display:none
-                            //otherwise on some platforms (Android 2 I'm looking at you)
-                            //the content behind the fullscreen image will still be visible
-                            //and even scrollable which gives a bad experience.
+
+                            // We need to set the whole underlying thing to display:none
+                            // otherwise on some platforms (Android 2 I'm looking at you)
+                            // the content behind the fullscreen image will still be visible
+                            // and even scrollable which gives a bad experience.
                             appContent.css('display', 'none');
                             $clone.addClass(EXPANDED_CLS);
 
@@ -79,20 +91,33 @@ angular
                             var dummy = $clone[0].offsetWidth;
 
                             $clone.addClass(EXPANDED_VISIBLE_CLS);
-                            $clone.bind('click', function(){
-                                appContent.css('display', '');
-                                $clone.removeClass(EXPANDED_VISIBLE_CLS);
-                                //yeah, super lame. This whole code is just temporally to have at least
-                                //something until we implement it properly
-                                setTimeout(function(){
-                                    $clone.remove();
-                                },ANIMATON_DURATION_MS);
-                            });
+                            $clone.bind('click', removeHandler);
+                            $clone.bind('touchend', removeHandler);
+
+                            isAllowedToInteract = false;
+
+                            setTimeout(function(){
+                                isAllowedToInteract = true;
+                            }, ANIMATON_DURATION_MS);
                         };
 
-                        $element.bind('click', function(){
-                            createClone($element);
-                        });
+                        var removeHandler = function(){
+                            if ( !isAllowedToInteract ) {
+                                return;
+                            }
+
+                            appContent.css('display', '');
+                            $clone.removeClass(EXPANDED_VISIBLE_CLS);
+
+                            isAllowedToInteract = false;
+                            setTimeout(function(){
+                                $clone.remove();
+                                isAllowedToInteract = true;
+                            }, ANIMATON_DURATION_MS);
+                        };
+
+                        $element.bind('click', createHandler);
+                        $element.bind('touchend', createHandler);
 
                     }
                     else {
@@ -408,13 +433,13 @@ angular
                             panning = false;
                             zooming = false;
 
-                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 1) {
+                            if (isTouchedInFullFlavourModeWithCertainAmountOfTouches(event, 1)) {
                                 panning = true;
                                 if (currentState === stateEnum.SMALL || currentState === stateEnum.FULL_TO_SMALL) return;
                                 startX0 = event.touches[0].pageX - rect.left;
                                 startY0 = event.touches[0].pageY - rect.top;
                             }
-                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) {
+                            if (isTouchedInFullFlavourModeWithCertainAmountOfTouches(event, 2)) {
                                 zooming = true;
                                 startX0 = event.touches[0].pageX - rect.left;
                                 startY0 = event.touches[0].pageY - rect.top;
@@ -427,7 +452,7 @@ angular
                                 startDistanceBetweenFingers = Math.sqrt(Math.pow((startX1 - startX0), 2) + Math.pow((startY1 - startY0), 2));
                             }
 
-                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) inAnimation = false;
+                            if (isTouchedInFullFlavourModeWithCertainAmountOfTouches(event, 2)) inAnimation = false;
 
                             if (!mask) {
                                 addMask();
@@ -498,7 +523,7 @@ angular
                                     newHeight);
                             }
 
-                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) inAnimation = false;
+                            if (isTouchedInFullFlavourModeWithCertainAmountOfTouches(event, 2)) inAnimation = false;
 
                             updateOpacity(newWidth, newHeight);
                         });
@@ -516,7 +541,7 @@ angular
 
                         $element.bind('touchend', function(event) {
 
-                            if (flavourLevel === flavourLevelEnum.FULL && event.touches.length === 2) inAnimation = false;
+                            if (isTouchedInFullFlavourModeWithCertainAmountOfTouches(event, 2)) inAnimation = false;
 
                             if (flavourLevel !== flavourLevelEnum.FULL) {
                                 event.preventDefault();

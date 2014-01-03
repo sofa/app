@@ -111,6 +111,20 @@ cc.define('cc.DeviceService', function($window){
         htmlTag.className += self.hasPositionFixedSupport() ? ' cc-supports-position-fixed' : ' cc-no-position-fixed';
     };
 
+     /**
+      * @method getUserAgent
+      * @memberof cc.DeviceService
+      *
+      * @description
+      *
+      * @example
+      *
+      * @return {string} User agent currently in use
+      */
+    self.getUserAgent = function(){
+        return ua;
+    };
+    
     /**
      * @method getOs
      * @memberof cc.DeviceService
