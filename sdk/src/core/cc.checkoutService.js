@@ -1,3 +1,11 @@
+/**
+ * @name CheckoutService
+ * @class
+ * @namespace cc.CheckoutService
+ *
+ * @description
+ *
+ */
 cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService){
 
     'use strict';
@@ -90,14 +98,46 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         return requestModel;
     };
 
+    /**
+     * @method getLastUsedPaymentMethod
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @return {object} Last used payment method.
+     */
     self.getLastUsedPaymentMethod = function(){
         return lastUsedPaymentMethod || null;
     };
 
+    /**
+     * @method getLastUsedShippingMethod
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @return {object} Last used shipping method.
+     */
     self.getLastUsedShippingMethod = function(){
         return lastUsedShippingMethod || null;
     };
 
+    /**
+     * @method getShippingMethodsForPayPal
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @param {int} shippingCountry Shipping country id.
+     *
+     * @return {array} Shipping methods for PayPal.
+     */
     self.getShippingMethodsForPayPal = function(shippingCountry){
         var checkoutModel = {
             billingAddress: {
@@ -112,6 +152,18 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         return self.getSupportedCheckoutMethods(checkoutModel);
     };
 
+    /**
+     * @method getSupportedCheckoutMethods
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @param {object} checkoutModel A full featured checkout model.
+     *
+     * @return {object} A promise.
+     */
     self.getSupportedCheckoutMethods = function(checkoutModel){
 
         var requestModel = createRequestData(checkoutModel);
@@ -173,6 +225,18 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
+    /**
+     * @method checkoutWithCouchCommerce
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @param {object} checkoutModel A checkout model.
+     *
+     * @return {object} A promise.
+     */
     self.checkoutWithCouchCommerce = function(checkoutModel){
 
         if(checkoutModel.addressEqual){
@@ -209,6 +273,17 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
+    /**
+     * @method checkoutWithPayPal
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @param {object} shippingMethod Shipping method object.
+     * @param {object) shippingCountry Country to ship.
+     */
     self.checkoutWithPayPal = function(shippingMethod, shippingCountry){
 
         var checkoutModel = {
@@ -302,6 +377,18 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         };
     };
 
+    /**
+     * @method getSummary
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @param {object} token
+     *
+     * @return {object} A promise.
+     */
     self.getSummary = function(token){
         return $http({
             method: 'POST',
@@ -334,10 +421,32 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
+    /**
+     * @method getLastSummary
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @return {object} Last summary response.
+     */
     self.getLastSummary = function() {
         return lastSummaryResponse;
     };
 
+    /**
+     * @method activateOrder
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     *
+     * @example
+     *
+     * @param {object} token
+     *
+     * @return {object} A promise.
+     */
     //that's the final step to actually create the order on the backend
     self.activateOrder = function(token){
 
