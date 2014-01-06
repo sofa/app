@@ -1,3 +1,11 @@
+/**
+ * @name CategoryMap
+ * @namesace cc.helper.CategoryMap
+ *
+ * @description
+ * Category mapping service that sets up mappings between category urls and category
+ * objects.
+ */
 cc.define('cc.util.CategoryMap', function(){
 
     'use strict';
@@ -6,6 +14,15 @@ cc.define('cc.util.CategoryMap', function(){
 
     var map = {};
 
+    /**
+     * @method addCategory
+     * @memberof cc.helper.CategoryMap
+     *
+     * @description
+     * Adds a new category to the map.
+     *
+     * @param {object} category A category object
+     */
     self.addCategory = function(category){
         if (!map[category.urlId]){
             map[category.urlId] = category;
@@ -21,6 +38,17 @@ cc.define('cc.util.CategoryMap', function(){
         }
     };
 
+    /**
+     * @method getCategory
+     * @memberof cc.CategoryMap
+     *
+     * @description
+     * Returns a category by a given `urlId` from the map.
+     *
+     * @param {int} urlId Category url id.
+     *
+     * @return {object} Category object.
+     */
     self.getCategory = function(urlId){
         return map[urlId];
     };
