@@ -1,3 +1,11 @@
+/**
+ * @name SearchService
+ * @namespace cc.SearchService
+ *
+ * @description
+ * Search service which let's you query against the CouchCommerce API to search
+ * for products.
+ */
 cc.define('cc.SearchService', function(configService, $http, $q, applier){
 
     'use strict';
@@ -12,6 +20,20 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
     // a search view so precautions can be made (e.g. an orientationchange bugfix on iOS)
     self.uiActive = false;
 
+    /**
+     * @method search
+     * @memberof cc.SearchService
+     *
+     * @description
+     * Searches for `searchStr` and groups the results if `grouping` is truthy. 
+     * This search is promise based to let you have flow control. Therefore it 
+     * returns a promise that gets resolved with the search results.
+     *
+     * @param {string} searchStr A search string.
+     * @param {boolean} grouping Whether to group the results or not.
+     *
+     * @return {Promise} A promise with the search results.
+     */
     self.search = function(searchStr, grouping){
 
         var deferredResponse = $q.defer();
