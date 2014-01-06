@@ -1,3 +1,11 @@
+/**
+ * @name CouchService
+ * @namespace cc.CouchService
+ *
+ * @description
+ * `CouchService` let's you interact with the CouchCommerce API. It provides methods
+ * to get products, get preview data or handling with categories.
+ */
 cc.define('cc.CouchService', function($http, $q, configService){
 
     'use strict';
@@ -16,13 +24,17 @@ cc.define('cc.CouchService', function($http, $q, configService){
         CATEGORY_JSON       = configService.get('categoryJson');
 
     /**
+     * @method isAChildAliasOfB
+     * @memberof cc.CouchService
+     *
+     * @description
      * Checks whether a given category a exists as an child
      * on another category b. Taking only direct childs into account.
      * 
-     * Options:
-     * 
-     *   - `a` category a
-     *   - `b` category b 
+     * @param {object} a Category a.
+     * @param {object} b Category b.
+     *
+     * @return {boolean}
      */
     self.isAChildAliasOfB = function(categoryA, categoryB){
         if (!categoryB.children || categoryB.children.length === 0){
@@ -37,13 +49,17 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Checks whether a given category is the parent
-     * of another category taking n hops into account
+     * @method isAParentOfB
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Checks whether a given category is the parent of another category taking 
+     * n hops into account.
      * 
-     * Options:
-     * 
-     *   - `a` category a
-     *   - `b` category b 
+     * @param {object} a Category a.
+     * @param {object} b Category b.
+     *
+     * @return {boolean}
      */
     self.isAParentOfB = function(categoryA, categoryB){
         //short circuit if it's a direct parent, if not recursively check
@@ -52,27 +68,32 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
+     * @method isAChildOfB
+     * @memberof cc.CouchService
+     *
+     * @description
      * Checks whether a given category is the child
-     * of another category taking n hops into account
+     * of another category taking n hops into account.
      * 
-     * Options:
-     * 
-     *   - `a` category a
-     *   - `b` category b 
+     * @param {object} a Category a.
+     * @param {object} b Category b.
+     *
+     * @return {boolean}
      */
     self.isAChildOfB = function(categoryA, categoryB){
         return self.isAParentOfB(categoryB, categoryA);
     };
 
     /**
-     * Fetches the category with the given categoryUrlId
-     * If no category is specified, the method
-     * defaults to the root category 
+     * @method getCategory
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches the category with the given `categoryUrlId` If no category is 
+     * specified, the method defaults to the root category.
      * 
-     * Options:
-     * 
-     *   - `categoryUrlId` the category to be fetched
-     * 
+     * @param {object} categoryUrlId The category to be fetched.
+     * @return {Promise} A promise.
      */
     self.getCategory = function(category){
         if (!category && !categoryMap){
@@ -93,12 +114,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Fetches all products of a given category
+     * @method getProducts
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches all products of a given category.
      * 
-     * Options:
-     * 
-     *   - `categoryUrlId` the urlId of the category to fetch the products from
-     * 
+     * @param {int} categoryUrlId The urlId of the category to fetch the products from.
+     * @preturn {Promise} A promise that gets resolved with products.
      */
     self.getProducts = function(categoryUrlId){
 
@@ -136,12 +159,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Fetches the next product within the product's category
+     * @method getNextProduct
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches the next product within the product's category.
      * 
-     * Options:
-     * 
-     *   - `product` the product to find the neighbour of
-     * 
+     * @param {object} product The product to find the neighbour of.
+     * @return {object} Next product.
      */
     self.getNextProduct = function(product, circle){
         
@@ -160,12 +185,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Fetches the previous product within the product's category
+     * @method getPreviousProduct
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches the previous product within the product's category.
      * 
-     * Options:
-     * 
-     *   - `product` the product to find the neighbour of
-     * 
+     * @param {object} product The product to find the neighbour of.
+     * @return {object} Previous product.
      */
     self.getPreviousProduct = function(product, circle){
 
@@ -210,15 +237,17 @@ cc.define('cc.CouchService', function($http, $q, configService){
 
 
     /**
-     * Fetches a single product.
-     * Notice that both the `categoryUrlId` and the `productUrlId` need
-     * to be specified in order to get the product.
+     * @method getProduct
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches a single product. Notice that both the `categoryUrlId`
+     * and the `productUrlId` need to be specified in order to get the product.
      * 
-     * Options:
-     * 
-     *   - `categoryUrlId` the urlId of the category the product belongs to
-     *   - `productUrlId` the urlId of the product itself
-     * 
+     * @param {int} categoryUrlId The urlId of the category the product belongs to.
+     * @param {int} productUrlId The urlId of the product itself.
+     *
+     * @return {object} product
      */
     self.getProduct = function(categoryUrlId, productUrlId){
         if(!products[categoryUrlId]){
