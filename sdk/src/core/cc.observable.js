@@ -1,3 +1,10 @@
+/**
+ * @name Observable
+ * @namespace cc.Observable
+ *
+ * @description
+ *
+ */
 cc.define('cc.Observable', function(){
 
     'use strict';

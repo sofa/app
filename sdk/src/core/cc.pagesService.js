@@ -1,3 +1,10 @@
+/**
+ * @name PagesService
+ * @namespace cc.PagesService
+ *
+ * @description
+ * This service takes care of accessing static page data.
+ */
 cc.define('cc.PagesService', function($http, $q, configService){
 
     'use strict';
@@ -7,6 +14,16 @@ cc.define('cc.PagesService', function($http, $q, configService){
     var RESOURCE_URL = configService.get('resourceUrl') + 'html/',
         ABOUT_PAGES  = configService.get('aboutPages');
 
+    /**
+     * @method getPage
+     * @memberof cc.PagesService
+     *
+     * @description
+     * Returns a page object by a given id.
+     *
+     * @param {int} id Page id.
+     * @return {object} Page object.
+     */
     self.getPage = function(id){
         return $http
                 .get(RESOURCE_URL + id + '.html')
@@ -23,6 +40,16 @@ cc.define('cc.PagesService', function($http, $q, configService){
                 });
     };
 
+    /**
+     * @method getPageConfig
+     * @memberof cc.PagesService
+     * 
+     * @description
+     * Returns a page configuration object by a given page id.
+     *
+     * @param {int} id Page id.
+     * @return {object} Page configuration
+     */
     self.getPageConfig = function(id){
         var page = ABOUT_PAGES.filter(function(page){
             return page.id === id;
