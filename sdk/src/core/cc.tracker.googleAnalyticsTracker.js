@@ -1,8 +1,24 @@
+/**
+ * @name GoogleAnalyticsTracker
+ * @namespace cc.tracker.GoogleAnalyticsTracker
+ *
+ * @description
+ * A Google Analytics Tracker abstraction layer to connect to the SDK's
+ * tracker interface.
+ */
 cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
     'use strict';
 
     var self = {};
 
+    /**
+     * @method setup
+     * @memberof cc.tracker.GoogleAnalyticsTracker
+     *
+     * @description
+     * Sets up Google Analytics tracking code snippet with provided client
+     * information like account number and domain name.
+     */
     self.setup = function() {
         var _gaq = self._gaq = window._gaq = window._gaq || [];
 
@@ -18,6 +34,17 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
         s.parentNode.insertBefore(ga, s);
     };
 
+    /**
+     * @method trackEvent
+     * @memberof cc.tracker.GoogleAnalyticsTracker
+     *
+     * @description
+     * Explicit event tracking. This method pushes tracking data
+     * to Google Analytics.
+     *
+     * @param {object} eventData Event data object.
+     * @param {object} $http Http service to make asynchronous calls.
+     */
     self.trackEvent = function(eventData, $http) {
 
         eventData.category = eventData.category || '';
