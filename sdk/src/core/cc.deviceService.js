@@ -1,3 +1,12 @@
+/**
+ * @name DeviceService
+ * @namespace cc.DeviceService
+ *
+ * @description
+ * This is a helper service that gives you methods to check for certain contexts
+ * on touch devices etc.. It determines the state for the usage of flexbox as well
+ * as things like position fixed support.
+ */
 cc.define('cc.DeviceService', function($window){
     var self = {};
 
@@ -33,20 +42,55 @@ cc.define('cc.DeviceService', function($window){
         userOSver = 'unknown';
     }
 
+    /**
+     * @method getHtmlTag
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns an HTMLDomObject for HTML.
+     *
+     * @return {object} HTMLDomObject
+     */
     self.getHtmlTag = function(){
         htmlTag = htmlTag || document.getElementsByTagName('html')[0];
         return htmlTag;
     };
 
+    /**
+     * @method isTabletSiye
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns true if the current device is in "TabletSize". See SO link for more
+     * information (http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile).
+     *
+     * @return {boolean} Whether the device is in tablet size or not.
+     */
     self.isTabletSize = function(){
-        //http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
         return $window.screen.width > 641;
     };
 
+    /**
+     * @method isStockAndroidBrowser
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Checks if browser is stock android browser or not.
+     *
+     * @return {boolean}
+     */
     self.isStockAndroidBrowser = function(){
         return userOS === 'Android' && ua.indexOf("Chrome") < 0;
     };
 
+    /**
+     * @method flagOs
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Flags the current document with an SDK specific class depending on the OS
+     * of the device.
+     */
     self.flagOs = function(){
         var htmlTag = self.getHtmlTag();
         var version = self.getOsVersion();
@@ -54,24 +98,57 @@ cc.define('cc.DeviceService', function($window){
         htmlTag.className += ' cc-os-' + self.getOs().toLowerCase() + ' cc-osv-' + majorVersion;
     };
 
+    /**
+     * @method flagPositionFixedSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Flags the current document with an SDK specific class depending on given
+     * position fixed support.
+     */
     self.flagPositionFixedSupport = function(){
         var htmlTag = self.getHtmlTag();
         htmlTag.className += self.hasPositionFixedSupport() ? ' cc-supports-position-fixed' : ' cc-no-position-fixed';
     };
 
+    /**
+     * @method getOs
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns OS string.
+     *
+     * @return {string} Name of OS.
+     */
     self.getOs = function(){
         return userOS;
     };
 
+    /**
+     * @method getOs
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns OS version string.
+     *
+     * @return {string} Version of OS.
+     */
     self.getOsVersion = function(){
         return userOSver;
     };
 
-    self.hasPositionFixedSupport = function(){
-        //We know, brother sniffing is bad, but for fixed toolbars, there
-        //is no easy solution.
-        //http://bradfrostweb.com/blog/mobile/fixed-position/
-
+    /**
+     * @method hasPositionFixedSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Checks if the current device kinda supports position fixed.
+     * We know, brother sniffing is bad, but for fixed toolbars, 
+     * there is no easy solution. 
+     *
+     * @return {boolean}
+     */
+     self.hasPositionFixedSupport = function(){
         var version = self.getOsVersion();
 
         var versionStartsWith = function(str){
@@ -99,6 +176,15 @@ cc.define('cc.DeviceService', function($window){
         }
     };
 
+    /**
+     * @method hasModernFlexboxSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Checks if the browser has modern flexbox support or not.
+     *
+     * @return {boolean}
+     */
     self.hasModernFlexboxSupport = function(){
 
         // Firefox currently has a flexbox bug
@@ -123,6 +209,13 @@ cc.define('cc.DeviceService', function($window){
         return supportedValues.indexOf(testSpan.style.display) > -1;
     };
 
+    /**
+     * @method flagModernFlexboxSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Flags the document with an SDK specific class for modern flexbox support.
+     */
     self.flagModernFlexboxSupport = function(){
         var htmlTag = self.getHtmlTag();
         if (self.hasModernFlexboxSupport()){
