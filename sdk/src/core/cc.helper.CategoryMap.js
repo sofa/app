@@ -1,6 +1,6 @@
 /**
  * @name CategoryMap
- * @namesace cc.helper.CategoryMap
+ * @namespace cc.helper.CategoryMap
  *
  * @description
  * Category mapping service that sets up mappings between category urls and category
