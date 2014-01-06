@@ -1,5 +1,5 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
-    
+    <cc-inject target="aboveContent"></cc-inject>
     <div ng-if="pagesVm.page.content">
         <div>
             <h1 class="cc-title--huge" ng-bind="pagesVm.page.title"></h1>
@@ -15,5 +15,7 @@
 
     <div ng-include="tpl.404" ng-if="!pagesVm.page.content && !pagesVm.isLoading"></div>
 
+    <cc-inject target="aboveFooter"></cc-inject>
     <cca-footer></cca-footer>
+    <cc-inject target="beneathFooter"></cc-inject>
 </div>
