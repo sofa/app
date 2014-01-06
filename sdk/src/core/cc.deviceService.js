@@ -125,7 +125,7 @@ cc.define('cc.DeviceService', function($window){
     };
 
     /**
-     * @method getOs
+     * @method getOsVersion
      * @memberof cc.DeviceService
      *
      * @description
