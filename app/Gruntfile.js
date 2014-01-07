@@ -42,6 +42,7 @@ module.exports = function(grunt) {
             ],
             app:[
                 'lib/bindonce.js',
+                'lib/chayns.js',
                 'modules/**/*.js',
                 '<%= templateFile %>'
             ]

@@ -9,27 +9,28 @@ cc.isTabletSize = cc.deviceService.isTabletSize();
 
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
-    'ngSanitize',
-    'ui.state',
-    'sdk.decorators.$rootScope',
-    'sdk.services.couchService',
-    'sdk.services.navigationService',
-    'sdk.services.basketService',
-    'sdk.services.pagesService',
-    'sdk.services.deviceService',
-    'sdk.services.checkoutService',
-    'sdk.services.userService',
-    'sdk.services.configService',
-    'sdk.services.searchService',
-    'sdk.services.injectsService',
-    'sdk.services.trackingService',
-    'sdk.services.requestAnimationFrame',
-    'sdk.directives',
-    'sdk.filter',
-    'ui.bootstrap',
-    // 'angular-carousel',
-    'pasvaz.bindonce',
-    'templates'
+        'ngSanitize',
+        'ui.state',
+        'sdk.decorators.$rootScope',
+        'sdk.services.couchService',
+        'sdk.services.navigationService',
+        'sdk.services.basketService',
+        'sdk.services.pagesService',
+        'sdk.services.deviceService',
+        'sdk.services.checkoutService',
+        'sdk.services.userService',
+        'sdk.services.configService',
+        'sdk.services.searchService',
+        'sdk.services.injectsService',
+        'sdk.services.trackingService',
+        'sdk.services.requestAnimationFrame',
+        'sdk.directives',
+        'sdk.filter',
+        'ui.bootstrap',
+        // 'angular-carousel',
+        'pasvaz.bindonce',
+        'templates',
+        'chayns'
     ])
     .config(['$stateProvider', '$urlRouterProvider', 'screenIndexes', function($stateProvider, $urlRouterProvider, screenIndexes){
 
@@ -52,7 +53,7 @@ angular.module('CouchCommerceApp', [
                                     //cases.
                                     if(category && !category.children){
                                         navigationService.navigateToProducts(category.urlId);
-                                        
+
                                         return $q.reject();
                                     }
 
