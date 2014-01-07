@@ -1,7 +1,7 @@
 (function(window, undefined){
 
 /**
- * @module Web App SDK
+ * @module sofa
  *
  * @description
  * The web app SDK module contains all SDK components you need to build your
@@ -13,7 +13,7 @@
  * @class
  * @global
  * @static
- * @namespace
+ * @namespace cc
  *
  * @description
  * The global `cc` object is a static instance that provides a basic API to create
@@ -30,14 +30,11 @@ var cc = window.cc = {};
     /**
      * @method namespace
      * @memberof cc
+     * @public
      *
      * @description
      * Creates the given namespace within the 'cc' namespace. The method returns
-     * an object that contains the following meta data:
-     *
-     * - targetParent `object` - Parent namespace object.
-     * - targetName `string` - Current namespace name.                             
-     * - bind `function` - A convenient function to bind a value to the namespace.
+     * a `namespaceObject` that contains information about the namespace.
      *
      * Simply pass a string that represents a namespace using the dot notation.
      * So a valid namespace would be 'foo.bar.bazinga' as well as 'foo'.
@@ -57,7 +54,7 @@ var cc = window.cc = {};
      * cc.namespace('services.FooService');
      *
      * @param {string} namespaceString A namespace string e.g. 'cc.services.FooService'.
-     * @returns {object} A meta data object containing information about the current
+     * @returns {namespaceObject} A namespace object containing information about the current
      * and parent targets.
      */
     cc.namespace = function (namespaceString) {
@@ -86,6 +83,13 @@ var cc = window.cc = {};
             parent = parent[parts[i]];
         }
 
+        /**
+        * @typdef namespaceObject
+        * @type {object}
+        * @property {object} targetParent - Parent namespace object.
+        * @property {string} targetName - Current namespace name.
+        * @property {function} bind - A convenient function to bind a value to the namespace.
+        */
         return {
             targetParent: targetParent,
             targetName: targetName,
@@ -98,6 +102,7 @@ var cc = window.cc = {};
     /**
      * @method define
      * @memberof cc
+     * @public
      *
      * @description
      * This method delegates to [cc.namespace]{@link cc#namespace} and binds a new
@@ -136,6 +141,7 @@ var cc = window.cc = {};
     /**
      * @method inherits
      * @memberof cc
+     * @public
      *
      * @description
      * Sets up an inheritance chain between two objects
@@ -189,7 +195,6 @@ var cc = window.cc = {};
 
 /**
  * @name Array
- * @class
  * @namespace cc.Array
  *
  * @description
@@ -199,6 +204,7 @@ cc.Array = {
     /**
      * @method remove
      * @memberof cc.Array
+     * @public
      *
      * @description
      * Removes a given item from a given array and returns the manipulated
@@ -221,6 +227,16 @@ cc.Array = {
         }
 };
 
+/**
+ * @name BasketService
+ * @class
+ * @namespace cc.BasketService
+ *
+ * @description
+ * `cc.BasketService` is the interface to interact with a shopping cart. It provides
+ * methods to add, remove or update basket items. It also takes care of writing
+ * updates to an available storage service.
+ */
 cc.define('cc.BasketService', function(storageService, configService, options){
 
     'use strict';
@@ -275,14 +291,21 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     writeToStore();
 
     /**
-     * Adds an item to the basket. Returns the added 'BasketItem'
+     * @method addItem
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Adds an item to the basket. Returns the added basket item.
      *
-     *   - `product` the Product object itself
-     *   - `quantity` the number of times the product should be added
-     *   - `variant` the variant the product should be added with
-     *   - `optionId` the optionId the product should be added with
+     * @example
+     * basketService.addItem(product, 1, variants.selectedVariant);
+     *
+     * @param {object} product The product object itself.
+     * @param {number} quantity The number of times the product should be added.
+     * @param {object} variant The variant the product should be added with.
+     * @param {int} optionId The optionId the product should be added with.
+     *
+     * @return {object} The added basket item.
      */
     self.addItem = function(product, quantity, variant, optionId){
 
@@ -311,37 +334,71 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * A shorthand for:
-     * basketService.increase(basketItem, 1)
+     * @method increaseOne
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * This is actually a shorthand for {@link cc.BasketService#increase cc.BasketService.increase}. It increases the amount of given basket item by one.
      *
-     *   - `basketItem` the basketItem that should be increased by one
+     * @example
+     * cc.BasketService.increaseOne(basketItem);
+     * // is equivalent to
+     * cc.BasketService.increase(basketItem, 1);
+     *
+     * @param {object} basketItem The basketItem that should be increased by one.
+     *
+     * @return {object} basketItem Updated basket item.
      */
     self.increaseOne = function(basketItem){
         return self.increase(basketItem, 1);
     };
 
     /**
-     * A shorthand for:
-     * basketService.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId)
+     * @method increase
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Increases the quantity of a given basket item by a given value. Increases
+     * by one should be done with {@link cc.BasketService#increaseOne cc.BasketService.increaseOne}.
      *
-     *   - `basketItem` the basketItem that should be increased by one
+     * Behind the scenes, this method is actually a shorthand for
+     * `basketService.addItem()` with a particular configuration. Therefore this
+     * method returns the updated basket item for post processing.
+     *
+     * @example
+     * // getting an item
+     * var item = / *** /;
+     * // update item
+     * item = basetService.increase(item, 3);
+     *
+     * @param {object} basketItem Basket item to increase.
+     * @param {number} number Number to increase.
+     *
+     * @return {object} Updated basket item.
      */
     self.increase = function(basketItem, number){
         return self.addItem(basketItem.product, number, basketItem.variant, basketItem.optionId);
     };
 
     /**
-     * Checks if an product exists in the basket
+     * @method exists
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Checks if an product exists in the basket. You have to pass the product to
+     * check for. Optionally you can pass a product variant and an option id.
+     * Returns `true` or `false` accordingly.
      *
-     *   - `product` the Product object itself
-     *   - `variant` the variant the basket should be checked for
-     *   - `optionId` the optionId the basket should be checked for
+     * @example
+     * if (basketService.exists(productX, variantA, optionB)) {
+     *  // do sth. with it.
+     * }
+     *
+     * @param {object} product The Product object itself.
+     * @param {object} variant The variant the basket should be checked for.
+     * @param {int} The optionId the basket should be checked for.
+     *
+     * @return {bool} True whether the product exists or not.
      */
     self.exists = function(product, variant, optionId){
         var basketItem = self.find(createProductPredicate(product, variant, optionId));
@@ -356,14 +413,21 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Removes an item from the basket
+     * @method removeItem
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Removes an item from the basket.
      *
-     *   - `product` the Product that should be removed from the basket
-     *   - `quantity` the quantity that should be removed from the basket
-     *   - `variant` the variant that should be removed from the basket
-     *   - `optionId` the optionId that should be removed from the basket
+     * @example
+     * basketService.removeItem(product, 1, foo, 3);
+     *
+     * @param {object} product The Product that should be removed from the basket.
+     * @param {number} quantity The quantity that should be removed from the basket.
+     * @param {object} variant The variant that should be removed from the basket.
+     * @param {int} optionId The optionId that should be removed from the basket.
+     *
+     * @return {object} Removed basket item.
      */
     self.removeItem = function(product, quantity, variant, optionId){
         var basketItem = self.find(createProductPredicate(product, variant, optionId));
@@ -393,34 +457,57 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * A shorthand for:
-     * basketService.decrease(basketItem, 1)
+     * @method decreaseOne
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Decreases the quantity of a given basket item by one. This is a shorthand
+     * method for {@link cc.BasketService#decrease cc.BasketService.decrease} and
+     * returns the updated basket item.
      *
-     *   - `basketItem` the basketItem that should be decreased by one
+     * @example
+     * var updatedItem = basketService.decreaseOne(item);
+     *
+     * @param {object} basketItem The basket item that should be decreased by one
+     *
+     * @return {object} The updated basket item.
      */
     self.decreaseOne = function(basketItem){
         return self.decrease(basketItem, 1);
     };
 
     /**
-     * A shorthand for:
-     * basketService.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId)
+     * @method decrease
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Decreases that quantity of a given basket item by a given number. This is
+     * shorthand method for {@link cc.BasketService#removeItem cc.BasketItem.removeItem}
+     * and therefore returns the updated basket item.
      *
-     *   - `basketItem` the basketItem that should be decreased by one
+     * @example
+     * var item = basketItem.decrease(item, 2);
+     *
+     * @param {object} basketItem The basketItem that should be decreased by one.
+     * @param {number} number Number to decrease.
+     *
+     * @return {object} Updated basket item.
      */
     self.decrease = function(basketItem, number){
         return self.removeItem(basketItem.product, number, basketItem.variant, basketItem.optionId);
     };
 
     /**
-     * Removes all items from the basket
+     * @method clear
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Removes all items from the basket.
      *
+     * @example
+     * basketService.clear();
+     *
+     * @return {object} BasketService instance for method chaining.
      */
     self.clear = function(){
 
@@ -435,32 +522,53 @@ cc.define('cc.BasketService', function(storageService, configService, options){
     };
 
     /**
-     * Finds a basket item by the given predicate function
+     * @method find
+     * @memberof cc.BasketService
      *
-     * Options:
+     * @description
+     * Finds a basket item by the given predicate function.
      *
-     *   - `predicate` function to test the basketItem against
+     * @example
+     * var needle = basketService.find(function () [
+     *
+     * });
+     *
+     * @param {function} predicate Function to test the basketItem against.
+     *
+     * @return {object} Found basket item.
      */
-
     self.find = function(predicate){
         return cc.Util.find(items, predicate);
     };
 
 
     /**
-     * Returns all basket items
+     * @method getItems
+     * @memberof cc.BasketService
      *
+     * @description
+     * Returns all basket items.
+     *
+     * @example
+     * var items = basketItem.getItems();
+     *
+     * @return {array} Basket items.
      */
-
     self.getItems = function(){
         return items;
     };
 
     /**
-     * Returns a summary object of the current basket state
+     * @method getSummary
+     * @memberof cc.BasketService
      *
+     * @description
+     * Returns a summary object of the current basket state.
+     *
+     * @param {object} options Options object.
+     *
+     * @return {object} Summary object.
      */
-
     self.getSummary = function(options){
         var shipping             = SHIPPING_COST || 0,
             shippingTax          = SHIPPING_TAX,
@@ -528,6 +636,16 @@ cc.define('cc.BasketService', function(storageService, configService, options){
 
     return self;
 });
+
+/**
+ * @name CheckoutService
+ * @namespace cc.CheckoutService
+ *
+ * @description
+ * The `cc.CheckoutService` provides methods to perform checkouts as well as giving
+ * you information about used and last used payment or shipping methods. There are
+ * several checkout types supported, all built behind a clean API.
+ */
 cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService){
 
     'use strict';
@@ -620,14 +738,54 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         return requestModel;
     };
 
+    /**
+     * @method getLastUsedPaymentMethod
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     * Returns the last used payment method.
+     *
+     * @example
+     * checkoutService.getLastUsedPaymentMethod();
+     *
+     * @return {object} Last used payment method.
+     */
     self.getLastUsedPaymentMethod = function(){
         return lastUsedPaymentMethod || null;
     };
 
+    /**
+     * @method getLastUsedShippingMethod
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     * Returns the last used shipping method.
+     *
+     * @example
+     * checkoutService.getLastUsedShippingMethod()
+     *
+     * @return {object} Last used shipping method.
+     */
     self.getLastUsedShippingMethod = function(){
         return lastUsedShippingMethod || null;
     };
 
+    /**
+     * @method getShippingMethodsForPayPal
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     * This method delegates to {@link cc.CheckoutService#getSupportedCheckoutMethods cc.CheckoutService.getSupportedCheckoutMethods} end returns the supported shipping
+     * methods for PayPal. One has to pass a shipping country to determine the
+     * supported shipping methods.
+     *
+     * @example
+     * var methods = checkoutService.getShippingMethodsForPayPal(shippingCountry);
+     *
+     * @param {int} shippingCountry Shipping country id.
+     *
+     * @return {object} A promise.
+     */
     self.getShippingMethodsForPayPal = function(shippingCountry){
         var checkoutModel = {
             billingAddress: {
@@ -642,6 +800,17 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         return self.getSupportedCheckoutMethods(checkoutModel);
     };
 
+    /**
+     * @method getSupportedCheckoutMethods
+     * @memberof cc.CheckoutService
+     *
+     * @description
+     * Returns supported checkout methods by a given checkout model.
+     *
+     * @param {object} checkoutModel A full featured checkout model.
+     *
+     * @return {object} A promise.
+     */
     self.getSupportedCheckoutMethods = function(checkoutModel){
 
         var requestModel = createRequestData(checkoutModel);
@@ -703,6 +872,12 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
+    /**
+     * @method checkoutWithCouchCommerce
+     * @memberof cc.CheckoutService
+     *
+     * @return {object} A promise.
+     */
     self.checkoutWithCouchCommerce = function(checkoutModel){
 
         if(checkoutModel.addressEqual){
@@ -739,6 +914,13 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
+    /**
+     * @method checkoutWithPayPal
+     * @memberof cc.CheckoutService
+     *
+     * @param {object} shippingMethod Shipping method object.
+     * @param {object) shippingCountry Country to ship.
+     */
     self.checkoutWithPayPal = function(shippingMethod, shippingCountry){
 
         var checkoutModel = {
@@ -832,6 +1014,12 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         };
     };
 
+    /**
+     * @method getSummary
+     * @memberof cc.CheckoutService
+     *
+     * @return {object} A promise.
+     */
     self.getSummary = function(token){
         return $http({
             method: 'POST',
@@ -864,10 +1052,22 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         });
     };
 
+    /**
+     * @method getLastSummary
+     * @memberof cc.CheckoutService
+     *
+     * @return {object} Last summary response.
+     */
     self.getLastSummary = function() {
         return lastSummaryResponse;
     };
 
+    /**
+     * @method activateOrder
+     * @memberof cc.CheckoutService
+     *
+     * @return {object} A promise.
+     */
     //that's the final step to actually create the order on the backend
     self.activateOrder = function(token){
 
@@ -907,6 +1107,14 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
 
     return self;
 });
+
+/**
+ * @name ProductComparer
+ * @namespace cc.comparer.ProductComparer
+ *
+ * @description
+ *
+ */
 cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
 
     'use strict';
@@ -919,6 +1127,7 @@ cc.define('cc.comparer.ProductComparer', function(tree, childNodeProperty){
                 a.id && b.id && a.id === b.id;
     };
 });
+
 /**
  * @name ConfigService
  * @class
@@ -1028,6 +1237,14 @@ cc.define('cc.ConfigService', function(){
     return self;
 });
 
+/**
+ * @name CouchService
+ * @namespace cc.CouchService
+ *
+ * @description
+ * `CouchService` let's you interact with the CouchCommerce API. It provides methods
+ * to get products, get preview data or handling with categories.
+ */
 cc.define('cc.CouchService', function($http, $q, configService){
 
     'use strict';
@@ -1046,13 +1263,17 @@ cc.define('cc.CouchService', function($http, $q, configService){
         CATEGORY_JSON       = configService.get('categoryJson');
 
     /**
+     * @method isAChildAliasOfB
+     * @memberof cc.CouchService
+     *
+     * @description
      * Checks whether a given category a exists as an child
      * on another category b. Taking only direct childs into account.
      * 
-     * Options:
-     * 
-     *   - `a` category a
-     *   - `b` category b 
+     * @param {object} a Category a.
+     * @param {object} b Category b.
+     *
+     * @return {boolean}
      */
     self.isAChildAliasOfB = function(categoryA, categoryB){
         if (!categoryB.children || categoryB.children.length === 0){
@@ -1067,13 +1288,17 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Checks whether a given category is the parent
-     * of another category taking n hops into account
+     * @method isAParentOfB
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Checks whether a given category is the parent of another category taking 
+     * n hops into account.
      * 
-     * Options:
-     * 
-     *   - `a` category a
-     *   - `b` category b 
+     * @param {object} a Category a.
+     * @param {object} b Category b.
+     *
+     * @return {boolean}
      */
     self.isAParentOfB = function(categoryA, categoryB){
         //short circuit if it's a direct parent, if not recursively check
@@ -1082,27 +1307,32 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
+     * @method isAChildOfB
+     * @memberof cc.CouchService
+     *
+     * @description
      * Checks whether a given category is the child
-     * of another category taking n hops into account
+     * of another category taking n hops into account.
      * 
-     * Options:
-     * 
-     *   - `a` category a
-     *   - `b` category b 
+     * @param {object} a Category a.
+     * @param {object} b Category b.
+     *
+     * @return {boolean}
      */
     self.isAChildOfB = function(categoryA, categoryB){
         return self.isAParentOfB(categoryB, categoryA);
     };
 
     /**
-     * Fetches the category with the given categoryUrlId
-     * If no category is specified, the method
-     * defaults to the root category 
+     * @method getCategory
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches the category with the given `categoryUrlId` If no category is 
+     * specified, the method defaults to the root category.
      * 
-     * Options:
-     * 
-     *   - `categoryUrlId` the category to be fetched
-     * 
+     * @param {object} categoryUrlId The category to be fetched.
+     * @return {Promise} A promise.
      */
     self.getCategory = function(category){
         if (!category && !categoryMap){
@@ -1123,12 +1353,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Fetches all products of a given category
+     * @method getProducts
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches all products of a given category.
      * 
-     * Options:
-     * 
-     *   - `categoryUrlId` the urlId of the category to fetch the products from
-     * 
+     * @param {int} categoryUrlId The urlId of the category to fetch the products from.
+     * @preturn {Promise} A promise that gets resolved with products.
      */
     self.getProducts = function(categoryUrlId){
 
@@ -1166,12 +1398,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Fetches the next product within the product's category
+     * @method getNextProduct
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches the next product within the product's category.
      * 
-     * Options:
-     * 
-     *   - `product` the product to find the neighbour of
-     * 
+     * @param {object} product The product to find the neighbour of.
+     * @return {object} Next product.
      */
     self.getNextProduct = function(product, circle){
         
@@ -1190,12 +1424,14 @@ cc.define('cc.CouchService', function($http, $q, configService){
     };
 
     /**
-     * Fetches the previous product within the product's category
+     * @method getPreviousProduct
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches the previous product within the product's category.
      * 
-     * Options:
-     * 
-     *   - `product` the product to find the neighbour of
-     * 
+     * @param {object} product The product to find the neighbour of.
+     * @return {object} Previous product.
      */
     self.getPreviousProduct = function(product, circle){
 
@@ -1240,15 +1476,17 @@ cc.define('cc.CouchService', function($http, $q, configService){
 
 
     /**
-     * Fetches a single product.
-     * Notice that both the `categoryUrlId` and the `productUrlId` need
-     * to be specified in order to get the product.
+     * @method getProduct
+     * @memberof cc.CouchService
+     *
+     * @description
+     * Fetches a single product. Notice that both the `categoryUrlId`
+     * and the `productUrlId` need to be specified in order to get the product.
      * 
-     * Options:
-     * 
-     *   - `categoryUrlId` the urlId of the category the product belongs to
-     *   - `productUrlId` the urlId of the product itself
-     * 
+     * @param {int} categoryUrlId The urlId of the category the product belongs to.
+     * @param {int} productUrlId The urlId of the product itself.
+     *
+     * @return {object} product
      */
     self.getProduct = function(categoryUrlId, productUrlId){
         if(!products[categoryUrlId]){
@@ -1299,6 +1537,16 @@ cc.define('cc.CouchService', function($http, $q, configService){
 
     return self;
 });
+
+/**
+ * @name DeviceService
+ * @namespace cc.DeviceService
+ *
+ * @description
+ * This is a helper service that gives you methods to check for certain contexts
+ * on touch devices etc.. It determines the state for the usage of flexbox as well
+ * as things like position fixed support.
+ */
 cc.define('cc.DeviceService', function($window){
     var self = {};
 
@@ -1334,20 +1582,55 @@ cc.define('cc.DeviceService', function($window){
         userOSver = 'unknown';
     }
 
+    /**
+     * @method getHtmlTag
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns an HTMLDomObject for HTML.
+     *
+     * @return {object} HTMLDomObject
+     */
     self.getHtmlTag = function(){
         htmlTag = htmlTag || document.getElementsByTagName('html')[0];
         return htmlTag;
     };
 
+    /**
+     * @method isTabletSiye
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns true if the current device is in "TabletSize". See SO link for more
+     * information (http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile).
+     *
+     * @return {boolean} Whether the device is in tablet size or not.
+     */
     self.isTabletSize = function(){
-        //http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
         return $window.screen.width > 641;
     };
 
+    /**
+     * @method isStockAndroidBrowser
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Checks if browser is stock android browser or not.
+     *
+     * @return {boolean}
+     */
     self.isStockAndroidBrowser = function(){
         return userOS === 'Android' && ua.indexOf("Chrome") < 0;
     };
 
+    /**
+     * @method flagOs
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Flags the current document with an SDK specific class depending on the OS
+     * of the device.
+     */
     self.flagOs = function(){
         var htmlTag = self.getHtmlTag();
         var version = self.getOsVersion();
@@ -1355,24 +1638,57 @@ cc.define('cc.DeviceService', function($window){
         htmlTag.className += ' cc-os-' + self.getOs().toLowerCase() + ' cc-osv-' + majorVersion;
     };
 
+    /**
+     * @method flagPositionFixedSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Flags the current document with an SDK specific class depending on given
+     * position fixed support.
+     */
     self.flagPositionFixedSupport = function(){
         var htmlTag = self.getHtmlTag();
         htmlTag.className += self.hasPositionFixedSupport() ? ' cc-supports-position-fixed' : ' cc-no-position-fixed';
     };
 
+    /**
+     * @method getOs
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns OS string.
+     *
+     * @return {string} Name of OS.
+     */
     self.getOs = function(){
         return userOS;
     };
 
+    /**
+     * @method getOsVersion
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns OS version string.
+     *
+     * @return {string} Version of OS.
+     */
     self.getOsVersion = function(){
         return userOSver;
     };
 
-    self.hasPositionFixedSupport = function(){
-        //We know, brother sniffing is bad, but for fixed toolbars, there
-        //is no easy solution.
-        //http://bradfrostweb.com/blog/mobile/fixed-position/
-
+    /**
+     * @method hasPositionFixedSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Checks if the current device kinda supports position fixed.
+     * We know, brother sniffing is bad, but for fixed toolbars, 
+     * there is no easy solution. 
+     *
+     * @return {boolean}
+     */
+     self.hasPositionFixedSupport = function(){
         var version = self.getOsVersion();
 
         var versionStartsWith = function(str){
@@ -1400,6 +1716,15 @@ cc.define('cc.DeviceService', function($window){
         }
     };
 
+    /**
+     * @method hasModernFlexboxSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Checks if the browser has modern flexbox support or not.
+     *
+     * @return {boolean}
+     */
     self.hasModernFlexboxSupport = function(){
 
         // Firefox currently has a flexbox bug
@@ -1424,6 +1749,13 @@ cc.define('cc.DeviceService', function($window){
         return supportedValues.indexOf(testSpan.style.display) > -1;
     };
 
+    /**
+     * @method flagModernFlexboxSupport
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Flags the document with an SDK specific class for modern flexbox support.
+     */
     self.flagModernFlexboxSupport = function(){
         var htmlTag = self.getHtmlTag();
         if (self.hasModernFlexboxSupport()){
@@ -1433,6 +1765,15 @@ cc.define('cc.DeviceService', function($window){
 
     return self;
 });
+
+/**
+ * @name CategoryMap
+ * @namespace cc.helper.CategoryMap
+ *
+ * @description
+ * Category mapping service that sets up mappings between category urls and category
+ * objects.
+ */
 cc.define('cc.util.CategoryMap', function(){
 
     'use strict';
@@ -1441,6 +1782,15 @@ cc.define('cc.util.CategoryMap', function(){
 
     var map = {};
 
+    /**
+     * @method addCategory
+     * @memberof cc.helper.CategoryMap
+     *
+     * @description
+     * Adds a new category to the map.
+     *
+     * @param {object} category A category object
+     */
     self.addCategory = function(category){
         if (!map[category.urlId]){
             map[category.urlId] = category;
@@ -1456,6 +1806,17 @@ cc.define('cc.util.CategoryMap', function(){
         }
     };
 
+    /**
+     * @method getCategory
+     * @memberof cc.CategoryMap
+     *
+     * @description
+     * Returns a category by a given `urlId` from the map.
+     *
+     * @param {int} urlId Category url id.
+     *
+     * @return {object} Category object.
+     */
     self.getCategory = function(urlId){
         return map[urlId];
     };
@@ -1463,15 +1824,32 @@ cc.define('cc.util.CategoryMap', function(){
     return self;
 
 });
-//We only use the TreeIterator to built a HashMap for fast lookups.
-//So it doesn't really care if we use a depth first or a breadth first approach.
+
+/**
+ * @name TreeIterator
+ * @namespace cc.helper.TreeIterator
+ *
+ * @description
+ * We only use the TreeIterator to built a HashMap for fast lookups.
+ * So it doesn't really care if we use a depth first or a breadth first approach.
+ */
 cc.define('cc.util.TreeIterator', function(tree, childNodeProperty){
 
     'use strict';
 
     var me = this,
         continueIteration = true;
-
+    
+    /**
+     * @method iterateChildren
+     * @memberof cc.helper.TreeIterator
+     *
+     * @description
+     * Iterates over a tree of children and applies a given function to
+     * each node.
+     *
+     * @param {function} fn Map function
+     */
     me.iterateChildren = function(fn){
         continueIteration = true;
         return _iterateChildren(tree, fn);
@@ -1489,6 +1867,17 @@ cc.define('cc.util.TreeIterator', function(tree, childNodeProperty){
         }
     };
 });
+
+/**
+ * @name LoggingService
+ * @namespace cc.LoggingService
+ *
+ * @description
+ * This service abstracts the concrete console interface away. It provides the same
+ * methods for logging like `.log()`, `.info()` etc..
+ *
+ * Use this service to log within your application.
+ */
 cc.define('cc.LoggingService', function(configService){
     var self = {};
 
@@ -1514,6 +1903,16 @@ cc.define('cc.LoggingService', function(configService){
         return output;
     };
 
+    /**
+     * @method info
+     * @memberof cc.LogingService
+     * @public
+     *
+     * @description
+     * A `console.info()` wrapper to log some info in the console.
+     *
+     * @param {(array|string)} str String or array to log.
+     */
     self.info = function(str){
         doIfEnabled(function(){
             if (cc.Util.isArray(str)){
@@ -1525,6 +1924,16 @@ cc.define('cc.LoggingService', function(configService){
         });
     };
 
+    /**
+     * @method log
+     * @memberof cc.LoggingService
+     * @public
+     *
+     * @description
+     * A `console.log()` wrapper to log to console.
+     *
+     * @param {(string|array)} str String or array to log.
+     */
     self.log = function(str){
         doIfEnabled(function(){
             if (cc.Util.isArray(str)){
@@ -1536,6 +1945,16 @@ cc.define('cc.LoggingService', function(configService){
         });
     };
 
+    /**
+     * @method warn
+     * @memberof cc.LoggingService
+     * @public
+     *
+     * @description
+     * A `console.warn()` wrapper to log warnings to console.
+     *
+     * @param {(string|array)} str String or array to log.
+     */
     self.warn = function(str){
         doIfEnabled(function(){
             if (cc.Util.isArray(str)){
@@ -1547,6 +1966,16 @@ cc.define('cc.LoggingService', function(configService){
         });
     };
 
+    /**
+     * @method error
+     * @memberof cc.LoggingService
+     * @public
+     *
+     * @description
+     * A `console.error()` wrapper to log errors to console.
+     *
+     * @param {(string|array)} str String or array to log.
+     */
     self.error = function(str){
         doIfEnabled(function(){
             if (cc.Util.isArray(str)){
@@ -1560,18 +1989,57 @@ cc.define('cc.LoggingService', function(configService){
 
     return self;
 });
+
+/**
+ * @name MemoryStorageService
+ * @namespace cc.MemoryStorageService
+ *
+ * @description
+ * Simple memory storage service. Provides methods to get and set values in form
+ * of simple key - value pairs.
+ */
 cc.define('cc.MemoryStorageService', function(){
     
     var _storage = {};
 
+    /**
+     * @method set
+     * @memberof cc.MemoryStorageService
+     *
+     * @description
+     * Sets a value by a given id.
+     *
+     * @param {string} id Identifier
+     * @param {object} data Any kind of data to store under given id.
+     */
     var set = function(id, data){
         _storage[id] = data;
     };
 
+    /**
+     * @method get
+     * @memberof cc.MemoryStorageService
+     *
+     * @description
+     * Gets a value by a given id.
+     *
+     * @param {string} id Identifier
+     *
+     * @return {object} Stored data.
+     */
     var get = function(id){
         return _storage[id];
     };
 
+    /**
+     * @method remove
+     * @memberof cc.MemoryStorageService
+     *
+     * @description
+     * Removes a value by a given id.
+     *
+     * @param {string} id Identifier
+     */
     var remove = function(id){
         delete _storage[id];
     };
@@ -1582,6 +2050,15 @@ cc.define('cc.MemoryStorageService', function(){
         remove: remove
     };
 });
+
+/**
+ * @name BasketItem
+ * @namespace cc.models.BasketItem
+ *
+ * @description
+ * A basket item model that represents basket items. This model provides some methods
+ * to access information about the basket item such as the price or the variant id.
+ */
 cc.define('cc.models.BasketItem', function(){
 
     'use strict';
@@ -1593,23 +2070,79 @@ cc.define('cc.models.BasketItem', function(){
     return self;
 });
 
+/**
+ * @method getPrice
+ * @memberof cc.models.BasketItem
+ *
+ * @description
+ * Returns the price of the basket item depending on the variant.
+ *
+ * @return {float} Price
+ */
 cc.models.BasketItem.prototype.getPrice = function(){
     return this.variant && cc.Util.isNumeric(this.variant.price) ? this.variant.price : this.product.price;
 };
 
+/**
+ * @method getTotal
+ * @memberof cc.models.BasketItem
+ *
+ * @description
+ * Returns the total price of the basket item considering the quantity.
+ *
+ * @return {float} Total price
+ */
 cc.models.BasketItem.prototype.getTotal = function(){
     return cc.Util.round(this.quantity * this.getPrice(), 2);
 };
 
+/**
+ * @method getVariantID
+ * @memberof cc.models.BasketItem
+ *
+ * @description
+ * Returns the variant id of the basket item if it exists.
+ *
+ * @return {int} Variant id.
+ */
 cc.models.BasketItem.prototype.getVariantID = function(){
     return this.variant ? this.variant.variantID : null;
 };
 
+/**
+ * @method getOptionID
+ * @memberof cc.models.BasketItem
+ *
+ * @description
+ * Returns the option id of the basket item if it exists.
+ *
+ * @return {int} Option id.
+ */
 cc.models.BasketItem.prototype.getOptionID = function(){
     return cc.Util.isNumber(this.optionID) ? this.optionID : null;
 };
+
+/**
+ * @name Product
+ * @namespace cc.models.Product
+ *
+ * @description
+ * A model that represents a Product object and adds convenient methods to it.
+ */
 cc.define('cc.models.Product', function(){});
 
+/**
+ * @method getImage
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns the url to the product image by a given size. If no image exists in that
+ * size, it returns a placeholder image url.
+ *
+ * @param {string} size Image size identifier.
+ * 
+ * @return {string} Image url.
+ */
 cc.models.Product.prototype.getImage = function(size){
     for (var i = 0; i < this.images.length; i++) {
         if (this.images[i].sizeName.toLowerCase() === size){
@@ -1620,6 +2153,15 @@ cc.models.Product.prototype.getImage = function(size){
     return cc.Config.mediaPlaceholder;
 };
 
+/**
+ * @method getAllImages
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns all images of the product in size 'large'.
+ *
+ * @return {array} Arraz of image urls.
+ */
 cc.models.Product.prototype.getAllImages = function(){
 
     if (!this._allImages){
@@ -1629,14 +2171,29 @@ cc.models.Product.prototype.getAllImages = function(){
     return this._allImages;
 };
 
+/**
+ * @method hasMultipleImages
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns true if a product supports multiple images.
+ *
+ * @return {boolean}
+ */
 cc.models.Product.prototype.hasMultipleImages = function(){
     return this.getAllImages().length > 0;
 };
 
-
-//TODO: This is pure shit. I need to talk to Felix got get that clean
-//It's only in here to keep some German clients happy that rely on it.
-//We need to make it more flexibile & localizable
+/**
+ * @method getBasePriceInfo
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns some additional information about the product.
+ * TODO: This is pure shit. I need to talk to Felix got get that clean
+ * It's only in here to keep some German clients happy that rely on it.
+ * We need to make it more flexibile & localizable
+ */
 cc.models.Product.prototype.getBasePriceInfo = function(){
     if (this.custom1 > 0){
         if (this.custom3 === 'kg'){
@@ -1656,15 +2213,41 @@ cc.models.Product.prototype.getBasePriceInfo = function(){
     return '';
 };
 
-
+/**
+ * @method hasOldPrice
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns true if the product has an old price.
+ *
+ * @return {boolean}
+ */
 cc.models.Product.prototype.hasOldPrice = function(){
     return cc.Util.isNumeric(this.priceOld) && this.priceOld > 0;
 };
 
+/**
+ * @method hasVariants
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns true if the product supports variants.
+ *
+ * @return {boolean}
+ */
 cc.models.Product.prototype.hasVariants = function(){
     return this.variants && this.variants.length > 0;
 };
 
+/**
+ * @method isOutOfStock
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Returns true if the product is currently out of stock.
+ *
+ * @return {boolean}
+ */
 cc.models.Product.prototype.isOutOfStock = function(){
 
     //this means, it's always in stock
@@ -1680,6 +2263,15 @@ cc.models.Product.prototype.isOutOfStock = function(){
     return (!this.hasVariants() && this.qty <= 0) || this.areAllVariantsOutOfStock();
 };
 
+/**
+ * @method areAllVariantsOutOfStock
+ * @memberof cc.models.Product
+ *
+ * @description
+ * Requests if all variants of the product are out of stock.
+ *
+ * @return {boolean}
+ */
 cc.models.Product.prototype.areAllVariantsOutOfStock = function(){
     if(this.hasVariants()){
         return cc.Util.every(this.variants, function(variant){
@@ -1690,6 +2282,13 @@ cc.models.Product.prototype.areAllVariantsOutOfStock = function(){
     return false;
 };
 
+/**
+ * @name Observable
+ * @namespace cc.Observable
+ *
+ * @description
+ *
+ */
 cc.define('cc.Observable', function(){
 
     'use strict';
@@ -1778,6 +2377,14 @@ cc.define('cc.Observable', function(){
 });
 
 cc.observable = new cc.Observable();
+
+/**
+ * @name PagesService
+ * @namespace cc.PagesService
+ *
+ * @description
+ * This service takes care of accessing static page data.
+ */
 cc.define('cc.PagesService', function($http, $q, configService){
 
     'use strict';
@@ -1787,6 +2394,16 @@ cc.define('cc.PagesService', function($http, $q, configService){
     var RESOURCE_URL = configService.get('resourceUrl') + 'html/',
         ABOUT_PAGES  = configService.get('aboutPages');
 
+    /**
+     * @method getPage
+     * @memberof cc.PagesService
+     *
+     * @description
+     * Returns a page object by a given id.
+     *
+     * @param {int} id Page id.
+     * @return {object} Page object.
+     */
     self.getPage = function(id){
         return $http
                 .get(RESOURCE_URL + id + '.html')
@@ -1803,6 +2420,16 @@ cc.define('cc.PagesService', function($http, $q, configService){
                 });
     };
 
+    /**
+     * @method getPageConfig
+     * @memberof cc.PagesService
+     * 
+     * @description
+     * Returns a page configuration object by a given page id.
+     *
+     * @param {int} id Page id.
+     * @return {object} Page configuration
+     */
     self.getPageConfig = function(id){
         var page = ABOUT_PAGES.filter(function(page){
             return page.id === id;
@@ -1813,6 +2440,7 @@ cc.define('cc.PagesService', function($http, $q, configService){
 
     return self;
 });
+
 cc.define('cc.QService', function(){
 
     'use strict';
@@ -2155,6 +2783,14 @@ cc.define('cc.QService', function(){
         console.log(err);
     });
 });
+/**
+ * @name SearchService
+ * @namespace cc.SearchService
+ *
+ * @description
+ * Search service which let's you query against the CouchCommerce API to search
+ * for products.
+ */
 cc.define('cc.SearchService', function(configService, $http, $q, applier){
 
     'use strict';
@@ -2169,6 +2805,20 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
     // a search view so precautions can be made (e.g. an orientationchange bugfix on iOS)
     self.uiActive = false;
 
+    /**
+     * @method search
+     * @memberof cc.SearchService
+     *
+     * @description
+     * Searches for `searchStr` and groups the results if `grouping` is truthy. 
+     * This search is promise based to let you have flow control. Therefore it 
+     * returns a promise that gets resolved with the search results.
+     *
+     * @param {string} searchStr A search string.
+     * @param {boolean} grouping Whether to group the results or not.
+     *
+     * @return {Promise} A promise with the search results.
+     */
     self.search = function(searchStr, grouping){
 
         var deferredResponse = $q.defer();
@@ -2261,15 +2911,39 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
 
     return self;
 });
-//we just wrap store.js in a service here
+
+/**
+ * @name LocalStorageService
+ * @namespace cc.LocalStorageService
+ *
+ * @description
+ * We just wrap store.js in a service here.
+ */
 cc.define('cc.LocalStorageService', function(){
     return store;
 });
+
+/**
+ * @name GoogleAnalyticsTracker
+ * @namespace cc.tracker.GoogleAnalyticsTracker
+ *
+ * @description
+ * A Google Analytics Tracker abstraction layer to connect to the SDK's
+ * tracker interface.
+ */
 cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
     'use strict';
 
     var self = {};
 
+    /**
+     * @method setup
+     * @memberof cc.tracker.GoogleAnalyticsTracker
+     *
+     * @description
+     * Sets up Google Analytics tracking code snippet with provided client
+     * information like account number and domain name.
+     */
     self.setup = function() {
         var _gaq = self._gaq = window._gaq = window._gaq || [];
 
@@ -2285,6 +2959,17 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
         s.parentNode.insertBefore(ga, s);
     };
 
+    /**
+     * @method trackEvent
+     * @memberof cc.tracker.GoogleAnalyticsTracker
+     *
+     * @description
+     * Explicit event tracking. This method pushes tracking data
+     * to Google Analytics.
+     *
+     * @param {object} eventData Event data object.
+     * @param {object} $http Http service to make asynchronous calls.
+     */
     self.trackEvent = function(eventData, $http) {
 
         eventData.category = eventData.category || '';
@@ -2325,12 +3010,32 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
 
     return self;
 });
+
+/**
+ * @name TrackingService
+ * @namespace cc.TrackingService
+ *
+ * @description
+ * Abstraction layer to communicate with concrete tracker services
+ * like Google Analytics.
+ */
 cc.define('cc.TrackingService', function($window, $http){
     'use strict';
 
     var self = {};
     var trackers = [];
 
+    /**
+     * @method addTracker
+     * @memberof cc.TrackingService
+     *
+     * @description
+     * Adds a concrete tracker service implementation and also takes care
+     * of the setup. It'll throw exceptions if the tracker service
+     * doesn't implement the needed API.
+     *
+     * @param {object} tracker Concrete tracker implementation.
+     */
     self.addTracker = function(tracker) {
 
         if (!tracker.setup){
@@ -2346,6 +3051,15 @@ cc.define('cc.TrackingService', function($window, $http){
         trackers.push(tracker);
     };
 
+    /**
+     * @method trackEvent
+     * @memberof cc.TrackingService
+     *
+     * @description
+     * Forces all registered trackers to track an event.
+     *
+     * @param {object} eventData Event data object.
+     */
     self.trackEvent = function(eventData) {
         trackers.forEach(function(tracker){
             tracker.trackEvent(eventData, $http);
@@ -2354,43 +3068,137 @@ cc.define('cc.TrackingService', function($window, $http){
 
     return self;
 });
+
+/**
+ * @name UrlConstructionService
+ * @namespace cc.UrlConstructionService
+ *
+ * @description
+ * As the name says. This service provides methods to construct URLs for
+ * different use cases.
+ */
 cc.define('cc.UrlConstructionService', function(configService){
     var self = {};
 
+    /**
+     * @method createUrlForProducts
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for products.
+     *
+     * @param {int} categoryUrlId Category url id.
+     * @return {string} Url
+     */
     self.createUrlForProducts = function(categoryUrlId){
         return '/cat/' + categoryUrlId + '/products';
     };
 
+    /**
+     * @method createUrlForProduct
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for a product.
+     *
+     * @param {product} product Product object.
+     * @return {string} Url
+     */
     self.createUrlForProduct = function(product){
         return '/cat/' + product.categoryUrlId + '/product/' + product.urlKey;
     };
 
+    /**
+     * @method createUrlForCategory
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for a category.
+     *
+     * @param {int} categoryUrlId Category url id.
+     * @return {string} Url
+     */
     self.createUrlForCategory = function(categoryUrlId){
         return '/cat/' + categoryUrlId;
     };
 
+    /**
+     * @method createUrlForRootCategory
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for root category.
+     *
+     * @return {string} Url
+     */
     self.createUrlForRootCategory = function(){
         return '';
     };
 
+    /**
+     * @method createUrlForCart
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for cart.
+     *
+     * @return {string} Url
+     */
     self.createUrlForCart = function(){
         return '/cart';
     };
 
+    /**
+     * @method createUrlForCheckout
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for checkout.
+     *
+     * @return {string} Url
+     */
     self.createUrlForCheckout = function(){
         return '/checkout';
     };
 
+    /**
+     * @method createUrlForSummary
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for summary.
+     *
+     * @param {string} token Summary token.
+     * @return {string} Url
+     */
     self.createUrlForSummary = function(token){
         return '/summary/' + token;
     };
 
+    /**
+     * @method createUrlForShippingCostsPage
+     * @memberof cc.UrlConstructionService
+     *
+     * @description
+     * Creates url for shipping costs page.
+     *
+     * @return {string} Url
+     */
     self.createUrlForShippingCostsPage = function(){
         return '/pages/' + configService.get('linkShippingCosts', '');
     };
 
     return self;
 });
+
+/**
+ * @name UrlParserService
+ * @namespace cc.UrlParserService
+ *
+ * @description
+ * This service provides a clean interface when it comes to accessing url ids
+ * for categories and products.
+ */
 cc.define('cc.UrlParserService', function($location){
     var self = {};
 
@@ -2406,6 +3214,16 @@ cc.define('cc.UrlParserService', function($location){
         urlRightFromSlash: /\/.*/
     };
 
+    /**
+     * @method isView
+     * @memberof cc.UrlParserService
+     *
+     * @description
+     * Returns true if given `viewName` is a view.
+     *
+     * @param {string} viewName View name.
+     * @return {boolean}
+     */
     self.isView = function(viewName){
         var regex = views[viewName];
 
@@ -2416,17 +3234,44 @@ cc.define('cc.UrlParserService', function($location){
         return regex.test($location.path());
     };
 
+    /**
+     * @method isRootCategory
+     * @memberof cc.UrlParserService
+     *
+     * @description
+     * Returns true if current location path is a root category.
+     *
+     * @return {boolean}
+     */
     self.isRootCategory = function(){
         var path = $location.path();
         return path === '/' || path === '/cat/' ;
     };
 
+    /**
+     * @method getCategoryUrlId
+     * @memberof cc.UrlParserService
+     * 
+     * @description
+     * Extracts a category url id from a URL for you and returns it.
+     *
+     * @return {string} Category url id.
+     */
     self.getCategoryUrlId = function(){
         return $location.path()
                         .replace(utilityRegex.urlBeforeCategory,'')
                         .replace(utilityRegex.urlRightFromSlash, '');
     };
 
+    /**
+     * @method getProductUrlId
+     * @memberof cc.UrlParserService
+     *
+     * @description
+     * Extracts a Product url id from a URL for you and returns it.
+     *
+     * @return {string} Product url id.
+     */
     self.getProductUrlId = function(){
         return $location.path()
                         .replace(utilityRegex.urlBeforeProduct,'')
@@ -2435,6 +3280,15 @@ cc.define('cc.UrlParserService', function($location){
 
     return self;
 });
+
+/**
+ * @name UserService
+ * @namespace cc.UserService
+ *
+ * @description
+ * User related service that let's you access things like billing addresses, shipping
+ * addresses and similar things.
+ */
 cc.define('cc.UserService', function(storageService, configService){
 
     'use strict';
@@ -2445,7 +3299,13 @@ cc.define('cc.UserService', function(storageService, configService){
         STORE_SHIPPING_ADDRESS_KEY = STORE_PREFIX + 'shippingAddress';
 
     /**
-     * Gets the invoice address for the user
+     * @method getInvoiceAddress
+     * @memberof cc.UserService
+     *
+     * @description
+     * Gets the invoice address for the user.
+     *
+     * @return {object} address Address object.
      */
     self.getInvoiceAddress = function(){
         var address = storageService.get(STORE_INVOICE_ADDRESS_KEY);
@@ -2462,14 +3322,26 @@ cc.define('cc.UserService', function(storageService, configService){
     };
 
     /**
-     * Creates/Updates the invoice address for the user
+     * @method updateInvoiceAddress
+     * @memberof cc.Updates
+     *
+     * @description
+     * Creates/Updates the invoice address for the user.
+     *
+     * @param {object} invoiceAddress Invoice address object.
      */
     self.updateInvoiceAddress = function(invoiceAddress){
         return storageService.set(STORE_INVOICE_ADDRESS_KEY, invoiceAddress);
     };
 
     /**
-     * Gets the shipping address for the user
+     * @method getShippingAddress
+     * @memberof cc.UserService
+     *
+     * @description
+     * Gets the shipping address for the user.
+     *
+     * @return {object} shipping address object.
      */
     self.getShippingAddress = function(){
         var address = storageService.get(STORE_SHIPPING_ADDRESS_KEY);
@@ -2485,7 +3357,13 @@ cc.define('cc.UserService', function(storageService, configService){
     };
 
     /**
-     * Creates/Updates the shipping address for the user
+     * @method updateShippingAddress
+     * @memberof cc.UserService
+     *
+     * @description
+     * Creates/Updates the shipping address for the user.
+     *
+     * @param {object} invoiceAddress
      */
     self.updateShippingAddress = function(invoiceAddress){
         return storageService.set(STORE_SHIPPING_ADDRESS_KEY, invoiceAddress);
@@ -2493,11 +3371,36 @@ cc.define('cc.UserService', function(storageService, configService){
 
     return self;
 });
+
+/**
+ * @name Util
+ * @namespace cc.Util
+ *
+ * @description
+ * Namespace containing utility functions for compatibility stuff etc.
+ *
+ */
 cc.Util = {
-    //http://docs.sencha.com/touch/2.2.0/source/Number2.html#Ext-Number-method-toFixed
+    /**
+     * @method isToFixedBroken
+     * @memberof cc.Util
+     *
+     * @description
+     * Checks if the <code>toFixed()</code> function in the current JavaScript
+     * environment is broken or not. For more info see {@link http://docs.sencha.com/touch/2.2.0/source/Number2.html#Ext-Number-method-toFixed }.
+     *
+     * @return {boolean} Whether its broken or not.
+     */
     isToFixedBroken: (0.9).toFixed() !== '1',
     indicatorObject: {},
-    //Used to determine if values are of the language type Object
+    
+    /**
+     * @member {object} objectTypes
+     * @memberof cc.Util
+     *
+     * @description
+     * Used to determine if values are of the language type Object
+     */
     objectTypes: {
         'boolean': false,
         'function': true,
@@ -2506,6 +3409,17 @@ cc.Util = {
         'string': false,
         'undefined': false
     },
+
+    /**
+     * @method domReady
+     * @memberof cc.Util
+     *
+     * @description
+     * Takes a function and executes it if the document is ready at this point.
+     * If its not, it registers the given function as callback.
+     *
+     * @param {function} fn Callback function to execute once DOM is ready.
+     */
     domReady: function(fn){
         if(document.readyState === "complete") {
             fn()
@@ -2514,10 +3428,34 @@ cc.Util = {
             window.addEventListener("load", fn, false);
         }
     },
+    /**
+     * @method round
+     * @memberof cc.Util
+     *
+     * @description
+     * Rounds a given value by a number of given places and returns it.
+     *
+     * @param {(float|number)} value Value to be round.
+     * @param {int} places Number of places to round the value.
+     *
+     * @return {float} Rounded value
+     */
     round: function(value, places){
         var multiplier = Math.pow(10, places);
         return (Math.round(value * multiplier) / multiplier);
     },
+    /**
+     * @method toFixed
+     * @memberof cc.Util
+     *
+     * @description
+     * Transformes a given value to a fixed value by a given precision.
+     *
+     * @param {(number|float)} value Value to fix.
+     * @param {number} precision Precision.
+     *
+     * @return {number} Transformed fixed value.
+     */
     toFixed: function(value, precision){
 
         value = cc.Util.isString(value) ? parseFloat(value) : value;
@@ -2530,9 +3468,18 @@ cc.Util = {
 
         return value.toFixed(precision);
     },
-    //this method is useful for cloning complex (read: nested) objects without having references 
-    //from the clone to the original object
-    //http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object
+    /**
+     * @method clone
+     * @memberof cc.Util
+     *
+     * @description
+     * This method is useful for cloning complex (read: nested) objects without 
+     * having references from the clone to the original object.
+     * (See {@link http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object}).
+     *
+     * @param {object} obj Object to clone.
+     * @return {object} A clone of the given object.
+     */
     clone: function(obj) {
         // Handle the 3 simple types, and null or undefined
         if (null == obj || "object" != typeof obj) return obj;
@@ -2564,6 +3511,17 @@ cc.Util = {
 
         throw new Error("Unable to copy obj! Its type isn't supported.");
     },
+    /**
+     * @method extend
+     * @memberof cc.Util
+     *
+     * @description
+     * Extends the given object by members of additional given objects.
+     *
+     * @param {object} dst Destination object to extend.
+     *
+     * @return {object} Extended destination object.
+     */
     extend: function(dst) {
         //strange thing, we can't use forOwn here because
         //phantomjs raises TypeErrors that don't happen in the browser
@@ -2746,6 +3704,7 @@ cc.Util = {
 cc.Util.domReady(function(){
     FastClick.attach(document.body);
 });
+
 /**
  * @preserve FastClick: polyfill to remove click delays on browsers with touch UIs.
  *
