@@ -1,5 +1,5 @@
 /**
- * @module Web App SDK
+ * @module sofa
  *
  * @description
  * The web app SDK module contains all SDK components you need to build your
