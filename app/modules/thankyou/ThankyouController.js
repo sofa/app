@@ -13,6 +13,8 @@ angular
             // There the basket is only cleared when the thankyou page is loaded (as this page will always be shown, regardless of the transaction type)
             basketService.clear();
 
+            trackingService.trackTransaction(summaryResponse.token);
+
             var vm = $scope.vm = {};
 
             $scope.navigationService = navigationService;

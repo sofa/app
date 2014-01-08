@@ -26,8 +26,8 @@ angular
                     if(result.response.error){
                         dialog
                             .messageBox(
-                                $scope.ln.errorGettingPaymentDetails, 
-                                result.response.error.paymentErrorMsg, 
+                                $scope.ln.errorGettingPaymentDetails,
+                                result.response.error.paymentErrorMsg,
                                 [{result: 'ok', label: $scope.ln.btnOk}]
                             )
                             .result
@@ -70,6 +70,13 @@ angular
                     .activateOrder($stateParams.token)
                     .then(function(data){
                         $state.transitionTo('thankyou');
+                    }, function(err) {
+                        dialog
+                            .messageBox(
+                                $scope.ln.btnWarning,
+                                $scope.ln.errorGettingPaymentDetails,
+                                [{result: 'ok', label: $scope.ln.btnOk}]
+                            );
                     });
             };
         }

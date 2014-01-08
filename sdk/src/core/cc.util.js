@@ -19,7 +19,7 @@ cc.Util = {
      */
     isToFixedBroken: (0.9).toFixed() !== '1',
     indicatorObject: {},
-    
+
     /**
      * @member {object} objectTypes
      * @memberof cc.Util
@@ -99,7 +99,7 @@ cc.Util = {
      * @memberof cc.Util
      *
      * @description
-     * This method is useful for cloning complex (read: nested) objects without 
+     * This method is useful for cloning complex (read: nested) objects without
      * having references from the clone to the original object.
      * (See {@link http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object}).
      *
@@ -237,7 +237,7 @@ cc.Util = {
         var result = true;
 
         callback = cc.Util.createCallback(callback, thisArg);
-      
+
         cc.Util.forOwn(collection, function(value, key, object){
             if (!callback(value, key, object)){
                 result = false;
@@ -322,6 +322,22 @@ cc.Util = {
             arr.splice(index, 1);
             return arr;
         }
+    },
+
+    // The backend is not returning valid JSON.
+    // It sends it wrapped with parenthesis.
+    //
+    // This function will become obselete soon,
+    // see https://github.com/couchcommerce/checkout-api/issues/2
+    toJson: function(str){
+
+        if (!str || !str.length || str.length < 2){
+            return null;
+        }
+
+        var jsonStr = str.substring(1, str.length -1);
+
+        return JSON.parse(jsonStr);
     }
 };
 

@@ -7,7 +7,7 @@
  * you information about used and last used payment or shipping methods. There are
  * several checkout types supported, all built behind a clean API.
  */
-cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService){
+cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService, trackingService){
 
     'use strict';
 
@@ -33,18 +33,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
         }
         return str.join('&');
-    };
-
-    //The backend is not returning valid JSON.
-    //It sends it wrapped with parenthesis.
-    var toJson = function(str){
-        if (!str || !str.length || str.length < 2){
-            return null;
-        }
-
-        var jsonStr = str.substring(1, str.length -1);
-
-        return JSON.parse(jsonStr);
     };
 
     var createQuoteData = function(){
@@ -196,7 +184,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             var data = null;
 
             if(response.data ){
-                data = toJson(response.data);
+                data = cc.Util.toJson(response.data);
 
                 if (data){
 
@@ -258,7 +246,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         .then(function(response){
             var data = null;
             if(response.data){
-                data = toJson(response.data);
+                data = cc.Util.toJson(response.data);
                 data = data.token || null;
             }
             return data;
@@ -394,10 +382,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         })
         .then(function(response){
             var data = {};
-            data.response = toJson(response.data);
+            data.response = cc.Util.toJson(response.data);
             data.invoiceAddress = convertAddress(data.response.billing);
             data.shippingAddress = convertAddress(data.response.shipping);
             data.summary = convertSummary(data.response.totals);
+            data.token = token;
 
             lastSummaryResponse = data;
 
@@ -450,7 +439,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             }
         })
         .then(function(response){
-            var json = toJson(response.data);
+            var json = cc.Util.toJson(response.data);
 
             return json;
         }, function(fail){

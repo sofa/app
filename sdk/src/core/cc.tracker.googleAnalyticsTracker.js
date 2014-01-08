@@ -43,9 +43,8 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
      * to Google Analytics.
      *
      * @param {object} eventData Event data object.
-     * @param {object} $http Http service to make asynchronous calls.
      */
-    self.trackEvent = function(eventData, $http) {
+    self.trackEvent = function(eventData) {
 
         eventData.category = eventData.category || '';
         eventData.action = eventData.action || '';
@@ -80,6 +79,44 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
         }
 
         _gaq.push(dataToBePushed);
+
+    };
+
+    /**
+     * @method trackEvent
+     * @memberof cc.tracker.GoogleAnalyticsTracker
+     *
+     * @description
+     * Pushes transaction data using the Google Analytics Ecommerce Tracking API
+     *
+     * @param {object} transactionData Transaction data object.
+     */
+    self.trackTransaction = function(transactionData) {
+        _gaq.push(['_gat._anonymizeIp']);
+        _gaq.push(['_addTrans',
+            transactionData.token,               // transaction ID - required
+            location.host,                       // affiliation or store name
+            transactionData.totals.subtotal,     // total - required; Shown as "Revenue" in the
+                                                 // Transactions report. Does not include Tax and Shipping.
+            transactionData.totals.vat,          // tax
+            transactionData.totals.shipping,     // shipping
+            '',                                  // city
+            '',                                  // state or province
+            transactionData.billing.countryname, // country
+        ]);
+
+        transactionData.items.forEach(function(item) {
+            _gaq.push(['_addItem',
+                transactionData.token,           // transaction ID - necessary to associate item with transaction
+                item.productId,                  // SKU/code - required
+                item.name,                       // product name - necessary to associate revenue with product
+                '',                              // category or variation
+                item.price,                      // unit price - required
+                item.qty                         // quantity - required
+            ]);
+        });
+
+        _gaq.push(['_trackTrans']);
 
     };
 

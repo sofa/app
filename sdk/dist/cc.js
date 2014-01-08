@@ -646,7 +646,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
  * you information about used and last used payment or shipping methods. There are
  * several checkout types supported, all built behind a clean API.
  */
-cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService){
+cc.define('cc.CheckoutService', function($http, $q, basketService, loggingService, configService, trackingService){
 
     'use strict';
 
@@ -672,18 +672,6 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             str.push(encodeURIComponent(p) + '=' + encodeURIComponent(obj[p]));
         }
         return str.join('&');
-    };
-
-    //The backend is not returning valid JSON.
-    //It sends it wrapped with parenthesis.
-    var toJson = function(str){
-        if (!str || !str.length || str.length < 2){
-            return null;
-        }
-
-        var jsonStr = str.substring(1, str.length -1);
-
-        return JSON.parse(jsonStr);
     };
 
     var createQuoteData = function(){
@@ -835,7 +823,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             var data = null;
 
             if(response.data ){
-                data = toJson(response.data);
+                data = cc.Util.toJson(response.data);
 
                 if (data){
 
@@ -897,7 +885,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         .then(function(response){
             var data = null;
             if(response.data){
-                data = toJson(response.data);
+                data = cc.Util.toJson(response.data);
                 data = data.token || null;
             }
             return data;
@@ -1033,10 +1021,11 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
         })
         .then(function(response){
             var data = {};
-            data.response = toJson(response.data);
+            data.response = cc.Util.toJson(response.data);
             data.invoiceAddress = convertAddress(data.response.billing);
             data.shippingAddress = convertAddress(data.response.shipping);
             data.summary = convertSummary(data.response.totals);
+            data.token = token;
 
             lastSummaryResponse = data;
 
@@ -1089,7 +1078,7 @@ cc.define('cc.CheckoutService', function($http, $q, basketService, loggingServic
             }
         })
         .then(function(response){
-            var json = toJson(response.data);
+            var json = cc.Util.toJson(response.data);
 
             return json;
         }, function(fail){
@@ -2982,9 +2971,8 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
      * to Google Analytics.
      *
      * @param {object} eventData Event data object.
-     * @param {object} $http Http service to make asynchronous calls.
      */
-    self.trackEvent = function(eventData, $http) {
+    self.trackEvent = function(eventData) {
 
         eventData.category = eventData.category || '';
         eventData.action = eventData.action || '';
@@ -3022,6 +3010,44 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
 
     };
 
+    /**
+     * @method trackEvent
+     * @memberof cc.tracker.GoogleAnalyticsTracker
+     *
+     * @description
+     * Pushes transaction data using the Google Analytics Ecommerce Tracking API
+     *
+     * @param {object} transactionData Transaction data object.
+     */
+    self.trackTransaction = function(transactionData) {
+        _gaq.push(['_gat._anonymizeIp']);
+        _gaq.push(['_addTrans',
+            transactionData.token,               // transaction ID - required
+            location.host,                       // affiliation or store name
+            transactionData.totals.subtotal,     // total - required; Shown as "Revenue" in the
+                                                 // Transactions report. Does not include Tax and Shipping.
+            transactionData.totals.vat,          // tax
+            transactionData.totals.shipping,     // shipping
+            '',                                  // city
+            '',                                  // state or province
+            transactionData.billing.countryname, // country
+        ]);
+
+        transactionData.items.forEach(function(item) {
+            _gaq.push(['_addItem',
+                transactionData.token,           // transaction ID - necessary to associate item with transaction
+                item.productId,                  // SKU/code - required
+                item.name,                       // product name - necessary to associate revenue with product
+                '',                              // category or variation
+                item.price,                      // unit price - required
+                item.qty                         // quantity - required
+            ]);
+        });
+
+        _gaq.push(['_trackTrans']);
+
+    };
+
     return self;
 });
 
@@ -3033,7 +3059,7 @@ cc.define('cc.tracker.GoogleAnalyticsTracker', function(options) {
  * Abstraction layer to communicate with concrete tracker services
  * like Google Analytics.
  */
-cc.define('cc.TrackingService', function($window, $http){
+cc.define('cc.TrackingService', function($window, $http, configService){
     'use strict';
 
     var self = {};
@@ -3060,6 +3086,10 @@ cc.define('cc.TrackingService', function($window, $http){
             throw new Error('tracker must implement a trackEvent method');
         }
 
+        if (!tracker.trackTransaction){
+            throw new Error('tracker must implement a trackTransaction method');
+        }
+
         tracker.setup();
 
         trackers.push(tracker);
@@ -3076,8 +3106,35 @@ cc.define('cc.TrackingService', function($window, $http){
      */
     self.trackEvent = function(eventData) {
         trackers.forEach(function(tracker){
-            tracker.trackEvent(eventData, $http);
+            tracker.trackEvent(eventData);
         });
+    };
+
+    /**
+     * @method trackTransaction
+     * @memberof cc.TrackingService
+     *
+     * @description
+     * First requests information about a token from the backend, then
+     * forces all registered trackers to track the associated transaction.
+     *
+     * @param {string} token.
+     */
+    self.trackTransaction = function(token) {
+
+        var requestTransactionDataUrl = configService.get('checkoutUrl') + 'summaryfin.php';
+
+        $http.get(requestTransactionDataUrl+'?token='+token+'&details=get')
+        .then(function(response){
+            var transactionData = cc.Util.toJson(response.data);
+
+            transactionData.token = token;
+
+            trackers.forEach(function(tracker){
+                tracker.trackTransaction(transactionData);
+            });
+        });
+
     };
 
     return self;
@@ -3407,7 +3464,7 @@ cc.Util = {
      */
     isToFixedBroken: (0.9).toFixed() !== '1',
     indicatorObject: {},
-    
+
     /**
      * @member {object} objectTypes
      * @memberof cc.Util
@@ -3487,7 +3544,7 @@ cc.Util = {
      * @memberof cc.Util
      *
      * @description
-     * This method is useful for cloning complex (read: nested) objects without 
+     * This method is useful for cloning complex (read: nested) objects without
      * having references from the clone to the original object.
      * (See {@link http://stackoverflow.com/questions/728360/most-elegant-way-to-clone-a-javascript-object}).
      *
@@ -3625,7 +3682,7 @@ cc.Util = {
         var result = true;
 
         callback = cc.Util.createCallback(callback, thisArg);
-      
+
         cc.Util.forOwn(collection, function(value, key, object){
             if (!callback(value, key, object)){
                 result = false;
@@ -3710,6 +3767,22 @@ cc.Util = {
             arr.splice(index, 1);
             return arr;
         }
+    },
+
+    // The backend is not returning valid JSON.
+    // It sends it wrapped with parenthesis.
+    //
+    // This function will become obselete soon,
+    // see https://github.com/couchcommerce/checkout-api/issues/2
+    toJson: function(str){
+
+        if (!str || !str.length || str.length < 2){
+            return null;
+        }
+
+        var jsonStr = str.substring(1, str.length -1);
+
+        return JSON.parse(jsonStr);
     }
 };
 
