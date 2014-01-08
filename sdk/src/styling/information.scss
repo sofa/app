@@ -5,3 +5,32 @@
     color: $info-area-text-color;
     border: 1px solid $info-area-text-color;
 }
+
+.cc-tooltip {
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    margin-top: 16px;
+    position: relative;
+    display: inline-block;
+    &:before {
+      width: 0;
+      height: 0;
+      border-bottom: 20px solid transparent;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      content: "";
+      position: absolute;
+      top: -13px;
+      left: 10px
+    }
+}
+
+.cc-tooltip--info {
+    @extend .cc-tooltip;
+    background: $info-area-background-color; 
+
+    &:before {
+      border-bottom-color: $info-area-background-color;
+    }
+}

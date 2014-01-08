@@ -18,6 +18,7 @@ cc.Lang = {
         cartShipping:'Versand',
         cartTaxLabel:'enthaltene MwSt.',
         cartGrandTotalLabel:'Gesamtpreis',
+        checkoutProceedInfo:'Bitte stellen Sie sicher dass alle Pflichtfelder ausgefüllt sind (*).',
         paymentMethodLabel:'Zahlungsmethode',
         otherPaymentMethod:'Andere Zahlung',
         paymentMethod: 'Zahlungsmethode',
