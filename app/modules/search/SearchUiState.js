@@ -1,6 +1,6 @@
 angular
     .module('CouchCommerceApp')
-    .factory('searchUiState', ['searchService', function(searchService) {
+    .factory('searchUiState', ['inputFocusFixConfigService', function (inputFocusFixConfigService) {
 
             'use strict';
 
@@ -8,13 +8,29 @@ angular
 
             self.results = [];
 
+            var isOpen = false;
+
+            self.isOpen = function() {
+                return isOpen;
+            };
+
+            self.openSearch = function() {
+                isOpen = true;
+                inputFocusFixConfigService.enabled = true;
+            };
+
+            self.closeSearch = function() {
+                isOpen = false;
+                inputFocusFixConfigService.enabled = false;
+            };
+
             self.searchTerm = '';
 
             self.isRunningSearch = false;
 
             self.abort = function(){
                 self.searchTerm = '';
-                searchService.uiActive = false;
+                self.closeSearch();
             };
 
             self.hasSearchTerm = function(){

@@ -2782,17 +2782,13 @@ cc.define('cc.SearchService', function(configService, $http, $q, applier){
         debounceMs          = configService.get('searchDebounceMs', 300),
         endpoint            = configService.get('searchUrl') + '?callback=JSON_CALLBACK&len=100';
 
-    // The uiActive variable is used to notify the sdk that the app is currently activating
-    // a search view so precautions can be made (e.g. an orientationchange bugfix on iOS)
-    self.uiActive = false;
-
     /**
      * @method search
      * @memberof cc.SearchService
      *
      * @description
-     * Searches for `searchStr` and groups the results if `grouping` is truthy. 
-     * This search is promise based to let you have flow control. Therefore it 
+     * Searches for `searchStr` and groups the results if `grouping` is truthy.
+     * This search is promise based to let you have flow control. Therefore it
      * returns a promise that gets resolved with the search results.
      *
      * @param {string} searchStr A search string.

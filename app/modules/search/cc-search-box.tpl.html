@@ -1,4 +1,4 @@
-<div ng-class="{'cc-search-box--opened': vm.searchService.uiActive, 'cc-search-box--closed' : !vm.searchService.uiActive }" ng-controller="SearchController as vm">
+<div ng-class="{'cc-search-box--opened': vm.searchUiState.isOpen(), 'cc-search-box--closed' : !vm.searchUiState.isOpen() }" ng-controller="SearchController as vm">
     <div class="cc-header__icon-wrapper">
         <i class="cc-header__icon fa fa-arrow-left"
            ng-click="searchUiState.abort()"></i>
@@ -18,8 +18,8 @@
 </div>
 
 <div class="cc-modal"
-    ng-click="searchUiState.abort()"
-    ng-show="searchService.uiActive && !searchUiState.hasResults()">
+     ng-click="searchUiState.abort()"
+     ng-show="searchUiState.isOpen() && !searchUiState.hasResults()">
 
     <cc-loading-spinner class="cc-loading-spinner--centered"
                         ng-show="searchUiState.isRunningSearch">

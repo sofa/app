@@ -25,13 +25,12 @@ angular
             //event that the SearchController can subscribe to?
 
             $scope.$onRootScope('header.searchButtonClicked', function(){
-                searchService.uiActive = true;
+                searchUiState.openSearch();
             });
 
             var vm = this;
 
             vm.searchUiState = searchUiState;
-            vm.searchService = searchService;
 
             $scope.$watch('vm.searchUiState.searchTerm', function(searchTerm){
                 searchUiState.isRunningSearch = true;

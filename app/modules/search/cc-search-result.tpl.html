@@ -1,4 +1,4 @@
-<div ng-controller="SearchResultController as vm" ng-show="vm.searchService.uiActive && vm.searchUiState.hasResults()" class="cc-scroller--if-fixed cc-full-width-height cc-search-result">
+<div ng-controller="SearchResultController as vm" ng-show="vm.searchUiState.isOpen() && vm.searchUiState.hasResults()" class="cc-scroller--if-fixed cc-full-width-height cc-search-result">
     <div class="cc-view-wrapper--unpadded">
         <ul class="cc-search-result__group-list">
             <li class="cc-search-result__group-list-item" ng-repeat="result in vm.searchUiState.results">

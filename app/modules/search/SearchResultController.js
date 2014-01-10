@@ -10,7 +10,6 @@ angular
             var vm = this;
 
             vm.searchUiState = searchUiState;
-            vm.searchService = searchService;
             vm.navigationService = navigationService;
 
             vm.createGroupText = function(grouping){
@@ -20,12 +19,12 @@ angular
             };
 
             vm.goToCategory = function(result){
-                searchService.uiActive = false;
+                searchUiState.closeSearch();
                 navigationService.navigateToCategory(result.groupKey);
             };
 
             vm.goToProduct = function(item){
-                searchService.uiActive = false;
+                searchUiState.closeSearch();
                 navigationService.navigateToProduct({
                     categoryUrlId: item.categoryUrlKey,
                     urlKey: item.productUrlKey

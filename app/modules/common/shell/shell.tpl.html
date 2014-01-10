@@ -2,7 +2,7 @@
       <div ng-include="tpl.HEADER"></div>
       <div cc-include="tpl.SEARCH_RESULT"></div>
 
-      <div ng-show="!searchService.uiActive || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-full-width-height" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
+      <div ng-show="!searchUiState.isOpen() || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-full-width-height" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
   </div>
 
 

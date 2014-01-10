@@ -2850,13 +2850,12 @@ angular
         };
     }]);
 angular.module('sdk.directives.ccIosInputFocusFix', []);
-
 // On iOS, when you focus an input and then rotate the screen, the layout
 // tends to mess up. To fix it we force a DOM refresh on orientation change.
 
 angular.module('sdk.directives.ccIosInputFocusFix')
-    .directive('ccIosInputFocusFix', ['searchService', 'deviceService',
-        function(searchService, deviceService) {
+    .directive('ccIosInputFocusFix', ['inputFocusFixConfigService', 'deviceService',
+        function(inputFocusFixConfigService, deviceService) {
 
         'use strict';
 
@@ -2864,7 +2863,7 @@ angular.module('sdk.directives.ccIosInputFocusFix')
                 restrict: 'A',
                 link: function (scope, element, attributes, controllers) {
                     window.addEventListener('orientationchange', function() {
-                        if ( searchService.uiActive && deviceService.getOs() === "iOS" ) {
+                        if ( inputFocusFixConfigService.enabled && deviceService.getOs() === "iOS" ) {
                             setTimeout(function() {
                                 document.body.style.display = "none";
                                 setTimeout(function() {
@@ -2879,6 +2878,17 @@ angular.module('sdk.directives.ccIosInputFocusFix')
                 }
             };
     }]);
+angular
+    .module('sdk.directives.ccIosInputFocusFix')
+    .factory('inputFocusFixConfigService', [function(){
+        'use strict';
+
+        var self = {};
+
+        self.enabled = false;
+
+        return self;
+}]);
 angular.module('sdk.directives.ccIosPositionFixedInputFix', []);
 
 //This fixes a pretty well known bug in iOS where elements with fixed positioning
