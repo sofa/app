@@ -217,7 +217,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
         basketItem.quantity = basketItem.quantity - quantity;
 
         if (basketItem.quantity === 0){
-            cc.Array.remove(items, basketItem);
+            cc.Util.Array.remove(items, basketItem);
         }
 
         writeToStore();

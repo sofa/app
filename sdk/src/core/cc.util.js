@@ -317,6 +317,24 @@ cc.Util = {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     Array: {
+        /**
+        * @method remove
+        * @public
+        *
+        * @description
+        * Removes a given item from a given array and returns the manipulated
+        * array.
+        *
+        * @example
+        * var arr = ['foo', 'bar'];
+        *
+        * var newArr = cc.UtilArray.remove(arr, 'foo');
+        *
+        * @param {array} arr An array.
+        * @param {object} item The item to remove from the array.
+        *
+        * @return {array} Manipulated array.
+        */
         remove: function(arr, item){
             var index = arr.indexOf(item);
             arr.splice(index, 1);

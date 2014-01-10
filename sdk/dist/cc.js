@@ -194,40 +194,6 @@ var cc = window.cc = {};
 })();
 
 /**
- * @name Array
- * @namespace cc.Array
- *
- * @description
- * This is more like a utility function to have a `[].remove()` method.
- */
-cc.Array = {
-    /**
-     * @method remove
-     * @memberof cc.Array
-     * @public
-     *
-     * @description
-     * Removes a given item from a given array and returns the manipulated
-     * array.
-     *
-     * @example
-     * var arr = ['foo', 'bar'];
-     *
-     * var newArr = cc.Array.remove(arr, 'foo');
-     *
-     * @param {array} arr An array.
-     * @param {object} item The item to remove from the array.
-     *
-     * @return {array} Manipulated array.
-     */
-    remove: function(arr, item){
-            var index = arr.indexOf(item);
-            arr.splice(index, 1);
-            return arr;
-        }
-};
-
-/**
  * @name BasketService
  * @class
  * @namespace cc.BasketService
@@ -446,7 +412,7 @@ cc.define('cc.BasketService', function(storageService, configService, options){
         basketItem.quantity = basketItem.quantity - quantity;
 
         if (basketItem.quantity === 0){
-            cc.Array.remove(items, basketItem);
+            cc.Util.Array.remove(items, basketItem);
         }
 
         writeToStore();
@@ -3762,6 +3728,24 @@ cc.Util = {
       return str.charAt(0).toUpperCase() + str.slice(1);
     },
     Array: {
+        /**
+        * @method remove
+        * @public
+        *
+        * @description
+        * Removes a given item from a given array and returns the manipulated
+        * array.
+        *
+        * @example
+        * var arr = ['foo', 'bar'];
+        *
+        * var newArr = cc.UtilArray.remove(arr, 'foo');
+        *
+        * @param {array} arr An array.
+        * @param {object} item The item to remove from the array.
+        *
+        * @return {array} Manipulated array.
+        */
         remove: function(arr, item){
             var index = arr.indexOf(item);
             arr.splice(index, 1);
