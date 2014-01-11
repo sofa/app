@@ -31,6 +31,15 @@
 
 .cc-product-view-image-mask-app-fix {
     -webkit-overflow-scrolling: initial !important;
+    z-index: auto;
+    -webkit-transform: none;
+    transform: none;
+}
+
+//this is the most ugly thing ever. The proper fix would be to move the img to the body and then
+//set all the rest of the content to display:none
+.cc-product-view-image-mask-app-fix + .snap-drawer{
+    display: none;
 }
 
 .cc-product-view-image--expanded{

@@ -44,8 +44,10 @@ angular
 
                     var body = angular.element(document.body);
 
+                    //This is a rather hacky way and we should better use class markers
+                    var appContent = angular.element(document.querySelectorAll('body > div')[0]);
+
                     var viewWrapper;
-                    var appContent;
 
                     if (flavourLevel === flavourLevelEnum.SIMPLE) {
 
@@ -57,12 +59,6 @@ angular
                         scope.$watch('image', function(newValue, oldValue) {
                             $element.css('background-image', 'url('+ newValue +')');
                         });
-
-                        // Directly referencing the 2nd element seems a bit dirty here, but we are talking about
-                        // the order of the elements on the body level which are prone to very little change.
-                        // There is also no other way in selecting the right element as the child elements of the body
-                        // have no unique parameters to identify them.
-                        appContent = angular.element(document.querySelectorAll('body > div')[2]);
 
                         var $clone;
 
@@ -135,7 +131,6 @@ angular
                         var addMask = function() {
 
                             viewWrapper = angular.element(document.querySelector('.cc-view-wrapper'));
-                            appContent = viewWrapper.parent();
 
                             mask = angular.element(document.createElement('div'));
                             mask.addClass('cc-product-view-image-mask');
