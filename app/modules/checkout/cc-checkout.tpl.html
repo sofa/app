@@ -46,31 +46,31 @@
         </cc-select-box>
         <p class="cc-form-label">{{ln.formSurname}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.billingAddress.surname" required cc-lazy-validation="parent" name="surname" class="cc-text-box" type="text" placeholder="Mustermann*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Lastname}}</span>
         </span>
         <p class="cc-form-label">{{ln.formGivenName}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.billingAddress.name" required cc-lazy-validation="parent" name="name" class="cc-text-box" type="text" placeholder="Hans"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Firstname}}</span>
         </span>
         <p class="cc-form-label">{{ln.formStreet}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.billingAddress.street" required cc-lazy-validation="parent" name="street" class="cc-text-box" type="text" placeholder="Musterstraße"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Street}}</span>
         </span>
         <p class="cc-form-label">{{ln.formZip}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.billingAddress.zip" required cc-lazy-validation="parent" name="zip" class="cc-text-box" type="text" placeholder="30559"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Zip}}</span>
         </span>
         <p class="cc-form-label">{{ln.formCity}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.billingAddress.city" required cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder="Hannover"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_City}}</span>
         </span>
@@ -81,14 +81,14 @@
             name="country"
             ng-model="checkoutModel.billingAddress.country"
             class="cc-select-box-on-background"
-            omit-null 
-            choose-text="ln.choose" 
-            display-value-exp="'label'" 
+            omit-null
+            choose-text="ln.choose"
+            display-value-exp="'label'"
             data="configService.getSupportedCountries()">
         </cc-select-box>
         <p class="cc-form-label">{{ln.formEmail}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input type="email" ng-model="checkoutModel.billingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="text" placeholder="email@example.com*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Email}}</span>
         </span>
@@ -115,52 +115,52 @@
         </cc-select-box>
         <p class="cc-form-label">{{ln.formSurname}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.shippingAddress.surname" required cc-lazy-validation="parent" name="surname" class="cc-text-box" type="text" placeholder="Mustermann"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Lastname}}</span>
         </span>
 
         <p class="cc-form-label">{{ln.formGivenName}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.shippingAddress.name" required cc-lazy-validation="parent" name="name" class="cc-text-box" type="text" placeholder="Hans"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Firstname}}</span>
         </span>
 
         <p class="cc-form-label">{{ln.formStreet}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.shippingAddress.street" required cc-lazy-validation="parent" name="street" class="cc-text-box" type="text" placeholder="{{ln.formStreet}}*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Street}}</span>
         </span>
 
         <p class="cc-form-label">{{ln.formCity}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.shippingAddress.city" required cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder="{{ln.formCity}}*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_City}}</span>
         </span>
 
         <p class="cc-form-label">{{ln.formZip}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input ng-model="checkoutModel.shippingAddress.zip" required cc-lazy-validation="parent" name="zip" class="cc-text-box" type="text" placeholder="{{ln.formZip}}*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Zip}}</span>
         </span>
 
         <p class="cc-form-label">{{ln.formCountry}}*</p>
         <cc-select-box
-            class="cc-select-box-on-background" 
-            ng-model="checkoutModel.shippingAddress.country" 
-            choose-text="ln.choose" 
+            class="cc-select-box-on-background"
+            ng-model="checkoutModel.shippingAddress.country"
+            choose-text="ln.choose"
             fail-message="ln.invalidInput_Salutation"
-            display-value-exp="'label'" 
+            display-value-exp="'label'"
             data="configService.getSupportedCountries()">
         </cc-select-box>
 
         <p class="cc-form-label">{{ln.formEmail}}*</p>
         <span class="cc-validation">
-            <i class="cc-validation__message--success fa fa-2x fa-ok"></i>
+            <i class="cc-validation__message--success fa fa-2x fa-check"></i>
             <input type="email" ng-model="checkoutModel.shippingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="text" placeholder="email@example.com*"/>
             <span class="cc-validation__message--fail">{{ln.invalidInput_Email}}</span>
         </span>
