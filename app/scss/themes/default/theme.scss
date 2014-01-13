@@ -27,3 +27,9 @@ body{
 .cc-primary-margin{
     margin-top: $primary-padding;
 }
+
+.cc-info-box{
+    background: $info-area-background-color;
+    color: $info-area-text-color;
+    border: 1px solid $info-area-text-color;
+}
