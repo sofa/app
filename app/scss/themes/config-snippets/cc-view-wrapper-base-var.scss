@@ -1,3 +1,6 @@
+//this is the old private-settings.scss. It moved here as a
+//temporally step until we find a better solution.
+
 $cc-view-wrapper__padding: $primary-padding;
 //this should be smarter so that it works also if $cc-header-base__height is not defined (composability!)
 $cc-view-wrapper__fixed-header-top-padding: $cc-header-base__height;
