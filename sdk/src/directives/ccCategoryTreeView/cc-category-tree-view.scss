@@ -1,0 +1,27 @@
+.cc-category-tree-view__list--open{
+    padding-left: 15px;
+}
+
+.cc-category-tree-view__list--closed{
+    @extend .cc-category-tree-view__list--open;
+    display: none;
+}
+
+.cc-category-tree-view__category-entry{
+    position: relative;
+}
+
+.cc-category-tree-view__category-entry-icon{
+    position: absolute;
+    right: 3px;
+    top: 3px;
+}
+
+.cc-category-tree-view__list-item-level-1{
+    border-bottom: 1px solid #fff;
+    padding: 10px 0 10px 0;
+}
+
+.cc-category-tree-view__list-item-level-{
+    padding: 10px 0 10px 0;
+}
