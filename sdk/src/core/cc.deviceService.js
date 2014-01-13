@@ -1,5 +1,4 @@
-/**
- * @name DeviceService
+/** * @name DeviceService
  * @namespace cc.DeviceService
  *
  * @description
@@ -41,6 +40,11 @@ cc.define('cc.DeviceService', function($window){
     else {
         userOSver = 'unknown';
     }
+
+    var versionStartsWith = function(str){
+        var version = self.getOsVersion();
+        return version.indexOf(str) === 0;
+    };
 
     /**
      * @method getHtmlTag
@@ -152,6 +156,19 @@ cc.define('cc.DeviceService', function($window){
     };
 
     /**
+     * @method isAndroid2x
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns true if device os is Android and version starts with '2'.
+     *
+     * @return {bool}
+     */
+    self.isAndroid2x = function () {
+      return self.getOs() === 'Android' && versionStartsWith('2');
+    };
+
+    /**
      * @method hasPositionFixedSupport
      * @memberof cc.DeviceService
      *
@@ -163,12 +180,6 @@ cc.define('cc.DeviceService', function($window){
      * @return {boolean}
      */
      self.hasPositionFixedSupport = function(){
-        var version = self.getOsVersion();
-
-        var versionStartsWith = function(str){
-            return version.indexOf(str) === 0;
-        };
-
         if (self.getOs() === 'Android'){
             //versions < 2.3 of Android have poor fixed support
             if (versionStartsWith('2')){
