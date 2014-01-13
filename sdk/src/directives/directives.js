@@ -16,5 +16,9 @@ angular.module('sdk.directives', [
     'sdk.directives.ccIosPositionFixedInputFix',
     'sdk.directives.ccIosInputFocusFix',
     'sdk.directives.ccInject',
-    'sdk.directives.ccBreadcrumbs'
+    'sdk.directives.ccBreadcrumbs',
+    'sdk.directives.ccTemplateCode',
+    'sdk.directives.ccCategoryTreeView',
+    'sdk.directives.ccGoUpButton',
+    'sdk.directives.ccGoBackButton'
 ]);
