@@ -9,3 +9,5 @@ build.xml
 .sass-cache
 node_modules
 dist
+build
+bower_components

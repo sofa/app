@@ -1,0 +1,39 @@
+<div cc-scroller-announcer bindonce="products" class=" cc-view-wrapper">
+    <cc-inject target="aboveContent"></cc-inject>
+    <h1 class="cc-title--huge">
+        <span bo-text="headline"></span>
+    </h1>
+
+    <div bo-if="products.length > 0">
+        <cc-select-box
+            ng-model="sortModel.sortBy"
+            allow-null
+            choose-text="ln.sortBy"
+            display-value-exp="'title'"
+            data="sortModel.sortTypes">
+        </cc-select-box>
+
+        <ul class="cc-product-grid">
+            <li
+                ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
+                class="cc-product-grid__row">
+                <div class="cc-product-grid__row-wrapper"
+                     ng-click="goToProduct(product, $event)" ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }">
+                <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
+                <div class="cc-product-grid__row-highlight-helper"></div>
+
+                <div class="cc-product-grid__row-price" bo-text="product.price | currency">
+                </div>
+                <div class="cc-product-grid__row-image"
+                     style="background-image: url({{product.getImage('small')}})">
+                </div>
+                <div class="cc-product-grid__row-text" bo-text="product.name"></div>
+                <div>
+            </li>
+        </ul>
+    </div>
+    <div bo-if="products.length === 0" ng-include="tpl.404_PRODUCTS"></div>
+    <cc-inject target="aboveFooter"></cc-inject>
+    <cca-footer></cca-footer>
+    <cc-inject target="beneathFooter"></cc-inject>
+</div>

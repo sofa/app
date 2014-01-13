@@ -1,14 +1,16 @@
 <!doctype html>
-<html lang="en" 
-  ng-class="{'cc-tablet-size' : isTabletSize }" 
+<html lang="en"
+  ng-class="{'cc-tablet-size' : isTabletSize }"
   ng-app="CouchCommerceApp"
   ng-controller="MainController">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>CouchCommerce</title>
-  <link rel="stylesheet" href="css/app.css"/>
+    <title>CouchCommerce</title>
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 </head>
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
 <body ontouchstart="">
@@ -18,6 +20,7 @@
     We now achieve the same as with ng-include on the body by using cc-include on a child div (the child div
     will be replaced after the directive does it's thing)  -->
     <div cc-include="tpl.SHELL"></div>
-    <%= grunt.config.get('scriptString') %>
+    <!-- compiled JS --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
 </body>
 </html>

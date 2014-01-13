@@ -1,0 +1,103 @@
+.cc-side-menu {
+    background: #444;
+    color: #eee;
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+
+    .cc-category-tree-view {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .cc-category-tree-view__list-item {
+        line-height:24px;
+    }
+    .cc-category-tree-view__category-entry-icon {
+        font-size: 14px;
+    }
+    .cc-category-tree-view__category-entry {
+        padding:8px 10px;
+        border-top:1px solid rgba(255,255,255,.1);
+    }
+    .cc-category-tree-view__category-entry--active {
+        background:#8B0000; /* darkred */
+        color:#fff;
+    }
+    .cc-category-tree-view__list--closed {
+        .cc-category-tree-view__list-item {
+            display:none;
+        }
+    }
+    .cc-category-tree-view__list--open {
+        &.cc-category-tree-view__list--child{
+            background:rgba(0,0,0,.25);
+        }
+    }
+
+    .cc-category-tree-view__list--child {
+        padding:0;
+
+        .cc-category-tree-view__list-item {
+            font-size:90%;
+            color:#d0d0d0;
+        }
+
+        .cc-category-tree-view__category-entry {
+            padding-left:25px;
+        }
+
+        .cc-category-tree-view__list--child {
+
+            .cc-category-tree-view__category-entry {
+                padding-left:40px;
+            }
+            .cc-category-tree-view__list--child {
+                .cc-category-tree-view__category-entry {
+                    padding-left:55px;
+                }
+            }
+        }
+    }
+
+}
+
+.cc-side-menu__heading {
+    line-height: 18px;
+    padding: 20px 10px;
+    background: #333;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    text-align: center;
+}
+
+//for the poor folks with Android 2.x or iOS <=4
+.cc-has-no-overflow-support{
+
+    .snap-drawer-left{
+        z-index: 0;
+        display: none;
+    }
+
+    .snapjs-left{
+        .snap-drawer-left{
+            display: block;
+        }
+    }
+
+    .cc-side-menu{
+        overflow: visible;
+        bottom: auto;
+        min-height: 100%;
+    }
+
+    .snap-drawer{
+        overflow: visible;
+    }
+
+    .snap-content{
+        position: static;
+        overflow-x:hidden; // probably solves some untraceable scrolling bugs
+    }
+}

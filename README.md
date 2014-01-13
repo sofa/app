@@ -1,50 +1,47 @@
-# How is this repository organized?
+# CouchCommerce App
+This is our App based on our SDK.
 
-Currently we maintain both the upcoming SDK as well as an app implementation which is written on top of the SDK in this repository.
-All SDK related files are located within the `sdk` directory and it's subdirectories.
+## Prerequisites
+You need to have the following tools installed globally on you machine:
 
-The app is located within the `app` directory and it's subdirectories.
+- npm
+- bower
+- karma
+- compass
 
-#What do I need to get the app running?
+## Installation
 
-Prerequisites:
+Clone the repo via git:
+```sh
+$ git glone https://github.com/couchcommerce/frontend-spike && cd frontend-spike
+```
 
-1. You must have `compass` installed
- 
-2. You must have `node.js` installed
+Install depencencies:
+```sh
+$ npm install
+$ bower install
+```
+## Running the App
 
-3. You must have the `grunt-cli` installed
+Simply type:
+```sh
+$ grunt watch
+```
+This will run the `build` and the `delta` task. You can now open a browser at `http://localhost:9000`.
 
-Then follow this process:
+The task also takes care of re-running sub targets during development when changes occur.
 
-1. Checkout the repository
+## Configuration
+To configure the app, makes changes in the `build.conf.js` file accordingly.
 
-2. Navigate to `app` on the console
+## Build Tasks
 
-3. Run `grunt`
-
-4. Open another console tab and navigate to `sdk``
-
-5. Run `grunt`
-
-6. Open the `app/dist/index.html` in your browser
-
-#What do I need to work on the SDK?
-
-Prerequisites:
-
-1. You must have `node.js` installed
-
-2. You must have the `grunt-cli` installed
-
-3. Navigate to `sdk` on the console
-
-4. Run `grunt`
-
-#Further tips
-
-grunt will keep running in both terminal sessions. Keep it running, it does all the heavy
-lifting behind the scenes.
+- `grunt watch` - process `build` tasks and starts a server for you
+- `grunt build` - generates a build of the app. This can be run in the browser.
+- `grunt compile` - compiles a built app. The result is a production ready package.
+- `grunt compile-debug` - same as `compile` without uglified JavaScript
+- `grunt deploy` - deploys the app.
+- `grunt deploy-debug` - same as `deploy` without uglified JavaScript.
 
 #Contribute
 

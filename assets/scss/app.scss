@@ -1,0 +1,65 @@
+@import '../../node_modules/sofa-base/src/styling/mixins.scss';
+@import '../../node_modules/sofa-base/src/styling/media-queries.scss';
+@import '../../node_modules/sofa-base/src/styling/font-awesome.scss';
+//public app configs
+@import 'styleconfig.scss';
+//component configs
+@import '../../node_modules/sofa-base/src/directives/ccSelectBox/cc-select-box-config.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-text-list-config.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-text-box-config.scss';
+@import '../../node_modules/sofa-base/src/directives/ccFooter/cc-footer-config.scss';
+
+//theme config
+@import 'themes/default/theme-config.scss';
+//sdk components
+@import '../../node_modules/sofa-base/src/styling/base.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-dock.scss';
+@import '../../node_modules/sofa-base/src/styling/mobile-reset.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-line-seperator.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-modal.scss';
+@import '../../node_modules/sofa-base/src/styling/animations.scss';
+@import '../../node_modules/sofa-base/src/styling/interactions.scss';
+@import '../../node_modules/sofa-base/src/styling/information.scss';
+@import '../../node_modules/sofa-base/src/styling/titles.scss';
+@import '../../node_modules/sofa-base/src/styling/alignment.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-form-label.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-text-box.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-text-list.scss';
+@import '../../node_modules/sofa-base/src/styling/tables.scss';
+@import '../../node_modules/sofa-base/src/styling/centering.scss';
+@import '../../node_modules/sofa-base/src/directives/directives.scss';
+
+//base app styles
+@import 'base.scss';
+//app component styles
+@import 'cc-box-highlight-helper.scss';
+@import 'cc-view-wrapper.scss';
+@import '../../src/app/common/dialog/bootstrap-dialog.scss';
+@import '../../src/app/common/dialog/cc-loading-dialog.scss';
+@import '../../src/app/common/dialog/cc-dialog.scss';
+@import '../../src/app/common/header/cc-header.scss';
+@import '../../src/app/common/totalbox/cc-cart-total-panel.scss';
+@import '../../src/app/common/footer/cca-footer.scss';
+@import '../../src/app/common/404/cc-404.scss';
+@import '../../src/app/common/contentbox/cc-content-box.scss';
+@import '../../src/app/common/snap/angular-snap.scss';
+@import '../../src/app/common/sidemenu/cc-side-menu.scss';
+@import '../../src/app/pages/pages.scss';
+@import '../../src/app/categories/cc-category-list.scss';
+@import '../../src/app/categories/cc-category-grid.scss';
+@import '../../src/app/products/cc-product-grid.scss';
+@import '../../src/app/product/cc-product.scss';
+@import '../../src/app/product/cc-product-buy-box.scss';
+@import '../../src/app/cart/cc-cart.scss';
+@import '../../src/app/cart/cc-paypal-overlay.scss';
+@import '../../src/app/checkout/cc-checkout.scss';
+@import '../../src/app/summary/cc-summary.scss';
+@import '../../src/app/trustedshops/cc-trusted-shops.scss';
+@import '../../src/app/search/cc-search-box.scss';
+@import '../../src/app/search/cc-search-result.scss';
+
+//theme overwrites
+@import 'themes/default/theme.scss';
+
+//simulated customer overwrites
+@import 'customer.scss';

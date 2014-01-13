@@ -1,0 +1,36 @@
+<div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
+    <cc-inject target="aboveContent"></cc-inject>
+
+    <div bindonce="category" ng-if="category">
+        <h1 class="cc-title--huge">
+            <span bo-text="headline"></span>
+        </h1>
+        <ul class="cc-category-grid">
+            <li ng-repeat="category in category.children"
+                class="cc-category-grid__box-wrapper" >
+
+                <div class="cc-category-grid__box"
+                     ng-click="goToCategory(category, $event)"
+                     ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }">
+
+                    <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
+                    <div class="cc-category-grid__row-highlight-helper"></div>
+
+                    <div class="cc-category-grid__box-image"
+                         style="background-image: url({{ category.image }})">
+                    </div>
+                    <span class="cc-category-grid__box-label"
+                          bo-text="category.label">
+                    </span>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+    <div ng-if="!category" ng-include="tpl.404"></div>
+
+    <cc-inject target="aboveFooter"></cc-inject>
+    <cca-footer></cca-footer>
+    <cc-inject target="beneathFooter"></cc-inject>
+</div>

@@ -1,0 +1,74 @@
+<div ng-show="vm.page === vm.SUMMARY_PAGE" class="cc-scroller--if-fixed cc-view-wrapper">
+    <h1 class="cc-title--huge">
+    <span ng-bind="ln.summary"></span>
+    </h1>
+    <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
+    <cc-check-box
+    ng-if="vm.showGeneralAgreement"
+    class="cc-check-box-on-background"
+    value="vm.generalAgreement" agreement="ln.combinedAgreement">
+    </cc-check-box>
+
+    <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
+    <cc-check-box
+    ng-if="vm.showAgeAgreement"
+    class="cc-check-box-on-background"
+    value="vm.ageAgreement"
+    label="ln.ageAgreement">
+    </cc-check-box>
+
+    <h2 class="cc-title--medium">{{ln.billingAddress}}</h2>
+    <cc-address data="vm.invoiceAddress"></cc-address>
+    <div class="cc-line-seperator--padded"></div>
+
+    <h2 class="cc-title--medium">{{ln.shippingAddress}}</h2>
+    <cc-address data="vm.shippingAddress"></cc-address>
+    <div class="cc-line-seperator--padded"></div>
+
+    <h2 class="cc-title--medium">{{ln.paymentMethod}}</h2>
+    <div>{{vm.paymentMethod}}</div>
+    <div class="cc-line-seperator--padded on-background"></div>
+
+    <h2 class="cc-title--medium">{{ln.shippingMethod}}</h2>
+    <div>{{vm.shippingMethod}}</div>
+    <div class="cc-line-seperator--padded on-background"></div>
+
+    <!-- This borrows some classes from the cart. I think the real problem is the
+    seperation of cart, summary and thankyou page. This should all live in one directory
+    called "checkout" or something like that. Then the styles could be named
+    cc-checkout-list and be used across both screens. No? -->
+        <div class="cc-content-box--padded">
+            <ul class="cc-cart-list">
+                <li ng-repeat="item in vm.items"
+                    class="cc-cart-list__row">
+                    <div class="cc-cart-list__row-image"
+                         style="background-image: url({{ item.imageURL }})">
+                    </div>
+                    <div class="cc-cart-list__row-content">
+                        <h2 class="cc-title--big">
+                            {{item.name}}
+                        </h2>
+                        <div>
+                            {{ln.listItemPrice}} {{item.price | currency}}
+                        </div>
+                        <div>
+                            {{ln.listItemQty}} {{item.qty}}
+                        </div>
+                        <div class="cc-cart-list__row-total">
+                            {{item.subtotal | currency}}
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- is that a candidate for a cc-total-box directive? -->
+            <div ng-include="tpl.TOTALBOX"></div>
+        </div>
+
+    <a  ng-click="acceptedAgreements() && proceed()"
+        ng-disabled="!acceptedAgreements()"
+        ng-class="acceptedAgreements() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'"
+        >{{ ln.buyButton }}
+    </a>
+
+    <cca-footer></cca-footer>
+</div>

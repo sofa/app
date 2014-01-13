@@ -1,0 +1,20 @@
+{
+    "name": "CouchCommerce Sample App",
+    "version": "0.0.1",
+    "homepage": "https://github.com/PascalPrecht/frontend-spike",
+    "authors": [
+        "Pascal Precht <pascal.precht@googlemail.com>"
+    ],
+    "license": "MIT",
+    "private": true,
+    "devDependencies": {
+         "angular-mocks": "~1.0.7"
+    },
+    "ignore": [
+        "**/.*",
+        "node_modules",
+        "bower_components",
+        "test",
+        "tests"
+    ]
+}
