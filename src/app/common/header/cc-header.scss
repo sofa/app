@@ -1,60 +1,115 @@
-.cc-header {
-    position: relative;
+.cc-header{
+    background: $cc-header__background;
     height: $cc-header__height;
-    padding: $cc-header__paddings;
     z-index: 999;
-}
-
-.cc-header__icon-wrapper--left {
-    float:left;
-    margin-right: $cc-header__padding-x;
-}
-
-.cc-header__icon-wrapper--right {
-    float:right;
-    margin-left: $cc-header__padding-x;
-}
-
-.cc-header__icon {
+    width: 100%;
     position: relative;
+    display: table;
+    //we need a blur radius of at least 1px for box-shadow to work on Android 2.3
+    //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
+    @include vendor-prefix('box-shadow', 0px $cc-header__border-bottom-width 1px $cc-header__border-bottom-color);
+    //the unprefixed version doesn't need the blur
+    box-shadow: 0px $cc-header__border-bottom-width 0px $cc-header__border-bottom-color;
+}
+
+.cc-header__icon-wrapper{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    //TODO: What is the magic 2 here?
+    width: $cc-header__button-width;
+}
+
+.cc-header__icon-wrapper--left{
+    @extend .cc-header__icon-wrapper;
+
+    text-align: left;
+    padding-left: $cc-header__icon-left-padding-left;
+}
+
+.cc-header__icon-wrapper--right{
+    @extend .cc-header__icon-wrapper;
+
+    text-align: right;
+    padding-right: $cc-header__icon-right-padding-right;
+}
+
+.cc-header__icon{
+    text-shadow: $cc-header__icon-text-shadow;
+    color: $cc-header__icon-color;
+
     display: inline-block;
     text-align: center;
+
+    padding: $cc-header__icon-padding;
     width: $cc-header__icon-width;
     height: $cc-header__icon-height;
-    line-height: $cc-header__icon-line-height;
+
     font-size: $cc-header__icon-font-size;
+
+    border-color: $cc-header__icon-border-color;
+    border-style: solid;
+    border-top-width: $cc-header__icon-border-top-width;
+    border-left-width: $cc-header__icon-border-left-width;
+    border-right-width: $cc-header__icon-border-right-width;
+
+    // border bottom is implemented as box shadow as it otherwise looks like ass
+    // on android 2.3
+    border-bottom: none;
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $cc-header__icon-border-bottom-width 1px 0 $cc-header__icon-border-bottom-color;
+    box-shadow: 0 $cc-header__icon-border-bottom-width 0 0 $cc-header__icon-border-bottom-color;
+
+    margin: $cc-header__icon-margin;
+
+    border-radius: $cc-header__icon-border-radius;
+
+    position: relative;
 
     @extend .cc-button--pressed;
 }
 
-.cc-header__icon-badge {
+//lots of hardcoded colors for the badge. Can we get rid of them?
+.cc-header__icon-badge{
     position: absolute;
-    top: -($cc-header__padding-y - 1px);
-    right: -($cc-header__padding-x - 1px);
-    text-align: center;
-    font-weight: 700;
     font-size: $cc-header__icon-badge-font-size;
-    line-height: ($cc-header__icon-badge-font-size * 2) - ($cc-header__icon-badge-border-width * 2);
-    min-width: $cc-header__icon-badge-font-size * 2;
-    border-radius: $cc-header__icon-badge-font-size;
+    line-height: $cc-header__icon-badge-font-size;
+    text-align: center;
+    background: $cc-header__icon-badge-background;
+    color: $cc-header__icon-badge-color;
+    padding: 4px;
+    text-shadow: none;
+
+    border-style: solid;
+    border-color: $cc-header__icon-badge-border-color;
+    border-top-width: $cc-header__icon-badge-border-top-width;
+    border-right-width: $cc-header__icon-badge-border-right-width;
+    border-left-width: $cc-header__icon-badge-border-left-width;
+    border-bottom: none;
+
+    //android 2.3 needs blur for box shadow
+    -webkit-box-shadow: 0 $cc-header__icon-badge-border-left-width 1px 0 $cc-header__icon-badge-border-bottom-color;
+    box-shadow: 0 $cc-header__icon-badge-border-left-width 0 0 $cc-header__icon-badge-border-bottom-color;
+
+    min-width: $cc-header__icon-badge-min-width;
+    border-radius: $cc-header__icon-badge-border-radius;
 }
 
-.cc-header__icon-badge--cart {
+.cc-header__icon-badge--cart{
     @extend .cc-header__icon-badge;
+    top: -6px;
+    right: 2px;
 }
 
-.cc-header__logo {
-    width:33.33333%;
-    height: $cc-header__logo-height;
-    margin:0 auto;
-
+.cc-header__logo{
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
+    display: table-cell;
 
     background-image: $cc-header__logo-small;
 
-    @include breakpoint(wide) {
+    @include breakpoint(wide){
         background-image: $cc-header__logo-big;
     }
 }

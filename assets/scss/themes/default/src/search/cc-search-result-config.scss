@@ -1,3 +1,6 @@
-$cc-search-result__top:                     $cc-header__height;
-$cc-search-result__image-size:              50px;
-$cc-search-result__image-background-color:  $color-6; // this should match the product images' background color.
+$cc-search-result__group-header-padding: $cc-primary-padding;
+$cc-search-result__group-header-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+$cc-search-result__item-list-background: hsla($color-6-h, $color-6-s, $color-6-l, 1);
+$cc-search-result__list-item-padding-left: $cc-primary-padding;
+$cc-search-result__list-item-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+$cc-search-result__list-item-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);

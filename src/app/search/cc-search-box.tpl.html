@@ -1,29 +1,38 @@
 <div ng-class="{'cc-search-box--opened': vm.searchUiState.isOpen(), 'cc-search-box--closed' : !vm.searchUiState.isOpen() }" ng-controller="SearchController as vm">
-    <i class="cc-search-box__close fa fa-angle-up" ng-click="searchUiState.abort()"></i>
-
-    <div class="cc-search-box__input-wrapper">
-        <i class="cc-search-box__input-search-icon fa fa-search"></i>
-        <input
-            ng-model="searchUiState.searchTerm"
-            class="cc-search-box__input"
-            type="search"
-            cc-ios-input-focus-fix>
+    <div class="cc-header__icon-wrapper">
+    <i class="cc-header__icon fa fa-arrow-left"
+       ng-click="searchUiState.abort()"></i>
     </div>
+    <!-- the use of such spacer elements is super ugly but the only way I have found to get it working the way we want it even in Android 2.x -->
+    <div class="cc-search-box__spacer"></div>
+    <div class="cc-search-box__input-wrapper">
+    <i ng-click="searchUiState.clear()" class="cc-search-box__input-cancel-icon fa fa-times-circle"></i>
+    <input
+        ng-model="searchUiState.searchTerm"
+        class="cc-search-box__input"
+        type="text"
+        cc-ios-position-fixed-input-fix
+        cc-ios-input-focus-fix>
+    </div>
+    <div class="cc-search-box__spacer"></div>
 </div>
 
 <div class="cc-modal"
      ng-click="searchUiState.abort()"
-     ng-show="(searchUiState.isOpen() && !searchUiState.hasResults()) || (searchUiState.isOpen() && searchUiState.isRunningSearch)">
+     ng-show="searchUiState.isOpen() && !searchUiState.hasResults()">
 
     <cc-loading-spinner class="cc-loading-spinner--centered"
             ng-show="searchUiState.isRunningSearch">
     </cc-loading-spinner>
+
 </div>
 
-<div class="cc-modal--solid" ng-show="searchUiState.hasNoMatch()">
+<div class="cc-modal--solid"
+     ng-show="searchUiState.hasNoMatch()">
 
     <div bindonce="ln" class="cc-center-wrapper">
-        <span class="cc-center-wrapper__centered-child" bo-text="ln.searchNotFound"></span>
+    <span class="cc-center-wrapper__centered-child"
+          bo-text="ln.searchNotFound"></span>
     </div>
 
-</div>
+ </div>

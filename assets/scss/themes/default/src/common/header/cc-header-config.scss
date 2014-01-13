@@ -1,27 +1,49 @@
-// Basics
-$cc-header-base__height:         56px;
-$cc-header-base__icon-height:    21px;
-$cc-header-base__element-height: 44px;
 
-// Header Box
-$cc-header__height:         $cc-header-base__height;
-$cc-header__padding-x:      4px;
-$cc-header__padding-y:      6px;
-$cc-header__paddings:       $cc-header__padding-y $cc-header__padding-x;
-$cc-header__shadow-size-y:  $cc-border-bottom-width;
+$cc-header__background: hsla($color-2-h, $color-2-s, $color-2-l, 1);
+$cc-header__height: $cc-header-base__height;
+$cc-header__border-bottom-width: $cc-border-bottom-width;
+$cc-header__border-bottom-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.2);
+$cc-header__icon-right-padding-right: $cc-half-primary-padding;
+$cc-header__icon-left-padding-left: $cc-half-primary-padding;
+$cc-header__button-width: $cc-header-base__height + 2 + $cc-half-primary-padding;
+$cc-header__icon-text-shadow: 2px 2px 0px hsla($color-1-h, $color-1-s, $color-1-l, 0.26);
 
-// Header Icons
-$cc-header__icon-width:         $cc-header-base__element-height;
-$cc-header__icon-height:        $cc-header-base__element-height;
-$cc-header__icon-line-height:   $cc-header-base__element-height;
-$cc-header__icon-font-size:     $cc-header-base__icon-height;
+//fallback for white headers which aren't recommended for this theme
+$cc-header__icon-color: hsla($color-6-h, $color-6-s, $color-6-l, 1);;
+@if $color-2 == #fff{
+    $cc-header__icon-color: hsla($color-1-h, $color-1-s, $color-1-l, 1);
+}
+
+$cc-header__icon-padding: ($cc-header-base__icon-padding - 1) round($cc-header-base__icon-padding * 1.3) ($cc-header-base__icon-padding + 1);
+$cc-header__icon-width: $cc-header-base__height;
+$cc-header__icon-height: $cc-header-base__element-height;
+$cc-header__icon-font-size: $cc-header-base__icon-height;
+$cc-header__icon-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.09);
+$cc-header__icon-border-bottom-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.33);
+$cc-header__icon-border-left-width: 1px;
+$cc-header__icon-border-top-width: 1px;
+$cc-header__icon-border-right-width: 1px;
+$cc-header__icon-border-bottom-width: $cc-border-bottom-width;
+
+/* top margin depends on box-shadow size  */
+/* because of the parent table-cell vertical-align-middle property you should double margin values */
+$cc-header__icon-margin: -($cc-border-bottom-width) 0 0 0;
 $cc-header__icon-border-radius: $cc-primary-border-radius;
 
-// Header Icon Badges
-$cc-header__icon-badge-font-size:    12px;
-$cc-header__icon-badge-border-width: 2px;
 
-// Logo
-$cc-header__logo-height:    $cc-header-base__element-height;
-$cc-header__logo-big:       $logo-big;
-$cc-header__logo-small:     $logo-small;
+$cc-header__icon-badge-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.26);
+$cc-header__icon-badge-border-bottom-color: hsla($color-1-h, $color-1-s, $color-1-l, 1);
+$cc-header__icon-badge-font-size: $cc-font-size-small;
+$cc-header__icon-badge-background: hsla($color-3-h, $color-3-s, $color-3-l, 1);
+$cc-header__icon-badge-color: hsla($color-6-h, $color-6-s, $color-6-l, 1);
+$cc-header__icon-badge-border-top-width: 1px;
+$cc-header__icon-badge-border-right-width: 1px;
+$cc-header__icon-badge-border-bottom-width: 2px;
+$cc-header__icon-badge-border-left-width: 1px;
+/* min-width = height = font-size + padding + border */
+$cc-header__icon-badge-min-width: ($cc-font-size-small + 8px + 2px);
+/* radius = height / 2 */
+$cc-header__icon-badge-border-radius: round(($cc-font-size-small + 8px + 2px)/2);
+
+$cc-header__logo-big: $logo-big;
+$cc-header__logo-small: $logo-small;
