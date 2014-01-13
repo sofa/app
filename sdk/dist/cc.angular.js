@@ -1,6 +1,6 @@
 (function(window, cc, angular, undefined){
 
-angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html', 'src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccGoBackButton/cc-go-back-button.tpl.html', 'src/directives/ccGoUpButton/cc-go-up-button.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccAddress/ccaddress.tpl.html",
@@ -22,6 +22,25 @@ angular.module("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html", []).run([
     "        <a ng-click=\"navigateTo(entry)\" ng-bind=\"entry.title\"></a>\n" +
     "    </li>\n" +
     "</ul>");
+}]);
+
+angular.module("src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html",
+    "<div class=\"cc-category-tree-view\">\n" +
+    "    <ul ng-class=\"{ 'cc-category-tree-view__list--open': item._categoryTreeView.isVisible, \n" +
+    "                    'cc-category-tree-view__list--closed': !item._categoryTreeView.isVisible }\" cc-template-code>\n" +
+    "           <li class=\"cc-category-tree-view__list-item-level-{{ item._categoryTreeView.level }}\" \n" +
+    "               cc-nested-category-item ng-repeat=\"item in items\">\n" +
+    "                <div ng-click=\"doAction(item)\" class=\"cc-category-tree-view__category-entry\">{{item.label}}\n" +
+    "                    <i ng-class=\"item._categoryTreeView.isVisible ? 'fa-chevron-down' : 'fa-chevron-right'\" \n" +
+    "                       class=\"cc-category-tree-view__category-entry-icon fa\"\n" +
+    "                       ng-show=\"item.hasChildren\">\n" +
+    "                   </i>\n" +
+    "                </div>\n" +
+    "           </li>\n" +
+    "    </ul>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("src/directives/ccCheckBox/cccheckbox.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -59,6 +78,16 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "        </div>\n" +
     "    </li>\n" +
     "</ul>");
+}]);
+
+angular.module("src/directives/ccGoBackButton/cc-go-back-button.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccGoBackButton/cc-go-back-button.tpl.html",
+    "<button class=\"cc-go-back-button fa fa-arrow-circle-o-left\" ng-click=\"goBack()\"></button>");
+}]);
+
+angular.module("src/directives/ccGoUpButton/cc-go-up-button.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccGoUpButton/cc-go-up-button.tpl.html",
+    "<button class=\"cc-go-up-button fa fa-level-up fa-flip-horizontal\" ng-click=\"goUp()\"></button>");
 }]);
 
 angular.module("src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -568,6 +597,90 @@ angular.module('sdk.directives.ccBreadcrumbs')
                             });
                     }
                 });
+            }
+        };
+    }]);
+angular.module('sdk.directives.ccCategoryTreeView', [
+        'sdk.directives.ccTemplateCode',
+        'src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html'
+    ]);
+angular.module('sdk.directives.ccCategoryTreeView')
+    .directive('ccCategoryTreeView', ['couchService', 'categoryTreeViewRemote', function(couchService, categoryTreeViewRemote) {
+
+        'use strict';
+
+        return {
+            restrict: 'EA',
+            scope:{},
+            replace: true,
+            templateUrl: 'src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html',
+            link: function($scope, $element, attributes, controller){
+                couchService
+                    .getCategory()
+                    .then(function(rootCategory){
+                        $scope.items = rootCategory && rootCategory.children ? rootCategory.children : [];
+                        $scope.item = rootCategory;
+                        categoryTreeViewRemote.toggleVisibility(rootCategory);
+
+
+                        $scope.items.forEach(function(item){
+                            categoryTreeViewRemote.setItemLevel(item, 1);
+                        });
+
+                    });
+            }
+        };
+    }]);
+angular.module('sdk.directives.ccCategoryTreeView')
+    .factory('categoryTreeViewRemote', [function() {
+
+        'use strict';
+
+        var self = {};
+
+        self.toggleVisibility = function(item){
+            asurePrivateStore(item);
+            item._categoryTreeView.isVisible = !item._categoryTreeView.isVisible;
+        };
+
+        self.setItemLevel = function(item, level){
+            asurePrivateStore(item);
+            item._categoryTreeView.level = level;
+        };
+
+        var asurePrivateStore = function(item){
+            if (!item._categoryTreeView){
+                item._categoryTreeView = { isVisible: false };
+            }
+        };
+
+        return self;
+    }]);
+angular.module('sdk.directives.ccCategoryTreeView')
+    .directive('ccNestedCategoryItem', ['$compile', 'categoryTreeViewRemote', 'navigationService', 'snapRemote', function($compile, categoryTreeViewRemote, navigationService, snapRemote) {
+
+        'use strict';
+
+        return {
+            restrict: 'A',
+            require: '^ccTemplateCode',
+            link: function($scope, $element, attributes, controller){
+                if ($scope.item.children){
+                    $scope.items = $scope.item.children;
+                    var html = $compile(controller.templateCode)($scope);
+                    $element.append(html);
+                }
+                $scope.remoteControl = categoryTreeViewRemote;
+
+                $scope.doAction = function(item){
+                    if (!item.hasChildren){
+                        snapRemote.close();
+                        navigationService.navigateToProducts(item.urlId);
+                    }
+                    else{
+                        categoryTreeViewRemote.toggleVisibility(item);
+                    }
+                };
             }
         };
     }]);
@@ -2639,6 +2752,46 @@ angular
             }
         };
     }]);
+angular.module('sdk.directives.ccGoBackButton', ['src/directives/ccGoBackButton/cc-go-back-button.tpl.html']);
+
+angular.module('sdk.directives.ccGoBackButton')
+    .directive('ccGoBackButton', ['$window', function($window) {
+
+        'use strict';
+
+        return {
+            restrict: 'EA',
+            templateUrl: 'src/directives/ccGoBackButton/cc-go-back-button.tpl.html',
+            scope: {},
+            replace: true,
+            link: function($scope, element, attributes, controller){
+
+                $scope.goBack = function(){
+                    $window.history.back();
+                };
+            }
+        };
+    }]);
+angular.module('sdk.directives.ccGoUpButton', ['src/directives/ccGoUpButton/cc-go-up-button.tpl.html']);
+
+angular.module('sdk.directives.ccGoUpButton')
+    .directive('ccGoUpButton', ['navigationService', function(navigationService) {
+
+        'use strict';
+
+        return {
+            restrict: 'EA',
+            templateUrl: 'src/directives/ccGoUpButton/cc-go-up-button.tpl.html',
+            scope: {},
+            replace: true,
+            link: function($scope, element, attributes, controller){
+
+                $scope.goUp = function(){
+                    navigationService.goUp();
+                };
+            }
+        };
+    }]);
 angular.module('sdk.directives.ccInclude', []);
 
 angular.module('sdk.directives.ccInclude')
@@ -3090,6 +3243,30 @@ angular.module('sdk.directives.ccSelectBox')
         };
     });
 
+angular.module('sdk.directives.ccTemplateCode', []);
+
+angular.module('sdk.directives.ccTemplateCode')
+    .directive('ccTemplateCode', function() {
+
+        'use strict';
+
+        return {
+            restrict: 'A',
+            controller: function(){},
+            compile: function($element){
+                $element.removeAttr('cc-template-code');
+                //ATTENTION: We need to trim() here. Otherwise AngularJS raises an exception
+                //later when we want to use the templateCode in a $compile function. 
+                //Be aware that we assume a modern browser 
+                //that already ships with a trim function.
+                //It's easy to secure that with a polyfill.
+                var templateCode = $element.parent().html().trim();
+                return function(scope, iElement, iAttrs, controller){
+                    controller.templateCode = templateCode;
+                };
+            }
+        };
+    });
 angular.module('sdk.directives.ccThumbnailBar', ['src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html']);
 
 angular.module('sdk.directives.ccThumbnailBar')
@@ -3287,7 +3464,11 @@ angular.module('sdk.directives', [
     'sdk.directives.ccIosPositionFixedInputFix',
     'sdk.directives.ccIosInputFocusFix',
     'sdk.directives.ccInject',
-    'sdk.directives.ccBreadcrumbs'
+    'sdk.directives.ccBreadcrumbs',
+    'sdk.directives.ccTemplateCode',
+    'sdk.directives.ccCategoryTreeView',
+    'sdk.directives.ccGoUpButton',
+    'sdk.directives.ccGoBackButton'
 ]);
 angular.module('sdk.decorators.$rootScope', []);
 

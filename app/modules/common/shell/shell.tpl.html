@@ -1,3 +1,9 @@
-  <div ng-include="tpl.HEADER"></div>
-  <div cc-include="tpl.SEARCH_RESULT"></div>
-  <div ng-show="!searchService.uiActive || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-full-width-height" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
+  <div snap-content>
+      <div ng-include="tpl.HEADER"></div>
+      <div cc-include="tpl.SEARCH_RESULT"></div>
+
+      <div ng-show="!searchService.uiActive || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-full-width-height" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
+  </div>
+
+
+  <div snap-drawer ng-include="tpl.SIDE_MENU"></div>

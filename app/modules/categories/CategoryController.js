@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller( 'CategoryController',
     [
-        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService',
-        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService) {
+        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService', 'urlParserService',
+        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService) {
 
             'use strict';
 
@@ -13,6 +13,7 @@ angular
                 return;
             }
 
+            $scope.urlParserService = urlParserService;
             $scope.backStepHighlightService = backStepHighlightService;
 
             $scope.goToCategory = function(category, $event){

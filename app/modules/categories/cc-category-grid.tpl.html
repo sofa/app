@@ -2,7 +2,10 @@
     <cc-inject target="aboveContent"></cc-inject>
 
     <div bindonce="category" ng-if="category">
-        <h1 class="cc-title--huge" bo-text="headline"></h1>
+        <h1 class="cc-title--huge">
+            <cc-go-back-button ng-if="!urlParserService.isRootCategory()"></cc-go-back-button>
+            <span bo-text="headline"></span>
+        </h1>
         <ul class="cc-category-grid">
             <li ng-repeat="category in category.children"
                 class="cc-category-grid__box-wrapper" >

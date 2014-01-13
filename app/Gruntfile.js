@@ -123,7 +123,8 @@ module.exports = function(grunt) {
                 },
                 ignores: [
                     'modules/common/router/angular-ui-router.js',
-                    'modules/common/dialog/ui-bootstrap-modal-tpls-0.6.0.js'
+                    'modules/common/dialog/ui-bootstrap-modal-tpls-0.6.0.js',
+                    'modules/common/snap/angular-snap.js'
                 ]
             }
         },

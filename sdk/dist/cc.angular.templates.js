@@ -1,4 +1,4 @@
-angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
+angular.module('cc.angular.templates', ['src/directives/ccAddress/ccaddress.tpl.html', 'src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html', 'src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html', 'src/directives/ccCheckBox/cccheckbox.tpl.html', 'src/directives/ccElasticViews/elasticViews.tpl.html', 'src/directives/ccFooter/ccfooter.tpl.html', 'src/directives/ccGoBackButton/cc-go-back-button.tpl.html', 'src/directives/ccGoUpButton/cc-go-up-button.tpl.html', 'src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html', 'src/directives/ccSelectBox/ccselectbox.tpl.html', 'src/directives/ccThumbnailBar/ccthumbnailbar.tpl.html', 'src/directives/ccVariantSelector/ccvariantselector.tpl.html', 'src/directives/ccZippy/cczippy.tpl.html']);
 
 angular.module("src/directives/ccAddress/ccaddress.tpl.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("src/directives/ccAddress/ccaddress.tpl.html",
@@ -20,6 +20,25 @@ angular.module("src/directives/ccBreadcrumbs/cc-breadcrumbs.tpl.html", []).run([
     "        <a ng-click=\"navigateTo(entry)\" ng-bind=\"entry.title\"></a>\n" +
     "    </li>\n" +
     "</ul>");
+}]);
+
+angular.module("src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccCategoryTreeView/cc-category-tree-view.tpl.html",
+    "<div class=\"cc-category-tree-view\">\n" +
+    "    <ul ng-class=\"{ 'cc-category-tree-view__list--open': item._categoryTreeView.isVisible, \n" +
+    "                    'cc-category-tree-view__list--closed': !item._categoryTreeView.isVisible }\" cc-template-code>\n" +
+    "           <li class=\"cc-category-tree-view__list-item-level-{{ item._categoryTreeView.level }}\" \n" +
+    "               cc-nested-category-item ng-repeat=\"item in items\">\n" +
+    "                <div ng-click=\"doAction(item)\" class=\"cc-category-tree-view__category-entry\">{{item.label}}\n" +
+    "                    <i ng-class=\"item._categoryTreeView.isVisible ? 'fa-chevron-down' : 'fa-chevron-right'\" \n" +
+    "                       class=\"cc-category-tree-view__category-entry-icon fa\"\n" +
+    "                       ng-show=\"item.hasChildren\">\n" +
+    "                   </i>\n" +
+    "                </div>\n" +
+    "           </li>\n" +
+    "    </ul>\n" +
+    "</div>\n" +
+    "");
 }]);
 
 angular.module("src/directives/ccCheckBox/cccheckbox.tpl.html", []).run(["$templateCache", function($templateCache) {
@@ -57,6 +76,16 @@ angular.module("src/directives/ccFooter/ccfooter.tpl.html", []).run(["$templateC
     "        </div>\n" +
     "    </li>\n" +
     "</ul>");
+}]);
+
+angular.module("src/directives/ccGoBackButton/cc-go-back-button.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccGoBackButton/cc-go-back-button.tpl.html",
+    "<button class=\"cc-go-back-button fa fa-arrow-circle-o-left\" ng-click=\"goBack()\"></button>");
+}]);
+
+angular.module("src/directives/ccGoUpButton/cc-go-up-button.tpl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("src/directives/ccGoUpButton/cc-go-up-button.tpl.html",
+    "<button class=\"cc-go-up-button fa fa-level-up fa-flip-horizontal\" ng-click=\"goUp()\"></button>");
 }]);
 
 angular.module("src/directives/ccLoadingSpinner/ccloadingspinner.tpl.html", []).run(["$templateCache", function($templateCache) {

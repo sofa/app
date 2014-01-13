@@ -3,8 +3,10 @@
         <cc-inject target="aboveContent"></cc-inject>
 
         <div bindonce="product" ng-if="product">
-            <h1 class="cc-title--huge" bo-text="product.name"></h1>
-            
+            <h1 class="cc-title--huge">
+                <cc-go-back-button></cc-go-back-button>
+                <span bo-text="product.name"></span>
+            </h1>
             <cc-inject target="beneathTitle"></cc-inject>
 
             <div class="cc-product-view-image-wrapper">

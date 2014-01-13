@@ -1,6 +1,8 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper" bindonce="ln">
-    <h1 class="cc-title--huge" bo-text="ln.shoppingCart"></h1>
-
+    <h1 class="cc-title--huge">
+        <cc-go-back-button></cc-go-back-button>
+        <span bo-text="ln.shoppingCart"></span>
+    </h1>
     <div ng-show="!isEmpty">
 
         <div class="cc-cart__content-box">
