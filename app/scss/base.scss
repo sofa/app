@@ -5,10 +5,6 @@
  * 
  */
 
-.cc-primary-margin{
-    margin-top: $primary-padding;
-}
-
 
 //not sure yet where would be the best location for this kind of component bootstrapping
 @include cc-select-box($cc-select-box__name: 'cc-select-box',
