@@ -292,6 +292,7 @@ cc.define('cc.CouchService', function($http, $q, configService){
         iterator.iterateChildren(function(category, parent){
             category.parent = parent;
             category.image = MEDIA_FOLDER + category.urlId + "." + MEDIA_IMG_EXTENSION;
+            category.hasChildren = category.children && category.children.length > 0;
             categoryMap.addCategory(category);
         });
     };
