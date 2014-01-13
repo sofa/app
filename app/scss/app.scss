@@ -2,9 +2,7 @@
 @import '../../sdk/src/styling/media-queries.scss';
 @import '../../sdk/src/styling/font-awesome.scss';
 //public app configs
-@import '../../sdk/src/styling/styleconfig.scss';
-//compatiblity layer
-@import '../../sdk/src/styling/compatibility.scss';
+@import 'styleconfig.scss';
 //component configs
 @import '../../sdk/src/directives/ccSelectBox/cc-select-box-config.scss';
 @import '../../sdk/src/styling/cc-text-list-config.scss';
@@ -19,7 +17,6 @@
 @import '../../sdk/src/styling/cc-line-seperator.scss';
 @import '../../sdk/src/styling/cc-modal.scss';
 @import '../../sdk/src/styling/cc-view-wrapper.scss';
-@import '../../sdk/src/styling/buttons.scss';
 @import '../../sdk/src/styling/animations.scss';
 @import '../../sdk/src/styling/interactions.scss';
 @import '../../sdk/src/styling/information.scss';

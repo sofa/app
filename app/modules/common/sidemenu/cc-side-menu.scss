@@ -1,5 +1,5 @@
 .cc-side-menu{
-    background: #49404f;
+    background: $cc-side-menu__background;
     color: #ffffff;
     font-size: 16px;
     padding: 10px;
@@ -11,6 +11,6 @@
 }
 
 .cc-side-menu__heading{
-    border-bottom: 3px solid white;
+    border-bottom: 3px solid $cc-side-menu__heading-color;
 }
 

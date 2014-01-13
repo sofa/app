@@ -1,5 +1,4 @@
 // import some base variables that the theme wants to use as abstractions
-@import '../../config-snippets/cc-magic-values.scss';
 @import '../../config-snippets/cc-header-base-var.scss';
 @import '../../config-snippets/cc-view-wrapper-base-var.scss';
 
@@ -18,8 +17,14 @@
 @import '../src/common/footer/cca-footer-config.scss';
 @import '../src/common/header/cc-header-config.scss';
 @import '../src/common/totalbox/cc-cart-total-panel-config.scss';
+@import '../src/common/sidemenu/cc-side-menu-config.scss';
+@import '../src/cc-line-seperator-couch-config.scss';
+
 // sdk component config overwrites
 @import '../src/libs/ccSelectBox/cc-select-box-couch-config.scss';
 @import '../src/libs/ccTextList/cc-text-list-couch-config.scss';
 @import '../src/libs/ccFooter/cc-footer-couch-config.scss';
 @import '../src/libs/ccTextBox/cc-text-box-couch-config.scss';
+@import '../src/libs/ccCheckBox/cc-check-box-couch-config.scss';
+@import '../src/libs/ccThumbnailBar/cc-thumbnail-bar-couch-config.scss';
+@import '../src/libs/ccLazyValidation/cc-lazy-validation-couch-config.scss';

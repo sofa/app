@@ -1,0 +1,59 @@
+$color-1-h: hue($color-1);
+$color-1-s: saturation($color-1);
+$color-1-l: lightness($color-1);
+
+$color-2-h: hue($color-2);
+$color-2-s: saturation($color-2);
+$color-2-l: lightness($color-2);
+
+$color-3-h: hue($color-3);
+$color-3-s: saturation($color-3);
+$color-3-l: lightness($color-3);
+
+$color-4-h: hue($color-4);
+$color-4-s: saturation($color-4);
+$color-4-l: lightness($color-4);
+
+$color-5-h: hue($color-5);
+$color-5-s: saturation($color-5);
+$color-5-l: lightness($color-5);
+
+$color-6-h: hue($color-6);
+$color-6-s: saturation($color-6);
+$color-6-l: lightness($color-6);
+
+$cc-background-color: $color-4;
+
+$cc-background-text-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.77);
+
+$cc-primary-padding: 14px;
+
+$cc-half-primary-padding: round($cc-primary-padding/2);
+
+$cc-primary-border-radius: 15px;
+
+$cc-border-bottom-width: 2px;
+
+$cc-positive-color: #c7e76c;
+
+$cc-negative-color: #C94A27;
+
+$cc-info-area-background-color: #ffebb6;
+$cc-info-area-text-color: #857a5e;
+
+$cc-warning-background-color: #b03a32;
+$cc-warning-text-color: #ffffff;
+
+$cc-font-default: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+
+$cc-font-size-huge: 26px;
+
+$cc-font-size-big: 20px;
+
+$cc-font-size-medium: 16px;
+
+$cc-font-size-regular: 13px;
+
+$cc-font-size-small: 12px;
+
+$cc-font-size-tiny: 11px;

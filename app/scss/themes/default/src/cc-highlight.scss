@@ -1,0 +1,21 @@
+.cc-highlight{
+    background: hsla($color-3-h, $color-3-s, $color-3-l, 0.8);
+    color: hsla($color-6-h, $color-6-s, $color-6-l, 1);;
+}
+
+.cc-highlight--animated{
+    -webkit-animation: fade-out 0.6s ease-out;
+    -webkit-animation-iteration-count: 1;
+}
+
+@-webkit-keyframes fade-out {
+    0% {background: hsla($color-3-h, $color-3-s, $color-3-l, 0.8);}
+    70% {background: hsla($color-3-h, $color-3-s, $color-3-l, 0.8);}
+    100% {background: none;}
+}
+
+@keyframes fade-out {
+    0% {background: hsla($color-3-h, $color-3-s, $color-3-l, 0.8);}
+    70% {background: hsla($color-3-h, $color-3-s, $color-3-l, 0.8);}
+    100% {background: none;}
+}

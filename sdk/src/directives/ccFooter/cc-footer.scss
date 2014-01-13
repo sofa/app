@@ -18,7 +18,7 @@
 
 .cc-footer-list__row{
     @extend %cc-text-list__row;
-    background-color: $footer-background-color;
+    background-color: $cc-footer-list__background;
     border-color: $cc-footer-list__border-color;
 
     &:last-child{
@@ -36,7 +36,7 @@
 .cc-footer-list__row-icon{
     @extend %cc-text-list__row-icon;
     //intentionally! We want the icon to use the same color as the border
-    color: $cc-text-list__icon-color;
+    color: $cc-footer-list__icon-color;
 }
 
 @include breakpoint(tablet){

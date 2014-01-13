@@ -1,24 +1,10 @@
-
-//since we have this concept accross many components
-//should we add .on-background and .on-content classes
-//and then combine selectors?
-
-//TODO: implement css for vertical thumbnail bar (as used currently for the tablet)
-
-.cc-thumbnail-bar-on-background .cc-thumbnail-bar-image{
-    border-color: $background-border-color;
-}
-
-.cc-thumbnail-bar-on-content .cc-thumbnail-bar-image{
-    border-color: $content-border-color;
-}
-
 .cc-thumbnail-bar-image{
     height: 50px;
     margin-right: 5px;
     margin-bottom: 5px;
     border: 1px solid;
-    border-radius: $primary-border-radius;
+    border-radius: $cc-thumbnail-bar__border-radius;
+    border-color: $cc-thumbnail-bar__border-radius;
 }
 
 .cc-thumbnail-active{

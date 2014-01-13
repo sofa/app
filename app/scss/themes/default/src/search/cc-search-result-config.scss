@@ -1,6 +1,6 @@
-$cc-search-result__group-header-padding: $primary-padding;
-$cc-search-result__group-header-border-color: $background-border-color;
-$cc-search-result__item-list-background: $content-background-color;
-$cc-search-result__list-item-padding-left: $primary-padding;
-$cc-search-result__list-item-border-color: $content-border-color;
-$cc-search-result__list-item-color: $content-text-color;
+$cc-search-result__group-header-padding: $cc-primary-padding;
+$cc-search-result__group-header-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+$cc-search-result__item-list-background: hsla($color-6-h, $color-6-s, $color-6-l, 1);
+$cc-search-result__list-item-padding-left: $cc-primary-padding;
+$cc-search-result__list-item-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+$cc-search-result__list-item-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);

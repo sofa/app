@@ -8,25 +8,23 @@
     right: 5px;
     //set line-height to the height of the text-box
     line-height: 50px;
-    //it's pretty clear that we need to tweak our abstractions
-    //if we need to reuse a variable that was introduced for buttons only
-    color: $positive-button-background-color;
+    color: $cc-validation__success-message-color;
 }
 
 .cc-validation__message--fail{
     display: none;
-    background: $warning-background-color;
+    background: $cc-validation__warning-message-background-color;
     padding: 10px;
     border-radius: 5px;
     margin: 10px;
     position: relative;
-    color: $warning-text-color;
+    color: $cc-validation__warning-message-color;
 }
 
 .cc-validation__message--fail:before{
     width: 0;
     height: 0;
-    border-bottom: 20px solid $warning-background-color;
+    border-bottom: 20px solid $cc-validation__warning-message-background-color;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     content: "";

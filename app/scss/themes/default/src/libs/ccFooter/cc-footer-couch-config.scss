@@ -1,5 +1,5 @@
-$cc-footer-list__color: $footer-text-color;
-$cc-footer-list--tablet__color: $background-text-color;
-$cc-footer-list__background: $footer-background-color;
-$cc-footer-list__border-color: $footer-border-color;
-$cc-text-list__icon-color: $footer-border-color;
+$cc-footer-list__color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);
+$cc-footer-list--tablet__color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);
+$cc-footer-list__background: hsla($color-5-h, $color-5-s, $color-5-l, 1);
+$cc-footer-list__border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+$cc-footer-list__icon-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.55);

@@ -1,9 +1,9 @@
-$button-color-normal: lighten($default-button-background-color, 10%);
-$button-color-pressed: lighten($default-button-background-color, 20%);
+// $button-color-normal: lighten($default-button-background-color, 10%);
+// $button-color-pressed: lighten($default-button-background-color, 20%);
 
 
 .cc-button-base, %cc-button-base{
-    @include vendor-prefix('border-radius', $primary-border-radius);
+    @include vendor-prefix('border-radius', $cc-primary-border-radius);
     //using a top and bottom padding is better than setting a fixed height
     //since it keeps the text centered
     padding: 12px;
@@ -28,21 +28,21 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
 .cc-couch-action-button{
     @extend %cc-button-base;
 
-    border: 1px solid darken($default-button-background-color, 10%);
-    color: $default-button-text-color;
-    background: $default-button-background-color;
+    border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+    color: hsla($color-6-h, $color-6-s, $color-6-l, 1);
+    background: hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
     border-bottom: 0;
     //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $border-bottom-width 1px 0 lighten($default-button-background-color, 15%);
-    box-shadow: 0 $border-bottom-width 0 0 lighten($default-button-background-color, 15%);
+    -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
+    box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
 
     &:active, &.ng-click-active{
-        background: lighten($default-button-background-color, 15%);
-        border: 1px solid lighten($default-button-background-color, 5%);
+        background:  hsla($color-1-h, $color-1-s, $color-1-l, 0.40);
+        border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.15);
         border-bottom: 0;
         //android 2.3 needs blur for box shadow
-        -webkit-box-shadow: 0 $border-bottom-width 1px 0 lighten($default-button-background-color, 30%);
-        box-shadow: 0 $border-bottom-width 0 0 lighten($default-button-background-color, 30%);
+        -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
+        box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
     }
 }
 
@@ -61,65 +61,65 @@ $button-color-pressed: lighten($default-button-background-color, 20%);
     @extend %cc-button-base--stretched;
 }
 
-.cc-couch-default-button-on-content{
+// .cc-couch-default-button-on-content{
+//     @extend %cc-button-base;
+
+//     border: 1px solid lighten($content-border-color, 20%);
+//     color: $content-text-color;
+//     border-bottom: 0;
+//     //android 2.3 needs blur for box shadow
+//     -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
+//     box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
+
+//     &:active, &.ng-click-active{
+//         //android 2.3 needs blur for box shadow
+//         -webkit-box-shadow: 0 1px 1px 0 $content-border-color;
+//         box-shadow: 0 1px 0 0 $content-border-color;
+//     }
+// }
+
+// .cc-couch-default-button-on-content--stretched{
+//     @extend .cc-couch-default-button-on-content;
+//     @extend %cc-button-base--stretched;
+// }
+
+// .cc-couch-default-button-on-content--disabled{
+//     @extend %cc-button-base--disabled;
+// }
+
+// .cc-couch-default-button-on-content--disabled--stretched{
+//     @extend .cc-couch-default-button-on-content--disabled;
+//     @extend %cc-button-base--stretched;
+// }
+
+.cc-couch-default-button{
     @extend %cc-button-base;
 
-    border: 1px solid lighten($content-border-color, 20%);
-    color: $content-text-color;
+    border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+    color: hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
+
     border-bottom: 0;
     //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $content-border-color;
-    box-shadow: 0 $border-bottom-width 0 0 $content-border-color;
+    -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
+    box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
 
     &:active, &.ng-click-active{
-        //android 2.3 needs blur for box shadow
-        -webkit-box-shadow: 0 1px 1px 0 $content-border-color;
-        box-shadow: 0 1px 0 0 $content-border-color;
+        -webkit-box-shadow: 0 1px 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
+        box-shadow: 0 1px 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
     }
 }
 
-.cc-couch-default-button-on-content--stretched{
-    @extend .cc-couch-default-button-on-content;
+.cc-couch-default-button--stretched{
+    @extend .cc-couch-default-button;
     @extend %cc-button-base--stretched;
 }
 
-.cc-couch-default-button-on-content--disabled{
+.cc-couch-default-button--disabled{
     @extend %cc-button-base--disabled;
 }
 
-.cc-couch-default-button-on-content--disabled--stretched{
-    @extend .cc-couch-default-button-on-content--disabled;
-    @extend %cc-button-base--stretched;
-}
-
-.cc-couch-default-button-on-background{
-    @extend %cc-button-base;
-
-    border: 1px solid lighten($background-border-color, 20%);
-    color: $background-text-color;
-
-    border-bottom: 0;
-    //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $border-bottom-width 1px 0 $background-border-color;
-    box-shadow: 0 $border-bottom-width 0 0 $background-border-color;
-
-    &:active, &.ng-click-active{
-        -webkit-box-shadow: 0 1px 1px 0 $background-border-color;
-        box-shadow: 0 1px 0 0 $background-border-color;
-    }
-}
-
-.cc-couch-default-button-on-background--stretched{
-    @extend .cc-couch-default-button-on-background;
-    @extend %cc-button-base--stretched;
-}
-
-.cc-couch-default-button-on-background--disabled{
-    @extend %cc-button-base--disabled;
-}
-
-.cc-couch-default-button-on-background--disabled--stretched{
-    @extend .cc-couch-default-button-on-background--disabled;
+.cc-couch-default-button--disabled--stretched{
+    @extend .cc-couch-default-button--disabled;
     @extend %cc-button-base--stretched;
 }
 

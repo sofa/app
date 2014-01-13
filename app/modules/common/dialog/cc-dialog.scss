@@ -1,5 +1,5 @@
 .cc-dialog__button{
-    @extend .cc-couch-default-button-on-background;
+    @extend .cc-couch-default-button;
     //lot's of hardcoded values but yep, our dialog is entirely hardcoded so far
     border: 1px solid #cfcfcf;
     color: #fafafa;
