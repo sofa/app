@@ -1,1 +1,1 @@
-})(window, window.angular);
+}).call(this, window, window.angular);
