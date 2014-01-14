@@ -5,25 +5,26 @@
     </h1>
     <p class="cc-form-label" bo-text="ln.paymentMethod"></p>
     <cc-select-box
-        ng-model="checkoutModel.selectedPaymentMethod" 
-        choose-text="ln.choose" 
+        ng-model="checkoutModel.selectedPaymentMethod"
+        choose-text="ln.choose"
         allow-null
         omit-null
-        property-name="ln.paymentMethod" 
-        display-value-exp="'title'" 
+        property-name="ln.paymentMethod"
+        display-value-exp="'title'"
         data="checkoutModel.supportedPaymentMethods">
     </cc-select-box>
 
     <p class="cc-form-label" bo-text="ln.shippingMethod"></p>
-    <cc-select-box
-        ng-model="checkoutModel.selectedShippingMethod" 
+    <cc-select-box ng-hide="$parent.displayEmptyShippingMethodsMessage"
+        ng-model="checkoutModel.selectedShippingMethod"
         allow-null
         omit-null
-        choose-text="ln.choose" 
-        property-name="ln.shippingMethod" 
-        display-value-exp="shippingMethodFormatter" 
+        choose-text="ln.choose"
+        property-name="ln.shippingMethod"
+        display-value-exp="shippingMethodFormatter"
         data="checkoutModel.supportedShippingMethods">
     </cc-select-box>
+    <div class="cc-warning-box" ng-show="displayEmptyShippingMethodsMessage">{{ln.noShippingMethodsAvailable}}</div>
 
     <div class="cc-info-box" ng-show="checkoutModel.surchargeHint">
         <i class="fa fa-exclamation-sign"></i>

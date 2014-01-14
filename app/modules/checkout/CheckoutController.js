@@ -40,6 +40,8 @@ angular
 
             $scope.shippingMethodFormatter = shippingMethodFormatter;
 
+            $scope.displayEmptyShippingMethodsMessage = false;
+
             var validateCheckout = function(){
                 checkoutService
                     .getSupportedCheckoutMethods(checkoutModel)
@@ -54,6 +56,8 @@ angular
 
                             checkoutModel.supportedPaymentMethods = data.paymentMethods;
                             checkoutModel.supportedShippingMethods = data.shippingMethods;
+
+                            $scope.displayEmptyShippingMethodsMessage = !data.shippingMethods.length;
                         }
                     });
             };

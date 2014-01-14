@@ -111,6 +111,7 @@ cc.Lang = {
         invalidInput_Country: 'Bitte geben Sie Ihre Land ein',
         invalidInput_Email: 'Bitte geben Sie eine gültige E-Mail Adresse ein',
         invalidInput_Salutation: 'Bitte wählen Sie eine Anrede aus',
+        noShippingMethodsAvailable: 'Für Ihre Versandadresse oder Zahlungssart konnten keine Lieferarten gefunden werden.',
         welcomeText: 'Willkommen im Couch Demo Shop',
         showDesktopView:'Web-App verlassen',
 

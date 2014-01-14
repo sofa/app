@@ -6,6 +6,14 @@
     border: 1px solid #857a5e;
 }
 
+.cc-warning-box {
+    padding: 10px;
+    border-radius: 5px;
+    background: $warning-background-color;
+    color: $warning-text-color;
+    border: 1px solid $warning-text-color;
+}
+
 .cc-tooltip {
     padding: 10px;
     border-radius: 5px;
