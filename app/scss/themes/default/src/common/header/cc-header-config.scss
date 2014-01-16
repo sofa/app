@@ -12,8 +12,8 @@ $cc-header__icon-padding: ($cc-header-base__icon-padding - 1) round($cc-header-b
 $cc-header__icon-width: $cc-header-base__height;
 $cc-header__icon-height: $cc-header-base__element-height;
 $cc-header__icon-font-size: $cc-header-base__icon-height;
-$cc-header__icon-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.26);
-$cc-header__icon-border-bottom-color: hsla($color-1-h, $color-1-s, $color-1-l, 1);
+$cc-header__icon-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.09);
+$cc-header__icon-border-bottom-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.33);
 $cc-header__icon-border-left-width: 1px;
 $cc-header__icon-border-top-width: 1px;
 $cc-header__icon-border-right-width: 1px;
