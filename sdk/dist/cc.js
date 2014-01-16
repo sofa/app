@@ -1537,9 +1537,46 @@ cc.define('cc.DeviceService', function($window){
         userOSver = 'unknown';
     }
 
+    var dimensions = {};
+
+    var updateDimension = function(){
+        dimensions.width = $window.innerWidth;
+        dimensions.height = $window.innerHeight;
+    };
+
+    updateDimension();
+
+    $window.addEventListener("orientationchange", updateDimension, false);
+
     var versionStartsWith = function(str){
         var version = self.getOsVersion();
         return version.indexOf(str) === 0;
+    };
+
+    /**
+     * @method isInPortraitMode
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns a bool indicating whether the decice is held in portrait mode.
+     *
+     * @return {object} HTMLDomObject
+     */
+    self.isInPortraitMode = function(){
+        return dimensions.height > dimensions.width;
+    };
+
+    /**
+     * @method isLandscapeMode
+     * @memberof cc.DeviceService
+     *
+     * @description
+     * Returns a bool indicating whether the decice is held in landscape mode.
+     *
+     * @return {object} HTMLDomObject
+     */
+    self.isInLandscapeMode = function(){
+        return !self.isInPortraitMode();
     };
 
     /**
