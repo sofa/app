@@ -28,13 +28,13 @@
 .cc-couch-action-button{
     @extend %cc-button-base;
 
-    border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
+    //border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
     color: hsla($color-6-h, $color-6-s, $color-6-l, 1);
-    background: hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
+    background: hsla($color-1-h, $color-1-s, $color-1-l, 1);
     border-bottom: 0;
     //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
-    box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
+    -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
+    box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
 
     &:active, &.ng-click-active{
         background:  hsla($color-1-h, $color-1-s, $color-1-l, 0.40);
