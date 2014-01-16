@@ -2,7 +2,7 @@ angular.module('sdk.directives.ccInject', []);
 
 angular
     .module('sdk.directives.ccInject')
-    .directive('ccInject', ['$templateCache', '$http', '$compile', 'injectsService', function($templateCache, $http, $compile, injectsService) {
+    .directive('ccInject', ['$templateCache', '$http', '$compile', 'injectsService', 'deviceService', function($templateCache, $http, $compile, injectsService, deviceService) {
 
         'use strict';
 
@@ -14,6 +14,7 @@ angular
             },
             link: function(scope, element, attrs){
                 scope.injectsService = injectsService;
+                scope.deviceService = deviceService;
 
                 //if it's an inject on the product page, automatically expose
                 //the product to the inject
