@@ -8,44 +8,49 @@
             </h1>
             <cc-inject target="beneathTitle"></cc-inject>
 
-            <div class="cc-product-view-image-wrapper">
-                <img cc-image-zoom image="selectedImage.url" class="cc-product-view-image">
-             </div>
+            <div class="cc-product-view__image-thumb-wrapper">
+                <div class="cc-product-view-image-wrapper">
+                    <img cc-image-zoom image="selectedImage.url" class="cc-product-view-image">
+                 </div>
 
-            <cc-thumbnail-bar
-                ng-show="$parent.images.length > 1"
-                class="cc-thumbnail-bar"
-                images="product.getAllImages()"
-                on-change="onThumbnailSelected(product, image)"
-                >
-            </cc-thumbnail-bar>
-
-            <cc-variant-selector
-                class="cc-variant-selector-on-background "
-                choose-text="ln.choose"
-                variants="product.variants"
-                variant="variants.selectedVariant"
-                selected-properties="variants.selectedProperties">
-            </cc-variant-selector>
-
-            <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
-
-            <div class="cc-product-view__content-box">
-
-                <cc-zippy caption="ln.productDetails" init-opened="true">
-                    <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
-                </cc-zippy>
-
-                <cc-zippy caption="ln.productSpecifications">
-                    <table class="cc-product-view-attributes">
-                        <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
-                            <td class="cc-product-view-attributes-row-key">{{key}}</td>
-                            <td class="cc-product-view-attributes-row-value">{{value}}</td>
-                        </tr>
-                    </table>
-                </cc-zippy>
-
+                <cc-thumbnail-bar
+                    ng-show="$parent.images.length > 1"
+                    class="cc-thumbnail-bar"
+                    images="product.getAllImages()"
+                    on-change="onThumbnailSelected(product, image)"
+                    >
+                </cc-thumbnail-bar>
             </div>
+
+
+            <div class="cc-product-view__content-wrapper">
+                <cc-variant-selector
+                    class="cc-variant-selector-on-background "
+                    choose-text="ln.choose"
+                    variants="product.variants"
+                    variant="variants.selectedVariant"
+                    selected-properties="variants.selectedProperties">
+                </cc-variant-selector>
+
+                <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
+
+                <div class="cc-product-view__content-box">
+
+                    <cc-zippy caption="ln.productDetails" init-opened="true">
+                        <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+                    </cc-zippy>
+
+                    <cc-zippy caption="ln.productSpecifications">
+                        <table class="cc-product-view-attributes">
+                            <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
+                                <td class="cc-product-view-attributes-row-key">{{key}}</td>
+                                <td class="cc-product-view-attributes-row-value">{{value}}</td>
+                            </tr>
+                        </table>
+                    </cc-zippy>
+                </div>
+            </div>
+
         </div>
 
         <div ng-if="!product" ng-include="tpl.404"></div>
