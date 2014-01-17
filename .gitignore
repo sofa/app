@@ -1,1 +1,11 @@
+.DS_Store
+nbproject
+manifest.mf
+build.xml
+
+.project
+.settings
+.idea/*
+.sass-cache
+node_modules
 dist
