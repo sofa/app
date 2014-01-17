@@ -1,33 +1,33 @@
-@import '../../sdk/src/styling/mixins.scss';
-@import '../../sdk/src/styling/media-queries.scss';
-@import '../../sdk/src/styling/font-awesome.scss';
+@import '../node_modules/sofa-base/src/styling/mixins.scss';
+@import '../node_modules/sofa-base/src/styling/media-queries.scss';
+@import '../node_modules/sofa-base/src/styling/font-awesome.scss';
 //public app configs
 @import 'styleconfig.scss';
 //component configs
-@import '../../sdk/src/directives/ccSelectBox/cc-select-box-config.scss';
-@import '../../sdk/src/styling/cc-text-list-config.scss';
-@import '../../sdk/src/styling/cc-text-box-config.scss';
-@import '../../sdk/src/directives/ccFooter/cc-footer-config.scss';
+@import '../node_modules/sofa-base/src/directives/ccSelectBox/cc-select-box-config.scss';
+@import '../node_modules/sofa-base/src/styling/cc-text-list-config.scss';
+@import '../node_modules/sofa-base/src/styling/cc-text-box-config.scss';
+@import '../node_modules/sofa-base/src/directives/ccFooter/cc-footer-config.scss';
 
 //theme config
 @import 'themes/default/theme-config.scss';
 //sdk components
-@import '../../sdk/src/styling/base.scss';
-@import '../../sdk/src/styling/mobile-reset.scss';
-@import '../../sdk/src/styling/cc-line-seperator.scss';
-@import '../../sdk/src/styling/cc-modal.scss';
-@import '../../sdk/src/styling/cc-view-wrapper.scss';
-@import '../../sdk/src/styling/animations.scss';
-@import '../../sdk/src/styling/interactions.scss';
-@import '../../sdk/src/styling/information.scss';
-@import '../../sdk/src/styling/titles.scss';
-@import '../../sdk/src/styling/alignment.scss';
-@import '../../sdk/src/styling/cc-form-label.scss';
-@import '../../sdk/src/styling/cc-text-box.scss';
-@import '../../sdk/src/styling/cc-text-list.scss';
-@import '../../sdk/src/styling/tables.scss';
-@import '../../sdk/src/styling/centering.scss';
-@import '../../sdk/src/directives/directives.scss';
+@import '../node_modules/sofa-base/src/styling/base.scss';
+@import '../node_modules/sofa-base/src/styling/mobile-reset.scss';
+@import '../node_modules/sofa-base/src/styling/cc-line-seperator.scss';
+@import '../node_modules/sofa-base/src/styling/cc-modal.scss';
+@import '../node_modules/sofa-base/src/styling/cc-view-wrapper.scss';
+@import '../node_modules/sofa-base/src/styling/animations.scss';
+@import '../node_modules/sofa-base/src/styling/interactions.scss';
+@import '../node_modules/sofa-base/src/styling/information.scss';
+@import '../node_modules/sofa-base/src/styling/titles.scss';
+@import '../node_modules/sofa-base/src/styling/alignment.scss';
+@import '../node_modules/sofa-base/src/styling/cc-form-label.scss';
+@import '../node_modules/sofa-base/src/styling/cc-text-box.scss';
+@import '../node_modules/sofa-base/src/styling/cc-text-list.scss';
+@import '../node_modules/sofa-base/src/styling/tables.scss';
+@import '../node_modules/sofa-base/src/styling/centering.scss';
+@import '../node_modules/sofa-base/src/directives/directives.scss';
 
 //base app styles
 @import 'base.scss';

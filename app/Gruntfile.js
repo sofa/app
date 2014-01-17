@@ -31,14 +31,14 @@ module.exports = function(grunt) {
             //yep, it's a bit wacko that we know those internal things
             //about the SDK here. But we want to have that for debugging.
             sdk:[
-                '../sdk/src/core/cc.js',
-                '../sdk/src/core/**/*.js',
-                '../sdk/src/services/**/*.js',
-                '../sdk/src/directives/**/*.js',
-                '../sdk/src/decorators/**/*.js',
-                '../sdk/src/filter/**/*.js',
-                '!../sdk/src/**/demos/**/*',
-                '../sdk/dist/cc.angular.templates.js'
+                'node_modules/sofa-base/src/core/cc.js',
+                'node_modules/sofa-base/src/core/**/*.js',
+                'node_modules/sofa-base/src/services/**/*.js',
+                'node_modules/sofa-base/src/directives/**/*.js',
+                'node_modules/sofa-base/src/decorators/**/*.js',
+                'node_modules/sofa-base/src/filter/**/*.js',
+                '!node_modules/sofa-base/src/**/demos/**/*',
+                'node_modules/sofa-base/dist/cc.angular.templates.js'
             ],
             app:[
                 'lib/bindonce.js',
@@ -73,8 +73,8 @@ module.exports = function(grunt) {
             production: {
                 src:[
                     '<%= files.angular %>',
-                    '../sdk/dist/cc.js',
-                    '../sdk/dist/cc.angular.js',
+                    'node_modules/sofa-base/dist/cc.js',
+                    'node_modules/sofa-base/dist/cc.angular.js',
                     'build.intro.js',
                     '<%= files.app %>',
                     'build.outro.js'
@@ -143,7 +143,7 @@ module.exports = function(grunt) {
                 files: [
                     'scss/**/*.scss',
                     'modules/**/*.scss',
-                    '../sdk/**/*.scss'
+                    'node_modules/sofa-base/**/*.scss'
                 ],
                 tasks: ['build']
             },
@@ -157,7 +157,7 @@ module.exports = function(grunt) {
             },
             sdk: {
                 files: [
-                    '../sdk/dist/*.js'
+                    'node_modules/sofa-base/dist/*.js'
                 ],
 
                 tasks: ['build']

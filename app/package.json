@@ -9,6 +9,9 @@
   "repository": "",
   "author": "",
   "license": "",
+  "dependencies": {
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#master"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.4",
