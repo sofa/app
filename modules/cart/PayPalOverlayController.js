@@ -4,8 +4,8 @@ angular
     .module('CouchCommerceApp')
     .controller('PayPalOverlayController',
     [
-        '$scope', 'configService', 'checkoutService', 'dialog', 'checkoutInfo', 'shippingMethodFormatter',
-        function PayPalOverlayController($scope, configService, checkoutService, dialog, checkoutInfo, shippingMethodFormatter) {
+        '$scope', 'configService', 'checkoutService', 'dialog', 'checkoutInfo', 'shippingMethodFormatter', '$modalInstance',
+        function PayPalOverlayController($scope, configService, checkoutService, dialog, checkoutInfo, shippingMethodFormatter, $modalInstance) {
             'use strict';
 
             var vm = {
@@ -35,6 +35,10 @@ angular
             $scope.proceed = function(){
                 dialog.loading();
                 checkoutService.checkoutWithPayPal(vm.selectedShippingMethod, vm.selectedCountry);
+            };
+
+            $scope.close = function () {
+               $modalInstance.close();
             };
         }
     ]);

@@ -1,0 +1,19 @@
+.cc-paypal-overlay {
+    padding-top:30px;
+    .fa-times-circle {
+        position: absolute;
+        top: 0px;
+        right: 3px;
+        font-size: 40px;
+    }
+    .cc-paypal-button{
+        margin-top: 20px;
+        height: 101px;
+    }
+}
+
+.cc-bootstrap-modal {
+    .modal-body{
+       height: auto;
+    }
+}

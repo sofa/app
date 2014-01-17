@@ -31,7 +31,8 @@ angular
                                     checkoutInfo: function() {
                                         return data;
                                     }
-                                }
+                                },
+                                windowClass: 'cc-bootstrap-modal'
                             })
                             .result
                             //todo change this to catch() once we update angular

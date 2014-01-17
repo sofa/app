@@ -19,6 +19,12 @@ body{
     background: $cc-background-color;
 }
 
+// This is a modal class to overwrite some default bootstrap properties
+// and is separate from the couch modal which is used in the search, among others.
+.cc-bootstrap-modal {
+    background: $cc-background-color;
+}
+
 .cc-go-up-button,
 .cc-go-back-button{
     background: none;
@@ -46,7 +52,7 @@ body{
 
 .cc-tooltip--info {
     @extend .cc-tooltip;
-    background: $cc-info-area-background-color; 
+    background: $cc-info-area-background-color;
 
     &:before {
         border-bottom-color: $cc-info-area-background-color;
