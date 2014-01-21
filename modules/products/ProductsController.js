@@ -13,6 +13,7 @@ angular
         'products',
         'category',
         'selectionService',
+        'categoryTreeViewRemote',
         function ProductsController(
             $scope,
             $stateParams,
@@ -22,9 +23,15 @@ angular
             backStepHighlightService,
             products,
             category,
-            selectionService) {
+            selectionService,
+            categoryTreeViewRemote) {
 
             'use strict';
+
+            //we want to set the active category in the side menu.
+            if (category){
+                categoryTreeViewRemote.setActive(category);
+            }
 
             $scope.goToProduct = function(product, $event){
                 selectionService.select('products_' + $stateParams.category, angular.element($event.currentTarget));

@@ -4,14 +4,17 @@ angular
     .module('CouchCommerceApp')
     .controller( 'CategoryController',
     [
-        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService', 'urlParserService',
-        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService) {
+        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService', 'urlParserService', 'categoryTreeViewRemote',
+        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote) {
 
             'use strict';
 
             if(!category){
                 return;
             }
+
+            //we want to set the active category in the side menu.
+            categoryTreeViewRemote.setActive(category);
 
             $scope.urlParserService = urlParserService;
             $scope.backStepHighlightService = backStepHighlightService;
@@ -32,6 +35,7 @@ angular
                 couchService
                     .getCategory(category.urlId)
                     .then(function(realCategory){
+
                         if (!realCategory.children){
                             navigationService.navigateToProducts(realCategory.urlId);
                         } else {

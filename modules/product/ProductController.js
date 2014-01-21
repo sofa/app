@@ -2,14 +2,16 @@ angular
     .module('CouchCommerceApp')
     .controller( 'ProductController',
     [
-        '$scope', '$filter', '$location', 'configService', 'couchService', 'basketService', 'navigationService', 'product', 'dialog', '$sce',
-        function ProductController($scope, $filter, $location, configService, couchService, basketService, navigationService, product, dialog, $sce) {
+        '$scope', '$filter', '$location', 'configService', 'couchService', 'basketService', 'navigationService', 'product', 'category', 'dialog', '$sce', 'categoryTreeViewRemote',
+        function ProductController($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote) {
 
             'use strict';
 
-            if (!product){
+            if (!product || !category){
                 return;
             }
+
+            categoryTreeViewRemote.setActive(category);
 
             $scope.navigationService = navigationService;
             $scope.product = product;

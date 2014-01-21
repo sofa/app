@@ -96,6 +96,9 @@ angular.module('CouchCommerceApp', [
                 resolve: {
                     product: ['couchService', '$stateParams', function(couchService, $stateParams){
                         return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
+                    }],
+                    category: ['couchService', '$stateParams', function(couchService, $stateParams){
+                        return couchService.getCategory($stateParams.category);
                     }]
                 },
                 screenIndex: screenIndexes.product
