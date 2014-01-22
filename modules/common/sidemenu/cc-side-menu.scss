@@ -19,6 +19,6 @@
 //with a background color by themes. For background images, it's crucial
 //to have the snap-content fill the whole space.
 .snap-content{
-    bottom: inherit;
+    bottom: auto;
     min-height: 100%;
 }
