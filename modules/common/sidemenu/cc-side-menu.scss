@@ -14,11 +14,3 @@
     border-bottom: 3px solid $cc-side-menu__heading-color;
 }
 
-//we need to make sure the snap-content is always the same height
-//as the whole app. That's because the snap content ends up being styled
-//with a background color by themes. For background images, it's crucial
-//to have the snap-content fill the whole space.
-.snap-content{
-    bottom: inherit;
-    min-height: 100%;
-}
