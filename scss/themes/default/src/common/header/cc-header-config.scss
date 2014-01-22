@@ -7,7 +7,13 @@ $cc-header__icon-right-padding-right: $cc-half-primary-padding;
 $cc-header__icon-left-padding-left: $cc-half-primary-padding;
 $cc-header__button-width: $cc-header-base__height + 2 + $cc-half-primary-padding;
 $cc-header__icon-text-shadow: 2px 2px 0px hsla($color-1-h, $color-1-s, $color-1-l, 0.26);
-$cc-header__icon-color: hsla($color-6-h, $color-6-s, $color-6-l, 1);
+
+//fallback for white headers which aren't recommended for this theme
+$cc-header__icon-color: hsla($color-6-h, $color-6-s, $color-6-l, 1);;
+@if $color-2 == #fff{
+    $cc-header__icon-color: hsla($color-1-h, $color-1-s, $color-1-l, 1);
+}
+
 $cc-header__icon-padding: ($cc-header-base__icon-padding - 1) round($cc-header-base__icon-padding * 1.3) ($cc-header-base__icon-padding + 1);
 $cc-header__icon-width: $cc-header-base__height;
 $cc-header__icon-height: $cc-header-base__element-height;
