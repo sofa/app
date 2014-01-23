@@ -59,12 +59,6 @@ body{
     }
 }
 
-.cc-side-menu{
-    .cc-category-tree-view__list-item-level-1{
-        border-bottom: 1px solid hsla($color-6-h, $color-6-s, $color-6-l, 1);
-    }
-}
-
 //not sure yet where would be the best location for this kind of component bootstrapping
 @include cc-select-box($cc-select-box__name: 'cc-select-box',
                        $cc-select-box__modifier: '',
