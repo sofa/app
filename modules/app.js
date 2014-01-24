@@ -185,13 +185,18 @@ angular.module('CouchCommerceApp', [
         deviceService.flagPositionFixedSupport();
         deviceService.flagModernFlexboxSupport();
     }])
-    .run(['snapRemote', 'deviceService', function (snapRemote, deviceService) {
+    .run(['$rootScope', 'snapRemote', 'deviceService', function ($rootScope, snapRemote, deviceService) {
         //For Android 2.x we don't use the side menu at all
         if (deviceService.isAndroid2x()){
             snapRemote.getSnapper().then(function (snapper) {
                 snapper.disable();
             });
         }
+
+        $rootScope.$on('$stateChangeStart', function(){
+            snapRemote.close();
+        });
+
     }])
     .run(['trackingService', 'configService', function(trackingService, configService){
         trackingService.addTracker(new cc.tracker.GoogleAnalyticsTracker({
