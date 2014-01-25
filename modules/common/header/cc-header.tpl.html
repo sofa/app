@@ -1,10 +1,5 @@
 <div class="cc-header cc-fixed-element" ng-controller="HeaderController">
-    <div class="cc-header__icon-wrapper--left" ng-if="deviceService.isAndroid2x()">
-      <i class="cc-header__icon fa fa-chevron-left"
-             ng-click="navigationService.goUp()"
-             ng-show="!urlParserService.isRootCategory()"></i>
-    </div>
-    <div class="cc-header__icon-wrapper--left" ng-if="!deviceService.isAndroid2x()">
+    <div class="cc-header__icon-wrapper--left" >
         <i class="cc-header__icon fa fa-bars" 
            snap-toggle></i>
     </div>

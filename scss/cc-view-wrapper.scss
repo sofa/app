@@ -35,3 +35,13 @@
     padding-left: 0;
     padding-right: 0;
 }
+
+.cc-has-no-overflow-support{
+    .cc-content {
+        position: static;
+    }
+
+    .cc-view-wrapper {
+        position: static;
+    }
+}

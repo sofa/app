@@ -38,6 +38,7 @@ angular.module('CouchCommerceApp', [
         'use strict';
 
         snapRemoteProvider.globalOptions.disable = 'right';
+        snapRemoteProvider.globalOptions.addBodyClasses = true;
 
         var categoryStateConfig = {
                 url: '/',
@@ -185,14 +186,7 @@ angular.module('CouchCommerceApp', [
         deviceService.flagOverflowSupport();
         deviceService.flagModernFlexboxSupport();
     }])
-    .run(['$rootScope', 'snapRemote', 'deviceService', function ($rootScope, snapRemote, deviceService) {
-        //For Android 2.x we don't use the side menu at all
-        if (deviceService.isAndroid2x()){
-            snapRemote.getSnapper().then(function (snapper) {
-                snapper.disable();
-            });
-        }
-
+    .run(['$rootScope', 'snapRemote', function ($rootScope, snapRemote) {
         $rootScope.$on('$stateChangeStart', function(){
             snapRemote.close();
         });

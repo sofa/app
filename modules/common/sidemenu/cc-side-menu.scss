@@ -71,3 +71,32 @@
     letter-spacing: .1em;
     text-align: center;
 }
+
+//for the poor folks with Android 2.x or iOS <=4
+.cc-has-no-overflow-support{
+
+    .snap-drawer-left{
+        z-index: 0;
+        display: none;
+    }
+
+    .snapjs-left{
+        .snap-drawer-left{
+            display: block;
+        }
+    }
+
+    .cc-side-menu{
+        overflow: visible;
+        bottom: auto;
+        min-height: 100%;
+    }
+
+    .snap-drawer{
+        overflow: visible;
+    }
+
+    .snap-content{
+        position: static;
+    }
+}
