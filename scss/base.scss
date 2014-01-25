@@ -6,3 +6,10 @@
  */
 
 
+.cc-content {
+    position: absolute;
+    top: $cc-header__height;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

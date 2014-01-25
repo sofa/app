@@ -13,10 +13,10 @@
 @import 'themes/default/theme-config.scss';
 //sdk components
 @import '../node_modules/sofa-base/src/styling/base.scss';
+@import '../node_modules/sofa-base/src/styling/cc-dock.scss';
 @import '../node_modules/sofa-base/src/styling/mobile-reset.scss';
 @import '../node_modules/sofa-base/src/styling/cc-line-seperator.scss';
 @import '../node_modules/sofa-base/src/styling/cc-modal.scss';
-@import '../node_modules/sofa-base/src/styling/cc-view-wrapper.scss';
 @import '../node_modules/sofa-base/src/styling/animations.scss';
 @import '../node_modules/sofa-base/src/styling/interactions.scss';
 @import '../node_modules/sofa-base/src/styling/information.scss';
@@ -33,6 +33,7 @@
 @import 'base.scss';
 //app component styles
 @import 'cc-box-highlight-helper.scss';
+@import 'cc-view-wrapper.scss';
 @import '../modules/common/dialog/bootstrap-dialog.scss';
 @import '../modules/common/dialog/cc-loading-dialog.scss';
 @import '../modules/common/dialog/cc-dialog.scss';

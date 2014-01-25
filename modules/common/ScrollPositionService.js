@@ -6,8 +6,8 @@ angular
 
             var self =  {},
                 cache = {},
-                positionFixed = deviceService.hasPositionFixedSupport(),
-                scroller = !positionFixed ? document.body : null;
+                usesNonBodyScroller = deviceService.hasOverflowSupport(),
+                scroller = !usesNonBodyScroller ? document.body : null;
 
             $rootScope.$on('$locationChangeStart', function(evt, newUrl, oldUrl){
 
@@ -21,7 +21,7 @@ angular
             });
 
             self.setActiveScroller = function(element){
-                if (positionFixed){
+                if (usesNonBodyScroller){
                     scroller = element;
                 }
             };

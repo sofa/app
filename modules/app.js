@@ -182,7 +182,7 @@ angular.module('CouchCommerceApp', [
 
         //no need to add bindings for things that are unlikely to change over a session;
         deviceService.flagOs();
-        deviceService.flagPositionFixedSupport();
+        deviceService.flagOverflowSupport();
         deviceService.flagModernFlexboxSupport();
     }])
     .run(['$rootScope', 'snapRemote', 'deviceService', function ($rootScope, snapRemote, deviceService) {

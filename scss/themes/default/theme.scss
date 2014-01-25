@@ -38,6 +38,11 @@ body{
     margin-top: $cc-primary-padding;
 }
 
+.cc-view-wrapper{
+    padding: $cc-primary-padding;
+    color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);
+}
+
 .cc-info-box{
     background: $cc-info-area-background-color;
     color: $cc-info-area-text-color;

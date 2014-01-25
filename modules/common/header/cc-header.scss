@@ -12,15 +12,6 @@
     box-shadow: 0px $cc-header__border-bottom-width 0px $cc-header__border-bottom-color;
 }
 
-.cc-supports-position-fixed{
-    .cc-header{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
-}
-
 .cc-header__icon-wrapper{
     display: table-cell;
     vertical-align: middle;
