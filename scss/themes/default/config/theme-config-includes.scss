@@ -1,8 +1,9 @@
 // import some base variables that the theme wants to use as abstractions
-@import '../../config-snippets/cc-header-base-var.scss';
+//@import '../../config-snippets/cc-header-base-var.scss';
 
 // app component config overwrites
 @import '../src/pages/cc-pages-config.scss';
+@import '../src/common/header/cc-header-config.scss';
 @import '../src/cart/cc-cart-config.scss';
 @import '../src/products/cc-product-grid-config.scss';
 @import '../src/categories/cc-category-grid-config.scss';
@@ -14,7 +15,6 @@
 @import '../src/trustedshops/cc-trusted-shops-config.scss';
 @import '../src/common/contentbox/cc-content-box-config.scss';
 @import '../src/common/footer/cca-footer-config.scss';
-@import '../src/common/header/cc-header-config.scss';
 @import '../src/common/totalbox/cc-cart-total-panel-config.scss';
 @import '../src/cc-line-seperator-couch-config.scss';
 

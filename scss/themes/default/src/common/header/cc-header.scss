@@ -1,0 +1,26 @@
+.cc-header {
+    background: $color-2;
+    box-shadow: 0 $cc-header__shadow-size-y 0 darken($color-2, 15%);
+}
+
+.cc-header__icon {
+
+    // Not recommended for this theme
+    @if $color-2 == #fff {
+        color: $color-1;
+        background: transparent;
+    // Recommended
+    } @else {
+        color: $color-6;
+        background: transparentize($color-6, .75);
+    }
+
+    box-shadow: 0 1px 0 0 darken($color-2, 15%);
+    border-radius: $cc-header__icon-border-radius;
+}
+
+.cc-header__icon-badge {
+    background: $color-1;
+    color: $color-6;
+    border:$cc-header__icon-badge-border-width solid $color-6;
+}
