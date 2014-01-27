@@ -1,7 +1,7 @@
 {
     "node": true,
-    "es5": true,
-    "esnext": false,
+    "es5": false,
+    "esnext": true,
     "bitwise": true,
     "camelcase": true,
     "curly": true,
@@ -18,26 +18,27 @@
     "strict": true,
     "trailing": true,
     "smarttabs": true,
+    "white": true,
     "predef": [
-	"browser",
-	"ngMidwayTester",
-	"inject",
-	"describe",
-	"describe",
-	"it",
-	"xit",
-	"beforeEach",
-	"afterEach",
-	"expect",
-	"spyOn",
-	"runs",
-	"waits",
-	"waitsFor",
-	"jasmine"
+        "browser",
+        "ngMidwayTester",
+        "inject",
+        "describe",
+        "describe",
+        "it",
+        "xit",
+        "beforeEach",
+        "afterEach",
+        "expect",
+        "spyOn",
+        "runs",
+        "waits",
+        "waitsFor",
+        "jasmine"
     ],
     "globals": {
-	"cc": true,
-	"angular": false,
-	"window": true
+        "cc": true,
+        "angular": false,
+        "window": true
     }
 }

@@ -1,22 +1,18 @@
+'use strict';
 
+angular.module('CouchCommerceApp').directive('agreement', function ($rootScope, $compile, dialog, pagesService, configService) {
 
-angular
-    .module('CouchCommerceApp')
-    .directive('agreement', ['$rootScope', '$compile', 'dialog', 'pagesService', 'configService', function($rootScope, $compile, dialog, pagesService, configService) {
-
-    'use strict';
-
-    var showPage = function(pageId){
+    var showPage = function (pageId) {
         pagesService
-        .getPage(pageId)
-        .then(function(page){
-            dialog
-            .messageBox(
-                page.title,
-                page.content,
-                [{result: 'ok', label: $rootScope.ln.btnOk}]
-            );
-        });
+            .getPage(pageId)
+            .then(function (page) {
+                dialog
+                    .messageBox(
+                        page.title,
+                        page.content,
+                        [{result: 'ok', label: $rootScope.ln.btnOk}]
+                    );
+            });
     };
 
     return {
@@ -24,7 +20,7 @@ angular
         scope: {
             agreement: '='
         },
-        link: function(scope, $element, attrs){
+        link: function (scope, $element) {
             //ATTENTION: That's pretty the most shittiest code across the
             //entire code base. But the language files make it not very
             //easy to deal with and we don't want a breaking change on the
@@ -40,22 +36,19 @@ angular
 
             var element = $element[0];
 
-            angular
-                .element(element.querySelector('#agblink'))
-                .bind('click', function(){
-
+            angular.element(element.querySelector('#agblink')).bind('click', function () {
+                scope.$apply(function () {
                     var pageId = configService.get('linkGeneralAgreement');
                     showPage(pageId);
-                    scope.$apply();
                 });
+            });
 
-            angular
-                .element(element.querySelector('#widerruflink'))
-                .bind('click', function(){
+            angular.element(element.querySelector('#widerruflink')).bind('click', function () {
+                scope.$apply(function () {
                     var pageId = configService.get('linkRecallAgreement');
                     showPage(pageId);
-                    scope.$apply();
                 });
+            });
         }
     };
-    }]);
+});

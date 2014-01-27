@@ -1,26 +1,24 @@
-angular
-    .module('CouchCommerceApp')
-    .controller('MessageBoxController', ['$scope', '$modalInstance', 'model', function($scope, $modalInstance, model){
-        $scope.title = model.title;
-        $scope.message = model.message;
-        $scope.buttons = model.buttons;
-        $scope.close = function(res){
-            $modalInstance.close(res);
-        };
-    }]);
+'use strict';
 
-angular
-    .module('CouchCommerceApp')
-    .factory('dialog', ['$modal', function($modal){
+angular.module('CouchCommerceApp').controller('MessageBoxController', function ($scope, $modalInstance, model) {
+    $scope.title = model.title;
+    $scope.message = model.message;
+    $scope.buttons = model.buttons;
+    $scope.close = function (res) {
+        $modalInstance.close(res);
+    };
+});
+
+angular.module('CouchCommerceApp').factory('dialog', function ($modal) {
 
     var self = {};
 
-    self.messageBox = function(title, message, buttons, modalOptions){
+    self.messageBox = function (title, message, buttons, modalOptions) {
         var options = {
             templateUrl: 'common/dialog/cc-dialog.tpl.html',
             controller: 'MessageBoxController',
-            resolve:{
-                model: function() {
+            resolve: {
+                model: function () {
                     return {
                         title: title,
                         message: message,
@@ -30,38 +28,40 @@ angular
             }
         };
 
-        if (modalOptions)
+        if (modalOptions) {
             angular.extend(options, modalOptions);
+        }
 
         return $modal.open(options);
     };
 
-
     var loadingModal;
-    self.loading = function(title, message, buttons, modalOptions){
+
+    self.loading = function (title, message, buttons, modalOptions) {
         var options = {
             templateUrl: 'common/dialog/cc-loading-dialog.tpl.html',
             controller: 'MessageBoxController',
             dialogClass: '',
             keyboard: false,
             backdropClick: false,
-            resolve:{
-                model: function() {
+            resolve: {
+                model: function () {
                     return {};
                 }
             }
         };
 
-        if (modalOptions)
+        if (modalOptions) {
             angular.extend(options, modalOptions);
+        }
 
         loadingModal = $modal.open(options);
 
         return loadingModal;
     };
 
-    self.closeLoading = function(){
-        if(loadingModal){
+    self.closeLoading = function () {
+        if (loadingModal) {
             loadingModal.close();
         }
     };
@@ -73,7 +73,5 @@ angular
     //service.
     self.open = $modal.open;
 
-
     return self;
-
-}]);
+});

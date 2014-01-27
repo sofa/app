@@ -1,68 +1,64 @@
-angular
-    .module('CouchCommerceApp')
-    .factory('searchUiState', ['inputFocusFixConfigService', function (inputFocusFixConfigService) {
+'use strict';
 
-        'use strict';
+angular.module('CouchCommerceApp').factory('searchUiState', function (inputFocusFixConfigService) {
 
-        var self = {};
+    var self = {};
 
-        self.results = [];
+    self.results = [];
 
-        var isOpen = false;
+    var isOpen = false;
 
-        self.isOpen = function() {
-            return isOpen;
-        };
+    self.isOpen = function () {
+        return isOpen;
+    };
 
-        self.openSearch = function() {
-            isOpen = true;
-            inputFocusFixConfigService.enabled = true;
-        };
+    self.openSearch = function () {
+        isOpen = true;
+        inputFocusFixConfigService.enabled = true;
+    };
 
-        self.closeSearch = function() {
-            isOpen = false;
-            inputFocusFixConfigService.enabled = false;
-        };
+    self.closeSearch = function () {
+        isOpen = false;
+        inputFocusFixConfigService.enabled = false;
+    };
 
+    self.searchTerm = '';
+
+    self.isRunningSearch = false;
+
+    self.abort = function () {
         self.searchTerm = '';
+        self.closeSearch();
+    };
 
-        self.isRunningSearch = false;
+    self.hasSearchTerm = function () {
+        return self.searchTerm.length > 0;
+    };
 
-        self.abort = function(){
+    self.clear = function () {
+
+        if (!self.hasSearchTerm()) {
+            self.abort();
+        } else {
             self.searchTerm = '';
-            self.closeSearch();
-        };
+        }
+    };
 
-        self.hasSearchTerm = function(){
-            return self.searchTerm.length > 0;
-        };
+    self.clear();
 
-        self.clear = function(){
+    self.setResults = function (newResults) {
+        self.results = newResults;
+    };
 
-            if (!self.hasSearchTerm()){
-                self.abort();
-            }
-            else{
-                self.searchTerm = '';
-            }
-        };
+    self.hasResults = function () {
+        return self.results.length > 0;
+    };
 
-        self.clear();
+    self.hasNoMatch = function () {
+        return !self.hasResults() &&
+            !self.isRunningSearch &&
+            self.hasSearchTerm();
+    };
 
-        self.setResults = function(newResults){
-            self.results = newResults;
-        };
-
-        self.hasResults = function(){
-            return self.results.length > 0;
-        };
-
-        self.hasNoMatch = function(){
-            return !self.hasResults() &&
-                !self.isRunningSearch &&
-                self.hasSearchTerm();
-        };
-
-        return self;
-    }
-    ]);
+    return self;
+});

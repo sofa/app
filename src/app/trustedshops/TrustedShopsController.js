@@ -1,17 +1,10 @@
+'use strict';
 
+angular.module('CouchCommerceApp').controller('TrustedShopsController', function ($scope, $modalInstance, trustedShopsService) {
 
-angular
-    .module('CouchCommerceApp')
-    .controller('TrustedShopsController',
-    [
-    '$scope', '$modalInstance', 'trustedShopsService',
-    function TrustedShopsController($scope, $modalInstance, trustedShopsService) {
-        'use strict';
+    $scope.locale = trustedShopsService.locale;
 
-        $scope.locale = trustedShopsService.locale;
-
-        $scope.ok = function () {
-           $modalInstance.close();
-        };
-    }
-    ]);
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+});

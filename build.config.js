@@ -98,6 +98,10 @@ module.exports = {
             'vendor/angular-unstable/angular.js',
             'vendor/angular-unstable/angular-sanitize.js',
             'node_modules/angular-bindonce/bindonce.js',
+            'vendor/ui-router/angular-ui-router.js',
+            'vendor/ui-modal/*.js',
+            'vendor/snap/snap.js',
+            'vendor/snap/angular-snap.js',
             'node_modules/sofa-base/src/core/cc.js',
             'node_modules/sofa-base/src/core/*.js',
             'node_modules/sofa-base/src/**/*.js',
@@ -105,7 +109,9 @@ module.exports = {
         ],
         css: [],
         scss: [
-            'node_modules/sofa-base/**/*.scss'
+            'node_modules/sofa-base/**/*.scss',
+            'vendor/snap/angular-snap.scss',
+            'vendor/ui-modal/bootstrap-dialog.scss'
         ]
     }
 };

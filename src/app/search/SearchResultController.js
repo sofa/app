@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('SearchResultController', function SearchResultController($scope, searchService, searchUiState, navigationService) {
+angular.module('CouchCommerceApp').controller('SearchResultController', function ($scope, searchService, searchUiState, navigationService) {
 
     var vm = this;
 
@@ -9,8 +9,8 @@ angular.module('CouchCommerceApp').controller('SearchResultController', function
 
     vm.createGroupText = function (grouping) {
         return grouping.items.length === 1 ?
-                '1 ' + $scope.ln.searchProductFoundIn + ' <b>' + grouping.groupText + '</b>' :
-                grouping.items.length + ' ' + $scope.ln.searchProductsFoundIn + ' <b>' + grouping.groupText + '</b>';
+            '1 ' + $scope.ln.searchProductFoundIn + ' ' + grouping.groupText :
+            grouping.items.length + ' ' + $scope.ln.searchProductsFoundIn + ' ' + grouping.groupText;
     };
 
     vm.goToCategory = function (result) {
@@ -25,5 +25,4 @@ angular.module('CouchCommerceApp').controller('SearchResultController', function
             urlKey: item.productUrlKey
         });
     };
-
 });

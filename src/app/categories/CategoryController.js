@@ -1,50 +1,43 @@
+'use strict';
 
+angular.module('CouchCommerceApp')
+.controller('CategoryController', function ($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote) {
 
-angular
-    .module('CouchCommerceApp')
-    .controller( 'CategoryController',
-    [
-        '$scope', '$stateParams', 'couchService', 'navigationService', 'backStepHighlightService', 'category', 'selectionService', 'urlParserService', 'categoryTreeViewRemote',
-        function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote) {
+    if (!category) {
+        return;
+    }
 
-            'use strict';
+    //we want to set the active category in the side menu.
+    categoryTreeViewRemote.setActive(category);
 
-            if(!category){
-                return;
-            }
+    $scope.urlParserService = urlParserService;
+    $scope.backStepHighlightService = backStepHighlightService;
 
-            //we want to set the active category in the side menu.
-            categoryTreeViewRemote.setActive(category);
+    $scope.goToCategory = function (category, $event) {
 
-            $scope.urlParserService = urlParserService;
-            $scope.backStepHighlightService = backStepHighlightService;
+        selectionService.select($stateParams.category, angular.element($event.currentTarget));
 
-            $scope.goToCategory = function(category, $event){
+        //even if we have the category already provided by the function parameter,
+        //we have to fetch it again via the couchService. The reason for that is, that
+        //it might be a leaf with no children but it's just an alias to a category
+        //which does have children. In this case, we want to get to the real category
+        //which has the children.
 
-                selectionService.select($stateParams.category, angular.element($event.currentTarget));
+        //in 99% of the cases we will just get the same category returned by the couchService
+        //as the one we got via the function parameter but for such alias corner cases it's important
+        //to retrieve it through the couchService.
+        couchService
+            .getCategory(category.urlId)
+            .then(function (realCategory) {
 
-                //even if we have the category already provided by the function parameter,
-                //we have to fetch it again via the couchService. The reason for that is, that
-                //it might be a leaf with no children but it's just an alias to a category
-                //which does have children. In this case, we want to get to the real category
-                //which has the children.
+                if (!realCategory.children) {
+                    navigationService.navigateToProducts(realCategory.urlId);
+                } else {
+                    navigationService.navigateToCategory(realCategory.urlId);
+                }
+            });
+    };
 
-                //in 99% of the cases we will just get the same category returned by the couchService
-                //as the one we got via the function parameter but for such alias corner cases it's important
-                //to retrieve it through the couchService.
-                couchService
-                    .getCategory(category.urlId)
-                    .then(function(realCategory){
-
-                        if (!realCategory.children){
-                            navigationService.navigateToProducts(realCategory.urlId);
-                        } else {
-                            navigationService.navigateToCategory(realCategory.urlId);
-                        }
-                    });
-            };
-
-            $scope.category = category;
-            $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;
-        }
-    ]);
+    $scope.category = category;
+    $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;
+});

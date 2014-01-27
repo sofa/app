@@ -1,33 +1,26 @@
+'use strict';
+
+angular.module('CouchCommerceApp')
+.controller('ThankyouController', function ($scope, navigationService, trustedShopsService, summaryResponse, trackingService, basketService) {
 
 
-angular
-    .module('CouchCommerceApp')
-    .controller('ThankyouController',
-    [
-    '$scope', 'navigationService', 'trustedShopsService', 'summaryResponse', 'trackingService', 'basketService',
-    function ThankyouController($scope, navigationService, trustedShopsService, summaryResponse, trackingService, basketService) {
+    // It is possible that an error occurs between the summary and thankyou page (e.g. couchpay)
+    // There the basket is only cleared when the thankyou page is loaded (as this page will always be shown, regardless of the transaction type)
+    basketService.clear();
 
-        'use strict';
+    trackingService.trackTransaction(summaryResponse.token);
 
-        // It is possible that an error occurs between the summary and thankyou page (e.g. couchpay)
-        // There the basket is only cleared when the thankyou page is loaded (as this page will always be shown, regardless of the transaction type)
-        basketService.clear();
+    var vm = $scope.vm = {};
 
-        trackingService.trackTransaction(summaryResponse.token);
+    $scope.navigationService = navigationService;
+    $scope.trustedShopsService = trustedShopsService;
 
-        var vm = $scope.vm = {};
+    vm.summary = summaryResponse.summary;
+    vm.trustedShopsPaymentIdentifier = trustedShopsService.convertPaymentIdentifier(summaryResponse.response.paymentMethod);
 
-        $scope.navigationService = navigationService;
-        $scope.trustedShopsService = trustedShopsService;
-
-        vm.summary = summaryResponse.summary;
-        vm.trustedShopsPaymentIdentifier = trustedShopsService
-                            .convertPaymentIdentifier(summaryResponse.response.paymentMethod);
-
-        trackingService.trackEvent({
-            category: 'event',
-            action: 'google_conversion',
-            value: vm.summary.total
-        });
-    }
-    ]);
+    trackingService.trackEvent({
+        category: 'event',
+        action: 'google_conversion',
+        value: vm.summary.total
+    });
+});

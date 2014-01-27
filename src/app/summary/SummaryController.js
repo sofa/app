@@ -1,42 +1,34 @@
+'use strict';
+
+angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state) {
+
+    var vm = $scope.vm = {};
+
+    vm.THANK_YOU_PAGE = 'thankyou';
+    vm.SUMMARY_PAGE = 'summary';
+    vm.page = vm.SUMMARY_PAGE;
+
+    $scope.navigationService = navigationService;
+    $scope.trustedShopsService = trustedShopsService;
 
 
-angular
-    .module('CouchCommerceApp')
-    .controller('SummaryController',
-    [
-    '$scope', 'navigationService', 'checkoutService', 'dialog', '$stateParams', 'trustedShopsService', '$state',
-    function SummaryController($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state) {
-
-        'use strict';
-
-        var vm = $scope.vm = {};
-
-        vm.THANK_YOU_PAGE = 'thankyou';
-        vm.SUMMARY_PAGE = 'summary';
-        vm.page = vm.SUMMARY_PAGE;
-
-        $scope.navigationService = navigationService;
-        $scope.trustedShopsService = trustedShopsService;
-
-
-        checkoutService
+    checkoutService
         .getSummary($stateParams.token)
-        .then(function(result){
+        .then(function (result) {
 
-            if(result.response.error){
+            if (result.response.error) {
                 dialog
                     .messageBox(
-                    $scope.ln.errorGettingPaymentDetails,
-                    result.response.error.paymentErrorMsg,
-                    [{result: 'ok', label: $scope.ln.btnOk}]
+                        $scope.ln.errorGettingPaymentDetails,
+                        result.response.error.paymentErrorMsg,
+                        [{result: 'ok', label: $scope.ln.btnOk}]
                     )
-                    .result
-                    .then(function(result){
-                    if(result === 'ok'){
+                .result
+                .then(function (result) {
+                    if (result === 'ok') {
                         navigationService.navigateToCart();
                     }
-                    });
-
+                });
                 return;
             }
 
@@ -48,36 +40,35 @@ angular
             //we directly set this one on the scope to gain reuse of the included template
             $scope.summary      = result.summary;
 
-        }, function(){
+        }, function () {
             dialog
-            .messageBox(
-                $scope.ln.btnWarning,
-                $scope.ln.errorGettingPaymentDetails,
-                [{result: 'ok', label: $scope.ln.btnOk}]
-            );
+                .messageBox(
+                    $scope.ln.btnWarning,
+                    $scope.ln.errorGettingPaymentDetails,
+                    [{result: 'ok', label: $scope.ln.btnOk}]
+                );
         });
 
-        vm.showAgeAgreement = !!cc.Config.showAgeAgreement;
-        vm.showGeneralAgreement = !!cc.Config.showGeneralAgreement;
+    vm.showAgeAgreement = !!cc.Config.showAgeAgreement;
+    vm.showGeneralAgreement = !!cc.Config.showGeneralAgreement;
 
-        $scope.acceptedAgreements = function(){
-            return  (!vm.showGeneralAgreement || vm.generalAgreement) &&
-                (!vm.showAgeAgreement || vm.ageAgreement);
-        };
+    $scope.acceptedAgreements = function () {
+        return  (!vm.showGeneralAgreement || vm.generalAgreement) &&
+            (!vm.showAgeAgreement || vm.ageAgreement);
+    };
 
-        $scope.proceed = function(){
-            checkoutService
-                .activateOrder($stateParams.token)
-                .then(function(data){
-                    $state.transitionTo('thankyou');
-                }, function(err) {
-                    dialog
-                        .messageBox(
+    $scope.proceed = function () {
+        checkoutService
+            .activateOrder($stateParams.token)
+            .then(function () {
+                $state.transitionTo('thankyou');
+            }, function () {
+                dialog
+                    .messageBox(
                         $scope.ln.btnWarning,
                         $scope.ln.errorGettingPaymentDetails,
                         [{result: 'ok', label: $scope.ln.btnOk}]
-                        );
-                });
-        };
-    }
-    ]);
+                    );
+            });
+    };
+});

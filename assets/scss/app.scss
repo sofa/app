@@ -34,7 +34,7 @@
 //app component styles
 @import 'cc-box-highlight-helper.scss';
 @import 'cc-view-wrapper.scss';
-@import '../../src/app/common/dialog/bootstrap-dialog.scss';
+@import '../../vendor/ui-modal/bootstrap-dialog.scss';
 @import '../../src/app/common/dialog/cc-loading-dialog.scss';
 @import '../../src/app/common/dialog/cc-dialog.scss';
 @import '../../src/app/common/header/cc-header.scss';
@@ -42,7 +42,7 @@
 @import '../../src/app/common/footer/cca-footer.scss';
 @import '../../src/app/common/404/cc-404.scss';
 @import '../../src/app/common/contentbox/cc-content-box.scss';
-@import '../../src/app/common/snap/angular-snap.scss';
+@import '../../vendor/snap/angular-snap.scss';
 @import '../../src/app/common/sidemenu/cc-side-menu.scss';
 @import '../../src/app/pages/pages.scss';
 @import '../../src/app/categories/cc-category-list.scss';

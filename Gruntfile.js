@@ -618,13 +618,13 @@ module.exports = function(grunt) {
              * When the Gruntfile changes, we just want to lint it. In fact, when
              * your Gruntfile changes, it will automatically be reloaded!
              */
-            /*gruntfile: {
+            gruntfile: {
                 files: 'Gruntfile.js',
                 tasks: ['jshint:gruntfile'],
                 options: {
                     livereload: false
                 }
-            },*/
+            },
 
             /**
              * When our JavaScript source files change, we want to run lint them and

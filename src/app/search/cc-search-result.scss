@@ -1,59 +1,69 @@
-.cc-search-result__group-list-item-header{
-    padding: $cc-search-result__group-header-padding;
+.cc-search-result {
+    position: absolute;
+    height: auto;
+    top: $cc-search-result__top;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+
+    .cc-view-wrapper {
+        padding:10px 6px;
+    }
+}
+
+.cc-search-result__group {
+    margin-bottom:10px;
+}
+
+.cc-search-result__group-header {
     position: relative;
-    border-bottom: 1px solid $cc-search-result__group-header-border-color;
-    border-top: 1px solid $cc-search-result__group-header-border-color;
-    font-weight: bold;
+    padding: 10px 25px 10px 10px;
 }
 
-.cc-search-result__group-list-item-header-icon{
-    @extend .cc-text-list__row-icon;
-}
-
-.cc-search-result__item-list{
-    background: $cc-search-result__item-list-background;
+.cc-search-result__item-list {
     display: table;
     width: 100%;
     border-collapse:separate;
-    border-spacing:3px;
-    color: $cc-search-result__list-item-color;
 }
 
-.cc-search-result__list-item{
+.cc-search-result__item {
     display: table-row;
 
-    &:last-child{
-        .cc-search-result__list-item-text-wrapper:after{
-            content: none;
+    &:first-child {
+        .cc-search-result__item-image-wrapper,
+        .cc-search-result__item-text-wrapper {
+            border-top:0;
         }
     }
 }
 
-.cc-search-result__list-item-product-image{
-    width: 50px;
-    height: 50px;
-    background-size: contain;
+%cc-search-result__table-cells {
     display: table-cell;
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
+    padding: 4px 6px;
+    vertical-align: middle;
 }
 
-.cc-search-result__list-item-text-wrapper{
-    display: table-cell;
-    vertical-align: middle;
-    padding-left: $cc-search-result__list-item-padding-left;
-    position: relative;
+.cc-search-result__item-image-wrapper {
+    @extend %cc-search-result__table-cells;
 
-    &:after{
-        content: "";
-        position: absolute;
-        border-bottom: 1px solid $cc-search-result__list-item-border-color;
-        left: $cc-search-result__list-item-padding-left;
-        right: 0;
-        bottom: 0;
+    .cc-search-result__item-image {
+        width: $cc-search-result__image-size;
+        height: $cc-search-result__image-size;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: $cc-search-result__image-background-color;
     }
 }
 
-.cc-search-result__list-item-icon{
-    @extend .cc-text-list__row-icon;
+.cc-search-result__item-text-wrapper {
+    @extend %cc-search-result__table-cells;
+
+    position: relative;
+    padding-right:25px;
+}
+
+.cc-search-result__item-icon {
+    @extend %cc-text-list__row-icon-thin;
 }
