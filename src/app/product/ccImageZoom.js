@@ -45,7 +45,7 @@ angular
                 var body = angular.element(document.body);
 
                 //This is a rather hacky way and we should better use class markers
-                var appContent = angular.element(document.querySelectorAll('body > div')[0]);
+                var appContent = angular.element(document.querySelectorAll('body > div')[1]);
 
                 var viewWrapper;
 
