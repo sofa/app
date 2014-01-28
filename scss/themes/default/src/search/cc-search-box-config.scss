@@ -1,17 +1,18 @@
 
-$cc-search-box__cancel-icon-font-size: $cc-header-base__icon-height;
-$cc-search-box__cancel-icon-height: $cc-header-base__element-height;
-$cc-search-box__input-height: $cc-header-base__element-height;
+// Search Box
+$cc-search-box__background-color: $color-2;
+$cc-search-box__height:           $cc-header__height;
+$cc-search-box__paddings:         $cc-header__paddings;
+$cc-search-box__shadow-size-y:    $cc-header__shadow-size-y;
+$cc-search-box__shadow-color:     transparentize($color-1, .8);
 
-$cc-search-box__background: hsla($color-2-h, $color-2-s, $color-2-l, 1);
-$cc-search-box__border-bottom-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.2);
-$cc-search-box__border-bottom-width: $cc-border-bottom-width;
+// Search Input Wrapper
+$cc-search-box__input-wrapper-margin:    $cc-header__icon-width + $cc-header__padding-x;
 
-$cc-search-box__input-border-color: hsla($color-2-h, $color-2-s, $color-2-l, 1);
-$cc-search-box__input-top-border-width: $cc-border-bottom-width;
-$cc-search-box__input-top-border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.26);
-$cc-search-box__input-padding-left: $cc-primary-padding;
-$cc-search-box__clear-icon-right: $cc-primary-padding;
-$cc-search-box__clear-icon-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
-
-$cc-modal--background__background: hsla($color-4-h, $color-4-s, $color-4-l, 1);
+// Search Input
+$cc-search-box__input-height:            $cc-header-base__element-height;
+$cc-search-box__input-font-size:         $cc-header__icon-font-size;
+$cc-search-box__input-border-color:      $color-2;
+$cc-search-box__input-shadow-size-y:     $cc-border-bottom-width;
+$cc-search-box__input-shadow-color:      transparentize($color-1, .75);
+$cc-search-box__input-search-icon-color: lighten($color-1, 50%);

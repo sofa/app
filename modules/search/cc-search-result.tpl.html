@@ -1,24 +1,26 @@
 <div ng-controller="SearchResultController as vm" ng-show="vm.searchUiState.isOpen() && vm.searchUiState.hasResults()" class="cc-content cc-search-result">
     <div class="cc-view-wrapper--unpadded">
         <ul class="cc-search-result__group-list">
-            <li class="cc-search-result__group-list-item" ng-repeat="result in vm.searchUiState.results">
+            <li class="cc-search-result__group" ng-repeat="result in vm.searchUiState.results">
                 <div
-                    class="cc-search-result__group-list-item-header"
+                    class="cc-search-result__group-header"
                     ng-click="vm.goToCategory(result)">
-                    <span ng-bind="vm.createGroupText(result)"></span>
-                    <i class="cc-search-result__group-list-item-header-icon fa fa-chevron-right"></i>
+                    <span ng-bind-html="vm.createGroupText(result)"></span>
                 </div>
                 <ul class="cc-search-result__item-list">
                     <li
                         ng-repeat="product in result.items"
                         ng-click="vm.goToProduct(product)"
-                        class="cc-search-result__list-item">
-                        <div class="cc-search-result__list-item-product-image"
-                             style="background-image:url({{product.productImageUrl}});">
+                        class="cc-search-result__item">
+                        <div class="cc-search-result__item-image-wrapper">
+                            <div class="cc-search-result__item-image"
+                                 style="background-image:url({{product.productImageUrl}});">
+                            </div>
                         </div>
 
-                        <div class="cc-search-result__list-item-text-wrapper">
+                        <div class="cc-search-result__item-text-wrapper">
                             <span ng-bind="product.text"></span>
+                            <i class="cc-search-result__item-icon fa fa-angle-right"></i>
                         </div>
                     </li>
                 </ul>

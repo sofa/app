@@ -1,0 +1,17 @@
+
+.cc-search-result__group-header {
+    border-bottom: 1px solid lighten($color-1, 50%);
+    background: $color-6;
+}
+
+.cc-search-result__item {
+    background: transparentize($color-6, .34);
+}
+
+.cc-search-result__item-text-wrapper {
+    border-top:1px solid $color-4;
+}
+
+.cc-search-result__item-icon {
+    color: lighten($color-1, 50%);
+}

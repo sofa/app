@@ -1,6 +1,7 @@
 @import 'src/cc-button.scss';
 @import 'src/cc-highlight.scss';
 @import 'src/common/header/cc-header.scss';
+@import 'src/search/cc-search-result.scss';
 
 body{
     font-family: $cc-font-default;
@@ -76,3 +77,13 @@ body{
                        $cc-select-box__border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22),
                        $cc-select-box__border-bottom-width: $cc-select-box__border-bottom-width);
 
+// stays until we can apply font-awesome styles to generic cc-icon classes 
+%cc-text-list__row-icon-thin {
+    position: absolute;
+    margin:0;
+    right: $cc-text-list__icon-right-margin;
+    top: 50%;
+    color: $cc-text-list__icon-color;
+    font-size: 21px;
+    @include vendor-prefix(transform, translateY(-50%));
+}

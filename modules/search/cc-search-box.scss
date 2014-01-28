@@ -1,66 +1,58 @@
-.cc-search-box{
-    width: 100%;
-    background: $cc-search-box__background;
-    overflow: hidden;
+.cc-search-box {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: $cc-search-box__height;
+    padding: $cc-search-box__paddings;
+    background: $cc-search-box__background-color;
     z-index: 999;
-    display: table;
-    height: 100%;
+    box-shadow: 0 $cc-search-box__shadow-size-y 0 $cc-search-box__shadow-color;
 
-    //we need a blur radius of at least 1px for box-shadow to work on Android 2.3
-    //also we can't use border-bottom here as the search-box currently is a child element of the header
-    //http://stackoverflow.com/questions/13565379/android-wont-show-box-shadow-with-0px-blur
-    @include vendor-prefix('box-shadow', 0px $cc-search-box__border-bottom-width 1px $cc-search-box__border-bottom-color);
-    //the unprefixed version doesn't need the blur
-    box-shadow: 0px $cc-search-box__border-bottom-width 0px $cc-search-box__border-bottom-color;
+    @include vendor-prefix(transform, translateY(0));
+    @include vendor-prefix(transition, .2s ease-in-out);
 }
 
-.cc-search-box--closed{
+.cc-search-box--closed {
     @extend .cc-search-box;
-    display: none;
+    @include vendor-prefix(transform, translateY(-100%));
 }
 
-.cc-search-box--opened{
+.cc-search-box--opened {
     @extend .cc-search-box;
 }
 
-.cc-search-box__spacer{
-    display: table-cell;
-    width: 5px;
+.cc-search-box__close {
+    @extend .cc-header__icon;
+
+    position:static;
+    float:right;
 }
 
-.cc-search-box__input-wrapper{
-    display: table-cell;
-    vertical-align: middle;
+.cc-search-box__input-wrapper {
+    position: relative;
+    margin-right: $cc-search-box__input-wrapper-margin;
 }
 
-.cc-search-box__input{
+.cc-search-box__input {
     @extend .cc-text-box;
 
     margin: 0;
     height: $cc-search-box__input-height;
-    border-color: $cc-search-box__input-border-color;
-    -webkit-box-shadow: inset 0 $cc-search-box__input-top-border-width 1px 0 $cc-search-box__input-top-border-color;
-    box-shadow: inset 0 $cc-search-box__input-top-border-width 0 0 $cc-search-box__input-top-border-color;
     width: 100%;
-    padding: 0 10px 0 $cc-search-box__input-padding-left;
+    padding: 0 10px 0 30px;
+    font-size: $cc-search-box__input-font-size;
+    line-height: $cc-search-box__input-height;
+
+    border-color: $cc-search-box__input-border-color;
+    box-shadow: inset 0 $cc-search-box__input-shadow-size-y 0 0 $cc-search-box__input-shadow-color;
 }
 
-.cc-search-box__input-cancel-icon{
+.cc-search-box__input-search-icon {
     position: absolute;
-    font-size: $cc-search-box__cancel-icon-font-size;
-    height: $cc-search-box__cancel-icon-height;
-    line-height: $cc-search-box__cancel-icon-height;
-    top: 50%;
-    margin-top: -($cc-search-box__cancel-icon-height / 2);
-    //what a cruel world. We need to make this relative to
-    //the whole cc-search-box to work with Android 2.3.
-    //Making it relative to the cc-search-box__input-wrapper doesn't work.
-    right: $cc-search-box__clear-icon-right;
-    //the clear icon should be in sync with the border color
-    color: $cc-search-box__clear-icon-color;
+    font-size: 16px;
+    line-height: $cc-search-box__input-height;
+    top: 0;
+    left:10px;
+    color:$cc-search-box__input-search-icon-color;
 }

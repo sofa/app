@@ -14,8 +14,8 @@ angular
 
             vm.createGroupText = function(grouping){
                 return grouping.items.length === 1 ?
-                       '1 ' + $scope.ln.searchProductFoundIn + ' ' + grouping.groupText :
-                       grouping.items.length + ' ' + $scope.ln.searchProductsFoundIn + ' ' + grouping.groupText;
+                       '1 ' + $scope.ln.searchProductFoundIn + ' <b>' + grouping.groupText + '</b>' :
+                       grouping.items.length + ' ' + $scope.ln.searchProductsFoundIn + ' <b>' + grouping.groupText + '</b>';
             };
 
             vm.goToCategory = function(result){
