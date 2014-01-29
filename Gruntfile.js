@@ -667,8 +667,13 @@ module.exports = function(grunt) {
             /**
              * When SCSS files changes, we need to compile them to css
              */
-            sass_app: {
+            sass_assets: {
                 files: ['assets/**/*.scss'],
+                tasks: ['sass']
+            },
+
+            sass_app: {
+                files: ['src/app/**/*.scss'],
                 tasks: ['sass']
             },
 
