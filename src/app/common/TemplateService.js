@@ -7,6 +7,7 @@ angular.module('CouchCommerceApp')
     SEARCH_RESULT: 'search/cc-search-result.tpl.html',
     SHELL: 'common/shell/shell.tpl.html',
     SIDE_MENU: 'common/sidemenu/cc-side-menu.tpl.html',
+    CART: 'cart/cc-cart.tpl.html',
     '404': 'common/404/cc-404.tpl.html',
     '404_PRODUCTS': 'common/404/cc-404-products.tpl.html'
 });

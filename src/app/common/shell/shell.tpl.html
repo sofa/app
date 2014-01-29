@@ -1,4 +1,8 @@
-  <div snap-drawer ng-include="tpl.SIDE_MENU"></div>
+    <div snap-drawers>
+      <div snap-drawer ng-include="tpl.SIDE_MENU"></div>
+      <div snap-drawer="right" ng-controller="CartController" ng-include="tpl.CART"></div>
+    </div>
+
   <div class="cc-main-wrapper" snap-content>
       <div cc-include="tpl.HEADER"></div>
       <div ng-show="!searchUiState.isOpen() || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-page-wrapper cc-image-full-screen__hide-marker" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>

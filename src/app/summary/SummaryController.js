@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state) {
+angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state, snapRemote) {
 
     var vm = $scope.vm = {};
 
@@ -26,7 +26,7 @@ angular.module('CouchCommerceApp').controller('SummaryController', function ($sc
                 .result
                 .then(function (result) {
                     if (result === 'ok') {
-                        navigationService.navigateToCart();
+                        snapRemote.open('right');
                     }
                 });
                 return;

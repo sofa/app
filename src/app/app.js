@@ -42,7 +42,6 @@ angular.module('CouchCommerceApp', [
 ])
 .config(function ($stateProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider) {
 
-    snapRemoteProvider.globalOptions.disable = 'right';
     snapRemoteProvider.globalOptions.addBodyClasses = true;
 
     var categoryStateConfig = {
@@ -103,12 +102,16 @@ angular.module('CouchCommerceApp', [
             screenIndex: screenIndexes.product
         })
 
-        .state('cart', {
-            url: '/cart',
-            templateUrl: 'cart/cc-cart.tpl.html',
-            controller: 'CartController',
-            screenIndex: screenIndexes.cart
-        })
+        // would really love to keep this so that we can trigger the cart opening via
+        // URL. Unfortunately I haven't found a way to keep the /cart URL just as a way
+        // to open the right side menu without changing the currently active state.
+        // This example does not seem to apply to our case: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions#wiki-how-to-open-a-dialogmodal-at-a-certain-state
+        // .state('.cart', {
+        //     url: '/cart',
+        //     onEnter: ['$snapRemote', function ($snapRemote) {
+        //         $snapRemote.open('right');
+        //     }]
+        // });
 
         .state('checkout', {
             url: '/checkout',

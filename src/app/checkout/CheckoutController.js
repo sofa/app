@@ -26,6 +26,10 @@ angular.module('CouchCommerceApp')
     $scope.basketService = basketService;
     $scope.navigationService = navigationService;
 
+    $scope.goBack = function () {
+        window.history.back();
+    };
+
     $scope.checkoutModel = checkoutModel;
 
     $scope.shippingMethodFormatter = shippingMethodFormatter;

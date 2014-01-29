@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('HeaderController', function ($rootScope, $scope, $location, navigationService, couchService, basketService, urlParserService, deviceService) {
+.controller('HeaderController', function ($rootScope, $scope, $location, navigationService, couchService, basketService, urlParserService, deviceService, snapRemote) {
 
     $scope.basketItemCount = 0;
     $scope.navigationService = navigationService;
     $scope.urlParserService = urlParserService;
     $scope.deviceService = deviceService;
+    $scope.snapRemote = snapRemote;
 
     var updateBasketItemCount = function () {
         $scope.basketItemCount = basketService.getSummary().quantity;

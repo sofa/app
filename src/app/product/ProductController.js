@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote) {
+.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote) {
 
     if (!product || !category) {
         return;
@@ -130,6 +130,6 @@ angular.module('CouchCommerceApp')
             return;
         }
         basketService.addItem(product, 1, $scope.variants.selectedVariant);
-        navigationService.navigateToCart();
+        snapRemote.open('right');
     };
 });
