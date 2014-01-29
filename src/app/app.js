@@ -150,7 +150,7 @@ angular.module('CouchCommerceApp', [
 })
 //just to kick off the services
 .run(['stateChangeService', 'viewClassService', function () { } ])
-.run(function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
+.run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
 
     //Todo: Check what can be moved over to the MainController
     //Most things can, but things like language keys, when used from within
@@ -169,17 +169,17 @@ angular.module('CouchCommerceApp', [
     deviceService.flagOs();
     deviceService.flagOverflowSupport();
     deviceService.flagModernFlexboxSupport();
-})
-.run(function ($rootScope, snapRemote) {
+}])
+.run(['$rootScope', 'snapRemote', function ($rootScope, snapRemote) {
     $rootScope.$on('$stateChangeStart', function () {
         snapRemote.close();
     });
-})
-.run(function (trackingService, configService) {
+}])
+.run(['trackingService', 'configService', function (trackingService, configService) {
     trackingService.addTracker(new cc.tracker.GoogleAnalyticsTracker({
         accountNumber: configService.get('googleAnalytics'),
         domainName: configService.get('googleAnalyticsSetDomain'),
         conversionId: configService.get('googleConversionId'),
         conversionLabel: configService.get('googleConversionLabel')
     }));
-});
+}]);
