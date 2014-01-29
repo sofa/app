@@ -7,46 +7,22 @@
     border-radius: $cc-product-view__image-border-radius;
     background-size: contain;
     background-position: center center;
-
     position: relative;
 }
 .cc-product-view-image{
     position: relative;
     z-index: 500;
-    visibility: hidden;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
-.cc-product-view-image-convert-to-div{
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: $cc-product-view__image-background-color;
+.cc-product-view-image-active{
+    z-index: 1500;
+    margin: 0 0;
 }
 
-.cc-product-view-image-mask-view-fix {
-    -webkit-backface-visibility: visible !important;
-    -webkit-transform-style: flat !important;
-    -webkit-overflow-scrolling: initial !important;
-}
-
-.cc-product-view-image-mask-app-fix {
-    -webkit-overflow-scrolling: initial !important;
-    z-index: auto;
-    -webkit-transform: none;
-    transform: none;
-}
-
-//this is the most ugly thing ever. The proper fix would be to move the img to the body and then
-//set all the rest of the content to display:none
-.cc-product-view-image-mask-app-fix + .snap-drawer{
-    display: none;
-}
-
-.cc-product-view-image--expanded{
-    @extend .cc-product-view-image;
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
+.cc-product-view-image-simple{
     background-color: $cc-product-view__image-background-color;
     position: fixed;
     top: 0;
@@ -54,13 +30,12 @@
     right: 0;
     bottom: 0;
     height: 100%;
-    z-index: 999;
+    z-index: 1600;
     opacity: 0;
     -webkit-transition: 0.5s opacity ease-out;
 }
 
-.cc-product-view-image--expanded--visible{
-    @extend .cc-product-view-image--expanded;
+.cc-product-view-image-simple-active{
     opacity: 1;
     visibility: visible;
 }

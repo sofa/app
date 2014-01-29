@@ -1,5 +1,4 @@
-/* jslint camelcase: false */
-/* jshint bitwise: false */
+/* jslint camelcase: false, bitwise: false */
 'use strict';
 
 /**

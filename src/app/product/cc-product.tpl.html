@@ -8,9 +8,18 @@
             </h1>
             <cc-inject target="beneathTitle"></cc-inject>
 
-            <div class="cc-product-view__image-thumb-wrapper">
+            <div class="cc-product-view__image-thumb-wrapper" >
                 <div class="cc-product-view-image-wrapper">
-                    <img cc-image-zoom image="selectedImage.url" class="cc-product-view-image">
+                    <img ng-src="{{selectedImage.url}}"
+                        class="cc-product-view-image"
+                        cc-image-zoom
+                        body-wrapper-class="cc-app-wrapper"
+                        simple-class="cc-product-view-image-simple"
+                        simple-active-class="cc-product-view-image-simple-active"
+                        mask-class="cc-product-view-image-mask"
+                        active-class="cc-product-view-image-active"
+                        zoom-anim-duration="500"
+                        data-snap-ignore="true">
                  </div>
 
                 <cc-thumbnail-bar
