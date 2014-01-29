@@ -1,4 +1,6 @@
 /* jslint camelcase: false */
+/* jshint bitwise: false */
+'use strict';
 
 /**
  * Setting livereload port, lrSnippet and a mount function for later
@@ -10,7 +12,8 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+
     /**
      * Load required Grunt tasks. These are installed based on the versions listed
      * in `package.json` when you do `npm install --save-dev` in this directory.
@@ -271,7 +274,7 @@ module.exports = function(grunt) {
                         // vendor files that sit in `../`.
                         rename: function (dest, src) {
                             if (src.indexOf('../') > -1) {
-                            src = src.replace('../', '');
+                                src = src.replace('../', '');
                             }
                             return dest + src;
                         }
@@ -475,8 +478,8 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= build_dir %>/assets/css/app.css': [
-                    '<%= vendor_files.css %>',
-                    '<%= build_dir %>/assets/css/app.css'
+                        '<%= vendor_files.css %>',
+                        '<%= build_dir %>/assets/css/app.css'
                     ]
                 }
             }
@@ -496,12 +499,12 @@ module.exports = function(grunt) {
                 },
                 options: {
                     callback: function (err, stdout, stderr, cb) {
-                        grunt.log.writeln('Saving last SHA '+stdout);
+                        grunt.log.writeln('Saving last SHA ' + stdout);
                         if (grunt.config.get('lastSdkSha')) {
                             if (grunt.config.get('lastSdkSha') !== stdout) {
-                                var message = 'Aborting! Turns out you\'re about '
-                                    + 'to deploy an SDK version you didn\'t test. '
-                                    + 'Please pull the latest SDK changes first!';
+                                var message = 'Aborting! Turns out you\'re about ' +
+                                    'to deploy an SDK version you didn\'t test. ' +
+                                    'Please pull the latest SDK changes first!';
                                 grunt.fail.warn(message);
                             }
                         } else {
@@ -553,7 +556,7 @@ module.exports = function(grunt) {
                     stderr: true,
                     failOnError: true
                 },
-                command: function(){
+                command: function () {
                     var version = grunt.config.get('appVersion');
 
                     return [
@@ -579,7 +582,7 @@ module.exports = function(grunt) {
                 // contents of the dist folder on the root level and delete all
                 // source files but instead we just add the dist folder
                 // to the version control for the deployment branch/tag.
-                command: function() {
+                command: function () {
                     var version = grunt.config.get('appVersion');
                     return [
                         'git add -A',
@@ -626,6 +629,7 @@ module.exports = function(grunt) {
                 }
             },
 
+
             /**
              * When our JavaScript source files change, we want to run lint them and
              * run our unit tests.
@@ -634,7 +638,7 @@ module.exports = function(grunt) {
                 files: [
                     '<%= app_files.js %>'
                 ],
-                tasks: [/*'jshint:src', */'karma:unit:run', 'copy:build_appjs']
+                tasks: ['jshint:src', 'karma:unit:run', 'copy:build_appjs']
             },
 
             /**
@@ -642,7 +646,7 @@ module.exports = function(grunt) {
              * files, so this is probably not very useful.
              */
             assets: {
-                files: ['assets/**/*','!assets/**/*.scss'],
+                files: ['assets/**/*', '!assets/**/*.scss'],
                 tasks: ['copy:build_assets']
             },
 
@@ -692,7 +696,7 @@ module.exports = function(grunt) {
                 files: [
                     '<%= app_files.jsunit %>'
                 ],
-                tasks: [/*'jshint:test',*/'karma:unit:run'],
+                tasks: ['jshint:test', 'karma:unit:run'],
                 options: {
                     livereload: false
                 }
@@ -841,7 +845,7 @@ module.exports = function(grunt) {
     /**
      * A utility function to get all app JavaScript sources.
      */
-    function filterForJS (files) {
+    function filterForJS(files) {
         return files.filter(function (file) {
             return file.match(/\.js$/);
         });
@@ -850,7 +854,7 @@ module.exports = function(grunt) {
     /**
      * A utility function to get all app CSS sources.
      */
-    function filterForCSS (files) {
+    function filterForCSS(files) {
         return files.filter(function (file) {
             return file.match(/\.css$/);
         });
@@ -863,19 +867,19 @@ module.exports = function(grunt) {
      * compilation.
      */
     grunt.registerMultiTask('index', 'Process index.html template', function () {
-        var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+        var dirRE = new RegExp('^(' + grunt.config('build_dir') + '|' + grunt.config('compile_dir') + ')\/', 'g');
         var jsFiles = filterForJS(this.filesSrc).map(function (file) {
             if (file.indexOf('../') > -1) {
                 file = file.replace('../', '');
             }
-            return file.replace(dirRE, '' );
+            return file.replace(dirRE, '');
         });
         var cssFiles = filterForCSS(this.filesSrc).map(function (file) {
             return file.replace(dirRE, '');
         });
 
         grunt.file.copy('index.html', this.data.dir + '/index.html', {
-            process: function (contents, path) {
+            process: function (contents) {
                 return grunt.template.process(contents, {
                     data: {
                         scripts: jsFiles,
@@ -893,8 +897,7 @@ module.exports = function(grunt) {
      * compiled as grunt templates for use by Karma. Yay!
      */
     grunt.registerMultiTask('karmaconfig', 'Process karma config templates', function () {
-        var jsFiles = filterForJS(this.filesSrc).map( function (file) {
-            var dirRE = new RegExp( '^('+grunt.config('build_dir')+'|'+grunt.config('compile_dir')+')\/', 'g' );
+        var jsFiles = filterForJS(this.filesSrc).map(function (file) {
             if (file.indexOf('../') > -1) {
                 file = file.replace('../', grunt.config('build_dir') + '/');
             }
@@ -902,7 +905,7 @@ module.exports = function(grunt) {
         });
 
         grunt.file.copy('karma/karma-unit.tpl.js', grunt.config('build_dir') + '/karma-unit.js', {
-            process: function (contents, path) {
+            process: function (contents) {
                 return grunt.template.process(contents, {
                     data: {
                         scripts: jsFiles
@@ -915,16 +918,16 @@ module.exports = function(grunt) {
     /**
      * Sets file name for our compile JS file.
      */
-    grunt.registerTask('name-min', function() {
+    grunt.registerTask('name-min', function () {
         grunt.config.set('appJsName', 'app.min.js');
     });
 
     /**
      * Generates a unique name for our compile process.
      */
-     grunt.registerTask('name-unique', function() {
-        var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3|0x8);
+    grunt.registerTask('name-unique', function () {
+        var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16|0, v = c === 'x' ? r : (r&0x3|0x8);
             return v.toString(16);
         });
         grunt.config.set('appJsName', 'app.min.' + guid + '.js');
@@ -934,10 +937,10 @@ module.exports = function(grunt) {
      * Simply sets the version for our app. Tries to get it from the
      * `package.json` file.
      */
-    grunt.registerTask('set-version', function() {
+    grunt.registerTask('set-version', function () {
         var version = grunt.option('app-version');
 
-        if (typeof version === 'undefined'){
+        if (typeof version === 'undefined') {
             grunt.task.clearQueue();
             grunt.fail.warn('You need to specify a version with --app-version....stupid!');
             return;
