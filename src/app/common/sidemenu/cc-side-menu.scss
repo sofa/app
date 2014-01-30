@@ -72,6 +72,11 @@
     text-align: center;
 }
 
+.snap-content{
+    // solves some issues where the content can be dragged horizontally
+    overflow-x:hidden;
+}
+
 //for the poor folks with Android 2.x or iOS <=4
 .cc-has-no-overflow-support{
 
