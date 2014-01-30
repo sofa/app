@@ -3,8 +3,8 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('ccImageZoom', ['deviceService', '$q', '$timeout',
-        function (deviceService, $q, $timeout) {
+    .directive('ccImageZoom', ['deviceService', '$q', '$timeout', 'ccImageZoomDomActors', 'ccImageZoomMaskService',
+        function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService) {
 
             // Some devices are able to zoom anything. However, since that is out of our control and it ruins the
             // user experience anyway, we enable the full-flavour on those devices as well. Should other undesirable effects
@@ -74,12 +74,13 @@ angular
 
                     var zoomAnimDuration = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
 
-                    var body = angular.element(document.body);
+                    var body = ccImageZoomDomActors.$body = angular.element(document.body);
 
                     var $clone;
 
-                    if (flavourLevel === flavourLevelEnum.SIMPLE) {
+                    ccImageZoomDomActors.$element = $element;
 
+                    if (flavourLevel === flavourLevelEnum.SIMPLE) {
                         var appContent = attrs.bodyWrapperClass ?
                             angular.element(document.querySelectorAll('.' + attrs.bodyWrapperClass)[0]) :
                             body;
@@ -91,7 +92,7 @@ angular
                                 return;
                             }
 
-                            $clone = $element.clone();
+                            $clone = ccImageZoomDomActors.$clone = $element.clone();
                             body.append($clone);
 
                             if (attrs.simpleClass) {
@@ -143,7 +144,7 @@ angular
 
                     } else {
 
-                        $clone = $element.clone();
+                        $clone = ccImageZoomDomActors.$clone = $element.clone();
 
                         $element.css('visibility', 'hidden');
                         $clone.css('visibility', 'hidden');
@@ -166,30 +167,7 @@ angular
 
                         var currentState = stateEnum.SMALL;
 
-                        var mask = null;
-
                         var originalImagePos;
-
-                        var addMask = function () {
-                            mask = angular.element(document.createElement('div'));
-
-                            if (attrs.maskClass) {
-                                mask.addClass(attrs.maskClass);
-                            }
-
-                            body.prepend(mask);
-
-                            $element.css('visibility', 'hidden');
-                            $clone.css('visibility', 'visible');
-                        };
-
-                        var removeMask = function () {
-                            mask.remove();
-                            mask = null;
-
-                            $element.css('visibility', 'visible');
-                            $clone.css('visibility', 'hidden');
-                        };
 
                         var stopScrolling = function (e) {
                             e.preventDefault();
@@ -224,9 +202,7 @@ angular
 
                             offsetY = -(targetHeight / 2) + window.innerHeight / 2;
 
-                            if (!mask) {
-                                addMask();
-                            }
+                            ccImageZoomMaskService.addMask(attrs.maskClass);
 
                             document.body.addEventListener('touchmove', stopScrolling);
 
@@ -252,14 +228,12 @@ angular
                                 .then(function () {
                                     currentState = stateEnum.SMALL;
 
-                                    if (mask) {
-                                        removeMask();
-                                    }
+                                    ccImageZoomMaskService.removeMask();
                                 });
                         };
 
                         var updateOpacity = function (width, height) {
-                            if (!mask) {
+                            if (!ccImageZoomMaskService.hasMask()) {
                                 return;
                             }
 
@@ -276,7 +250,7 @@ angular
                             opacity = Math.min(opacity, 1.0);
                             opacity = Math.max(opacity, 0.0);
 
-                            mask.css('opacity', opacity);
+                            ccImageZoomMaskService.updateOpacity(opacity);
                         };
 
                         var setImageDimensionsAndVisibility = function (img, left, top, width, height, visible) {
@@ -514,9 +488,8 @@ angular
                                 inAnimation = false;
                             }
 
-                            if (!mask) {
-                                addMask();
-                            }
+
+                            ccImageZoomMaskService.addMask(attrs.maskClass);
                         };
 
                         $clone.bind('touchstart', touchStart);
@@ -671,9 +644,7 @@ angular
                             } else if (zooming) {
                                 zooming = false;
                             }
-                            if (mask) {
-                                removeMask();
-                            }
+                            ccImageZoomMaskService.removeMask();
                         });
 
                         // Needed for devices to reposition the image
