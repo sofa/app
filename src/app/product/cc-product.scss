@@ -1,5 +1,5 @@
 .cc-product-view-image-wrapper{
-    height: 300px;
+    max-height: 300px;
     width: 100%;
     margin-bottom: 10px;
     background-repeat: no-repeat;
@@ -12,7 +12,8 @@
 .cc-product-view-image{
     position: relative;
     z-index: 500;
-    height: 100%;
+    max-width: 100%;
+    max-height: 300px;
     display: block;
     margin: 0 auto;
 }
@@ -20,6 +21,8 @@
 .cc-product-view-image-active{
     z-index: 1500;
     margin: 0 0;
+    max-height: 1000000px;
+    max-width: 1000000px;
 }
 
 .cc-product-view-image-simple{

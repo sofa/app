@@ -144,6 +144,10 @@ angular
                     } else {
 
                         $clone = $element.clone();
+
+                        $element.css('visibility', 'hidden');
+                        $clone.css('visibility', 'hidden');
+
                         body.append($clone);
 
                         if (attrs.activeClass) {
@@ -217,6 +221,8 @@ angular
                                 targetWidth = targetHeight * aspectRatio;
                                 offsetX = -(targetWidth - window.innerWidth) / 2;
                             }
+
+                            offsetY = -(targetHeight / 2) + window.innerHeight / 2;
 
                             if (!mask) {
                                 addMask();
@@ -451,6 +457,8 @@ angular
 
                                     init();
 
+                                    $element.css('visibility', 'visible');
+
                                     return true;
                                 };
 
@@ -679,10 +687,15 @@ angular
 
                     // Clean up when the directive is destroyed
                     scope.$on('$destroy', function () {
-                        exitFullscreen()
-                        .then(function () {
+                        if (currentState === stateEnum.FULL) {
+                            exitFullscreen()
+                            .then(function () {
+                                $clone.remove();
+                            });
+                        }
+                        else {
                             $clone.remove();
-                        });
+                        }
                     });
 
                 }
