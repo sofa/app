@@ -4,10 +4,49 @@
  * but also do not belong into any specify component
  *
  */
-.cc-content {
-    position: absolute;
-    top: $cc-header__height;
-    left: 0;
-    right: 0;
-    bottom: 0;
+
+%cc-flex-display{
+    display: -ms-flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -ms-flexbox;
+    display: flex;
 }
+
+%cc-flex-column, 
+.cc-flex-column {
+    @extend %cc-flex-display;
+    height: 100%;
+    -ms-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -ms-box-orient: vertical;
+    box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+// the page wrapper needs to be `position:relative` for the animations
+// since those need `position: absolute
+.cc-page-wrapper{
+    position: relative;
+}
+
+.cc-has-overflow-support{
+    .cc-main-wrapper,
+    .cc-page-wrapper{
+        @extend %cc-flex-column;
+    }
+}
+
+.cc-has-no-overflow-support{
+    .cc-main-wrapper{
+        // if we use `height` instead of `min-height` scrolling does not
+        // work anymore on Android 2.3. I love the web!
+        min-height: 100%;
+    }
+}
+

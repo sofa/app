@@ -1,7 +1,7 @@
   <div snap-drawer ng-include="tpl.SIDE_MENU"></div>
-  <div snap-content>
+  <div class="cc-main-wrapper" snap-content>
       <div ng-include="tpl.HEADER"></div>
-      <div ng-show="!searchUiState.isOpen() || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-content cc-app-wrapper" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
+      <div ng-show="!searchUiState.isOpen() || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())" class="cc-page-wrapper cc-app-wrapper" ui-view ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
   </div>
   <div class="cc-search-wrapper">
       <div cc-include="tpl.SEARCH_BOX"></div>

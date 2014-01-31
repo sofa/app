@@ -1,8 +1,7 @@
-.cc-full-width-height .cc-view-wrapper{
+.cc-view-wrapper{
     // some tweaks for less flickering
     -webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
-    width:100%;
 }
 
 //On Android 2, those two styles cause the page to jump around
@@ -11,37 +10,28 @@
 //performance but we disable them for Android 2.x
 //https://github.com/scottjehl/Device-Bugs/issues/32
 .cc-os-android.cc-osv-2{
-    .cc-full-width-height .cc-view-wrapper{
+    .cc-view-wrapper{
         -webkit-backface-visibility: initial;
         -webkit-transform-style: initial;
     }
 }
 
-//It's not only Android 2.x but also iOS <= 4 which lacks overflow:scroll support
-.cc-has-no-overflow-support{
+.cc-has-overflow-support{
     .cc-view-wrapper{
-        overflow: visible;
+        @extend %cc-scrollable-vertical;
+        -webkit-box-flex: 1;
+        -moz-box-flex: 1; 
+        -ms-flex: 1 1 auto;
+        -webkit-flex: 1 1 auto;
+        flex: 1 1 auto;
+        overflow: auto;
+        height:0;
+        min-height: 0;
     }
-}
-
-.cc-view-wrapper{
-    @extend %cc-dock-all;
-    @extend %cc-scrollable-vertical;
-    height: 100%;
 }
 
 .cc-view-wrapper--unpadded{
     @extend .cc-view-wrapper;
     padding-left: 0;
     padding-right: 0;
-}
-
-.cc-has-no-overflow-support{
-    .cc-content {
-        position: static;
-    }
-
-    .cc-view-wrapper {
-        position: static;
-    }
 }
