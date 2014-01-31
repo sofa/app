@@ -264,7 +264,6 @@
 
 		    if (ignoreParent) {
 			utils.dispatchEvent('ignore');
-			utils.events.prevent(e);
 			return;
 		    }
 
