@@ -27,6 +27,9 @@
 
 .cc-product-view-image-simple{
     background-color: $cc-product-view__image-background-color;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
     position: fixed;
     top: 0;
     left: 0;

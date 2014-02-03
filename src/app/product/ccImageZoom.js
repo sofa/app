@@ -87,38 +87,44 @@ angular
 
                         var isAllowedToInteract = true;
 
+                        // Instead of making a clone, we are creating a new div and set its background-image instead
+                        var fullDiv;
+
                         var createHandler = function () {
                             if (!isAllowedToInteract) {
                                 return;
                             }
 
-                            $clone = ccImageZoomDomActors.$clone = $element.clone();
-                            body.append($clone);
+                            fullDiv = angular.element(document.createElement('div'));
+                            body.append(fullDiv[0]);
 
                             if (attrs.simpleClass) {
-                                $clone.addClass(attrs.simpleClass);
+                                fullDiv.addClass(attrs.simpleClass);
                             }
 
-                            // We need to set the whole underlying thing to display:none
-                            // otherwise on some platforms (Android 2 I'm looking at you)
-                            // the content behind the fullscreen image will still be visible
-                            // and even scrollable which gives a bad experience.
-                            appContent.css('display', 'none');
+                            // Set the background-image of the newly created div to the image src
+                            fullDiv.css('background-image', 'url(' + $element.attr('src') + ')');
 
                             // The following triggers a reflow which allows for the transition animation to kick in.
-                            $clone[0].offsetWidth; /* jshint ignore:line */
+                            fullDiv[0].offsetWidth; /* jshint ignore:line */
 
                             if (attrs.simpleActiveClass) {
-                                $clone.addClass(attrs.simpleActiveClass);
+                                fullDiv.addClass(attrs.simpleActiveClass);
                             }
 
-                            $clone.bind('click', removeHandler);
-                            $clone.bind('touchend', removeHandler);
+                            fullDiv.bind('click', removeHandler);
+                            fullDiv.bind('touchend', removeHandler);
 
                             isAllowedToInteract = false;
 
                             $timeout(function () {
                                 isAllowedToInteract = true;
+
+                                // We need to set the whole underlying thing to display:none
+                                // otherwise on some platforms (Android 2 I'm looking at you)
+                                // the content behind the fullscreen image will still be visible
+                                // and even scrollable which gives a bad experience.
+                                appContent.css('display', 'none');
                             }, zoomAnimDuration);
                         };
 
@@ -129,12 +135,12 @@ angular
 
                             appContent.css('display', '');
                             if (attrs.simpleActiveClass) {
-                                $clone.removeClass(attrs.simpleActiveClass);
+                                fullDiv.removeClass(attrs.simpleActiveClass);
                             }
 
                             isAllowedToInteract = false;
                             $timeout(function () {
-                                $clone.remove();
+                                fullDiv.remove();
                                 isAllowedToInteract = true;
                             }, zoomAnimDuration);
                         };
@@ -316,14 +322,15 @@ angular
                                     currentLerpedHeight,
                                     true);
 
+                                currentOffsetX = currentLerpedX;
+                                currentOffsetY = currentLerpedY;
+                                currentWidth = currentLerpedWidth;
+                                currentHeight = currentLerpedHeight;
+
                                 if (currentAnimTime < animTime && inAnimation) {
                                     updateOpacity(currentLerpedWidth, currentLerpedHeight);
                                     requestAnimationFrame(tick);
                                 } else {
-                                    currentOffsetX = currentLerpedX;
-                                    currentOffsetY = currentLerpedY;
-                                    currentWidth = currentLerpedWidth;
-                                    currentHeight = currentLerpedHeight;
                                     currentContinuousZoom = currentWidth / imgWidth;
 
                                     if (inAnimation) {
@@ -443,6 +450,11 @@ angular
                         var touchMoved = false;
 
                         var touchStart = function (event) {
+                            // Let the animation finish before altering the image
+                            if (inAnimation) {
+                                return;
+                            }
+
                             // Calculate the absolute position of the original image, including scroll
                             originalImagePos = findPos(originalImage);
 
@@ -488,7 +500,6 @@ angular
                                 inAnimation = false;
                             }
 
-
                             ccImageZoomMaskService.addMask(attrs.maskClass);
                         };
 
@@ -514,6 +525,7 @@ angular
                                 cloneImage.style.left = newOffsetX + 'px';
                                 cloneImage.style.top = newOffsetY + 'px';
 
+                                updateOpacity(currentWidth, currentHeight);
                             } else if (zooming) {
 
                                 event.preventDefault();
@@ -558,13 +570,9 @@ angular
                                     newWidth,
                                     newHeight,
                                     true);
-                            }
 
-                            if (isTouchedInFullFlavourModeWithCertainAmountOfTouches(event, 2)) {
-                                inAnimation = false;
+                                updateOpacity(newWidth, newHeight);
                             }
-
-                            updateOpacity(newWidth, newHeight);
                         };
 
                         $clone.bind('touchmove', touchmove);
