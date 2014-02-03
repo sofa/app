@@ -8,6 +8,9 @@ You need to have the following tools installed globally on you machine:
 - bower
 - karma
 - compass
+- protractor
+
+Make sure to install Java on your local machine.
 
 ## Installation
 
@@ -23,7 +26,17 @@ $ bower install
 ```
 ## Running the App
 
-Simply type:
+To run the app you have to make sure that a selenium server is running, since the
+inital build task will run all provided e2e tests. To run a selenium server all you
+have to do is to run
+
+```sh
+webdriver-manager start
+```
+
+The webdriver-manager comes with the installation of protractor (`npm install -g protractor`).
+
+After that simply run:
 ```sh
 $ grunt watch
 ```

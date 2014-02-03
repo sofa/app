@@ -34,7 +34,9 @@
         "runs",
         "waits",
         "waitsFor",
-        "jasmine"
+        "jasmine",
+        "element",
+        "by"
     ],
     "globals": {
         "cc": true,

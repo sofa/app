@@ -124,10 +124,18 @@ module.exports = function (grunt) {
                 }
             },
 
-            test: {
+            test_unit: {
                 files: {
                     src: [
-                        '<%= app_files.jsunit %>'
+                        '<%= app_files.jsunit %>',
+                    ]
+                }
+            },
+
+            test_e2e: {
+                files: {
+                    src: [
+                        '<%= app_files.jse2e %>'
                     ]
                 }
             },
@@ -423,6 +431,15 @@ module.exports = function (grunt) {
             }
         },
 
+        protractorconfig: {
+            e2e: {
+                dir: '<%= build_dir %>',
+                baseUrl: 'http://localhost:<%= app_port %>',
+                src: [
+                    '<%= app_files.jse2e %>'
+                ]
+            }
+        },
         /**
          * The Karma configurations.
          */
@@ -439,6 +456,17 @@ module.exports = function (grunt) {
             }
         },
 
+        protractor: {
+            options: {
+                keepAlive: false,
+                noColors: false,
+            },
+            e2e: {
+                options: {
+                    configFile: '<%= build_dir %>/protractor-e2e.js'
+                }
+            }
+        },
         /**
          * connect-server instance, by default lisiting to port 9000
          */
@@ -449,13 +477,16 @@ module.exports = function (grunt) {
              */
             testserver: {
                 options: {
+                    port: '<%= app_port %>',
+                    // change this to '0.0.0.0' to access the server from outside
+                    hostname: '*',
                     base: '<%= build_dir %>'
                 }
             },
 
             livereload: {
                 options: {
-                    port: 9000,
+                    port: '<%= app_port %>',
                     // change this to '0.0.0.0' to access the server from outside
                     hostname: '*',
                     middleware: function (connect) {
@@ -627,7 +658,6 @@ module.exports = function (grunt) {
                 }
             },
 
-
             /**
              * When our JavaScript source files change, we want to run lint them and
              * run our unit tests.
@@ -694,7 +724,17 @@ module.exports = function (grunt) {
                 files: [
                     '<%= app_files.jsunit %>'
                 ],
-                tasks: ['jshint:test', 'karma:unit:run'],
+                tasks: ['jshint:test_unit', 'karma:unit:run'],
+                options: {
+                    livereload: false
+                }
+            },
+
+            jse2e: {
+                files: [
+                    '<%= app_files.jse2e %>'
+                ],
+                tasks: ['jshint:test_e2e', 'protractor:e2e'],
                 options: {
                     livereload: false
                 }
@@ -725,6 +765,8 @@ module.exports = function (grunt) {
         'build',
         'karma:unit',
         'connect:livereload',
+        'protractorconfig',
+        'protractor:e2e',
         'delta'
     ]);
 
@@ -754,7 +796,7 @@ module.exports = function (grunt) {
         'copy:build_vendorjs',
         'index:build',
         'karmaconfig',
-        'karma:continuous'
+        'karma:continuous',
     ]);
 
     /**
@@ -913,6 +955,29 @@ module.exports = function (grunt) {
         });
     });
 
+    grunt.registerMultiTask('protractorconfig', 'Process protractor config templates', function () {
+
+        var jsFiles = filterForJS(this.filesSrc).map(function (file) {
+            if (file.indexOf('../') > -1) {
+                file = file.replace('../', grunt.config('build_dir') + '/');
+            }
+            return file;
+        });
+
+        var baseUrl = this.data.baseUrl;
+
+        grunt.file.copy('protractor/protractor-e2e.tpl.js', grunt.config('build_dir') + '/protractor-e2e.js', {
+            process: function (contents) {
+                return grunt.template.process(contents, {
+                    data: {
+                        scripts: jsFiles,
+                        baseUrl: baseUrl
+                    }
+                });
+            }
+        });
+    });
+
     /**
      * Sets file name for our compile JS file.
      */
@@ -923,7 +988,7 @@ module.exports = function (grunt) {
     /**
      * Generates a unique name for our compile process.
      */
-    /* jshint bitwise:false */
+    /* jshint bitwise: false */
     grunt.registerTask('name-unique', function () {
         var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16|0, v = c === 'x' ? r : (r&0x3|0x8);

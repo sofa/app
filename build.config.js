@@ -17,6 +17,11 @@ module.exports = {
     app_base: 'src/app',
 
     /**
+     * Port on which the app is running
+     */
+    app_port: 9000,
+
+    /**
      * This specifies the folder in `data/` for the specific shop you want to
      * build the app.
      */
@@ -31,8 +36,13 @@ module.exports = {
      * e2e ests.
      */
     app_files: {
-        js: ['<%= app_base %>/**/*.js', '!<%= app_files.jsunit %>'],
-        jsunit: ['<%= app_base %>/**/*.spec.js'],
+        js: [
+            '<%= app_base %>/**/*.js',
+            '!<%= app_files.jsunit %>',
+            '!<%= app_files.jse2e %>'
+        ],
+        jsunit: ['<%= app_base %>/**/*.unit.spec.js'],
+        jse2e: ['<%= app_base %>/**/*.e2e.spec.js'],
 
         app_tpl: ['<%= app_base %>/**/*.tpl.html'],
 

@@ -1,12 +1,11 @@
 'use strict';
-describe('angularjs homepage', function () {
-    it('should greet the named user', function () {
-        browser.get('http://www.angularjs.org');
 
-        element(by.model('yourName')).sendKeys('Julie');
+describe('CouchCommerce App', function () {
 
-        var greeting = element(by.binding('yourName'));
+    it('should open snap menu on click', function () {
+        browser.get('/');
+        element(by.className('fa-bars')).click();
 
-        expect(greeting.getText()).toEqual('Hello Julie!');
+        expect(element(by.className('cc-side-menu')).isDisplayed()).toBe(true);
     });
 });
