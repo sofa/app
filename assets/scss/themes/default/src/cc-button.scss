@@ -17,9 +17,7 @@
 }
 
 .cc-button-base--disabled, %cc-button-base--disabled {
-    background-color: rgba(0,0,0, .1);
-    box-shadow: 0 $theme-box-shadow-width 0 rgba(0,0,0, .2);
-    color:rgba(0,0,0, .33);
+    opacity: 0.5;
     cursor: default;
     pointer-events: none;
 }
@@ -54,17 +52,13 @@
 .cc-couch-default-button{
     @extend %cc-button-base;
 
-    border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.22);
-    color: hsla($color-1-h, $color-1-s, $color-1-l, 0.80);
-
-    border-bottom: 0;
-    //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
-    box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
+    color: $color-1;
+    background: $color-6;
+    border: 0;
+    box-shadow: 0 $theme-box-shadow-width 0 darken($color-6, 20%);
 
     &:active, &.ng-click-active{
-    -webkit-box-shadow: 0 1px 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
-    box-shadow: 0 1px 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.55);
+        background:  darken($color-6, 10%);
     }
 }
 

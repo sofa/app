@@ -22,6 +22,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.couchService',
     'sdk.services.navigationService',
     'sdk.services.basketService',
+    'sdk.services.couponService',
     'sdk.services.pagesService',
     'sdk.services.deviceService',
     'sdk.services.checkoutService',

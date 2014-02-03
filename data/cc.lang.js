@@ -86,7 +86,7 @@ cc.Lang = {
     checkout: 'Checkout',
     surChargeWarning:'Es fallen zusätzliche Gebühren in Höhe von {surcharge} an',
     surcharge:'Zusätzliche Gebühren',
-    discountWarning: 'Durch Auswahl von Vorlasse gewähren wir einen Discount von {surcharge}',
+    discountWarning: 'Durch Auswahl von Vorkasse gewähren wir einen Discount von {surcharge}',
     // This is temporally disabled until we use the new
     // checkout process
     paymentMethod_paypalexpress: 'PayPal',
@@ -116,6 +116,11 @@ cc.Lang = {
     showDesktopView:'Web-App verlassen',
 
 
+    promotionCodeHint: 'Gutscheincode eingeben',
+    promotionCode: 'Gutscheincode',
+    promotionCodeButton: 'Einlösen',
+    errorInvalidPromotionCode: 'Der eingegebene Gutscheincode ist ungültig. Bitte probiere es nochmal.',
+    errorSubmitPromotionCode: 'Beim Übertragen des Couponcodes ist ein Fehler aufgetreten. Bitte probiere es später noch einmal.',
 
 
     // Trusted Shops

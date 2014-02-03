@@ -47,6 +47,7 @@ angular.module('CouchCommerceApp').controller('SummaryController', function ($sc
             vm.items            = result.response.items;
             //we directly set this one on the scope to gain reuse of the included template
             $scope.summary      = result.summary;
+            $scope.coupons      = result.response.coupons;
 
         }, function () {
 

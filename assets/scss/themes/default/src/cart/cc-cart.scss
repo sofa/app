@@ -148,3 +148,15 @@
     box-shadow: 0 $theme-box-shadow-width 0 darken($color-2, 20%);
 }
 
+.cc-cart-coupon-button {
+    @extend .cc-couch-default-button;
+    display: block;
+}
+
+.cc-cart-promotioncode-box {
+    padding: 12px
+}
+
+.cc-cart-total-panel__remove-coupon-icon {
+    font-size: 20px;
+}

@@ -2,7 +2,7 @@
 /* globals requestAnimationFrame */
 
 angular.module('CouchCommerceApp')
-.controller('CartController', function ($scope, basketService, navigationService, checkoutService, configService, payPalOverlayService, dialog) {
+.controller('CartController', function ($scope, basketService, navigationService, checkoutService, configService, payPalOverlayService, dialog, couponService) {
 
     $scope.basketService = basketService;
     $scope.navigationService = navigationService;
@@ -20,6 +20,8 @@ angular.module('CouchCommerceApp')
         // We overcome this by scheduling the getSummary() for the next frame.
         requestAnimationFrame(function () {
             $scope.summary = basketService.getSummary();
+
+	        $scope.coupons = basketService.getActiveCoupons();
 
             //that's a bit of a hack. We use the total box for both cart
             //and summary page. In the summary page we always have a server generated
@@ -42,7 +44,9 @@ angular.module('CouchCommerceApp')
     basketService
         .on('cleared', updateModels)
         .on('itemAdded', updateModels)
-        .on('itemRemoved', updateModels);
+        .on('itemRemoved', updateModels)
+        .on('couponAdded', updateModels)
+        .on('couponRemoved', updateModels);
 
     $scope.decreaseItem = function (item) {
         if (item.quantity > 1) {
@@ -70,4 +74,41 @@ angular.module('CouchCommerceApp')
     $scope.checkoutWithPayPal = function () {
         payPalOverlayService.startPayPalCheckout();
     };
+
+    $scope.promotionCodeModel = {
+        code: '',
+        showForm: false,
+        canRedeemCode: true
+    };
+
+    $scope.canRedeemCode = function () {
+        return $scope.promotionCodeModel.canRedeemCode && $scope.promotionCodeModel.code.length;
+    };
+
+    $scope.redeemCode = function () {
+        $scope.promotionCodeModel.canRedeemCode = false;
+
+        couponService.submitCode($scope.promotionCodeModel.code)
+        .then(function () {
+            $scope.promotionCodeModel.canRedeemCode = true;
+            $scope.promotionCodeModel.showPromotionCodeForm = false;
+            updateModels();
+        }, function (err) {
+            var message = $scope.ln.errorSubmitPromotionCode;
+            if (err === 'Invalid') {
+                message = $scope.ln.errorInvalidPromotionCode;
+            }
+            else {
+                $scope.promotionCodeModel.showcodeForm = false;
+            }
+            dialog
+                .messageBox(
+                    $scope.ln.btnWarning,
+                    message,
+                    [{result: 'ok', label: $scope.ln.btnOk}]
+                );
+            $scope.promotionCodeModel.canRedeemCode = true;
+        });
+    };
+
 });
