@@ -424,6 +424,8 @@ module.exports = function (grunt) {
                 dir: '<%= build_dir %>',
                 src: [
                     '<%= vendor_files.js %>',
+                    '<%= data_files.config %>',
+                    '<%= data_files.lang %>',
                     '<%= html2js.app.dest %>',
                     '<%= test_files.js %>',
                     '<%= app_files.jsunit %>'
