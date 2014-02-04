@@ -1,5 +1,5 @@
 module.exports = function ( karma ) {
-    karma.configure({
+    karma.set({
         /**
          * From where to look for files, starting with the location of this file.
          */
@@ -36,7 +36,7 @@ module.exports = function ( karma ) {
          * operating, and what is the URL path for the browser to use.
          */
         port: 9018,
-        runnerPort: 9100,
+        runnerPort: 9101,
         urlRoot: '/',
 
         /**

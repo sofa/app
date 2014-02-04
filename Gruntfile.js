@@ -127,8 +127,7 @@ module.exports = function (grunt) {
             test: {
                 files: {
                     src: [
-                        '<%= app_files.jsunit %>',
-                        '<%= app_files.jse2et %>'
+                        '<%= app_files.jsunit %>'
                     ]
                 }
             },
@@ -432,7 +431,7 @@ module.exports = function (grunt) {
                 configFile: '<%= build_dir %>/karma-unit.js'
             },
             unit: {
-                runnerPort: 9101,
+                port: 9101,
                 background: true
             },
             continuous: {
@@ -724,7 +723,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('watch', [
         'build',
-        /*'karma:unit',*/
+        'karma:unit',
         'connect:livereload',
         'delta'
     ]);
@@ -743,7 +742,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [
         'clean',
         'html2js',
-        // 'jshint',
+        'jshint',
         'sass',
         'copy:build_assets',
         'copy:build_appjs',
@@ -755,7 +754,7 @@ module.exports = function (grunt) {
         'copy:build_vendorjs',
         'index:build',
         'karmaconfig',
-        // 'karma:continuous'
+        'karma:continuous'
     ]);
 
     /**
@@ -924,6 +923,7 @@ module.exports = function (grunt) {
     /**
      * Generates a unique name for our compile process.
      */
+    /* jshint bitwise:false */
     grunt.registerTask('name-unique', function () {
         var guid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = Math.random() * 16|0, v = c === 'x' ? r : (r&0x3|0x8);
