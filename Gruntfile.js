@@ -734,7 +734,7 @@ module.exports = function (grunt) {
                 files: [
                     '<%= app_files.jse2e %>'
                 ],
-                tasks: ['jshint:test_e2e', 'protractor:e2e'],
+                tasks: ['jshint:test_e2e'],
                 options: {
                     livereload: false
                 }
@@ -765,8 +765,6 @@ module.exports = function (grunt) {
         'build',
         'karma:unit',
         'connect:livereload',
-        'protractorconfig',
-        'protractor:e2e',
         'delta'
     ]);
 
@@ -815,6 +813,11 @@ module.exports = function (grunt) {
         'index:compile'
     ]);
 
+    grunt.registerTask('e2e', [
+        'protractorconfig',
+        'protractor:e2e',
+    ]);
+
     grunt.registerTask('compile-debug', [
         'name-min',
         'cssmin:compile',
@@ -839,6 +842,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy', [
         'build',
+        'e2e',
         'releaseBranchPre:deploy',
         'compile',
         'set-version',
@@ -854,6 +858,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy-debug', [
         'build',
+        'e2e',
         'releaseBranchPre:deploy',
         'compile-debug',
         'set-version',
@@ -869,6 +874,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy-dry-run', [
         'build',
+        'e2e',
         'releaseBranchPre:deploy',
         'compile',
         'set-version',
