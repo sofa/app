@@ -133,5 +133,6 @@ cc.Lang = {
     searchNotFound: 'Keine Ergebnisse gefunden.',
     sortBy: 'sortieren nach',
     sortPriceAsc: 'Preis aufsteigend',
-    sortPriceDesc: 'Preis absteigend'
+    sortPriceDesc: 'Preis absteigend',
+    home: 'Home'
 };

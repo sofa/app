@@ -12,6 +12,9 @@ angular.module('CouchCommerceApp')
     $scope.navigationService = navigationService;
     $scope.product = product;
 
+    //yep, that's a hack to trick our cc-go-up-control. Seems reasonable though.
+    $scope.upCategory = { parent: category };
+
     //the scope price will be updated when variants change
     $scope.price = product.price;
     $scope.images = product.getAllImages();

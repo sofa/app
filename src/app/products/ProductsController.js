@@ -6,6 +6,7 @@ angular.module('CouchCommerceApp')
     //we want to set the active category in the side menu.
     if (category) {
         categoryTreeViewRemote.setActive(category);
+        $scope.category = category;
     }
 
     $scope.goToProduct = function (product, $event) {

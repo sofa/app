@@ -1,18 +1,22 @@
 <div cc-scroller-announcer class=" cc-view-wrapper">
     <cc-inject target="aboveContent"></cc-inject>
     <div ng-if="pagesVm.page.content">
-	<div>
-	    <h1 class="cc-title--huge">
-		<span ng-bind="pagesVm.page.title"></span>
-	    </h1>
-	    <a class="cc-pages__send-as-mail fa fa-envelope fa-2x" href="{{pagesVm.mailTo}}"></a>
-	</div>
+    <div>
+        <cc-go-back-button>
+            <i class="fa fa-arrow-circle-o-left"></i>
+            <span ng-bind="ln.back"></span>
+        </cc-go-back-button>
+        <h1 class="cc-title--huge">
+        <span ng-bind="pagesVm.page.title"></span>
+        </h1>
+        <a class="cc-pages__send-as-mail fa fa-envelope fa-2x" href="{{pagesVm.mailTo}}"></a>
+    </div>
 
-	<div ng-bind-html="pagesVm.page.content" class="cc-pages__content-box"></div>
+    <div ng-bind-html="pagesVm.page.content" class="cc-pages__content-box"></div>
     </div>
 
     <div ng-if="pagesVm.isLoading" class="cc-pages__loading-box">
-	<cc-loading-spinner class="cc-pages__loading-box-spinner"></cc-loading-spinner>
+    <cc-loading-spinner class="cc-pages__loading-box-spinner"></cc-loading-spinner>
     </div>
 
     <div ng-include="tpl.404" ng-if="!pagesVm.page.content && !pagesVm.isLoading"></div>
