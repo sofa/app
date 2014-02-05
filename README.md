@@ -56,6 +56,14 @@ To configure the app, makes changes in the `build.conf.js` file accordingly.
 - `grunt deploy` - deploys the app.
 - `grunt deploy-debug` - same as `deploy` without uglified JavaScript.
 
+##Versioning
+
+Make sure to update dependency versions of sofa in the package.json. Working directly against
+unversioned npm packages totally breaks the whole idea of version control. Unfortunately we had that wrong
+for one week between versions 0.32.0 and 0.33.0 so that any ref you might check out in between could
+be broken in subtile different ways. Deployment packages are correct though since those add a fixed
+sofa dependency directly to version control.
+
 #Contribute
 
 We'd love you to contribute. Please make sure to read the [contribute guide line](https://github.com/couchcommerce/frontend-spike/wiki/Contribute)
