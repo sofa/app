@@ -88,33 +88,32 @@ angular
                         var isAllowedToInteract = true;
 
                         // Instead of making a clone, we are creating a new div and set its background-image instead
-                        var fullDiv;
+                        var $fullDiv;
 
                         var createHandler = function () {
                             if (!isAllowedToInteract) {
                                 return;
                             }
 
-                            fullDiv = angular.element(document.createElement('div'));
-                            body.append(fullDiv[0]);
+                            $fullDiv = angular.element(document.createElement('div'));
+                            body.append($fullDiv[0]);
 
                             if (attrs.simpleClass) {
-                                fullDiv.addClass(attrs.simpleClass);
+                                $fullDiv.addClass(attrs.simpleClass);
                             }
 
                             // Set the background-image of the newly created div to the image src
-                            fullDiv.css('background-image', 'url(' + $element.attr('src') + ')');
+                            $fullDiv.css('background-image', 'url(' + $element.attr('src') + ')');
 
                             // The following triggers a reflow which allows for the transition animation to kick in.
-                            fullDiv[0].offsetWidth; /* jshint ignore:line */
+                            $fullDiv[0].offsetWidth; /* jshint ignore:line */
 
                             if (attrs.simpleActiveClass) {
-                                fullDiv.addClass(attrs.simpleActiveClass);
+                                $fullDiv.addClass(attrs.simpleActiveClass);
                             }
 
-                            fullDiv.bind('click', removeHandler);
-                            fullDiv.bind('touchend', removeHandler);
-
+                            $fullDiv.bind('click', removeHandler);
+                            
                             isAllowedToInteract = false;
 
                             $timeout(function () {
@@ -135,18 +134,17 @@ angular
 
                             appContent.css('display', '');
                             if (attrs.simpleActiveClass) {
-                                fullDiv.removeClass(attrs.simpleActiveClass);
+                                $fullDiv.removeClass(attrs.simpleActiveClass);
                             }
 
                             isAllowedToInteract = false;
                             $timeout(function () {
-                                fullDiv.remove();
+                                $fullDiv.remove();
                                 isAllowedToInteract = true;
                             }, zoomAnimDuration);
                         };
 
                         $element.bind('click', createHandler);
-                        $element.bind('touchend', createHandler);
 
                     } else {
 
