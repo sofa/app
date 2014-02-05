@@ -236,6 +236,8 @@ angular
                                 });
                         };
 
+                        ccImageZoomMaskService.onClose(exitFullscreen);
+
                         var updateOpacity = function (width, height) {
                             if (!ccImageZoomMaskService.hasMask()) {
                                 return;

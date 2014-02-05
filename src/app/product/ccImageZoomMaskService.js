@@ -5,6 +5,8 @@ angular.module('CouchCommerceApp')
        .factory('ccImageZoomMaskService', function (ccImageZoomDomActors) {
 
     var self = {},
+        closeFn = null,
+        $maskCloseIcon,
         mask = null;
 
     self.addMask = function (maskClass) {
@@ -15,9 +17,19 @@ angular.module('CouchCommerceApp')
 
         mask = angular.element(document.createElement('div'));
 
+        $maskCloseIcon = angular
+                            .element(document.createElement('i'))
+                            .addClass('cc-image-zoom__close-mask-image');
+
+        if (closeFn) {
+            $maskCloseIcon.bind('click', closeFn);
+        }
+
         if (maskClass) {
             mask.addClass(maskClass);
         }
+
+        ccImageZoomDomActors.$body.append($maskCloseIcon);
 
         ccImageZoomDomActors.$body.prepend(mask);
 
@@ -29,6 +41,12 @@ angular.module('CouchCommerceApp')
 
         if (!self.hasMask()) {
             return;
+        }
+
+
+        if (closeFn) {
+            $maskCloseIcon.unbind('click', closeFn);
+            $maskCloseIcon.remove();
         }
 
         mask.remove();
@@ -48,6 +66,12 @@ angular.module('CouchCommerceApp')
         }
 
         mask.css('opacity', opacity);
+        $maskCloseIcon.css('opacity', opacity);
+    };
+
+    //Todo: this is all quite anti angular.
+    self.onClose = function (fn) {
+        closeFn = fn;
     };
 
     return self;

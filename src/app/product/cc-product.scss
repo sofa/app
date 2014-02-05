@@ -55,7 +55,19 @@
     z-index: 1200;
     background-color: $cc-product-view__image-background-color;
     opacity: 0.0;
-    pointer-events: none;
+}
+
+.cc-image-zoom__close-mask-image{
+    @extend .fa;
+    @extend .fa-times;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 10px;
+    font-size: 30px;
+    z-index: 1500;
+    //Todo: put that into the theme once Ingos PR lands
+    color: #999;
 }
 
 .cc-zippy-icon{
