@@ -169,6 +169,9 @@ angular.module('CouchCommerceApp', [
     deviceService.flagOs();
     deviceService.flagOverflowSupport();
     deviceService.flagModernFlexboxSupport();
+
+    $window.addEventListener('orientationchange', $rootScope.$apply, false);
+
 }])
 .run(['$rootScope', 'snapRemote', function ($rootScope, snapRemote) {
     $rootScope.$on('$stateChangeStart', function () {
