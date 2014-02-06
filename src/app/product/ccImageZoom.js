@@ -3,7 +3,7 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('ccImageZoom', function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService, ccImageZoomLerpAnim) {
+    .directive('ccImageZoom', function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService, ccImageZoomLerpAnim, ccImageZoomSettings) {
 
             // Some devices are able to zoom anything. However, since that is out of our control and it ruins the
             // user experience anyway, we enable the full-flavour on those devices as well. Should other undesirable effects
@@ -71,8 +71,13 @@ angular
                 },
                 link: function (scope, $element, attrs) {
 
-                    var zoomAnimDuration = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
-
+                    var BODY_WRAPPER_CLASS = ccImageZoomSettings.BODY_WRAPPER_CLASS = attrs.bodyWrapperClass;
+                    var SIMPLE_CLASS = ccImageZoomSettings.SIMPLE_CLASS = attrs.simpleClass;
+                    var SIMPLE_ACTIVE_CLASS = ccImageZoomSettings.SIMPLE_ACTIVE_CLASS = attrs.simpleActiveClass;
+                    var MASK_CLASS = ccImageZoomSettings.MASK_CLASS = attrs.maskClass;
+                    var ACTIVE_CLASS = ccImageZoomSettings.ACTIVE_CLASS = attrs.activeClass;
+                    var ZOOM_ANIM_DURATION = ccImageZoomSettings.ZOOM_ANIM_DURATION = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
+                    
                     var body = ccImageZoomDomActors.$body = angular.element(document.body);
 
                     var $clone;
@@ -80,8 +85,8 @@ angular
                     ccImageZoomDomActors.$element = $element;
 
                     if (flavourLevel === flavourLevelEnum.SIMPLE) {
-                        var appContent = attrs.bodyWrapperClass ?
-                            angular.element(document.querySelectorAll('.' + attrs.bodyWrapperClass)[0]) :
+                        var appContent = BODY_WRAPPER_CLASS ?
+                            angular.element(document.querySelectorAll('.' + BODY_WRAPPER_CLASS)[0]) :
                             body;
 
                         var isAllowedToInteract = true;
@@ -97,8 +102,8 @@ angular
                             $fullDiv = angular.element(document.createElement('div'));
                             body.append($fullDiv[0]);
 
-                            if (attrs.simpleClass) {
-                                $fullDiv.addClass(attrs.simpleClass);
+                            if (SIMPLE_CLASS) {
+                                $fullDiv.addClass(SIMPLE_CLASS);
                             }
 
                             // Set the background-image of the newly created div to the image src
@@ -107,8 +112,8 @@ angular
                             // The following triggers a reflow which allows for the transition animation to kick in.
                             $fullDiv[0].offsetWidth; /* jshint ignore:line */
 
-                            if (attrs.simpleActiveClass) {
-                                $fullDiv.addClass(attrs.simpleActiveClass);
+                            if (SIMPLE_ACTIVE_CLASS) {
+                                $fullDiv.addClass(SIMPLE_ACTIVE_CLASS);
                             }
 
                             $fullDiv.bind('click', removeHandler);
@@ -123,7 +128,7 @@ angular
                                 // the content behind the fullscreen image will still be visible
                                 // and even scrollable which gives a bad experience.
                                 appContent.css('display', 'none');
-                            }, zoomAnimDuration);
+                            }, ZOOM_ANIM_DURATION);
                         };
 
                         var removeHandler = function () {
@@ -132,15 +137,15 @@ angular
                             }
 
                             appContent.css('display', '');
-                            if (attrs.simpleActiveClass) {
-                                $fullDiv.removeClass(attrs.simpleActiveClass);
+                            if (SIMPLE_ACTIVE_CLASS) {
+                                $fullDiv.removeClass(SIMPLE_ACTIVE_CLASS);
                             }
 
                             isAllowedToInteract = false;
                             $timeout(function () {
                                 $fullDiv.remove();
                                 isAllowedToInteract = true;
-                            }, zoomAnimDuration);
+                            }, ZOOM_ANIM_DURATION);
                         };
 
                         $element.bind('click', createHandler);
@@ -154,8 +159,8 @@ angular
 
                         body.append($clone);
 
-                        if (attrs.activeClass) {
-                            $clone.addClass(attrs.activeClass);
+                        if (ACTIVE_CLASS) {
+                            $clone.addClass(ACTIVE_CLASS);
                         }
 
                         // We spawn a clone that is invisible. Every time we want to interact with the image,
@@ -285,7 +290,7 @@ angular
                                     updateOpacity(temp.lerpedWidth, temp.lerpedHeight);
                                 };
 
-                                return ccImageZoomLerpAnim.lerpTo(zoomAnimDuration, imgWidth, target, current, onProgress, function () { scope.$digest(); })
+                                return ccImageZoomLerpAnim.lerpTo(ZOOM_ANIM_DURATION, imgWidth, target, current, onProgress, function () { scope.$digest(); })
                                         .then(function () {
                                             inAnimation = false;
                                         });
@@ -447,7 +452,7 @@ angular
                                 inAnimation = false;
                             }
 
-                            ccImageZoomMaskService.addMask(attrs.maskClass);
+                            ccImageZoomMaskService.addMask(MASK_CLASS);
                         };
 
                         $clone.bind('touchstart', touchStart);
