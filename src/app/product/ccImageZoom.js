@@ -188,7 +188,7 @@ angular
 
                             currentState = stateEnum.SMALL_TO_FULL;
 
-                            var aspectRatio = currentWidth / currentHeight;
+                            var aspectRatio = current.width / current.height;
                             var targetHeight;
                             var targetWidth;
 
@@ -275,10 +275,10 @@ angular
                                 return deferred.promise;
                             }
 
-                            var startX = currentOffsetX;
-                            var startY = currentOffsetY;
-                            var startW = currentWidth;
-                            var startH = currentHeight;
+                            var startX = current.offsetX;
+                            var startY = current.offsetY;
+                            var startW = current.width;
+                            var startH = current.height;
 
                             var lastFrameTime = (new Date()).getTime();
 
@@ -322,16 +322,16 @@ angular
                                     currentLerpedHeight,
                                     true);
 
-                                currentOffsetX = currentLerpedX;
-                                currentOffsetY = currentLerpedY;
-                                currentWidth = currentLerpedWidth;
-                                currentHeight = currentLerpedHeight;
+                                current.offsetX = currentLerpedX;
+                                current.offsetY = currentLerpedY;
+                                current.width = currentLerpedWidth;
+                                current.height = currentLerpedHeight;
 
                                 if (currentAnimTime < animTime && inAnimation) {
                                     updateOpacity(currentLerpedWidth, currentLerpedHeight);
                                     requestAnimationFrame(tick);
                                 } else {
-                                    currentContinuousZoom = currentWidth / imgWidth;
+                                    current.continuousZoom = current.width / imgWidth;
 
                                     if (inAnimation) {
                                         inAnimation = false;
@@ -364,11 +364,14 @@ angular
                             imgWidth,
                             imgHeight;
 
-                        var currentContinuousZoom = 1.0,
-                            currentOffsetX = 0,
-                            currentOffsetY = 0,
-                            currentWidth = imgWidth,
-                            currentHeight = imgHeight;
+
+                        var current = {
+                            continuousZoom: 1.0,
+                            offsetX: 0,
+                            offsetY: 0,
+                            width: imgWidth,
+                            height: imgHeight
+                        };
 
                         var newContinuousZoom,
                             newHeight,
@@ -402,27 +405,27 @@ angular
                             parentWidth = originalImage.parentElement.offsetWidth;
                             parentHeight = originalImage.parentElement.offsetHeight;
 
-                            var aspectRatio = currentWidth / currentHeight;
+                            var aspectRatio = current.width / current.height;
 
-                            imgHeight = currentHeight = currentHeight > parentHeight ? parentHeight : currentHeight;
-                            imgWidth = currentWidth = currentHeight * aspectRatio;
+                            imgHeight = current.height = current.height > parentHeight ? parentHeight : current.height;
+                            imgWidth = current.width = current.height * aspectRatio;
 
                             if (imgWidth > parentWidth) {
-                                imgWidth = currentWidth = parentWidth - 20;
-                                imgHeight = currentHeight = currentWidth / aspectRatio;
+                                imgWidth = current.width = parentWidth - 20;
+                                imgHeight = current.height = current.width / aspectRatio;
                             }
 
                             // Calculate the absolute position of the original image, including scroll
                             originalImagePos = findPos(originalImage);
 
-                            currentOffsetX = originalImagePos.left;
-                            currentOffsetY = originalImagePos.top;
+                            current.offsetX = originalImagePos.left;
+                            current.offsetY = originalImagePos.top;
 
                             setImageDimensionsAndVisibility(cloneImage,
-                                currentOffsetX,
-                                currentOffsetY,
-                                currentWidth,
-                                currentHeight,
+                                current.offsetX,
+                                current.offsetY,
+                                current.width,
+                                current.height,
                                 false);
                         };
 
@@ -433,8 +436,8 @@ angular
                                 originalImage.onload = function () {
                                     imgHeight = originalImage.offsetHeight;
                                     imgWidth = originalImage.offsetWidth;
-                                    currentWidth = imgWidth;
-                                    currentHeight = imgHeight;
+                                    current.width = imgWidth;
+                                    current.height = imgHeight;
 
                                     init();
 
@@ -459,8 +462,8 @@ angular
                             originalImagePos = findPos(originalImage);
 
                             if (currentState !== stateEnum.FULL) {
-                                currentOffsetX = originalImagePos.left;
-                                currentOffsetY = originalImagePos.top;
+                                current.offsetX = originalImagePos.left;
+                                current.offsetY = originalImagePos.top;
                             }
 
                             var rect = cloneImage.parentElement.getBoundingClientRect();
@@ -491,8 +494,8 @@ angular
                                 centerPointStartX = ((startX0 + startX1) / 2.0);
                                 centerPointStartY = ((startY0 + startY1) / 2.0);
 
-                                percentageOfImageAtPinchPointX = (centerPointStartX - currentOffsetX) / currentWidth;
-                                percentageOfImageAtPinchPointY = (centerPointStartY - currentOffsetY) / currentHeight;
+                                percentageOfImageAtPinchPointX = (centerPointStartX - current.offsetX) / current.width;
+                                percentageOfImageAtPinchPointY = (centerPointStartY - current.offsetY) / current.height;
                                 startDistanceBetweenFingers = Math.sqrt(Math.pow((startX1 - startX0), 2) + Math.pow((startY1 - startY0), 2));
                             }
 
@@ -520,12 +523,12 @@ angular
                                 endY0 = event.touches[0].pageY - rect.top;
                                 translateFromTranslatingX = endX0 - startX0;
                                 translateFromTranslatingY = endY0 - startY0;
-                                newOffsetX = currentOffsetX + translateFromTranslatingX;
-                                newOffsetY = currentOffsetY + translateFromTranslatingY;
+                                newOffsetX = current.offsetX + translateFromTranslatingX;
+                                newOffsetY = current.offsetY + translateFromTranslatingY;
                                 cloneImage.style.left = newOffsetX + 'px';
                                 cloneImage.style.top = newOffsetY + 'px';
 
-                                updateOpacity(currentWidth, currentHeight);
+                                updateOpacity(current.width, current.height);
                             } else if (zooming) {
 
                                 event.preventDefault();
@@ -539,7 +542,7 @@ angular
                                 // Calculate current distance between points to get new-to-old pinch ratio and calc width and height
                                 endDistanceBetweenFingers = Math.sqrt(Math.pow((endX1 - endX0), 2) + Math.pow((endY1 - endY0), 2));
                                 pinchRatio = endDistanceBetweenFingers / startDistanceBetweenFingers;
-                                newContinuousZoom = pinchRatio * currentContinuousZoom;
+                                newContinuousZoom = pinchRatio * current.continuousZoom;
                                 newWidth = imgWidth * newContinuousZoom;
                                 newHeight = imgHeight * newContinuousZoom;
 
@@ -548,8 +551,8 @@ angular
                                 centerPointEndY = ((endY0 + endY1) / 2.0);
 
                                 // This is the translation due to pinch-zooming
-                                translateFromZoomingX = (currentWidth - newWidth) * percentageOfImageAtPinchPointX;
-                                translateFromZoomingY = (currentHeight - newHeight) * percentageOfImageAtPinchPointY;
+                                translateFromZoomingX = (current.width - newWidth) * percentageOfImageAtPinchPointX;
+                                translateFromZoomingY = (current.height - newHeight) * percentageOfImageAtPinchPointY;
 
                                 // And this is the translation due to translation of the centerpoint between the two fingers
                                 translateFromTranslatingX = centerPointEndX - centerPointStartX;
@@ -560,8 +563,8 @@ angular
                                 translateTotalY = translateFromZoomingY + translateFromTranslatingY;
 
                                 // the new offset is the old/current one plus the total translation component
-                                newOffsetX = currentOffsetX + translateTotalX;
-                                newOffsetY = currentOffsetY + translateTotalY;
+                                newOffsetX = current.offsetX + translateTotalX;
+                                newOffsetY = current.offsetY + translateTotalY;
 
                                 // Set the image attributes on the page
                                 setImageDimensionsAndVisibility(cloneImage,
@@ -609,22 +612,22 @@ angular
                                     return;
                                 }
 
-                                currentOffsetX = newOffsetX;
-                                currentOffsetY = newOffsetY;
+                                current.offsetX = newOffsetX;
+                                current.offsetY = newOffsetY;
                             } else if (zooming) {
                                 zooming = false;
-                                currentOffsetX = newOffsetX;
-                                currentOffsetY = newOffsetY;
-                                currentWidth = newWidth;
-                                currentHeight = newHeight;
-                                currentContinuousZoom = newContinuousZoom;
+                                current.offsetX = newOffsetX;
+                                current.offsetY = newOffsetY;
+                                current.width = newWidth;
+                                current.height = newHeight;
+                                current.continuousZoom = newContinuousZoom;
                             }
 
                             if (flavourLevel === flavourLevelEnum.FULL) {
                                 // If the image is zoomed in > 75% and < 100% of the screen it is likely they want to have it fullscreen
                                 // At full screen, never destroy the mask
-                                if (currentWidth / window.innerWidth > 0.75 || currentHeight / window.innerHeight > 0.75) {
-                                    if ((currentWidth / window.innerWidth < 1 && currentHeight / window.innerHeight < 1)) {
+                                if (current.width / window.innerWidth > 0.75 || current.height / window.innerHeight > 0.75) {
+                                    if ((current.width / window.innerWidth < 1 && current.height / window.innerHeight < 1)) {
                                         scope.$apply(goFullscreen);
                                     } else {
                                         currentState = stateEnum.FULL;
