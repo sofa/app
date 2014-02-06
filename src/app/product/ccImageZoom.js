@@ -40,9 +40,6 @@ angular
                 restrict: 'A',
                 scope: {
                     ngSrc: '@',
-                    bodyWrapperClass: '@',
-                    simpleClass: '@',
-                    simpleActiveClass: '@',
                     maskClass: '@',
                     activeClass: '@',
                     zoomAnimDuration: '@'
