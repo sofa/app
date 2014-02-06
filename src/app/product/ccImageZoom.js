@@ -536,12 +536,6 @@ angular
                         $clone.bind('touchend', touchend);
                         $element.bind('touchend', touchend);
 
-                        if (flavourLevel !== flavourLevelEnum.FULL) {
-                            $clone.bind('touchend', simpleClickZoom);
-                            $clone.bind('click', simpleClickZoom);
-                        }
-
-
                         $clone.bind('touchcancel', function () {
                             if (panning) {
                                 panning = false;
