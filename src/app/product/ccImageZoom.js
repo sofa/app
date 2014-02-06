@@ -217,7 +217,6 @@ angular
                         imgWidth,
                         imgHeight;
 
-
                     var current = {
                         continuousZoom: 1.0,
                         offsetX: 0,
@@ -247,6 +246,8 @@ angular
                         parentHeight = 0;
 
                     var inAnimation = false;
+
+                    var touchMoved = false;
 
                     var init = function () {
                         parentWidth = originalImage.parentElement.offsetWidth;
@@ -297,8 +298,6 @@ angular
                         }
                     }, true);
 
-                    var touchMoved = false;
-
                     var touchStart = function (event) {
                         // Let the animation finish before altering the image
                         if (inAnimation) {
@@ -348,9 +347,6 @@ angular
 
                         ccImageZoomMaskService.addMask(MASK_CLASS);
                     };
-
-                    $clone.bind('touchstart', touchStart);
-                    $element.bind('touchstart', touchStart);
 
                     var touchmove = function (event) {
                         var endX0,
@@ -432,9 +428,6 @@ angular
                         }
                     };
 
-                    $clone.bind('touchmove', touchmove);
-                    $element.bind('touchmove', touchmove);
-
                     var simpleClickZoom = function () {
                         if (!touchMoved) {
                             if (currentState === stateEnum.FULL) {
@@ -486,8 +479,16 @@ angular
                         touchMoved = false;
                     };
 
-                    $clone.bind('touchend', touchend);
-                    $element.bind('touchend', touchend);
+                    $clone
+                        .bind('touchend', touchend)
+                        .bind('touchstart', touchStart)
+                        .bind('touchmove', touchmove);
+
+                    $element
+                        .bind('touchend', touchend)
+                        .bind('touchmove', touchmove)
+                        .bind('touchstart', touchStart);
+
 
                     $clone.bind('touchcancel', function () {
                         if (panning) {

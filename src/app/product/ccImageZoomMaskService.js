@@ -70,6 +70,7 @@ angular.module('CouchCommerceApp')
     };
 
     //Todo: this is all quite anti angular.
+    //At least, make it raise an event :-/
     self.onClose = function (fn) {
         closeFn = fn;
     };
