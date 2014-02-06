@@ -178,6 +178,17 @@ angular.module('CouchCommerceApp', [
         snapRemote.close();
     });
 }])
+.run(['deviceService', 'ccImageFullScreenService', 'ccImageZoomSettings', function (deviceService, ccImageFullScreenService, ccImageZoomSettings) {
+
+    //by default, we enable the real zoom. We just disable it for low budget devices
+    ccImageZoomSettings.enabled = true;
+    ccImageFullScreenService.enabled = false;
+
+    if (deviceService.isStockAndroidBrowser() || !deviceService.hasOverflowSupport()) {
+        ccImageFullScreenService.enabled = true;
+        ccImageZoomSettings.enabled = false;
+    }
+}])
 .run(['trackingService', 'configService', function (trackingService, configService) {
     trackingService.addTracker(new cc.tracker.GoogleAnalyticsTracker({
         accountNumber: configService.get('googleAnalytics'),
