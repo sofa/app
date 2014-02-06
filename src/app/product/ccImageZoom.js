@@ -356,7 +356,8 @@ angular
                                     requestAnimationFrame(tick);
                                 } else {
                                     current.continuousZoom = current.width / imgWidth;
-                                    scope.$apply(deferred.resolve);
+                                    deferred.resolve();
+                                    scope.$digest();
                                 }
                             };
 
