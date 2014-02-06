@@ -210,7 +210,7 @@ angular
 
                             document.body.addEventListener('touchmove', stopScrolling);
 
-                            return lerpToPosition(offsetX, offsetY, targetWidth, targetHeight)
+                            return lerpToPosition({x: offsetX, y: offsetY, w: targetWidth, h: targetHeight})
                                 .then(function () {
                                     currentState = stateEnum.FULL;
                                 });
@@ -228,7 +228,7 @@ angular
 
                             document.body.removeEventListener('touchmove', stopScrolling);
 
-                            return lerpToPosition(originalImagePos.left, originalImagePos.top, newWidth, newHeight)
+                            return lerpToPosition({x: originalImagePos.left, y: originalImagePos.top, w: newWidth, h: newHeight})
                                 .then(function () {
                                     currentState = stateEnum.SMALL;
 
@@ -267,7 +267,7 @@ angular
                             img.style.visibility = visible ? 'visible' : 'hidden';
                         };
 
-                        var lerpToPosition = function (targetX, targetY, targetW, targetH) {
+                        var lerpToPosition = function (target) {
                             var deferred = $q.defer();
 
                             if (inAnimation) {
@@ -310,10 +310,10 @@ angular
 
                                 var lerpFactor = currentAnimTime / animTime;
 
-                                var currentLerpedX = lerp(startX, targetX, easing(lerpFactor));
-                                var currentLerpedY = lerp(startY, targetY, easing(lerpFactor));
-                                var currentLerpedWidth = lerp(startW, targetW, easing(lerpFactor));
-                                var currentLerpedHeight = lerp(startH, targetH, easing(lerpFactor));
+                                var currentLerpedX = lerp(startX, target.x, easing(lerpFactor));
+                                var currentLerpedY = lerp(startY, target.y, easing(lerpFactor));
+                                var currentLerpedWidth = lerp(startW, target.w, easing(lerpFactor));
+                                var currentLerpedHeight = lerp(startH, target.h, easing(lerpFactor));
 
                                 setImageDimensionsAndVisibility(cloneImage,
                                     currentLerpedX,
