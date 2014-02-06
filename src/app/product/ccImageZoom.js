@@ -3,7 +3,7 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('ccImageZoom', function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService, ccImageZoomLerpAnim, ccImageZoomSettings) {
+    .directive('ccImageZoom', function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService, ccImageZoomLerpAnim, ccImageZoomSettings, ccImageZoomFullScreen) {
 
             // Some devices are able to zoom anything. However, since that is out of our control and it ruins the
             // user experience anyway, we enable the full-flavour on those devices as well. Should other undesirable effects
@@ -71,9 +71,9 @@ angular
                 },
                 link: function (scope, $element, attrs) {
 
-                    var BODY_WRAPPER_CLASS = ccImageZoomSettings.BODY_WRAPPER_CLASS = attrs.bodyWrapperClass;
-                    var SIMPLE_CLASS = ccImageZoomSettings.SIMPLE_CLASS = attrs.simpleClass;
-                    var SIMPLE_ACTIVE_CLASS = ccImageZoomSettings.SIMPLE_ACTIVE_CLASS = attrs.simpleActiveClass;
+                    ccImageZoomSettings.BODY_WRAPPER_CLASS = attrs.bodyWrapperClass;
+                    ccImageZoomSettings.SIMPLE_CLASS = attrs.simpleClass;
+                    ccImageZoomSettings.SIMPLE_ACTIVE_CLASS = attrs.simpleActiveClass;
                     var MASK_CLASS = ccImageZoomSettings.MASK_CLASS = attrs.maskClass;
                     var ACTIVE_CLASS = ccImageZoomSettings.ACTIVE_CLASS = attrs.activeClass;
                     var ZOOM_ANIM_DURATION = ccImageZoomSettings.ZOOM_ANIM_DURATION = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
@@ -83,72 +83,15 @@ angular
                     var $clone;
 
                     ccImageZoomDomActors.$element = $element;
-
+                    
+                    // TODO: refactor this thing into a cc-image-full-screen directive.
+                    // Then each directive should have their own settings service which
+                    // we use as a switch to either set the cc-image-zoom or the
+                    // cc-image-full-screen directive active
                     if (flavourLevel === flavourLevelEnum.SIMPLE) {
-                        var appContent = BODY_WRAPPER_CLASS ?
-                            angular.element(document.querySelectorAll('.' + BODY_WRAPPER_CLASS)[0]) :
-                            body;
-
-                        var isAllowedToInteract = true;
-
-                        // Instead of making a clone, we are creating a new div and set its background-image instead
-                        var $fullDiv;
-
-                        var createHandler = function () {
-                            if (!isAllowedToInteract) {
-                                return;
-                            }
-
-                            $fullDiv = angular.element(document.createElement('div'));
-                            body.append($fullDiv[0]);
-
-                            if (SIMPLE_CLASS) {
-                                $fullDiv.addClass(SIMPLE_CLASS);
-                            }
-
-                            // Set the background-image of the newly created div to the image src
-                            $fullDiv.css('background-image', 'url(' + $element.attr('src') + ')');
-
-                            // The following triggers a reflow which allows for the transition animation to kick in.
-                            $fullDiv[0].offsetWidth; /* jshint ignore:line */
-
-                            if (SIMPLE_ACTIVE_CLASS) {
-                                $fullDiv.addClass(SIMPLE_ACTIVE_CLASS);
-                            }
-
-                            $fullDiv.bind('click', removeHandler);
-                            
-                            isAllowedToInteract = false;
-
-                            $timeout(function () {
-                                isAllowedToInteract = true;
-
-                                // We need to set the whole underlying thing to display:none
-                                // otherwise on some platforms (Android 2 I'm looking at you)
-                                // the content behind the fullscreen image will still be visible
-                                // and even scrollable which gives a bad experience.
-                                appContent.css('display', 'none');
-                            }, ZOOM_ANIM_DURATION);
-                        };
-
-                        var removeHandler = function () {
-                            if (!isAllowedToInteract) {
-                                return;
-                            }
-
-                            appContent.css('display', '');
-                            if (SIMPLE_ACTIVE_CLASS) {
-                                $fullDiv.removeClass(SIMPLE_ACTIVE_CLASS);
-                            }
-
-                            isAllowedToInteract = false;
-                            $timeout(function () {
-                                $fullDiv.remove();
-                                isAllowedToInteract = true;
-                            }, ZOOM_ANIM_DURATION);
-                        };
-
-                        $element.bind('click', createHandler);
+                        $element.bind('click', function () {
+                            ccImageZoomFullScreen.toFullScreen($element);
+                        });
 
                     } else {
 
