@@ -3,38 +3,11 @@
 
 angular
     .module('CouchCommerceApp')
-    .directive('ccImageZoom', function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService, ccImageZoomLerpAnim, ccImageZoomSettings) {
+    .directive('ccImageZoom', function (deviceService, $q, $timeout, ccImageZoomDomActors, ccImageZoomMaskService, ccImageZoomLerpAnim, ccImageZoomSettings, ccImageZoomDomUtil) {
 
             var isTouchedWithNTouches = function (event, numTouches) {
                 return event.touches.length === numTouches;
             };
-
-            // This methods calculates the exact absolute position of an element, including scroll offset
-            function findPos(obj) {
-                var obj2 = obj;
-                var curtop = 0;
-                var curleft = 0;
-                if (document.getElementById || document.all) {
-                    do {
-                        curleft += obj.offsetLeft - obj.scrollLeft;
-                        curtop += obj.offsetTop - obj.scrollTop;
-                        obj = obj.offsetParent;
-                        obj2 = obj2.parentNode;
-                        while (obj2 !== obj) {
-                            curleft -= obj2.scrollLeft;
-                            curtop -= obj2.scrollTop;
-                            obj2 = obj2.parentNode;
-                        }
-                    } while (obj.offsetParent);
-                } else if (document.layers) {
-                    curtop += obj.y;
-                    curleft += obj.x;
-                }
-                return {
-                    top: curtop,
-                    left: curleft
-                };
-            }
 
             return {
                 restrict: 'A',
@@ -96,7 +69,7 @@ angular
                         // 3. Do the transition
 
                         // Calculate the absolute position of the original image, including scroll
-                        originalImagePos = findPos(originalImage);
+                        originalImagePos = ccImageZoomDomUtil.findPos(originalImage);
 
                         currentState = stateEnum.SMALL_TO_FULL;
 
@@ -137,7 +110,7 @@ angular
                         var newWidth = imgHeight * aspectRatio;
 
                         // Calculate the absolute position of the original image, including scroll
-                        originalImagePos = findPos(originalImage);
+                        originalImagePos = ccImageZoomDomUtil.findPos(originalImage);
 
                         document.body.removeEventListener('touchmove', stopScrolling);
 
@@ -173,14 +146,6 @@ angular
                         ccImageZoomMaskService.updateOpacity(opacity);
                     };
 
-                    var setImageDimensionsAndVisibility = function (img, left, top, width, height, visible) {
-                        img.style.left = left + 'px';
-                        img.style.top = top + 'px';
-                        img.style.width = width + 'px';
-                        img.style.height = height + 'px';
-                        img.style.visibility = visible ? 'visible' : 'hidden';
-                    };
-
                     var lerp = function (target, current) {
                         if (inAnimation) {
                             return $q.when();
@@ -189,7 +154,7 @@ angular
                             inAnimation = true;
 
                             var onProgress = function (temp) {
-                                setImageDimensionsAndVisibility(cloneImage,
+                                ccImageZoomDomUtil.setImageDimensionsAndVisibility(cloneImage,
                                     temp.lerpedX,
                                     temp.lerpedY,
                                     temp.lerpedWidth,
@@ -264,12 +229,12 @@ angular
                         }
 
                         // Calculate the absolute position of the original image, including scroll
-                        originalImagePos = findPos(originalImage);
+                        originalImagePos = ccImageZoomDomUtil.findPos(originalImage);
 
                         current.offsetX = originalImagePos.left;
                         current.offsetY = originalImagePos.top;
 
-                        setImageDimensionsAndVisibility(cloneImage,
+                        ccImageZoomDomUtil.setImageDimensionsAndVisibility(cloneImage,
                             current.offsetX,
                             current.offsetY,
                             current.width,
@@ -305,7 +270,7 @@ angular
                         }
 
                         // Calculate the absolute position of the original image, including scroll
-                        originalImagePos = findPos(originalImage);
+                        originalImagePos = ccImageZoomDomUtil.findPos(originalImage);
 
                         if (currentState !== stateEnum.FULL) {
                             current.offsetX = originalImagePos.left;
@@ -417,7 +382,7 @@ angular
                             newOffsetY = current.offsetY + translateTotalY;
 
                             // Set the image attributes on the page
-                            setImageDimensionsAndVisibility(cloneImage,
+                            ccImageZoomDomUtil.setImageDimensionsAndVisibility(cloneImage,
                                 newOffsetX,
                                 newOffsetY,
                                 newWidth,
