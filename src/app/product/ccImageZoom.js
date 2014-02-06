@@ -275,11 +275,24 @@ angular
                             }
                             else {
                                 inAnimation = true;
-                                return lerpToPosition(target, current);
+
+                                var moveImage = function (temp) {
+                                    setImageDimensionsAndVisibility(cloneImage,
+                                        temp.lerpedX,
+                                        temp.lerpedY,
+                                        temp.lerpedWidth,
+                                        temp.lerpedHeight,
+                                        true);
+                                };
+
+                                return lerpToPosition(zoomAnimDuration, target, current, moveImage)
+                                        .then(function () {
+                                            inAnimation = false;
+                                        });
                             }
                         };
 
-                        var lerpToPosition = function (target, current) {
+                        var lerpToPosition = function (duration, target, current, onProgress) {
                             var deferred = $q.defer();
 
                             var startX = current.offsetX;
@@ -289,7 +302,7 @@ angular
 
                             var lastFrameTime = (new Date()).getTime();
 
-                            var animTime = zoomAnimDuration / 1000;
+                            var animTime = duration / 1000;
                             var currentAnimTime = 0;
 
                             var lerp = function (a, b, alpha) {
@@ -320,12 +333,18 @@ angular
                                 var currentLerpedWidth = lerp(startW, target.w, easing(lerpFactor));
                                 var currentLerpedHeight = lerp(startH, target.h, easing(lerpFactor));
 
-                                setImageDimensionsAndVisibility(cloneImage,
-                                    currentLerpedX,
-                                    currentLerpedY,
-                                    currentLerpedWidth,
-                                    currentLerpedHeight,
-                                    true);
+                                // We would love to just use deferred.notify here but since in our
+                                // current version of Angular promises don't resolve outside of a $digest
+                                // it's more practical to switch to callback style here as manually triggering
+                                // a $digest with each frame might cause a perf bottleneck.
+                                // This might be solved once we upgrade to Angular 1.2
+                                // See: https://github.com/angular/angular.js/commit/6b91aa0a18098100e5f50ea911ee135b50680d67
+                                onProgress({
+                                    lerpedX:         currentLerpedX,
+                                    lerpedY:         currentLerpedY,
+                                    lerpedWidth:     currentLerpedWidth,
+                                    lerpedHeight:    currentLerpedHeight
+                                });
 
                                 current.offsetX = currentLerpedX;
                                 current.offsetY = currentLerpedY;
