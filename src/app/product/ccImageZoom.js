@@ -53,12 +53,9 @@ angular
                         return;
                     }
 
-                    ccImageZoomSettings.BODY_WRAPPER_CLASS = attrs.bodyWrapperClass;
-                    ccImageZoomSettings.SIMPLE_CLASS = attrs.simpleClass;
-                    ccImageZoomSettings.SIMPLE_ACTIVE_CLASS = attrs.simpleActiveClass;
-                    var MASK_CLASS = ccImageZoomSettings.MASK_CLASS = attrs.maskClass;
-                    var ACTIVE_CLASS = ccImageZoomSettings.ACTIVE_CLASS = attrs.activeClass;
-                    var ZOOM_ANIM_DURATION = ccImageZoomSettings.ZOOM_ANIM_DURATION = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
+                    var MASK_CLASS = attrs.maskClass;
+                    var ACTIVE_CLASS = attrs.activeClass;
+                    var ZOOM_ANIM_DURATION = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
                     
                     var body = ccImageZoomDomActors.$body = angular.element(document.body);
 
