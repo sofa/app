@@ -210,10 +210,11 @@ angular
 
                             document.body.addEventListener('touchmove', stopScrolling);
 
-                            return lerpToPosition({x: offsetX, y: offsetY, w: targetWidth, h: targetHeight})
-                                .then(function () {
-                                    currentState = stateEnum.FULL;
-                                });
+                            return lerp({x: offsetX, y: offsetY, w: targetWidth, h: targetHeight}, current)
+                                    .then(function () {
+                                        inAnimation = false;
+                                        currentState = stateEnum.FULL;
+                                    });
                         };
 
                         var exitFullscreen = function () {
@@ -228,12 +229,13 @@ angular
 
                             document.body.removeEventListener('touchmove', stopScrolling);
 
-                            return lerpToPosition({x: originalImagePos.left, y: originalImagePos.top, w: newWidth, h: newHeight})
-                                .then(function () {
-                                    currentState = stateEnum.SMALL;
+                            return lerp({x: originalImagePos.left, y: originalImagePos.top, w: newWidth, h: newHeight}, current)
+                                    .then(function () {
+                                        inAnimation = false;
+                                        currentState = stateEnum.SMALL;
 
-                                    ccImageZoomMaskService.removeMask();
-                                });
+                                        ccImageZoomMaskService.removeMask();
+                                    });
                         };
 
                         ccImageZoomMaskService.onClose(exitFullscreen);
@@ -267,13 +269,18 @@ angular
                             img.style.visibility = visible ? 'visible' : 'hidden';
                         };
 
-                        var lerpToPosition = function (target) {
-                            var deferred = $q.defer();
-
+                        var lerp = function (target, current) {
                             if (inAnimation) {
-                                deferred.resolve();
-                                return deferred.promise;
+                                return $q.when();
                             }
+                            else {
+                                inAnimation = true;
+                                return lerpToPosition(target, current);
+                            }
+                        };
+
+                        var lerpToPosition = function (target, current) {
+                            var deferred = $q.defer();
 
                             var startX = current.offsetX;
                             var startY = current.offsetY;
@@ -284,8 +291,6 @@ angular
 
                             var animTime = zoomAnimDuration / 1000;
                             var currentAnimTime = 0;
-
-                            inAnimation = true;
 
                             var lerp = function (a, b, alpha) {
                                 a += (b - a) * alpha;
@@ -327,19 +332,12 @@ angular
                                 current.width = currentLerpedWidth;
                                 current.height = currentLerpedHeight;
 
-                                if (currentAnimTime < animTime && inAnimation) {
+                                if (currentAnimTime < animTime) {
                                     updateOpacity(currentLerpedWidth, currentLerpedHeight);
                                     requestAnimationFrame(tick);
                                 } else {
                                     current.continuousZoom = current.width / imgWidth;
-
-                                    if (inAnimation) {
-                                        inAnimation = false;
-                                        scope.$apply(deferred.resolve);
-                                    }
-                                    else {
-                                        scope.$apply(deferred.reject);
-                                    }
+                                    scope.$apply(deferred.resolve);
                                 }
                             };
 
