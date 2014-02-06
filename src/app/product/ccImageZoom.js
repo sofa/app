@@ -246,10 +246,6 @@ angular
                             startY0,
                             startX1,
                             startY1,
-                            endX0,
-                            endY0,
-                            endX1,
-                            endY1,
                             startDistanceBetweenFingers,
                             endDistanceBetweenFingers,
                             pinchRatio,
@@ -274,13 +270,7 @@ angular
                         var centerPointStartX,
                             centerPointStartY,
                             centerPointEndX,
-                            centerPointEndY,
-                            translateFromZoomingX,
-                            translateFromZoomingY,
-                            translateFromTranslatingX,
-                            translateFromTranslatingY,
-                            translateTotalX,
-                            translateTotalY;
+                            centerPointEndY;
 
                         var percentageOfImageAtPinchPointX,
                             percentageOfImageAtPinchPointY;
@@ -402,6 +392,17 @@ angular
                         $element.bind('touchstart', touchStart);
 
                         var touchmove = function (event) {
+                            var endX0,
+                                endY0,
+                                endX1,
+                                endY1,
+                                translateFromZoomingX,
+                                translateFromZoomingY,
+                                translateFromTranslatingX,
+                                translateFromTranslatingY,
+                                translateTotalX,
+                                translateTotalY;
+
                             var rect = cloneImage.parentElement.getBoundingClientRect();
                             touchMoved = true;
 
