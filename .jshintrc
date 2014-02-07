@@ -21,9 +21,7 @@
     "white": true,
     "predef": [
         "browser",
-        "ngMidwayTester",
         "inject",
-        "describe",
         "describe",
         "it",
         "xit",
