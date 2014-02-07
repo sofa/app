@@ -12,7 +12,8 @@ angular.module('CouchCommerceApp')
     var settings = {
         BODY_WRAPPER_CLASS: 'cc-image-full-screen__hide-marker',
         SIMPLE_CLASS: 'cc-image-full-screen__image',
-        SIMPLE_CLASS_ACTIVE: 'cc-image-full-screen__image--active'
+        SIMPLE_CLASS_ACTIVE: 'cc-image-full-screen__image--active',
+        ZOOM_ANIM_DURATION: 500
     };
 
     self.enabled = true;
@@ -66,8 +67,8 @@ angular.module('CouchCommerceApp')
         }
 
         appContent.css('display', '');
-        if (settings.SIMPLE_ACTIVE_CLASS) {
-            $fullDiv.removeClass(settings.SIMPLE_ACTIVE_CLASS);
+        if (settings.SIMPLE_CLASS_ACTIVE) {
+            $fullDiv.removeClass(settings.SIMPLE_CLASS_ACTIVE);
         }
 
         isAllowedToInteract = false;
