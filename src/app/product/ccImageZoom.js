@@ -23,8 +23,8 @@ angular
                         return;
                     }
 
-                    var MASK_CLASS = attrs.maskClass;
-                    var ACTIVE_CLASS = attrs.activeClass;
+                    var MASK_CLASS = 'cc-image-zoom__mask';
+                    var ACTIVE_CLASS = 'cc-image-zoom__image--active';
                     var ZOOM_ANIM_DURATION = attrs.zoomAnimDuration ? attrs.zoomAnimDuration : 1000;
                     
                     var body = ccImageZoomDomActors.$body = angular.element(document.body);
@@ -91,7 +91,7 @@ angular
 
                         offsetY = -(targetHeight / 2) + window.innerHeight / 2;
 
-                        ccImageZoomMaskService.addMask(attrs.maskClass);
+                        ccImageZoomMaskService.addMask(MASK_CLASS);
 
                         document.body.addEventListener('touchmove', stopScrolling);
 
