@@ -10,9 +10,9 @@ angular.module('CouchCommerceApp')
     appContent;
 
     var settings = {
-        BODY_WRAPPER_CLASS: 'cc-app-wrapper',
-        SIMPLE_CLASS: 'cc-product-view-image-simple',
-        SIMPLE_CLASS_ACTIVE: 'cc-product-view-image-simple-active'
+        BODY_WRAPPER_CLASS: 'cc-image-full-screen__hide-marker',
+        SIMPLE_CLASS: 'cc-image-full-screen__image',
+        SIMPLE_CLASS_ACTIVE: 'cc-image-full-screen__image--active'
     };
 
     self.enabled = true;

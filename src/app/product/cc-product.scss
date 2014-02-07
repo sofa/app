@@ -25,27 +25,6 @@
     max-width: 1000000px;
 }
 
-.cc-product-view-image-simple{
-    background-color: $cc-product-view__image-background-color;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    z-index: 1600;
-    opacity: 0;
-    -webkit-transition: 0.5s opacity ease-out;
-}
-
-.cc-product-view-image-simple-active{
-    opacity: 1;
-    visibility: visible;
-}
-
 .cc-product-view-image-mask{
     position: absolute;
     top: 0;
