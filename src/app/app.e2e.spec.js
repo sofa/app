@@ -2,7 +2,7 @@
 
 describe('CouchCommerce App', function () {
 
-    var app = require('./app.page.js');
+    var app = require('./app.e2e.page.js');
 
     beforeEach(function () {
         app.navigateTo('/');
