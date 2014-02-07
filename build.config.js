@@ -42,7 +42,11 @@ module.exports = {
             '!<%= app_files.jse2e %>'
         ],
         jsunit: ['<%= app_base %>/**/*.unit.spec.js'],
-        jse2e: ['<%= app_base %>/**/*.e2e.spec.js'],
+        jse2e: [
+            '<%= app_base %>/**/*.e2e.spec.js',
+            '<%= app_base %>/**/*.e2e.page.js',
+
+        ],
 
         app_tpl: ['<%= app_base %>/**/*.tpl.html'],
 

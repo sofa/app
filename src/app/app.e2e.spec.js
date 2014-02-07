@@ -2,21 +2,26 @@
 
 describe('CouchCommerce App', function () {
 
-    it('should open snap menu on click', function () {
-        browser.get('/');
-        element(by.className('fa-bars')).click();
+    var app = require('./app.page.js');
 
-        expect(element(by.className('cc-side-menu')).isDisplayed()).toBe(true);
+    beforeEach(function () {
+        app.navigateTo('/');
     });
-    it('should open snap menu on click', function () {
-        browser.get('/');
-        element(by.className('fa-bars')).click();
 
-        expect(element(by.className('cc-side-menu')).isDisplayed()).toBe(true);
-        element(by.className('fa-bars')).click();
-        // browser.debugger();
+    it('should open snap menu on click', function () {
+        app.toggleSnapMenu();
+        expect(app.snapMenu().isDisplayed()).toBe(true);
+    });
+
+    it('should open snap menu on click', function () {
+        // open menu
+        app.toggleSnapMenu();
+        expect(app.snapMenu().isDisplayed()).toBe(true);
+        // close menu
+        app.toggleSnapMenu();
+
         browser.wait(function () {
-            return element(by.className('cc-side-menu')).isDisplayed().then(function (displayed) {
+            return app.snapMenu().isDisplayed().then(function (displayed) {
                 return !displayed;
             });
         }, 1000, 'menu should disappear');
