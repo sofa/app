@@ -11,7 +11,7 @@
   "license": "",
   "dependencies": {
     "angular-bindonce": "~0.2.2",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.2.0"
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.3.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
