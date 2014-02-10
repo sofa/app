@@ -1,3 +1,4 @@
+'use strict';
 describe('CouchCommerce App', function () {
 
     var app = require('../app.e2e.page.js');
