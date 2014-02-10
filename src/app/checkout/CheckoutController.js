@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('CheckoutController', function ($scope, basketService, navigationService, checkoutService, userService, configService, dialog, payPalOverlayService, shippingMethodFormatter) {
+.controller('CheckoutController', function ($scope, basketService, navigationService, checkoutService, userService, configService, dialog, payPalOverlayService, shippingMethodFormatter, $filter) {
 
     var PAYPAL_EXPRESS_ID = 'paypal_express';
 
@@ -66,11 +66,11 @@ angular.module('CouchCommerceApp')
             if ($scope.summary.surcharge > 0) {
                 checkoutModel.surchargeHint = $scope.ln.surChargeWarning
                     .replace(/{\s*surcharge\s*}/,
-                    $scope.summary.surchargeStr + ' ' + cc.Config.currencySign);
+                    $filter('currency')($scope.summary.surchargeStr));
             } else if ($scope.summary.surcharge < 0) {
                 checkoutModel.surchargeHint = $scope.ln.discountWarning
                     .replace(/{\s*surcharge\s*}/,
-                    Math.abs(parseFloat($scope.summary.surchargeStr)).toFixed(2) + ' ' + cc.Config.currencySign);
+                    $filter('currency')(Math.abs($scope.summary.surchargeStr)));
             }
         } else {
             checkoutModel.surchargeHint = '';
