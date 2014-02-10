@@ -58,10 +58,6 @@ angular
 
                     var originalImagePos;
 
-                    var stopScrolling = function (e) {
-                        e.preventDefault();
-                    };
-
                     var goFullscreen = function () {
 
                         // 1. Teleport to the original image
@@ -93,11 +89,8 @@ angular
 
                         ccImageZoomMaskService.addMask(MASK_CLASS);
 
-                        document.body.addEventListener('touchmove', stopScrolling);
-
                         return lerp({x: offsetX, y: offsetY, w: targetWidth, h: targetHeight}, current)
                                 .then(function () {
-                                    inAnimation = false;
                                     currentState = stateEnum.FULL;
                                 });
                     };
@@ -112,13 +105,9 @@ angular
                         // Calculate the absolute position of the original image, including scroll
                         originalImagePos = ccImageZoomDomUtil.findPos(originalImage);
 
-                        document.body.removeEventListener('touchmove', stopScrolling);
-
                         return lerp({x: originalImagePos.left, y: originalImagePos.top, w: newWidth, h: newHeight}, current)
                                 .then(function () {
-                                    inAnimation = false;
                                     currentState = stateEnum.SMALL;
-
                                     ccImageZoomMaskService.removeMask();
                                 });
                     };
