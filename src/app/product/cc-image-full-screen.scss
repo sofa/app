@@ -1,21 +1,4 @@
 .cc-image-full-screen__image{
     //this has am explicit dependency against the cc-product-view, ok for now
     background-color: $cc-product-view__image-background-color;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 100%;
-    z-index: 1600;
-    opacity: 0;
-    -webkit-transition: 0.5s opacity ease-out;
-}
-
-.cc-image-full-screen__image--active{
-    opacity: 1;
-    visibility: visible;
 }
