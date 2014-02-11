@@ -7,7 +7,7 @@
             <span class="cc-header__icon-badge--cart" ng-bind="basketItemCount" ng-show="basketItemCount > 0"></span>
         </i>
     </div>
-    <div class="cc-header__icon-wrapper--right">
+    <div ng-if="cfg.showSearch" class="cc-header__icon-wrapper--right">
         <i class="cc-header__icon fa fa-search" ng-click="showSearch()"></i>
     </div>
     <div class="cc-header__logo" ng-click="navigationService.navigateToRootCategory()"></div>
