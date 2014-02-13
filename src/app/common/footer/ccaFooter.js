@@ -9,7 +9,7 @@
 //a "exit webapp" link which is a totally different concern and has
 //nothing to do with the footer items.
 
-angular.module('CouchCommerceApp').directive('ccaFooter', function (configService, dialog) {
+angular.module('CouchCommerceApp').directive('ccaFooter', function (configService, contextViewService) {
     return {
         restrict: 'EA',
         replace: true,
@@ -25,10 +25,7 @@ angular.module('CouchCommerceApp').directive('ccaFooter', function (configServic
             };
 
             $scope.showTrustedShopsCertificate = function () {
-                dialog.open({
-                    templateUrl: 'trustedshops/cc-trusted-shops.tpl.html',
-                    controller: 'TrustedShopsController'
-                });
+                contextViewService.toggleView('trustedshops/cc-trusted-shops.tpl.html', 'TrustedShopsController');
             };
         }
     };
