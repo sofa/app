@@ -1,35 +1,51 @@
-<div class="cc-product-buy-box" bindonce="ln">
-    <div class="cc-product-buy-box-price-wrapper">
-    <div class="cc-product-buy-box__price">
-        {{ price | currency }}
-    </div>
-    <div class="cc-product-buy-box__price-old" bindonce="product" bo-if="product.hasOldPrice()">
-        {{ product.priceOld | currency }}
-    </div>
-    </div>
-    <a
-    ng-click="addToBasket(product)"
-    ng-if="!product.isOutOfStock()"
-    class="cc-product-buy-box__add-to-cart"
-    bo-text="ln.addToCart">
-    </a>
-    <span
-    ng-if="product.isOutOfStock()"
-    class="cc-product-buy-box__sold-out"
-    bo-text="ln.soldOut">
-    </span>
-    <div class="cc-product-buy-box__info">
-    <div class="cc-product-buy-box__info-left">
-        <span ng-bind="productTaxText"></span>
-        <div ng-if="cfg.shippingCost !== null"> {{shippingCosts}}</div>
-        <div ng-if="cfg.shippingCost === null">
-        <a class="cc-link" ng-click="navigationService.navigateToShippingCostsPage()">{{ln.shippingCostsGeneric}}</a>
+<div class="cc-product-buy-box cc-grid--fixed" bindonce="ln">
+
+    <div class="cc-grid__row">
+
+        <div class="cc-grid__cell--1-2">
+
+            <cc-price product="product"></cc-price>
+
         </div>
-        <div ng-if="product.hasBasePrice()">{{getBasePriceInfo()}}</div>
+
+        <div class="cc-grid__cell--1-2">
+
+            <div class="cc-product-buy-box__info-text">
+                <div ng-bind="product.getBasePriceInfo()"></div>
+
+                <span bindonce="product" bo-text="product.delivery"></span>
+            </div>
+
+        </div>
+
     </div>
-    <div bindonce="product"
-         class="cc-product-buy-box__info-right"
-         bo-text="product.delivery">
+
+    <div class="cc-grid__row">
+
+        <div class="cc-grid__cell--1-1">
+
+            <a class="cc-product-buy-box__add-to-cart"
+               ng-click="addToBasket(product)"
+               ng-if="!product.isOutOfStock()"
+               bo-text="ln.addToCart">
+            </a>
+
+            <span class="cc-product-buy-box__sold-out"
+                  ng-if="product.isOutOfStock()"
+                  bo-text="ln.soldOut">
+            </span>
+
+            <div class="cc-product-buy-box__info-text">
+                <span class="cc-product-buy-box__tax-info" ng-bind="productTaxText"></span>
+
+                <div class="cc-product-buy-box__shipping-info" ng-if="cfg.shippingCost !== null" ng-bind="shippingCosts"></div>
+
+                <div class="cc-product-buy-box__shipping-info" ng-if="cfg.shippingCost === null">
+                    <a class="cc-link" ng-click="navigationService.navigateToShippingCostsPage()" bo-text="ln.shippingCostsGeneric"></a>
+                </div>
+            </div>
+        </div>
+
     </div>
-    </div>
+
 </div>

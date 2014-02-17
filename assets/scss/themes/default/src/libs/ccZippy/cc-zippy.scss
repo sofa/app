@@ -1,0 +1,50 @@
+
+.cc-zippy {
+    background: $color-6;
+}
+.cc-zippy {
+    & + .cc-zippy {
+        margin-top: 2px;
+    }
+}
+
+.cc-zippy__caption {
+    line-height: 30px;
+    font-size: larger;
+    padding: 6px 30px 6px 10px;
+    background: darken($color-6, 2.5%);
+    color: $color-1;
+}
+
+%cc-zippy-icon {
+    @extend .fa;
+
+    font-size: 30px;
+    right: 10px;
+    margin-top: 0;
+    color: lighten($color-1, 50%);
+
+    @include vendor-prefix(transform, translateY(-50%));
+}
+
+.cc-zippy-icon--opened {
+    @extend %cc-zippy-icon;
+    @extend .fa-angle-up;
+}
+.cc-zippy-icon--closed {
+    @extend %cc-zippy-icon;
+    @extend .fa-angle-down;
+}
+
+.cc-zippy__content {
+    border-top:2px solid lighten($color-1, 50%);
+    background: $color-6;
+    padding:0 10px;
+    line-height: 1.35;
+}
+
+.cc-zippy--opened {
+    .cc-zippy__content {
+        padding: 10px;
+    }
+}

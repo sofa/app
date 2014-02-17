@@ -1,0 +1,80 @@
+<div cc-scroller-announcer class="cc-view-wrapper cc-flex-column">
+
+        <div bindonce="product" ng-if="product" class="cc-product--tablet">
+
+            <div class="cc-product__header-block">
+
+                <div class="cc-product__up-nav">
+                    <cc-go-up-control category="upCategory"></cc-go-up-control>
+                </div>
+
+                <div class="cc-product__header">
+                    <h1 bo-text="product.name" class="cc-title--huge"></h1>
+                </div>
+
+            </div>
+
+            <div class="cc-product__content-block">
+
+                <div class="cc-product__image-block">
+
+                    <div class="cc-flex-image-helper">
+                        <div class="cc-product-view-image-wrapper">
+                            <img ng-src="{{selectedImage.url}}"
+                                 cc-image-zoom
+                                 cc-image-full-screen
+                                 class="cc-product-view-image"
+                                 zoom-anim-duration="500"
+                                 data-snap-ignore="true">
+                        </div>
+                    </div>
+
+                    <cc-thumbnail-bar
+                            ng-show="$parent.images.length > 1"
+                            images="product.getAllImages()"
+                            on-change="onThumbnailSelected(product, image)">
+                    </cc-thumbnail-bar>
+
+                </div>
+
+                <div class="cc-product__info-block">
+
+                    <div class="cc-product__primary-info">
+
+                        <cc-variant-selector class="cc-variant-selector-on-background"
+                                             choose-text="ln.choose"
+                                             variants="product.variants"
+                                             variant="variants.selectedVariant"
+                                             selected-properties="variants.selectedProperties">
+                        </cc-variant-selector>
+
+                        <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
+                    </div>
+
+                    <div class="cc-product__content-box cc-scroll-area">
+
+                        <cc-zippy caption="ln.productDetails" init-opened="true">
+                            <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+                        </cc-zippy>
+
+                        <cc-zippy caption="ln.productSpecifications">
+                            <table class="cc-product-view-attributes">
+                                <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
+                                    <td class="cc-product-view-attributes-row-key">{{key}}</td>
+                                    <td class="cc-product-view-attributes-row-value">{{value}}</td>
+                                </tr>
+                            </table>
+                        </cc-zippy>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div ng-if="!product" ng-include="tpl.404"></div>
+
+        <!--<cca-footer></cca-footer>-->
+
+</div>

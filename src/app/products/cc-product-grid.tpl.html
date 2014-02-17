@@ -1,35 +1,46 @@
-<div cc-scroller-announcer bindonce="products" class=" cc-view-wrapper">
+<div cc-scroller-announcer bindonce="products" class="cc-view-wrapper">
     <cc-inject target="aboveContent"></cc-inject>
-    <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
-    <h1 class="cc-title--huge">
-        <span bo-text="headline"></span>
-    </h1>
+
+    <div class="cc-products__header-block">
+        <div class="cc-products__up-nav">
+            <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+        </div>
+        <div class="cc-products__header">
+            <h1 class="cc-title--huge" bo-text="headline"></h1>
+        </div>
+    </div>
 
     <div bo-if="products.length > 0">
-        <cc-select-box
-            ng-model="sortModel.sortBy"
-            allow-null
-            choose-text="ln.sortBy"
-            display-value-exp="'title'"
-            data="sortModel.sortTypes">
-        </cc-select-box>
 
-        <ul class="cc-product-grid">
-            <li
-                ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
-                class="cc-product-grid__row">
-                <div class="cc-product-grid__row-wrapper"
-                     ng-click="goToProduct(product, $event)" ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }">
-                <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
-                <div class="cc-product-grid__row-highlight-helper"></div>
+        <div class="cc-products__controls">
+            <cc-select-box
+                    ng-model="sortModel.sortBy"
+                    allow-null
+                    choose-text="ln.sortBy"
+                    display-value-exp="'title'"
+                    data="sortModel.sortTypes">
+            </cc-select-box>
+        </div>
 
-                <div class="cc-product-grid__row-price" bo-text="product.price | currency">
+        <ul class="cc-products__list">
+            <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
+                ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }" class="cc-list__item">
+
+                <div ng-click="goToProduct(product, $event)" class="cc-product-item">
+
+                    <div class="cc-product-item__media-wrapper">
+                        <div class="cc-product-item__media" style="background-image: url({{product.getImage('small')}})"></div>
+                    </div>
+
+                    <div class="cc-product-item__info-wrapper">
+                        <strong class="cc-product-item__title" bo-text="product.name"></strong>
+
+                        <cc-price product="product"></cc-price>
+
+                    </div>
+
                 </div>
-                <div class="cc-product-grid__row-image"
-                     style="background-image: url({{product.getImage('small')}})">
-                </div>
-                <div class="cc-product-grid__row-text" bo-text="product.name"></div>
-                <div>
+
             </li>
         </ul>
     </div>

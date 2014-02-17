@@ -2,27 +2,31 @@
     <cc-inject target="aboveContent"></cc-inject>
 
     <div bindonce="category" ng-if="category">
-        <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
-        <h1 class="cc-title--huge">
-            <span bo-text="headline"></span>
-        </h1>
-        <ul class="cc-category-grid">
-            <li ng-repeat="category in category.children"
-                class="cc-category-grid__box-wrapper" >
 
-                <div class="cc-category-grid__box"
+        <div class="cc-category__header-block">
+            <div class="cc-category__up-nav" ng-show="category.parent">
+                <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+            </div>
+            <div class="cc-category__header">
+                <h1 class="cc-title--huge" bo-text="headline"></h1>
+            </div>
+        </div>
+
+        <ul class="cc-category-grid">
+            <li ng-repeat="category in category.children" class="cc-list__item">
+
+                <div class="cc-category-item"
                      ng-click="goToCategory(category, $event)"
                      ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }">
 
-                    <!-- we can't use a pseudo class for the highlighting as pseudo elements + animations got poor mobile browser support so far -->
-                    <div class="cc-category-grid__row-highlight-helper"></div>
-
-                    <div class="cc-category-grid__box-image"
-                         style="background-image: url({{ category.image }})">
+                    <div class="cc-category-item__media-wrapper">
+                        <div class="cc-category-item__media" style="background-image: url({{ category.image }})"></div>
                     </div>
-                    <span class="cc-category-grid__box-label"
-                          bo-text="category.label">
-                    </span>
+
+                    <div class="cc-category-item__info-wrapper">
+                        <strong class="cc-category-item__title" bo-text="category.label"></strong>
+                    </div>
+
                 </div>
 
             </li>

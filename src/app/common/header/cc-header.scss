@@ -1,8 +1,8 @@
 .cc-header {
-    position: relative;
-    height: $cc-header__height;
     padding: $cc-header__paddings;
     z-index: 999;
+
+    @include flex(0, 0, auto);
 }
 
 .cc-header__icon-wrapper--left {

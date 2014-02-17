@@ -90,7 +90,7 @@ angular.module('CouchCommerceApp', [
 
         .state('product', {
             url: '/cat/:category/product/:productUrlKey',
-            templateUrl: 'product/cc-product.tpl.html',
+            templateUrl: cc.isTabletSize ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html',
             controller: 'ProductController',
             resolve: {
                 product: ['couchService', '$stateParams', function (couchService, $stateParams) {

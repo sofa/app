@@ -1,52 +1,29 @@
-.cc-product-view-image-wrapper{
-    max-height: 300px;
-    width: 100%;
-    margin-bottom: 10px;
-    background-repeat: no-repeat;
-    background-color: $cc-product-view__image-background-color;
-    border-radius: $cc-product-view__image-border-radius;
-    background-size: contain;
-    background-position: center center;
+.cc-product-view-image-wrapper {
+    padding: 10px;
     position: relative;
 }
-.cc-product-view-image{
+.cc-product-view-image {
     position: relative;
     max-width: 100%;
-    max-height: 300px;
+    max-height: 100%;
+    min-height: 200px;
     display: block;
     margin: 0 auto;
 }
 
-.cc-zippy-icon{
-    font-size: 24px;
-    margin-top: -12px;
-    right: 10px;
-    //intentionally! We want to keep the fine line and the icon
-    //to be the same color
-    color: $cc-product-view__zippy-icon-color;
+.cc-product__header {
+    @extend .cc-products__header;
 }
 
-
-.cc-product-view__content-box{
-    @extend .cc-content-box--padded--stick-right;
-    color: $cc-product-view__content-box-color;
+.cc-product__image-wrapper {
+    background-color: #fff;
 }
 
-.cc-view-product{
-    .cc-zippy-caption{
-        margin: 5px 0 5px 0;
-        border-bottom: 1px solid $cc-product-view__zippy-border-color;
-        //TODO: Look into eliminating !important here
-        padding: 15px 0 15px 0;
-        font-size: $cc-product-view__zippy-caption-font-size;
-    }
-
-    .cc-zippy-content{
-        padding-right: 25px;;
-    }
+.cc-variant-selector {
+    padding:6px 4px;
 }
 
-td.cc-product-view-attributes-row-key{
+td.cc-product-view-attributes-row-key {
     padding-right: 10px;
     font-weight: bold;
 }

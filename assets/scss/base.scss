@@ -14,14 +14,15 @@
 
 // the page wrapper needs to be `position:relative` for the animations
 // since those need `position: absolute
-.cc-page-wrapper{
+.cc-page-wrapper {
     position: relative;
 }
 
-.cc-has-overflow-support{
+.cc-has-overflow-support {
     .cc-main-wrapper,
-    .cc-page-wrapper{
+    .cc-page-wrapper {
         @extend %cc-flex-column;
+        height: 100%;
     }
 }
 

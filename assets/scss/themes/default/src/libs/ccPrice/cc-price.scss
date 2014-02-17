@@ -1,0 +1,17 @@
+
+%cc-theme-price {
+    background: $color-6;
+    border-radius: $cc-primary-border-radius;
+    box-shadow:0 1px 0 hsla(0, 0, 0, .33);
+}
+
+%cc-theme-price--old {
+    color: lighten($color-1, 40%);
+}
+
+%cc-theme-price--special {
+    @extend %cc-theme-price;
+
+    color: $color-2;
+}
+

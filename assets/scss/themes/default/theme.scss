@@ -1,4 +1,15 @@
+
+// SDK Component Styling
+@import 'src/libs/ccPrice/cc-price.scss';
+@import 'src/libs/ccThumbnailBar/cc-thumbnail-bar.scss';
+@import 'src/libs/ccZippy/cc-zippy.scss';
+
 @import 'src/cc-button.scss';
+@import 'src/categories/cc-category-grid.scss';
+@import 'src/products/cc-product-grid.scss';
+@import 'src/product/cc-product.scss';
+@import 'src/product/cc-product-wide.scss';
+@import 'src/product/cc-product-buy-box.scss';
 @import 'src/cc-highlight.scss';
 @import 'src/common/header/cc-header.scss';
 @import 'src/search/cc-search-result.scss';
@@ -21,6 +32,17 @@ body{
     background: $cc-background-color;
 }
 
+.cc-title--huge {
+    margin:0;
+    line-height: 1.5;
+}
+
+.cc-side-menu {
+    .cc-category-tree-view__category-entry--active {
+        background: $color-2;
+    }
+}
+
 // This is a modal class to overwrite some default bootstrap properties
 // and is separate from the couch modal which is used in the search, among others.
 .cc-bootstrap-modal {
@@ -28,29 +50,34 @@ body{
 }
 
 .cc-go-up-button,
-.cc-go-back-button{
+.cc-go-back-button {
     background: none;
     border: none;
     padding: 0;
-    color: $cc-background-text-color;
-    font-size: $cc-font-size-big;
-}
-
-.cc-go-up-control{
-    font-size: $cc-font-size-big;
+    color: inherit;
+    font-size: inherit;
 }
 
 .cc-go-up-control__icon {
     @extend .fa;
     @extend .fa-angle-left;
+
+    margin-right:6px;
+}
+
+@include breakpoint(wide) {
+    .cc-go-up-control__icon {
+        @extend .fa-fw;
+
+        margin:0;
+    }
 }
 
 .cc-primary-margin{
     margin-top: $cc-primary-padding;
 }
 
-.cc-view-wrapper{
-    padding: $cc-primary-padding;
+.cc-view-wrapper {
     color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);
 }
 
@@ -78,21 +105,142 @@ body{
 //not sure yet where would be the best location for this kind of component bootstrapping
 @include cc-select-box($cc-select-box__name: 'cc-select-box',
                        $cc-select-box__modifier: '',
-                       $cc-select-box__background: $cc-select-box__background,
-                       $cc-select-box__color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8),
-                       $cc-select-box__font-size: $cc-select-box__font-size,
-                       $cc-select-box__height: $cc-select-box__height,
-                       $cc-select-box__border-radius: $cc-select-box__border-radius,
-                       $cc-select-box__border-color: hsla($color-1-h, $color-1-s, $color-1-l, 0.22),
-                       $cc-select-box__border-bottom-width: $cc-select-box__border-bottom-width);
+                       $cc-select-box__background: $color-6,
+                       $cc-select-box__color: $color-1,
+                       $cc-select-box__font-size: 1rem,
+                       $cc-select-box__height: 44px,
+                       $cc-select-box__border-radius: $cc-primary-border-radius,
+                       $cc-select-box__border-color: darken($color-6, 20%),
+                       $cc-select-box__border-bottom-width: $cc-border-bottom-width);
 
-// stays until we can apply font-awesome styles to generic cc-icon classes
-%cc-text-list__row-icon-thin {
-    position: absolute;
-    margin:0;
-    right: $cc-text-list__icon-right-margin;
-    top: 50%;
-    color: $cc-text-list__icon-color;
-    font-size: 21px;
-    @include vendor-prefix(transform, translateY(-50%));
+.cc-select-box {
+    .cc-select-box__select-icon {
+        @extend .fa;
+        @extend .fa-angle-down;
+        @extend .fa-fw;
+
+        line-height: 42px;
+        height: 42px;
+        padding: 0;
+        width: 42px;
+        right: 1px;
+        margin-top: -21px;
+        background: #F2F2F2;
+        border-radius: 0 2px 2px 0;
+        text-align: center;
+        color: #999;
+    }
 }
+/*  ===========================================================================
+    MEDIA-QUERY-SAVE @extend
+    note: each mixin has to include the respective media query in which it will
+    be applied. This way we can use @extend within media queries and still be
+    save with future releases of SASS.
+    =========================================================================*/
+
+// save @extend for up-nav container
+@mixin up-nav--generic {
+    background: lighten($color-1, 5%);
+    color: lighten($color-1, 50%);
+}
+%up-nav--generic {
+    @include up-nav--generic;
+}
+@mixin up-nav--narrow {
+    @include breakpoint(narrow) {
+        line-height: 24px;
+        padding:6px 10px;
+    }
+}
+%up-nav--narrow {
+    @include up-nav--narrow;
+}
+@mixin up-nav--wide {
+    @include breakpoint(wide) {
+        line-height:36px;
+        padding:6px 10px 6px 4px;
+    }
+}
+%up-nav--wide {
+    @include up-nav--wide;
+}
+
+// save @extend for main headers
+@mixin main-headline--generic {
+    line-height: 36px;
+    padding: 6px 10px;
+    background: $color-1;
+    color: $color-6;
+}
+%main-headline--generic {
+    @include main-headline--generic;
+}
+@mixin main-headline--narrow {
+    @include breakpoint(narrow) {
+    }
+}
+%main-headline--narrow {
+    @include main-headline--narrow;
+}
+@mixin main-headline--wide {
+    @include breakpoint(wide) {
+    }
+}
+%main-headline--wide {
+    @include main-headline--wide;
+}
+
+// save @extend for go-up-controls
+
+// Shared within a media query
+@mixin go-up-control--wide__content-helper {
+    @include breakpoint(wide) {
+        position: relative;
+        display: inline-block;
+        line-height: 44px;
+    }
+}
+%go-up-control--wide__content-helper {
+    @include go-up-control--wide__content-helper;
+}
+@mixin go-up-control--wide {
+    @include breakpoint(wide) {
+        margin:0;
+        color: darken($color-6, 20%);
+        font-size: 1rem;
+    }
+}
+%go-up-control--wide {
+    @include go-up-control--wide;
+}
+    @mixin go-up-control__icon--wide {
+        @include breakpoint(wide) {
+            @extend %go-up-control--wide__content-helper;
+
+            width: 44px;
+            font-size: 1.5rem;
+            vertical-align: top;
+            background: transparentize($color-6, .8);
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
+            border-radius: 3px 0 0 3px;
+        }
+    }
+    %go-up-control__icon--wide {
+        @include go-up-control__icon--wide;
+    }
+    @mixin go-up-control__text--wide {
+        @include breakpoint(wide) {
+            @extend %go-up-control--wide__content-helper;
+
+            background: transparentize($color-6, .9);
+            padding: 0 20px 0 10px;
+            text-align: left;
+            margin-left: -4px;
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
+            border-radius: 0 3px 3px 0;
+        }
+    }
+    %go-up-control__text--wide {
+        @include go-up-control__text--wide;
+    }
+

@@ -1,68 +1,68 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
-    <div rn-carousel-infinite rn-carousel-current="product" rn-carousel-prev="getPrevProduct(item)" rn-carousel-next="getNextProduct(item)">
     <cc-inject target="aboveContent"></cc-inject>
 
-        <div bindonce="product" ng-if="product">
-            <cc-go-up-control category="upCategory"></cc-go-up-control>
-            <h1 class="cc-title--huge">
-                <span bo-text="product.name"></span>
-            </h1>
-            <cc-inject target="beneathTitle"></cc-inject>
+    <div bindonce="product" ng-if="product">
 
-            <div class="cc-product-view__image-thumb-wrapper" >
-                <div class="cc-product-view-image-wrapper">
-                    <img ng-src="{{selectedImage.url}}"
-                        cc-image-zoom
-                        cc-image-full-screen
-                        class="cc-product-view-image"
-                        zoom-anim-duration="500"
-                        data-snap-ignore="true">
-                 </div>
+        <div class="cc-product__header-block">
 
-                <cc-thumbnail-bar
-                    ng-show="$parent.images.length > 1"
-                    class="cc-thumbnail-bar"
-                    images="product.getAllImages()"
-                    on-change="onThumbnailSelected(product, image)"
-                    >
-                </cc-thumbnail-bar>
+            <div class="cc-product__up-nav">
+                <cc-go-up-control category="upCategory"></cc-go-up-control>
             </div>
 
-
-            <div class="cc-product-view__content-wrapper">
-                <cc-variant-selector
-                    class="cc-variant-selector-on-background "
-                    choose-text="ln.choose"
-                    variants="product.variants"
-                    variant="variants.selectedVariant"
-                    selected-properties="variants.selectedProperties">
-                </cc-variant-selector>
-
-                <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
-
-                <div class="cc-product-view__content-box" ng-if="product.description || product.hasAttributes()">
-
-                    <cc-zippy caption="ln.productDetails" init-opened="true" ng-if="product.description">
-                        <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
-                    </cc-zippy>
-
-                    <cc-zippy caption="ln.productSpecifications" ng-if="product.hasAttributes()">
-                        <table class="cc-product-view-attributes">
-                            <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
-                                <td class="cc-product-view-attributes-row-key">{{key}}</td>
-                                <td class="cc-product-view-attributes-row-value">{{value}}</td>
-                            </tr>
-                        </table>
-                    </cc-zippy>
-                </div>
+            <div class="cc-product__header">
+                <h1 bo-text="product.name" class="cc-title--huge"></h1>
             </div>
 
         </div>
 
-        <div ng-if="!product" ng-include="tpl.404"></div>
+        <cc-inject target="beneathTitle"></cc-inject>
 
-        <cc-inject target="aboveFooter"></cc-inject>
-        <cca-footer></cca-footer>
-        <cc-inject target="beneathFooter"></cc-inject>
+        <div class="cc-product-view-image-wrapper">
+            <img ng-src="{{selectedImage.url}}"
+                 cc-image-zoom
+                 cc-image-full-screen
+                 class="cc-product-view-image"
+                 zoom-anim-duration="500"
+                 data-snap-ignore="true">
+        </div>
+
+        <cc-thumbnail-bar
+            ng-show="$parent.images.length > 1"
+            images="product.getAllImages()"
+            on-change="onThumbnailSelected(product, image)">
+        </cc-thumbnail-bar>
+
+        <cc-variant-selector class="cc-variant-selector-on-background"
+            choose-text="ln.choose"
+            variants="product.variants"
+            variant="variants.selectedVariant"
+            selected-properties="variants.selectedProperties">
+        </cc-variant-selector>
+
+        <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
+
+        <div class="cc-product__content-box" ng-if="product.description || product.hasAttributes()">
+
+            <cc-zippy caption="ln.productDetails" init-opened="true" ng-if="product.description">
+                <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+            </cc-zippy>
+
+            <cc-zippy caption="ln.productSpecifications" ng-if="product.hasAttributes()">
+                <table class="cc-product-view-attributes">
+                    <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
+                        <td class="cc-product-view-attributes-row-key">{{key}}</td>
+                        <td class="cc-product-view-attributes-row-value">{{value}}</td>
+                    </tr>
+                </table>
+            </cc-zippy>
+        </div>
+
     </div>
+
+    <div ng-if="!product" ng-include="tpl.404"></div>
+
+    <cc-inject target="aboveFooter"></cc-inject>
+    <cca-footer></cca-footer>
+    <cc-inject target="beneathFooter"></cc-inject>
+
 </div>

@@ -1,0 +1,33 @@
+
+.cc-view-product {
+
+    .cc-thumbnail-bar__item {
+        border:2px solid transparent;
+    }
+
+    .cc-thumbnail-bar__item--active {
+        box-shadow: 0 -2px 0 $color-2, 0 2px 0 $color-2;
+    }
+
+}
+
+.cc-product__up-nav {
+    @extend %up-nav--generic;
+}
+.cc-product__header {
+    @extend %main-headline--generic;
+}
+
+@include breakpoint(narrow) {
+    .cc-product__up-nav {
+        @extend %up-nav--narrow;
+    }
+    .cc-product-view-image-wrapper {
+        max-height: 200px;
+        @include vendor-prefix(box-sizing, content-box);
+    }
+}
+
+.cc-variant-selector {
+    background: darken($color-6, 10%);
+}

@@ -47,6 +47,7 @@
 
 .cc-search-result__item-image-wrapper {
     @extend %cc-search-result__table-cells;
+    width: $cc-search-result__image-size;
 
     .cc-search-result__item-image {
         width: $cc-search-result__image-size;
@@ -66,5 +67,14 @@
 }
 
 .cc-search-result__item-icon {
-    @extend %cc-text-list__row-icon-thin;
+    @extend .fa;
+    @extend .fa-angle-right;
+
+    position: absolute;
+    right: 10px;
+    top:50%;
+    line-height: inherit;
+    font-size: 125%;
+
+    @include vendor-prefix(transform, translateY(-50%));
 }

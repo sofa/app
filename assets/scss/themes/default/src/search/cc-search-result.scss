@@ -1,10 +1,10 @@
 .cc-search-result__group-header {
     border-bottom: 1px solid lighten($color-1, 50%);
-    background: $color-6;
+    background: darken($color-6, 7.5%);
 }
 
 .cc-search-result__item {
-    background: transparentize($color-6, .34);
+    background: darken($color-6, 2.5%);
 }
 
 .cc-search-result__item-text-wrapper {
