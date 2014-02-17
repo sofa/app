@@ -1,22 +1,25 @@
 <style type="text/css">
-    .teaser{
-        height: 150px;
-        position: relative;
+
+    .teaser--test img {
+        display:block;
+        max-width:100%;
     }
 
-    .teaser-inner{
-        position: absolute;
-        left: -14px;
-        right: -14px;
-        top: 0;
-        bottom: 0;
-        background: url(http://couchcommerce.shopwaredemo.de/media/image/deli_teaser503886c2336e3.jpg);
-        background-size: contain;
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
 </style>
 
-<div class="teaser">
-    <div class="teaser-inner"></div>
+<div class="teaser teaser--test">
+
+    <div ng-if="!deviceService.isTabletSize() && deviceService.isInPortraitMode()">
+        <!-- smartphone portrait -->
+        <img ng-src="http://placehold.it/640x200/bfd5cb/ffffff" alt=""/>
+    </div>
+    <div ng-if="(!deviceService.isTabletSize() && !deviceService.isInPortraitMode()) || deviceService.isTabletSize() && deviceService.isInPortraitMode()">
+        <!-- smartphone landscape && tablet portrait -->
+        <img ng-src="http://placehold.it/1536x500/bfd5cb/ffffff" alt=""/>
+    </div>
+    <div ng-if="deviceService.isTabletSize() && !deviceService.isInPortraitMode()">
+        <!-- tablet landscape mode -->
+        <img ng-src="http://placehold.it/2048x800/bfd5cb/ffffff" alt=""/>
+    </div>
+
 </div>
