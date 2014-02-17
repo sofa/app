@@ -177,8 +177,18 @@ angular.module('CouchCommerceApp', [
     deviceService.flagOs();
     deviceService.flagOverflowSupport();
     deviceService.flagModernFlexboxSupport();
+    deviceService.flagIpadOnIos7();
 
-    $window.addEventListener('orientationchange', $rootScope.$apply, false);
+    if (deviceService.isIpadOnIos7()) {
+        deviceService.setViewportHeightToDeviceHeight();
+    }
+
+    $window.addEventListener('orientationchange', function () {
+        $rootScope.$apply();
+        if (deviceService.isIpadOnIos7()) {
+            deviceService.setViewportHeightToDeviceHeight();
+        }
+    }, false);
 
 }])
 .run(['$rootScope', 'snapRemote', function ($rootScope, snapRemote) {

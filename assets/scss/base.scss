@@ -50,3 +50,13 @@
     }
 }
 
+.cc-ipad-ios-7 {
+    position: fixed;
+    top:0;
+}
+
+.cc-ipad-ios-7 > body {
+    position: absolute;
+    top:0;
+    bottom:0;
+}
