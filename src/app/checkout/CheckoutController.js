@@ -121,6 +121,10 @@ angular.module('CouchCommerceApp')
                 //todo change this to catch() once we update angular
                 .then(null, function () {
                     checkoutModel.selectedPaymentMethod = findFirstNonePayPalMethod(checkoutModel.supportedPaymentMethods);
+                    if (!checkoutModel.selectedPaymentMethod) {
+                        // The user cancelled, so redirect to the cart
+                        navigationService.navigateToCart();
+                    }
                 });
         }
     });

@@ -31,7 +31,8 @@ angular.module('CouchCommerceApp')
         dialog.loading();
         checkoutService.checkoutWithPayPal(vm.selectedShippingMethod, vm.selectedCountry);
     };
+
     $scope.close = function () {
-        $modalInstance.close();
+        $modalInstance.dismiss();
     };
 });
