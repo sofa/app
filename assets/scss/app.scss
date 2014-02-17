@@ -1,4 +1,5 @@
 @import '../../node_modules/sofa-base/src/styling/mixins.scss';
+@import '../../node_modules/sofa-base/src/styling/flex.scss';
 @import '../../node_modules/sofa-base/src/styling/media-queries.scss';
 @import '../../node_modules/sofa-base/src/styling/font-awesome.scss';
 //public app configs
@@ -34,6 +35,8 @@
 @import 'cc-box-highlight-helper.scss';
 @import 'cc-view-wrapper.scss';
 @import 'cc-animations.scss';
+@import 'cc-grid.scss';
+@import 'cc-list.scss';
 @import '../../vendor/ui-modal/bootstrap-dialog.scss';
 @import '../../src/app/common/dialog/cc-loading-dialog.scss';
 @import '../../src/app/common/dialog/cc-dialog.scss';

@@ -5,28 +5,11 @@
  *
  */
 
-%cc-flex-display{
-    display: -ms-flex;
-    display: -webkit-box;
-    display: -moz-box;
-    display: box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
 %cc-flex-column, 
 .cc-flex-column {
-    @extend %cc-flex-display;
-    height: 100%;
-    -ms-box-orient: vertical;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -ms-box-orient: vertical;
-    box-orient: vertical;
-    -webkit-flex-direction: column;
-    -moz-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
+    @extend %flexbox;
+
+    @include flex-direction(column);
 }
 
 // the page wrapper needs to be `position:relative` for the animations
