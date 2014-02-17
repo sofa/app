@@ -18,7 +18,7 @@ angular.module('CouchCommerceApp')
                 dialog.closeLoading();
 
                 if (data.shippingMethods.length === 1 && configService.getSupportedCountries().length === 1) {
-                    checkoutService.checkoutWithPayPal(data.shippingMethods[0]);
+                    checkoutService.checkoutWithPayPal(data.shippingMethods[0], configService.getDefaultCountry());
                 } else {
                     dialog.open({
                         templateUrl: 'cart/cc-paypal-overlay.tpl.html',
