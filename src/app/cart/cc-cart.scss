@@ -1,66 +1,11 @@
-.cc-cart__content-box{
-    @extend .cc-content-box--padded;
-    color: $cc-cart__content-box-color;
-}
 
-.cc-cart-button{
-    @extend .cc-couch-default-button;
-    width: 50px;
-}
-
-.cc-cart-quantity-selector{
-    float: right;
-    font-size: $cc-cart__quantity-selector-font-size;
-}
-
-.cc-cart-empty-hint{
-    display: table;
-}
-
-.cc-cart-empty-hint-content{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
-
-.cc-cart-footer{
-    position:absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-}
-
-.cc-cart-list {
-    display: table;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.cc-cart-list__row {
-    display: table-row;
-    height: 200px;
-    border-bottom: 1px solid $cc-cart-list__row-border-bottom-color;
-}
-
-.cc-cart-list__row:last-child{
-    border-width: 3px;
-}
-
-.cc-cart-list__row-image{
-    width: 30%;
-    display: table-cell;
+.cc-cart-list__item-image {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.cc-cart-list__row-content{
-    width: 70%;
-    display: table-cell;
-    padding: 0 0 $cc-cart-list__row-content-padding $cc-cart-list__row-content-padding;
-}
-
-.cc-cart-list__row-total{
-    text-align: right;
-    font-size: $cc-cart-list__row-total-font-size;
+.cc-cart-empty-hint {
+    text-align: center;
+    padding:24px 0;
 }

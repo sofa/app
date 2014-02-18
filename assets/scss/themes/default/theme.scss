@@ -5,6 +5,7 @@
 @import 'src/libs/ccZippy/cc-zippy.scss';
 
 @import 'src/cc-button.scss';
+@import 'src/cart/cc-cart.scss';
 @import 'src/categories/cc-category-grid.scss';
 @import 'src/products/cc-product-grid.scss';
 @import 'src/product/cc-product.scss';
@@ -20,8 +21,13 @@ body{
     line-height: 1.2em;
 }
 
-.snap-content{
+.snap-content {
     background: $cc-background-color;
+    box-shadow: rgba(0, 0, 0, 0.33) 0 0 24px 0;
+}
+
+.snap-drawer {
+    width:266px;
 }
 
 .cc-modal{

@@ -1,0 +1,150 @@
+.cc-side-menu--cart {
+    @extend .cc-side-menu;
+
+}
+
+
+@include breakpoint(wide) {
+    .cc-supports-modern-flexbox {
+        .cc-side-menu--cart {
+            @include flexbox;
+            @include flex-direction(column);
+
+            .cc-side-menu__heading {
+                @include flex(0, 0, auto);
+            }
+
+            .cc-cart__content-box {
+                @include flex(1);
+
+                overflow-y: scroll;
+            }
+
+            .cc-cart__total-box-wrapper,
+            .cc-cart-actions {
+                @include flex(0, 0, auto);
+            }
+        }
+    }
+}
+
+
+.cc-cart__content-box {
+    padding: 0 4px 0 0;
+}
+
+.cc-cart-list {
+    background: darken($color-6, 15%);
+    color:$color-1;
+    margin:0;
+
+    .cc-price__price,
+    .cc-price__price--old {
+        color: tint($color-1, 33%);
+    }
+}
+
+.cc-cart-list__item {
+
+    background: $color-6;
+    margin-top: 1px;
+    padding: 10px;
+
+    &:first-child {
+        margin:0;
+
+    }
+}
+
+.cc-cart-list__item-image {
+    float: left;
+    width:46px;
+    height:46px;
+    border:1px solid darken($color-6, 15%);
+    margin:0 0 6px 0;
+}
+
+.cc-cart-list__item-content {
+    margin-left:60px;
+}
+
+.cc-cart-list__item-footer {
+    clear:left;
+    line-height: 1.5;
+    padding: 6px 0;
+
+    &:after {
+        @extend %cc-clearfix;
+    }
+}
+
+.cc-cart-list__item-variants {
+    font-size: smaller;
+}
+
+.cc-cart-quantity-selector {
+    text-align: right;
+}
+
+.cc-cart-list__item-title {
+    display:block;
+    font-weight:400;
+}
+
+.cc-cart__item-price {
+    float:left;
+
+    .cc-price__price--special {
+        @extend %cc-theme-price--special-color;
+    }
+}
+
+.cc-cart__item-price--total {
+    float:right;
+}
+
+%cc-cart-button {
+    display:inline-block;
+    width:44px;
+    height:44px;
+    text-align:center;
+    line-height:46px;
+    border-radius:2px;
+    background: lighten($color-1, 30%);
+    box-shadow:0 1px 0 0 $color-1;
+    color:$color-6;
+    text-shadow:0 1px 0 $color-1;
+}
+
+.cc-cart-button--decrease {
+    @extend %cc-cart-button;
+    @extend .fa;
+    @extend .fa-minus;
+}
+.cc-cart-button--increase {
+    @extend %cc-cart-button;
+    @extend .fa;
+    @extend .fa-plus;
+}
+
+
+.cc-cart-total-panel {
+    padding-right: 4px;
+}
+
+.cc-cart-actions {
+    background:#333;
+    padding: 12px;
+}
+
+.cc-cart-checkout-button {
+    @extend .cc-couch-action-button;
+
+    display: block;
+    line-height: 50px;
+    padding: 0;
+    margin: 0 0 10px;
+    background-color: $color-2;
+    box-shadow: 0 $theme-box-shadow-width 0 darken($color-2, 20%);
+}
+
