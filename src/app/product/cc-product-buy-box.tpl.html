@@ -25,7 +25,7 @@
         <div ng-if="cfg.shippingCost === null">
         <a class="cc-link" ng-click="navigationService.navigateToShippingCostsPage()">{{ln.shippingCostsGeneric}}</a>
         </div>
-        <div>{{product.getBasePriceInfo()}}</div>
+        <div ng-if="product.hasBasePrice()">{{getBasePriceInfo()}}</div>
     </div>
     <div bindonce="product"
          class="cc-product-buy-box__info-right"
