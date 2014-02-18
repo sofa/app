@@ -114,7 +114,7 @@ module.exports = {
             'vendor/ui-modal/*.js',
             'vendor/snap/snap.js',
             'vendor/snap/angular-snap.js',
-            'node_modules/sofa-base/src/core/cc.js',
+            'node_modules/sofa-core/dist/sofa.core.js',
             'node_modules/sofa-base/src/core/*.js',
             'node_modules/sofa-base/src/**/*.js',
             'node_modules/sofa-base/dist/cc.angular.templates.js',

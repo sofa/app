@@ -1,4 +1,7 @@
 'use strict';
+/* global sofa */
+/* global FastClick */
+/* global document */
 
 //we need this to be available in the Angular config phase
 //since Angular does not allow access to services in the config
@@ -189,6 +192,11 @@ angular.module('CouchCommerceApp', [
         ccImageZoomSettings.enabled = false;
     }
 }])
+.run(function () {
+    sofa.Util.domReady(function () {
+        FastClick.attach(document.body);
+    });
+})
 .run(['trackingService', 'configService', function (trackingService, configService) {
     trackingService.addTracker(new cc.tracker.GoogleAnalyticsTracker({
         accountNumber: configService.get('googleAnalytics'),
