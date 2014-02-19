@@ -56,3 +56,8 @@
     left:10px;
     color:$cc-search-box__input-search-icon-color;
 }
+
+.cc-search-no-result {
+    text-align: center;
+    padding: ($cc-search-box__height + 32px) 0 0;
+}
