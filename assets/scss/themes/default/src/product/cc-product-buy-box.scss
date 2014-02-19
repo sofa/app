@@ -1,3 +1,12 @@
+
+%theme-add-to-cart-button--base {
+    display: block;
+    line-height: 50px;
+    padding: 0;
+    margin: 12px 0;
+}
+
+
 .cc-product-buy-box {
     padding:12px 4px 6px;
     text-align: center;
@@ -5,19 +14,16 @@
 
     .cc-product-buy-box__add-to-cart {
         @extend .cc-couch-action-button;
+        @extend %theme-add-to-cart-button--base;
 
-        display: block;
-        line-height: 50px;
-        padding: 0;
-        margin: 12px 0;
         background-color: $color-2;
         box-shadow: 0 $theme-box-shadow-width 0 darken($color-2, 20%);
     }
 
     .cc-product-buy-box__sold-out {
-        @extend .cc-product-buy-box__add-to-cart;
-
-        background-color: transparentize($color-2, .5);
+        @extend %cc-button-base;
+        @extend %theme-add-to-cart-button--base;
+        @extend %cc-button-base--disabled;
     }
 
     .cc-price {
