@@ -2,11 +2,11 @@
 .cc-products__list {
     @extend %cc-list;
 
-    text-align: center;
     border:0;
 
     .cc-list__item {
         min-height:230px; // no-flex-box fallback
+        text-align: center;
     }
 
 }
@@ -55,7 +55,7 @@
     font-weight: 400;
 }
 
-.cc-supports-modern-flexbox {
+.cc-modern-flexbox {
 
     .cc-product-item {
         width:100%;

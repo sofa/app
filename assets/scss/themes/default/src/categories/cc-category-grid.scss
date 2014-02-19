@@ -79,7 +79,7 @@
     font-weight: 400;
 }
 
-.cc-supports-modern-flexbox {
+.cc-modern-flexbox {
     .cc-category-item {
         @include flexbox;
         @include flex-direction(column);

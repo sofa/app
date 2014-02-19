@@ -1,13 +1,16 @@
 
-.cc-supports-modern-flexbox {
+.cc-modern-flexbox {
 
     .cc-thumbnail-bar {
-        @include vendor-prefix-value(display, flex);
-        @include vendor-prefix(flex-flow, row wrap);
+        @include flexbox;
+        @include flex-flow(row wrap);
+
         margin-left: -1%;
     }
     .cc-thumbnail-bar__item {
-        @include vendor-prefix(flex, 0 0 19%);
+        @include flex(0, 0, 19%);
+        width:19%;
+
         margin-left:1%;
     }
 

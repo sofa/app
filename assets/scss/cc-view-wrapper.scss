@@ -20,11 +20,14 @@
     .cc-view-wrapper {
         @extend %cc-scrollable-vertical;
 
-        @include flex(1, 1, auto);
-
         overflow: auto;
-        height:0;
-        min-height: 0;
+        height:100%;
+    }
+}
+
+.cc-has-overflow-support.cc-modern-flexbox {
+    .cc-view-wrapper {
+        @include flex(1, 1, auto);
     }
 }
 

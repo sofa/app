@@ -5,7 +5,7 @@
 
 
 @include breakpoint(wide) {
-    .cc-supports-modern-flexbox {
+    .cc-modern-flexbox {
         .cc-side-menu--cart {
             @include flexbox;
             @include flex-direction(column);
