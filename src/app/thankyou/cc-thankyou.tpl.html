@@ -1,33 +1,43 @@
-<div class="cc-scroller--if-fixed cc-view-wrapper cc-center">
-    <h1 class="cc-title--huge">{{ ln.thankYouTitle }}</h1>
-    <div ng-bind-html="ln.thankYouText"></div>
-        <a
-        ng-click="navigationService.navigateToRootCategory()"
-        class="cc-couch-action-button">{{ ln.continueShopping }}
-    </a>
+<div bindonce="ln" class="cc-scroller--if-fixed cc-view-wrapper cc-center">
 
-    <div ng-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-thankyou">
-        <div>
-            <img class="cc-trusted-shops-dialog__image" ng-src="https://www.trustedshops.de/certificate/images/logo/trustedshops_{{ trustedShopsService.locale }}.jpg">
+    <div class="cc-checkout__header-block">
 
-            <div ng-bind-html="ln.tsRegistrationBuyerProtection"></div>
+        <div class="cc-checkout__header">
+            <h1 bo-text="ln.thankYouTitle" class="cc-title--huge"></h1>
         </div>
 
-        <form id="formTShops" name="formTShops" method="post"+
-                action="https://www.trustedshops.com/shop/protection.php"+
-                target="_blank">
+    </div>
 
-            <input name="_charset_" type="hidden" value="">
-            <input name="shop_id" type="hidden" value="{{ cfg.trustedShopsId }}">
-            <input name="email" type="hidden" value="">
-            <input name="amount" type="hidden" value="{{ vm.summary.total }}">
-            <input name="curr" type="hidden" value="{{ cfg.currency }}">
-            <input name="paymentType" type="hidden" value="{{ vm.trustedShopsPaymentIdentifier }}">
-            <input name="kdnr" type="hidden" value="-">
-            <input name="ordernr" type="hidden" value="-">
+    <div class="cc-checkout__wrapper">
 
-            <input type="submit" class="cc-couch-action-button" value="{{ ln.tsButtonBuyerProtection }}">
-        </form>
+        <div ng-bind-html="ln.thankYouText"></div>
+
+        <a ng-click="navigationService.navigateToRootCategory()"
+           class="cc-couch-action-button">{{ ln.continueShopping }}
+        </a>
+
+        <div ng-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-thankyou">
+            <div>
+                <img class="cc-trusted-shops-dialog__image" ng-src="https://www.trustedshops.de/certificate/images/logo/trustedshops_{{ trustedShopsService.locale }}.jpg">
+                <p ng-bind-html="ln.tsRegistrationBuyerProtection"></p>
+            </div>
+
+            <form id="formTShops" name="formTShops" method="post"
+                  action="https://www.trustedshops.com/shop/protection.php" target="_blank">
+
+                <input name="_charset_" type="hidden" value="">
+                <input name="shop_id" type="hidden" value="{{ cfg.trustedShopsId }}">
+                <input name="email" type="hidden" value="">
+                <input name="amount" type="hidden" value="{{ vm.summary.total }}">
+                <input name="curr" type="hidden" value="{{ cfg.currency }}">
+                <input name="paymentType" type="hidden" value="{{ vm.trustedShopsPaymentIdentifier }}">
+                <input name="kdnr" type="hidden" value="-">
+                <input name="ordernr" type="hidden" value="-">
+
+                <input type="submit" class="cc-couch-action-button" value="{{ ln.tsButtonBuyerProtection }}">
+            </form>
+        </div>
+
     </div>
 
     <cca-footer></cca-footer>

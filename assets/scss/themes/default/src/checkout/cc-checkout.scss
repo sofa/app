@@ -1,0 +1,127 @@
+
+
+%theme-checkout-section {
+    max-width:600px;
+    margin: 0 auto 10px;
+    padding:6px 10px 12px;
+    background: rgba(0,0,0,.05);
+}
+%theme-checkout-section--address {
+    @extend %theme-checkout-section;
+}
+
+.cc-checkout__options {
+    @extend %theme-checkout-section;
+}
+.cc-checkout__address--billing {
+    @extend %theme-checkout-section--address;
+}
+.cc-checkout__address--shipping {
+    @extend %theme-checkout-section--address;
+}
+.cc-checkout__navigation {
+    @extend %theme-checkout-section;
+}
+
+@mixin checkout-section--wide {
+    @include breakpoint(wide) {
+        padding: 12px 10px 24px;
+        border-radius:$cc-primary-border-radius;
+    }
+}
+%checkout-section--wide {
+    @include checkout-section--wide;
+}
+
+%cc-form-label--checkout {
+    font-size:inherit;
+    margin:0;
+    padding: 6px 10px;
+}
+
+.cc-checkout__wrapper {
+    background: darken($cc-background-color, 5%);
+    padding: 0 0 10px;
+
+    .cc-form-label--required {
+        @extend %cc-form-label--checkout;
+    }
+
+    .cc-form-label--optional {
+        @extend %cc-form-label--checkout;
+    }
+
+    .cc-form-item {
+        margin-top:10px;
+    }
+}
+
+.cc-checkout__up-nav {
+    @extend %up-nav--generic;
+    @extend %up-nav--narrow;
+}
+
+.cc-checkout__header {
+    @extend %main-headline--generic;
+}
+
+@include breakpoint(wide) {
+
+    .cc-checkout__wrapper {
+        padding: 10px 0;
+    }
+    .cc-checkout__options {
+        @extend %checkout-section--wide;
+    }
+    .cc-checkout__address--billing {
+        @extend %checkout-section--wide;
+    }
+    .cc-checkout__address--shipping {
+        @extend %checkout-section--wide;
+    }
+    .cc-checkout__navigation {
+        @extend %checkout-section--wide;
+
+        text-align: right;
+
+        .cc-couch-action-button--stretched,
+        .cc-couch-action-button--disabled--stretched,
+        .cc-tooltip--info {
+            width:50%;
+        }
+        .cc-tooltip--info {
+            text-align: left;
+        }
+    }
+
+    .cc-checkout__header-block {
+        @include flexbox;
+    }
+    .cc-checkout__up-nav {
+        @include flex(auto, 0, 0);
+    }
+    .cc-checkout__header {
+        @include flex(1);
+
+        .cc-title--huge {
+            line-height: 44px;
+        }
+
+    }
+
+    .cc-checkout__up-nav {
+        @extend %up-nav--wide;
+
+        .cc-go-back-button {
+            @extend %go-up-control--wide;
+        }
+        .cc-go-back-button__icon {
+            @extend %go-up-control__icon--wide;
+        }
+        .cc-go-back-button__text {
+            @extend %go-up-control__text--wide;
+        }
+
+    }
+
+}

@@ -14,11 +14,17 @@
 @import 'src/cc-highlight.scss';
 @import 'src/common/header/cc-header.scss';
 @import 'src/search/cc-search-result.scss';
+@import 'src/checkout/cc-checkout.scss';
+@import 'src/summary/cc-summary.scss';
 
 body{
     font-family: $cc-font-default;
     background: $cc-background-color;
     line-height: 1.2em;
+}
+
+a {
+    color:$color-2;
 }
 
 .snap-content {
@@ -49,6 +55,53 @@ body{
     }
 }
 
+.cc-text-box {
+    &:focus {
+        box-shadow: none;
+        border-color: lighten($color-1, 33%);
+    }
+}
+
+.cc-form-label--required {
+    font-weight: 400;
+    color: $color-1;
+}
+.cc-form-label--optional {
+    color: tint($color-1, 50%);
+}
+
+.cc-validation__message--fail {
+    width:100%;
+    margin:3px 0 0 0;
+    background: #DFC05E;
+    border-radius: $cc-primary-border-radius;
+
+    &:before {
+        border-bottom-color: #DFC05E;
+    }
+}
+.cc-validation__message--success {
+    @extend .fa;
+    @extend .fa-check-square;
+
+    right:10px;
+    color:#78C228;
+}
+
+.cc-tooltip--info {
+    background: #DFC05E;
+
+    &:before {
+        border-bottom-color:#DFC05E;
+    }
+}
+
+input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
+    -webkit-box-shadow: inset 0 2px $cc-check-box__border-color;
+    box-shadow: inset 0 2px $cc-check-box__border-color;
+    border:1px solid lighten($color-1, 33%);
+}
+
 // This is a modal class to overwrite some default bootstrap properties
 // and is separate from the couch modal which is used in the search, among others.
 .cc-bootstrap-modal {
@@ -64,7 +117,8 @@ body{
     font-size: inherit;
 }
 
-.cc-go-up-control__icon {
+.cc-go-up-control__icon,
+.cc-go-back-button__icon {
     @extend .fa;
     @extend .fa-angle-left;
 
@@ -101,11 +155,10 @@ body{
 
 .cc-tooltip--info {
     @extend .cc-tooltip;
-    background: $cc-info-area-background-color;
 
-    &:before {
-        border-bottom-color: $cc-info-area-background-color;
-    }
+    color:#fff;
+    margin:3px 0 0 0;
+    border-radius: $cc-primary-border-radius;
 }
 
 //not sure yet where would be the best location for this kind of component bootstrapping
@@ -224,6 +277,7 @@ body{
             @extend %go-up-control--wide__content-helper;
 
             width: 44px;
+            margin:0;
             font-size: 1.5rem;
             vertical-align: top;
             background: transparentize($color-6, .8);
