@@ -10,6 +10,10 @@ cc.deviceService = new cc.DeviceService(window);
 //shortHand
 cc.isTabletSize = cc.deviceService.isTabletSize();
 
+// this is an empty dummy package. It can be overwritten by simply
+// pasting customer specific code through the admin UI
+angular.module('CouchCommerceApp.plugins', []);
+
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
     'ngSanitize',
@@ -33,7 +37,8 @@ angular.module('CouchCommerceApp', [
     'pasvaz.bindonce',
     'templates',
     'snap',
-    'chayns'
+    'chayns',
+    'CouchCommerceApp.plugins'
 ])
 .config(function ($stateProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider) {
 
