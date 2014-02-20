@@ -23,7 +23,7 @@
         @extend %up-nav--narrow;
     }
     .cc-product-view-image-wrapper {
-        max-height: 200px;
+        height: 200px;
         @include vendor-prefix(box-sizing, content-box);
     }
 }
