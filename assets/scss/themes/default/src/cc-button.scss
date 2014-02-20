@@ -28,19 +28,12 @@
     @extend %cc-button-base;
 
     color: $color-6;
-    background: $color-1;
-    border-bottom: 0;
-    //android 2.3 needs blur for box shadow
-    -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
-    box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
+    background: $color-2;
+    border: 0;
+    box-shadow: 0 $theme-box-shadow-width 0 darken($color-2, 20%);
 
     &:active, &.ng-click-active{
-        background:  hsla($color-1-h, $color-1-s, $color-1-l, 0.40);
-        border: 1px solid hsla($color-1-h, $color-1-s, $color-1-l, 0.15);
-        border-bottom: 0;
-        //android 2.3 needs blur for box shadow
-        -webkit-box-shadow: 0 $cc-border-bottom-width 1px 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
-        box-shadow: 0 $cc-border-bottom-width 0 0 hsla($color-1-h, $color-1-s, $color-1-l, 0.60);
+        background:  darken($color-2, 10%);
     }
 }
 
@@ -50,7 +43,6 @@
 }
 
 .cc-couch-action-button--disabled{
-    @extend .cc-couch-action-button;
     @extend %cc-button-base--disabled;
 }
 
@@ -86,7 +78,6 @@
 }
 
 .cc-couch-default-button--disabled--stretched{
-    @extend .cc-couch-default-button--disabled;
     @extend %cc-button-base--stretched;
 }
 

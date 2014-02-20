@@ -38,11 +38,11 @@ $cc_grid__gutter: 4px !default;
     }
 }
 
-@include breakpoint(tablet) {
+@include breakpoint(wide) {
 
     // The same as above, but included in this media query to work in
     // future releases of SASS
-    %cc-grid__cell--breakpoint {
+    %cc-grid__cell--wide {
         width: 100%;
         float: left;
         padding-left:$cc_grid__gutter;
@@ -54,7 +54,7 @@ $cc_grid__gutter: 4px !default;
         @for $n from 1 through $i {
 
             .cc-grid__cell--#{$n}-#{$i} {
-                @extend %cc-grid__cell--breakpoint;
+                @extend %cc-grid__cell--wide;
 
                 @if ($i - $n != 0) {
                     width: percentage($n / $i);
