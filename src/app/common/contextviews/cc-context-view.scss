@@ -1,9 +1,55 @@
-.cc-context-view{
-    //this should be set in the theme
-    background: #fff;
+.cc-context-view {
+    background: rgba(0,0,0,.9);
 }
 
-.cc-context-view__handle{
-    background: #000;
+// on devices without overflow support, we can't layout the view
+// with position:absolute. Hence, we hide the underlying view.
+.cc-has-no-overflow-support{
+    .cc-context-view--active {
+        > .cc-view-wrapper {
+            display: none;
+        }
+    }
+
+    .cc-context-view__handle{
+        margin: 0;
+    }
+}
+
+.cc-context-view__handle {
+    margin: 10px 10px 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-width: 1px 0;
+    color: rgba(255, 255, 255, 0.25);
     height: 40px;
+    text-align: center;
+}
+.cc-context-view__close-icon {
+    @extend .fa;
+    @extend .fa-angle-down;
+
+    font-size: 40px;
+    line-height: 1;
+}
+
+.cc-context-view__content {
+    padding:10px 0;
+}
+
+.cc-has-overflow-support {
+    .cc-context-view {
+        position: absolute;
+        top:0;
+        bottom:0;
+        left:0;
+        right:0;
+    }
+    .cc-context-view__content {
+        position: absolute;
+        top:60px;
+        bottom:0;
+        left:0;
+        right:0;
+    }
 }
