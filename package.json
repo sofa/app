@@ -13,7 +13,7 @@
     "angular-bindonce": "~0.2.2",
     "sofa-core": "~0.2.x",
     "sofa-storages": "~0.1.x",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.8.0",
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.8.1",
     "sofa-logging-service": "~0.1.x"
   },
   "devDependencies": {
