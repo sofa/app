@@ -81,21 +81,18 @@
 .cc-has-no-overflow-support{
 
     .snap-drawer-left, .snap-drawer-right{
-        z-index: -1;
         display: none;
     }
 
     .snapjs-left{
         .snap-drawer-left{
             display: block;
-            z-index: 0;
         }
     }
 
     .snapjs-right{
         .snap-drawer-right{
             display: block;
-            z-index: 0;
         }
     }
 
@@ -110,6 +107,6 @@
     }
 
     .snap-content{
-        position: static;
+        position: relative;
     }
 }
