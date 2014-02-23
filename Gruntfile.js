@@ -11,6 +11,22 @@ var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
 };
 
+
+var pushStateHook = function (connect, dir) {
+    return function (req, res, next) {
+        var path = require('path').resolve(dir);
+        var fs = require('fs');
+        if (fs.existsSync(path + req.url)) {
+            next();
+        }
+        else {
+            fs.readFile(require('path').resolve(dir) + '/index.html', 'utf8', function (err, data) {
+                res.end(data);
+            });
+        }
+    };
+};
+
 module.exports = function (grunt) {
 
     /**
@@ -492,7 +508,7 @@ module.exports = function (grunt) {
                     // change this to '0.0.0.0' to access the server from outside
                     hostname: '*',
                     middleware: function (connect) {
-                        return [lrSnippet, mountFolder(connect, 'build')];
+                        return [lrSnippet, mountFolder(connect, 'build'), pushStateHook(connect, 'build')];
                     }
                 }
             }

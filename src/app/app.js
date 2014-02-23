@@ -41,7 +41,9 @@ angular.module('CouchCommerceApp', [
     'chayns',
     'CouchCommerceApp.plugins'
 ])
-.config(function ($stateProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider) {
+.config(function ($stateProvider, $locationProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider) {
+
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
     snapRemoteProvider.globalOptions.addBodyClasses = true;
     snapRemoteProvider.globalOptions.hyperextensible = false;

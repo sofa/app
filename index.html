@@ -10,7 +10,7 @@
     <title>CouchCommerce</title>
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
-    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+    <link rel="stylesheet" type="text/css" href="/<%= file %>" /><% }); %>
 </head>
 <!-- http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari -->
 <body ontouchstart="">
@@ -21,6 +21,6 @@
     will be replaced after the directive does it's thing)  -->
     <div cc-include="tpl.SHELL"></div>
     <!-- compiled JS --><% scripts.forEach( function ( file ) { %>
-    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+    <script type="text/javascript" src="/<%= file %>"></script><% }); %>
 </body>
 </html>
