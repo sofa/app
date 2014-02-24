@@ -124,11 +124,5 @@ angular.module('CouchCommerceApp')
         return $wrapperElement;
     };
 
-    var getDefaultView = function () {
-        // we don't want to cache this to not break functionality for when the user
-        // goes to a different page via the regular router.
-        return angular.element(document.querySelector('.' + WRAPPER_ELEMENT_CLASS + ' > *'));
-    };
-
     return self;
 });
