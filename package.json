@@ -11,11 +11,11 @@
   "license": "",
   "dependencies": {
     "angular-bindonce": "~0.2.2",
-    "sofa-core": "~0.2.x",
+    "sofa-core": "~0.3.x",
     "sofa-storages": "~0.1.x",
     "sofa-logging-service": "~0.1.x",
     "sofa-device-service": "~0.1.x",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.9.0"
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.10.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
