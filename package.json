@@ -16,7 +16,8 @@
     "sofa-logging-service": "~0.1.x",
     "sofa-device-service": "~0.1.x",
     "sofa-url-parser-service": "~0.1.x",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.11.0"
+    "sofa-search-service": "~0.1.x",
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.12.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
