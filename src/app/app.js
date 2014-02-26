@@ -43,6 +43,7 @@ angular.module('CouchCommerceApp', [
 .config(function ($stateProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider) {
 
     snapRemoteProvider.globalOptions.addBodyClasses = true;
+    snapRemoteProvider.globalOptions.hyperextensible = false;
 
     var categoryStateConfig = {
         url: '/',
