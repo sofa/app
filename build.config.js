@@ -120,6 +120,7 @@ module.exports = {
             'node_modules/sofa-device-service/dist/sofa.deviceService.js',
             'node_modules/sofa-url-parser-service/dist/sofa.urlParserService.js',
             'node_modules/sofa-search-service/dist/sofa.searchService.js',
+            'node_modules/sofa-tracking-service/dist/sofa.trackingService.js',
             'node_modules/sofa-base/src/core/*.js',
             'node_modules/sofa-base/src/**/*.js',
             'node_modules/sofa-base/dist/cc.angular.templates.js',
