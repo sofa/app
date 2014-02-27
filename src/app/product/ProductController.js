@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote) {
+.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService) {
 
     if (!product || !category) {
         return;
@@ -40,22 +40,7 @@ angular.module('CouchCommerceApp')
     };
 
     $scope.getBasePriceInfo = function () {
-        var product = $scope.product;
-
-        if (product.getUnit() === 'kg') {
-            return 'entspricht ' + product.getBasePriceStr() + ' € pro 1 Kilogramm (kg)';
-        }
-        else if (product.getUnit() === 'St') {
-            return 'entpricht ' + product.getBasePriceStr() + ' € pro 1 Stück (St)';
-        }
-        else if (product.getUnit() === 'L') {
-            return 'entpricht ' + product.getBasePriceStr() + ' € pro 1 Liter (l)';
-        }
-        else if (product.hasUnit()) {
-            return 'entpricht ' + product.getBasePriceStr() + ' € pro ' + product.getUnit();
-        }
-
-        return '';
+        return productService.getBasePriceInfo($scope.product);
     };
 
     var formattedShippingCosts = $filter('currency')(configService.get('shippingCost'));

@@ -12,6 +12,10 @@
         background: darken($color-6, 5%);
     }
 
+    .cc-product-item__base-price-info {
+        font-size: $cc-font-size-small;
+    }
+
     .cc-product-item__title {
         color: $color-1;
     }
