@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state, snapRemote) {
+angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state, snapRemote, basketService) {
 
     var vm = $scope.vm = {};
 
@@ -17,6 +17,14 @@ angular.module('CouchCommerceApp').controller('SummaryController', function ($sc
         .then(function (result) {
 
             if (result.response.error) {
+
+                // this means the user tries to access the summary page with an invalid token.
+                // Probably something he has still left in his browser history.
+                if (basketService.isEmpty()) {
+                    navigationService.navigateToRootCategory();
+                    return;
+                }
+
                 dialog
                     .messageBox(
                         $scope.ln.errorGettingPaymentDetails,
@@ -41,6 +49,7 @@ angular.module('CouchCommerceApp').controller('SummaryController', function ($sc
             $scope.summary      = result.summary;
 
         }, function () {
+
             dialog
                 .messageBox(
                     $scope.ln.btnWarning,
