@@ -5,7 +5,7 @@ cc.Config = {
     originalUrl: 'https://ecx:4600ecx@www.runtastic.com/test-shop/de',
     apiUrl: 'https://cc1.couchcommerce.com/apiv6/products/',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
-    checkoutUrl: 'http://runtastic.couchcommerce.com/checkout/v3/',
+    checkoutUrl: 'http://runtastic.couchcommerce.com/checkout/v4/',
     resourceUrl: '_categories/runtastic/',
     categoryJson: '_categories/runtastic/categories.json',
     mediaFolder: 'https://cc1.couchcommerce.com/media/runtastic/img/',
