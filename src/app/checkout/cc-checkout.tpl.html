@@ -155,13 +155,13 @@
                         <p class="cc-form-label--required">{{ln.formEmail}}</p>
                         <span class="cc-validation">
                             <i class="cc-validation__message--success"></i>
-                            <input type="email" ng-model="checkoutModel.billingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="text" placeholder="email@example.com"/>
+                            <input type="email" ng-model="checkoutModel.billingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="email" placeholder="email@example.com"/>
                             <span class="cc-validation__message--fail">{{ln.invalidInput_Email}}</span>
                         </span>
                     </div>
                     <div class="cc-grid__cell--1-2 cc-form-item">
                         <p class="cc-form-label--optional">{{ln.formTelephone}}</p>
-                        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" name="city" class="cc-text-box" type="text" placeholder=""/>
+                        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" name="city" class="cc-text-box" type="tel" placeholder=""/>
                     </div>
                 </div>
 
@@ -267,7 +267,7 @@
                         <p class="cc-form-label--required">{{ln.formEmail}}</p>
                         <span class="cc-validation">
                             <i class="cc-validation__message--success"></i>
-                            <input type="email" ng-model="checkoutModel.shippingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="text" placeholder="email@example.com"/>
+                            <input type="email" ng-model="checkoutModel.shippingAddress.email" required cc-lazy-validation="parent" name="email" class="cc-text-box" type="email" placeholder="email@example.com"/>
                             <span class="cc-validation__message--fail">{{ln.invalidInput_Email}}</span>
                         </span>
                     </div>
