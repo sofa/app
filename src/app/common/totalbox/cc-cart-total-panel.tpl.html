@@ -23,7 +23,7 @@
     </li>
      <div class="cc-cart-total-panel__line" ng-repeat="coupon in coupons">
         <span class="cc-key">
-            <span ng-bind="ln.promotionCode"></span> <i class="fa fa-times-circle cc-cart-total-panel__remove-coupon-icon" ng-click="basketService.removeCoupon(coupon.code)" ng-hide="vm.page && vm.page === vm.SUMMARY_PAGE"></i><br>"<span ng-bind="coupon.name"></span>"
+            <span ng-bind="ln.promotionCode"></span> <span ng-bind="coupon.name"></span>
         </span>
         <span class="cc-value" ng-bind="-coupon.amount | currency"></span>
     </div>

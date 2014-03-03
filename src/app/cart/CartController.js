@@ -91,7 +91,8 @@ angular.module('CouchCommerceApp')
         couponService.submitCode($scope.promotionCodeModel.code)
         .then(function () {
             $scope.promotionCodeModel.canRedeemCode = true;
-            $scope.promotionCodeModel.showPromotionCodeForm = false;
+            $scope.promotionCodeModel.showForm = false;
+            $scope.promotionCodeModel.code = '';
             updateModels();
         }, function (err) {
             var message = $scope.ln.errorSubmitPromotionCode;
@@ -99,7 +100,8 @@ angular.module('CouchCommerceApp')
                 message = $scope.ln.errorInvalidPromotionCode;
             }
             else {
-                $scope.promotionCodeModel.showcodeForm = false;
+                $scope.promotionCodeModel.showForm = false;
+                $scope.promotionCodeModel.code = '';
             }
             dialog
                 .messageBox(

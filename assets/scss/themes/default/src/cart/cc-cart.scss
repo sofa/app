@@ -56,6 +56,21 @@
     }
 }
 
+.cc-cart-list__item--coupon {
+    .cc-cart-list__item-content {
+        float:left;
+        width:60%;
+        margin:0;
+    }
+    .cc-cart-list__item-footer {
+        width:40%;
+        margin-left: 60%;
+        clear:none;
+        padding: 0;
+        line-height: inherit;
+    }
+}
+
 .cc-cart-list__item-image {
     float: left;
     width:46px;

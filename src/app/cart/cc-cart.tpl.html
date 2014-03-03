@@ -54,6 +54,22 @@
                     <span ng-click="basketService.increaseOne(item)" class="cc-cart-button--increase"></span>
                 </div>
             </li>
+            <li ng-repeat="coupon in coupons" class="cc-cart-list__item cc-cart-list__item--coupon" ng-animate="{ leave: 'fade-out' }">
+                <div class="cc-cart-list__item-content">
+                    <strong class="cc-cart-list__item-title">
+                        <span ng-bind="ln.promotionCode"></span><br>
+                        {{coupon.name}}
+                    </strong>
+                </div>
+                <div class="cc-cart-list__item-footer">
+                    <span class="cc-cart__item-price--total">
+                        {{-coupon.amount | currency: '€'}}
+                    </span>
+                </div>
+                <div class="cc-cart-quantity-selector">
+                    <span ng-click="basketService.removeCoupon(coupon.code)" class="cc-cart-button--decrease"></span>
+                </div>
+            </li>
         </ul>
     </div>
 
