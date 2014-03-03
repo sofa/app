@@ -1,20 +1,27 @@
+// The header is special. We need to make sure it works with all kinds of logos
+// and even when the toolbar is set to white.
+$theme-header-icon-color: $color-6;
+$theme-header-icon-background-color: tint($color-2, 25%);
+
+$theme-header-icon-color-lightness: lightness($theme-header-icon-color);
+$theme-header-icon-background-color-lightness: lightness($theme-header-icon-background-color);
+
+@if abs($theme-header-icon-color-lightness - $theme-header-icon-background-color-lightness) < 30 {
+    @if $theme-header-icon-background-color-lightness > 50 {
+        $theme-header-icon-color: lighten(invert($theme-header-icon-color), 40%);
+    } @else {
+        $theme-header-icon-color: darken(invert($theme-header-icon-color), 40%);
+    }
+}
+
 .cc-header {
     background: $color-2;
     box-shadow: 0 $cc-header__shadow-size-y 0 darken($color-2, 15%);
 }
 
 .cc-header__icon {
-
-    // Not recommended for this theme
-    @if $color-2 == #fff {
-        color: $color-1;
-        background: transparent;
-    // Recommended
-    } @else {
-        color: $color-6;
-        background: transparentize($color-6, .75);
-    }
-
+    color: $theme-header-icon-color;
+    background: $theme-header-icon-background-color;
     box-shadow: 0 1px 0 0 darken($color-2, 15%);
     border-radius: $cc-header__icon-border-radius;
 }

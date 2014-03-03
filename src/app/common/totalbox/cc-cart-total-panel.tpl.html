@@ -8,10 +8,7 @@
         <span class="cc-value" ng-bind="summary.shipping | currency"></span>
     </li>
     <li ng-if="summary.shipping === null">
-        <span class="cc-key"></span>
-        <span class="cc-value">
-            <a class="cc-link" ng-click="navigationService.navigateToShippingCostsPage()">{{ln.shippingCostsGeneric}}</a>
-        </span>
+        <a class="cc-link" ng-click="navigationService.navigateToShippingCostsPage()">{{ln.shippingCostsGeneric}}</a>
     </li>
     <li ng-show="summary.surcharge">
         <span class="cc-key" ng-bind="ln.surcharge" ></span>

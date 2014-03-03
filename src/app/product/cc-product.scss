@@ -1,6 +1,7 @@
 .cc-product-view-image-wrapper {
     padding: 10px;
     position: relative;
+    background-color: #fff;
 }
 .cc-product-view-image {
     position: relative;
@@ -13,10 +14,6 @@
 
 .cc-product__header {
     @extend .cc-products__header;
-}
-
-.cc-product__image-wrapper {
-    background-color: #fff;
 }
 
 .cc-variant-selector {
