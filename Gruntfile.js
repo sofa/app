@@ -849,10 +849,8 @@ module.exports = function (grunt) {
         'compile',
         'set-version',
         'changelog',
-        'shell:check_last_sdk_sha',
         'shell:unlink_sdk',
         'shell:fetch_latest_sdk',
-        'shell:check_last_sdk_sha',
         'shell:dist',
         'shell:checkout_last_branch',
         'shell:link_sdk'
@@ -865,10 +863,8 @@ module.exports = function (grunt) {
         'compile-debug',
         'set-version',
         'changelog',
-        'shell:check_last_sdk_sha',
         'shell:unlink_sdk',
         'shell:fetch_latest_sdk',
-        'shell:check_last_sdk_sha',
         'shell:dist',
         'shell:checkout_last_branch',
         'shell:link_sdk'
@@ -881,10 +877,8 @@ module.exports = function (grunt) {
         'compile',
         'set-version',
         'changelog',
-        'shell:check_last_sdk_sha',
         'shell:unlink_sdk',
         'shell:fetch_latest_sdk',
-        'shell:check_last_sdk_sha',
         'shell:dry_run',
         'shell:checkout_last_branch',
         'shell:link_sdk'
