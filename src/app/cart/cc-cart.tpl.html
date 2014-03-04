@@ -73,7 +73,7 @@
         </ul>
     </div>
 
-    <div class="cc-cart-promotioncode-box" ng-show="!isEmpty">
+    <div class="cc-cart-promotioncode-box" ng-show="!isEmpty && enablePromotionCodes">
         <a class="cc-cart-coupon-button" ng-hide="promotionCodeModel.showForm" ng-click="promotionCodeModel.showForm=!promotionCodeModel.showForm">{{ln.promotionCodeHint}}</a>
         <form name="billingAddressForm" novalidate class="cc-text-box-on-background" ng-show="promotionCodeModel.showForm">
             <p class="cc-form-label">{{ln.promotionCode}}</p>

@@ -8,6 +8,8 @@ angular.module('CouchCommerceApp')
     $scope.navigationService = navigationService;
     $scope.configService = configService;
 
+    $scope.enablePromotionCodes = configService.get('enablePromotionCodes', false);
+
     var updateModels = function () {
 
         // turns out basketService.getSummary() is quite costly.
@@ -21,7 +23,7 @@ angular.module('CouchCommerceApp')
         requestAnimationFrame(function () {
             $scope.summary = basketService.getSummary();
 
-	        $scope.coupons = basketService.getActiveCoupons();
+            $scope.coupons = basketService.getActiveCoupons();
 
             //that's a bit of a hack. We use the total box for both cart
             //and summary page. In the summary page we always have a server generated
