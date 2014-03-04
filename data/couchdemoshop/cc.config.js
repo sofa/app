@@ -50,6 +50,7 @@ cc.Config = {
         }
     ],
     showSearch: true,
+    enablePromotionCodes: true,
     trustedShopsEnabled: true,
     trustedShopsId: 'X35A8844FD4E62A875C2C9E1C05C39CD4',
     showPayPalButton: true,
