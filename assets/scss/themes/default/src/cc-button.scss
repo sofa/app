@@ -41,6 +41,7 @@
 }
 
 .cc-couch-action-button--disabled{
+    @extend .cc-couch-action-button;
     @extend %cc-button-base--disabled;
 }
 
