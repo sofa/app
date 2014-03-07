@@ -113,7 +113,7 @@ cc.Lang = {
     invalidInput_Salutation: 'Bitte wählen Sie eine Anrede aus',
     noShippingMethodsAvailable: 'Für Ihre Versandadresse oder Zahlungssart konnten keine Lieferarten gefunden werden.',
     welcomeText: 'Willkommen im Couch Demo Shop',
-    showDesktopView:'Web-App verlassen',
+    showDesktopView:'Desktop Version',
 
 
     promotionCodeHint: 'Gutscheincode eingeben',
@@ -131,6 +131,7 @@ cc.Lang = {
     tsOverlayExplanation: "<p>Trusted Shops hat diesen Shop auf über 100 Qualitätskriterien wie Bonität, Preistransparenz, Kundenservice und Datenschutz geprüft.</p><p>Die Trusted Shops Garantie sichert Sie gegen Verlust Ihrer Zahlung bei Nicht-Lieferung oder Rückgabe der Ware ab.</p>",
     tsOverlayZertifikatTitle: "TRUSTED SHOPS ZERTIFIKAT",
     tsOverlayDetailsButton: "Details zum Zertifikat",
+    tsButtonTitle: "Geprüfte Sicherheit",
 
     //search
     searchProductFoundIn:'Produkt gefunden in',

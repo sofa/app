@@ -1,0 +1,15 @@
+<footer class="cc-footer" bindonce>
+    <cc-footer-links></cc-footer-links>
+
+    <ul class="cc-trust-list">
+        <li bo-if="cfg.trustedShopsEnabled" ng-click="showTrustedShopsCertificate()" class="cc-trust-list__item">
+            <i class="cc-trust-list__icon cc-trusted-shops-icon"></i>
+            <span class="cc-trust-list__text" ng-bind="ln.tsButtonTitle"></span>
+        </li>
+        <li bindonce="showAppExitLink" bo-if="showAppExitLink" ng-click="exitWebApp()" class="cc-trust-list__item">
+            <i class="cc-trust-list__icon cc-exit-link-icon"></i>
+            <span class="cc-trust-list__text" bo-text="ln.showDesktopView"></span>
+        </li>
+    </ul>
+
+</footer>

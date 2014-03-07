@@ -13,6 +13,8 @@
 @import 'src/product/cc-product-buy-box.scss';
 @import 'src/cc-highlight.scss';
 @import 'src/common/header/cc-header.scss';
+@import 'src/common/footer/cc-footer.scss';
+@import 'src/libs/ccFooterLinks/cc-footer-links.scss';
 @import 'src/common/contextviews/cc-context-views.scss';
 @import 'src/search/cc-search-result.scss';
 @import 'src/checkout/cc-checkout.scss';
@@ -305,3 +307,20 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
         @include go-up-control__text--wide;
     }
 
+// Some rather hacky way to make the footer sticky
+// TODO: rethink the scaffolding of the app to make sticky footers work more reliable and with less hackiness
+@include breakpoint(wide) {
+    .cc-push-footer {
+        height: auto;
+        min-height: 100%;
+        margin-top:-$cc-header-base__height;
+        padding-top:$cc-header-base__height;
+        margin-bottom:-($cc-footer-base__height--wide + 10px); // uuh... that's for the footer's margin
+
+        &:after {
+            content: "";
+            display: block;
+            height:$cc-footer-base__height--wide + 1px;
+        }
+    }
+}

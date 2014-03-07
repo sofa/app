@@ -9,12 +9,12 @@
 //a "exit webapp" link which is a totally different concern and has
 //nothing to do with the footer items.
 
-angular.module('CouchCommerceApp').directive('ccaFooter', function (configService, contextViewService) {
+angular.module('CouchCommerceApp').directive('ccFooter', function (configService, contextViewService) {
     return {
         restrict: 'EA',
         replace: true,
         scope: true,
-        templateUrl: 'common/footer/cca-footer.tpl.html',
+        templateUrl: 'common/footer/cc-footer.tpl.html',
         link: function ($scope) {
 
             $scope.showAppExitLink = configService.get('showAppExitLink', false);

@@ -1,7 +1,7 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
-    <cc-inject target="aboveContent"></cc-inject>
 
-    <div bindonce="category" ng-if="category">
+    <div bindonce="category" ng-if="category" class="cc-push-footer">
+        <cc-inject target="aboveContent"></cc-inject>
 
         <div class="cc-category__header-block">
             <div class="cc-category__up-nav" ng-show="category.parent">
@@ -36,6 +36,6 @@
     <div ng-if="!category" ng-include="tpl.404"></div>
 
     <cc-inject target="aboveFooter"></cc-inject>
-    <cca-footer></cca-footer>
+    <cc-footer></cc-footer>
     <cc-inject target="beneathFooter"></cc-inject>
 </div>

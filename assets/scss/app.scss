@@ -8,7 +8,6 @@
 @import '../../node_modules/sofa-base/src/directives/ccSelectBox/cc-select-box-config.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-text-list-config.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-text-box-config.scss';
-@import '../../node_modules/sofa-base/src/directives/ccFooter/cc-footer-config.scss';
 
 //theme config
 @import 'themes/default/theme-config.scss';
@@ -42,7 +41,7 @@
 @import '../../src/app/common/dialog/cc-dialog.scss';
 @import '../../src/app/common/header/cc-header.scss';
 @import '../../src/app/common/totalbox/cc-cart-total-panel.scss';
-@import '../../src/app/common/footer/cca-footer.scss';
+@import '../../src/app/common/footer/cc-footer.scss';
 @import '../../src/app/common/404/cc-404.scss';
 @import '../../src/app/common/contentbox/cc-content-box.scss';
 @import '../../src/app/common/contextviews/cc-context-view.scss';
