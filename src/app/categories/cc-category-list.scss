@@ -1,21 +1,12 @@
-.cc-category-list{
-    @extend %cc-text-list;
+.cc-category-list {
+    @extend %cc-link-list;
 }
 
-.cc-category-list__row{
-    @extend %cc-text-list__row;
+.cc-category-list__item {
+    @extend %cc-link-list__item;
 
     &.cc-highlight {
-	@extend .cc-highlight;
-	@extend .cc-highlight--animated;
+    	@extend .cc-highlight;
+	    @extend .cc-highlight--animated;
     }
-}
-
-
-.cc-category-list__row-content{
-    @extend .cc-text-list__row-content;
-}
-
-.cc-category-list__row-icon{
-    @extend %cc-text-list__row-icon;
 }

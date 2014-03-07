@@ -2,11 +2,11 @@
 @import '../../node_modules/sofa-base/src/styling/flex.scss';
 @import '../../node_modules/sofa-base/src/styling/media-queries.scss';
 @import '../../node_modules/sofa-base/src/styling/font-awesome.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-font-awesome.scss';
 //public app configs
 @import 'styleconfig.scss';
 //component configs
 @import '../../node_modules/sofa-base/src/directives/ccSelectBox/cc-select-box-config.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-text-list-config.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-text-box-config.scss';
 
 //theme config
@@ -23,7 +23,7 @@
 @import '../../node_modules/sofa-base/src/styling/alignment.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-form-label.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-text-box.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-text-list.scss';
+@import '../../node_modules/sofa-base/src/styling/cc-link-list.scss';
 @import '../../node_modules/sofa-base/src/styling/tables.scss';
 @import '../../node_modules/sofa-base/src/styling/centering.scss';
 @import '../../node_modules/sofa-base/src/directives/directives.scss';

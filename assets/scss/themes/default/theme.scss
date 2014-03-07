@@ -130,7 +130,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 
 @include breakpoint(wide) {
     .cc-go-up-control__icon {
-        @extend .fa-fw;
+        @extend %fa-fw-class--wide;
 
         margin:0;
     }
