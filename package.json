@@ -17,9 +17,10 @@
     "sofa-device-service": "~0.1.x",
     "sofa-url-parser-service": "~0.1.x",
     "sofa-search-service": "~0.1.x",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.16.0",
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.17.0",
     "sofa-tracking-service": "~0.1.x",
-    "sofa-user-service": "~0.1.x"
+    "sofa-user-service": "~0.1.x",
+    "sofa-basket-service": "0.1.x"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -51,6 +52,7 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-ngmin": "0.0.3",
     "grunt-protractor-runner": "~0.2.1",
-    "protractor": "~0.17.0"
+    "protractor": "~0.17.0",
+    "sofa-basket-service": "~0.1.0"
   }
 }
