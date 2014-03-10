@@ -25,10 +25,10 @@
         color: lighten($color-1, 50%);
         background: lighten($color-1, 5%);
 
-        .cc-key {
+        .cc-properties__key {
             padding: 6px 0 6px 10px;
         }
-        .cc-value {
+        .cc-properties__value {
             padding: 6px 10px 6px 0;
         }
     }

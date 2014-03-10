@@ -47,12 +47,12 @@
             </cc-zippy>
 
             <cc-zippy caption="ln.productSpecifications" ng-if="product.hasAttributes()">
-                <table class="cc-product-view-attributes">
-                    <tr class="cc-product-view-attributes-row" ng-repeat="(key, value) in product.attributes track by key">
-                        <td class="cc-product-view-attributes-row-key">{{key}}</td>
-                        <td class="cc-product-view-attributes-row-value">{{value}}</td>
-                    </tr>
-                </table>
+                <ul class="cc-properties--block">
+                    <li ng-repeat="(key, value) in product.attributes track by key">
+                        <span class="cc-properties__key">{{key}}</span>
+                        <span class="cc-properties__value">{{value}}</span>
+                    </li>
+                </ul>
             </cc-zippy>
         </div>
 

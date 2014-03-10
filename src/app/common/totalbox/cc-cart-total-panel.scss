@@ -4,18 +4,19 @@
     font-size: smaller;
     padding:6px 0;
 
-    .cc-key {
+    .cc-properties__key {
+        font-weight: 400;
         width:65%;
-        padding: 6px 10px 0;
+        padding: 6px 5px 0 12px;
     }
-    .cc-value {
+    .cc-properties__value {
         width:35%;
         text-align: right;
-        padding: 6px 0 0;
+        padding: 6px 8px 0 0;
     }
     .cc-link {
         display:block;
-        padding: 6px 10px 0;
+        padding: 6px 5px 0 12px;
         color:inherit;
     }
 }
