@@ -119,6 +119,7 @@ module.exports = {
             'node_modules/sofa-logging-service/dist/sofa.loggingService.js',
             'node_modules/sofa-device-service/dist/sofa.deviceService.js',
             'node_modules/sofa-url-parser-service/dist/sofa.urlParserService.js',
+            'node_modules/sofa-url-construction-service/dist/sofa.urlConstructionService.js',
             'node_modules/sofa-search-service/dist/sofa.searchService.js',
             'node_modules/sofa-tracking/dist/sofa.tracking.js',
             'node_modules/sofa-user-service/dist/sofa.userService.js',
