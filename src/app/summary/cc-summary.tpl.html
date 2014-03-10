@@ -52,7 +52,14 @@
                     </div>
                     <div class="cc-cart-list__item-content">
                         <strong class="cc-cart-list__item-title">{{item.name}}</strong>
-                        <!-- TODO: make variant data available -->
+
+                        <ul class="cc-cart-list__item-variants">
+                            <li ng-repeat="(variantProperty, variantPropertyValue) in item.optionSelected.properties">
+                                <span class="cc-properties__key">{{variantProperty}}:</span>
+                                <span class="cc-properties__value">{{variantPropertyValue}}</span>
+                            </li>
+                        </ul>
+
                     </div>
                     <div class="cc-cart-list__item-footer">
 
