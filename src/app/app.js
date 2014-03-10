@@ -218,7 +218,7 @@ angular.module('CouchCommerceApp', [
     });
 })
 .run(['trackingService', 'configService', function (trackingService, configService) {
-    trackingService.addTracker(new cc.tracker.GoogleAnalyticsTracker({
+    trackingService.addTracker(new cc.tracking.GoogleAnalyticsTracker({
         accountNumber: configService.get('googleAnalytics'),
         domainName: configService.get('googleAnalyticsSetDomain'),
         conversionId: configService.get('googleConversionId'),
