@@ -136,10 +136,6 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
     }
 }
 
-.cc-primary-margin{
-    margin-top: $cc-primary-padding;
-}
-
 .cc-view-wrapper {
     color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);
 }
@@ -192,6 +188,10 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
         text-align: center;
         color: #999;
     }
+
+    & + .cc-select-box {
+        margin-top: 6px;
+    }
 }
 /*  ===========================================================================
     MEDIA-QUERY-SAVE @extend
@@ -202,7 +202,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 
 // save @extend for up-nav container
 @mixin up-nav--generic {
-    background: lighten($color-1, 5%);
+    background: $color-1;
     color: lighten($color-1, 50%);
 }
 %up-nav--generic {
@@ -283,7 +283,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
             margin:0;
             font-size: 1.5rem;
             vertical-align: top;
-            background: transparentize($color-6, .8);
+            background: lighten($color-1, 10%);
             box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
             border-radius: 3px 0 0 3px;
         }
@@ -295,7 +295,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
         @include breakpoint(wide) {
             @extend %go-up-control--wide__content-helper;
 
-            background: transparentize($color-6, .9);
+            background: lighten($color-1, 10%);
             padding: 0 20px 0 10px;
             text-align: left;
             margin-left: -4px;
