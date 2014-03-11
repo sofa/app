@@ -6,11 +6,11 @@ $theme-header-icon-background-color: tint($color-2, 25%);
 $theme-header-icon-color-lightness: lightness($theme-header-icon-color);
 $theme-header-icon-background-color-lightness: lightness($theme-header-icon-background-color);
 
-@if abs($theme-header-icon-color-lightness - $theme-header-icon-background-color-lightness) < 30 {
+@if abs($theme-header-icon-color-lightness - $theme-header-icon-background-color-lightness) < 20 {
     @if $theme-header-icon-background-color-lightness > 50 {
-        $theme-header-icon-color: lighten(invert($theme-header-icon-color), 40%);
+        $theme-header-icon-color: lighten(invert($theme-header-icon-color), 30%);
     } @else {
-        $theme-header-icon-color: darken(invert($theme-header-icon-color), 40%);
+        $theme-header-icon-color: darken(invert($theme-header-icon-color), 30%);
     }
 }
 
