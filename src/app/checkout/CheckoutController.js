@@ -54,6 +54,38 @@ angular.module('CouchCommerceApp')
                     $scope.displayEmptyShippingMethodsMessage = !data.shippingMethods.length;
                 }
             });
+
+        checkForAdditionalFields();
+    };
+
+    var checkForAdditionalFields = function () {
+        // Payment methods can contain additional fields which need to be provided.
+        // If a field is not present in the checkout form, we add it and mark it compulsory.
+        // If it is already there, we just mark the field compulsory.
+
+        // We maintain a list of fields in our checkout form which are able to be modified
+        $scope.availableBirthmonths = $scope.ln.months.split(',')
+            .map(function (value, index) {
+                return {
+                    value: index + 1,
+                    label: value
+                };
+            });
+
+        $scope.requiredInputFields = {};
+
+        if (configService.get('extraBillingFields')) {
+            configService.get('extraBillingFields').forEach(function (field) {
+                $scope.requiredInputFields[field] = true;
+            });
+        }
+
+        /* jshint camelcase:false */
+        if (checkoutModel.selectedPaymentMethod && checkoutModel.selectedPaymentMethod.extra_fields) {
+            checkoutModel.selectedPaymentMethod.extra_fields.forEach(function (field) {
+                $scope.requiredInputFields[field] = true;
+            });
+        }
     };
 
     var findFirstNonePayPalMethod = function (paymentMethods) {

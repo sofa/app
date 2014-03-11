@@ -49,6 +49,7 @@ cc.Config = {
             target: 'aboveContent' //aboveContent, aboveFooter, beneathFooter
         }
     ],
+    extraBillingFields: [], // 'merchantnote', 'pickuptimeatstore', 'streetextra'
     showSearch: true,
     enablePromotionCodes: true,
     trustedShopsEnabled: true,

@@ -28,7 +28,7 @@ angular.module('CouchCommerceApp').controller('SummaryController', function ($sc
                 dialog
                     .messageBox(
                         $scope.ln.errorGettingPaymentDetails,
-                        result.response.error.paymentErrorMsg,
+                        result.response.error,
                         [{result: 'ok', label: $scope.ln.btnOk}]
                     )
                 .result

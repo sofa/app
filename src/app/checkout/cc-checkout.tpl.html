@@ -106,13 +106,27 @@
 
 
                 <div class="cc-grid__row">
-                    <div class="cc-grid__cell--1-1 cc-form-item">
+                    <div class="cc-grid__cell--3-4 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formStreet}}</p>
                         <span class="cc-validation">
                             <i class="cc-validation__message--success"></i>
                             <input ng-model="checkoutModel.billingAddress.street" required cc-lazy-validation="parent" name="street" class="cc-text-box" type="text" />
                             <span class="cc-validation__message--fail">{{ln.invalidInput_Street}}</span>
                         </span>
+                    </div>
+                    <div class="cc-grid__cell--1-4 cc-form-item">
+                        <p class="cc-form-label--required">{{ln.formStreetNumber}}</p>
+                        <span class="cc-validation">
+                            <i class="cc-validation__message--success"></i>
+                            <input ng-model="checkoutModel.billingAddress.streetnumber" required cc-lazy-validation="parent" name="streetnumber" class="cc-text-box" type="text" />
+                            <span class="cc-validation__message--fail">{{ln.invalidInput_StreetNumber}}</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="cc-grid__row"  ng-if="requiredInputFields['streetextra']">
+                    <div class="cc-grid__cell--1-1 cc-form-item">
+                            <input ng-model="checkoutModel.billingAddress.streetextra" name="streetextra" class="cc-text-box" type="text" />
                     </div>
                 </div>
 
@@ -160,8 +174,54 @@
                         </span>
                     </div>
                     <div class="cc-grid__cell--1-2 cc-form-item">
-                        <p class="cc-form-label--optional">{{ln.formTelephone}}</p>
-                        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" name="city" class="cc-text-box" type="tel" placeholder=""/>
+                        <p ng-class="requiredInputFields['phone'] ? 'cc-form-label--required' : 'cc-form-label--optional'">{{ln.formTelephone}}</p>
+                        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" ng-required="requiredInputFields['phone']" name="city" class="cc-text-box" type="tel" placeholder=""/>
+                        <span class="cc-validation__message--fail">{{ln.invalidInput_Phone}}</span>
+                    </div>
+                </div>
+
+                <div class="cc-grid__row" ng-if="requiredInputFields['birthdate']">
+                    <div class="cc-grid__cell--1-4 cc-form-item">
+                        <p class="cc-form-label--required">{{ln.formBirthdate}}</p>
+                        <span class="cc-validation">
+                            <i class="cc-validation__message--success"></i>
+                            <input ng-model="checkoutModel.billingAddress.birthday" required="requiredInputFields['birthdate']" cc-lazy-validation="parent" name="birthday" class="cc-text-box" type="text" placeholder="23"/>
+                            <span class="cc-validation__message--fail">{{ln.invalidInput_Birthday}}</span>
+                        </span>
+                    </div>
+                    <div class="cc-grid__cell--2-4 cc-form-item">
+                        <p class="cc-form-label--optional">&nbsp;</p>
+                        <cc-select-box
+                            name="birthmonth"
+                            ng-model="checkoutModel.billingAddress.birthmonth"
+                            class="cc-select-box-on-background"
+                            omit-null
+                            choose-text="ln.choose"
+                            display-value-exp="'label'"
+                            data="availableBirthmonths">
+                        </cc-select-box>
+                    </div>
+                    <div class="cc-grid__cell--1-4 cc-form-item">
+                        <p class="cc-form-label--optional">&nbsp;</p>
+                        <span class="cc-validation">
+                            <i class="cc-validation__message--success"></i>
+                            <input ng-model="checkoutModel.billingAddress.birthyear" required="requiredInputFields['birthdate']" cc-lazy-validation="parent" name="birthyear" class="cc-text-box" type="text" placeholder="1980"/>
+                            <span class="cc-validation__message--fail">{{ln.invalidInput_Birthyear}}</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="cc-grid__row" ng-if="requiredInputFields['merchantnote']">
+                    <div class="cc-grid__cell--1-1 cc-form-item">
+                        <p class="cc-form-label--optional">{{ln.formMerchantNote}}</p>
+                        <input ng-model="checkoutModel.billingAddress.merchantnote" name="merchantnote" class="cc-text-box" type="text" />
+                    </div>
+                </div>
+
+                <div class="cc-grid__row" ng-if="requiredInputFields['pickuptimeatstore']">
+                    <div class="cc-grid__cell--1-1 cc-form-item">
+                        <p class="cc-form-label--optional">{{ln.formPickupTimeAtShop}}</p>
+                        <input ng-model="checkoutModel.billingAddress.pickuptimeatstore" name="pickuptimeatstore" class="cc-text-box" type="text" />
                     </div>
                 </div>
 
