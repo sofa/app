@@ -224,4 +224,12 @@ angular.module('CouchCommerceApp', [
         conversionId: configService.get('googleConversionId'),
         conversionLabel: configService.get('googleConversionLabel')
     }));
+
+    if (configService.get('bingSiteId')) {
+        trackingService.addTracker(new cc.tracking.BingTracker({
+            siteId: configService.get('bingSiteId'),
+            domainId: configService.get('bingDomainId'),
+            actionId: configService.get('bingActionId')
+        }));
+    }
 }]);
