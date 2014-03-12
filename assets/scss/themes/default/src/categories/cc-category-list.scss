@@ -1,0 +1,11 @@
+
+.cc-category-list__item {
+    @extend %cc-highlight-transition--list;
+
+    &.cc-highlight--in {
+        @extend %cc-highlight--list--in;
+    }
+    &.cc-highlight--out {
+        @extend %cc-highlight--list--out;
+    }
+}

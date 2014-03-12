@@ -26,9 +26,10 @@
 
             <ul class="cc-products__list">
                 <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
-                    ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(product) }" class="cc-list__item">
+                    ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
+                    ng-click="goToProduct(product, $event)" class="cc-list__item">
 
-                    <div ng-click="goToProduct(product, $event)" class="cc-product-item">
+                    <div class="cc-product-item">
 
                         <div class="cc-product-item__media-wrapper">
                             <div class="cc-product-item__media" style="background-image: url({{product.getImage('small')}})"></div>

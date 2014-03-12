@@ -6,6 +6,15 @@
     .cc-list__item {
         border-color: lighten($color-1, 50%);
         background-color: $color-6;
+
+        @extend %cc-highlight-transition--grid;
+
+        &.cc-highlight--in {
+            @extend %cc-highlight--grid--in;
+        }
+        &.cc-highlight--out {
+            @extend %cc-highlight--grid--out;
+        }
     }
 
     .cc-product-item__info-wrapper {

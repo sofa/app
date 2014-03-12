@@ -4,9 +4,4 @@
 
 .cc-category-list__item {
     @extend %cc-link-list__item;
-
-    &.cc-highlight {
-        @extend .cc-highlight;
-        @extend .cc-highlight--animated;
-    }
 }

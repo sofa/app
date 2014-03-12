@@ -1,21 +1,22 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.factory('backStepHighlightService', function ($rootScope, $timeout) {
+.factory('backStepHighlightService', function ($rootScope) {
 
     var self = {},
-        flaggingDurationMs = 600,
         flags = {},
-        timeouts = {};
-
+        reset = false;
 
     $rootScope.$on('stateChangeService.stateChangeSuccess', function (evt, data) {
+        reset = false;
         if (data.move === 'productToProducts') {
             flags.product = data.originalEvent.fromLocals.globals.product;
         } else if (data.move === 'productsToCategory') {
             flags.category = data.originalEvent.fromParams.category;
         } else if (data.move === 'categoryToParentCategory') {
             flags.category = data.originalEvent.fromParams.category;
+        } else {
+            reset = true;
         }
     });
 
@@ -35,7 +36,7 @@ angular.module('CouchCommerceApp')
     };
 
     var isHighlighted = function (item, prefix, matcher) {
-        //optinally use provided matcher function
+        //optionally use provided matcher function
         matcher = matcher || function (a, b) { return a === b; };
 
         var match = matcher(item, flags[prefix]);
@@ -48,14 +49,9 @@ angular.module('CouchCommerceApp')
             return false;
         }
 
-        //if there's already a timeout scheduled, don't add a new one to prevent
-        //timeouts queueing up
-
-        if (!timeouts[prefix]) {
-            timeouts[prefix] = $timeout(function () {
-                flags[prefix] = null;
-                timeouts[prefix] = null;
-            }, flaggingDurationMs);
+        if (reset) {
+            flags[prefix] = null;
+            reset = false;
         }
         return true;
     };

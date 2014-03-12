@@ -45,6 +45,15 @@
 .cc-category-grid {
     .cc-list__item {
         border-color: lighten($color-1, 50%);
+
+        @extend %cc-highlight-transition--grid;
+
+        &.cc-highlight--in {
+            @extend %cc-highlight--grid--in;
+        }
+        &.cc-highlight--out {
+            @extend %cc-highlight--grid--out;
+        }
     }
 }
 

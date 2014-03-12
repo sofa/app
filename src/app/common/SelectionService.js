@@ -4,7 +4,7 @@ angular.module('CouchCommerceApp')
 .factory('selectionService', function () {
 
     var self = {},
-        HIGHLIGHT_CLS = 'cc-highlight',
+        HIGHLIGHT_CLS = 'cc-highlight--in',
         containerMap = {};
 
     var assertContainer = function (containerKey) {

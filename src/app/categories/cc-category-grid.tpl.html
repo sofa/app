@@ -13,11 +13,11 @@
         </div>
 
         <ul class="cc-category-grid">
-            <li ng-repeat="category in category.children" class="cc-list__item">
+            <li ng-repeat="category in category.children"
+                ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
+                ng-click="goToCategory(category, $event)" class="cc-list__item">
 
-                <div class="cc-category-item"
-                     ng-click="goToCategory(category, $event)"
-                     ng-class="{ 'cc-highlight': backStepHighlightService.isHighlighted(category) }">
+                <div class="cc-category-item">
 
                     <div class="cc-category-item__media-wrapper">
                         <div class="cc-category-item__media" style="background-image: url({{ category.image }})"></div>
