@@ -162,8 +162,9 @@ angular.module('CouchCommerceApp', [
     $urlRouterProvider.otherwise('/');
 })
 //just to kick off the services
-.run(['stateChangeService', 'viewClassService', function () { } ])
+.run(['stateChangeService', 'viewClassService', 'backStepHighlightService', function () { } ])
 .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
+
 
     //Todo: Check what can be moved over to the MainController
     //Most things can, but things like language keys, when used from within
