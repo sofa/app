@@ -193,6 +193,12 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
     & + .cc-select-box {
         margin-top: 6px;
     }
+
+    .cc-select-box__display-value {
+        // full-width minus icon width, for those who can handle calc()
+        width: -webkit-calc(100% - 50px);
+        width:         calc(100% - 50px);
+    }
 }
 /*  ===========================================================================
     MEDIA-QUERY-SAVE @extend
