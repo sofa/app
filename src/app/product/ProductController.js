@@ -14,9 +14,6 @@ angular.module('CouchCommerceApp')
 
     //yep, that's a hack to trick our cc-go-up-control. Seems reasonable though.
     $scope.upCategory = { parent: category };
-
-    //the scope price will be updated when variants change
-    $scope.price = product.price;
     $scope.images = product.getAllImages();
 
     $scope.$sce = $sce;
@@ -28,7 +25,7 @@ angular.module('CouchCommerceApp')
 
     //update the price when the selected variant changes
     $scope.$watch('variants.selectedVariant', function (variant) {
-        $scope.price = variant && variant.price !== undefined ? variant.price : $scope.product.price;
+        $scope.selectedVariant = variant;
         if (variant && variant.images && variant.images[0]) {
             $scope.images = variant.images;
             $scope.selectedImage = $scope.images[0];
