@@ -15,6 +15,10 @@
         <div bo-if="products.length > 0">
 
             <div class="cc-products__controls">
+                <span ng-if="isTabletSize" class="cc-products__product-count">
+                    <b bo-text="products.length"></b>
+                    <span bo-text="ln.productCountText"></span>
+                </span>
                 <cc-select-box
                         ng-model="sortModel.sortBy"
                         allow-null

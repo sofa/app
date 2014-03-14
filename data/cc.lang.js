@@ -11,6 +11,7 @@ cc.Lang = {
     productTaxText:'inkl. {tax}% MwSt.',
     productDetails:'Information',
     productSpecifications:'Details',
+    productCountText:'Produkte',
     cartIsEmpty:'Ihr Warenkorb ist leer',
     cartInformation:'Information',
     cartQtyLabel:'Anzahl',
