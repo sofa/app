@@ -18,7 +18,7 @@
     }
 
     .cc-product-buy-box__sold-out {
-        @extend %cc-button-base;
+        @extend .cc-couch-action-button;
         @extend %theme-add-to-cart-button--base;
         @extend %cc-button-base--disabled;
     }

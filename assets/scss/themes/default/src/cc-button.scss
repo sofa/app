@@ -16,12 +16,18 @@
     width: 100%;
 }
 
-.cc-button-base--disabled, %cc-button-base--disabled {
-    opacity: 0.5;
-    cursor: default;
-    pointer-events: none;
-}
+.cc-couch-default-button{
+    @extend %cc-button-base;
 
+    color: $color-1;
+    background: $color-6;
+    border: 0;
+    box-shadow: 0 $theme-box-shadow-width 0 darken($color-6, 20%);
+
+    &:active, &.ng-click-active{
+        background:  darken($color-6, 10%);
+    }
+}
 .cc-couch-action-button{
     @extend %cc-button-base;
 
@@ -35,6 +41,12 @@
     }
 }
 
+.cc-button-base--disabled, %cc-button-base--disabled {
+    background: change_color($color-2, $saturation:33%);
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+}
 .cc-couch-action-button--stretched{
     @extend .cc-couch-action-button;
     @extend %cc-button-base--stretched;
@@ -48,19 +60,6 @@
 .cc-couch-action-button--disabled--stretched{
     @extend .cc-couch-action-button--disabled;
     @extend %cc-button-base--stretched;
-}
-
-.cc-couch-default-button{
-    @extend %cc-button-base;
-
-    color: $color-1;
-    background: $color-6;
-    border: 0;
-    box-shadow: 0 $theme-box-shadow-width 0 darken($color-6, 20%);
-
-    &:active, &.ng-click-active{
-        background:  darken($color-6, 10%);
-    }
 }
 
 .cc-couch-default-button--stretched{
