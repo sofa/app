@@ -1,0 +1,43 @@
+<div cc-scroller-announcer class="cc-view-wrapper">
+
+    <div class="cc-sticky-view-wrapper">
+
+        <div class="cc-sticky-view-wrapper__content">
+            <cc-inject target="aboveContent"></cc-inject>
+
+            <div class="cc-pages__header-block">
+                <div class="cc-pages__up-nav">
+                    <cc-go-back-button>
+                        <i class="cc-go-back-button__icon"></i>
+                        <span class="cc-go-back-button__text" ng-bind="ln.back"></span>
+                    </cc-go-back-button>
+                </div>
+                <div class="cc-pages__header">
+                    <h1 class="cc-title--huge" ng-bind="pagesVm.page.title"></h1>
+                </div>
+            </div>
+
+            <cc-inject target="beneathTitle"></cc-inject>
+
+            <div class="cc-pages__content-box">
+                <div ng-bind-html="pagesVm.page.content"></div>
+                <div ng-if="pagesVm.page.content">
+                    <a class="cc-pages__send-as-mail" href="{{pagesVm.mailTo}}" ng-bind="ln.sendCmsMail"></a>
+                </div>
+            </div>
+
+            <div ng-if="pagesVm.isLoading" class="cc-pages__loading-box">
+                <cc-loading-spinner class="cc-pages__loading-box-spinner"></cc-loading-spinner>
+            </div>
+
+            <div ng-include="tpl.404" ng-if="!pagesVm.page.content && !pagesVm.isLoading"></div>
+
+        </div>
+
+        <div class="cc-sticky-view-wrapper__footer">
+            <cc-inject target="aboveFooter"></cc-inject>
+            <cc-footer></cc-footer>
+            <cc-inject target="beneathFooter"></cc-inject>
+        </div>
+    </div>
+</div>

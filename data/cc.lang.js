@@ -125,7 +125,7 @@ cc.Lang = {
     noShippingMethodsAvailable: 'Für Ihre Versandadresse oder Zahlungssart konnten keine Lieferarten gefunden werden.',
     welcomeText: 'Willkommen im Couch Demo Shop',
     showDesktopView:'Desktop Version',
-
+    sendCmsMail: 'Als E-Mail senden',
 
     promotionCodeHint: 'Gutscheincode eingeben',
     promotionCode: 'Gutscheincode',
