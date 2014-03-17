@@ -1,7 +1,32 @@
+// Basics
+$theme-header__height: 56px;
+$theme-header__icon-font-size: 21px;
+$theme-header__element-height: 44px;
+
+// Header Box
+$theme-header__padding-x:      4px;
+$theme-header__padding-y:      6px;
+$theme-header__paddings:       $theme-header__padding-y $theme-header__padding-x;
+$theme-header__shadow-size:    $theme-box-shadow-width;
+
+// Header Icons
+$theme-header__icon-width:         $theme-header__element-height;
+$theme-header__icon-height:        $theme-header__element-height;
+$theme-header__icon-line-height:   $theme-header__element-height;
+
+// Header Icon Badges
+$theme-header__icon-badge-font-size:    12px;
+$theme-header__icon-badge-border-width: 2px;
+
+// Logo
+$theme-header__logo-height:    $theme-header__element-height;
+$theme-header__logo-big:       $logo-big;
+$theme-header__logo-small:     $logo-small;
+
 // The header is special. We need to make sure it works with all kinds of logos
 // and even when the toolbar is set to white.
-$theme-header-icon-color: $color-6;
-$theme-header-icon-background-color: tint($color-2, 25%);
+$theme-header-icon-color: $theme-color-light;
+$theme-header-icon-background-color: $theme-color-accent__tinted--25;
 
 $theme-header-icon-color-lightness: lightness($theme-header-icon-color);
 $theme-header-icon-background-color-lightness: lightness($theme-header-icon-background-color);
@@ -15,19 +40,54 @@ $theme-header-icon-background-color-lightness: lightness($theme-header-icon-back
 }
 
 .cc-header {
-    background: $color-2;
-    box-shadow: 0 $cc-header__shadow-size-y 0 darken($color-2, 15%);
+    background: $theme-color-accent;
+    padding: $theme-header__paddings;
+    box-shadow: 0 $theme-header__shadow-size 0 $theme-color-accent__darker--10;
 }
 
 .cc-header__icon {
     color: $theme-header-icon-color;
     background: $theme-header-icon-background-color;
-    box-shadow: 0 1px 0 0 darken($color-2, 15%);
-    border-radius: $cc-header__icon-border-radius;
+    box-shadow: 0 1px 0 0 $theme-color-accent__darker--20;
+    border-radius: $theme-border-radius--basic;
 }
 
 .cc-header__icon-badge {
-    background: $color-1;
-    color: $color-6;
-    border:$cc-header__icon-badge-border-width solid $color-6;
+    background: $theme-color-dark;
+    color: $theme-color-light;
+    border:$theme-header__icon-badge-border-width solid $theme-color-light;
+}
+
+
+.cc-header__icon-wrapper--left {
+    margin-right: $theme-header__padding-x;
+}
+
+.cc-header__icon-wrapper--right {
+    margin-left: $theme-header__padding-x;
+}
+
+.cc-header__icon {
+    width: $theme-header__icon-width;
+    height: $theme-header__icon-height;
+    line-height: $theme-header__icon-line-height;
+    font-size: $theme-header__icon-font-size;
+}
+
+.cc-header__icon-badge {
+    top: -($theme-header__padding-y - 1px);
+    right: -($theme-header__padding-x - 1px);
+    font-size: $theme-header__icon-badge-font-size;
+    line-height: ($theme-header__icon-badge-font-size * 2) - ($theme-header__icon-badge-border-width * 2);
+    min-width: $theme-header__icon-badge-font-size * 2;
+    border-radius: $theme-header__icon-badge-font-size;
+}
+
+.cc-header__logo {
+    height: $theme-header__logo-height;
+    background-image: $theme-header__logo-small;
+
+    @include breakpoint(wide) {
+        background-image: $theme-header__logo-big;
+    }
 }

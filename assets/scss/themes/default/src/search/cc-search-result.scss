@@ -1,16 +1,40 @@
+$theme-search-result__top:                     $theme-header__height + $theme-header__shadow-size;
+$theme-search-result__image-size:              50px;
+// this should match the product images' background color:
+$theme-search-result__image-background-color:  $theme-color-light;
+
 .cc-search-result__group-header {
-    border-bottom: 1px solid lighten($color-1, 50%);
-    background: darken($color-6, 7.5%);
+    border-bottom: 1px solid $theme-color-dark;
+    background: $theme-color-dark__tinted--20;
+    color: $theme-color-light;
+}
+
+.cc-search-result {
+    top: $theme-search-result__top;
+
+    .cc-view-wrapper {
+        background-color: $theme-color-dark;
+    }
 }
 
 .cc-search-result__item {
-    background: darken($color-6, 2.5%);
+    background: $theme-color-light;
 }
 
 .cc-search-result__item-text-wrapper {
-    border-top:1px solid $color-4;
+    border-top:1px solid $theme-color-dark__lighter--50;
 }
 
 .cc-search-result__item-icon {
-    color: lighten($color-1, 50%);
+    color: $theme-color-dark__lighter--50;
+}
+
+.cc-search-result__item-image-wrapper {
+    width: $theme-search-result__image-size;
+
+    .cc-search-result__item-image {
+        width: $theme-search-result__image-size;
+        height: $theme-search-result__image-size;
+        background-color: $theme-search-result__image-background-color;
+    }
 }

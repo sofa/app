@@ -6,7 +6,7 @@
     }
 
     .cc-thumbnail-bar__item--active {
-        box-shadow: 0 -2px 0 $color-2, 0 2px 0 $color-2;
+        box-shadow: 0 -2px 0 $theme-color-accent, 0 2px 0 $theme-color-accent;
     }
 
 }
@@ -29,5 +29,5 @@
 }
 
 .cc-variant-selector {
-    background: darken($color-6, 10%);
+    background: $theme-color-light__darker--10;
 }

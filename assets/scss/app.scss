@@ -5,9 +5,6 @@
 @import '../../node_modules/sofa-base/src/styling/cc-font-awesome.scss';
 //public app configs
 @import 'styleconfig.scss';
-//component configs
-@import '../../node_modules/sofa-base/src/directives/ccSelectBox/cc-select-box-config.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-text-box-config.scss';
 
 //theme config
 @import 'themes/default/theme-config.scss';
@@ -42,7 +39,6 @@
 @import '../../src/app/common/totalbox/cc-cart-total-panel.scss';
 @import '../../src/app/common/footer/cc-footer.scss';
 @import '../../src/app/common/404/cc-404.scss';
-@import '../../src/app/common/contentbox/cc-content-box.scss';
 @import '../../src/app/common/contextviews/cc-context-view.scss';
 @import '../../vendor/snap/angular-snap.scss';
 @import '../../src/app/common/sidemenu/cc-side-menu.scss';
@@ -56,7 +52,6 @@
 @import '../../src/app/product/cc-product-wide.scss';
 @import '../../src/app/cart/cc-cart.scss';
 @import '../../src/app/cart/cc-paypal-overlay.scss';
-@import '../../src/app/checkout/cc-checkout.scss';
 @import '../../src/app/summary/cc-summary.scss';
 @import '../../src/app/trustedshops/cc-trusted-shops.scss';
 @import '../../src/app/search/cc-search-box.scss';

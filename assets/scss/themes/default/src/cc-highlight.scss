@@ -1,5 +1,3 @@
-$theme-highlight__background-color--base: change_color(complement($color-2), $lightness: 80%);
-$theme-highlight__background-color: tint($theme-highlight__background-color--base, 33%);
 
 // List Highlighting
 
@@ -16,7 +14,7 @@ $theme-highlight__background-color: tint($theme-highlight__background-color--bas
 }
 
 %cc-highlight--list {
-    background: $theme-highlight__background-color;
+    background: $theme-color-highlight;
 }
 
 %cc-highlight--list--in {
@@ -32,10 +30,10 @@ $theme-highlight__background-color: tint($theme-highlight__background-color--bas
 
 @-webkit-keyframes list-highlight--fade-out {
     0% {
-        background: $theme-highlight__background-color;
+        background: $theme-color-highlight;
     }
     66% {
-        background: $theme-highlight__background-color;
+        background: $theme-color-highlight;
     }
     100% {
         background: none;
@@ -43,10 +41,10 @@ $theme-highlight__background-color: tint($theme-highlight__background-color--bas
 }
 @keyframes list-highlight--fade-out {
     0% {
-        background: $theme-highlight__background-color;
+        background: $theme-color-highlight;
     }
     66% {
-        background: $theme-highlight__background-color;
+        background: $theme-color-highlight;
     }
     100% {
         background: none;
@@ -73,7 +71,7 @@ $theme-highlight__background-color: tint($theme-highlight__background-color--bas
     @extend %cc-highlight--grid;
 
     &:after {
-        border-color: $theme-highlight__background-color;
+        border-color: $theme-color-highlight;
     }
 }
 
@@ -90,10 +88,10 @@ $theme-highlight__background-color: tint($theme-highlight__background-color--bas
 
 @-webkit-keyframes grid-highlight--fade-out {
     0% {
-        border-color: $theme-highlight__background-color;
+        border-color: $theme-color-highlight;
     }
     66% {
-        border-color: $theme-highlight__background-color;
+        border-color: $theme-color-highlight;
     }
     100% {
         border-color: transparent;
@@ -101,10 +99,10 @@ $theme-highlight__background-color: tint($theme-highlight__background-color--bas
 }
 @keyframes grid-highlight--fade-out {
     0% {
-        border-color: $theme-highlight__background-color;
+        border-color: $theme-color-highlight;
     }
     66% {
-        border-color: $theme-highlight__background-color;
+        border-color: $theme-color-highlight;
     }
     100% {
         border-color: transparent;

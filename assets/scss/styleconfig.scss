@@ -1,48 +1,30 @@
 
-// CouchDemoShop
-//dark purple grey
+// Three Color Theme
+
+// dark purple grey
 $color-1: hsla(276, 10%, 28%, 1);
 
-//couch red
-$color-2: hsla(350, 60%, 57%, 1);
-
-//sunny orange
-$color-3: hsla(7, 65%, 67%, 1);
-
-//sand
-$color-4: hsla(28, 25%, 90%, 1);
-
-//light spring green
-$color-5: hsla(153, 21%, 79%, 1);
-
-//white
+// white
 $color-6: hsla(0, 0%, 100%, 1);
+
+// couch red
+$color-2: hsla(350, 60%, 57%, 1);
 
 // Some other color schemes for testing
 // Arktis
-//$color-1: #333344;
-//$color-2: #1f69b2;
-//$color-3: #f1ac09;
-//$color-4: #fffefe;
-//$color-5: #fdf4db;
-//$color-6: #ffffff;
+//$theme-color-dark: #333344;
+//$theme-color-light: #ffffff;
+//$theme-color-accent: #1f69b2;
 
 // RumDepot
-//$color-1: #4f4f4f;
-//$color-2: #613400;
-//$color-3: #ffcd83;
-//$color-4: #ece5df;
-//$color-5: #e4e6e9;
-//$color-6: #ffffff;
+//$theme-color-dark: #4f4f4f;
+//$theme-color-light: #ffffff;
+//$theme-color-accent: #613400;
 
 // Samova
-//$color-1: #49404f;
-//$color-2: #000000;
-//$color-3: #980802;
-//$color-4: #f2f2f2;
-//$color-5: #dfdfdf;
-//$color-6: #ffffff;
-
+//$theme-color-dark: #49404f;
+//$theme-color-light: #ffffff;
+//$theme-color-accent: #000000;
 
 $logo-small: url(../images/logo_small.png);
 $logo-big: url(../images/logo_big.png);

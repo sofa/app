@@ -44,7 +44,7 @@
 
 .cc-category-grid {
     .cc-list__item {
-        border-color: lighten($color-1, 50%);
+        border-color: $theme-color-dark__lighter--50;
 
         @extend %cc-highlight-transition--grid;
 
@@ -80,7 +80,7 @@
 
 .cc-category-item__info-wrapper {
     padding:6px 10px;
-    background: darken($color-6, 5%);
+    background: $theme-color-light__darker--05;
 }
 
 .cc-category-item__title {

@@ -3,6 +3,7 @@
 @import 'src/libs/ccPrice/cc-price.scss';
 @import 'src/libs/ccThumbnailBar/cc-thumbnail-bar.scss';
 @import 'src/libs/ccZippy/cc-zippy.scss';
+@import 'src/libs/ccLazyValidation/cc-lazy-validation.scss';
 
 @import 'src/cc-button.scss';
 @import 'src/cart/cc-cart.scss';
@@ -17,22 +18,23 @@
 @import 'src/common/footer/cc-footer.scss';
 @import 'src/libs/ccFooterLinks/cc-footer-links.scss';
 @import 'src/common/contextviews/cc-context-views.scss';
+@import 'src/search/cc-search-box.scss';
 @import 'src/search/cc-search-result.scss';
 @import 'src/checkout/cc-checkout.scss';
 @import 'src/summary/cc-summary.scss';
 
 body{
     font-family: $cc-font-default;
-    background: $cc-background-color;
+    background: $theme-color-light;
     line-height: 1.2em;
 }
 
 a {
-    color:$color-2;
+    color:$theme-color-accent;
 }
 
 .snap-content {
-    background: $cc-background-color;
+    background: $theme-color-light;
     box-shadow: rgba(0, 0, 0, 0.33) 0 0 24px 0;
 }
 
@@ -41,11 +43,11 @@ a {
 }
 
 .cc-modal{
-    color: $cc-background-text-color;
+    color: $theme-color-dark__tinted--20;
 }
 
 .cc-modal--solid{
-    background: $cc-background-color;
+    background: $theme-color-light;
 }
 
 .cc-title--huge {
@@ -55,61 +57,31 @@ a {
 
 .cc-side-menu {
     .cc-category-tree-view__category-entry--active {
-        background: $color-2;
+        background: $theme-color-accent;
     }
 }
 
 .cc-text-box {
+    border-radius: $theme-border-radius--basic;
+
     &:focus {
         box-shadow: none;
-        border-color: lighten($color-1, 33%);
+        border-color: $theme-color-dark__lighter--33;
     }
 }
 
 .cc-form-label--required {
     font-weight: 400;
-    color: $color-1;
+    color: $theme-color-dark;
 }
 .cc-form-label--optional {
-    color: tint($color-1, 50%);
-}
-
-.cc-validation__message--fail {
-    width:100%;
-    margin:3px 0 0 0;
-    background: #DFC05E;
-    border-radius: $cc-primary-border-radius;
-
-    &:before {
-        border-bottom-color: #DFC05E;
-    }
-}
-.cc-validation__message--success {
-    @extend .fa;
-    @extend .fa-check-square;
-
-    right:10px;
-    color:#78C228;
-}
-
-.cc-tooltip--info {
-    background: #DFC05E;
-
-    &:before {
-        border-bottom-color:#DFC05E;
-    }
-}
-
-input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
-    -webkit-box-shadow: inset 0 2px $cc-check-box__border-color;
-    box-shadow: inset 0 2px $cc-check-box__border-color;
-    border:1px solid lighten($color-1, 33%);
+    color: $theme-color-dark__tinted--50;
 }
 
 // This is a modal class to overwrite some default bootstrap properties
 // and is separate from the couch modal which is used in the search, among others.
 .cc-bootstrap-modal {
-    background: $cc-background-color;
+    background: $theme-color-light;
 }
 
 .cc-go-up-button,
@@ -138,7 +110,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 }
 
 .cc-view-wrapper {
-    color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);
+    color: hsla($theme-color-dark-h, $theme-color-dark-s, $theme-color-dark-l, 0.8);
 }
 
 .cc-info-box{
@@ -164,13 +136,13 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 //not sure yet where would be the best location for this kind of component bootstrapping
 @include cc-select-box($cc-select-box__name: 'cc-select-box',
                        $cc-select-box__modifier: '',
-                       $cc-select-box__background: $color-6,
-                       $cc-select-box__color: $color-1,
+                       $cc-select-box__background: $theme-color-light,
+                       $cc-select-box__color: $theme-color-dark,
                        $cc-select-box__font-size: 1rem,
                        $cc-select-box__height: 44px,
-                       $cc-select-box__border-radius: $cc-primary-border-radius,
-                       $cc-select-box__border-color: darken($color-6, 20%),
-                       $cc-select-box__border-bottom-width: $cc-border-bottom-width);
+                       $cc-select-box__border-radius: $theme-border-radius--basic,
+                       $cc-select-box__border-color: $theme-color-light__darker--20,
+                       $cc-select-box__border-bottom-width: 2px);
 
 .cc-select-box {
     .cc-select-box__select-icon {
@@ -209,8 +181,8 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 
 // save @extend for up-nav container
 @mixin up-nav--generic {
-    background: $color-1;
-    color: lighten($color-1, 50%);
+    background: $theme-color-dark;
+    color: $theme-color-dark__lighter--50;
 }
 %up-nav--generic {
     @include up-nav--generic;
@@ -238,8 +210,8 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 @mixin main-headline--generic {
     line-height: 36px;
     padding: 6px 10px;
-    background: $color-1;
-    color: $color-6;
+    background: $theme-color-dark;
+    color: $theme-color-light;
 }
 %main-headline--generic {
     @include main-headline--generic;
@@ -275,7 +247,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
 @mixin go-up-control--wide {
     @include breakpoint(wide) {
         margin:0;
-        color: darken($color-6, 20%);
+        color: $theme-color-light__darker--20;
         font-size: 1rem;
     }
 }
@@ -290,7 +262,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
             margin:0;
             font-size: 1.5rem;
             vertical-align: top;
-            background: lighten($color-1, 10%);
+            background: $theme-color-dark__lighter--10;
             box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
             border-radius: 3px 0 0 3px;
         }
@@ -302,7 +274,7 @@ input[type="checkbox"]:focus + .topcoat-checkbox__checkmark:before {
         @include breakpoint(wide) {
             @extend %go-up-control--wide__content-helper;
 
-            background: lighten($color-1, 10%);
+            background: $theme-color-dark__lighter--10;
             padding: 0 20px 0 10px;
             text-align: left;
             margin-left: -4px;

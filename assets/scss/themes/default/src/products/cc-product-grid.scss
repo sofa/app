@@ -1,11 +1,11 @@
 
 .cc-products__list {
-    color: lighten($color-1, 20%);
-    border-color: lighten($color-1, 50%);
+    color: $theme-color-dark__lighter--10;
+    border-color: $theme-color-dark__lighter--50;
 
     .cc-list__item {
-        border-color: lighten($color-1, 50%);
-        background-color: $color-6;
+        border-color: $theme-color-dark__lighter--50;
+        background-color: $theme-color-light;
 
         @extend %cc-highlight-transition--grid;
 
@@ -18,7 +18,7 @@
     }
 
     .cc-product-item__info-wrapper {
-        background: darken($color-6, 5%);
+        background: $theme-color-light__darker--05;
     }
 
     .cc-product-item__base-price-info {
@@ -26,7 +26,7 @@
     }
 
     .cc-product-item__title {
-        color: $color-1;
+        color: $theme-color-dark;
     }
 
     .cc-price__price {
@@ -84,7 +84,7 @@
 
 .cc-products__controls {
     padding:10px 6px;
-    background-color: darken($color-6, 5%);
+    background-color: $theme-color-light__darker--05;
 }
 .cc-products__product-count {
     float:left;

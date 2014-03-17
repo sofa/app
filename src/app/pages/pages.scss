@@ -1,24 +1,13 @@
-.cc-pages__send-as-mail{
+.cc-pages__send-as-mail {
     float: right;
     margin: 8px 8px 0 0;
-    color: $cc-pages__send-as-mail-color;
 }
 
-.cc-pages__send-as-mail:visited{
-    color: $cc-pages__send-as-mail-color;
-}
-
-.cc-pages__loading-box{
-    @extend .cc-content-box--padded;
+.cc-pages__loading-box {
     position: relative;
 }
 
-.cc-pages__loading-box-spinner{
+.cc-pages__loading-box-spinner {
     left: 50%;
     margin-left: -64px;
-}
-
-.cc-pages__content-box{
-    @extend .cc-content-box--padded;
-    color: $cc-pages__content-box-color;
 }

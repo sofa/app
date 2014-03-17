@@ -7,7 +7,7 @@
     @extend %theme-checkout-section;
 
     .cc-title--big {
-        color: $color-1;
+        color: $theme-color-dark;
     }
 }
 
@@ -22,8 +22,8 @@
     .cc-cart-total-panel {
         padding:6px 0 0;
         font-size:inherit;
-        color: lighten($color-1, 50%);
-        background: lighten($color-1, 5%);
+        color: $theme-color-dark__lighter--50;
+        background: $theme-color-dark__lighter--10;
 
         .cc-properties__key {
             padding: 6px 0 6px 10px;
@@ -33,7 +33,7 @@
         }
     }
     .cc-cart-total-panel__grand-total {
-        color: $color-6;
+        color: $theme-color-light;
         padding: 0 0 6px;
     }
 }

@@ -1,5 +1,4 @@
 .cc-header {
-    padding: $cc-header__paddings;
     z-index: 999;
 
     @include flex(0, 0, auto);
@@ -7,36 +6,26 @@
 
 .cc-header__icon-wrapper--left {
     float:left;
-    margin-right: $cc-header__padding-x;
 }
 
 .cc-header__icon-wrapper--right {
     float:right;
-    margin-left: $cc-header__padding-x;
 }
 
 .cc-header__icon {
     position: relative;
     display: inline-block;
     text-align: center;
-    width: $cc-header__icon-width;
-    height: $cc-header__icon-height;
-    line-height: $cc-header__icon-line-height;
-    font-size: $cc-header__icon-font-size;
 
     @extend .cc-button--pressed;
 }
 
 .cc-header__icon-badge {
     position: absolute;
-    top: -($cc-header__padding-y - 1px);
-    right: -($cc-header__padding-x - 1px);
+    top: 0;
+    right: 0;
     text-align: center;
     font-weight: 700;
-    font-size: $cc-header__icon-badge-font-size;
-    line-height: ($cc-header__icon-badge-font-size * 2) - ($cc-header__icon-badge-border-width * 2);
-    min-width: $cc-header__icon-badge-font-size * 2;
-    border-radius: $cc-header__icon-badge-font-size;
 }
 
 .cc-header__icon-badge--cart {
@@ -45,16 +34,9 @@
 
 .cc-header__logo {
     width:33.33333%;
-    height: $cc-header__logo-height;
     margin:0 auto;
 
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
-
-    background-image: $cc-header__logo-small;
-
-    @include breakpoint(wide) {
-        background-image: $cc-header__logo-big;
-    }
 }

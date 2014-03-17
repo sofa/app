@@ -1,7 +1,6 @@
 .cc-search-result {
     position: absolute;
     height: auto;
-    top: $cc-search-result__top;
     bottom: 0;
     left: 0;
     right: 0;
@@ -47,15 +46,11 @@
 
 .cc-search-result__item-image-wrapper {
     @extend %cc-search-result__table-cells;
-    width: $cc-search-result__image-size;
 
     .cc-search-result__item-image {
-        width: $cc-search-result__image-size;
-        height: $cc-search-result__image-size;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: 50% 50%;
-        background-color: $cc-search-result__image-background-color;
     }
 }
 

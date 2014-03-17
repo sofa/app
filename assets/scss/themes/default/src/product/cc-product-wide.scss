@@ -3,12 +3,12 @@
 
     .cc-product__info-block {
         position: relative;
-        background: darken($color-6, 2.5%);
+        background: $theme-color-light__darker--025;
         box-shadow:-1px 0 0 0 rgba(0, 0, 0, 0.15);
     }
 
     .cc-product__primary-info {
-        background: darken($color-6, 10%);
+        background: $theme-color-light__darker--10;
     }
 
     .cc-product-buy-box {

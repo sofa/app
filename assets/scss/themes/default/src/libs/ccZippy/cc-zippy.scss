@@ -1,6 +1,6 @@
 
 .cc-zippy {
-    background: $color-6;
+    background: $theme-color-light;
 }
 .cc-zippy {
     & + .cc-zippy {
@@ -12,8 +12,8 @@
     line-height: 30px;
     font-size: larger;
     padding: 6px 30px 6px 10px;
-    background: darken($color-6, 2.5%);
-    color: $color-1;
+    background: $theme-color-light__darker--025;
+    color: $theme-color-dark;
 }
 
 %cc-zippy-icon {
@@ -22,7 +22,7 @@
     font-size: 30px;
     right: 10px;
     margin-top: 0;
-    color: lighten($color-1, 50%);
+    color: $theme-color-dark__lighter--50;
 
     @include vendor-prefix(transform, translateY(-50%));
 }
@@ -37,8 +37,8 @@
 }
 
 .cc-zippy__content {
-    border-top:2px solid lighten($color-1, 50%);
-    background: $color-6;
+    border-top:2px solid $theme-color-dark__lighter--50;
+    background: $theme-color-light;
     padding:0 10px;
     line-height: 1.35;
 }

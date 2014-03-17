@@ -1,4 +1,0 @@
-$cc-view-wrapper__padding: $cc-primary-padding;
-//this should be smarter so that it works also if $cc-header-base__height is not defined (composability!)
-$cc-view-wrapper__fixed-header-top-padding: $cc-header-base__height;
-$cc-view-wrapper__color: hsla($color-1-h, $color-1-s, $color-1-l, 0.8);

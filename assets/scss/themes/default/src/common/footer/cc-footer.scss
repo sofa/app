@@ -2,14 +2,14 @@ $cc-footer-base__height--wide: 108px; // required for sticky footers to work
 
 
 .cc-footer {
-    background: $color-1;
-    color: $color-6;
+    background: $theme-color-dark;
+    color: $theme-color-light;
 }
 
 .cc-trust-list {
     .cc-trust-list__item {
-        background: lighten($color-1, 10%);
-        border-color: $color-1;
-        border-radius: $cc-primary-border-radius;
+        background: $theme-color-dark__lighter--10;
+        border-color: $theme-color-dark;
+        border-radius: $theme-border-radius--basic;
     }
 }
