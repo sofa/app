@@ -1,30 +1,37 @@
-<div cc-scroller-announcer class=" cc-view-wrapper">
-    <cc-inject target="aboveContent"></cc-inject>
+<div cc-scroller-announcer class="cc-view-wrapper">
 
-    <div bindonce="category" ng-if="category">
+    <div class="cc-sticky-view-wrapper">
 
-        <div class="cc-category__header-block">
-            <div class="cc-category__up-nav" ng-show="category.parent">
-                <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+        <div class="cc-sticky-view-wrapper__content">
+            <cc-inject target="aboveContent"></cc-inject>
+
+            <div bindonce="category" ng-if="category">
+
+                <div class="cc-category__header-block">
+                    <div class="cc-category__up-nav" ng-show="category.parent">
+                        <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+                    </div>
+                    <div class="cc-category__header">
+                        <h1 class="cc-title--huge" bo-text="headline"></h1>
+                    </div>
+                </div>
+
+                <ul class="cc-category-list">
+                    <li ng-repeat="category in category.children"
+                        ng-click="goToCategory(category, $event)"
+                        ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
+                        bo-text="category.label"
+                        class="cc-category-list__item">
+                    </li>
+                </ul>
             </div>
-            <div class="cc-category__header">
-                <h1 class="cc-title--huge" bo-text="headline"></h1>
-            </div>
+            <div ng-if="!category" ng-include="tpl.404"></div>
         </div>
 
-        <ul class="cc-category-list">
-            <li ng-repeat="category in category.children"
-                ng-click="goToCategory(category, $event)"
-                ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
-                bo-text="category.label"
-                class="cc-category-list__item">
-            </li>
-        </ul>
+        <div class="cc-sticky-view-wrapper__footer">
+            <cc-inject target="aboveFooter"></cc-inject>
+            <cc-footer></cc-footer>
+            <cc-inject target="beneathFooter"></cc-inject>
+        </div>
     </div>
-    <div ng-if="!category" ng-include="tpl.404"></div>
-
-    <cc-inject target="aboveFooter"></cc-inject>
-    <cc-footer></cc-footer>
-    <cc-inject target="beneathFooter"></cc-inject>
 </div>
-

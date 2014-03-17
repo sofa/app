@@ -1,41 +1,50 @@
 <div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
 
-    <div bindonce="category" ng-if="category" class="cc-push-footer">
-        <cc-inject target="aboveContent"></cc-inject>
+    <div class="cc-sticky-view-wrapper">
 
-        <div class="cc-category__header-block">
-            <div class="cc-category__up-nav" ng-show="category.parent">
-                <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
-            </div>
-            <div class="cc-category__header">
-                <h1 class="cc-title--huge" bo-text="headline"></h1>
-            </div>
-        </div>
+        <div class="cc-sticky-view-wrapper__content">
+            <cc-inject target="aboveContent"></cc-inject>
 
-        <ul class="cc-category-grid">
-            <li ng-repeat="category in category.children"
-                ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
-                ng-click="goToCategory(category, $event)" class="cc-list__item">
+            <div bindonce="category" ng-if="category">
 
-                <div class="cc-category-item">
-
-                    <div class="cc-category-item__media-wrapper">
-                        <div class="cc-category-item__media" style="background-image: url({{ category.image }})"></div>
+                <div class="cc-category__header-block">
+                    <div class="cc-category__up-nav" ng-show="category.parent">
+                        <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
                     </div>
-
-                    <div class="cc-category-item__info-wrapper">
-                        <strong class="cc-category-item__title" bo-text="category.label"></strong>
+                    <div class="cc-category__header">
+                        <h1 class="cc-title--huge" bo-text="headline"></h1>
                     </div>
-
                 </div>
 
-            </li>
-        </ul>
+                <ul class="cc-category-grid">
+                    <li ng-repeat="category in category.children"
+                        ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
+                        ng-click="goToCategory(category, $event)" class="cc-list__item">
+
+                        <div class="cc-category-item">
+
+                            <div class="cc-category-item__media-wrapper">
+                                <div class="cc-category-item__media" style="background-image: url({{ category.image }})"></div>
+                            </div>
+
+                            <div class="cc-category-item__info-wrapper">
+                                <strong class="cc-category-item__title" bo-text="category.label"></strong>
+                            </div>
+
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+
+            <div ng-if="!category" ng-include="tpl.404"></div>
+        </div>
+
+        <div class="cc-sticky-view-wrapper__footer">
+            <cc-inject target="aboveFooter"></cc-inject>
+            <cc-footer></cc-footer>
+            <cc-inject target="beneathFooter"></cc-inject>
+        </div>
     </div>
 
-    <div ng-if="!category" ng-include="tpl.404"></div>
-
-    <cc-inject target="aboveFooter"></cc-inject>
-    <cc-footer></cc-footer>
-    <cc-inject target="beneathFooter"></cc-inject>
 </div>

@@ -20,19 +20,30 @@
     .cc-view-wrapper {
         @extend %cc-scrollable-vertical;
 
-        overflow: auto;
-        height:100%;
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
     }
 }
 
 .cc-has-overflow-support.cc-modern-flexbox {
     .cc-view-wrapper {
         @include flex(1, 1, auto);
-    }
-}
 
-.cc-view-wrapper--unpadded{
-    @extend .cc-view-wrapper;
-    padding-left: 0;
-    padding-right: 0;
+        min-height:100%;
+    }
+
+    .cc-sticky-view-wrapper {
+        @include flexbox;
+        @include flex-direction(column);
+
+        min-height:100%;
+    }
+
+    // together with .cc-view-wrapper__footer this makes the sticky footer work
+    .cc-sticky-view-wrapper__content {
+        @include flex(1);
+    }
 }

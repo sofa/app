@@ -13,9 +13,3 @@ $cc-footer-base__height--wide: 108px; // required for sticky footers to work
         border-radius: $cc-primary-border-radius;
     }
 }
-
-@include breakpoint(wide) {
-    .cc-footer {
-        height:$cc-footer-base__height--wide;
-    }
-}

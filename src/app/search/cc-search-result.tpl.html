@@ -1,5 +1,5 @@
 <div ng-controller="SearchResultController as vm" ng-show="vm.searchUiState.isOpen() && vm.searchUiState.hasResults()" class="cc-content cc-search-result">
-    <div class="cc-view-wrapper--unpadded">
+    <div class="cc-view-wrapper">
         <ul class="cc-search-result__group-list">
             <li class="cc-search-result__group" ng-repeat="result in vm.searchUiState.results">
                 <div

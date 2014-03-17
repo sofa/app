@@ -1,63 +1,67 @@
 <div cc-scroller-announcer bindonce="products" class="cc-view-wrapper">
 
-    <div class="cc-push-footer">
-        <cc-inject target="aboveContent"></cc-inject>
+    <div class="cc-sticky-view-wrapper">
 
-        <div class="cc-products__header-block">
-            <div class="cc-products__up-nav">
-                <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+        <div class="cc-sticky-view-wrapper__content">
+            <cc-inject target="aboveContent"></cc-inject>
+
+            <div class="cc-products__header-block">
+                <div class="cc-products__up-nav">
+                    <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+                </div>
+                <div class="cc-products__header">
+                    <h1 class="cc-title--huge" bo-text="headline"></h1>
+                </div>
             </div>
-            <div class="cc-products__header">
-                <h1 class="cc-title--huge" bo-text="headline"></h1>
-            </div>
-        </div>
 
-        <div bo-if="products.length > 0">
+            <div bo-if="products.length > 0">
 
-            <div class="cc-products__controls">
+                <div class="cc-products__controls">
                 <span ng-if="isTabletSize" class="cc-products__product-count">
                     <b bo-text="products.length"></b>
                     <span bo-text="ln.productCountText"></span>
                 </span>
-                <cc-select-box
-                        ng-model="sortModel.sortBy"
-                        allow-null
-                        choose-text="ln.sortBy"
-                        display-value-exp="'title'"
-                        data="sortModel.sortTypes">
-                </cc-select-box>
+                    <cc-select-box
+                            ng-model="sortModel.sortBy"
+                            allow-null
+                            choose-text="ln.sortBy"
+                            display-value-exp="'title'"
+                            data="sortModel.sortTypes">
+                    </cc-select-box>
+                </div>
+
+                <ul class="cc-products__list">
+                    <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
+                        ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
+                        ng-click="goToProduct(product, $event)" class="cc-list__item">
+
+                        <div class="cc-product-item">
+
+                            <div class="cc-product-item__media-wrapper">
+                                <div class="cc-product-item__media" style="background-image: url({{product.getImage('small')}})"></div>
+                            </div>
+
+                            <div class="cc-product-item__info-wrapper">
+                                <strong class="cc-product-item__title" bo-text="product.name"></strong>
+
+                                <cc-price product="product"></cc-price>
+                                <div class="cc-product-item__base-price-info" ng-bind="productService.getBasePriceInfo(product)"></div>
+                            </div>
+
+                        </div>
+
+                    </li>
+                </ul>
             </div>
 
-            <ul class="cc-products__list">
-                <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
-                    ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
-                    ng-click="goToProduct(product, $event)" class="cc-list__item">
+            <div bo-if="products.length === 0" ng-include="tpl.404_PRODUCTS"></div>
 
-                    <div class="cc-product-item">
-
-                        <div class="cc-product-item__media-wrapper">
-                            <div class="cc-product-item__media" style="background-image: url({{product.getImage('small')}})"></div>
-                        </div>
-
-                        <div class="cc-product-item__info-wrapper">
-                            <strong class="cc-product-item__title" bo-text="product.name"></strong>
-
-                            <cc-price product="product"></cc-price>
-                            <div class="cc-product-item__base-price-info" ng-bind="productService.getBasePriceInfo(product)"></div>
-                        </div>
-
-                    </div>
-
-                </li>
-            </ul>
         </div>
 
-        <div bo-if="products.length === 0" ng-include="tpl.404_PRODUCTS"></div>
-
+        <div class="cc-sticky-view-wrapper__footer">
+            <cc-inject target="aboveFooter"></cc-inject>
+            <cc-footer></cc-footer>
+            <cc-inject target="beneathFooter"></cc-inject>
+        </div>
     </div>
-
-    <cc-inject target="aboveFooter"></cc-inject>
-    <cc-footer></cc-footer>
-    <cc-inject target="beneathFooter"></cc-inject>
-
 </div>

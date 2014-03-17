@@ -16,7 +16,6 @@
 // since those need `position: absolute
 
 .cc-page-wrapper {
-    height:100%;
     position: relative;
 }
 
@@ -27,11 +26,13 @@
 }
 
 .cc-has-overflow-support.cc-modern-flexbox {
-    .cc-main-wrapper,
-    .cc-page-wrapper {
+    .cc-main-wrapper {
         @extend %cc-flex-column;
         @include flex(1);
         height: 100%;
+    }
+    .cc-page-wrapper {
+        @include flex(1);
     }
 }
 
