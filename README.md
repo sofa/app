@@ -4,6 +4,7 @@ This is our App based on our SDK.
 ## Prerequisites
 You need to have the following tools installed globally on you machine:
 
+- node
 - npm
 - bower
 - karma
@@ -16,7 +17,7 @@ Make sure to install Java on your local machine.
 
 Clone the repo via git:
 ```sh
-$ git glone https://github.com/couchcommerce/frontend-spike && cd frontend-spike
+$ git clone https://github.com/couchcommerce/frontend-spike && cd frontend-spike
 ```
 
 Install depencencies:
