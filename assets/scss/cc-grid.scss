@@ -18,6 +18,17 @@ $cc_grid__gutter: 4px !default;
     }
 
 }
+// Adds all required cell classes like:
+// .cc-grid__cell-1-1, .cc-grid__cell-1-3, .cc-grid__cell-3-4, and so on...
+@for $i from 1 through $cc_grid__max_cols {
+
+    @for $n from 1 through $i {
+
+        .cc-grid__cell--#{$n}-#{$i} {
+            @extend %cc-grid__cell;
+        }
+    }
+}
 
 .cc-grid--fixed {
 
@@ -28,7 +39,6 @@ $cc_grid__gutter: 4px !default;
         @for $n from 1 through $i {
 
             .cc-grid__cell--#{$n}-#{$i} {
-                @extend %cc-grid__cell;
 
                 @if ($i - $n != 0) {
                     width: percentage($n / $i);
@@ -40,21 +50,12 @@ $cc_grid__gutter: 4px !default;
 
 @include breakpoint(wide) {
 
-    // The same as above, but included in this media query to work in
-    // future releases of SASS
-    %cc-grid__cell--wide {
-        width: 100%;
-        float: left;
-        padding-left:$cc_grid__gutter;
-    }
-
     // Adds all required cell classes. The same styling as inside the fixed grid
     @for $i from 1 through $cc_grid__max_cols {
 
         @for $n from 1 through $i {
 
             .cc-grid__cell--#{$n}-#{$i} {
-                @extend %cc-grid__cell--wide;
 
                 @if ($i - $n != 0) {
                     width: percentage($n / $i);
