@@ -145,6 +145,7 @@ cc.Lang = {
     tsButtonTitle: "Geprüfte Sicherheit",
 
     //search
+    productSearchPlaceholder: "Produktname",
     searchProductFoundIn:'Produkt gefunden in',
     searchProductsFoundIn:'Produkte gefunden in',
     searchNotFound: 'Keine Ergebnisse gefunden.',

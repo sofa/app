@@ -25,25 +25,6 @@
     float:right;
 }
 
-.cc-search-box__input-wrapper {
-    position: relative;
-}
-
-.cc-search-box__input {
-    @extend .cc-text-box;
-
-    margin: 0;
-    width: 100%;
-    padding: 0 10px 0 30px;
-}
-
-.cc-search-box__input-search-icon {
-    position: absolute;
-    font-size: 16px;
-    top: 0;
-    left:10px;
-}
-
 .cc-search-no-result {
     text-align: center;
 }

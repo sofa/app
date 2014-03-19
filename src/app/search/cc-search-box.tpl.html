@@ -2,13 +2,9 @@
     <i class="cc-search-box__close fa fa-angle-up" ng-click="searchUiState.abort()"></i>
 
     <div class="cc-search-box__input-wrapper">
-        <i class="cc-search-box__input-search-icon fa fa-search"></i>
-        <input
-            ng-model="searchUiState.searchTerm"
-            class="cc-search-box__input"
-            type="search"
-            cc-ios-input-focus-fix>
+        <cc-search-field ng-model="searchUiState.searchTerm" placeholder-text="ln.productSearchPlaceholder" focus="searchUiState.isOpen()"></cc-search-field>
     </div>
+
 </div>
 
 <div class="cc-modal"
