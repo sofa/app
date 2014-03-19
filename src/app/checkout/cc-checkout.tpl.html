@@ -52,12 +52,9 @@
 
         <section class="cc-checkout__address--billing">
 
-            <div class="cc-warning-box" ng-show="displayEmptyShippingMethodsMessage">{{ln.noShippingMethodsAvailable}}</div>
+            <div class="cc-error-box--iconic" ng-show="displayEmptyShippingMethodsMessage" ng-bind="ln.noShippingMethodsAvailable"></div>
 
-            <div class="cc-info-box" ng-show="checkoutModel.surchargeHint">
-                <i class="fa fa-exclamation-sign"></i>
-                {{ checkoutModel.surchargeHint }}
-            </div>
+            <div class="cc-message-box--warning--iconic" ng-show="checkoutModel.surchargeHint" ng-bind="checkoutModel.surchargeHint"></div>
 
             <h3 bo-text="ln.billingAddress"></h3>
 
@@ -337,8 +334,8 @@
         </section>
 
         <section class="cc-checkout__navigation">
+            <div class="cc-message-box--warning" ng-if="!canProceed()" bo-text="ln.checkoutProceedInfo"></div>
             <a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'" bo-text="ln.nextStep"></a>
-            <span class="cc-tooltip--info" ng-if="!canProceed()" bo-text="ln.checkoutProceedInfo"></span>
         </section>
     </div>
 

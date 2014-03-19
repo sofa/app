@@ -70,6 +70,11 @@ a {
     }
 }
 
+// Override for sofa placeholder
+%cc-message-box--base {
+    border-radius: $theme-border-radius--basic;
+}
+
 .cc-form-label--required {
     font-weight: 400;
     color: $theme-color-dark;
@@ -110,27 +115,7 @@ a {
 }
 
 .cc-view-wrapper {
-    color: hsla($theme-color-dark-h, $theme-color-dark-s, $theme-color-dark-l, 0.8);
-}
-
-.cc-info-box{
-    background: $cc-info-area-background-color;
-    color: $cc-info-area-text-color;
-    border: 1px solid $cc-info-area-text-color;
-}
-
-.cc-warning-box {
-    background: $cc-warning-background-color;
-    color: $cc-warning-text-color;
-    border: 1px solid $cc-warning-text-color;
-}
-
-.cc-tooltip--info {
-    @extend .cc-tooltip;
-
-    color:#fff;
-    margin:3px 0 0 0;
-    border-radius: $cc-primary-border-radius;
+    color: $theme-color-dark__tinted--20;
 }
 
 //not sure yet where would be the best location for this kind of component bootstrapping
