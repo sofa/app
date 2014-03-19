@@ -2,11 +2,6 @@
 .cc-zippy {
     background: $theme-color-light;
 }
-.cc-zippy {
-    & + .cc-zippy {
-        margin-top: 2px;
-    }
-}
 
 .cc-zippy__caption {
     line-height: 30px;
