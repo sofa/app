@@ -3,6 +3,17 @@
 /* global FastClick */
 /* global document */
 
+
+// We have to patch up the old URLs which were without hashbangs to use a hashbang instead.
+// We do that before Angular starts and it has probably no business directly in sofa hence we put it here.
+
+(function () {
+    var url = window.location.toString();
+    if (url.indexOf('#') > - 1) {
+        window.location = url.replace('#', '#!');
+    }
+})();
+
 //we need this to be available in the Angular config phase
 //since Angular does not allow access to services in the config
 //phase, we need to access it as non angular service for now
