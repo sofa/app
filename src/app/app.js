@@ -52,9 +52,15 @@ angular.module('CouchCommerceApp', [
     'chayns',
     'CouchCommerceApp.plugins'
 ])
-.config(function ($stateProvider, $locationProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider) {
+.config(function ($stateProvider, $locationProvider, $urlRouterProvider, screenIndexes, snapRemoteProvider, $provide) {
 
     $locationProvider.html5Mode(true).hashPrefix('!');
+
+    $provide.decorator('$sniffer', function ($delegate) {
+        // let's keep this in for easier debugging of hashbang URL issues
+        // $delegate.history = false;
+        return $delegate;
+    });
 
     snapRemoteProvider.globalOptions.addBodyClasses = true;
     snapRemoteProvider.globalOptions.hyperextensible = false;
