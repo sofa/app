@@ -50,7 +50,7 @@
                 <ul class="cc-properties--block">
                     <li ng-repeat="(key, value) in product.attributes track by key">
                         <span class="cc-properties__key">{{key}}</span>
-                        <span class="cc-properties__value">{{value}}</span>
+                        <span class="cc-properties__value" ng-bind-html="$sce.trustAsHtml(value)"></span>
                     </li>
                 </ul>
             </cc-zippy>
