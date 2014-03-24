@@ -22,7 +22,7 @@
                         <ul class="cc-cart-list" ng-show="!isEmpty">
                             <li ng-repeat="item in items" class="cc-cart-list__item" ng-animate="{ leave: 'fade-out' }">
                                 <div class="cc-cart-list__item-image"
-                                     ng-click="navigationService.navigateToProduct(item.product)"
+                                     ng-click="navigationService.navigateToUrl(item.product.getOriginFullUrl())"
                                      style="background-image: url({{ item.product.getImage('small') }})">
                                 </div>
                                 <div class="cc-cart-list__item-content">

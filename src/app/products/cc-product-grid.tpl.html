@@ -33,9 +33,9 @@
                     <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
                         class="cc-list__item">
 
-                        <a 
+                        <a
                             ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
-                            ng-href="{{getProductUrl(product)}}"
+                            ng-href="{{ product.getOriginFullUrl() }}"
                             ng-click="goToProduct(product, $event)"
                             class="cc-product-item">
 

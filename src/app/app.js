@@ -44,6 +44,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.injectsService',
     'sdk.services.trackingService',
     'sdk.services.requestAnimationFrame',
+    'sdk.services.stateResolverService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',
@@ -66,13 +67,15 @@ angular.module('CouchCommerceApp', [
     snapRemoteProvider.globalOptions.addBodyClasses = true;
     snapRemoteProvider.globalOptions.hyperextensible = false;
 
+    var UNIQUE_URL_PREFIX = '29ad37d2-78e3-428d-9ff4-057acdff42b8/';
+
     var categoryStateConfig = {
         url: '/',
         templateUrl: cc.isTabletSize ? 'categories/cc-category-grid.tpl.html' : 'categories/cc-category-list.tpl.html',
         controller: 'CategoryController',
         screenIndex: screenIndexes.category,
         resolve: {
-            category: ['couchService', '$stateParams', 'navigationService', '$q', function (couchService, $stateParams, navigationService, $q) {
+            category: ['couchService', '$stateParams', 'navigationService', '$q', '$state', function (couchService, $stateParams, navigationService, $q, $state) {
 
                 return couchService
                         .getCategory($stateParams.category)
@@ -81,7 +84,9 @@ angular.module('CouchCommerceApp', [
                             //is intialized. Otherwise we will have double transitions in such
                             //cases.
                             if (category && !category.children) {
-                                navigationService.navigateToProducts(category.urlId);
+                                // the serverside states API does not differentiate between `category` and `products` state. It
+                                // always returns `category` states. It's currently easier for us to just redirect on the clientside
+                                $state.transitionTo('products', { category: category.urlId }, false);
                                 return $q.reject();
                             }
                             return category;
@@ -101,10 +106,10 @@ angular.module('CouchCommerceApp', [
 
     $stateProvider
         .state('categoryempty', categoryStateConfig)
-        .state('category', angular.extend({}, categoryStateConfig, { url: '/cat/:category' }))
+        .state('categories', angular.extend({}, categoryStateConfig, { url: UNIQUE_URL_PREFIX + ':category' }))
 
         .state('products', {
-            url: '/cat/:category/products',
+            url: UNIQUE_URL_PREFIX + ':category',
             templateUrl: 'products/cc-product-grid.tpl.html',
             controller: 'ProductsController',
             resolve: {
@@ -124,7 +129,7 @@ angular.module('CouchCommerceApp', [
         })
 
         .state('product', {
-            url: '/cat/:category/product/:productUrlKey',
+            url: UNIQUE_URL_PREFIX + ':category:productUrlKey',
             templateUrl: cc.isTabletSize ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html',
             controller: 'ProductController',
             resolve: {
@@ -223,24 +228,64 @@ angular.module('CouchCommerceApp', [
             }]
         });
 
-    $stateProvider
-        .state('404', {
-            templateUrl: 'common/404/cc-404.tpl.html'
-        });
 
     $urlRouterProvider.otherwise(function ($injector, $location) {
-        // since we're generating HTML snapshots for search engines
-        // via prerender.io, we have to add this meta tag when the
-        // requested url actually returns a 404 error
-        // https://prerender.io/getting-started#404s
-        var meta = document.createElement('meta');
-        meta.setAttribute('name', 'prerender-status-code');
-        meta.setAttribute('content', '404');
+        var stateResolverService = $injector.get('stateResolverService');
+        var navigationService = $injector.get('navigationService');
+        var $state = $injector.get('$state');
 
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        $location.path('/');
+        stateResolverService
+            .resolveState($location.path())
+            .then(function (state) {
+                $state.transitionTo(state.stateName, state.stateParams, false);
+            }, function () {
+                // since we're generating HTML snapshots for search engines
+                // via prerender.io, we have to add this meta tag when the
+                // requested url actually returns a 404 error
+                // https://prerender.io/getting-started#404s
+                var meta = document.createElement('meta');
+                meta.setAttribute('name', 'prerender-status-code');
+                meta.setAttribute('content', '404');
+                document.getElementsByTagName('head')[0].appendChild(meta);
+
+                navigationService.navigateToRootCategory();
+            });
     });
 })
+.run(['couchService', 'stateResolverService', function (couchService, stateResolverService) {
+    couchService.on('categoryCreated', function (origin, category) {
+
+        if (category.hasChildren) {
+            stateResolverService.registerState({
+                url: category.getOriginFullUrl(),
+                stateName: 'categories',
+                stateParams: {
+                    category: category.urlId
+                }
+            });
+        }
+        else {
+            stateResolverService.registerState({
+                url: category.getOriginFullUrl(),
+                stateName: 'products',
+                stateParams: {
+                    category: category.urlId
+                }
+            });
+        }
+    });
+
+    couchService.on('productCreated', function (origin, product) {
+        stateResolverService.registerState({
+            url: product.getOriginFullUrl(),
+            stateName: 'product',
+            stateParams: {
+                category: product.categoryUrlId,
+                productUrlKey: product.urlKey
+            }
+        });
+    });
+}])
 //just to kick off the services
 .run(['stateChangeService', 'viewClassService', 'backStepHighlightService', 'metaService', function () { } ])
 .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {

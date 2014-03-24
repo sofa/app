@@ -30,9 +30,9 @@ angular.module('CouchCommerceApp')
             .getCategory(category.urlId)
             .then(function (realCategory) {
                 if (!realCategory.children) {
-                    navigationService.navigateToProducts(realCategory.urlId);
+                    navigationService.navigateToUrl(realCategory.getOriginFullUrl());
                 } else {
-                    navigationService.navigateToCategory(realCategory.urlId);
+                    navigationService.navigateToUrl(realCategory.getOriginFullUrl());
                 }
             });
     };

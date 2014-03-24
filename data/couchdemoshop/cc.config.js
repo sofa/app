@@ -1,5 +1,6 @@
 cc.Config = {
     loggingEnabled: true,
+    useShopUrls: false,
     storeCode: '53787',
     storeName: 'CouchDemoShop',
     originalUrl:'http://couchcommerce.shopwaredemo.de/',

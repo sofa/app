@@ -43,10 +43,10 @@ angular.module('CouchCommerceApp')
         };
 
         $scope.navigateToProduct = function (product) {
-            if (urlConstructionService.createUrlForProduct(product) === $location.path()) {
+            if ($location.path().indexOf(product.getOriginFullUrl()) > -1) {
                 closeWishlist();
             } else {
-                navigationService.navigateToProduct(product);
+                navigationService.navigateToUrl(product.getOriginFullUrl());
             }
         };
 

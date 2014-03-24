@@ -1,8 +1,10 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('SearchResultController', function ($scope, searchService, searchUiState, navigationService) {
+angular.module('CouchCommerceApp').controller('SearchResultController', function ($scope, searchService, searchUiState, navigationService, stateResolverService, configService) {
 
     var vm = this;
+
+    var useShopUrls = configService.get('useShopUrls', false);
 
     vm.searchUiState = searchUiState;
     vm.navigationService = navigationService;
@@ -15,14 +17,22 @@ angular.module('CouchCommerceApp').controller('SearchResultController', function
 
     vm.goToCategory = function (result) {
         searchUiState.closeSearch();
-        navigationService.navigateToCategory(result.groupKey);
+        var groupUrl = useShopUrls ? result.groupOriginFullUrl : result.groupKey;
+        navigationService.navigateToUrl(groupUrl);
     };
 
     vm.goToProduct = function (item) {
         searchUiState.closeSearch();
-        navigationService.navigateToProduct({
-            categoryUrlId: item.categoryUrlKey,
-            urlKey: item.productUrlKey
+        var productUrl = useShopUrls ? item.productOriginFullUrl : item.productUrlKey;
+        stateResolverService.registerState({
+            url: productUrl,
+            stateName: 'product',
+            stateParams: {
+                category: item.categoryUrlKey,
+                productUrlKey: item.productUrlKey
+            }
         });
+
+        navigationService.navigateToUrl(productUrl);
     };
 });
