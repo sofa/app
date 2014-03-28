@@ -127,6 +127,7 @@ module.exports = {
             'node_modules/sofa-pages-service/dist/sofa.pagesService.js',
             'node_modules/sofa-checkout-service/dist/sofa.checkoutService.js',
             'node_modules/sofa-couch-service/dist/sofa.couchService.js',
+            'node_modules/sofa-coupon-service/dist/sofa.couponService.js',
             'node_modules/sofa-base/src/core/*.js',
             'node_modules/sofa-base/src/**/*.js',
             'node_modules/sofa-base/dist/cc.angular.templates.js',
