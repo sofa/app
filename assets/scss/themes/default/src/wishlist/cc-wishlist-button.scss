@@ -1,0 +1,36 @@
+.cc-wishlist-button {
+    @extend .fa;
+    @extend .fa-heart-o;
+
+    @extend .cc-couch-default-button;
+
+    display: block;
+    text-align:left;
+    line-height: 44px;
+    padding: 0 10px;
+    color: $theme-color-light__shaded--30;
+    box-shadow:0 2px 0 $theme-color-light__shaded--30;
+
+    &:before {
+        display:inline-block;
+        font-size: 1.5em;
+        margin-right: 10px;
+        vertical-align: top;
+
+        -webkit-transition: color .3s;
+                transition: color .3s;
+    }
+
+    .cc-wishlist-button__text {
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+.cc-wishlist-button.cc-wishlist-button--active {
+    @extend .fa-heart;
+
+    &:before {
+        color: $theme-color-accent;
+    }
+}

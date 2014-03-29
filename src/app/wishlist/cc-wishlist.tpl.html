@@ -1,0 +1,30 @@
+<div class="cc-wishlist" bindonce="ln">
+
+    <div class="cc-wishlist__empty-hint" ng-show="isEmpty">
+        <div class="cc-wishlist__empty-hint-icon"></div>
+        <p bo-text="ln.wishlistEmpty"></p>
+    </div>
+
+    <ul class="cc-wishlist-list" ng-show="!isEmpty">
+        <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item"
+            ng-click="navigationService.navigateToProduct(item.product)"
+            ng-animate="{ leave: 'remove-animation' }">
+
+            <div class="cc-wishlist-list-item__wrapper">
+                <div class="cc-wishlist-list__item-image" style="background-image: url({{ item.product.getImage('small') }})"></div>
+                <div class="cc-wishlist-list__item-content">
+                    <strong class="cc-wishlist-list__item-title" ng-bind="item.product.name"></strong>
+
+                    <span class="cc-wishlist__item-price">
+                        <cc-price product="item.product" selected-variant="item.variant"></cc-price>
+                    </span>
+
+                </div>
+
+                <div class="cc-wishlist-list__item-footer">
+                    <span ng-click="removeItem(item); $event.stopPropagation()" class="cc-wishlist-button--remove"></span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

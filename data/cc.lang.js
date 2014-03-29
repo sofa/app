@@ -6,8 +6,12 @@ cc.Lang = {
     pricePrefixLabel:'',
     priceSuffixLabel:' EUR',
     addToCart:'In den Warenkorb',
-    backToCart:'Zurück zum Warenkorb',          // NEW
-    nextStep:'nächster Schritt',                // NEW
+    addToWishlist:'Merken',
+    removeFromWishlist: 'Gemerkt',
+    backToCart:'Zurück zum Warenkorb',
+    nextStep:'nächster Schritt',
+    wishlist: 'Merkzettel',
+    wishlistEmpty: 'Sie haben zur Zeit keine Artikel auf Ihrem Merkzettel',
     productTaxText:'inkl. {tax}% MwSt.',
     productDetails:'Information',
     productSpecifications:'Details',

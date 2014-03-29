@@ -29,10 +29,7 @@
     }
 
     .cc-price__price {
-        @extend %cc-theme-price;
-
         width: 100%;
-        box-shadow:0 2px 0 $theme-color-light__shaded--30;
     }
 
     .cc-price__price--old {
@@ -51,4 +48,5 @@
 }
 .cc-product-buy-box__info-text {
     font-size: smaller;
+    margin-bottom: 10px;
 }

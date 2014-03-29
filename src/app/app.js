@@ -33,6 +33,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.couchService',
     'sdk.services.navigationService',
     'sdk.services.basketService',
+    'sdk.services.wishlistService',
     'sdk.services.couponService',
     'sdk.services.pagesService',
     'sdk.services.deviceService',

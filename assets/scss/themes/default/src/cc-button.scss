@@ -22,10 +22,10 @@
     color: $theme-color-dark;
     background: $theme-color-light;
     border: 0;
-    box-shadow: 0 $theme-box-shadow-width 0 $theme-color-light__darker--20;
+    box-shadow: 0 $theme-box-shadow-width 0 $theme-color-light__shaded--30;
 
     &:active, &.ng-click-active{
-        background:  $theme-color-light__darker--10;
+        background:  $theme-color-light__darker--05;
     }
 }
 .cc-couch-action-button{

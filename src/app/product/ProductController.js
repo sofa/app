@@ -94,8 +94,7 @@ angular.module('CouchCommerceApp')
     //products tax.
     $scope.productTaxText = $scope.ln.productTaxText.replace(/{\s*tax\s*}/, $scope.product.tax);
 
-    $scope.addToBasket = function (product) {
-
+    $scope.checkVariantsSelected = function (product) {
         if (product.hasVariants() && !$scope.variants.selectedVariant) {
 
             var missingProperties = '';
@@ -109,9 +108,18 @@ angular.module('CouchCommerceApp')
             dialog
                 .messageBox($scope.ln.btnWarning, cc.Lang.missingVariantAttributeText + missingProperties, [{result: 'ok', label: $scope.ln.btnOk}]);
 
+            return false;
+        }
+        return true;
+    };
+
+    $scope.addToBasket = function (product) {
+        if (!$scope.checkVariantsSelected(product)) {
             return;
         }
+
         basketService.addItem(product, 1, $scope.variants.selectedVariant);
         snapRemote.open('right');
     };
+
 });

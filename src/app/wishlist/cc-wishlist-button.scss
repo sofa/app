@@ -1,0 +1,8 @@
+
+.cc-wishlist-button {
+    @extend .fa;
+    @extend .fa-heart-o;
+}
+.cc-wishlist-button--active {
+    @extend .fa-heart;
+}

@@ -1,0 +1,6 @@
+<span class="cc-wishlist-button"
+   ng-class="{'cc-wishlist-button--active': wishlistService.exists(product.urlKey)}"
+   ng-click="toggleItem()">
+    <span class="cc-wishlist-button__text"
+        ng-bind="wishlistService.exists(product.urlKey) ? buttonTextRemove : buttonTextAdd"></span>
+</span>

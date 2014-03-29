@@ -1,0 +1,10 @@
+.cc-wishlist__empty-hint {
+    @extend .cc-cart-empty-hint;
+}
+
+.cc-wishlist__empty-hint-icon {
+    @extend .fa;
+    @extend .fa-4x;
+    @extend .fa-heart-o;
+}
+

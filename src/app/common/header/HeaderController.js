@@ -20,6 +20,10 @@ angular.module('CouchCommerceApp')
         .on('itemRemoved', updateBasketItemCount)
         .on('cleared', updateBasketItemCount);
 
+    $scope.snapCart = function () {
+        snapRemote.toggle('right');
+    };
+
     $scope.showSearch = function () {
         $rootScope.$emit('header.searchButtonClicked');
     };

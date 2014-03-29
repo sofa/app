@@ -8,9 +8,6 @@
     width: 100%;
     overflow: scroll;
 
-    .cc-category-tree-view {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
     .cc-category-tree-view__list-item {
         line-height:24px;
     }
@@ -19,7 +16,7 @@
     }
     .cc-category-tree-view__category-entry {
         padding:8px 10px;
-        border-top:1px solid rgba(255,255,255,.1);
+        border-bottom:1px solid rgba(255,255,255,.1);
     }
     .cc-category-tree-view__category-entry--active {
         background:#8B0000; // darkred
@@ -64,11 +61,47 @@
 }
 
 .cc-side-menu__header {
-    line-height: 18px;
-    padding: 20px 10px;
     background: #333;
-    text-transform: uppercase;
-    letter-spacing: .1em;
+}
+
+.cc-side-menu--navigation {
+    .cc-side-menu-tabs {
+        padding: 0 10px;
+        text-align: left;
+    }
+    .cc-side-menu-tabs-title {
+        text-align: center;
+        padding: 0 10px;
+        line-height: 27px;
+        font-size: small;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+    }
+    .cc-side-menu-tabs__icon {
+        box-shadow:none;
+    }
+}
+
+.cc-side-menu--cart {
+    .cc-side-menu__header {
+        line-height: 18px;
+        padding: 20px 10px;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        text-align: center;
+    }
+}
+
+.cc-side-menu-tabs__icon {
+    @extend .cc-header__icon;
+}
+
+.cc-menu-tabs__icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,.1);
+    line-height: 44px;
+    font-size: 18px;
     text-align: center;
 }
 
@@ -112,6 +145,8 @@
 .snap-drawers,
 .snap-content {
     overflow-x: hidden;
+    -webkit-backface-visibility:hidden;
+            backface-visibility:hidden;
 }
 
 //for the poor folks with Android 2.x or iOS <=4

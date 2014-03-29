@@ -1,6 +1,6 @@
 // Basics
 $theme-header__height: 56px;
-$theme-header__icon-font-size: 21px;
+$theme-header__icon-font-size: 18px;
 $theme-header__element-height: 44px;
 
 // Header Box
@@ -90,4 +90,17 @@ $theme-header-icon-background-color-lightness: lightness($theme-header-icon-back
     @include breakpoint(wide) {
         background-image: $theme-header__logo-big;
     }
+}
+
+.cc-header__icon--sidemenu {
+    @extend .fa;
+    @extend .fa-bars;
+}
+.cc-header__icon--cart {
+    @extend .fa;
+    @extend .fa-shopping-cart;
+}
+.cc-header__icon--search {
+    @extend .fa;
+    @extend .fa-search;
 }

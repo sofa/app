@@ -1,14 +1,14 @@
 <div class="cc-header" ng-controller="HeaderController">
     <div class="cc-header__icon-wrapper--left">
-        <i class="cc-header__icon fa fa-bars" snap-toggle></i>
+        <i class="cc-header__icon cc-header__icon--sidemenu" snap-toggle></i>
     </div>
     <div class="cc-header__icon-wrapper--right">
-        <i class="cc-header__icon fa fa-shopping-cart" ng-click="snapRemote.toggle('right')">
+        <i class="cc-header__icon cc-header__icon--cart" ng-click="snapCart()">
             <span class="cc-header__icon-badge--cart" ng-bind="basketItemCount" ng-show="basketItemCount > 0"></span>
         </i>
     </div>
     <div ng-if="cfg.showSearch" class="cc-header__icon-wrapper--right">
-        <i class="cc-header__icon fa fa-search" ng-click="showSearch()"></i>
+        <i class="cc-header__icon cc-header__icon--search" ng-click="showSearch()"></i>
     </div>
     <div class="cc-header__logo" ng-click="navigationService.navigateToRootCategory()"></div>
 </div>
