@@ -19,7 +19,11 @@
 .cc-has-overflow-support {
     .cc-view-wrapper {
         @extend %cc-scrollable-vertical;
+    }
+}
 
+.cc-has-overflow-support.cc-modern-flexbox {
+    .cc-view-wrapper {
         position: absolute;
         top:0;
         left:0;
