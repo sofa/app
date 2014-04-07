@@ -18,7 +18,7 @@ angular.module('CouchCommerceApp').directive('agreement', function ($rootScope, 
     return {
         restrict: 'A',
         scope: {
-            agreement: '=',
+            agreement: '='
         },
         link: function (scope, $element) {
             //ATTENTION: That's pretty the most shittiest code across the
