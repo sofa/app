@@ -18,7 +18,7 @@ angular.module('CouchCommerceApp').directive('agreement', function ($rootScope, 
     return {
         restrict: 'A',
         scope: {
-            agreement: '='
+            agreement: '=',
         },
         link: function (scope, $element) {
             //ATTENTION: That's pretty the most shittiest code across the
@@ -26,11 +26,12 @@ angular.module('CouchCommerceApp').directive('agreement', function ($rootScope, 
             //easy to deal with and we don't want a breaking change on the
             //backend side.
 
-            var oldLabel = $element.find('span');
+            var oldLabel = $element.find('label');
 
-            //we need to remove the entire label since. Otherwise the bindign
-            //will just remove our hard inserted value.
-            oldLabel.after('<span>' + scope.agreement + '<test>');
+            //we need to create an entire new label. Otherwise the binding
+            //will just remove our hard inserted value. We need to directly
+            //reach out to the checkbox id. Super ugly yep.
+            oldLabel.after('<label for="cc-check-box-' + scope.id + '" class="cc-checkbox__label">' + scope.agreement + '</label>');
 
             oldLabel.remove();
 
