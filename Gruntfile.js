@@ -844,7 +844,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('deploy', [
         'build',
-        'e2e',
+        //'e2e',
         'releaseBranchPre:deploy',
         'compile',
         'set-version',
