@@ -1,17 +1,10 @@
-<div cc-scroller-announcer class="cc-view-wrapper">
+<div class="cc-view-wrapper">
 
     <div class="cc-sticky-view-wrapper">
 
         <div class="cc-sticky-view-wrapper__content">
-            <cc-inject target="aboveContent"></cc-inject>
 
             <div class="cc-pages__header-block">
-                <div class="cc-pages__up-nav">
-                    <cc-go-back-button>
-                        <i class="cc-go-back-button__icon"></i>
-                        <span class="cc-go-back-button__text" ng-bind="ln.back"></span>
-                    </cc-go-back-button>
-                </div>
                 <div class="cc-pages__header">
                     <h1 class="cc-title--huge" ng-bind="page.title"></h1>
                 </div>
@@ -32,12 +25,6 @@
 
             <div ng-include="tpl.404" ng-if="!page.content && !isLoading"></div>
 
-        </div>
-
-        <div class="cc-sticky-view-wrapper__footer">
-            <cc-inject target="aboveFooter"></cc-inject>
-            <cc-footer></cc-footer>
-            <cc-inject target="beneathFooter"></cc-inject>
         </div>
     </div>
 </div>

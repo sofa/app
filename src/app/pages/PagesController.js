@@ -1,20 +1,18 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('PagesController', function CategoryController($scope, $stateParams, $http, pagesService) {
+angular.module('CouchCommerceApp').controller('PagesController', function CategoryController($scope, $stateParams, $http, pagesService, pagesServiceExtension) {
 
-    var pagesVm = this;
-
-    pagesVm.isLoading = true;
+    $scope.isLoading = true;
 
     pagesService
-        .getPage($stateParams.pageId)
+        .getPage(angular.isDefined($stateParams.pageId) ? $stateParams.pageId : pagesServiceExtension.currentPageId)
         .then(function (page) {
-            pagesVm.page = page;
-            pagesVm.mailTo = 'mailto:?subject=' + page.title + '&body=' + page.content;
-            pagesVm.isLoading = false;
-        }, function (err) {
-            pagesVm.isLoading = false;
-            //TODO: show 404 page
-            console.log(err);
+            $scope.page = page;
+            $scope.mailTo = 'mailto:?subject=' + page.title + '&body=' + page.content;
+            $scope.isLoading = false;
+        }, function () {
+            $scope.isLoading = false;
+            // in the template we automatically show a 404 page if the page is empty
+            // and `isLoading` is false.
         });
 });

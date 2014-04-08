@@ -155,7 +155,7 @@ angular.module('CouchCommerceApp', [
         .state('pages', {
             url: '/pages/:pageId',
             templateUrl: 'pages/cc-pages.tpl.html',
-            controller: 'PagesController as pagesVm',
+            controller: 'PagesController',
             screenIndex: screenIndexes.pages
         });
 

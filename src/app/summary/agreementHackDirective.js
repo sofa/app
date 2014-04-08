@@ -1,18 +1,13 @@
 'use strict';
 
-angular.module('CouchCommerceApp').directive('agreement', function ($rootScope, $compile, dialog, pagesService, configService) {
+angular.module('CouchCommerceApp')
+       .directive('agreement', function ($rootScope, $compile, dialog, pagesServiceExtension, configService, contextViewService) {
 
     var showPage = function (pageId) {
-        pagesService
-            .getPage(pageId)
-            .then(function (page) {
-                dialog
-                    .messageBox(
-                        page.title,
-                        page.content,
-                        [{result: 'ok', label: $rootScope.ln.btnOk}]
-                    );
-            });
+
+        pagesServiceExtension.currentPageId = pageId;
+
+        contextViewService.openView('pages/cc-context-pages.tpl.html', 'PagesController');
     };
 
     return {
