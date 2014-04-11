@@ -15,6 +15,7 @@ angular.module('CouchCommerceApp')
     $scope.trustedShopsService = trustedShopsService;
 
     vm.summary = summaryResponse.summary;
-    vm.trustedShopsPaymentIdentifier = trustedShopsService.convertPaymentIdentifier(summaryResponse.response.paymentMethod);
+    /* jslint camelcase: false */
+    vm.trustedShopsPaymentIdentifier = summaryResponse.response.trusted_shops;
 
 });
