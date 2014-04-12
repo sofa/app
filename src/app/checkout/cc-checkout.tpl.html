@@ -48,11 +48,11 @@
                 </div>
             </div>
 
+            <div class="cc-message-box--error--iconic" ng-show="displayEmptyShippingMethodsMessage" ng-bind="ln.noShippingMethodsAvailable"></div>
+
         </section>
 
         <section class="cc-checkout__address--billing">
-
-            <div class="cc-error-box--iconic" ng-show="displayEmptyShippingMethodsMessage" ng-bind="ln.noShippingMethodsAvailable"></div>
 
             <div class="cc-message-box--warning--iconic" ng-show="checkoutModel.surchargeHint" ng-bind="checkoutModel.surchargeHint"></div>
 

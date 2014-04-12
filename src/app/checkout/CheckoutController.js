@@ -168,6 +168,8 @@ angular.module('CouchCommerceApp')
     $scope.canProceed = function () {
         return  $scope.billingAddressForm.$valid &&
             (checkoutModel.addressEqual || $scope.shippingAddressForm.$valid) &&
+            checkoutModel.selectedShippingMethod &&
+            checkoutModel.supportedShippingMethods.length &&
             checkoutModel.selectedPaymentMethod &&
             checkoutModel.selectedPaymentMethod.method !== PAYPAL_EXPRESS_ID;
     };
