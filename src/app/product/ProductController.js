@@ -37,7 +37,7 @@ angular.module('CouchCommerceApp')
     };
 
     $scope.getBasePriceInfo = function () {
-        return productService.getBasePriceInfo($scope.product);
+        return productService.getBasePriceInfo($scope.product, $scope.variants.selectedVariant);
     };
 
     var formattedShippingCosts = $filter('currency')(configService.get('shippingCost'));

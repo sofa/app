@@ -5,18 +5,18 @@ angular.module('CouchCommerceApp')
 
     var self = {};
 
-    self.getBasePriceInfo = function (product) {
+    self.getBasePriceInfo = function (product, selectedVariant) {
         if (product.getUnit() === 'kg') {
-            return 'entspricht ' + product.getBasePriceStr() + ' € pro 1 Kilogramm (kg)';
+            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Kilogramm (kg)';
         }
         else if (product.getUnit() === 'St') {
-            return 'entspricht ' + product.getBasePriceStr() + ' € pro 1 Stück (St)';
+            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Stück (St)';
         }
         else if (product.getUnit() === 'L') {
-            return 'entspricht ' + product.getBasePriceStr() + ' € pro 1 Liter (l)';
+            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Liter (l)';
         }
         else if (product.hasUnit()) {
-            return 'entspricht ' + product.getBasePriceStr() + ' € pro ' + product.getUnit();
+            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro ' + product.getUnit();
         }
 
         return '';
