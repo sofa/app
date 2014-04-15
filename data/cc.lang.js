@@ -126,6 +126,7 @@ cc.Lang = {
     welcomeText: 'Willkommen im Couch Demo Shop',
     showDesktopView:'Desktop Version',
     sendCmsMail: 'Als E-Mail senden',
+    categories: 'Kategorien',
 
     promotionCodeHint: 'Gutscheincode eingeben',
     promotionCode: 'Gutscheincode',

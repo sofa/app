@@ -63,7 +63,7 @@
 
 }
 
-.cc-side-menu__heading {
+.cc-side-menu__header {
     line-height: 18px;
     padding: 20px 10px;
     background: #333;
@@ -72,9 +72,46 @@
     text-align: center;
 }
 
-.snap-content{
-    // solves some issues where the content can be dragged horizontally
-    overflow-x:hidden;
+.cc-has-overflow-support.cc-modern-flexbox {
+
+    .cc-side-menu {
+        @include flexbox;
+        @include flex-direction(column);
+    }
+
+    .cc-side-menu__header {
+        @include flex(0, 0, auto);
+    }
+
+    .cc-side-menu__content {
+        @include flex(1);
+
+        position: relative;
+    }
+
+    .cc-side-menu__scroll-container {
+        @extend %cc-scroll-container;
+        @extend %cc-stretch-container;
+    }
+}
+
+.cc-side-menu__footer {
+    padding:0 0 10px;
+    background: #333;
+
+    .cc-footer-list {
+        margin:0;
+        color:#eee;
+    }
+    .cc-footer-list__item {
+        border-color:rgba(255, 255, 255, 0.1);
+    }
+}
+
+// solves some issues where the content can be dragged horizontally
+.snap-drawers,
+.snap-content {
+    overflow-x: hidden;
 }
 
 //for the poor folks with Android 2.x or iOS <=4

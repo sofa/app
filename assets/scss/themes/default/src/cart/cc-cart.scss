@@ -1,33 +1,3 @@
-.cc-side-menu--cart {
-    @extend .cc-side-menu;
-
-}
-
-
-@include breakpoint(wide) {
-    .cc-modern-flexbox {
-        .cc-side-menu--cart {
-            @include flexbox;
-            @include flex-direction(column);
-
-            .cc-side-menu__heading {
-                @include flex(0, 0, auto);
-            }
-
-            .cc-cart__content-box {
-                @include flex(1);
-
-                overflow-y: scroll;
-            }
-
-            .cc-cart__total-box-wrapper,
-            .cc-cart-actions {
-                @include flex(0, 0, auto);
-            }
-        }
-    }
-}
-
 
 .cc-cart__content-box {
     padding: 0 4px 0 0;
@@ -148,7 +118,7 @@
 }
 
 .cc-cart-actions {
-    background:#333;
+    background: $theme-color-dark__low--25;
     padding: 12px;
 }
 

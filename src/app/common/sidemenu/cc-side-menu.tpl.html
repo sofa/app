@@ -1,4 +1,17 @@
-<div class="cc-side-menu">
-    <div class="cc-side-menu__heading">Kategorien</div>
-    <cc-category-tree-view></cc-category-tree-view>
+<div class="cc-side-menu cc-side-menu--navigation">
+    <div class="cc-side-menu__header" ng-bind="ln.categories"></div>
+    <div class="cc-side-menu__content">
+        <div class="cc-side-menu__scroll-container">
+            <div class="cc-sticky-view-wrapper">
+                <div class="cc-sticky-view-wrapper__content">
+                    <cc-category-tree-view></cc-category-tree-view>
+                </div>
+                <div class="cc-sticky-view-wrapper__footer">
+                    <div class="cc-side-menu__footer">
+                        <cc-footer-links></cc-footer-links>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

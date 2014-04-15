@@ -34,6 +34,11 @@ $theme-color-dark__tinted--20: tint($theme-color-dark, 20%);
 $theme-color-dark__tinted--33: tint($theme-color-dark, 33%);
 $theme-color-dark__tinted--50: tint($theme-color-dark, 50%);
 
+    // Dark Shades used in the side menus
+    $theme-color-dark__low--33: change_color($theme-color-dark, $saturation: 5%, $lightness: 33%);
+    $theme-color-dark__low--25: change_color($theme-color-dark, $saturation: 5%, $lightness: 25%);
+    $theme-color-dark__low--20: change_color($theme-color-dark, $saturation: 15%, $lightness: 20%);
+
 // Light Shades
 $theme-color-light__darker--025: darken($theme-color-light, 2.5%);
 $theme-color-light__darker--05: darken($theme-color-light, 5%);

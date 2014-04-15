@@ -12,6 +12,11 @@
     @include flex-direction(column);
 }
 
+%cc-scroll-container {
+    overflow: auto;
+    overflow-x: hidden;
+}
+
 %cc-stretch-container {
     position: absolute;
     top:0;

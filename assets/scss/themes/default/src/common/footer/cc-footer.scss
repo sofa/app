@@ -1,9 +1,8 @@
-$cc-footer-base__height--wide: 108px; // required for sticky footers to work
-
-
-.cc-footer {
-    background: $theme-color-dark;
-    color: $theme-color-light;
+.cc-view-wrapper {
+    .cc-footer {
+        background: $theme-color-dark;
+        color: $theme-color-light;
+    }
 }
 
 .cc-trust-list {
