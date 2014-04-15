@@ -11,7 +11,7 @@
   "license": "",
   "dependencies": {
     "angular-bindonce": "~0.2.2",
-    "sofa-core": "~0.4.x",
+    "sofa-core": "~0.7.x",
     "sofa-storages": "~0.1.x",
     "sofa-logging-service": "~0.1.x",
     "sofa-device-service": "~0.1.x",
@@ -19,7 +19,7 @@
     "sofa-search-service": "~0.1.x",
     "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.27.1",
     "sofa-user-service": "~0.1.x",
-    "sofa-basket-service": "0.1.x",
+    "sofa-basket-service": "0.2.x",
     "sofa-tracking": "~0.3.x",
     "sofa-url-construction-service": "~0.2.x",
     "sofa-pages-service": "~0.1.0",

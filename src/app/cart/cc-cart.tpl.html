@@ -51,7 +51,7 @@
 
                 <div class="cc-cart-quantity-selector">
                     <span ng-click="decreaseItem(item)" class="cc-cart-button--decrease"></span>
-                    <span ng-click="basketService.increaseOne(item)" class="cc-cart-button--increase"></span>
+                    <span ng-show="basketService.canBeIncreasedBy(item, 1)" ng-click="basketService.increaseOne(item)" class="cc-cart-button--increase"></span>
                 </div>
             </li>
             <li ng-repeat="coupon in coupons" class="cc-cart-list__item cc-cart-list__item--coupon" ng-animate="{ leave: 'fade-out' }">
