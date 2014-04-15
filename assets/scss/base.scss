@@ -12,9 +12,24 @@
     @include flex-direction(column);
 }
 
+%cc-stretch-container {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+}
+
+.cc-has-overflow-support.cc-modern-flexbox {
+    .cc-app-wrapper {
+        @extend %cc-stretch-container;
+
+        overflow: hidden;
+    }
+}
+
 // the page wrapper needs to be `position:relative` for the animations
 // since those need `position: absolute
-
 .cc-page-wrapper {
     position: relative;
 }
