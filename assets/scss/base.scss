@@ -40,6 +40,27 @@
     }
 }
 
+.cc-main-wrapper:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom:0;
+    left:0;
+    right:100%;
+    background-color: rgba(255,255,255,0);
+
+    -webkit-transition: background-color .3s ease-out, right .1s ease-in .3s;
+    transition: background-color .3s ease-out, right .1s ease-in .3s;
+}
+.snapjs-left .cc-main-wrapper:after,
+.snapjs-right .cc-main-wrapper:after {
+    right:0;
+    background-color: rgba(255,255,255,0.7);
+
+    -webkit-transition: background-color .3s ease-out;
+    transition: background-color .3s ease-out;
+}
+
 .cc-has-overflow-support.cc-modern-flexbox {
     .cc-main-wrapper {
         @extend %cc-flex-column;
