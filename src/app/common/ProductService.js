@@ -6,7 +6,10 @@ angular.module('CouchCommerceApp')
     var self = {};
 
     self.getBasePriceInfo = function (product, selectedVariant) {
-        if (product.getUnit() === 'kg') {
+        if (!product.hasBasePrice()) {
+            return '';
+        }
+        else if (product.getUnit() === 'kg') {
             return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Kilogramm (kg)';
         }
         else if (product.getUnit() === 'St') {
