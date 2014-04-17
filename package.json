@@ -57,7 +57,6 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-ngmin": "0.0.3",
     "grunt-protractor-runner": "~0.2.1",
-    "protractor": "~0.17.0",
-    "sofa-basket-service": "~0.1.0"
+    "protractor": "~0.17.0"
   }
 }
