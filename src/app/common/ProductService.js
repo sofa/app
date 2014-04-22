@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.factory('productService', function () {
+.factory('productService', function ($filter) {
 
     var self = {};
 
@@ -9,17 +9,20 @@ angular.module('CouchCommerceApp')
         if (!product.hasBasePrice()) {
             return '';
         }
-        else if (product.getUnit() === 'kg') {
-            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Kilogramm (kg)';
+
+        var price = $filter('currency')(product.getBasePriceStr(selectedVariant));
+
+        if (product.getUnit() === 'kg') {
+            return 'entspricht ' + price + ' pro 1 Kilogramm (kg)';
         }
         else if (product.getUnit() === 'St') {
-            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Stück (St)';
+            return 'entspricht ' + price + ' pro 1 Stück (St)';
         }
         else if (product.getUnit() === 'L') {
-            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro 1 Liter (l)';
+            return 'entspricht ' + price + ' pro 1 Liter (l)';
         }
         else if (product.hasUnit()) {
-            return 'entspricht ' + product.getBasePriceStr(selectedVariant) + ' € pro ' + product.getUnit();
+            return 'entspricht ' + price + ' pro ' + product.getUnit();
         }
 
         return '';
