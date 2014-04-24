@@ -7,7 +7,7 @@
 
     <ul class="cc-wishlist-list" ng-show="!isEmpty">
         <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item"
-            ng-click="navigationService.navigateToProduct(item.product)"
+            ng-click="navigateToProduct(item.product)"
             ng-animate="{ leave: 'remove-animation' }">
 
             <div class="cc-wishlist-list-item__wrapper">
