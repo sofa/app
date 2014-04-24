@@ -1,20 +1,16 @@
 
-%cc-theme-price {
+%cc-theme-price--grid {
     background: $theme-color-light;
     border-radius: $theme-border-radius--basic;
     box-shadow:0 1px 0 hsla(0, 0, 0, .33);
 }
 
-%cc-theme-price--special-color {
-    color: $theme-color-accent;
+.cc-price--special {
+    .cc-price__price {
+        color: $theme-color-accent;
+    }
 }
 
-%cc-theme-price--old {
+.cc-price__price--old {
     color: $theme-color-dark__lighter--33;
 }
-
-%cc-theme-price--special {
-    @extend %cc-theme-price;
-    @extend %cc-theme-price--special-color;
-}
-

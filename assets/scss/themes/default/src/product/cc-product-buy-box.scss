@@ -23,29 +23,28 @@
         @extend %cc-button-base--disabled;
     }
 
-    .cc-price {
-        font-size:125%;
-        line-height:40px;
+    .cc-price--basic {
+        display: inline-block;
+        font-size: 1.25rem;
+        line-height: 2.75rem;
     }
-
-    .cc-price__price {
+    .cc-price--special {
+        display: table;
         width: 100%;
+
+        .cc-price__price {
+            display: table-row;
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+        }
     }
 
     .cc-price__price--old {
-        @extend %cc-theme-price--old;
-
-        display:block;
+        display: table-row;
+        line-height: 1.25rem;
     }
-
-    .cc-price__price--special {
-        @extend %cc-theme-price--special;
-
-        width: 100%;
-        box-shadow:0 2px 0 $theme-color-light__shaded--30;
-    }
-
 }
+
 .cc-product-buy-box__info-text {
     font-size: smaller;
     margin-bottom: 10px;

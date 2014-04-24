@@ -7,11 +7,6 @@
     background: $theme-color-light__darker--15;
     color:$theme-color-dark;
     margin:0;
-
-    .cc-price__price,
-    .cc-price__price--old {
-        color: $theme-color-dark__tinted--33;
-    }
 }
 
 .cc-cart-list__item {
@@ -78,10 +73,6 @@
 
 .cc-cart__item-price {
     float:left;
-
-    .cc-price__price--special {
-        @extend %cc-theme-price--special-color;
-    }
 }
 
 .cc-cart__item-price--total {

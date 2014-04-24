@@ -30,13 +30,7 @@
     }
 
     .cc-price__price {
-        @extend %cc-theme-price;
-    }
-    .cc-price__price--old {
-        @extend %cc-theme-price--old;
-    }
-    .cc-price__price--special {
-        @extend %cc-theme-price--special;
+        @extend %cc-theme-price--grid;
     }
 }
 
