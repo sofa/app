@@ -192,6 +192,7 @@
                     if(cache.easingTo===0){
                         utils.klass.remove(doc.body, 'snapjs-right');
                         utils.klass.remove(doc.body, 'snapjs-left');
+                        utils.dispatchEvent('snapperClosed');
                     }
 
                     utils.dispatchEvent('animated');
