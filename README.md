@@ -86,6 +86,7 @@ The typical update process goes like this:
 **3. Update the app**
 
 - 3.1 update the `package.json` of the app to use the correct versions of the sofa dependencies
+- 3.2 make a commit that roughly goes like this `chore(package.json): updating dependencies`
 - 3.2 in case updates have been made to `sofa-base` make sure to also update the tag dependency in the app's `package.json`
 - 3.3 run `grunt deploy --app-version=VERSION` with the correct version number (e.g. `grunt deploy --app-version=0.50.0`)
 - 3.4 enjoy!
