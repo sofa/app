@@ -10,6 +10,8 @@ cc.Config = {
     categoryJson: 'data/arktis/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
+    apiEndpoint: 'http://api.couchcommerce.com/',
+    imageResizer: 'http://cdn1.couchcommerce.com/',
     mediaFolder:'http://cc1.couchcommerce.com/media/couchdemoshop/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',

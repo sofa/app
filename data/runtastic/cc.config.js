@@ -12,6 +12,8 @@ cc.Config = {
     mediaImgExtension: 'png',
     mediaPlaceholder: '//dy9xqgeevlmya.cloudfront.net/media/platzhalter.png',
     mediaLoading: '//dy9xqgeevlmya.cloudfront.net/media/loading.gif',
+    apiEndpoint: 'http://api.couchcommerce.com/',
+    imageResizer: 'http://cdn1.couchcommerce.com/',
     shippingCost: null,
     shippingTax: 19,
     shippingText: 'zzgl. Versandkosten',

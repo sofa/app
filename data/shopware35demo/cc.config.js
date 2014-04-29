@@ -10,6 +10,8 @@ cc.Config = {
     categoryJson: 'data/shopware35demo/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
+    apiEndpoint: 'http://api.couchcommerce.com/',
+    imageResizer: 'http://cdn1.couchcommerce.com/',
     mediaFolder:'https://cc1.couchcommerce.com/media/shopware35demo/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',

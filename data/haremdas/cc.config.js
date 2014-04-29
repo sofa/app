@@ -10,6 +10,8 @@ cc.Config = {
     categoryJson: 'data/haremdas/categories.json',
     //apiUrl: 'data/dasgibtesnureinmal/products.json',
     //apiHttpMethod: 'get',
+    apiEndpoint: 'http://api.couchcommerce.com/',
+    imageResizer: 'http://cdn1.couchcommerce.com/',
     mediaFolder:'https://cc1.couchcommerce.com/media/haremdas/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
