@@ -1,12 +1,10 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-    .controller('SidemenuController', function ($scope) {
+    .controller('SidemenuController', function ($scope, sidemenuUiState) {
 
-        $scope.activeTab = 'categories';
+        $scope.sidemenuUiState = sidemenuUiState;
 
-        $scope.activateTab = function (tab) {
-            $scope.activeTab = tab;
-        };
+        sidemenuUiState.setActiveTab('categories');
 
     });

@@ -5,6 +5,8 @@
         <p bo-text="ln.wishlistEmpty"></p>
     </div>
 
+    <div ng-if="showFirstUseInfo" class="cc-wishlist__first-use-hint" bo-html="ln.wishlistFirstUse"></div>
+
     <ul class="cc-wishlist-list" ng-show="!isEmpty">
         <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item"
             ng-click="navigateToProduct(item.product)"

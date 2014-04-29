@@ -2,22 +2,22 @@
     <div class="cc-side-menu__header">
         <div class="cc-side-menu-tabs">
             <i class="cc-side-menu-tabs__icon cc-side-menu-tabs__icon--categories"
-               ng-class="{'cc-side-menu-tabs__icon--active': activeTab === 'categories'}"
-               ng-click="activateTab('categories')"></i>
+               ng-class="{'cc-side-menu-tabs__icon--active': sidemenuUiState.activeTab === 'categories'}"
+               ng-click="sidemenuUiState.setActiveTab('categories')"></i>
             <i class="cc-side-menu-tabs__icon"
                ng-class="{
-                   'cc-side-menu-tabs__icon--active': activeTab === 'wishlist',
+                   'cc-side-menu-tabs__icon--active': sidemenuUiState.activeTab === 'wishlist',
                    'cc-side-menu-tabs__icon--wishlist': !isEmpty,
                    'cc-side-menu-tabs__icon--wishlist--empty': isEmpty}"
-               ng-click="activateTab('wishlist')" cc-wishlist-state></i>
+               ng-click="sidemenuUiState.setActiveTab('wishlist')" cc-wishlist-state></i>
         </div>
         <div class="cc-side-menu-tabs-title">
-            <span ng-bind="ln.categories" ng-show="activeTab === 'categories'"></span>
-            <span ng-bind="ln.wishlist" ng-show="activeTab === 'wishlist'"></span>
+            <span ng-bind="ln.categories" ng-show="sidemenuUiState.activeTab === 'categories'"></span>
+            <span ng-bind="ln.wishlist" ng-show="sidemenuUiState.activeTab === 'wishlist'"></span>
         </div>
     </div>
     <div class="cc-side-menu__content">
-        <div class="cc-side-menu__scroll-container" ng-show="activeTab === 'categories'">
+        <div class="cc-side-menu__scroll-container" ng-show="sidemenuUiState.activeTab === 'categories'">
             <div class="cc-sticky-view-wrapper">
                 <div class="cc-sticky-view-wrapper__content">
                     <cc-category-tree-view></cc-category-tree-view>
@@ -30,6 +30,6 @@
             </div>
         </div>
 
-        <div class="cc-side-menu__scroll-container" ng-controller="WishlistController" ng-include="tpl.WISHLIST" ng-show="activeTab === 'wishlist'"></div>
+        <div class="cc-side-menu__scroll-container" ng-controller="WishlistController" ng-include="tpl.WISHLIST" ng-show="sidemenuUiState.activeTab === 'wishlist'"></div>
     </div>
 </div>

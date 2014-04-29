@@ -7,3 +7,27 @@
     @extend .fa-4x;
     @extend .fa-heart-o;
 }
+
+.cc-wishlist__first-use-hint {
+    @extend .cc-message-box--info;
+
+    position: relative;
+    padding: 6px 6px 6px 24px;
+    font-size: smaller;
+}
+
+.cc-wishlist__first-use-hint:before {
+    @include fa-base-class;
+    @extend .fa-info-circle;
+
+    position: absolute;
+    left: 5px;
+    top: 0.5em;
+    font-size: larger;
+}
+
+.cc-wishlist {
+    .cc-wishlist__first-use-hint {
+        border-radius: 0;
+    }
+}

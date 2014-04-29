@@ -1,24 +1,41 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-    .controller('WishlistController', function ($scope, $location, wishlistService, navigationService, urlConstructionService, snapRemote) {
+    .controller('WishlistController', function ($scope, $location, storageService, wishlistService, navigationService, urlConstructionService, sidemenuUiState) {
 
+        $scope.isFirstUse        = !(!!storageService.get('wishlist_used'));
+        $scope.showFirstUseInfo  = false;
         $scope.navigationService = navigationService;
+        $scope.wishlist          = wishlistService.getItems();
+        $scope.isEmpty           = wishlistService.isEmpty();
 
-        $scope.wishlist = wishlistService.getItems();
+        var openWishlist = function () {
+            sidemenuUiState.setActiveTab('wishlist');
+            sidemenuUiState.openSidemenu('left');
+        };
 
-        $scope.isEmpty = wishlistService.isEmpty();
+        var closeWishlist = function () {
+            sidemenuUiState.closeSidemenu();
+        };
 
         var updateWishlist = function () {
             $scope.wishlist = wishlistService.getItems();
-            $scope.isEmpty = wishlistService.isEmpty();
+            $scope.isEmpty  = wishlistService.isEmpty();
+
+            // Automatically show wish list on first use.
+            if ($scope.isFirstUse) {
+                // Show "where-is-my-wish-list" hint only when the wish list was opened automatically.
+                $scope.showFirstUseInfo = true;
+                openWishlist();
+                var off = $scope.$onRootScope('sidemenuClosed', function () {
+                    $scope.isFirstUse       = false;
+                    $scope.showFirstUseInfo = false;
+                    off();
+                });
+                storageService.set('wishlist_used', true);
+            }
         };
 
-        var closeSidemenu = function () {
-            snapRemote.close();
-        };
-
-        updateWishlist();
         wishlistService.on('itemsUpdated', updateWishlist);
 
         $scope.removeItem = function (item) {
@@ -26,8 +43,8 @@ angular.module('CouchCommerceApp')
         };
 
         $scope.navigateToProduct = function (product) {
-            if (urlConstructionService.createUrlForProduct(product) === $location.$$path) {
-                closeSidemenu();
+            if (urlConstructionService.createUrlForProduct(product) === $location.path()) {
+                closeWishlist();
             } else {
                 navigationService.navigateToProduct(product);
             }

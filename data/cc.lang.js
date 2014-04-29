@@ -7,6 +7,7 @@ cc.Lang = {
     priceSuffixLabel:' EUR',
     addToCart:'In den Warenkorb',
     addToWishlist:'Merken',
+    wishlistFirstUse: 'Hier findest Du Deinen Merkzettel.<br> Von jetzt an bleibt er verborgen, bis Du ihn über die seitliche Navigation öffnest.',
     removeFromWishlist: 'Gemerkt',
     backToCart:'Zurück zum Warenkorb',
     nextStep:'nächster Schritt',
