@@ -18,10 +18,6 @@
         padding:8px 10px;
         border-bottom:1px solid rgba(255,255,255,.1);
     }
-    .cc-category-tree-view__category-entry--active {
-        background:#8B0000; // darkred
-        color:#fff;
-    }
     .cc-category-tree-view__list--closed {
         .cc-category-tree-view__list-item {
             display:none;
@@ -66,12 +62,10 @@
 
 .cc-side-menu--navigation {
     .cc-side-menu-tabs {
-        padding: 0 10px;
         text-align: left;
     }
     .cc-side-menu-tabs-title {
         text-align: center;
-        padding: 0 10px;
         line-height: 27px;
         font-size: small;
         text-transform: uppercase;

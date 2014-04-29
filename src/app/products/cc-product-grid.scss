@@ -5,8 +5,11 @@
     border:0;
 
     .cc-list__item {
-        min-height:230px; // no-flex-box fallback
         text-align: center;
+        // no-flex-box fallback
+        min-height:230px;
+        // product/category image background...
+        background: #fff;
     }
 
 }

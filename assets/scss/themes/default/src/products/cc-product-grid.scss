@@ -5,7 +5,6 @@
 
     .cc-list__item {
         border-color: $theme-color-dark__lighter--50;
-        background-color: $theme-color-light;
 
         @extend %cc-highlight-transition--grid;
 
