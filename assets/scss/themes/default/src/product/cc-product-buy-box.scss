@@ -12,6 +12,10 @@
     text-align: center;
     background: $theme-color-light__darker--10;
 
+    .cc-product-buy-box__base-price-info {
+        display: block;
+    }
+
     .cc-product-buy-box__add-to-cart {
         @extend .cc-couch-action-button;
         @extend %theme-add-to-cart-button--base;
@@ -47,5 +51,9 @@
 
 .cc-product-buy-box__info-text {
     font-size: smaller;
-    margin-bottom: 10px;
+    margin: 10px 0;
+
+    &:first-child {
+        margin-top: 0;
+    }
 }

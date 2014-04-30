@@ -31,14 +31,14 @@
             on-change="onThumbnailSelected(product, image)">
         </cc-thumbnail-bar>
 
-        <cc-variant-selector class="cc-variant-selector-on-background"
+        <cc-variant-selector
             choose-text="ln.choose"
             variants="product.variants"
             variant="variants.selectedVariant"
             selected-properties="variants.selectedProperties">
         </cc-variant-selector>
 
-        <div ng-include="tpl.PRODUCT_BUY_BOX"></div>
+        <div cc-include="tpl.PRODUCT_BUY_BOX"></div>
 
         <div class="cc-product__content-box" ng-if="product.description || product.hasAttributes()">
 
