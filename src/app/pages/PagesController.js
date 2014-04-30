@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('PagesController', function CategoryController($scope, $stateParams, $http, pagesService, pagesServiceExtension) {
+angular.module('CouchCommerceApp').controller('PagesController', function CategoryController($scope, $stateParams, $http, pagesService, pagesServiceExtension, titleService) {
 
     $scope.isLoading = true;
 
     pagesService
         .getPage(angular.isDefined($stateParams.pageId) ? $stateParams.pageId : pagesServiceExtension.currentPageId)
         .then(function (page) {
+            titleService.setTitle(page.title);
             $scope.page = page;
             $scope.mailTo = 'mailto:?subject=' + page.title + '&body=' + page.content;
             $scope.isLoading = false;

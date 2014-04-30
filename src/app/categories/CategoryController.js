@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('CategoryController', function ($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote) {
+.controller('CategoryController', function ($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote, titleService) {
 
     if (!category) {
         return;
@@ -37,6 +37,8 @@ angular.module('CouchCommerceApp')
                 }
             });
     };
+
+    titleService.setTitle(category.label);
 
     $scope.category = category;
     $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;

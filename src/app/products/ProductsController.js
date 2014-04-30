@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('ProductsController', function ($scope, $stateParams, $location, couchService, navigationService, backStepHighlightService, products, category, selectionService, categoryTreeViewRemote, productService) {
+.controller('ProductsController', function ($scope, $stateParams, $location, couchService, navigationService, backStepHighlightService, products, category, selectionService, categoryTreeViewRemote, productService, titleService) {
 
     //we want to set the active category in the side menu.
     if (category) {
@@ -35,4 +35,6 @@ angular.module('CouchCommerceApp')
     $scope.products = products;
     $scope.categoryUrlId = $stateParams.category;
     $scope.headline = category && category.label;
+
+    titleService.setTitle(category.label);
 });

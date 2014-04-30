@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService) {
+.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService, titleService) {
 
     if (!product || !category) {
         return;
@@ -22,6 +22,8 @@ angular.module('CouchCommerceApp')
         selectedVariant : null,
         selectedProperties: null
     };
+
+    titleService.setTitle(product.name);
 
     //update the price when the selected variant changes
     $scope.$watch('variants.selectedVariant', function (variant) {
