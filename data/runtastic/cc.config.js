@@ -14,6 +14,7 @@ cc.Config = {
     mediaLoading: '//dy9xqgeevlmya.cloudfront.net/media/loading.gif',
     apiEndpoint: 'http://api.couchcommerce.com/',
     imageResizer: 'http://cdn1.couchcommerce.com/',
+    imageResizerEnabled: true,
     shippingCost: null,
     shippingTax: 19,
     shippingText: 'zzgl. Versandkosten',

@@ -12,6 +12,7 @@ cc.Config = {
     //apiHttpMethod: 'get',
     apiEndpoint: 'http://api.couchcommerce.com/',
     imageResizer: 'http://cdn1.couchcommerce.com/',
+    imageResizerEnabled: true,
     mediaFolder:'//cc1.couchcommerce.com/media/dasgibtesnureinmal/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',
