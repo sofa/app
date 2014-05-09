@@ -1,81 +1,50 @@
 
-.cc-button-base, %cc-button-base{
-    @include vendor-prefix('border-radius', $theme-border-radius--basic);
-    //using a top and bottom padding is better than setting a fixed height
-    //since it keeps the text centered
-    padding: 12px;
-    text-align: center;
-    //This is so that we can use <a> tags as buttons as well
-    display: inline-block;
+// Generic CC button classes
+%theme-button--base {
+    @extend %sofa-button--base;
 
-    background: none;
-}
-
-%cc-button-base--stretched{
-    @extend %cc-button-base;
-    width: 100%;
-}
-
-.cc-couch-default-button{
-    @extend %cc-button-base;
-
+    border-radius: $theme-border-radius--basic;
     color: $theme-color-dark;
     background: $theme-color-light;
-    border: 0;
     box-shadow: 0 $theme-box-shadow-width 0 $theme-color-light__shaded--30;
 
-    &:active, &.ng-click-active{
-        background:  $theme-color-light__darker--05;
+    &:active,
+    &.ng-click-active {
+        background: $theme-color-light__darker--05;
     }
 }
-.cc-couch-action-button{
-    @extend %cc-button-base;
 
+%theme-button--primary {
+    @extend %sofa-button--base;
+
+    border-radius: $theme-border-radius--basic;
     color: $theme-color-light;
     background: $theme-color-accent;
-    border: 0;
     box-shadow: 0 $theme-box-shadow-width 0 $theme-color-accent__darker--20;
 
-    &:active, &.ng-click-active{
-        background:  $theme-color-accent__darker--10;
+    &:active,
+    &.ng-click-active {
+        background: $theme-color-accent__darker--10;
     }
 }
 
-.cc-button-base--disabled, %cc-button-base--disabled {
+%theme-button--block {
+    @extend %sofa-button--block;
+}
+
+%theme-button--disabled {
+    @extend %sofa-button--disabled;
+}
+
+%theme-button--primary--disabled {
+    @extend %theme-button--disabled;
+
     background: $theme-color-accent__saturated--33;
-    opacity: 0.5;
-    cursor: default;
-    pointer-events: none;
-}
-.cc-couch-action-button--stretched{
-    @extend .cc-couch-action-button;
-    @extend %cc-button-base--stretched;
 }
 
-.cc-couch-action-button--disabled{
-    @extend .cc-couch-action-button;
-    @extend %cc-button-base--disabled;
-}
+// PayPal Buttons...
 
-.cc-couch-action-button--disabled--stretched{
-    @extend .cc-couch-action-button--disabled;
-    @extend %cc-button-base--stretched;
-}
-
-.cc-couch-default-button--stretched{
-    @extend .cc-couch-default-button;
-    @extend %cc-button-base--stretched;
-}
-
-.cc-couch-default-button--disabled{
-    @extend %cc-button-base--disabled;
-}
-
-.cc-couch-default-button--disabled--stretched{
-    @extend %cc-button-base--stretched;
-}
-
-.cc-paypal-button{
+.cc-paypal-button {
     height: 46px;
     display: block;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
@@ -84,25 +53,25 @@
     background-size: contain;
     position: relative;
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--disabled{
-    @extend .cc-button-base--disabled;
+.cc-paypal-button--disabled {
+    @extend %theme-button--disabled;
 }
 
-.cc-paypal-button--de-de{
+.cc-paypal-button--de-de {
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--de-de--disabled{
+.cc-paypal-button--de-de--disabled {
     @extend .cc-paypal-button--de-de;
     @extend .cc-paypal-button--disabled
 }
@@ -112,7 +81,7 @@
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
     }
 }
@@ -123,72 +92,72 @@
     @extend .cc-paypal-button--disabled
 }
 
-.cc-paypal-button--fr-fr{
+.cc-paypal-button--fr-fr {
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_fr_FR_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_fr_FR_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--fr-fr--disabled{
+.cc-paypal-button--fr-fr--disabled {
     @extend .cc-paypal-button--fr-fr;
     @extend .cc-paypal-button--disabled
 }
 
-.cc-paypal-button--it-it{
+.cc-paypal-button--it-it {
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_it_IT_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_it_IT_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--it-it--disabled{
+.cc-paypal-button--it-it--disabled {
     @extend .cc-paypal-button--it-it;
     @extend .cc-paypal-button--disabled
 }
 
-.cc-paypal-button--es-es{
+.cc-paypal-button--es-es {
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_es_ES_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_es_ES_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--es-es--disabled{
+.cc-paypal-button--es-es--disabled {
     @extend .cc-paypal-button--es-es;
     @extend .cc-paypal-button--disabled
 }
 
-.cc-paypal-button--pl-pl{
+.cc-paypal-button--pl-pl {
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_pl_PL_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_pl_PL_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--pl-pl--disabled{
+.cc-paypal-button--pl-pl--disabled {
     @extend .cc-paypal-button--pl-pl;
     @extend .cc-paypal-button--disabled
 }
 
-.cc-paypal-button--nl-nl{
+.cc-paypal-button--nl-nl {
     @extend .cc-paypal-button;
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x.png);
+    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x.png);
 
-    &:active, &.ng-click-active{
+    &:active, &.ng-click-active {
         background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x_P.png);
     }
 }
 
-.cc-paypal-button--nl-nl--disabled{
+.cc-paypal-button--nl-nl--disabled {
     @extend .cc-paypal-button--nl-nl;
     @extend .cc-paypal-button--disabled
 }

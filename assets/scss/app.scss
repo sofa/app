@@ -1,6 +1,7 @@
 @import '../../node_modules/sofa-base/src/styling/mixins.scss';
 @import '../../node_modules/sofa-base/src/styling/flex.scss';
-@import '../../node_modules/sofa-base/src/styling/media-queries.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-media-queries.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-utils.scss';
 @import '../../node_modules/sofa-base/src/styling/font-awesome.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-font-awesome.scss';
 //public app configs
@@ -9,20 +10,18 @@
 //theme config
 @import 'themes/default/theme-config.scss';
 //sdk components
-@import '../../node_modules/sofa-base/src/styling/base.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-dock.scss';
-@import '../../node_modules/sofa-base/src/styling/mobile-reset.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-line-seperator.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-reset.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-grid.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-forms.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-buttons.scss';
+@import '../../node_modules/sofa-base/src/styling/sofa-base.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-modal.scss';
 @import '../../node_modules/sofa-base/src/styling/interactions.scss';
 @import '../../node_modules/sofa-base/src/styling/information.scss';
 @import '../../node_modules/sofa-base/src/styling/titles.scss';
 @import '../../node_modules/sofa-base/src/styling/alignment.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-form-label.scss';
-@import '../../node_modules/sofa-base/src/styling/cc-text-box.scss';
 @import '../../node_modules/sofa-base/src/styling/cc-link-list.scss';
 @import '../../node_modules/sofa-base/src/styling/tables.scss';
-@import '../../node_modules/sofa-base/src/styling/centering.scss';
 @import '../../node_modules/sofa-base/src/directives/directives.scss';
 
 //base app styles
@@ -30,7 +29,6 @@
 //app component styles
 @import 'cc-view-wrapper.scss';
 @import 'cc-animations.scss';
-@import 'cc-grid.scss';
 @import 'cc-list.scss';
 @import '../../vendor/ui-modal/bootstrap-dialog.scss';
 @import '../../src/app/common/dialog/cc-loading-dialog.scss';

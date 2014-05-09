@@ -17,7 +17,7 @@
 
     <div class="cc-checkout__wrapper">
 
-        <section class="cc-checkout__options">
+        <section class="cc-checkout-section cc-checkout__options">
 
             <div class="cc-grid__row">
                 <div class="cc-grid__cell--1-1 cc-form-item">
@@ -52,13 +52,13 @@
 
         </section>
 
-        <section class="cc-checkout__address--billing">
+        <section class="cc-checkout-section cc-checkout__address--billing">
 
             <div class="cc-message-box--warning--iconic" ng-show="checkoutModel.surchargeHint" ng-bind="checkoutModel.surchargeHint"></div>
 
             <h3 bo-text="ln.billingAddress"></h3>
 
-            <form name="billingAddressForm" novalidate class="cc-text-box-on-background">
+            <form name="billingAddressForm" novalidate>
 
                 <div class="cc-grid__row">
                     <div class="cc-grid__cell--1-1 cc-form-item">
@@ -73,7 +73,6 @@
                         <cc-select-box
                                 name="salutation"
                                 ng-model="checkoutModel.billingAddress.salutation"
-                                class="cc-select-box-on-background"
                                 choose-text="ln.choose"
                                 property-name="ln.formSalutation"
                                 fail-message="ln.invalidInput_Salutation"
@@ -152,7 +151,6 @@
                         <cc-select-box
                                 name="country"
                                 ng-model="checkoutModel.billingAddress.country"
-                                class="cc-select-box-on-background"
                                 omit-null
                                 choose-text="ln.choose"
                                 display-value-exp="'label'"
@@ -191,7 +189,6 @@
                         <cc-select-box
                             name="birthmonth"
                             ng-model="checkoutModel.billingAddress.birthmonth"
-                            class="cc-select-box-on-background"
                             omit-null
                             choose-text="ln.choose"
                             display-value-exp="'label'"
@@ -226,13 +223,13 @@
 
         </section>
 
-        <section class="cc-checkout__address--shipping">
+        <section class="cc-checkout-section cc-checkout__address--shipping">
 
             <h3 bo-text="ln.shippingAddress"></h3>
 
-            <cc-check-box class="cc-check-box-on-background" value="checkoutModel.addressEqual" label="ln.sameAsBillingAddress"></cc-check-box>
+            <cc-check-box value="checkoutModel.addressEqual" label="ln.sameAsBillingAddress"></cc-check-box>
 
-            <form ng-hide="checkoutModel.addressEqual" name="shippingAddressForm" class="cc-text-box-on-background">
+            <form ng-hide="checkoutModel.addressEqual" name="shippingAddressForm">
 
                 <div class="cc-grid__row">
                     <div class="cc-grid__cell--1-1 cc-form-item">
@@ -247,7 +244,6 @@
                         <cc-select-box
                                 name="salutation"
                                 ng-model="checkoutModel.shippingAddress.salutation"
-                                class="cc-select-box-on-background"
                                 choose-text="ln.choose"
                                 property-name="ln.formSalutation"
                                 fail-message="ln.invalidInput_Salutation"
@@ -322,7 +318,6 @@
                     <div class="cc-grid__cell--1-1 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formCountry}}</p>
                         <cc-select-box
-                                class="cc-select-box-on-background"
                                 ng-model="checkoutModel.shippingAddress.country"
                                 choose-text="ln.choose"
                                 fail-message="ln.invalidInput_Salutation"
@@ -346,9 +341,9 @@
             </form>
         </section>
 
-        <section class="cc-checkout__navigation">
+        <section class="cc-checkout-section cc-checkout__navigation">
             <div class="cc-message-box--warning" ng-if="!canProceed()" bo-text="ln.checkoutProceedInfo"></div>
-            <a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'" bo-text="ln.nextStep"></a>
+            <a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-checkout-button' : 'cc-checkout-button--disabled'" bo-text="ln.nextStep"></a>
         </section>
     </div>
 

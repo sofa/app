@@ -114,18 +114,14 @@
 }
 
 .cc-cart-checkout-button {
-    @extend .cc-couch-action-button;
+    @extend %theme-button--primary;
+    @extend %theme-button--block;
 
-    display: block;
-    line-height: 50px;
-    padding: 0;
-    margin: 0 0 10px;
-    background-color: $theme-color-accent;
-    box-shadow: 0 $theme-box-shadow-width 0 $theme-color-accent__darker--20;
+    margin: 0 0 .875rem;
 }
 
 .cc-cart-coupon-button {
-    @extend .cc-couch-default-button;
+    @extend %theme-button--base;
     display: block;
 }
 
@@ -140,4 +136,14 @@
 .cc-cart-empty-hint {
     text-align: center;
     padding:30px 0 0;
+}
+
+
+.cc-promotion-code-button {
+    @extend %theme-button--primary;
+    @extend %theme-button--block;
+}
+.cc-promotion-code-button--disabled {
+    @extend .cc-promotion-code-button;
+    @extend %theme-button--primary--disabled;
 }

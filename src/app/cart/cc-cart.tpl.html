@@ -83,7 +83,7 @@
                         <form name="billingAddressForm" novalidate class="cc-text-box-on-background" ng-show="promotionCodeModel.showForm">
                             <p class="cc-form-label">{{ln.promotionCode}}</p>
                             <input ng-model="promotionCodeModel.code" class="cc-text-box" type="text"/>
-                            <a ng-click="canRedeemCode() && redeemCode()" ng-class="canRedeemCode() ? 'cc-couch-action-button--stretched' : 'cc-couch-action-button--disabled--stretched'">{{ln.promotionCodeButton}}</a>
+                            <a ng-click="canRedeemCode() && redeemCode()" ng-class="canRedeemCode() ? 'cc-promotion-code-button' : 'cc-promotion-code-button--disabled'">{{ln.promotionCodeButton}}</a>
                         </form>
                     </div>
 

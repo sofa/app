@@ -2,19 +2,18 @@
     @extend .fa;
     @extend .fa-heart-o;
 
-    @extend .cc-couch-default-button;
+    @extend %theme-button--base;
 
     display: block;
     text-align:left;
-    line-height: 44px;
-    padding: 0 10px;
+    line-height: 2.75rem;
+    padding: 0 .875rem;
     color: $theme-color-light__shaded--30;
-    box-shadow:0 2px 0 $theme-color-light__shaded--30;
 
     &:before {
         display:inline-block;
-        font-size: 1.5em;
-        margin-right: 10px;
+        font-size: 1.5rem;
+        margin-right: 0.875rem;
         vertical-align: top;
 
         -webkit-transition: color .3s;

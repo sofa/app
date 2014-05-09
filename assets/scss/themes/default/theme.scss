@@ -3,9 +3,18 @@
 @import 'src/libs/ccPrice/cc-price.scss';
 @import 'src/libs/ccThumbnailBar/cc-thumbnail-bar.scss';
 @import 'src/libs/ccZippy/cc-zippy.scss';
+@import 'src/libs/ccSelectBox/cc-select-box.scss';
 @import 'src/libs/ccLazyValidation/cc-lazy-validation.scss';
+@import 'src/libs/ccFooterLinks/cc-footer-links.scss';
 
+@import 'src/cc-highlight.scss';
 @import 'src/cc-button.scss';
+
+@import 'src/common/header/cc-header.scss';
+@import 'src/common/footer/cc-footer.scss';
+@import 'src/common/sidemenu/cc-side-menu.scss';
+@import 'src/common/contextviews/cc-context-views.scss';
+
 @import 'src/cart/cc-cart.scss';
 @import 'src/wishlist/cc-wishlist.scss';
 @import 'src/wishlist/cc-wishlist-button.scss';
@@ -16,12 +25,6 @@
 @import 'src/product/cc-product.scss';
 @import 'src/product/cc-product-wide.scss';
 @import 'src/product/cc-product-buy-box.scss';
-@import 'src/cc-highlight.scss';
-@import 'src/common/header/cc-header.scss';
-@import 'src/common/footer/cc-footer.scss';
-@import 'src/common/sidemenu/cc-side-menu.scss';
-@import 'src/libs/ccFooterLinks/cc-footer-links.scss';
-@import 'src/common/contextviews/cc-context-views.scss';
 @import 'src/search/cc-search-box.scss';
 @import 'src/search/cc-search-result.scss';
 @import 'src/checkout/cc-checkout.scss';
@@ -58,7 +61,10 @@ a {
     line-height: 1.25;
 }
 
-.cc-text-box {
+.cc-text-box,
+.cc-search-field__input {
+    @extend %sofa-text-field;
+
     border-radius: $theme-border-radius--basic;
 
     &:focus {
@@ -72,14 +78,29 @@ a {
     border-radius: $theme-border-radius--basic;
 }
 
+.cc-form-item,
+.cc-form__item {
+    @extend %sofa-form__item;
+}
+
+.cc-form-label {
+    @extend %sofa-form-label;
+}
 .cc-form-label--required {
-    font-weight: 400;
+    @extend %sofa-form-label--required;
+
     color: $theme-color-dark;
 }
+
 .cc-form-label--optional {
+    @extend %sofa-form-label--optional;
+
     color: $theme-color-dark__tinted--50;
 }
 
+.cc-hidden {
+    display: none;
+}
 // This is a modal class to overwrite some default bootstrap properties
 // and is separate from the couch modal which is used in the search, among others.
 .cc-bootstrap-modal {
@@ -115,45 +136,6 @@ a {
     color: $theme-color-dark__tinted--20;
 }
 
-//not sure yet where would be the best location for this kind of component bootstrapping
-@include cc-select-box($cc-select-box__name: 'cc-select-box',
-                       $cc-select-box__modifier: '',
-                       $cc-select-box__background: $theme-color-light,
-                       $cc-select-box__color: $theme-color-dark,
-                       $cc-select-box__font-size: 1rem,
-                       $cc-select-box__height: 44px,
-                       $cc-select-box__border-radius: $theme-border-radius--basic,
-                       $cc-select-box__border-color: $theme-color-light__darker--20,
-                       $cc-select-box__border-bottom-width: 2px);
-
-.cc-select-box {
-    .cc-select-box__select-icon {
-        @extend .fa;
-        @extend .fa-angle-down;
-        @extend .fa-fw;
-
-        line-height: 42px;
-        height: 42px;
-        padding: 0;
-        width: 42px;
-        right: 1px;
-        margin-top: -21px;
-        background: #F2F2F2;
-        border-radius: 0 2px 2px 0;
-        text-align: center;
-        color: #999;
-    }
-
-    & + .cc-select-box {
-        margin-top: 6px;
-    }
-
-    .cc-select-box__display-value {
-        // full-width minus icon width, for those who can handle calc()
-        width: -webkit-calc(100% - 50px);
-        width:         calc(100% - 50px);
-    }
-}
 /*  ===========================================================================
     MEDIA-QUERY-SAVE @extend
     note: each mixin has to include the respective media query in which it will

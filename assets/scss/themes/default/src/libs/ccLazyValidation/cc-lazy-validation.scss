@@ -4,7 +4,7 @@
     border-radius: 0 0 $theme-border-radius--basic $theme-border-radius--basic;
     border:2px solid $theme-warning-border-color;
     color: $theme-warning-color;
-    font-size: $cc-font-size-regular;
+    font-size: 0.875rem;
     background: $theme-warning-background-color;
 
     &:before {
@@ -16,15 +16,5 @@
 }
 
 .cc-validation__message--success {
-    @extend .fa;
-    @extend .fa-check-square;
-
-    right:10px;
     color:$theme-success-color;
-}
-
-.cc-invalid {
-    & > .cc-validation__message--fail {
-        display: block;
-    }
 }

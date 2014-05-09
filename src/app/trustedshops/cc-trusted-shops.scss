@@ -18,8 +18,8 @@
 }
 
 .cc-trusted-shops-button {
-    @extend .cc-couch-action-button;
-    @extend %cc-button-base--stretched;
+    @extend %theme-button--primary; // FIXME: we may not extend theme rules from an app file
+    @extend %sofa-button--block;
 
     // we need to refactor the button stylings
     display: block !important;

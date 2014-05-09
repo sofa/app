@@ -16,9 +16,7 @@
 
                 <div ng-bind-html="ln.thankYouText"></div>
 
-                <a ng-click="navigationService.navigateToRootCategory()"
-                   class="cc-couch-action-button">{{ ln.continueShopping }}
-                </a>
+                <a ng-click="navigationService.navigateToRootCategory()" class="cc-checkout-button">{{ ln.continueShopping }}</a>
 
                 <div ng-if="cfg.trustedShopsEnabled" class="cc-trusted-shops-thankyou">
                     <div>
@@ -38,7 +36,7 @@
                         <input name="kdnr" type="hidden" value="-">
                         <input name="ordernr" type="hidden" value="-">
 
-                        <input type="submit" class="cc-couch-action-button" value="{{ ln.tsButtonBuyerProtection }}">
+                        <input type="submit" class="cc-checkout-button" value="{{ ln.tsButtonBuyerProtection }}">
                     </form>
                 </div>
 

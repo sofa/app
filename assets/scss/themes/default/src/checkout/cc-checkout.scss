@@ -1,34 +1,40 @@
 
-
 %theme-checkout-section {
     max-width:600px;
-    margin: 0 auto 10px;
-    padding:6px 10px 12px;
-}
-%theme-checkout-section--address {
-    @extend %theme-checkout-section;
+    margin: 0 auto .875rem;
+    padding:.5rem .625rem .75rem;
 }
 
-.cc-checkout__options {
+.cc-checkout-section,
+.cc-checkout-section--customer-login {
     @extend %theme-checkout-section;
 }
-.cc-checkout__address--billing {
-    @extend %theme-checkout-section--address;
-}
-.cc-checkout__address--shipping {
-    @extend %theme-checkout-section--address;
+.cc-checkout-section--customer-login {
+    padding: 0;
 }
 .cc-checkout__navigation {
-    @extend %theme-checkout-section;
 
     .cc-message-box--warning {
-        margin-bottom: 10px;
+        margin-bottom: .875rem;
     }
+}
+
+.cc-checkout-button {
+    @extend %theme-button--primary;
+    @extend %theme-button--block;
+}
+.cc-checkout-button--disabled {
+    @extend .cc-checkout-button;
+    @extend %theme-button--disabled;
+}
+
+.cc-checkout-button--guest-checkout {
+    @extend %theme-button--primary;
 }
 
 @mixin checkout-section--wide {
     @include breakpoint(wide) {
-        padding: 12px 10px 24px;
+        padding: .75rem .625rem 1.5rem;
         border-radius:$theme-border-radius--basic;
         background: rgba(0,0,0,.05);
     }
@@ -37,26 +43,17 @@
     @include checkout-section--wide;
 }
 
-%cc-form-label--checkout {
-    font-size:inherit;
-    margin:0;
-    padding: 6px 10px;
-}
-
 .cc-checkout__wrapper {
     background: $theme-color-light__darker--05;
-    padding: 0 0 10px;
+    padding: 0 0 .625rem;
 
-    .cc-form-label--required {
-        @extend %cc-form-label--checkout;
+    .cc-customer-login {
+        padding:.5rem .625rem .75rem;
+        background: rgba(0,0,0,.05);
     }
 
-    .cc-form-label--optional {
-        @extend %cc-form-label--checkout;
-    }
-
-    .cc-form-item {
-        margin-top:10px;
+    .cc-customer-account-intro {
+        background: rgba(0,0,0,.05);
     }
 }
 
@@ -72,25 +69,24 @@
 @include breakpoint(wide) {
 
     .cc-checkout__wrapper {
-        padding: 10px 0;
+        padding: .625rem 0;
     }
-    .cc-checkout__options {
+    .cc-checkout-section {
         @extend %checkout-section--wide;
     }
-    .cc-checkout__address--billing {
+    .cc-checkout-section--customer-login {
         @extend %checkout-section--wide;
-    }
-    .cc-checkout__address--shipping {
-        @extend %checkout-section--wide;
+
+        padding: 0;
     }
     .cc-checkout__navigation {
-        @extend %checkout-section--wide;
 
         text-align: right;
 
-        .cc-couch-action-button--stretched,
-        .cc-couch-action-button--disabled--stretched {
-            width:50%;
+        .cc-checkout-button,
+        .cc-checkout-button--disabled {
+            display: inline-block;
+            width: 50%;
         }
 
         .cc-message-box--warning {
@@ -108,7 +104,7 @@
         @include flex(1);
 
         .cc-title--huge {
-            line-height: 44px;
+            line-height: 2.75rem;
         }
 
     }
