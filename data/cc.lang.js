@@ -47,6 +47,7 @@ cc.Lang = {
     billingAddress:'Rechnungsadresse',
     shippingAddress:'Lieferadresse',
     billingMethod:'Zahlungsmethode',
+    sameAsBillingAddress: 'Wie Rechnungsadresse',
     formAddress:'Adresse',
     formCompany:'Firma',
     formSurname:'Name',
