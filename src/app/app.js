@@ -87,7 +87,16 @@ angular.module('CouchCommerceApp', [
                             return category;
                         });
             }]
-        }
+        },
+        onEnter: ['metaService', 'category', function (metaService, category) {
+            if (category.isRoot) {
+                metaService.reset();
+            } else {
+                metaService.set({
+                    description: ''
+                });
+            }
+        }]
     };
 
     $stateProvider
@@ -106,6 +115,11 @@ angular.module('CouchCommerceApp', [
                     return couchService.getCategory($stateParams.category);
                 }]
             },
+            onEnter: ['metaService', function (metaService) {
+                metaService.set({
+                    description: ''
+                });
+            }],
             screenIndex: screenIndexes.products
         })
 
@@ -121,6 +135,11 @@ angular.module('CouchCommerceApp', [
                     return couchService.getCategory($stateParams.category);
                 }]
             },
+            onEnter: ['product', 'metaService', function (product, metaService) {
+                metaService.set({
+                    description: product.description
+                });
+            }],
             screenIndex: screenIndexes.product
         })
 
@@ -139,6 +158,11 @@ angular.module('CouchCommerceApp', [
             url: '/checkout',
             templateUrl: 'checkout/cc-checkout.tpl.html',
             controller: 'CheckoutController',
+            onEnter: ['metaService', function (metaService) {
+                metaService.set({
+                    description: ''
+                });
+            }],
             screenIndex: screenIndexes.checkout
         })
 
@@ -146,6 +170,11 @@ angular.module('CouchCommerceApp', [
             url: '/summary/:token',
             templateUrl: 'summary/cc-summary.tpl.html',
             controller: 'SummaryController',
+            onEnter: ['metaService', function (metaService) {
+                metaService.set({
+                    description: ''
+                });
+            }],
             screenIndex: screenIndexes.summary
         });
 
@@ -157,7 +186,12 @@ angular.module('CouchCommerceApp', [
             summaryResponse: ['checkoutService', function (checkoutService) {
                 return checkoutService.getLastSummary();
             }]
-        }
+        },
+        onEnter: ['metaService', function (metaService) {
+            metaService.set({
+                description: ''
+            });
+        }]
     };
 
     $stateProvider
@@ -169,14 +203,24 @@ angular.module('CouchCommerceApp', [
                 summaryResponse: ['checkoutService', '$stateParams', function (checkoutService, $stateParams) {
                     return checkoutService.getSummary($stateParams.token);
                 }]
-            }
+            },
+            onEnter: ['metaService', function (metaService) {
+                metaService.set({
+                    description: ''
+                });
+            }]
         }))
 
         .state('pages', {
             url: '/pages/:pageId',
             templateUrl: 'pages/cc-pages.tpl.html',
             controller: 'PagesController',
-            screenIndex: screenIndexes.pages
+            screenIndex: screenIndexes.pages,
+            onEnter: ['metaService', function (metaService) {
+                metaService.set({
+                    description: ''
+                });
+            }]
         });
 
     $stateProvider
@@ -198,7 +242,7 @@ angular.module('CouchCommerceApp', [
     });
 })
 //just to kick off the services
-.run(['stateChangeService', 'viewClassService', 'backStepHighlightService', function () { } ])
+.run(['stateChangeService', 'viewClassService', 'backStepHighlightService', 'metaService', function () { } ])
 .run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
 
 
@@ -272,4 +316,34 @@ angular.module('CouchCommerceApp', [
             actionId: configService.get('bingActionId')
         }));
     }
+}])
+.factory('metaService', ['$rootScope', 'configService', function ($rootScope, configService) {
+
+    var meta = configService.get('meta');
+
+    $rootScope.meta = {
+        robots: meta.robots,
+        description: meta.description
+    };
+
+    return {
+        set: function (data) {
+            $rootScope.meta = {
+                robots: data.robots || meta.robots,
+                description: (function () {
+                    var description = data.description;
+                    if (data.description === '') {
+                        return description;
+                    }
+                    return (data.description || meta.description).replace(/<\/?[^>]+(>|$)/g, '');
+                }())
+            };
+        },
+        reset: function () {
+            $rootScope.meta = {
+                robots: meta.robots,
+                description: meta.description
+            };
+        }
+    };
 }]);
