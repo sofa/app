@@ -68,6 +68,7 @@ cc.Config = {
     bingDomainId: '',
     bingActionId: '',
     meta: {
-        robots: 'noodp, noydir'
+        robots: 'noodp, noydir',
+        description: 'This is the CouchDemoShop yay!'
     }
 };
