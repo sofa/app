@@ -61,5 +61,8 @@ cc.Config = {
     googleAnalytics:'UA-42659602-1',
     googleAnalyticsSetDomain:'couchdemoshop.couchcommerce.com',
     googleConversionId:1072140179,
-    googleConversionLabel:'r8ogCLjfZBCTn57_Aw'
+    googleConversionLabel:'r8ogCLjfZBCTn57_Aw',
+    meta: {
+        robots: 'noodp, noydir'
+    }
 };

@@ -181,7 +181,10 @@ cc.Config = {
         url: '/',
         template: 'runtastic-libra',
         target: 'aboveContent'
-    }]
+    }],
+    meta: {
+        robots: 'noodp, noydir'
+    }
 };
 
 cc.Config.categoryJson = 'data/runtastic/categories.json';

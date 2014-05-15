@@ -49,5 +49,8 @@ cc.Config = {
     trustedShopsEnabled: true,
     trustedShopsId: 'X35A8844FD4E62A875C2C9E1C05C39CD4',
     showPayPalButton: true,
-    showCheckoutButton: true
+    showCheckoutButton: true,
+    meta: {
+        robots: 'noodp, noydir'
+    }
 };
