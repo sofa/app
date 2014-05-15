@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeCode: '53787',
+    storeName: 'CouchDemoShop',
     originalUrl:'http://couchcommerce.shopwaredemo.de/',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
@@ -65,5 +66,8 @@ cc.Config = {
     googleConversionLabel:'r8ogCLjfZBCTn57_Aw',
     bingSiteId: '',
     bingDomainId: '',
-    bingActionId: ''
+    bingActionId: '',
+    meta: {
+        robots: 'noodp, noydir'
+    }
 };

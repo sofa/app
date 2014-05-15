@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeCode: '88399',
+    storeName: 'dasgibtesnureinmal.de',
     originalUrl:'http://www.dasgibtesnureinmal.de',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',

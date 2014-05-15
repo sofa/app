@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeCode: '97470',
+    storeName: 'Arktis.de',
     originalUrl:'http://www.arktis.de',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
@@ -60,5 +61,8 @@ cc.Config = {
     googleAnalytics:'UA-42659602-1',
     googleAnalyticsSetDomain:'couchdemoshop.couchcommerce.com',
     googleConversionId:1072140179,
-    googleConversionLabel:'r8ogCLjfZBCTn57_Aw'
+    googleConversionLabel:'r8ogCLjfZBCTn57_Aw',
+    meta: {
+        robots: 'noindex, nofollow'
+    }
 };

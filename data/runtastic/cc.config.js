@@ -2,6 +2,7 @@ cc.Config = {
     storeCode: '43318',
     storePath: 'runtastic',
     storeCname: 'runtastic.couchcommerce.com',
+    storeName: 'Runtastic',
     originalUrl: 'https://ecx:4600ecx@www.runtastic.com/test-shop/de',
     apiUrl: 'https://cc1.couchcommerce.com/apiv6/products/',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',

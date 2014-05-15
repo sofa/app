@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeCode: '66604',
+    storeName: 'Haremdas',
     originalUrl:'http://haremdas.storeofshop.com',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',

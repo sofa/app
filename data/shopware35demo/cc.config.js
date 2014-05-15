@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeCode: '34011',
+    storeName: 'Shopware 35 Demo',
     originalUrl:'http://demo.couchcommerce.com/shopware35',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',

@@ -1,6 +1,7 @@
 cc.Config = {
     loggingEnabled: true,
     storeCode: '76272',
+    storeName: 'Magento Demo',
     originalUrl:'http://demo.couchcommerce.com/magento/',
     noRedirectSuffix:'/CC/noRedirect',
     searchUrl: 'https://de7so.api.searchify.com/v1/indexes/production/search',
