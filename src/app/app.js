@@ -255,6 +255,9 @@ angular.module('CouchCommerceApp', [
         FastClick.attach(document.body);
     });
 })
+.run(['titleService', function (titleService) {
+    titleService.setShopNameTitle();
+}])
 .run(['trackingService', 'configService', function (trackingService, configService) {
     trackingService.addTracker(new cc.tracking.GoogleAnalyticsTracker({
         accountNumber: configService.get('googleAnalytics'),

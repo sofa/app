@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('CategoryController', function ($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote, titleService) {
+.controller('CategoryController', function ($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote, titleService, $state) {
 
     if (!category) {
         return;
@@ -38,7 +38,11 @@ angular.module('CouchCommerceApp')
             });
     };
 
-    titleService.setTitle(category.label);
+    if ($state.current.url !== '/') {
+        titleService.setTitleWithSuffix(category.label);
+    } else {
+        titleService.setShopNameTitle();
+    }
 
     $scope.category = category;
     $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;

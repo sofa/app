@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('CheckoutController', function ($scope, basketService, navigationService, checkoutService, userService, configService, dialog, payPalOverlayService, shippingMethodFormatter, $filter) {
+.controller('CheckoutController', function ($scope, basketService, navigationService, checkoutService, userService, configService, dialog, payPalOverlayService, shippingMethodFormatter, $filter, titleService) {
+
+    titleService.setTitleWithSuffix($scope.ln.checkout);
 
     var PAYPAL_EXPRESS_ID = 'paypal_express';
 

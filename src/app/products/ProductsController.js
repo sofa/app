@@ -36,5 +36,5 @@ angular.module('CouchCommerceApp')
     $scope.categoryUrlId = $stateParams.category;
     $scope.headline = category && category.label;
 
-    titleService.setTitle(category.label);
+    titleService.setTitleWithSuffix(category.label);
 });

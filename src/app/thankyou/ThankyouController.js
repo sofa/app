@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.controller('ThankyouController', function ($scope, navigationService, trustedShopsService, summaryResponse, trackingService, basketService) {
-
+.controller('ThankyouController', function ($scope, navigationService, trustedShopsService, summaryResponse, trackingService, basketService, titleService) {
+    titleService.setTitleWithSuffix($scope.ln.thankYouTitle);
     // It is possible that an error occurs between the summary and thankyou page (e.g. couchpay)
     // There the basket is only cleared when the thankyou page is loaded (as this page will always be shown, regardless of the transaction type)
     basketService.clear();

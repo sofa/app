@@ -23,7 +23,7 @@ angular.module('CouchCommerceApp')
         selectedProperties: null
     };
 
-    titleService.setTitle(product.name);
+    titleService.setTitleWithSuffix(product.name);
 
     //update the price when the selected variant changes
     $scope.$watch('variants.selectedVariant', function (variant) {

@@ -7,7 +7,7 @@ angular.module('CouchCommerceApp').controller('PagesController', function Catego
     pagesService
         .getPage(angular.isDefined($stateParams.pageId) ? $stateParams.pageId : pagesServiceExtension.currentPageId)
         .then(function (page) {
-            titleService.setTitle(page.title);
+            titleService.setTitleWithSuffix(page.title);
             $scope.page = page;
             $scope.mailTo = 'mailto:?subject=' + page.title + '&body=' + page.content;
             $scope.isLoading = false;

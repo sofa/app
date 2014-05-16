@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state, snapRemote, basketService) {
+angular.module('CouchCommerceApp').controller('SummaryController', function ($scope, navigationService, checkoutService, dialog, $stateParams, trustedShopsService, $state, snapRemote, basketService, titleService) {
 
+    titleService.setTitleWithSuffix($scope.ln.summary);
     var vm = $scope.vm = {};
 
     vm.THANK_YOU_PAGE = 'thankyou';
