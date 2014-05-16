@@ -184,7 +184,7 @@ angular.module('CouchCommerceApp', [
             templateUrl: 'common/404/cc-404.tpl.html'
         });
 
-    $urlRouterProvider.otherwise(function ($injector) {
+    $urlRouterProvider.otherwise(function ($injector, $location) {
         // since we're generating HTML snapshots for search engines
         // via prerender.io, we have to add this meta tag when the
         // requested url actually returns a 404 error
@@ -194,8 +194,7 @@ angular.module('CouchCommerceApp', [
         meta.setAttribute('content', '404');
 
         document.getElementsByTagName('head')[0].appendChild(meta);
-        var $state = $injector.get('$state');
-        $state.transitionTo('404');
+        $location.path('/');
     });
 })
 //just to kick off the services
