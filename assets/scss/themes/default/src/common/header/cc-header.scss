@@ -84,6 +84,7 @@ $theme-header-icon-background-color-lightness: lightness($theme-header-icon-back
 }
 
 .cc-header__logo {
+    display: block;
     height: $theme-header__logo-height;
     background-image: $theme-header__logo-small;
 
