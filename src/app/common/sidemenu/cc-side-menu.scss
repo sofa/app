@@ -1,6 +1,6 @@
 .cc-side-menu {
     background: #444;
-    color: #eee;
+    color: hsl(0, 0%, 93%);
     font-size: 16px;
     position: absolute;
     top: 0;
@@ -15,6 +15,9 @@
         font-size: 14px;
     }
     .cc-category-tree-view__category-entry {
+        display: block;
+        color: hsl(0, 0%, 93%);
+        text-decoration: none;
         padding:8px 10px;
         border-bottom:1px solid rgba(255,255,255,.1);
     }
@@ -34,11 +37,15 @@
 
         .cc-category-tree-view__list-item {
             font-size:90%;
-            color:#d0d0d0;
         }
 
         .cc-category-tree-view__category-entry {
             padding-left:25px;
+            color: hsl(0, 0%, 82%);
+        }
+
+        .cc-category-tree-view__category-entry--active {
+            color: hsl(0, 0%, 100%);
         }
 
         .cc-category-tree-view__list--child {
