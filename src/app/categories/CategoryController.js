@@ -14,7 +14,7 @@ angular.module('CouchCommerceApp')
     $scope.backStepHighlightService = backStepHighlightService;
 
     $scope.goToCategory = function (category, $event) {
-
+        $event.preventDefault();
         selectionService.select($stateParams.category, angular.element($event.currentTarget));
 
         //even if we have the category already provided by the function parameter,
@@ -29,7 +29,6 @@ angular.module('CouchCommerceApp')
         couchService
             .getCategory(category.urlId)
             .then(function (realCategory) {
-
                 if (!realCategory.children) {
                     navigationService.navigateToProducts(realCategory.urlId);
                 } else {

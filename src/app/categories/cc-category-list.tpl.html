@@ -17,11 +17,13 @@
                 </div>
 
                 <ul class="cc-category-list">
-                    <li ng-repeat="category in category.children"
-                        ng-click="goToCategory(category, $event)"
-                        ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
-                        bo-text="category.label"
-                        class="cc-category-list__item">
+                    <li ng-repeat="category in category.children">
+                        <a
+                            class="cc-category-list__item"
+                            ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
+                            ng-click="goToCategory(category, $event)"
+                            ng-href="/cat/{{category.urlId}}"
+                            bo-text="category.label"></a>
                     </li>
                 </ul>
             </div>
