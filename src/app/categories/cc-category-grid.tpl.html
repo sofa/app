@@ -19,9 +19,12 @@
                 <ul class="cc-category-grid">
                     <li ng-repeat="category in category.children"
                         ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
-                        ng-click="goToCategory(category, $event)" class="cc-list__item">
+                        class="cc-list__item">
 
-                        <div class="cc-category-item">
+                        <a
+                            ng-href="/cat/{{category.urlId}}"
+                            ng-click="goToCategory(category, $event)"
+                            class="cc-category-item">
 
                             <div class="cc-category-item__media-wrapper">
                                 <div class="cc-category-item__media" style="background-image: url({{ category.image }})"></div>
@@ -31,7 +34,7 @@
                                 <strong class="cc-category-item__title" bo-text="category.label"></strong>
                             </div>
 
-                        </div>
+                        </a>
 
                     </li>
                 </ul>

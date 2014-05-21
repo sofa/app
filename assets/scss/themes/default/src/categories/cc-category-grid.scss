@@ -58,8 +58,10 @@
 }
 
 .cc-category-item {
+    text-decoration: none;
     padding:1px;
     width:100%;
+    color: hsl(275, 6%, 42%);
 }
 .cc-category-item__media-wrapper {
     position: relative;
