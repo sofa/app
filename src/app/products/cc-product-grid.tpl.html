@@ -32,10 +32,13 @@
 
                 <ul class="cc-products__list">
                     <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
-                        ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
-                        ng-click="goToProduct(product, $event)" class="cc-list__item">
+                        class="cc-list__item">
 
-                        <div class="cc-product-item">
+                        <a 
+                            ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
+                            ng-href="{{getProductUrl(product)}}"
+                            ng-click="goToProduct(product, $event)"
+                            class="cc-product-item">
 
                             <div class="cc-product-item__media-wrapper">
                                 <div class="cc-product-item__media" bo-style="{ 'background-image': 'url(' + product.getImage('small') + ')' }"></div>
@@ -48,7 +51,7 @@
                                 <div class="cc-product-item__base-price-info" ng-bind="productService.getBasePriceInfo(product)"></div>
                             </div>
 
-                        </div>
+                        </a>
 
                     </li>
                 </ul>
