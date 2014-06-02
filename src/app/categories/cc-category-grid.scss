@@ -1,7 +1,6 @@
 .cc-category-grid {
     @extend %cc-list;
 
-    text-align: center;
     border:0;
 
     .cc-list__item {
@@ -9,6 +8,7 @@
         min-height:230px;
         // product/category image background...
         background: #fff;
+        text-align: center;
     }
 }
 

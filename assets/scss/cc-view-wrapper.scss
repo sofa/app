@@ -19,6 +19,8 @@
 .cc-has-overflow-support {
     .cc-view-wrapper {
         @extend %cc-scrollable-vertical;
+
+        height: 100%;
     }
 }
 
