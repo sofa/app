@@ -107,7 +107,8 @@
     @extend .cc-paypal-button--disabled
 }
 
-.cc-paypal-button--en-en{
+.cc-paypal-button--en-gb,
+.cc-paypal-button--en-us{
     @extend .cc-paypal-button;
     background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
 
@@ -116,8 +117,9 @@
     }
 }
 
-.cc-paypal-button--en-en--disabled{
-    @extend .cc-paypal-button--en-en;
+.cc-paypal-button--en-gb--disabled,
+.cc-paypal-button--en-us--disabled{
+    @extend .cc-paypal-button--en-gb;
     @extend .cc-paypal-button--disabled
 }
 
