@@ -23,7 +23,7 @@
     "sofa-tracking": "~0.3.x",
     "sofa-url-construction-service": "~0.2.x",
     "sofa-pages-service": "~0.1.0",
-    "sofa-checkout-service": "~0.4.3",
+    "sofa-checkout-service": "~0.4.4",
     "sofa-couch-service": "~0.1.0",
     "sofa-coupon-service": "~0.1.0",
     "sofa-wishlist-service": "~0.2.0"
