@@ -276,7 +276,7 @@
                 </div>
 
                 <div class="cc-grid__row">
-                    <div class="cc-grid__cell--1-1 cc-form-item">
+                    <div class="cc-grid__cell--3-4 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formStreet}}</p>
                         <span class="cc-validation">
                             <i class="cc-validation__message--success"></i>
@@ -284,8 +284,21 @@
                             <span class="cc-validation__message--fail">{{ln.invalidInput_Street}}</span>
                         </span>
                     </div>
+                    <div class="cc-grid__cell--1-4 cc-form-item">
+                        <p class="cc-form-label--required">{{ln.formStreetNumber}}</p>
+                        <span class="cc-validation">
+                            <i class="cc-validation__message--success"></i>
+                            <input ng-model="checkoutModel.shippingAddress.streetnumber" required cc-lazy-validation="parent" name="streetnumber" class="cc-text-box" type="text" />
+                            <span class="cc-validation__message--fail">{{ln.invalidInput_StreetNumber}}</span>
+                        </span>
+                    </div>
                 </div>
 
+                <div class="cc-grid__row"  ng-if="requiredInputFields['streetextra']">
+                    <div class="cc-grid__cell--1-1 cc-form-item">
+                            <input ng-model="checkoutModel.shippingAddress.streetextra" name="streetextra" class="cc-text-box" type="text" />
+                    </div>
+                </div>
                 <div class="cc-grid__row">
                     <div class="cc-grid__cell--1-4 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formZip}}</p>
