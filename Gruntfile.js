@@ -27,6 +27,8 @@ var pushStateHook = function (connect, dir) {
     };
 };
 
+var exec = require('child_process').exec;
+
 module.exports = function (grunt) {
 
     /**
@@ -536,60 +538,66 @@ module.exports = function (grunt) {
         releaseBranch: gruntReleaseOptions,
 
         shell: {
-
-            check_last_sdk_sha: {
-                command: function () {
-                    return [
-                        'cd node_modules/sofa-base',
-                        'git rev-parse HEAD'
-                    ].join(' && ');
-                },
+            /**
+             * This command saves all sym links to sofa packages in a .symstash file for
+             * later retrieval
+             */
+            stash_syms: {
+                command: 'find node_modules/sofa* -type l',
                 options: {
                     callback: function (err, stdout, stderr, cb) {
-                        grunt.log.writeln('Saving last SHA ' + stdout);
-                        if (grunt.config.get('lastSdkSha')) {
-                            if (grunt.config.get('lastSdkSha') !== stdout) {
-                                var message = 'Aborting! Turns out you\'re about ' +
-                                    'to deploy an SDK version you didn\'t test. ' +
-                                    'Please pull the latest SDK changes first!';
-                                grunt.fail.warn(message);
-                            }
-                        } else {
-                            grunt.config.set('lastSdkSha', stdout);
+
+                        if (err) {
+                            grunt.warn(err);
                         }
-                        cb();
+
+                        var linkedPackages = stdout.replace(/node_modules\//g, '').trim();
+
+                        var unlinkCommand = linkedPackages
+                                                .split('\n')
+                                                .join(' && npm unlink ');
+
+                        unlinkCommand = 'npm unlink ' + unlinkCommand + '&& npm install';
+
+                        grunt.file.write('.symstash', linkedPackages);
+
+                        exec(unlinkCommand, null, function (err, stdout) {
+
+                            if (err) {
+                                grunt.warn(err);
+                            }
+
+                            grunt.log.writeln(stdout);
+                            cb();
+                        });
                     }
                 }
             },
-
-            unlink_sdk: {
-                command: 'npm unlink sofa-base',
+            /**
+             * This command warns about sym linked sofa packages unless
+             * the --force-local flag was provided
+             */
+            sym_check: {
+                command: 'find node_modules/sofa* -type l',
                 options: {
                     callback: function (err, stdout, stderr, cb) {
-                        grunt.log.writeln('Unlinking SDK package...');
-                        grunt.log.writeln(stdout);
-                        cb();
-                    }
-                }
-            },
 
-            link_sdk: {
-                command: 'npm link sofa-base',
-                options: {
-                    callback: function (err, stdout, stderr, cb) {
-                        grunt.log.writeln('Linking SDK package...');
-                        grunt.log.writeln(stdout);
-                        cb();
-                    }
-                }
-            },
+                        if (grunt.option('force-local')) {
+                            cb();
+                            return;
+                        }
 
-            fetch_latest_sdk: {
-                command: 'npm install sofa-base',
-                options: {
-                    stdout: true,
-                    stderr: true,
-                    failOnError: true
+                        var hasSyms =  stdout.replace(/node_modules\//g, '')
+                                             .trim()
+                                             .length > 0;
+
+                        if (hasSyms) {
+                            grunt.fail.warn('ATTENTION: you have sym linked packages. Please run `grunt stash-syms`, test the app and run the previous command again.');
+                        }
+                        else {
+                            cb();
+                        }
+                    }
                 }
             },
 
@@ -859,45 +867,42 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('deploy', [
+        'shell:sym_check',
+        'reinstall-npm-packages',
         'build',
         //'e2e',
         'releaseBranchPre:deploy',
         'compile',
         'set-version',
         'changelog',
-        'shell:unlink_sdk',
-        'shell:fetch_latest_sdk',
         'shell:dist',
-        'shell:checkout_last_branch',
-        'shell:link_sdk'
+        'shell:checkout_last_branch'
     ]);
 
     grunt.registerTask('deploy-debug', [
+        'shell:sym_check',
+        'reinstall-npm-packages',
         'build',
-        'e2e',
+        //'e2e',
         'releaseBranchPre:deploy',
         'compile-debug',
         'set-version',
         'changelog',
-        'shell:unlink_sdk',
-        'shell:fetch_latest_sdk',
         'shell:dist',
-        'shell:checkout_last_branch',
-        'shell:link_sdk'
+        'shell:checkout_last_branch'
     ]);
 
     grunt.registerTask('deploy-dry-run', [
+        'shell:sym_check',
+        'reinstall-npm-packages',
         'build',
-        'e2e',
+        //'e2e',
         'releaseBranchPre:deploy',
         'compile',
         'set-version',
         'changelog',
-        'shell:unlink_sdk',
-        'shell:fetch_latest_sdk',
         'shell:dry_run',
-        'shell:checkout_last_branch',
-        'shell:link_sdk'
+        'shell:checkout_last_branch'
     ]);
 
     /**
@@ -917,6 +922,67 @@ module.exports = function (grunt) {
             return file.match(/\.css$/);
         });
     }
+
+
+    /**
+     * This is an alias to shell:stash_syms
+     */
+    grunt.registerTask('stash-syms', [
+        'shell:stash_syms'
+    ]);
+
+    /**
+     * This command reinstalls all npm packages
+     */
+    grunt.registerTask('reinstall-npm-packages', 'deletes all node_modules and fetches them again', function () {
+        var done = this.async();
+
+        if (grunt.option('force-local')) {
+            done();
+            return;
+        }
+
+        exec('rm -rf node_modules && npm install', null, function (err, stdout) {
+            if (err) {
+                grunt.fail.error(err);
+            }
+
+            grunt.log.writeln(stdout);
+            done();
+        });
+    });
+
+
+    /**
+     * This command restores previously linked npm packages
+     */
+    grunt.registerTask('pop-syms', 'restore previously saved symlinks', function () {
+        var done = this.async();
+        var fs = require('fs');
+        fs.readFile('.symstash', 'utf-8', function (err, content) {
+            if (err) {
+                grunt.warn(err);
+            }
+
+            var linkCommand = content
+                                .split('\n')
+                                .join(' && npm link ');
+
+            linkCommand = 'npm link ' + linkCommand;
+
+            exec(linkCommand, null, function (err, stdout) {
+
+                if (err) {
+                    grunt.warn(err);
+                }
+
+                grunt.log.writeln(stdout);
+                done();
+            });
+
+        });
+    });
+
 
     /**
      * The index.html template includes the stylesheet and javascript sources
