@@ -5,6 +5,10 @@
 
     .cc-list__item, .cc-product-item {
         border-color: $theme-color-dark__lighter--50;
+    }
+
+    .cc-product-item {
+        color: $theme-color-dark__lighter--10;
 
         @extend %cc-highlight-transition--grid;
 
@@ -14,10 +18,7 @@
         &.cc-highlight--out {
             @extend %cc-highlight--grid--out;
         }
-    }
 
-    .cc-product-item {
-        color: $theme-color-dark__lighter--10;
     }
     .cc-product-item__info-wrapper {
         background: $theme-color-light__darker--05;
