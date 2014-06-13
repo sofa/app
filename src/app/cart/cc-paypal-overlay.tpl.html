@@ -1,27 +1,21 @@
 <div class="modal-body cc-paypal-overlay">
     <i class="fa fa-times-circle" ng-click="close()"></i>
-    <p class="cc-form-label">{{ln.formCountry}}</p>
+    <p class="cc-form-label" bo-text="ln.formCountry"></p>
     <cc-select-box
-        class="cc-select-box-on-background"
-        ng-model="vm.selectedCountry"
+        model="vm.selectedCountry"
+        data="vm.countries"
         choose-text="ln.choose"
-        allow-null
-        omit-null
-        property-name="ln.paymentMethod"
-        display-value-exp="'label'"
-        data="vm.countries">
+        property-name="{{ln.paymentMethod}}"
+        display-value-exp="'label'">
     </cc-select-box>
 
-    <p class="cc-form-label">{{ln.shippingMethod}}</p>
+    <p class="cc-form-label" bo-text="ln.shippingMethod"></p>
     <cc-select-box
-        class="cc-select-box-on-background"
-        ng-model="vm.selectedShippingMethod"
-        allow-null
-        omit-null
+        model="vm.selectedShippingMethod"
+        data="vm.supportedShippingMethods"
         choose-text="ln.choose"
-        property-name="ln.shippingMethod"
-        display-value-exp="shippingMethodFormatter"
-        data="vm.supportedShippingMethods">
+        property-name="{{ln.shippingMethod}}"
+        display-value-exp="shippingMethodFormatter">
     </cc-select-box>
     <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>
 </div>

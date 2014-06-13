@@ -52,6 +52,10 @@ angular.module('CouchCommerceApp')
 
                     checkoutModel.supportedPaymentMethods = data.paymentMethods;
                     checkoutModel.supportedShippingMethods = data.shippingMethods;
+                    // Preselect the first shipping option
+                    if (!checkoutModel.selectedShippingMethod && data.shippingMethods.length) {
+                        checkoutModel.selectedShippingMethod = data.shippingMethods[0];
+                    }
 
                     $scope.displayEmptyShippingMethodsMessage = !data.shippingMethods.length;
                 }
@@ -168,7 +172,8 @@ angular.module('CouchCommerceApp')
     });
 
     $scope.canProceed = function () {
-        return  $scope.billingAddressForm.$valid &&
+        return $scope.paymentMethodForm.$valid && $scope.shippingMethodForm.$valid &&
+            $scope.billingAddressForm.$valid &&
             (checkoutModel.addressEqual || $scope.shippingAddressForm.$valid) &&
             checkoutModel.selectedShippingMethod &&
             checkoutModel.supportedShippingMethods.length &&

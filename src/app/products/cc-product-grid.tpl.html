@@ -22,11 +22,10 @@
                     <span bo-text="ln.productCountText"></span>
                 </span>
                     <cc-select-box
-                            ng-model="sortModel.sortBy"
-                            allow-null
+                            model="sortModel.sortBy"
+                            data="sortModel.sortTypes"
                             choose-text="ln.sortBy"
-                            display-value-exp="'title'"
-                            data="sortModel.sortTypes">
+                            display-value-exp="'title'">
                     </cc-select-box>
                 </div>
 

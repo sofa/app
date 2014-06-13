@@ -19,34 +19,35 @@
 
         <section class="cc-checkout-section cc-checkout__options">
 
-            <div class="cc-grid__row">
-                <div class="cc-grid__cell--1-1 cc-form-item">
-                    <p class="cc-form-label--required" bo-text="ln.paymentMethod"></p>
-                    <cc-select-box
-                            ng-model="checkoutModel.selectedPaymentMethod"
-                            choose-text="ln.choose"
-                            allow-null
-                            omit-null
-                            property-name="ln.paymentMethod"
-                            display-value-exp="'title'"
-                            data="checkoutModel.supportedPaymentMethods">
-                    </cc-select-box>
+            <form name="paymentMethodForm" novalidate>
+                <div class="cc-grid__row">
+                    <div class="cc-grid__cell--1-1 cc-form-item">
+                        <p class="cc-form-label--required" bo-text="ln.paymentMethod"></p>
+                        <cc-select-box
+                                model="checkoutModel.selectedPaymentMethod"
+                                data="checkoutModel.supportedPaymentMethods"
+                                choose-text="ln.choose"
+                                required="true"
+                                property-name="{{ln.paymentMethod}}"
+                                display-value-exp="'title'">
+                        </cc-select-box>
+                    </div>
                 </div>
-            </div>
-            <div class="cc-grid__row">
-                <div class="cc-grid__cell--1-1 cc-form-item">
-                    <p class="cc-form-label--required" bo-text="ln.shippingMethod"></p>
-                    <cc-select-box ng-hide="$parent.displayEmptyShippingMethodsMessage"
-                                   ng-model="checkoutModel.selectedShippingMethod"
-                                   allow-null
-                                   omit-null
-                                   choose-text="ln.choose"
-                                   property-name="ln.shippingMethod"
-                                   display-value-exp="shippingMethodFormatter"
-                                   data="checkoutModel.supportedShippingMethods">
-                    </cc-select-box>
+            </form>
+            <form name="shippingMethodForm" novalidate ng-hide="displayEmptyShippingMethodsMessage">
+                <div class="cc-grid__row">
+                    <div class="cc-grid__cell--1-1 cc-form-item">
+                        <p class="cc-form-label--required" bo-text="ln.shippingMethod"></p>
+                        <cc-select-box
+                                   model="checkoutModel.selectedShippingMethod"
+                                   data="checkoutModel.supportedShippingMethods"
+                                   required="true"
+                                   property-name="{{ln.shippingMethod}}"
+                                   display-value-exp="shippingMethodFormatter">
+                        </cc-select-box>
+                    </div>
                 </div>
-            </div>
+            </form>
 
             <div class="cc-message-box--error--iconic" ng-show="displayEmptyShippingMethodsMessage" ng-bind="ln.noShippingMethodsAvailable"></div>
 
@@ -71,12 +72,11 @@
                     <div class="cc-grid__cell--1-1 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formSalutation}}</p>
                         <cc-select-box
-                                name="salutation"
-                                ng-model="checkoutModel.billingAddress.salutation"
+                                model="checkoutModel.billingAddress.salutation"
+                                data="checkoutModel.salutations"
+                                required="true"
                                 choose-text="ln.choose"
-                                property-name="ln.formSalutation"
-                                fail-message="ln.invalidInput_Salutation"
-                                data="checkoutModel.salutations">
+                                property-name="{{ln.formSalutation}}">
                         </cc-select-box>
                     </div>
                 </div>
@@ -148,14 +148,17 @@
                 <div class="cc-grid__row">
                     <div class="cc-grid__cell--1-1 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formCountry}}</p>
-                        <cc-select-box
-                                name="country"
-                                ng-model="checkoutModel.billingAddress.country"
-                                omit-null
-                                choose-text="ln.choose"
-                                display-value-exp="'label'"
-                                data="configService.getSupportedCountries()">
-                        </cc-select-box>
+                        <span class="cc-validation">
+                            <cc-select-box
+                                    model="checkoutModel.billingAddress.country"
+                                    data="configService.getSupportedCountries()"
+                                    choose-text="ln.choose"
+                                    required="true"
+                                    property-name="{{ln.formCountry}}"
+                                    display-value-exp="'label'">
+                            </cc-select-box>
+                            <span class="cc-validation__message--fail" ng-class="{'cc-validation__message--fail--show': billingAddressForm.$dirty && billingAddressForm[ln.formCountry].$invalid}" bo-text="ln.invalidInput_Country"></span>
+                        </span>
                     </div>
                 </div>
 
@@ -169,9 +172,11 @@
                         </span>
                     </div>
                     <div class="cc-grid__cell--1-2 cc-form-item">
-                        <p ng-class="requiredInputFields['phone'] ? 'cc-form-label--required' : 'cc-form-label--optional'">{{ln.formTelephone}}</p>
-                        <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" ng-required="requiredInputFields['phone']" name="city" class="cc-text-box" type="tel" placeholder=""/>
-                        <span class="cc-validation__message--fail">{{ln.invalidInput_Phone}}</span>
+                        <span class="cc-validation">
+                            <p ng-class="requiredInputFields['phone'] ? 'cc-form-label--required' : 'cc-form-label--optional'">{{ln.formTelephone}}</p>
+                            <input ng-model="checkoutModel.billingAddress.phone" cc-lazy-validation="parent" ng-required="requiredInputFields['phone']" name="city" class="cc-text-box" type="tel" placeholder=""/>
+                            <span class="cc-validation__message--fail">{{ln.invalidInput_Phone}}</span>
+                        </span>
                     </div>
                 </div>
 
@@ -185,14 +190,13 @@
                         </span>
                     </div>
                     <div class="cc-grid__cell--2-4 cc-form-item">
-                        <p class="cc-form-label--optional">&nbsp;</p>
+                        <p class="cc-form-label--optional"></p>
                         <cc-select-box
-                            name="birthmonth"
-                            ng-model="checkoutModel.billingAddress.birthmonth"
-                            omit-null
+                            model="checkoutModel.billingAddress.birthmonth"
+                            data="availableBirthmonths"
                             choose-text="ln.choose"
-                            display-value-exp="'label'"
-                            data="availableBirthmonths">
+                            property-name="birthmonth"
+                            display-value-exp="'label'">
                         </cc-select-box>
                     </div>
                     <div class="cc-grid__cell--1-4 cc-form-item">
@@ -242,12 +246,11 @@
                     <div class="cc-grid__cell--1-1 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formSalutation}}</p>
                         <cc-select-box
-                                name="salutation"
-                                ng-model="checkoutModel.shippingAddress.salutation"
+                                model="checkoutModel.shippingAddress.salutation"
+                                data="checkoutModel.salutations"
+                                required="true"
                                 choose-text="ln.choose"
-                                property-name="ln.formSalutation"
-                                fail-message="ln.invalidInput_Salutation"
-                                data="checkoutModel.salutations">
+                                property-name="{{ln.formSalutation}}">
                         </cc-select-box>
                     </div>
                 </div>
@@ -318,11 +321,12 @@
                     <div class="cc-grid__cell--1-1 cc-form-item">
                         <p class="cc-form-label--required">{{ln.formCountry}}</p>
                         <cc-select-box
-                                ng-model="checkoutModel.shippingAddress.country"
+                                model="checkoutModel.shippingAddress.country"
+                                data="configService.getSupportedCountries()"
+                                required="true"
+                                property-name="{{ln.formCountry}}"
                                 choose-text="ln.choose"
-                                fail-message="ln.invalidInput_Salutation"
-                                display-value-exp="'label'"
-                                data="configService.getSupportedCountries()">
+                                display-value-exp="'label'">
                         </cc-select-box>
                     </div>
                 </div>
