@@ -17,7 +17,7 @@
     "sofa-device-service": "~0.2.x",
     "sofa-url-parser-service": "~0.1.x",
     "sofa-search-service": "~0.1.x",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.31.2",
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.32.0",
     "sofa-user-service": "~0.1.x",
     "sofa-basket-service": "0.2.x",
     "sofa-tracking": "~0.3.x",
