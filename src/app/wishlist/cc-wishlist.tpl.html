@@ -12,7 +12,7 @@
             ng-click="navigateToProduct(item.product)">
 
             <div class="cc-wishlist-list-item__wrapper">
-                <div class="cc-wishlist-list__item-image" style="background-image: url({{ item.product.getImage('small') }})"></div>
+                <img class="cc-wishlist-list__item-image" cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 50, maxheight: 50}" alt=""/>
                 <div class="cc-wishlist-list__item-content">
                     <strong class="cc-wishlist-list__item-title" ng-bind="item.product.name"></strong>
 

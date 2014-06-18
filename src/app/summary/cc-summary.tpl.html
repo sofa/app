@@ -47,9 +47,7 @@
             cc-checkout-list and be used across both screens. No? -->
             <ul class="cc-cart-list">
                 <li ng-repeat="item in vm.items" class="cc-cart-list__item">
-                    <div class="cc-cart-list__item-image"
-                         style="background-image: url({{ item.imageURL }})">
-                    </div>
+                    <img class="cc-cart-list__item-image" cc-src="item.imageURL" cc-src-config="{maxwidth: 50, maxheight: 50}" />
                     <div class="cc-cart-list__item-content">
                         <strong class="cc-cart-list__item-title">{{item.name}}</strong>
 

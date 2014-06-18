@@ -52,6 +52,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.trackingService',
     'sdk.services.requestAnimationFrame',
     'sdk.services.stateResolverService',
+    'sdk.services.imageResizeService',
     'sdk.directives',
     'sdk.filter',
     'ui.bootstrap',

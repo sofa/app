@@ -152,6 +152,7 @@ module.exports = {
             'node_modules/sofa-user-service/dist/sofa.userService.js',
             'node_modules/sofa-basket-service/dist/sofa.basketService.js',
             'node_modules/sofa-wishlist-service/dist/sofa.wishlistService.js',
+            'node_modules/sofa-image-resizer-service/dist/sofa.imageResizerService.js',
             'node_modules/sofa-pages-service/dist/sofa.pagesService.js',
             'node_modules/sofa-checkout-service/dist/sofa.checkoutService.js',
             'node_modules/sofa-couch-service/dist/sofa.couchService.js',
@@ -159,7 +160,7 @@ module.exports = {
             'node_modules/sofa-state-resolver-service/dist/sofa.stateResolverService.js',
             'node_modules/sofa-base/src/core/*.js',
             'node_modules/sofa-base/src/**/*.js',
-            'node_modules/sofa-base/dist/cc.angular.templates.js',
+            'node_modules/sofa-base/dist/cc.angular.templates.js'
         ],
         css: [],
         scss: [

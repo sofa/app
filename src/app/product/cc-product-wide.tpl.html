@@ -20,7 +20,7 @@
 
                     <div class="cc-flex-image-helper">
                         <div class="cc-product-view-image-wrapper">
-                            <img ng-src="{{selectedImage.url}}"
+                            <img ng-src="{{selectedImage}}"
                                  cc-image-zoom
                                  cc-image-full-screen
                                  class="cc-product-view-image"
@@ -29,9 +29,9 @@
                     </div>
 
                     <cc-thumbnail-bar
-                            ng-show="$parent.images.length > 1"
-                            images="product.getAllImages()"
-                            on-change="onThumbnailSelected(product, image)">
+                            ng-show="images.length > 1"
+                            images="productImages"
+                            on-change="changeImage(imageUrl)">
                     </cc-thumbnail-bar>
 
                 </div>

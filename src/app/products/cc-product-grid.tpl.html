@@ -40,7 +40,9 @@
                             class="cc-product-item">
 
                             <div class="cc-product-item__media-wrapper">
-                                <div class="cc-product-item__media" bo-style="{ 'background-image': 'url(' + product.getImage('small') + ')' }"></div>
+                                <div class="cc-product-item__media">
+                                    <img class="cc-product-item__image" cc-src="product.getImage('large')" cc-src-config="{maxwidth: 140, maxheight: 140}" cc-src-spinner="true" alt=""/>
+                                </div>
                             </div>
 
                             <div class="cc-product-item__info-wrapper">

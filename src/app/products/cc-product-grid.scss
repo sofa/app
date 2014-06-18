@@ -48,6 +48,13 @@
     background-repeat: no-repeat;
 }
 
+.cc-product-item__image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
 .cc-product-item__info-wrapper {
     padding:5px 5px 0;
     min-height: 110px; // no-flex-box fallback

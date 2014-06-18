@@ -17,7 +17,7 @@
 
         <cc-inject target="beneathTitle"></cc-inject>
 
-        <div class="cc-product-view-image-wrapper">
+        <div class="cc-product-view-image-wrapper" ng-class="{'cc-img-loading': !selectedImage.loaded}">
             <img ng-src="{{selectedImage.url}}"
                  cc-image-zoom
                  cc-image-full-screen
@@ -26,9 +26,9 @@
         </div>
 
         <cc-thumbnail-bar
-            ng-show="$parent.images.length > 1"
-            images="product.getAllImages()"
-            on-change="onThumbnailSelected(product, image)">
+                ng-show="images.length > 1"
+                images="productImages"
+                on-change="changeImage(image)">
         </cc-thumbnail-bar>
 
         <cc-variant-selector

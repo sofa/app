@@ -26,7 +26,9 @@
                             class="cc-category-item">
 
                             <div class="cc-category-item__media-wrapper">
-                                <div class="cc-category-item__media" style="background-image: url({{ category.image }})"></div>
+                                <div class="cc-category-item__media">
+                                    <img class="cc-category-item__image" cc-src="category.image" cc-src-config="{maxwidth: 300, maxheight: 200}" cc-src-spinner="true" alt=""/>
+                                </div>
                             </div>
 
                             <div class="cc-category-item__info-wrapper">

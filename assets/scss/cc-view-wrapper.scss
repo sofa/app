@@ -1,4 +1,6 @@
-.cc-ui-view {
+.cc-ui-view,
+.cc-products__header-block,
+.cc-product__header-block {
     // some tweaks for less flickering
     -webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;

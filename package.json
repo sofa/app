@@ -27,6 +27,7 @@
     "sofa-couch-service": "~0.5.x",
     "sofa-coupon-service": "~0.1.0",
     "sofa-wishlist-service": "~0.2.0",
+    "sofa-image-resizer-service": "~0.1.x",
     "sofa-state-resolver-service": "^0.1.0"
   },
   "devDependencies": {

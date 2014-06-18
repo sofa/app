@@ -1,11 +1,19 @@
 'use strict';
 
+/* global Image */
+
 angular.module('CouchCommerceApp')
-.controller('ProductController', function ($scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService, titleService) {
+.controller('ProductController', function ($rootScope, $scope, $filter, $location, configService, couchService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService, titleService, imageResizeService, $q) {
 
     if (!product || !category) {
         return;
     }
+
+    // Set maximum dimensions for the imageResizeService
+    var IMAGE_MAX_HEIGHT     = $rootScope.isTabletSize ? 500 : 300,
+        IMAGE_MAX_WIDTH      = $rootScope.isTabletSize ? 500 : 300,
+        THUMBNAIL_MAX_WIDTH  = $rootScope.isTabletSize ? 120 : 50,
+        THUMBNAIL_MAX_HEIGHT = $rootScope.isTabletSize ? 120 : 50;
 
     categoryTreeViewRemote.setActive(category);
 
@@ -30,11 +38,54 @@ angular.module('CouchCommerceApp')
         $scope.selectedVariant = variant;
         if (variant && variant.images && variant.images[0]) {
             $scope.images = variant.images;
-            $scope.selectedImage = $scope.images[0];
+            $scope.productImages = getResizedProductImages();
+            $scope.selectedImage = $scope.productImages[0].image;
         }
     });
 
-    $scope.onThumbnailSelected = function (product, image) {
+    var preloadImage = function (imageUrl) {
+        var deferred = $q.defer(),
+            img = new Image();
+
+        img.onload = function () {
+            deferred.resolve(true);
+        };
+        img.src = imageUrl;
+
+        return deferred.promise;
+    };
+
+    var getResizedProductImages = function () {
+
+        var resizedCollection = [];
+
+        angular.forEach($scope.images, function (image, index) {
+            resizedCollection[index] = {
+                thumbnail: imageResizeService.resize(image.url, {
+                    maxwidth: THUMBNAIL_MAX_WIDTH,
+                    maxheight: THUMBNAIL_MAX_HEIGHT
+                }),
+                image: {
+                    url: imageResizeService.resize(image.url, {
+                        maxwidth: IMAGE_MAX_WIDTH,
+                        maxheight: IMAGE_MAX_HEIGHT
+                    }),
+                    loaded: false
+                }
+            };
+
+            preloadImage(resizedCollection[index].image.url).then(function (state) {
+                resizedCollection[index].image.loaded = state;
+            });
+        });
+
+        return resizedCollection;
+    };
+
+    $scope.productImages = getResizedProductImages();
+    $scope.selectedImage = $scope.productImages[0].image;
+
+    $scope.changeImage = function (image) {
         $scope.selectedImage = image;
     };
 

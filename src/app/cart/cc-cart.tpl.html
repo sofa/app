@@ -21,10 +21,9 @@
 
                         <ul class="cc-cart-list" ng-show="!isEmpty">
                             <li ng-repeat="item in items" class="cc-cart-list__item cc-animate">
-                                <div class="cc-cart-list__item-image"
-                                     ng-click="navigationService.navigateToUrl(item.product.getOriginFullUrl())"
-                                     style="background-image: url({{ item.product.getImage('small') }})">
-                                </div>
+                                <img class="cc-cart-list__item-image"
+                                     cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 50, maxheight: 50}"
+                                     ng-click="navigationService.navigateToUrl(item.product.getOriginFullUrl())" alt="" />
                                 <div class="cc-cart-list__item-content">
                                     <strong class="cc-cart-list__item-title">
                                         {{item.product.name}}

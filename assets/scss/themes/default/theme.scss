@@ -103,6 +103,43 @@ a {
 .cc-hidden {
     display: none;
 }
+
+.cc-img-loading {
+    position: relative;
+}
+.cc-img-loading:before {
+    content: '';
+    height:60px;
+    width:60px;
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    margin:-30px 0 0 -30px;
+    -webkit-animation: rotation .6s infinite linear;
+    -moz-animation: rotation .6s infinite linear;
+    -o-animation: rotation .6s infinite linear;
+    animation: rotation .6s infinite linear;
+    border:6px solid rgba(0,0,0,.15);
+    border-top:6px solid rgba(0,0,0,.4);
+    border-radius:100%;
+    z-index:2;
+}
+
+@-webkit-keyframes rotation {
+    from {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(359deg);}
+}
+
+@-moz-keyframes rotation {
+    from {-moz-transform: rotate(0deg);}
+    to {-moz-transform: rotate(359deg);}
+}
+
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+}
+
 // This is a modal class to overwrite some default bootstrap properties
 // and is separate from the couch modal which is used in the search, among others.
 .modal,

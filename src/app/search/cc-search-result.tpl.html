@@ -13,9 +13,7 @@
                         ng-click="vm.goToProduct(product)"
                         class="cc-search-result__item">
                         <div class="cc-search-result__item-image-wrapper">
-                            <div class="cc-search-result__item-image"
-                                 style="background-image:url({{product.productImageUrl}});">
-                            </div>
+                            <img class="cc-search-result__item-image" cc-src="product.productImageUrl" cc-src-config="{maxwidth: 50, maxheight: 50}" alt=""/>
                         </div>
 
                         <div class="cc-search-result__item-text-wrapper">
