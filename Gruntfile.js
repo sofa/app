@@ -608,25 +608,6 @@ module.exports = function (grunt) {
                 command: 'git checkout -'
             },
 
-            dry_run: {
-                options: {
-                    stdout: true,
-                    stderr: true,
-                    failOnError: true
-                },
-                command: function () {
-                    var version = grunt.config.get('appVersion');
-
-                    return [
-                        'git add -A',
-                        'git add -f dist',
-                        'git add -f node_modules/sofa-base',
-                        'git commit -m "chore(*): adding dist folder for ' + version + ' release"',
-                        'git tag ' + version,
-                    ].join(' && ');
-                }
-            },
-
             dist: {
                 options: {
                     stdout: true,
@@ -641,14 +622,10 @@ module.exports = function (grunt) {
                 // source files but instead we just add the dist folder
                 // to the version control for the deployment branch/tag.
                 command: function () {
-                    var version = grunt.config.get('appVersion');
                     return [
                         'git add -A',
                         'git add -f dist',
-                        'git add -f node_modules/sofa-base',
-                        'git commit -m "chore(*): adding dist folder for ' + version + ' release"',
-                        'git tag ' + version,
-                        'git push --tags'
+                        'git add -f node_modules/sofa-base'
                     ].join(' && ');
                 }
             }
@@ -776,6 +753,40 @@ module.exports = function (grunt) {
                 files: ['<%= vendor_files.js %>'],
                 tasks: ['copy:build_vendorjs', 'index:build']
             }
+        },
+
+        deploy: {
+            options: {
+                tagOnly: true,
+                masterBranch: 'master',
+                versionFiles: [
+                    'package.json'
+                ],
+                preDeployFn: function (grunt, newVersion, done) {
+                    // Needed to make uglify use the banner with the new version inside
+                    grunt.config.set('pkg', grunt.file.readJSON('package.json'));
+
+                    grunt.config.set('changelog.options.version', newVersion);
+
+                    grunt.task.run([
+                        'shell:sym_check',
+                        'reinstall-npm-packages',
+                        'build',
+                        //'e2e',
+                        'releaseBranchPre:deploy',
+                        grunt.option('debug') ? 'compile-debug' : 'compile',
+                        'changelog',
+                        'shell:dist'
+                    ]);
+                    done();
+                },
+                postDeployFn: function (grunt, newVersion, done) {
+                    grunt.task.run([
+                        'shell:checkout_last_branch'
+                    ]);
+                    done();
+                }
+            }
         }
     };
 
@@ -867,45 +878,6 @@ module.exports = function (grunt) {
         'concat:compile_js',
         'uglify:compile',
         'index:compile'
-    ]);
-
-    grunt.registerTask('deploy', [
-        'shell:sym_check',
-        'reinstall-npm-packages',
-        'build',
-        //'e2e',
-        'releaseBranchPre:deploy',
-        'compile',
-        'set-version',
-        'changelog',
-        'shell:dist',
-        'shell:checkout_last_branch'
-    ]);
-
-    grunt.registerTask('deploy-debug', [
-        'shell:sym_check',
-        'reinstall-npm-packages',
-        'build',
-        //'e2e',
-        'releaseBranchPre:deploy',
-        'compile-debug',
-        'set-version',
-        'changelog',
-        'shell:dist',
-        'shell:checkout_last_branch'
-    ]);
-
-    grunt.registerTask('deploy-dry-run', [
-        'shell:sym_check',
-        'reinstall-npm-packages',
-        'build',
-        //'e2e',
-        'releaseBranchPre:deploy',
-        'compile',
-        'set-version',
-        'changelog',
-        'shell:dry_run',
-        'shell:checkout_last_branch'
     ]);
 
     /**
@@ -1084,20 +1056,4 @@ module.exports = function (grunt) {
         grunt.config.set('appJsName', 'app.min.' + guid + '.js');
     });
 
-    /**
-     * Simply sets the version for our app. Tries to get it from the
-     * `package.json` file.
-     */
-    grunt.registerTask('set-version', function () {
-        var version = grunt.option('app-version');
-
-        if (typeof version === 'undefined') {
-            grunt.task.clearQueue();
-            grunt.fail.warn('You need to specify a version with --app-version....stupid!');
-            return;
-        }
-
-        grunt.config.set('appVersion', version);
-        grunt.config.set('changelog.options.version', version);
-    });
 };

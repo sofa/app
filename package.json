@@ -30,7 +30,7 @@
     "sofa-state-resolver-service": "^0.1.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "^0.4.5",
     "grunt-contrib-uglify": "~0.2.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-contrib-sass": "~0.3.0",
@@ -59,6 +59,7 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-ngmin": "0.0.3",
     "grunt-protractor-runner": "~0.2.1",
-    "protractor": "~0.17.0"
+    "protractor": "~0.17.0",
+    "grunt-deploy-semver": "^0.4.0"
   }
 }
