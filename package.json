@@ -11,7 +11,7 @@
   "license": "",
   "dependencies": {
     "angular-bindonce": "~0.2.2",
-    "sofa-core": "~0.7.x",
+    "sofa-core": "~0.8.x",
     "sofa-storages": "~0.1.x",
     "sofa-logging-service": "~0.1.x",
     "sofa-device-service": "~0.2.x",
@@ -24,7 +24,7 @@
     "sofa-url-construction-service": "~0.2.x",
     "sofa-pages-service": "~0.1.0",
     "sofa-checkout-service": "~0.4.4",
-    "sofa-couch-service": "~0.1.0",
+    "sofa-couch-service": "~0.3.0",
     "sofa-coupon-service": "~0.1.0",
     "sofa-wishlist-service": "~0.2.0"
   },
