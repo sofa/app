@@ -13,6 +13,11 @@
 
 .cc-summary__info-data {
     font-size:14px;
+    font-style: normal;
+
+    span {
+        display: block;
+    }
 }
 
 .cc-summary__cart {
