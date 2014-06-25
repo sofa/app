@@ -14,6 +14,12 @@
     }
 })();
 
+function setPrerenderIOMetaTag(status) {
+    var meta = document.createElement('meta');
+    meta.setAttribute('name', 'prerender-status-code');
+    meta.setAttribute('content', status);
+    document.getElementsByTagName('head')[0].appendChild(meta);
+}
 //we need this to be available in the Angular config phase
 //since Angular does not allow access to services in the config
 //phase, we need to access it as non angular service for now
@@ -148,6 +154,47 @@ angular.module('CouchCommerceApp', [
             screenIndex: screenIndexes.product
         })
 
+        .state('oldCategories', angular.extend({}, categoryStateConfig, {
+            url: '/cat/:category',
+            resolve: {
+                category: ['couchService', '$stateParams', '$state', function (couchService, $stateParams) {
+                    return couchService.getCategory($stateParams.category);
+                }]
+            },
+            controller: ['$location', 'category', function ($location, category) {
+                setPrerenderIOMetaTag('301');
+                $location.path(category.getOriginFullUrl());
+            }]
+        }))
+
+        .state('oldProducts', {
+            url: '/cat/:category/products',
+            templateUrl: 'products/cc-product-grid.tpl.html',
+            controller: ['category', '$location', function (category, $location) {
+                setPrerenderIOMetaTag('301');
+                $location.path(category.getOriginFullUrl());
+            }],
+            resolve: {
+                category: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                    return couchService.getCategory($stateParams.category);
+                }]
+            }
+        })
+
+        .state('oldProduct', {
+            url: '/cat/:category/product/:productUrlKey',
+            templateUrl: cc.isTabletSize ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html',
+            controller: ['product', '$location', function (product, $location) {
+                setPrerenderIOMetaTag('301');
+                $location.path(product.getOriginFullUrl());
+            }],
+            resolve: {
+                product: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                    return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
+                }]
+            }
+        })
+
         // would really love to keep this so that we can trigger the cart opening via
         // URL. Unfortunately I haven't found a way to keep the /cart URL just as a way
         // to open the right side menu without changing the currently active state.
@@ -243,11 +290,7 @@ angular.module('CouchCommerceApp', [
                 // via prerender.io, we have to add this meta tag when the
                 // requested url actually returns a 404 error
                 // https://prerender.io/getting-started#404s
-                var meta = document.createElement('meta');
-                meta.setAttribute('name', 'prerender-status-code');
-                meta.setAttribute('content', '404');
-                document.getElementsByTagName('head')[0].appendChild(meta);
-
+                setPrerenderIOMetaTag('404');
                 navigationService.navigateToRootCategory();
             });
     });
