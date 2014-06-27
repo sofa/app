@@ -25,7 +25,7 @@ module.exports = {
      * This specifies the folder in `data/` for the specific shop you want to
      * build the app.
      */
-    shop_data_dir: 'couchdemoshop',
+    shop_data_dir: 'runtastic',
 
     /*
      * This is a collection of file patterns that refer to our app code (the
