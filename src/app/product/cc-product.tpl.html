@@ -43,7 +43,7 @@
         <div class="cc-product__content-box" ng-if="product.description || product.hasAttributes()">
 
             <cc-zippy caption="ln.productDetails" init-opened="true" ng-if="product.description">
-                <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+                <div class="cc-cms-content cc-product-description" ng-bind-html="product.description"></div>
             </cc-zippy>
 
             <cc-zippy caption="ln.productSpecifications" ng-if="product.hasAttributes()">

@@ -137,6 +137,50 @@ a {
     color: $theme-color-dark__tinted--20;
 }
 
+.cc-cms-content {
+
+    font-size: 0.9375rem;
+
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+        margin:0 0 1rem;
+        font-weight: 700;
+    }
+    h1 {
+        font-size: 150%;
+    }
+    h2 {
+        font-size: 135%;
+    }
+    h3 {
+        font-size: 125%;
+    }
+    h4 {
+        font-size: 115%;
+    }
+    h5 {
+        font-size: 110%;
+    }
+    h6 {
+        font-size: 105%;
+    }
+
+    p {
+        font-size: inherit;
+        line-height: 1.25rem;
+        margin: .5rem 0;
+    }
+
+    ul {
+        font-size: inherit;
+        list-style: disc;
+        margin: 1rem 0;
+    }
+    li {
+        margin-left: 1rem;
+    }
+}
+
 /*  ===========================================================================
     MEDIA-QUERY-SAVE @extend
     note: each mixin has to include the respective media query in which it will
