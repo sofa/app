@@ -1,4 +1,4 @@
-{
+  {
   "name": "CouchCommerceSampleApp",
   "version": "0.0.1",
   "description": "Sample CouchCommerce AngularJS App",
@@ -59,7 +59,7 @@
     "grunt-contrib-cssmin": "~0.7.0",
     "grunt-ngmin": "0.0.3",
     "grunt-protractor-runner": "~0.2.1",
-    "protractor": "~0.17.0",
+    "protractor": "~0.21.x",
     "grunt-deploy-semver": "^0.4.0"
   }
 }
