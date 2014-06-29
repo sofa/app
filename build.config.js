@@ -25,7 +25,7 @@ module.exports = {
      * This specifies the folder in `data/` for the specific shop you want to
      * build the app.
      */
-    shop_data_dir: 'runtastic',
+    shop_data_dir: 'couchdemoshop',
 
     /*
      * This is a collection of file patterns that refer to our app code (the
@@ -45,6 +45,32 @@ module.exports = {
         jsunit: ['<%= app_base %>/**/*.unit.spec.js'],
         jse2e: ['<%= app_base %>/**/*.e2e.spec.js'],
         jse2epage: ['<%= app_base %>/**/*.e2e.page.js'],
+        jse2esuites: [
+            {
+                name: 'app',
+                src: ['<%= app_base %>/*.e2e.*.js'],
+            },
+            {
+                name: 'search',
+                src: ['<%= app_base %>/search/*.e2e.*.js'],
+            },
+            {
+                name: 'cart',
+                src: ['<%= app_base %>/cart/*.e2e.*.js'],
+            },
+            {
+                name: 'categories',
+                src: ['<%= app_base %>/categories/*.e2e.*.js'],
+            },
+            {
+                name: 'products',
+                src: ['<%= app_base %>/products/*.e2e.*.js'],
+            },
+            {
+                name: 'product',
+                src: ['<%= app_base %>/product/*.e2e.*.js']
+            }
+        ],
 
         app_tpl: ['<%= app_base %>/**/*.tpl.html'],
 

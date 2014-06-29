@@ -455,9 +455,16 @@ module.exports = function (grunt) {
             e2e: {
                 dir: '<%= build_dir %>',
                 baseUrl: 'http://localhost:<%= app_port %>',
-                src: [
-                    '<%= app_files.jse2e %>'
-                ]
+                template: 'protractor-e2e',
+                src: ['<%= app_files.jse2e %>'],
+                suites: '<%= app_files.jse2esuites %>'
+            },
+            saucelabs: {
+                dir: '<%= build_dir %>',
+                baseUrl: 'http://couchdemoshop.couchcommerce.com',
+                template: 'protractor-e2e-saucelabs',
+                src: ['<%= app_files.jse2e %>'],
+                suites: '<%= app_files.jse2esuites %>'
             }
         },
         /**
@@ -1024,13 +1031,16 @@ module.exports = function (grunt) {
         });
 
         var baseUrl = this.data.baseUrl;
+        var templateFile = this.data.template;
+        var suites = this.data.suites;
 
-        grunt.file.copy('protractor/protractor-e2e.tpl.js', grunt.config('build_dir') + '/protractor-e2e.js', {
+        grunt.file.copy('protractor/' + templateFile + '.tpl.js', grunt.config('build_dir') + '/' + templateFile + '.conf.js', {
             process: function (contents) {
                 return grunt.template.process(contents, {
                     data: {
                         scripts: jsFiles,
-                        baseUrl: baseUrl
+                        baseUrl: baseUrl,
+                        suites: suites
                     }
                 });
             }
