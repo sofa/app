@@ -1,21 +1,24 @@
-<div class="modal-body cc-paypal-overlay">
-    <i class="fa fa-times-circle" ng-click="close()"></i>
-    <p class="cc-form-label" bo-text="ln.formCountry"></p>
-    <cc-select-box
-        model="vm.selectedCountry"
-        data="vm.countries"
-        choose-text="ln.choose"
-        property-name="{{ln.paymentMethod}}"
-        display-value-exp="'label'">
-    </cc-select-box>
-
-    <p class="cc-form-label" bo-text="ln.shippingMethod"></p>
-    <cc-select-box
-        model="vm.selectedShippingMethod"
-        data="vm.supportedShippingMethods"
-        choose-text="ln.choose"
-        property-name="{{ln.shippingMethod}}"
-        display-value-exp="shippingMethodFormatter">
-    </cc-select-box>
+<div class="modal-body cc-paypal-overlay" bindonce="ln">
+    <i class="cc-paypal-overlay__close-icon" ng-click="close()"></i>
+    <div class="cc-form__item">
+        <label class="cc-form__label" bo-text="ln.formCountry"></label>
+        <cc-select-box
+            model="vm.selectedCountry"
+            data="vm.countries"
+            property-name="{{ln.paymentMethod}}"
+            display-value-exp="'label'">
+        </cc-select-box>
+    </div>
+    <div class="cc-form__item">
+        <label class="cc-form__label" bo-text="ln.shippingMethod"></label>
+        <cc-select-box
+            model="vm.selectedShippingMethod"
+            data="vm.supportedShippingMethods"
+            property-name="{{ln.shippingMethod}}"
+            display-value-exp="shippingMethodFormatter">
+        </cc-select-box>
+    </div>
+    <div class="cc-message-box--error" ng-show="!vm.supportedShippingMethods.length" bo-text="ln.noPayPalShippingMethod"></div>
     <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>
+    <cc-loading-spinner ng-show="processing"></cc-loading-spinner>
 </div>

@@ -17,6 +17,7 @@
 @import 'src/common/contextviews/cc-context-views.scss';
 
 @import 'src/cart/cc-cart.scss';
+@import 'src/cart/cc-paypal-overlay.scss';
 @import 'src/wishlist/cc-wishlist.scss';
 @import 'src/wishlist/cc-wishlist-button.scss';
 @import 'src/pages/cc-pages.scss';
@@ -104,8 +105,11 @@ a {
 }
 // This is a modal class to overwrite some default bootstrap properties
 // and is separate from the couch modal which is used in the search, among others.
+.modal,
 .cc-bootstrap-modal {
     background: $theme-color-light;
+    border-radius: $theme-border-radius--basic !important;
+    border:0;
 }
 
 .cc-go-up-button,

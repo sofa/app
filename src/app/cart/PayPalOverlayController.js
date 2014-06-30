@@ -15,16 +15,29 @@ angular.module('CouchCommerceApp')
 
     $scope.configService = configService;
     $scope.shippingMethodFormatter = shippingMethodFormatter;
+    // For Magento, getShippingMethodsForPayPal() is likely to run about 10 seconds...
+    $scope.processing = false;
 
     $scope.$watch('vm.selectedCountry', function () {
-        //don't let the user proceed if we have inflight requests
+        //don't let the user proceed if we have pending requests
         vm.canProceed = false;
+        $scope.processing = true;
         checkoutService
             .getShippingMethodsForPayPal(vm.selectedCountry)
             .then(function (data) {
-                vm.canProceed = true;
+                $scope.processing = false;
+                vm.selectedShippingMethod = null;
                 vm.supportedShippingMethods = data.shippingMethods;
+                if (vm.supportedShippingMethods.length) {
+                    vm.selectedShippingMethod = vm.supportedShippingMethods[0];
+                }
             });
+    });
+
+    $scope.$watch('vm.selectedShippingMethod', function (newVal, oldVal) {
+        if (newVal !== oldVal) {
+            vm.canProceed = !!newVal;
+        }
     });
 
     $scope.proceed = function () {
