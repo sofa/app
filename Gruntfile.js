@@ -775,9 +775,16 @@ module.exports = function (grunt) {
 
                     grunt.config.set('changelog.options.version', newVersion);
 
-                    grunt.task.run([
-                        'shell:sym_check',
-                        'reinstall-npm-packages',
+                    var tasks = [];
+
+                    if (!grunt.option('force-local')) {
+                        tasks = tasks.concat([
+                            'shell:sym_check',
+                            'reinstall-npm-packages'
+                        ]);
+                    }
+
+                    tasks = tasks.concat([
                         'build',
                         //'e2e',
                         'releaseBranchPre:deploy',
@@ -785,6 +792,9 @@ module.exports = function (grunt) {
                         'changelog',
                         'shell:dist'
                     ]);
+
+                    grunt.task.run(tasks);
+
                     done();
                 },
                 postDeployFn: function (grunt, newVersion, done) {
