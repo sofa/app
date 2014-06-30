@@ -129,6 +129,7 @@ cc.Lang = {
     invalidInput_Birthyear: 'Bitte wählen Sie ein Jahr aus',
     invalidInput_Birthday: 'Bitte wählen Sie einen Tag aus',
     noShippingMethodsAvailable: 'Für Ihre Versandadresse oder Zahlungssart konnten keine Lieferarten gefunden werden.',
+    noPayPalShippingMethod: 'Für das gewählte Land konnte keine Versandart gefunden werden.',
     welcomeText: 'Willkommen im Couch Demo Shop',
     showDesktopView:'Desktop Version',
     sendCmsMail: 'Als E-Mail senden',
