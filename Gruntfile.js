@@ -588,7 +588,7 @@ module.exports = function (grunt) {
              * the --force-local flag was provided
              */
             sym_check: {
-                command: 'find node_modules/sofa* -type l',
+                command: 'find node_modules/sofa* -type l -depth 0',
                 options: {
                     callback: function (err, stdout, stderr, cb) {
 
