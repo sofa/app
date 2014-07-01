@@ -56,7 +56,9 @@
                 </ul>
             </div>
 
-            <div bo-if="products.length === 0" ng-include="tpl.404_PRODUCTS"></div>
+            <div bo-if="products.length === 0">
+                <div ng-include="tpl.404_PRODUCTS"></div>
+            </div>
 
         </div>
 
