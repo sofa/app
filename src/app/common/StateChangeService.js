@@ -5,6 +5,9 @@ angular.module('CouchCommerceApp')
 
     var self = {};
 
+    // FIXME: This is entirely nuked after upgrading to the latest ui-router
+    // That's because the original ui.router $stateChangeSuccess does not include the resolved
+    // route parameters and we patched that in in a previous version. We might have to reintroduce that patch
     $rootScope.$on('$stateChangeSuccess', function (evt, toRoute, toParams, toLocals, fromRoute, fromParams, fromLocals) {
 
         var originalEvent = {

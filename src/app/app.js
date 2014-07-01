@@ -34,7 +34,7 @@ angular.module('CouchCommerceApp.plugins', []);
 // Declare app level module which depends on filters, and services
 angular.module('CouchCommerceApp', [
     'ngSanitize',
-    'ui.state',
+    'ui.router',
     'sdk.decorators.$rootScope',
     'sdk.services.couchService',
     'sdk.services.navigationService',
