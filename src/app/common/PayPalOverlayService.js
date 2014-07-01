@@ -1,11 +1,16 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-.factory('payPalOverlayService', function ($q, dialog, checkoutService, configService) {
+.factory('payPalOverlayService', function ($q, dialog, checkoutService, configService, trackingService) {
 
     var self = {};
 
     self.startPayPalCheckout = function () {
+
+        trackingService.trackEvent({
+            category: 'pageView',
+            action: '/checkout/paypal'
+        });
 
         var deferred = $q.defer();
 
