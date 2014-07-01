@@ -92,7 +92,7 @@ angular.module('CouchCommerceApp', [
                             if (category && !category.children) {
                                 // the serverside states API does not differentiate between `category` and `products` state. It
                                 // always returns `category` states. It's currently easier for us to just redirect on the clientside
-                                $state.transitionTo('products', { category: category.urlId }, false);
+                                $state.transitionTo('products', { category: category.urlId }, { location: false });
                                 return $q.reject();
                             }
                             return category;
@@ -284,7 +284,7 @@ angular.module('CouchCommerceApp', [
         stateResolverService
             .resolveState($location.path())
             .then(function (state) {
-                $state.transitionTo(state.stateName, state.stateParams, false);
+                $state.transitionTo(state.stateName, state.stateParams, { location: false });
             }, function () {
                 // since we're generating HTML snapshots for search engines
                 // via prerender.io, we have to add this meta tag when the
