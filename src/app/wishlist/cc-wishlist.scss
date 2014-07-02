@@ -12,6 +12,7 @@
     background-color: rgba(255,255,255,.9);
     overflow: hidden;
     border-top: 1px solid #ccc;
+    clear:both;
 }
 .cc-wishlist-list__item:first-child {
     border-top:0;
@@ -27,16 +28,11 @@
     }
 }
 
-.cc-wishlist-list__item.remove-animation {
-    -webkit-transition: max-height .5s ease-out, opacity .5s ease-out;
-            transition: max-height .5s ease-out, opacity .5s ease-out;
-
-    max-height:150px;
-    opacity: 1;
+.cc-wishlist-list__item.ng-leave {
+    @include fade-out-and-shrink(150px);
 }
-.cc-wishlist-list__item.remove-animation.remove-animation-active {
-    max-height:0;
-    opacity: 0;
+.cc-wishlist-list__item.ng-leave.ng-leave-active {
+    @extend %fade-out-and-shrink--active;
 }
 
 .cc-wishlist-list__item-image {

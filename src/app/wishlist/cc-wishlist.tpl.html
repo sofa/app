@@ -9,8 +9,7 @@
 
     <ul class="cc-wishlist-list" ng-show="!isEmpty">
         <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item"
-            ng-click="navigateToProduct(item.product)"
-            ng-animate="{ leave: 'remove-animation' }">
+            ng-click="navigateToProduct(item.product)">
 
             <div class="cc-wishlist-list-item__wrapper">
                 <div class="cc-wishlist-list__item-image" style="background-image: url({{ item.product.getImage('small') }})"></div>
