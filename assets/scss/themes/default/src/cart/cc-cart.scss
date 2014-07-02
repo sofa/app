@@ -14,12 +14,22 @@
     background: $theme-color-light;
     margin-top: 1px;
     padding: 10px;
+    clear: both;
 
     &:first-child {
         margin:0;
 
     }
+
+    &.ng-leave {
+        @include fade-out-and-shrink(200px);
+
+        &.ng-leave-active {
+            @extend %fade-out-and-shrink--active;
+        }
+    }
 }
+
 
 .cc-cart-list__item--coupon {
     .cc-cart-list__item-content {
