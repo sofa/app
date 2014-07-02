@@ -1,5 +1,7 @@
 'use strict';
 
+/* global document */
+
 angular.module('CouchCommerceApp')
 .factory('slideDirectionService', function ($rootScope, $q, couchService, pagesService) {
 
@@ -7,6 +9,8 @@ angular.module('CouchCommerceApp')
         $self = {};
 
     var aboutPages = cc.Config.aboutPages;
+
+    var $mainWrapper = null;
 
     //assign screen indexes to each page of the pages section.
 
@@ -26,7 +30,6 @@ angular.module('CouchCommerceApp')
             screenIndex++;
         }
     }
-
 
     $rootScope.$on('stateChangeService.stateChangeSuccess', function (evt, data) {
 
@@ -49,21 +52,20 @@ angular.module('CouchCommerceApp')
             direction = getDirectionFromIndexes(previousIndex, currentIndex);
         }
 
+        if (!$mainWrapper) {
+            $mainWrapper = angular.element(document.querySelector('.cc-main-wrapper'));
+        }
+
+        // delegating this work to ng-class does not work out well for us and it
+        // also seems to be better handled manually for this performance critical path
+        $mainWrapper
+            .removeClass('slide-rtl slide-ltr')
+            .addClass('slide-' + direction);
+
     });
 
     var getDirectionFromIndexes = function (fromIndex, toIndex) {
         return (toIndex > fromIndex) || (toIndex === fromIndex) ? 'rtl' : 'ltr';
-    };
-
-    $self.getDirection = function () {
-        return direction;
-    };
-
-    $self.getSlideAnimationConfig = function () {
-        return {
-            enter: 'slide-in-' + direction,
-            leave: 'slide-out-' + direction
-        };
     };
 
     return $self;

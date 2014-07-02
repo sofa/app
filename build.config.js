@@ -134,6 +134,7 @@ module.exports = {
     vendor_files: {
         js: [
             'vendor/angular-unstable/angular.js',
+            'vendor/angular-unstable/angular-animate.js',
             'vendor/angular-unstable/angular-sanitize.js',
             'node_modules/angular-bindonce/bindonce.js',
             'vendor/ui-router/angular-ui-router.js',

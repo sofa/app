@@ -1,5 +1,4 @@
-
-$slide-duration: 0.4s;
+$slide-duration: .4s;
 $slide-easing: ease-out;
 
 @mixin cc-transition-transform-only() {
@@ -10,7 +9,7 @@ $slide-easing: ease-out;
     transition-property: transform;
 }
 
-.cc-animation-base{
+.cc-animation-base {
     position: absolute;
     top: 0;
     right: 0;
@@ -18,51 +17,50 @@ $slide-easing: ease-out;
     left: 0;
 }
 
-
-.slide-in-rtl {
+.slide-rtl .cc-ui-view.ng-enter {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(100%,0,0));
+    @include vendor-prefix('transform', translate3d(100%, 0, 0));
     @include cc-transition-transform-only;
 }
- 
-.slide-in-rtl.slide-in-rtl-active {
+
+.slide-rtl .cc-ui-view.ng-enter-active {
     @include vendor-prefix('transform',translate3d(0%,0,0));
     @include cc-transition-transform-only;
 }
 
-.slide-out-rtl {
+.slide-rtl .cc-ui-view.ng-leave {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(0%,0,0));
+    @include vendor-prefix('transform', translate3d(0%, 0, 0));
     @include cc-transition-transform-only;
 }
- 
-.slide-out-rtl.slide-out-rtl-active {
+
+.slide-rtl .cc-ui-view.ng-leave-active {
     @include vendor-prefix('transform',translate3d(-100%,0,0));
     @include cc-transition-transform-only;
 }
 
-.slide-in-ltr {
+.slide-ltr .cc-ui-view.ng-enter {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(-100%,0,0));
+    @include vendor-prefix('transform', translate3d(-100%, 0, 0));
     @include cc-transition-transform-only;
 }
- 
-.slide-in-ltr.slide-in-ltr-active {
+
+.slide-ltr .cc-ui-view.ng-enter-active {
     @include vendor-prefix('transform',translate3d(0%,0,0));
     @include cc-transition-transform-only;
 }
 
-.slide-out-ltr {
+.slide-ltr .cc-ui-view.ng-leave {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(0%,0,0));
+    @include vendor-prefix('transform', translate3d(0%, 0, 0));
     @include cc-transition-transform-only;
 }
- 
-.slide-out-ltr.slide-out-ltr-active {
+
+.slide-ltr .cc-ui-view.ng-leave-active {
     @include vendor-prefix('transform',translate3d(100%,0,0));
     @include cc-transition-transform-only;
 }
@@ -70,65 +68,85 @@ $slide-easing: ease-out;
 .slide-in-ttb {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(0,-100%,0));
+    @include vendor-prefix('transform', translate3d(0, -100%, 0));
     @include cc-transition-transform-only;
 }
- 
+
 .slide-in-ttb.slide-in-ttb-active {
-    @include vendor-prefix('transform',translate3d(0%,0,0));
+    @include vendor-prefix('transform', translate3d(0%, 0, 0));
     @include cc-transition-transform-only;
 }
 
 .slide-out-ttb {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(0%,0,0));
+    @include vendor-prefix('transform', translate3d(0%, 0, 0));
     @include cc-transition-transform-only;
 }
- 
+
 .slide-out-ttb.slide-out-ttb-active {
-    @include vendor-prefix('transform',translate3d(0, 100%,0));
+    @include vendor-prefix('transform', translate3d(0, 100%, 0));
     @include cc-transition-transform-only;
 }
 
 .slide-in-btt {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(0,100%,0));
+    @include vendor-prefix('transform', translate3d(0, 100%, 0));
     @include cc-transition-transform-only;
 }
- 
+
 .slide-in-btt.slide-in-btt-active {
-    @include vendor-prefix('transform',translate3d(0%,0,0));
+    @include vendor-prefix('transform', translate3d(0%, 0, 0));
     @include cc-transition-transform-only;
 }
 
 .slide-out-btt {
     @include vendor-prefix('transition', $slide-duration $slide-easing);
     @extend .cc-animation-base;
-    @include vendor-prefix('transform',translate3d(0%,0,0));
+    @include vendor-prefix('transform', translate3d(0%, 0, 0));
     @include cc-transition-transform-only;
 }
- 
+
 .slide-out-btt.slide-out-btt-active {
-    @include vendor-prefix('transform',translate3d(0,-100%,0));
+    @include vendor-prefix('transform', translate3d(0, -100%, 0));
     @include cc-transition-transform-only;
 }
 
-.fade-out {
+%fade-out {
     @include vendor-prefix('transition', opacity 0.5s linear);
     opacity: 1;
 }
- 
-.fade-out.fade-out-active {
+%fade-out-active {
     opacity: 0;
+}
+%fade-in {
+    @include vendor-prefix('transition', opacity 0.5s linear);
+    opacity: 0;
+}
+%fade-in-active {
+    opacity: 1;
 }
 
-.fade-in {
-    @include vendor-prefix('transition', opacity 0.5s linear);
+@mixin fade-out-and-shrink ($maxheight, $time: 0.5s) {
+    @include vendor-prefix('transition', (opacity $time ease-out, max-height $time ease-out));
+
+    max-height: $maxheight;
+    opacity: 1;
+    overflow: hidden;
+}
+%fade-out-and-shrink--active {
+    max-height: 0;
     opacity: 0;
 }
- 
-.fade-in.fade-in-active {
+@mixin fade-in-and-grow ($maxheight, $time: 0.5s) {
+    @include vendor-prefix('transition', (opacity $time ease-in, max-height $time ease-in));
+
+    max-height: 0;
+    opacity: 0;
+}
+@mixin fade-in-and-grow--active ($maxheight) {
+    max-height: $maxheight;
     opacity: 1;
 }
+

@@ -5,9 +5,10 @@
     </div>
     <div class="cc-main-wrapper" snap-content>
         <div cc-include="tpl.HEADER"></div>
-        <div ng-show="!searchUiState.isOpen() || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())"
-             class="cc-page-wrapper cc-image-full-screen__hide-marker" ui-view
-             ng-animate="slideDirectionService.getSlideAnimationConfig()"></div>
+        <div class="cc-page-wrapper cc-image-full-screen__hide-marker"
+             ng-show="!searchUiState.isOpen() || (!searchUiState.hasResults() && !searchUiState.hasNoMatch())">
+            <div class="cc-ui-view" ui-view></div>
+        </div>
     </div>
     <div class="cc-search-wrapper">
         <div cc-include="tpl.SEARCH_BOX"></div>
