@@ -9,7 +9,7 @@ angular.module('CouchCommerceApp')
 
         trackingService.trackEvent({
             category: 'pageView',
-            action: '/checkout/paypal'
+            label: '/checkout/paypal'
         });
 
         var deferred = $q.defer();

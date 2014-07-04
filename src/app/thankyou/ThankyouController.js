@@ -8,6 +8,10 @@ angular.module('CouchCommerceApp')
     basketService.clear();
 
     trackingService.trackTransaction(summaryResponse.token);
+    trackingService.trackEvent({
+        category: 'pageView',
+        label: '/thankyou'
+    });
 
     var vm = $scope.vm = {};
 
