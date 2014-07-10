@@ -390,6 +390,24 @@ angular.module('CouchCommerceApp', [
 .run(['titleService', function (titleService) {
     titleService.setShopNameTitle();
 }])
+// Animate on specific elements only
+.config(['$animateProvider', function ($animateProvider) {
+    $animateProvider.classNameFilter(/cc-animate/);
+}])
+// Prevent animation on first page load
+.run(['$animate', '$rootScope', function ($animate, $rootScope) {
+    $animate.enabled(false);
+    // viewContentLoaded fires twice on page load
+    var i = 0;
+
+    var off = $rootScope.$on('$viewContentLoaded', function () {
+        if (i > 1) {
+            $animate.enabled(true);
+            off();
+        }
+        i += 1;
+    });
+}])
 .run(['trackingService', 'configService', function (trackingService, configService) {
     trackingService.addTracker(new cc.tracking.GoogleAnalyticsTracker({
         accountNumber: configService.get('googleAnalytics'),

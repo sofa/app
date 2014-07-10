@@ -73,12 +73,12 @@
 }
 
 .cc-has-overflow-support.cc-modern-flexbox {
+    .cc-page-wrapper,
     .cc-main-wrapper {
         @extend %cc-flex-column;
         @include flex(1);
-        height: 100%;
     }
-    .cc-page-wrapper {
+    .cc-ui-view {
         @include flex(1);
     }
 }

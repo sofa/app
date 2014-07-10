@@ -1,4 +1,4 @@
-$slide-duration: .4s;
+$slide-duration: .6s;
 $slide-easing: ease-out;
 
 @mixin cc-transition-transform-only() {
@@ -149,4 +149,3 @@ $slide-easing: ease-out;
     max-height: $maxheight;
     opacity: 1;
 }
-

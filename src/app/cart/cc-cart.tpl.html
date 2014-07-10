@@ -20,7 +20,7 @@
                         </div>
 
                         <ul class="cc-cart-list" ng-show="!isEmpty">
-                            <li ng-repeat="item in items" class="cc-cart-list__item">
+                            <li ng-repeat="item in items" class="cc-cart-list__item cc-animate">
                                 <div class="cc-cart-list__item-image"
                                      ng-click="navigationService.navigateToUrl(item.product.getOriginFullUrl())"
                                      style="background-image: url({{ item.product.getImage('small') }})">

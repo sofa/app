@@ -1,4 +1,4 @@
-.cc-view-wrapper{
+.cc-ui-view {
     // some tweaks for less flickering
     -webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
@@ -10,7 +10,7 @@
 //performance but we disable them for Android 2.x
 //https://github.com/scottjehl/Device-Bugs/issues/32
 .cc-os-android.cc-osv-2{
-    .cc-view-wrapper{
+    .cc-ui-view{
         -webkit-backface-visibility: initial;
         -webkit-transform-style: initial;
     }

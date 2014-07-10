@@ -8,7 +8,7 @@
     <div ng-if="showFirstUseInfo" class="cc-wishlist__first-use-hint" bo-html="ln.wishlistFirstUse"></div>
 
     <ul class="cc-wishlist-list" ng-show="!isEmpty">
-        <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item"
+        <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item cc-animate"
             ng-click="navigateToProduct(item.product)">
 
             <div class="cc-wishlist-list-item__wrapper">
