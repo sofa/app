@@ -17,7 +17,7 @@
     "sofa-device-service": "~0.2.x",
     "sofa-url-parser-service": "~0.1.x",
     "sofa-search-service": "~0.2.x",
-    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.38.2",
+    "sofa-base": "git+ssh://git@github.com:couchcommerce/sofa-base.git#0.39.1",
     "sofa-user-service": "~0.1.x",
     "sofa-basket-service": "0.2.x",
     "sofa-tracking": "~0.3.x",
@@ -27,7 +27,7 @@
     "sofa-couch-service": "~0.5.x",
     "sofa-coupon-service": "~0.1.0",
     "sofa-wishlist-service": "~0.2.0",
-    "sofa-image-resizer-service": "~0.1.x",
+    "sofa-image-resizer-service": "~0.2.x",
     "sofa-state-resolver-service": "^0.1.0"
   },
   "devDependencies": {
