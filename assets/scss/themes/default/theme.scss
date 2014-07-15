@@ -4,7 +4,6 @@
 @import 'src/libs/ccThumbnailBar/cc-thumbnail-bar.scss';
 @import 'src/libs/ccZippy/cc-zippy.scss';
 @import 'src/libs/ccSelectBox/cc-select-box.scss';
-@import 'src/libs/ccLazyValidation/cc-lazy-validation.scss';
 @import 'src/libs/ccFooterLinks/cc-footer-links.scss';
 @import 'src/libs/ccVariantSelector/cc-variant-selector.scss';
 
@@ -138,6 +137,61 @@ a {
 @keyframes rotation {
     from {transform: rotate(0deg);}
     to {transform: rotate(359deg);}
+}
+
+.cc-validation__wrapper {
+    position: relative;
+}
+
+.cc-validation__message--success {
+    position: absolute;
+    right: .875rem;
+    //set line-height to the height of the text-box
+    line-height: 46px;
+    color:$theme-success-color;
+
+    &:after {
+        @include fa-base-class;
+
+        content: $fa-var-check-circle;
+    }
+}
+
+.cc-validation__message--fail {
+    position: relative;
+    display:block;
+    padding: .5rem;
+    border-radius: 0 0 $theme-border-radius--basic $theme-border-radius--basic;
+    border:2px solid $theme-warning-border-color;
+    color: $theme-warning-color;
+    font-size: 0.875rem;
+    background: $theme-warning-background-color;
+    margin:-2px 0 0;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: -9px;
+        left: 15px;
+        background: $theme-warning-background-color;
+        border-bottom-color: $theme-warning-background-color;
+        border:2px solid $theme-warning-border-color;
+        border-width:2px 0 0 2px;
+
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+}
+
+.cc-date__field--small,
+.cc-date__field--large {
+    display: inline-block;
+    width:3em;
+}
+.cc-date__field--large {
+    width:5em;
 }
 
 // This is a modal class to overwrite some default bootstrap properties
