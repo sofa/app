@@ -1,32 +1,25 @@
 'use strict';
 
-//It might seem odd at first glance to have a cc-footer and cca-footer.
-//However, if you think about it the cc-footer is a SDK UI component
-//that does exactly one thing: it renders a footer with the footer items
-//defined in the config.
+angular.module('CouchCommerceApp')
+    .directive('ccFooter', function (configService, contextViewService) {
+        return {
+            restrict: 'EA',
+            replace: true,
+            templateUrl: 'common/footer/cc-footer.tpl.html',
+            link: function ($scope) {
 
-//the <cca-footer> in contrast is application specific. It appends
-//a "exit webapp" link which is a totally different concern and has
-//nothing to do with the footer items.
+                $scope.config = {
+                    showAppExitLink: configService.get('showAppExitLink'),
+                    trustedShopsEnabled: configService.get('trustedShopsEnabled')
+                };
 
-angular.module('CouchCommerceApp').directive('ccFooter', function (configService, contextViewService) {
-    return {
-        restrict: 'EA',
-        replace: true,
-        scope: true,
-        templateUrl: 'common/footer/cc-footer.tpl.html',
-        link: function ($scope) {
+                $scope.exitWebApp = function () {
+                    window.location.href = configService.get('originalUrl') + configService.get('noRedirectSuffix');
+                };
 
-            $scope.showAppExitLink = configService.get('showAppExitLink', false);
-            $scope.trustedShopsEnabled = configService.get('trustedShopsEnabled', false);
-
-            $scope.exitWebApp = function () {
-                window.location.href = configService.get('originalUrl') + configService.get('noRedirectSuffix');
-            };
-
-            $scope.showTrustedShopsCertificate = function () {
-                contextViewService.toggleView('trustedshops/cc-trusted-shops.tpl.html', 'TrustedShopsController');
-            };
-        }
-    };
-});
+                $scope.showTrustedShopsCertificate = function () {
+                    contextViewService.toggleView('trustedshops/cc-trusted-shops.tpl.html', 'TrustedShopsController');
+                };
+            }
+        };
+    });
