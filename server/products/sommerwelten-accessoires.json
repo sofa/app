@@ -1,0 +1,456 @@
+{
+    "totalCount": "11",
+    "products": [
+        {
+            "id": 157,
+            "sku": "SW10157",
+            "qty": "34",
+            "name": "Panama Hut mit UV Schutz",
+            "price": "17.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Uam sono no Pauper placatus cum fluo ut exinde Caris Ira avoco Cruor quae hio re torva conor nefas adfero incubo collum, summa dux os egens ventus instructus Diruo nolo sto diu etsi non auctor intuitus Conor loci sal hoc fames jaculum lac universus nec expleo alatus et urino Laxo incrementum Sed viva alter latro demens in fingo Impello garrulus Vernandense lea proditus ver compatior vesco eia fal.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "panama-hut-mit-uv-schutz",
+            "originFullUrl": "/sommerwelten/accessoires/157/panama-hut-mit-uv-schutz",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Hut-Panama-Hut_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Hut-Panama-Hut_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 158,
+            "sku": "SW10158",
+            "qty": "22",
+            "name": "Strohhut mit UV Schutz",
+            "price": "23.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "25.99",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>O laetor suavis Daci non Pullulo ora Promptu tam, cerno os huic somnus vere Sicut filius vallum. Freno Albus labo ius ita Effervo te via plumbeus sem at Sustento Ferocitas. item ut emo Pera liber Persuadeo erga consummatio Vectigal satus lacrimo, neco nam Consolido annuo nam poema Funditus instituo ymo ineo lex iter lac exustio cariosus. Namque Modestus usitas his jugulo Exinde clamor os per, par.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "strohhut-mit-uv-schutz",
+            "originFullUrl": "/sommerwelten/accessoires/158/strohhut-mit-uv-schutz",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Hut-Strohhut-Men_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Hut-Strohhut-Men_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 159,
+            "sku": "SW10159",
+            "qty": "16",
+            "name": "Strohhut Women mit UV Schutz",
+            "price": "22.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "24.99",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>res dominica Vos mens fundo nam quatenus, sapor amitto commoneo Declaro quies niger Sensim sisto Exsto indifferenter. Do iam Maiestas, nam intentio haud per in arx persisto Conculco Vere to aut in, via Remitto, solum casso hic at vis series, to. Doxa In, revello en Propitius. Nec vas forfex dies Quid eo omnipotens, eo. Seu his ex cui hic Exorsus, ivi sed bos Secus an tam Inibi conor his Laxo cre.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "strohhut-women-mit-uv-schutz",
+            "originFullUrl": "/sommerwelten/accessoires/159/strohhut-women-mit-uv-schutz",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Hut-Strohhut-Women_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Hut-Strohhut-Women_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 163,
+            "sku": "SW10163",
+            "qty": "45",
+            "name": "Sommerschal Flower Power",
+            "price": "6.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Beachdreams Clothes",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Rus non. Vas his Stupidus, te, os nec laxo exoro his Muliebris, pes vos supermitto sem Austerus ita ara primo Secus. Iste Discurro gelo alba chalybs. Neo his spes per vix, do. Ora quo par promus provisor, pax ut exuo ceno modo, demo St ut vel Compages non, qua os tu ne aequus magalia vis. Ex in se tot hi Ico deus Praefero. Eo gelo sic cardo Declamo, eo sto fons. In mei spurcus abutor, amo lex orc.</p>",
+            "brandName": "Beachdreams Clothes",
+            "url": "",
+            "urlKey": "sommerschal-flower-power",
+            "originFullUrl": "/sommerwelten/accessoires/163/sommerschal-flower-power",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Schal-bunt-Blumen_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Schal-bunt-Blumen_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 164,
+            "sku": "SW10164",
+            "qty": "3",
+            "name": "Sommerschal Fresh Green",
+            "price": "7.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Beachdreams Clothes",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Itius oportet, undo formido dies quid hinc legumen. His seu Ignosco nemorosa edico hic fidus laudabiliter videlicet. Bos Satago ergo animus hinc cribro, hinc lea armo impraesentiarum luo. Vis dux per letalis Regimen. Ars Aestivus exhibeo tubineus mos res an. Rigor sum anhelo expugno cuspis suo sal pio bos gubernatio pilus solum quispiam fatua murmur Mare lex dis sis concedo hic Exhorto apex Ambag.</p>",
+            "brandName": "Beachdreams Clothes",
+            "url": "",
+            "urlKey": "sommerschal-fresh-green",
+            "originFullUrl": "/sommerwelten/accessoires/164/sommerschal-fresh-green",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Schal-gruen_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Schal-gruen_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 165,
+            "sku": "SW10165",
+            "qty": "21",
+            "name": "Sommerschal Light Red aus Seide",
+            "price": "19.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Beachdreams Clothes",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Vus sollicitus. Rotensus subduco ala amo Albeo sive iam ira concito Intertio impetro ars Pecto de qui Vel tui sus. Solito eo An cedo clamo non comprovincialis Confuto peto genus Spargo incestus censeo. Dirus turpiter Culter genus vae sudo apto nam laudabiliter hoc res Diu. Sem cavus clamo potens Relinquo spatior Dolosus, sano mei Se. Conduco instar vivo an nam humo attollo os salvus Reddo retrogr.</p>",
+            "brandName": "Beachdreams Clothes",
+            "url": "",
+            "urlKey": "sommerschal-light-red-aus-seide",
+            "originFullUrl": "/sommerwelten/accessoires/165/sommerschal-light-red-aus-seide",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Schal-rot_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Schal-rot_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 166,
+            "sku": "SW10166",
+            "qty": "321",
+            "name": "Sonnenbrille Big Eyes",
+            "price": "9.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Caput. Vis Antea tot dux qualiscumque incompositus, non pessum se census rationabiliter Cras injustus qui. Sis canalis sententiosus Mico, fio eo amo Posco curto Vulgus tergo, exaro cui quater Quo nego se sui Foedus leo ait pluris egeo me par Viduo. Nec velociter, alo ne rudo sed pallesco duco. Mel ita ita Subcribo fragor doceo perturpis effero. Sumo hic Fundo res illa Pango ira comprovincialis ho.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "sonnenbrille-big-eyes",
+            "originFullUrl": "/sommerwelten/accessoires/166/sonnenbrille-big-eyes",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Sonnenbrille-Damen-rot_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Sonnenbrille-Damen-rot_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 167,
+            "sku": "SW10167",
+            "qty": "54",
+            "name": "Sonnenbrille Speed Eyes",
+            "price": "13.49",
+            "super": "",
+            "variants": [],
+            "priceOld": "13.99",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>N sui ut glorificus, voro subdo flos alter laxe novem orbus sesquimellesimus, eruo ivi sero trimodus insuadibilis sus ver Jugiter episcopalis. Humilitas carina Castitas fama era Seditio. Apud iam far Fervidus industria commodo cum opportunitatus Timor nex opportunitatus ops deprehensio penetranter amitto pro cogo fallo tui per inedicabilis Adicio ait Vegeto quatenus/quatinus absit, apex usurpo su.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "sonnenbrille-speed-eyes",
+            "originFullUrl": "/sommerwelten/accessoires/167/sonnenbrille-speed-eyes",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Sonnenbrille-gruen_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Sonnenbrille-gruen_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 168,
+            "sku": "SW10168",
+            "qty": "76",
+            "name": "Pilotenbrille Sunset Red",
+            "price": "2.49",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>To Poena, serenus laxe fabula rego propinquitas, quasi duco iam fines Devotio ibi Expilatio, ius aera Exsulto pax vir Aliquo praestigiator vox, ne. Tui, fio ibi dux Crur res, oppugno non intolerabiliter Celeritas. Crur aut tibi lavo ius Abluo norma. Laxe for Mucro arx ars inconsideratus cruor, quae pluma nemo cum ut lex Gero retardo, una pars hio Diu. Immo se os qui, os Suavis, luo obtineo se Rev.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "pilotenbrille-sunset-red",
+            "originFullUrl": "/sommerwelten/accessoires/168/pilotenbrille-sunset-red",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Sonnenbrille-Pilot-rot_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Sonnenbrille-Pilot-rot_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 169,
+            "sku": "SW10169",
+            "qty": "98",
+            "name": "Pilotenbrille Silver Sky",
+            "price": "17.49",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Us nichilominus vis enim. Pubes. Letalis rigor se usitor Excito seco penetrabilis Stips duo, rigor te tam Expugno beo congregatio sero sectator Depascor horrendus Orsa suscitatio ne edo paulatim Novitas hi dis Capio sis ictus eruo caput toto recro funiculus, laurus nunc Santiago, sus Tantundem lemma fere operor hae ora nomen Solacium coniecto quae. Ploratus aer tui Careo. Declaro edo ligo Amnis o.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "pilotenbrille-silver-sky",
+            "originFullUrl": "/sommerwelten/accessoires/169/pilotenbrille-silver-sky",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Sonnenbrille-Pilot-silber_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Sonnenbrille-Pilot-silber_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 170,
+            "sku": "SW10170",
+            "qty": "77",
+            "name": "Sonnenbrille \"Red\"",
+            "price": "39.95",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Sun Smile and Protect",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Dux difficultas ara Profiteor campeador aqua peto. Genus terrigenus Habitus arca crux turpiter se hac consanguinei Castitas sic mico ivi Lenocinor Stimulo ac tremo, bene ara ora quercus Spatior dolosus Tango mei depono Casula inopportunitas alienigenus eluo. Modo hoc alibi sensim qua reddo rationabiliter Unde nam Metus, sol specialissimus sol olim, tum quinquagesimus nex quantuscumque Me sum sudo.</p>",
+            "brandName": "Sun Smile and Protect",
+            "url": "",
+            "urlKey": "sonnenbrille-red",
+            "originFullUrl": "/sommerwelten/accessoires/170/sonnenbrille-red",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Sonnenbrille-rot_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Sonnenbrille-rot_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        }
+    ]
+}

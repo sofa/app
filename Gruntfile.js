@@ -804,6 +804,28 @@ module.exports = function (grunt) {
                     done();
                 }
             }
+        },
+
+        concurrent: {
+            dev: {
+                tasks: ['nodemon', 'delta'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
+        },
+
+        nodemon: {
+            dev: {
+                script: 'server/main.js',
+                options: {
+                    watch: ['server']
+                }
+            }
+        },
+
+        nodeunit: {
+            all: ['server/test/**/*.js']
         }
     };
 
@@ -821,8 +843,9 @@ module.exports = function (grunt) {
     grunt.registerTask('watch', [
         'build',
         'karma:unit',
+        'nodeunit',
         'connect:livereload',
-        'delta'
+        'concurrent'
     ]);
 
     /**

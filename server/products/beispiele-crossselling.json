@@ -1,0 +1,132 @@
+{
+    "totalCount": "3",
+    "products": [
+        {
+            "id": 281,
+            "sku": "SW10048",
+            "qty": "21",
+            "name": "Bundles",
+            "price": "299.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Mit dem \"Bundle\"-Plugin können Sie beliebige Artikel in Shopware miteinander kombinieren, um diese dann als Bundle zu einem vergünstigten Preis anzubieten. Auf diese Weise können Sie beispielsweise Zubehörartikel zu einem reduzierten Preis in Verbindung mit dem Hauptartikel anbieten. Dabei können Sie sowohl prozentuale Rabatte als auch feste Preise für ein Bundle definieren. Im Warenkorb werden hierbei immer die Originalpreise der Artikel, zusammen mit einem Bundlerabatt ausgegeben. So müssen keine extra Artikel für Bundles angelegt werden.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "bundles",
+            "originFullUrl": "/beispiele/crossselling/281/bundles",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/pc_together_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/pc_together_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/pc_tower_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 194,
+            "sku": "SW10193",
+            "qty": "344",
+            "name": "Artikel mit Zubehör",
+            "price": "100.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>M&ouml;chten Sie den Verkauf von Zubeh&ouml;r unterst&uuml;tzen, k&ouml;nnen Sie neben der Beschreibung und der Bewertung einen zus&auml;tzlichen Reiter setzen, der alle Zubeh&ouml;rartikel enth&auml;lt.</p>\n<p>Das Zubeh&ouml;r definieren Sie in der Administration schnell und einfach im Bereich Zubeh&ouml;rartikel. Hier geben Sie einfach die Artikelnummern ein. So gelangt Ihr Kunde mit nur einem Klick auf eine Auswahl von Zubeh&ouml;r und kann hier schnell und einfach weitere Artikel ausw&auml;hlen.</p>\n<p>So k&ouml;nnen Sie zu etwa zu Schuhen Schuhspanner und Schuhputzzeug anbieten, oder wie in diesem Beispiel zu einem Kommunikationsger&auml;t ein Head-Set. Eine Cross-Selling-Funktion, die sich f&uuml;r Sie auszahlt.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "artikel-mit-zubehoer",
+            "originFullUrl": "/beispiele/crossselling/194/artikel-mit-zubehoer",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Heiku-Kicker-Champ-Elite-Pro-gruen-Hauptbild_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Heiku-Kicker-Champ-Elite-Pro-gruen-Hauptbild_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 196,
+            "sku": "SW10195",
+            "qty": "343",
+            "name": "Artikel mit ähnlichen Produkten",
+            "price": "119.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Nicht nur Zubehör kann mit angeboten werden, auch ähnliche Produkte können in der Artikeldetailansicht dargestllt werden. So hat Ihr Shopkunde eine größere Auswahl der angebotenen Produkte im Blick.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "artikel-mit-aehnlichen-produkten",
+            "originFullUrl": "/beispiele/crossselling/196/artikel-mit-aehnlichen-produkten",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Heiku-Kicker-Champ-Elite-Hauptbild503492770db11_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Heiku-Kicker-Champ-Elite-Hauptbild503492770db11_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        }
+    ]
+}

@@ -1,0 +1,132 @@
+{
+    "totalCount": "3",
+    "products": [
+        {
+            "id": 228,
+            "sku": "SW100025211",
+            "qty": "0",
+            "name": "Zahlungsarten & Riskmanagement",
+            "price": "119.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>In Shopware haben Sie ein sehr umfangreiches Riskmanagement, in dem Sie gew&uuml;nscht Zahlungsarten unter Ber&uuml;cksichtigung verschiedenster Faktoren (z.B. des Bestellwertes, des Ortes oder der Kundengruppen) sperren k&ouml;nnen.</p>\n<p>In diesem Beispiel wird Ihnen keine Zahlungsart \"Rechnung\" angeboten, wenn sie diesen Artikel in den Warenkorb legen. Grund ist eine Regel im Riskmanagement, die diese Zahlungsart bei einem Warenkorbwert gr&ouml;&szlig;er 99&euro; oder bei Neukunden sperrt. <br />Hier wird automatisch auf die jeweilige Standard Zahlungsart des Shopkunden gewechselt.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "zahlungsarten-und-riskmanagement",
+            "originFullUrl": "/beispiele/zahlungsarten/228/zahlungsarten-und-riskmanagement",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Kwon-Tasche-Coach-schwarz503e242e4ab03_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Kwon-Tasche-Coach-schwarz503e242e4ab03_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        },
+        {
+            "id": 230,
+            "sku": "SW10002694",
+            "qty": "0",
+            "name": "Abschlag bei Zahlungsarten",
+            "price": "47.90",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>In Shopware k&ouml;nnen Sie bei gew&uuml;nschten Zahlungsarten auch Abschl&auml;ge definieren.<br />So ist bei diesem Beispiel ein Abschlag von 10% des Warenkorbwertes auf die Zahlungsart Lastschrift definiert worden. Melden Sie sich als Shopkunden max.mustermann@mail.com (Passwort: shopware) an, gehen in den \"Mein Konto\" Bereich und wechseln auf die Zahlungsart \"Lastschrift\". Bei jeder Bestellung wird Ihnen nun der Nachlass f&uuml;r die Zahlungsart gutgeschrieben. </p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "abschlag-bei-zahlungsarten",
+            "originFullUrl": "/beispiele/zahlungsarten/230/abschlag-bei-zahlungsarten",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Kwon-Fitness--Boxhandschuh-blau503e24a15f824_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Kwon-Fitness--Boxhandschuh-blau503e24a15f824_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/Kwon-Fitness--Boxhandschuh-schwarz503e24a37d41b_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        },
+        {
+            "id": 227,
+            "sku": "SW10002841",
+            "qty": "0",
+            "name": "Aufschlag bei Zahlungsarten",
+            "price": "35.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>In Shopware k&ouml;nnen Sie bei gew&uuml;nchten Zahlungsarten Aufschl&auml;ge definieren.<br />So ist bei diesem Beispiel ein Aufschlag von 5&euro; auf die Zahlungsart Rechnung definiert worden. <br />Melden Sie sich als Shopkunden max.mustermann@mail.com (Passwort: shopware) an, gehen in den \"Mein Konto\" Bereich und wechseln auf die Zahlungsart \"Rechnung\".<br />Bei jeder Bestellung wird Ihnen nun der Zuschlag f&uuml;r die Zahlungsart berechnet.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "aufschlag-bei-zahlungsarten",
+            "originFullUrl": "/beispiele/zahlungsarten/227/aufschlag-bei-zahlungsarten",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Kwon-Kampfsport-Guertel503e238936d35_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Kwon-Kampfsport-Guertel503e238936d35_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        }
+    ]
+}

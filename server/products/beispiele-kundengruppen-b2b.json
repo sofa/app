@@ -1,0 +1,87 @@
+{
+    "totalCount": "2",
+    "products": [
+        {
+            "id": 275,
+            "sku": "SW10007",
+            "qty": "0",
+            "name": "Business Essentials",
+            "price": "495.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Das Modul \"Business Essentials\" umfasst mehrere Submodule, die Ihren Shop perfekt auf die Bedürfnisse von Geschäftskunden ausrichten. <br> Ob nun die Registrierung verschiedener Kundengruppen oder Private Shopping – „Business Essentials“ bietet alles, was man für’s Business braucht. Sie können zudem Artikel oder ganze Kategorien nur für bestimmte Kundengruppen sichtbar machen.<br>Wenn Sie sich jetzt mit der Emailadresse \"mustermann@b2b.de\" und dem Passwort \"mustermann\" anmelden, wird Ihnen eine neue Kategorie \"B2B\" mit dem Artikel \"Fassware Lagerkorn\" angezeigt. Dieser Artikel und diese Kategorie sind hier für die Standard-Kundengruppe nicht sichtbar.<br></p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "business-essentials",
+            "originFullUrl": "/beispiele/kundengruppen-b2b/275/business-essentials",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/packshot-business-essentials_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/packshot-business-essentials_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        },
+        {
+            "id": 244,
+            "sku": "SW10235",
+            "qty": "0",
+            "name": "Kundengruppen Brutto / Nettopreise",
+            "price": "119.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Kundengruppen sind im eCommerce eine sehr wichtige Klassifizierungsmöglichkeit um Kunden sehr individuell anzusprechen. Der Geschäftspartner reagiert z.B. auf andere Werbebotschaften und Preise, wie ein Endverbraucher.</p><p>Durch die Kundengruppen-Funktionen in Ihrer Shopware gehen Sie auf diese unterschiedlichen Gruppen zu. Sie können das gesamte Layout Ihres Shops auf die jeweilige Kundengruppe zuschneiden. Einige Kundengruppen bekommen besondere Preise, Händler vielleicht Händlereinkaufspreise. Jüngere Kunden bedienen Sie mit Community Funktionen und einer peppigen Shopdarstellung, älteren vielleicht mit deutlich mehr Tiefe und Informationsgehalt.<br><br>Sie sehen hier aktuell den Artikel für 119 Euro brutto. Wenn Sie sich jetzt mit der Emailadresse \"mustermann@b2b.de\" und dem Passwort \"mustermann\" anmelden, wird Ihnen der Artikel mit 100 Euro netto angezeigt, weil dieser Kunde der entsprechenden Kundengruppe \"Händler B2B\" zugewiesen ist und für diese Gruppe definiert wurde.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "kundengruppen-brutto-nettopreise",
+            "originFullUrl": "/kundengruppen-brutto-nettopreise",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Oelwechsel-Use503f2b36942ca_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Oelwechsel-Use503f2b36942ca_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        }
+    ]
+}

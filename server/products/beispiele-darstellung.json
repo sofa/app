@@ -1,0 +1,393 @@
+{
+    "totalCount": "9",
+    "products": [
+        {
+            "id": 282,
+            "sku": "SW10049",
+            "qty": "2",
+            "name": "Liveshopping Standard",
+            "price": "1499.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Heiku",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Dieser Artikel wird zu einem reduzierten Preis f&uuml;r eine bestimmte Zeit und in einem begrenzten Kontingent angeboten.</p>\n<p>Liegt Ihnen vielleicht ein wenig das Zocken im Blut? Juckt es Ihnen &bdquo;in den Fingern&ldquo;, wenn Sie ein zeitlich begrenztes Sonderangebot sehen? Dann geht es Ihnen genauso wie den meisten Ihrer Kunden. Denn sobald ein Shopkunde einen Countdown sieht, kann er fast nicht mehr widerstehen. Machen Sie sich diese nat&uuml;rliche Reaktion mit dem &bdquo;Liveshopping&ldquo; von Shopware zunutze. Stellen Sie zeitlich begrenzte Angebote in Ihren Shop, die den Kunden per Countdown visuell dargestellt werden oder nutzen Sie die vielf&auml;ltigen anderen M&ouml;glichkeiten, die Ihnen dieses Premium Plugin bietet.<br />Wecken Sie das Zocker-Gen in Ihren Kunden. Integrieren Sie das &bdquo;Liveshopping&ldquo;</p>",
+            "brandName": "Heiku",
+            "url": "",
+            "urlKey": "liveshopping-standard",
+            "originFullUrl": "/beispiele/darstellung/282/liveshopping-standard",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Heiku-Kicker-XL-Champ-Elite-Pro-grau-Hauptbild_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Heiku-Kicker-XL-Champ-Elite-Pro-grau-Hauptbild_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 283,
+            "sku": "SW10050",
+            "qty": "61",
+            "name": "Liveshopping - fallender Preis",
+            "price": "319.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Das blaue Haus",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Dieser Liveshopping - Artikel wird jede Minute g&uuml;nstiger, aber das Risiko steigt f&uuml;r den Kunden, dass der Artikel abverkauft ist, wenn er zu lange mit der Bestellung wartet.</p>\n<p>Liegt Ihnen vielleicht ein wenig das Zocken im Blut? Juckt es Ihnen &bdquo;in den Fingern&ldquo;, wenn Sie ein zeitlich begrenztes Sonderangebot sehen? Dann geht es Ihnen genauso wie den meisten Ihrer Kunden. Denn sobald ein Shopkunde einen Countdown sieht, kann er fast nicht mehr widerstehen. Machen Sie sich diese nat&uuml;rliche Reaktion mit dem &bdquo;Liveshopping&ldquo; von Shopware zunutze. Stellen Sie zeitlich begrenzte Angebote in Ihren Shop, die den Kunden per Countdown visuell dargestellt werden oder nutzen Sie die vielf&auml;ltigen anderen M&ouml;glichkeiten, die Ihnen dieses Premium Plugin bietet.<br />Wecken Sie das Zocker-Gen in Ihren Kunden. Integrieren Sie das &bdquo;Liveshopping&ldquo;!</p>",
+            "brandName": "Das blaue Haus",
+            "url": "",
+            "urlKey": "liveshopping-fallender-preis",
+            "originFullUrl": "/sale/283/liveshopping-fallender-preis",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Kommode-Shabby-Chic-Front_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Kommode-Shabby-Chic-Front_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/Kommode-Shabby-Chic-Detail_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 116,
+            "sku": "SW10117",
+            "qty": "1000",
+            "name": "Liveshopping - steigender Preis pro Minute",
+            "price": "999.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Heiku",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Dieser Liveshopping Artikel startet zu einem g&uuml;nstigen Preis und wird jede Minute teurer.</p>\n<p>Liegt Ihnen vielleicht ein wenig das Zocken im Blut? Juckt es Ihnen &bdquo;in den Fingern&ldquo;, wenn Sie ein zeitlich begrenztes Sonderangebot sehen? Dann geht es Ihnen genauso wie den meisten Ihrer Kunden. Denn sobald ein Shopkunde einen Countdown sieht, kann er fast nicht mehr widerstehen. Machen Sie sich diese nat&uuml;rliche Reaktion mit dem &bdquo;Liveshopping&ldquo; von Shopware zunutze. Stellen Sie zeitlich begrenzte Angebote in Ihren Shop, die den Kunden per Countdown visuell dargestellt werden oder nutzen Sie die vielf&auml;ltigen anderen M&ouml;glichkeiten, die Ihnen dieses Premium Plugin bietet.<br />Wecken Sie das Zocker-Gen in Ihren Kunden. Integrieren Sie das &bdquo;Liveshopping&ldquo;!</p>",
+            "brandName": "Heiku",
+            "url": "",
+            "urlKey": "liveshopping-steigender-preis-pro-minute",
+            "originFullUrl": "/sale/116/liveshopping-steigender-preis-pro-minute",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Heiku-Kicker-Champ-Individuell-Hauptbild_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Heiku-Kicker-Champ-Individuell-Hauptbild_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 197,
+            "sku": "SW10196",
+            "qty": "1",
+            "name": "ESD Download Artikel",
+            "price": "34.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Electronic Software Distribution (ESD) hilft Ihnen bei dem Vertrieb von reinen Software Produkten. Diese Produkte werden online bestellt, bezahlt und zum Download bereit gestellt. Neben Software k&ouml;nnen auch andere digitale Artikel, wie E-Books, Musik (mp3), Videos, Computerspiele etc. auf ESD-Basis angeboten werden.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "esd-download-artikel",
+            "originFullUrl": "/beispiele/darstellung/197/esd-download-artikel",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Buecher-ESD503f5a25e6a12_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Buecher-ESD503f5a25e6a12_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 198,
+            "sku": "SW10197",
+            "qty": "34",
+            "name": "Artikel mit Bewertung",
+            "price": "10000.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Mit der Bewertung bietet sich Ihnen die M&ouml;glichkeit Ihre Kunden als Referenz einzusetzen. Gleichzeitig binden Sie Ihre Kunden damit aktiv ein und zeigen wie sehr Sie deren Meinung wertsch&auml;tzen. Nat&uuml;rlich haben Sie dadurch auch noch ein Feedback &uuml;ber die Akzeptanz und Qualit&auml;t von Artikel und Service.</p>\n<p>Die Bewertung k&ouml;nnen nur registrierte Kunden abgeben. Sollten K&auml;ufer die Artikel nicht bewerten, k&ouml;nnen diese auch mit einer automatisierten eMail um eine Bewertung gebeten werden.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "artikel-mit-bewertung",
+            "originFullUrl": "/beispiele/darstellung/198/artikel-mit-bewertung",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Blog-Koffer503df8a7784c3_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Blog-Koffer503df8a7784c3_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/Blog-Koffer-fuss503df89f1defb_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 199,
+            "sku": "SW10198",
+            "qty": "0",
+            "name": "Artikel mit Abverkauf",
+            "price": "238.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Mit der Abverkaufsfunktion k&ouml;nnen Artikel, die mit bestimmter Lagermenge vorhanden sind, abverkauft werden. Sobald der Bestand 0 ist, sind diese Artikel automatisch nicht mehr bestellbar bzw. mit entsprechender Einstellung werden diese auch direkt deaktiviert.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "artikel-mit-abverkauf",
+            "originFullUrl": "/beispiele/darstellung/199/artikel-mit-abverkauf",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Lagerkorn-5l-Ballon5034995823083_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Lagerkorn-5l-Ballon5034995823083_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        },
+        {
+            "id": 200,
+            "sku": "SW10199",
+            "qty": "0",
+            "name": "Artikelkennzeichnung NEU",
+            "price": "23.80",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Je nach Einstellungen im Backend, bekommen neu erstellte Artikel den Status \"Neu\" in der Storefront zugewiesen. Standardm&auml;&szlig;ig liegt die Einstellungen bei 30 Tagen, sprich, nach Erstellung eines Artikels, wird dieser die n&auml;chsten 30 Tage als \"Neu\" angezeigt. Sie k&ouml;nnen im Backend unter Einstellungen/Grundeinstellungen/Storefront/Topseller & Neuheiten die Dauer des Status definieren.</p>\n<p>Hierzu haben Sie zwei M&ouml;glichkeiten die Anzeige \"abzuschalten\" oder die Tage zu minimieren. Die erste M&ouml;glichkeit besteht darin, das Einstellungsdatum im Artikel zur&uuml;ckzustellen, sodass das Einstellungsdatum vor dem definierten Zeitraum liegt.</p>\n<p><span>Alternativ, um das Einstellungsdatum bei jedem Artikel nicht neu zu definieren, k&ouml;nnen Sie in den Grundeinstellungen einfach das Zeit-Limit minimieren oder gar entfernen, das Sie statt den 30 vordefinierten Tagen, den Zeitraum auf 5 Tage verringern. Nach der Eingabe des Zeitraums, w&uuml;rden Artikel nach Einstellungsdatum, \"5\" Tage lang als \"Neu\" angezeigt werden\". Wenn Sie hingegen den Status \"Neu\" storefrontseitig entfernen m&ouml;chten, tragen Sie im Feld der Definition eine \"0\" ein. Somit w&uuml;rde dieses, unabh&auml;ngig des Einstellungsdatums, in der Storefront nicht mehr als neu deklariert werden.</span></p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "artikelkennzeichnung-neu",
+            "originFullUrl": "/beispiele/darstellung/200/artikelkennzeichnung-neu",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Fensterspiegel-weiss-offen5034aa26170f2_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Fensterspiegel-weiss-offen5034aa26170f2_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/Fensterspiegel-weiss5034aa29cb87f_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        },
+        {
+            "id": 201,
+            "sku": "SW10200",
+            "qty": "0",
+            "name": "Hervorgehobene Darstellung",
+            "price": "99.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p><span>&Uuml;ber diese Option lassen sich Artikel in der Storefront besonders kennzeichnen. Standardm&auml;&szlig;ig werden diese Artikel als \"Tipp\" angezeigt.</span></p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "hervorgehobene-darstellung",
+            "originFullUrl": "/beispiele/darstellung/201/hervorgehobene-darstellung",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Beistelltisch-weiss-schraeg50349cb3f2a9f_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Beistelltisch-weiss-schraeg50349cb3f2a9f_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/Beistelltisch-weiss-Schublade50349cb82c4e5_720x600.jpg"
+                },
+                {
+                    "url": "media/product/thumbnail/Beistelltisch-weiss50349cb948a83_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        },
+        {
+            "id": 243,
+            "sku": "SW10234",
+            "qty": "0",
+            "name": "Artikel mit Emailbenachrichtigung",
+            "price": "119.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Mit dem besonderen Service der Emailbenachrichtigung k&ouml;nnen Kunden bei einem nicht lagernden Artikel Ihre Emailadresse angeben, damit Sie als Shopbetreiber die Kunden direkt informieren k&ouml;nnen, sobald der Artikel wieder verf&uuml;gbar ist.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "artikel-mit-emailbenachrichtigung",
+            "originFullUrl": "/beispiele/darstellung/243/artikel-mit-emailbenachrichtigung",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Lieferzeit ca. 5 Tage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Koffer-rot-gruen-gelb-blau503f1b16660bd_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Koffer-rot-gruen-gelb-blau503f1b16660bd_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "ca. 5 Tage"
+        }
+    ]
+}

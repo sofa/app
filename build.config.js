@@ -22,10 +22,20 @@ module.exports = {
     app_port: 9000,
 
     /**
+     * Server port on which the app local server is running
+     */
+    server_port: 9001,
+
+    /**
+     * Server host on which the app local server is running
+     */
+    server_host: 'localhost',
+
+    /**
      * This specifies the folder in `data/` for the specific shop you want to
      * build the app.
      */
-    shop_data_dir: 'shopware40demo',
+    shop_data_dir: 'local',
 
     /*
      * This is a collection of file patterns that refer to our app code (the

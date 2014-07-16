@@ -1,6 +1,6 @@
 cc.Config = {
     loggingEnabled: true,
-    useShopUrls: true,
+    useShopUrls: false,
     storeCode: '35444',
     storeName: 'shopware40demo',
     originalUrl:'http://demo.couchcommerce.com/shopware40',
@@ -14,7 +14,7 @@ cc.Config = {
     //apiHttpMethod: 'get',
     apiEndpoint: 'http://api.couchcommerce.com/',
     imageResizer: 'http://cdn1.couchcommerce.com/',
-    imageResizerEnabled: true,
+    imageResizerEnabled: false,
     mediaFolder:'http://cc1.couchcommerce.com/media/couchdemoshop/img/',
     mediaImgExtension:'png',
     mediaPlaceholder:'http://cdn.couchcommerce.com/media/platzhalter.png',

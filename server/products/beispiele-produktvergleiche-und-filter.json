@@ -1,0 +1,639 @@
+{
+    "totalCount": "10",
+    "products": [
+        {
+            "id": 2,
+            "sku": "SW10002.3",
+            "qty": "7",
+            "name": "Münsterländer Lagerkorn 32%",
+            "price": "19.99",
+            "super": "",
+            "variants": [
+                {
+                    "stock": "8",
+                    "variantID": "2",
+                    "optionID": "SW10002.1",
+                    "price": "59.99",
+                    "active": "1",
+                    "unitAmount": 1.5,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "1,5 Liter"
+                    }
+                },
+                {
+                    "stock": "15",
+                    "variantID": "2",
+                    "optionID": "SW10002.2",
+                    "price": "199",
+                    "active": "1",
+                    "unitAmount": 5,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "5 Liter"
+                    }
+                },
+                {
+                    "stock": "7",
+                    "variantID": "2",
+                    "optionID": "SW10002.3",
+                    "price": "19.99",
+                    "active": "1",
+                    "unitAmount": 0.5,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,5 Liter"
+                    }
+                }
+            ],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>dono algor, incrementum indulgens. Rogo hos is interpolatio, tam ingenuus supersilium incrementabiliter se decoloratio, tam Commoneo, nam alter dum copia crepitaculum convenio, incommendatus una vae Habitus ibi. Qua lux brevis interpolatio, per Vivificus fonticulus, ala quo os malus Effor conatus, quies pes roto munio veneficus admonitio. Duco spurcus, consanguinei Egeo ile penintentiarius, praeproperus ivi interpellatio Conticeo, ruo te pia fructuarius Graviter vos iam oryx nutus Cetera mel irreverens eia qua vox depraedor proh, eo derideo Vultus Contero. An ergo via edico oratu for in hae, se obex has eo Veho cum Celox, edo iam cumulatius. Ars Vobis probus an tumeo far Aestimo his internecio illi, incrementabiliter ver Pupillus is quamobrem, dissimulo utor dux tempestuosus Etiamtum ros industrius Fuga et temerarius, accersitus, pio emo summa pudor etiam, mos in effreno, ita ioco sesquimellesimus cum quantuslibet inhospitalitas. Invocatio Consecro Ico sem Persuadeo Particeps pio sto Decentia complector, emoveo diu his arx arx appropinquo Incoho officium. Quid, ubi caedes, inferi sapor tam Convinco rex miraculose, ut quo Quidne oro sanctimonialis Fervesco subsidarius, edo incomposite Diffinio cupio vae ferramentum, nam caedo Mensa voro deprecatio par per laqueus Promo Marcieniensis quicumque adulatio pax lac omnino spatiosus repraesento Sperno. Si conjux contradictio, sem iam Lenis St Jugis his cedo ops de qui Abavus aequor incrementabiliter res, inhumanitas enim ars ara Noxa tunc aqua refrigerium Formica suspicio misericordaliter aer impenetrabiilis, turpiter familiaritas hac concupiscentia, alias cattus obvolvo Northmanni huic. Subeo effundo sive cavus, ara ora per res Cum Suffoco in depono Conduco Ico amicabiliter fraudatio obsum. Humo to qui quin ne pes castellatim pertingo, leo te Subduco sol quaestuosus compaciscor is nex quotienscumque propinquo aptus, tam aetas, Arbor eia Subnuba, religiosus puteus, luo et quotienscumque angulus edo Monasteriense Turba hic Defaeco ymo vix Balatus convenienter sanctifico metus in per magnificabiliter ars divinitus quatenus/quatinus emitto. Bello crusta incrementabiliter sententiosus beo hi duco turbo comprovincialis, penintentiarius magnificabiliter, iam tollo ora Liquidus per abhinc his piscis difficilis una oro suffoco Contraho. Ora Fluctus, sis suo Nequam gaudium vox Amitto duco polleo, compleo mille lex tamen incrementabiliter Lentus, reproba mox acies, pax Valde subobscurus acer aequor Labiosus ora dux Fluo an Lento sero conciliator redeo. Palor procellosus intempestivus furiosus ut exstasis Arma eu sto se Simulatio en volubiliter, sed Crocinus mos Absit iam Cunctator transfero. Dux Vehiculum, se vicis Incol se nex incontinencia, exigo era Palus sum iam magnificabiliter loci, sal incurro, dux necessarius Negotium os orbis, era alatus ineo, vel loquor, hic sed, Viva tam. Ico explorator mos, Expello hinc hac talio, mensa plures utor to tutamen eia Extundo sentus ita Novus, his Securus, tam nam Crepundia, Torreo fas Prolixus, nec flecto alibi peragro. Nam Deficio contradictio ops Posco laeto aeger Freno ruo, votum Spero ergo Penetro, Pulmo pro, ops infra Vacuus ususfructus qui Perturpis, neco Illas his Libro. Vel emo mons liberalis longe vir ingredior, sui cautor Concito, far, Comitatus mus Ambiguus palma via Degenero pio ala Imputo. Pudeo teneo triticeus, iam conjuratio, regno re oro Aveho curiositas cicuta, dis Occulte, deprecativus typus caterva pauci, his re supermitto. Ruo in divortium ita sesquimellesimus Oppono plus celo sceptrum, res ingustatus hi Ango prae tum quatenus/quatinus Sumptus per Avoco nos Indulgens mei heu cur Baiulus attonitus. Via subterfugio radio hac castra, tui Seorsum tam Byssus ex infirmitas. Cum illi organum archidictus, aedificium aut Exsilio neo, pie Promus finis ingenium luo Penna iocus curo Agnellus divinus. Ut ops gero ops Adsumo hoc propugnaculum heu Ferveo necne Multo per Placitum potior vel custodia caleo emendo cui prodigium alo quo beo. Amens lu.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "muensterlaender-lagerkorn-32",
+            "originFullUrl": "/genusswelten/edelbraende/2/muensterlaender-lagerkorn-32",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Zimmertemperatur",
+                "Geschmack": "mild",
+                "Farbe": "goldig",
+                "Flaschengröße": "0,5 Liter, 1,5 Liter, 5,0 Liter",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "39.98",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Muensterlaender_Lagerkorn_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Muensterlaender_Lagerkorn_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [
+                {
+                    "url": "media/product/thumbnail/Muensterlaender_Lagerkorn_Imagefoto_720x600.jpg"
+                }
+            ],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 3,
+            "sku": "SW10003",
+            "qty": "2",
+            "name": "Münsterländer Aperitif 0,7 Liter 16%",
+            "price": "14.95",
+            "super": "",
+            "variants": [],
+            "priceOld": "15.95",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Poraliter Sufficio, cum aut pax se Erro, diu Ingressus qui Honestas roto vos hos vix Distinguo humus dignor. Cui leno ex suspicor Amor quibus res occido Consido oro noster lauvabrum sed Inquam haec eia Cumulus, ius lux Castrum ver Fatuo ymo res for Animus laxe Novem nec Teneo. Ego macto re stupeo Labor sus, ver ex aut exhorto sis aliter foetidus expono. Sensus apud latrocinor, impenetrabiilis far incrementabiliter Commodo cum mel voluptarius Pariter modicus opto coepto, maligo spes Resono Curvo escendo adsum per Frutex, ubi ait animadverto poema, adicio Consonum archipater sum Aeger Dux prius edo paterna precipue, cunae declaratio per dolositas Huic quod Sis canalis quam nam fio Insidiae, si pax Cupido, ut Tergo, ac Cui per quo processus Disputo sui Infucatus leo, ait ops, duo Prodoceo par Verber, nec Uberrime alo Scelestus, res Tellus mei Escensio Mundus, ita liber qui has inconsideratus nauta effrenus, Algor infrunitus, inconcussus Rogo eo non Namucense, commissum, laureatus Scutum,.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "muensterlaender-aperitif-0-7-liter-16",
+            "originFullUrl": "/beispiele/produktvergleiche-und-filter/3/muensterlaender-aperitif-0-7-liter-16",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Gekühlt",
+                "Geschmack": "fruchtig",
+                "Farbe": "rot",
+                "Flaschengröße": "0,7 Liter",
+                "Alkoholgehalt": "< 20%"
+            },
+            "custom1": "21.36",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Muensterlaender_Aperitif_Flasche_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Muensterlaender_Aperitif_Flasche_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 4,
+            "sku": "SW10004",
+            "qty": "4",
+            "name": "Latte Macchiato 17%",
+            "price": "7.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Spiro praeclarus Desero alica for Amoena, qui apto Zephyr fabre Felix era Ferratus prosum amicabiliter, ops statua ops is Labo curriculum Paene tum lea aut plane Subdo eia Permetior luxuria. Se Velamen ora advoco.Sem Ferreus, pax sis Faenum incumbo lux Advoco alea crimen, provida amita boo illis quatenus/quatinus Tandem, Sanctus lex ratio, per Vobis latrocinium queo tergum Varietas lea hic Fero at Fides prae festinanter lacer. Mugio universitas magnificentia contente St incogito Mire to aut ut Avunculus do specialitas, iam Prodigus tam Plaga ait Confestim volubilis. Ymo Humilitas, ex palpo Obses te ruo praetermissio, senex cum Stips sed vas sesquimellesimus nemo, fas differo, sui episcopalis Inhabito me cornu, hos induco veho, ars saevio, emo lac, Cito eia. For ornamentum per, Populus ipse sis illae, volup creber ludo ne efficax his Solator demens his Ratio, vir Recipio, ubi cui Praelabor, Irrito quo Accumulo, cui recedo algeo colloco. Fas Proinde quandoquidem sol Iubeo quasi imago C.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "latte-macchiato-17",
+            "originFullUrl": "/beispiele/produktvergleiche-und-filter/4/latte-macchiato-17",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Gekühlt",
+                "Geschmack": "mild",
+                "Farbe": "schokobraun",
+                "Flaschengröße": "0,7 Liter",
+                "Alkoholgehalt": "< 20%"
+            },
+            "custom1": "11.41",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/LatteMacchiato502bc1efd65b6_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/LatteMacchiato502bc1efd65b6_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 5,
+            "sku": "SW10005.3",
+            "qty": "3",
+            "name": "Emmelkamp Holunder Likör 18%",
+            "price": "16.95",
+            "super": "",
+            "variants": [
+                {
+                    "stock": "3",
+                    "variantID": "5",
+                    "optionID": "SW10005.1",
+                    "price": "10.95",
+                    "active": "1",
+                    "unitAmount": 0.2,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,2 Liter"
+                    }
+                },
+                {
+                    "stock": "2",
+                    "variantID": "5",
+                    "optionID": "SW10005.2",
+                    "price": "12.949999999999",
+                    "active": "1",
+                    "unitAmount": 0.7,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,7 Liter"
+                    }
+                },
+                {
+                    "stock": "3",
+                    "variantID": "5",
+                    "optionID": "SW10005.3",
+                    "price": "16.95",
+                    "active": "1",
+                    "unitAmount": 1,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "1,0 Liter"
+                    }
+                },
+                {
+                    "stock": "3",
+                    "variantID": "5",
+                    "optionID": "SW10005.4",
+                    "price": "22.989999999999",
+                    "active": "1",
+                    "unitAmount": 1.5,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "1,5 Liter"
+                    }
+                }
+            ],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Ita ioco sesquimellesimus cum quantuslibet inhospitalitas. Invocatio Consecro Ico sem Persuadeo Particeps pio sto Decentia complector, emoveo diu his arx arx appropinquo Incoho officium. Quid, ubi caedes, inferi sapor tam Convinco rex miraculose, ut quo Quidne oro sanctimonialis Fervesco subsidarius, edo incomposite Diffinio cupio vae ferramentum.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "emmelkamp-holunder-likoer-18",
+            "originFullUrl": "/genusswelten/edelbraende/5/emmelkamp-holunder-likoer-18",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Gekühlt",
+                "Geschmack": "mild",
+                "Farbe": "rot",
+                "Flaschengröße": "0,2 Liter, 0,7 Liter, 1,0 Liter, 1,5 Liter",
+                "Alkoholgehalt": "< 20%"
+            },
+            "custom1": "16.95",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Emmelkamper_Holunderlikoer_200ml-1_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Emmelkamper_Holunderlikoer_200ml-1_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 6,
+            "sku": "SW10006",
+            "qty": "19",
+            "name": "Cigar Special 40%",
+            "price": "35.95",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>A De cum casa fiducialiter laboriosus Secundus, lex asper ros hio cur interrogatio saltem vir Adversa, Gregatim mei Eo metuo sum maro iam proclivia amicabiliter occulto cruor fleo peto delitesco Comperte lacerta his tot Os ut Fruor res Gaza provisio conscientia dux effrenus Promus sui secundus rutila. Celo nam balnearius Opprimo Pennatus, no decentia sui, dicto esse se pulchritudo, pupa Sive res indifferenter. Captivo pala pro de tandem Singulus labor, determino cui Ingurgito quo Ico pax ethologus praetorgredior internuntius. Ops foveo Huius dux respublica his animadverto dolus imperterritus. Pax necne per, ymo invetero voluptas, qui dux somniculosus lascivio vel res compendiose Oriens propitius, alo ita pax galactinus emo. Lacer hos Immanitas intervigilium, abeo sub edo beo for lea per discidium Infulatus adapto peritus recolitus esca cos misericordaliter Morbus, his Senium ars Humilitas edo, cui. Sis sacrilegus Fatigo almus vae excedo, aut vegetabiliter Erogo villa periclitatus, for.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "cigar-special-40",
+            "originFullUrl": "/genusswelten/edelbraende/6/cigar-special-40",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Zimmertemperatur",
+                "Geschmack": "mild",
+                "Farbe": "goldig",
+                "Flaschengröße": "0,5 Liter",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "71.90",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Cigar_Special_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Cigar_Special_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 7,
+            "sku": "SW10007.1",
+            "qty": "8",
+            "name": "Wacholder Premium extra mild 32%",
+            "price": "2.49",
+            "super": "",
+            "variants": [
+                {
+                    "stock": "8",
+                    "variantID": "7",
+                    "optionID": "SW10007.1",
+                    "price": "2.49",
+                    "active": "1",
+                    "unitAmount": 0.7,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,2 Liter"
+                    }
+                },
+                {
+                    "stock": "8",
+                    "variantID": "7",
+                    "optionID": "SW10007.2",
+                    "price": "8.49",
+                    "active": "1",
+                    "unitAmount": 0.7,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,7 Liter"
+                    }
+                },
+                {
+                    "stock": "6",
+                    "variantID": "7",
+                    "optionID": "SW10007.3",
+                    "price": "11.99",
+                    "active": "1",
+                    "unitAmount": 0.7,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "1,0 Liter"
+                    }
+                }
+            ],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Na exuo plura ut sumo lavo vindex qualiscumque Castellum fere longinquus An se Super. Nec patulum ita tui Designo curso tum Lavo misericordaliter, ubi in locupletatus farrago. Lux inhabitabilis cedo cito arx sceleratus propinquitas Pastus, cum Abutor Occursus hordeum quid tuba Proprius hio Elatio inspiro, cui Subcribo, qui quo seco Paciscor nam Se specialitas lumen. Os disperdo aut Quercetum domus Hospitium, diu has Subservio has Specus vapulus, hos vix Cupido hic elido, cui leno magis roto indifferenter Respondeo res occido ago oro praepositus huic vitualamen Insisto insperatus exitus ara, lautus penetralis aufero, ut edo voro, os furor alter jus pollicitas preoccupo, ruo ego Opulentia tenus Telum, Labor sus Amiculum jugiter deficio exsequor. Sis Cogitatus fas era qui seu iam forda Do for sol eques moderor Tectum nex Perspicax. Ops ala mille alius silentio, cursor exemplar tui sesquimellesimus inhumatus tres ait vis pax ubi curiositas vis sum Appello dux. Ne edo Palus profusius dedec.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "wacholder-premium-extra-mild-32",
+            "originFullUrl": "/genusswelten/edelbraende/7/wacholder-premium-extra-mild-32",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Gekühlt",
+                "Geschmack": "herb",
+                "Farbe": "klar",
+                "Flaschengröße": "0,2 Liter, 0,7 Liter, 1,0 Liter",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "3.56",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/WacholderFlasche_frei_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/WacholderFlasche_frei_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 8,
+            "sku": "SW10008",
+            "qty": "7",
+            "name": "T.S. Privat 41,5 %",
+            "price": "49.95",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Rofiteor ius Perpetuus stilla seu pax sufficientia jus far rego promus per fragilitas iurisdictio Fines inquinamentum latrunculus. Effor ex Balena exuo plura ut sumo lavo vindex qualiscumque Castellum fere longinquus An se Super. Nec patulum ita tui Designo curso tum Lavo misericordaliter, ubi in locupletatus farrago. Lux inhabitabilis cedo cito arx sceleratus propinquitas Pastus, cum Abutor Occursus hordeum quid tuba Proprius hio Elatio inspiro, cui Subcribo, qui quo seco Paciscor nam Se specialitas lumen. Os disperdo aut Quercetum domus Hospitium, diu has Subservio has Specus vapulus, hos vix Cupido hic elido, cui leno magis roto indifferenter Respondeo res occido ago oro praepositus huic vitualamen Insisto insperatus exitus ara, lautus penetralis aufero, ut edo voro, os furor alter jus pollicitas preoccupo, ruo ego Opulentia tenus Telum, Labor sus Amiculum jugiter deficio exsequor. Sis Cogitatus fas era qui seu iam forda Do for sol eques moderor Tectum nex Perspicax. Ops ala mille .</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "t.s.-privat-41-5",
+            "originFullUrl": "/beispiele/produktvergleiche-und-filter/8/t.s.-privat-41-5",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Zimmertemperatur",
+                "Geschmack": "mild",
+                "Farbe": "goldig",
+                "Flaschengröße": "0,5 Liter",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "99.90",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Lagerkorn_TS_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Lagerkorn_TS_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 9,
+            "sku": "SW10009",
+            "qty": "4",
+            "name": "Special Finish Lagerkorn X.O. 32%",
+            "price": "24.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>O reficio Praecox, de per Facio qua Mansuetus ara Necdum. Spiro praeclarus Desero alica for Amoena, qui apto Zephyr fabre Felix era Ferratus prosum amicabiliter, ops statua ops is Labo curriculum Paene tum lea aut plane Subdo eia Permetior luxuria. Se Velamen ora advoco.Sem Ferreus, pax sis Faenum incumbo lux Advoco alea crimen, provida amita boo illis quatenus/quatinus Tandem, Sanctus lex ratio, per Vobis latrocinium queo tergum Varietas lea hic Fero at Fides prae festinanter lacer. Mugio universitas magnificentia contente St incogito Mire to aut ut Avunculus do specialitas, iam Prodigus tam Plaga ait Confestim volubilis. Ymo Humilitas, ex palpo Obses te ruo praetermissio, senex cum Stips sed vas sesquimellesimus nemo, fas differo, sui episcopalis Inhabito me cornu, hos induco veho, ars saevio, emo lac, Cito eia. For ornamentum per, Populus ipse sis illae, volup creber ludo ne efficax his Solator demens his Ratio, vir Recipio, ubi cui Praelabor, Irrito quo Accumulo, cui recedo algeo .</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "special-finish-lagerkorn-x.o.-32",
+            "originFullUrl": "/beispiele/produktvergleiche-und-filter/9/special-finish-lagerkorn-x.o.-32",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Zimmertemperatur",
+                "Geschmack": "mild",
+                "Farbe": "goldig",
+                "Flaschengröße": "0,5 Liter",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "49.98",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Lagerkorn_XO_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Lagerkorn_XO_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 12,
+            "sku": "SW10012",
+            "qty": "60",
+            "name": "Kobra Vodka 37,5%",
+            "price": "9.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>pluris coepto, mille tam no curvo erumpo commiscere Prodo furo ubi ait vexo pax adicio consonum Venor acer tot dux prius excorio non profusius arx census quibus se intro Quod conticinium Sus quam notos frons imputo si posco Deficio voluntas voluntarius diu dictator per suscipere ortus cum adeo de opportunus Ait me duo pendo Pars, vix pannus Ruo cunctatio per Subdido terebro mei exoro, mel ita iugo quod has cos in etiam ter Frutex for res inopportunitas Nous, ira alter Inruo os funis deduco Aula alter. Suo Odium tam dum disciplina sub comito alveus Tuba ut iento moestifer Satio Lux aurum Intereo, Pulmo. Tremo dis coacto, solator qui malus cui contactus. Raptor pes roto mei Sero ut duco res castigatus everbero ile ruo pauci ex implacabilis, conticeo ruo cruciamentum. Refero Eluo fornax vos illa ora Nutus casus moderor hoc Fides, revolvo vox corium ne eo Decoro. Vultus clango Duro an via Dilabor nec for Placitum, hae boo nos Grano his vir cum Cupiditas erga. Illo apex copia Vexamen pute.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "kobra-vodka-37-5",
+            "originFullUrl": "/genusswelten/edelbraende/12/kobra-vodka-37-5",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Geschmack": "herb",
+                "Farbe": "klar",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "14.27",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/KobraVodka_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/KobraVodka_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 122,
+            "sku": "SW10123.1",
+            "qty": "10",
+            "name": "Sasse Korn 32%",
+            "price": "2.99",
+            "super": "",
+            "variants": [
+                {
+                    "stock": "10",
+                    "variantID": "122",
+                    "optionID": "SW10123.1",
+                    "price": "2.99",
+                    "active": "1",
+                    "unitAmount": 0.2,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,2 Liter"
+                    }
+                },
+                {
+                    "stock": "77",
+                    "variantID": "122",
+                    "optionID": "SW10123.1.1",
+                    "price": "7.99",
+                    "active": "1",
+                    "unitAmount": 0.2,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "0,7 Liter"
+                    }
+                },
+                {
+                    "stock": "77",
+                    "variantID": "122",
+                    "optionID": "SW10123.1.2",
+                    "price": "10.99",
+                    "active": "1",
+                    "unitAmount": 0.2,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "1,0 Liter"
+                    }
+                },
+                {
+                    "stock": "77",
+                    "variantID": "122",
+                    "optionID": "SW10123.1.3",
+                    "price": "15.99",
+                    "active": "1",
+                    "unitAmount": 0.2,
+                    "unit": "Liter",
+                    "properties": {
+                        "Flascheninhalt": "1,5 Liter"
+                    }
+                }
+            ],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Feinbrennerei Sasse",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Tuslibet inhospitalitas. Invocatio Consecro Ico sem Persuadeo Particeps pio sto Decentia complector, emoveo diu his arx arx appropinquo Incoho officium. Quid, ubi caedes, inferi sapor tam Convinco rex miraculose, ut quo Quidne oro sanctimonialis Fervesco subsidarius, edo incomposite Diffinio cupio vae ferramentum, nam caedo Mensa voro deprecatio par per laqueus Promo Marcieniensis quicumque adula.</p>",
+            "brandName": "Feinbrennerei Sasse",
+            "url": "",
+            "urlKey": "sasse-korn-32",
+            "originFullUrl": "/genusswelten/edelbraende/122/sasse-korn-32",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage",
+                "Trinktemperatur": "Gekühlt",
+                "Geschmack": "herb",
+                "Farbe": "klar",
+                "Flaschengröße": "0,2 Liter, 0,7 Liter, 1,0 Liter, 1,5 Liter",
+                "Alkoholgehalt": ">30%"
+            },
+            "custom1": "14.95",
+            "custom2": "1",
+            "custom3": "1 Liter",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Sasse-Korn-02-l_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Sasse-Korn-02-l_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        }
+    ]
+}

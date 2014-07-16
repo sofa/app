@@ -1,0 +1,128 @@
+{
+    "totalCount": "3",
+    "products": [
+        {
+            "id": 210,
+            "sku": "SW10209",
+            "qty": "99",
+            "name": "Prämienartikel ab 50 Euro Warenkorb Wert",
+            "price": "7.99",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Diesen Artikel k&ouml;nnen die Kunden kostenpflichtig erwerben oder kostenlos als Pr&auml;mienartikel ab einem Warenkorb Wert von 50 Euro bekommen. <br />Hinweis:<br />Damit die Pr&auml;mienartikel im Warenkorb angezeigt werden, muss diese Funktion im Backend unter Einstellungen - Storefront - Bestellabschluss aktiviert sein.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "praemienartikel-ab-50-euro-warenkorb-wert",
+            "originFullUrl": "/beispiele/kundenbindung/210/praemienartikel-ab-50-euro-warenkorb-wert",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Schneebesen503f475f63a73_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Schneebesen503f475f63a73_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 211,
+            "sku": "SW10221",
+            "qty": "99",
+            "name": "Prämienartikel ab 250 Euro Warenkorb Wert",
+            "price": "50.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Diesen Artikel k&ouml;nnen die Kunden kostenpflichtig erwerben oder kostenlos als Pr&auml;mienartikel ab einem Warenkorb Wert von 250 Euro bekommen.</p>\n<p>Hinweis:<br />Damit die Pr&auml;mienartikel im Warenkorb angezeigt werden, muss diese Funktion im Backend unter Einstellungen - Storefront - Bestellabschluss aktiviert sein.</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "praemienartikel-ab-250-euro-warenkorb-wert",
+            "originFullUrl": "/beispiele/kundenbindung/211/praemienartikel-ab-250-euro-warenkorb-wert",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Dart-Set_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Dart-Set_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        },
+        {
+            "id": 247,
+            "sku": "SW10238",
+            "qty": "98",
+            "name": "Prämienartikel ab 100 Euro Warenkorbwert",
+            "price": "20.00",
+            "super": "",
+            "variants": [],
+            "priceOld": "0.00",
+            "inStock": "true",
+            "retailer": "Example",
+            "retailerId": "470",
+            "locale": "de_DE",
+            "description": "<p>Ihre Kunden k&ouml;nnen diesen Artikel entweder kaufen oder alsPr&auml;mienartikel ab einem Warenkorbwert von 100 Euro angeboten bekommen. </p>\n<p>Hinweis:</p>\n<p>Um pr&auml;mienartikel im Warenkorb angezeigt zu bekommen, m&uuml;ssen Sie diese Funktionen im Backend aktivieren unter Einstellungen --> Storefront</p>",
+            "brandName": "Example",
+            "url": "",
+            "urlKey": "praemienartikel-ab-100-euro-warenkorbwert",
+            "originFullUrl": "/beispiele/kundenbindung/247/praemienartikel-ab-100-euro-warenkorbwert",
+            "tax": "19",
+            "attributes": {
+                "Lieferzeit": "Sofort versandfertig, Lieferzeit ca. 1-3 Werktage"
+            },
+            "custom1": "",
+            "custom2": "",
+            "custom3": "",
+            "images": [
+                {
+                    "sizeName": "Small",
+                    "url": "media/product/thumbnail/Bumerang503f48282aa63_720x600.jpg"
+                },
+                {
+                    "sizeName": "Large",
+                    "url": "media/product/thumbnail/Bumerang503f48282aa63_720x600.jpg"
+                }
+            ],
+            "imagesAlt": [],
+            "colors": [],
+            "sizes": [],
+            "gender": "",
+            "delivery": "Sofort versandfertig,  ca. 1-3 Werktage"
+        }
+    ]
+}
