@@ -19,8 +19,8 @@
                 <div class="cc-product__image-block">
 
                     <div class="cc-flex-image-helper">
-                        <div class="cc-product-view-image-wrapper">
-                            <img ng-src="{{selectedImage}}"
+                        <div class="cc-product-view-image-wrapper" ng-class="{'cc-img-loading': !selectedImage.loaded}">
+                            <img ng-src="{{selectedImage.url}}"
                                  cc-image-zoom
                                  cc-image-full-screen
                                  class="cc-product-view-image"
@@ -31,7 +31,7 @@
                     <cc-thumbnail-bar
                             ng-show="images.length > 1"
                             images="productImages"
-                            on-change="changeImage(imageUrl)">
+                            on-change="changeImage(image)">
                     </cc-thumbnail-bar>
 
                 </div>
