@@ -149,9 +149,11 @@ angular.module('CouchCommerceApp', [
                 }]
             },
             onEnter: ['product', 'metaService', function (product, metaService) {
-                metaService.set({
-                    description: product.description
-                });
+                if (product) {
+                    metaService.set({
+                        description: product.description
+                    });
+                }
             }],
             screenIndex: screenIndexes.product
         })
