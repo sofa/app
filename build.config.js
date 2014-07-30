@@ -174,6 +174,7 @@ module.exports = {
             'node_modules/sofa-state-resolver-service/dist/sofa.stateResolverService.js',
             'node_modules/sofa-base/src/core/*.js',
             'node_modules/sofa-base/src/**/*.js',
+            '!node_modules/sofa-base/src/directives/ccElasticViews/**/*.js',
             'node_modules/sofa-base/dist/cc.angular.templates.js'
         ],
         css: [],
