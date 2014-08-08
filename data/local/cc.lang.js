@@ -167,7 +167,7 @@ cc.Lang = {
     removeFromWishlist: 'Gemerkt',
     wishlist: 'Merkzettel',
     wishlistEmpty: 'Sie haben zur Zeit keine Artikel auf Ihrem Merkzettel',
-    wishlistFirstUse: 'Hier findest Du Deinen Merkzettel.<br> Von jetzt an bleibt er verborgen, bis Du ihn Ã¼ber die seitliche Navigation Ã¶ffnest.',
+    wishlistFirstUse: 'Hier findest Du Deinen Merkzettel.<br> Von jetzt an bleibt er verborgen, bis Du ihn &uuml;ber die seitliche Navigation &ouml;ffnest.',
     formIBAN: 'IBAN',
     formBIC: 'BIC',
     formFinancingType: 'Financing Type',
