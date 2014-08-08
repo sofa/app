@@ -124,7 +124,7 @@ module.exports = {
             '<%= build_dir %>/data/<%= shop_data_dir %>/cc.config.js',
         ],
         lang: [
-            '<%= build_dir %>/data/cc.lang.js'
+            '<%= build_dir %>/data/<%= shop_data_dir %>/cc.lang.js'
         ]
     },
     /**
