@@ -101,5 +101,5 @@ The typical update process goes like this:
 
 #Contribute
 
-We'd love you to contribute. Please make sure to read the [contribute guide line](https://github.com/couchcommerce/frontend-spike/wiki/Contribute)
+We'd love you to contribute. Please make sure to read the [CONTRIBUTING] guide line.
 
