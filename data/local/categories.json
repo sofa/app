@@ -84,10 +84,6 @@
         "urlId": "beispiele",
         "originFullUrl": "/beispiele",
         "children": [{
-            "label": "In K\u00fcrze verf\u00fcgbar",
-            "urlId": "beispiele-in-kuerze-verfuegbar",
-            "originFullUrl": "/beispiele/in-kuerze-verfuegbar"
-        }, {
             "label": "Konfiguratorartikel",
             "urlId": "beispiele-konfiguratorartikel",
             "originFullUrl": "/beispiele/konfiguratorartikel"
@@ -124,10 +120,6 @@
             "urlId": "beispiele-preisgestaltung",
             "originFullUrl": "/beispiele/preisgestaltung"
         }]
-    }, {
-        "label": "B2B",
-        "urlId": "b2b",
-        "originFullUrl": "/b2b"
     }, {
         "label": "% SALE",
         "urlId": "sale",
