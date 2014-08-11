@@ -101,5 +101,5 @@ The typical update process goes like this:
 
 #Contribute
 
-We'd love you to contribute. Please make sure to read the [CONTRIBUTING] guide line.
+We'd love you to contribute. Please make sure to read the [CONTRIBUTING](https://github.com/sofa/app/blob/master/CONTRIBUTING.md) guide line.
 
