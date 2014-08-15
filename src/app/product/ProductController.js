@@ -10,10 +10,10 @@ angular.module('CouchCommerceApp')
     }
 
     // Set maximum dimensions for the imageResizeService
-    var IMAGE_MAX_HEIGHT     = $rootScope.isTabletSize ? 500 : 300,
-        IMAGE_MAX_WIDTH      = $rootScope.isTabletSize ? 500 : 300,
-        THUMBNAIL_MAX_WIDTH  = $rootScope.isTabletSize ? 120 : 50,
-        THUMBNAIL_MAX_HEIGHT = $rootScope.isTabletSize ? 120 : 50;
+    var IMAGE_MAX_WIDTH       = $rootScope.isTabletSize ? 500 : 300,
+        IMAGE_MAX_HEIGHT      = IMAGE_MAX_WIDTH,
+        ZOOM_IMAGE_MAX_WIDTH  = $rootScope.isTabletSize ? 2000 : 1200,
+        ZOOM_IMAGE_MAX_HEIGHT = ZOOM_IMAGE_MAX_WIDTH;
 
     categoryTreeViewRemote.setActive(category);
 
@@ -61,14 +61,19 @@ angular.module('CouchCommerceApp')
 
         angular.forEach($scope.images, function (image, index) {
             resizedCollection[index] = {
-                thumbnail: imageResizeService.resize(image.url, {
-                    maxwidth: THUMBNAIL_MAX_WIDTH,
-                    maxheight: THUMBNAIL_MAX_HEIGHT
-                }),
                 image: {
                     url: imageResizeService.resize(image.url, {
                         maxwidth: IMAGE_MAX_WIDTH,
-                        maxheight: IMAGE_MAX_HEIGHT
+                        maxheight: IMAGE_MAX_HEIGHT,
+                        quality: 90
+                    }),
+                    loaded: false
+                },
+                zoomImage: {
+                    url: imageResizeService.resize(image.url, {
+                        maxwidth: ZOOM_IMAGE_MAX_WIDTH,
+                        maxheight: ZOOM_IMAGE_MAX_HEIGHT,
+                        quality: 85
                     }),
                     loaded: false
                 }
@@ -76,6 +81,9 @@ angular.module('CouchCommerceApp')
 
             preloadImage(resizedCollection[index].image.url).then(function (state) {
                 resizedCollection[index].image.loaded = state;
+                preloadImage(resizedCollection[index].zoomImage.url).then(function (state) {
+                    resizedCollection[index].zoomImage.loaded = state;
+                });
             });
         });
 
@@ -84,10 +92,6 @@ angular.module('CouchCommerceApp')
 
     $scope.productImages = getResizedProductImages();
     $scope.selectedImage = $scope.productImages[0].image;
-
-    $scope.changeImage = function (image) {
-        $scope.selectedImage = image;
-    };
 
     $scope.getBasePriceInfo = function () {
         return productService.getBasePriceInfo($scope.product, $scope.variants.selectedVariant);
@@ -129,19 +133,6 @@ angular.module('CouchCommerceApp')
 
     // ];
 
-    var cycleProducts = true;
-    $scope.getPrevProduct = function (product) {
-        var prev = couchService.getPreviousProduct(product, cycleProducts);
-        //console.log('getPrevProduct', prev);
-        return prev;
-    };
-
-    $scope.getNextProduct = function (product) {
-        var next = couchService.getNextProduct(product, cycleProducts);
-        //console.log('getNextProduct', next);
-        return next;
-    };
-
     //to keep compatibility to our current language file we need to
     //deal with the {tax} marker in the language value and replace it with the
     //products tax.
@@ -175,4 +166,26 @@ angular.module('CouchCommerceApp')
         snapRemote.open('right');
     };
 
+    $scope.shared = {};
+    $scope.shared.slideIndex = 0;
+    $scope.maxImageZoom = ZOOM_IMAGE_MAX_WIDTH / IMAGE_MAX_WIDTH;
+
+    // For the full page view
+    var originalSliderScope,
+        cloneSliderScope;
+
+    $scope.setOriginalState = function (fullPageViewScope) {
+        originalSliderScope = originalSliderScope ||
+            angular.element(fullPageViewScope.originalElement[0].querySelector('.sofa-touch-slider')).scope();
+
+        originalSliderScope.setToIndex($scope.shared.slideIndex);
+    };
+
+    $scope.setCloneState = function (fullPageViewScope) {
+        cloneSliderScope = cloneSliderScope ||
+            angular.element(fullPageViewScope.cloneElement[0].querySelector('.sofa-touch-slider')).scope();
+
+        cloneSliderScope.reset();
+        cloneSliderScope.setToIndex($scope.shared.slideIndex);
+    };
 });

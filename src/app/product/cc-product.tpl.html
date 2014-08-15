@@ -17,19 +17,40 @@
 
         <cc-inject target="beneathTitle"></cc-inject>
 
-        <div class="cc-product-view-image-wrapper" ng-class="{'cc-img-loading': !selectedImage.loaded}">
-            <img ng-src="{{selectedImage.url}}"
-                 cc-image-zoom
-                 cc-image-full-screen
-                 class="cc-product-view-image"
-                 zoom-anim-duration="500">
-        </div>
-
-        <cc-thumbnail-bar
-                ng-show="images.length > 1"
-                images="productImages"
-                on-change="changeImage(image)">
-        </cc-thumbnail-bar>
+        <sofa-full-page-view on-open="setCloneState" on-close="setOriginalState">
+            <sofa-full-page-view-clone class="cc-animate">
+                <sofa-touch-slider
+                        class="cc-product__image-slider"
+                        items="productImages"
+                        display-items="1"
+                        snap="true"
+                        slide-index="shared.slideIndex"
+                        show-indicator="true"
+                        data-snap-ignore="true">
+                    <div class="cc-product-view-image-wrapper">
+                        <img ng-src="{{item.image.url}}" class="cc-product-view-image"
+                             sofa-image-zoom="item.zoomImage.loaded && item.zoomImage.url">
+                    </div>
+                </sofa-touch-slider>
+            </sofa-full-page-view-clone>
+            <sofa-full-page-view-original>
+                <sofa-touch-slider
+                        class="cc-product__image-slider"
+                        items="productImages"
+                        display-items="1"
+                        on-item-click="openFullPageView(e)"
+                        snap="true"
+                        slide-index="shared.slideIndex"
+                        show-indicator="true"
+                        data-snap-ignore="true">
+                    <div class="cc-product-view-image-wrapper"
+                         ng-click="onItemClick({e: $event});"
+                         ng-class="{'cc-img-loading': !item.image.loaded}">
+                        <img ng-src="{{item.image.url}}" class="cc-product-view-image">
+                    </div>
+                </sofa-touch-slider>
+            </sofa-full-page-view-original>
+        </sofa-full-page-view>
 
         <cc-variant-selector
             choose-text="ln.choose"
