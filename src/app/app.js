@@ -404,15 +404,19 @@ angular.module('CouchCommerceApp', [
 // Prevent animation on first page load
 .run(['$animate', '$rootScope', function ($animate, $rootScope) {
     $animate.enabled(false);
-    // viewContentLoaded fires twice on page load
-    var i = 0;
 
+    var i = 0;
     var off = $rootScope.$on('$viewContentLoaded', function () {
-        if (i > 1) {
-            $animate.enabled(true);
+        if (i === 1) {
+            // ngAnimate queues animations for postDigest processing.
+            // Doing the same with re-enabling $animate ensures that animations stay disabled during the initial
+            // load while becoming available right after the view has been rendered.
+            $rootScope.$$postDigest(function () {
+                $animate.enabled(true);
+            });
             off();
         }
-        i += 1;
+        i++;
     });
 }])
 .run(['trackingService', 'configService', function (trackingService, configService) {
