@@ -17,7 +17,7 @@ Make sure to install Java on your local machine.
 
 Clone the repo via git:
 ```sh
-$ git clone https://github.com/couchcommerce/frontend-spike && cd frontend-spike
+$ git clone https://github.com/sofa/app sofa-app && cd sofa-app
 ```
 
 Install depencencies:
