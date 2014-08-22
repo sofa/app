@@ -44,7 +44,8 @@
 }
 
 .cc-no-modern-flexbox {
-    .cc-page-wrapper {
+    .cc-page-wrapper,
+    .cc-ui-view {
         height: 100%;
     }
 }
