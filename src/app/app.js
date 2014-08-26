@@ -24,8 +24,6 @@ function setPrerenderIOMetaTag(status) {
 //since Angular does not allow access to services in the config
 //phase, we need to access it as non angular service for now
 cc.deviceService = new cc.DeviceService(window);
-//shortHand
-cc.isTabletSize = cc.deviceService.isTabletSize();
 
 // this is an empty dummy package. It can be overwritten by simply
 // pasting customer specific code through the admin UI
@@ -79,7 +77,9 @@ angular.module('CouchCommerceApp', [
 
     var categoryStateConfig = {
         url: '/',
-        templateUrl: cc.isTabletSize ? 'categories/cc-category-grid.tpl.html' : 'categories/cc-category-list.tpl.html',
+        templateUrl: function () {
+            return cc.deviceService.isTabletSize() ? 'categories/cc-category-grid.tpl.html' : 'categories/cc-category-list.tpl.html';
+        },
         controller: 'CategoryController',
         screenIndex: screenIndexes.category,
         resolve: {
@@ -138,7 +138,9 @@ angular.module('CouchCommerceApp', [
 
         .state('product', {
             url: UNIQUE_URL_PREFIX + ':category:productUrlKey',
-            templateUrl: cc.isTabletSize ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html',
+            templateUrl: function () {
+                return cc.deviceService.isTabletSize() ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html';
+            },
             controller: 'ProductController',
             resolve: {
                 product: ['couchService', '$stateParams', function (couchService, $stateParams) {
@@ -187,7 +189,9 @@ angular.module('CouchCommerceApp', [
 
         .state('oldProduct', {
             url: '/cat/:category/product/:productUrlKey',
-            templateUrl: cc.isTabletSize ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html',
+            templateUrl: function () {
+                return cc.deviceService.isTabletSize() ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html';
+            },
             controller: ['product', '$location', function (product, $location) {
                 setPrerenderIOMetaTag('301');
                 $location.path(product.getOriginFullUrl());
@@ -349,7 +353,7 @@ angular.module('CouchCommerceApp', [
     $rootScope.slideDirectionService = slideDirectionService;
     $rootScope.tpl = templateService;
 
-    $rootScope.isTabletSize = cc.isTabletSize;
+    $rootScope.isTabletSize = cc.deviceService.isTabletSize();
 
     //no need to add bindings for things that are unlikely to change over a session;
     deviceService.flagOs();
