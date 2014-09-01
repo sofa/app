@@ -150,6 +150,7 @@ module.exports = {
             'vendor/angular-unstable/angular-animate.js',
             'vendor/angular-unstable/angular-sanitize.js',
             'node_modules/angular-bindonce/bindonce.js',
+            'node_modules/hammerjs/hammer.js',
             'vendor/ui-router/angular-ui-router.js',
             'vendor/ui-modal/*.js',
             'vendor/snap/snap.js',
