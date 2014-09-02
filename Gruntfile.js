@@ -847,7 +847,7 @@ module.exports = function (grunt) {
         'karma:unit',
         'nodeunit',
         'connect:livereload',
-        'concurrent'
+        userConfig.shop_data_dir === 'local' ? 'concurrent' : 'delta'
     ]);
 
     /**
