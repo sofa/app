@@ -415,6 +415,7 @@ module.exports = function (grunt) {
                     '<%= data_files.config %>',
                     '<%= data_files.lang %>',
                     '<%= build_dir %>/<%= app_base %>/**/*.js',
+                    '<%= data_files.inject %>',
                     '<%= html2js.app.dest %>',
                     '<%= vendor_files.css %>',
                     '<%= build_dir %>/assets/css/**/*.css'
@@ -427,6 +428,7 @@ module.exports = function (grunt) {
                     '<%= concat.compile_js.dest %>',
                     '<%= data_files.config %>',
                     '<%= data_files.lang %>',
+                    '<%= data_files.inject %>',
                     '<%= vendor_files.css %>',
                     '<%= compile_dir %>/assets/css/app.css'
                 ]

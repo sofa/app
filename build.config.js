@@ -125,7 +125,10 @@ module.exports = {
         ],
         lang: [
             '<%= build_dir %>/data/<%= shop_data_dir %>/cc.lang.js'
-        ]
+        ],
+        inject: [
+            '<%= build_dir %>/data/<%= shop_data_dir %>/cc.inject.js',
+        ],
     },
     /**
      * This is the same as `app_files`, except it contains patterns that
