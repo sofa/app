@@ -12,3 +12,7 @@ node_modules
 dist
 build
 bower_components
+
+data/*
+!data/local/
+!data/pages/
