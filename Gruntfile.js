@@ -187,6 +187,17 @@ module.exports = function (grunt) {
         },
 
         /**
+         * Let grunt-autoprefixer add all vendor specific prefixes that are needed (from caniuse.com)
+         */
+        autoprefixer: {
+            dist: {
+                files: {
+                    '<%= build_dir %>/assets/css/app.css': '<%= build_dir %>/assets/css/app.css'
+                }
+            }
+        },
+
+        /**
          * The `copy` task just copies files from A to B. We use it here to copy
          * our project assets (images, fonts, etc.) and javascripts into
          * `build_dir`, and then to copy the assets to `compile_dir`.
@@ -717,19 +728,19 @@ module.exports = function (grunt) {
              */
             sass_assets: {
                 files: ['assets/**/*.scss'],
-                tasks: ['sass']
+                tasks: ['sass', 'autoprefixer']
             },
 
             sass_app: {
                 files: ['src/app/**/*.scss'],
-                tasks: ['sass']
+                tasks: ['sass', 'autoprefixer']
             },
 
             sass_vendor: {
                 files: [
                     '<%= vendor_files.scss %>'
                 ],
-                tasks: ['sass']
+                tasks: ['sass', 'autoprefixer']
             },
 
             /**
@@ -879,6 +890,7 @@ module.exports = function (grunt) {
         'html2js',
         'jshint',
         'sass',
+        'autoprefixer',
         'copy:build_assets',
         'copy:build_appjs',
         'copy:build_data',
