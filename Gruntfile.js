@@ -842,13 +842,24 @@ module.exports = function (grunt) {
      */
     grunt.renameTask('watch', 'delta');
 
-    grunt.registerTask('watch', [
-        'build',
-        'karma:unit',
-        'nodeunit',
-        'connect:livereload',
-        userConfig.shop_data_dir === 'local' ? 'concurrent' : 'delta'
-    ]);
+    var watchTasks = [];
+
+    watchTasks.push('build', 'karma:unit');
+
+    if (userConfig.shop_data_dir === 'local') {
+        watchTasks.push('nodeunit');
+    }
+
+    watchTasks.push('connect:livereload');
+
+    if (userConfig.shop_data_dir === 'local') {
+        watchTasks.push('concurrent');
+    }
+    else {
+        watchTasks.push('delta');
+    }
+
+    grunt.registerTask('watch', watchTasks);
 
     /**
      * Declaring `build` as our default task. This means, if you simply run
