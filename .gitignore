@@ -2,7 +2,7 @@
 nbproject
 manifest.mf
 build.xml
-
+*.sublime*
 .project
 .settings
 .idea/*
