@@ -129,6 +129,7 @@ module.exports = function (grunt) {
         jshint: {
             options: {
                 jshintrc: '.jshintrc',
+                force: true, // Don't fail the task, just warn
                 ignores: [
                     'modules/common/router/angular-ui-router.js',
                     'modules/common/dialog/ui-bootstrap-modal-tpls-0.6.0.js',
