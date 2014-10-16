@@ -1,4 +1,14 @@
-#!/bin/sh
+#!/bin/bash
+
+# Colors
+ESC_SEQ="\x1b["
+COL_RESET=$ESC_SEQ"39;49;00m"
+COL_RED=$ESC_SEQ"31;01m"
+COL_GREEN=$ESC_SEQ"32;01m"
+COL_YELLOW=$ESC_SEQ"33;01m"
+COL_BLUE=$ESC_SEQ"34;01m"
+COL_MAGENTA=$ESC_SEQ"35;01m"
+COL_CYAN=$ESC_SEQ"36;01m"
 
 # return 1 if global command line program installed, else 0
 # example
@@ -16,47 +26,67 @@ function program_is_installed {
 # example
 # echo echo_fail "No"
 function echo_fail {
-  # echo first argument in red
-  printf "\e[31m✘ ${1}"
-  # reset colours back to normal
-  echo "\033[0m"
+  echo -e "$COL_RED ✘ ${1} $COL_RESET"
 }
 
 # display a message in green with a tick by it
 # example
 # echo echo_fail "Yes"
 function echo_pass {
-  # echo first argument in green
-  printf "\e[32m✔ ${1}"
-  # reset colours back to normal
-  echo "\033[0m"
+  echo -e "$COL_GREEN ✔ ${1} $COL_RESET"
 }
 
 function echo_green {
-  printf "\e[32m${1}"
-  echo "\033[0m"
+  echo -e "$COL_GREEN ${1} $COL_RESET"
+}
+
+function echo_yellow {
+  echo -e "$COL_YELLOW ${1} $COL_RESET"
+}
+
+function echo_magenta {
+  echo -e "$COL_MAGENTA ${1} $COL_RESET"
 }
 
 if [ $(program_is_installed npm) != 1 ]
     then
-        echo_fail "Can't start installation \n  ERROR: Missing 'npm' command, make sure to install node first.";
+        echo_fail "Can't start installation \n  ERROR: Missing 'npm' command, please make sure to install NodeJS first.";
         exit
 fi
 
 if [ $(program_is_installed bower) != 1 ]
     then
-        echo_fail "Can't start installation \n  ERROR: Missing 'bower' command, make sure to install bower first.";
+        echo_fail "Can't start installation \n  ERROR: Missing 'bower' command, please make sure to install Bower first.";
+        echo_yellow "You can install Bower using the command"
+        echo_magenta "    npm install -g bower";
         exit
+fi
 
+if [ $(program_is_installed grunt) != 1 ]
+    then
+        echo_fail "Can't start installation \n  ERROR: Missing 'grunt' command, please make sure to install GruntJS first.";
+        echo_yellow "You can install GruntJS using the command";
+        echo_magenta "    npm install -g grunt-cli";
+        exit
+fi
+
+if [ $(program_is_installed compass) != 1 ]
+    then
+        echo_fail "Can't start installation \n  ERROR: Missing 'compass' command, please make sure to install Ruby and Compass first.";
+        echo_yellow "Please find the correct Ruby installation instructions for your system.";
+        echo_yellow "Once done, you can install Compass using the command"
+        echo_magenta "    gem install compass";
+        echo_yellow "Note that you may need to use sudo for the above command."
+        exit
 fi
 
 echo_pass "npm installed";
 echo_pass "bower installed";
-echo_green "  Installing node dependencies...";
+echo_yellow "  Installing node dependencies...";
 npm install
 echo_pass "node dependencies installed"
-echo_green "  Installing bower dependencies...";
-bower install
+echo_yellow "  Installing bower dependencies...";
+bower install --allow-root
 echo_pass "bower dependencies installed"
 echo_pass "Dependencies installed successfully"
 echo_green "Starting app at localhost port 9000..."
