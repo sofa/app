@@ -768,6 +768,7 @@ module.exports = function (grunt) {
         deploy: {
             options: {
                 tagOnly: true,
+                remote: 'deployment',
                 masterBranch: 'master',
                 versionFiles: [
                     'package.json'
