@@ -110,10 +110,18 @@ module.exports = function (grunt) {
         html2js: {
             app: {
                 options: {
-                    base: '<%= app_base %>',
+                    base: '<%= app_base %>'
                 },
                 src: ['<%= app_files.app_tpl %>'],
                 dest: '<%= tpl.js_file %>',
+                module: '<%= tpl.module_name %>'
+            },
+            sdk: {
+                options: {
+                    base: '<%= sofa_base %>/'
+                },
+                src: ['<%= vendor_files.tpl %>'],
+                dest: '<%= tpl.sofa_file %>',
                 module: '<%= tpl.module_name %>'
             }
         },
@@ -303,7 +311,7 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        src: ['<%= vendor_files.js %>'],
+                        src: ['<%= vendor_files.js %>', '<%= tpl.sofa_file %>'],
                         cwd: '.',
                         dest: '<%= build_dir %>/',
                         // this is a temporary fix for the case we have to reference
@@ -386,7 +394,7 @@ module.exports = function (grunt) {
                     'build.outro.js'
                 ],
                 dest: '<%= compile_dir %>/assets/js/<%= appJsName %>'
-            },
+            }
         },
 
         uglify: {
@@ -424,6 +432,7 @@ module.exports = function (grunt) {
                 dir: '<%= build_dir %>',
                 src: [
                     '<%= vendor_files.js %>',
+                    '<%= tpl.sofa_file %>',
                     '<%= data_files.config %>',
                     '<%= data_files.lang %>',
                     '<%= build_dir %>/<%= app_base %>/**/*.js',
@@ -456,6 +465,7 @@ module.exports = function (grunt) {
                 dir: '<%= build_dir %>',
                 src: [
                     '<%= vendor_files.js %>',
+                    '<%= tpl.sofa_file %>',
                     '<%= data_files.config %>',
                     '<%= data_files.lang %>',
                     '<%= html2js.app.dest %>',
@@ -718,7 +728,8 @@ module.exports = function (grunt) {
              */
             tpls: {
                 files: [
-                    '<%= app_files.app_tpl %>'
+                    '<%= app_files.app_tpl %>',
+                    '<%= vendor_files.tpl %>'
                 ],
                 tasks: [ 'html2js' ]
             },
@@ -773,6 +784,11 @@ module.exports = function (grunt) {
             vendor_files_js: {
                 files: ['<%= vendor_files.js %>'],
                 tasks: ['copy:build_vendorjs', 'index:build']
+            },
+
+            vendor_tpl: {
+                files: ['<%= vendor_files.tpl %>'],
+                tasks: ['html2js:sdk', 'copy:build_vendorjs', 'index:build']
             }
         },
 
