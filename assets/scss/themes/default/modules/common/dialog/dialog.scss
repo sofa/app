@@ -1,0 +1,8 @@
+.cc-dialog__button{
+    @extend %sofa-button--base;
+    //lot's of hardcoded values but yep, our dialog is entirely hardcoded so far
+    border: 1px solid #cfcfcf;
+    border-bottom: 0;
+    box-shadow: 0 2px 0 0 #9c9c9c;
+    color: #635b67;
+}

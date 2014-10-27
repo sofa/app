@@ -1,0 +1,6 @@
+$sofa-button--base__background:      $theme-color-light__darker--05;
+$sofa-button--base__color:           $theme-color-dark__lighter--33;
+$sofa-button--primary__background:   $theme-color-accent;
+$sofa-button--primary__color:        $theme-color-light;
+$sofa-button--secondary__background: change_color(mix($theme-color-accent, $theme-color-dark, 33%), $lightness: 50%);
+$sofa-button--secondary__color:      $theme-color-light;

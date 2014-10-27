@@ -1,0 +1,194 @@
+.cc-side-menu {
+    background: #444;
+    color: hsl(0, 0%, 93%);
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: scroll;
+}
+
+.cc-side-menu__header {
+    background: #333;
+}
+
+.cc-side-menu--navigation {
+    .cc-side-menu-tabs {
+        text-align: left;
+    }
+    .cc-side-menu-tabs-title {
+        text-align: center;
+        line-height: 27px;
+        font-size: small;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+    }
+    .cc-side-menu-tabs__icon {
+        box-shadow:none;
+    }
+}
+
+.cc-side-menu--cart {
+    .cc-side-menu__header {
+        line-height: 18px;
+        padding: 20px 10px;
+        text-transform: uppercase;
+        letter-spacing: .1em;
+        text-align: center;
+    }
+}
+
+.cc-side-menu-tabs__icon {
+    @extend .cc-header__icon;
+}
+
+.cc-menu-tabs__icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,.1);
+    line-height: 44px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.cc-has-overflow-support.cc-modern-flexbox {
+
+    .cc-side-menu {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cc-side-menu__header {
+        flex: 0 0 auto;
+    }
+
+    .cc-side-menu__content {
+        flex: 1;
+        position: relative;
+    }
+
+    .cc-side-menu__scroll-container {
+        @extend %sofa-dock-all;
+        @extend %cc-scroll-container;
+    }
+}
+
+.cc-side-menu__footer {
+    padding:0 0 10px;
+    background: #333;
+
+    .cc-footer-list {
+        margin:0;
+        color:#eee;
+    }
+    .cc-footer-list__item {
+        border-color:rgba(255, 255, 255, 0.1);
+    }
+}
+
+// solves some issues where the content can be dragged horizontally
+.snap-drawers,
+.snap-content {
+    overflow-x: hidden;
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+}
+
+//for the poor folks with Android 2.x or iOS <=4
+.cc-has-no-overflow-support{
+
+    .snap-drawer-left, .snap-drawer-right{
+        display: none;
+    }
+
+    .snapjs-left{
+        .snap-drawer-left{
+            display: block;
+        }
+    }
+
+    .snapjs-right{
+        .snap-drawer-right{
+            display: block;
+        }
+    }
+
+    .cc-side-menu{
+        overflow: visible;
+        bottom: auto;
+        min-height: 100%;
+    }
+
+    .snap-drawer{
+        overflow: visible;
+    }
+
+    .snap-content{
+        position: relative;
+    }
+}
+
+// ========================
+
+.cc-side-menu {
+    background: $theme-color-dark__low--33;
+
+    .sofa-category-tree-view__category-entry--active {
+        background: $theme-color-accent;
+        color:#fff;
+    }
+
+}
+
+.cc-side-menu__footer {
+    background: $theme-color-dark__low--25;
+}
+
+.cc-side-menu__header {
+    background: $theme-color-dark__low--20;
+    position: relative;
+
+    &:after {
+        content: '';
+        position: absolute;
+        height: 6px;
+        left:0;
+        right:0;
+        bottom: -6px;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.15), transparent);
+        z-index: 3;
+    }
+}
+
+.cc-side-menu-tabs__icon--categories {
+    @include fa-icon-type($fa-var-bars);
+}
+.cc-side-menu-tabs__icon--wishlist {
+    @include fa-icon-type($fa-var-heart);
+}
+.cc-side-menu-tabs__icon--wishlist--empty {
+    @include fa-icon-type($fa-var-heart-o);
+}
+
+.cc-side-menu--navigation {
+    .cc-side-menu__header {
+        min-height:$theme-header__height;
+    }
+    .cc-side-menu-tabs {
+        height:$theme-header__element-height;
+        margin-top:$theme-header__padding-y * 2;
+        padding: 0 $theme-header__padding-x;
+    }
+    .cc-side-menu-tabs-title {
+        background-color: $theme-color-dark__low--40;
+        padding: 0 $theme-header__padding-x;
+    }
+    .cc-side-menu-tabs__icon {
+        border-radius: $theme-border-radius--basic $theme-border-radius--basic 0 0;
+        background-color:$theme-color-dark__low--25;
+    }
+    .cc-side-menu-tabs__icon--active {
+        background-color:$theme-color-dark__low--40;
+    }
+}

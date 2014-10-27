@@ -1,0 +1,105 @@
+// TODO: clean up
+
+.cc-modern-flexbox {
+
+    .cc-list,
+    %cc-list {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .cc-list__item {
+        display: flex;
+        justify-content: center;
+        flex: 0 0 50%;
+    }
+
+    @include breakpoint(wide) {
+        .cc-list__item {
+            flex: 0 0 33.333333%;
+        }
+    }
+
+    @include breakpoint(extra-wide) {
+        .cc-list__item {
+            flex: 0 0 25%;
+        }
+    }
+}
+
+.cc-list, %cc-list {
+    list-style: none;
+    margin-right:-1px;
+    border-style:solid;
+    border-width: 1px 0 0;
+}
+
+.cc-list__item {
+    border-style:solid;
+    border-width:0 1px 1px 0;
+
+    // display and width will be overwritten with flex for browsers that support the modern flexbox
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+@include breakpoint(wide) {
+
+    .cc-list__item {
+        // won't have an effect for flex box
+        width: 33.333333%;
+    }
+
+}
+
+@include breakpoint(extra-wide) {
+
+    .cc-list__item {
+        // won't have an effect for flex box
+        width: 25%;
+    }
+
+}
+
+// link-list
+
+.cc-link-list, %cc-link-list {
+    margin: 10px 0;
+}
+
+@mixin cc-link-list__item {
+    position: relative;
+    padding: 8px 30px 8px 0;
+    line-height: 1.5;
+    margin-left: 20px;
+    border-top: 1px solid #ccc;
+
+    &:after {
+        @include fa-base-class;
+
+        content: $fa-var-angle-right;
+        position: absolute;
+        right:0;
+        top:50%;
+        width:1.75rem;
+        text-align: center;
+        font-size: 1.25rem;
+
+        transform: translateY(-50%);
+    }
+}
+
+.cc-link-list__item, %cc-link-list__item {
+    @include cc-link-list__item;
+}
+
+@mixin cc-link-list__item--narrow {
+    @include breakpoint(narrow) {
+        @include cc-link-list__item;
+    }
+}
+
+%cc-link-list__item--narrow {
+    @include cc-link-list__item--narrow;
+}

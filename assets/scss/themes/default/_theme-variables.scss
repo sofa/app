@@ -1,0 +1,82 @@
+
+// =====================================================================================================================
+// Match the old console color settings
+
+$theme-color-dark:   $color-1;
+$theme-color-light:  $color-6;
+$theme-color-accent: $color-2;
+
+// Some other color schemes for testing
+// Arktis
+//$theme-color-dark: #333344;
+//$theme-color-light: #ffffff;
+//$theme-color-accent: #1f69b2;
+
+// =====================================================================================================================
+// Color variations for this theme
+
+// Dark Shades
+$theme-color-dark__lighter--10: lighten($theme-color-dark, 10%);
+$theme-color-dark__lighter--33: lighten($theme-color-dark, 33%);
+$theme-color-dark__lighter--50: lighten($theme-color-dark, 50%);
+
+$theme-color-dark__tinted--20: tint($theme-color-dark, 20%);
+$theme-color-dark__tinted--33: tint($theme-color-dark, 33%);
+$theme-color-dark__tinted--50: tint($theme-color-dark, 50%);
+
+    // Dark Shades used in the side menus
+    $theme-color-dark__low--40: change_color($theme-color-dark, $saturation: 5%, $lightness: 40%);
+    $theme-color-dark__low--33: change_color($theme-color-dark, $saturation: 5%, $lightness: 33%);
+    $theme-color-dark__low--25: change_color($theme-color-dark, $saturation: 5%, $lightness: 25%);
+    $theme-color-dark__low--20: change_color($theme-color-dark, $saturation: 15%, $lightness: 20%);
+
+// Light Shades
+$theme-color-light__darker--025: darken($theme-color-light, 2.5%);
+$theme-color-light__darker--05: darken($theme-color-light, 5%);
+$theme-color-light__darker--10: darken($theme-color-light, 10%);
+$theme-color-light__darker--15: darken($theme-color-light, 15%);
+$theme-color-light__darker--20: darken($theme-color-light, 20%);
+
+$theme-color-light__shaded--30: shade($theme-color-light, 30%);
+
+// Accent Shades
+$theme-color-accent__darker--10: darken($theme-color-accent, 10%);
+$theme-color-accent__darker--20: darken($theme-color-accent, 20%);
+
+$theme-color-accent__tinted--25: tint($theme-color-accent, 25%);
+
+$theme-color-accent__saturated--33: change_color($theme-color-accent, $saturation: 33%);
+
+// Highlight Color
+$theme-color-highlight: tint(change_color(complement($theme-color-accent), $lightness: 80%), 33%);
+
+// =====================================================================================================================
+// System Colors (borrowed from Twitter Bootstrap)
+
+$theme-success-background-color: #DFF0D8;
+$theme-success-border-color:     #D6E9C6;
+$theme-success-color:            #468847;
+
+$theme-error-background-color:   #F2DEDE;
+$theme-error-border-color:       #EED3D7;
+$theme-error-color:              #B94A48;
+
+$theme-info-background-color:    #D9EDF7;
+$theme-info-border-color:        #BCE8F1;
+$theme-info-color:               #3A87AD;
+
+$theme-warning-background-color: #FCF8E3;
+$theme-warning-border-color:     #E0CCAE;
+$theme-warning-color:            #C09853;
+
+// =====================================================================================================================
+// Others
+
+$theme-border-radius--basic: 2px;
+
+$theme-box-shadow-width: 2px;
+
+// =====================================================================================================================
+// Typography
+
+$cc-font-default: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;

@@ -1,0 +1,88 @@
+.cc-product-view-image-wrapper {
+    padding: 10px;
+    position: relative;
+    background-color: #fff;
+
+    .sofa-full-page-view__content & {
+        padding: 0;
+    }
+}
+
+.cc-product-view-image {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+// TODO: exclude to variant selector component
+.cc-variant-selector {
+    padding:6px 4px;
+    background: $theme-color-light__darker--20;
+}
+
+.cc-product__up-nav {
+    @extend %up-nav--generic;
+}
+
+.cc-product__header {
+    @extend %main-headline--generic;
+}
+
+@include breakpoint(narrow) {
+    .cc-product__up-nav {
+        @extend %up-nav--narrow;
+    }
+    .cc-product-view-image-wrapper {
+        height: 200px;
+        box-sizing: content-box;
+    }
+}
+
+// TODO: exlude to image slider component
+.cc-product__image-slider {
+
+    border:1px solid #ccc;
+    border-width: 1px 0;
+
+    .sofa-touch-slider__item {
+        border:0;
+    }
+
+    &:before,
+    &:after {
+        width: .5rem;
+        border-color: #ccc;
+    }
+    &:before {
+        left:0;
+    }
+    &:after {
+        right:0;
+    }
+}
+
+.sofa-full-page-view {
+
+    // TODO: exlude to touch slider component
+    .sofa-touch-slider-wrapper {
+        margin: 0;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    // TODO: exlude to image slider component
+    .cc-product__image-slider {
+        border:0;
+    }
+
+    // TODO: exlude to full page view component
+    .sofa-full-page-view__close {
+        @extend %theme-button--base;
+
+        background-color: $theme-color-light__darker--20;
+        line-height: 1;
+        top:.25rem;
+        right: .25rem;
+    }
+}

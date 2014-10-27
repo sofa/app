@@ -1,0 +1,76 @@
+
+.cc-footer {
+    background: #eee;
+    margin-top:10px;
+}
+
+.cc-trust-list {
+    display: table;
+    width: 100%;
+    padding: 1px;
+    text-align: center;
+}
+.cc-trust-list__item {
+    display:inline-table;
+    width:50%;
+    padding:2px 10px;
+    vertical-align: top;
+    background:#666;
+
+    & + .cc-trust-list__item {
+        border-left:1px solid #eee;
+    }
+}
+.cc-trust-list__icon,
+.cc-trust-list__text {
+    display:table-cell;
+    vertical-align: middle;
+}
+.cc-trust-list__icon {
+    width:50px;
+    height: 50px;
+}
+.cc-trust-list__text {
+    padding:0 0 0 10px;
+    text-align: left;
+}
+
+.cc-exit-link-icon {
+
+    @include fa-icon-type($fa-var-desktop);
+
+    font-size: 40px;
+    line-height: 50px;
+
+    // Correcting horizontal alignment of icon font
+    &:before {
+        position: relative;
+        top:3px;
+    }
+}
+
+@include breakpoint(wide) {
+    .cc-trust-list__item {
+        width:auto;
+    }
+    .cc-trust-list__text {
+        padding:0 15px 0 10px;
+    }
+}
+
+// ================
+
+.cc-view-wrapper {
+    .cc-footer {
+        background: $theme-color-dark;
+        color: $theme-color-light;
+    }
+}
+
+.cc-trust-list {
+    .cc-trust-list__item {
+        background: $theme-color-dark__lighter--10;
+        border-color: $theme-color-dark;
+        border-radius: $theme-border-radius--basic;
+    }
+}

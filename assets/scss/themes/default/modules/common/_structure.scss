@@ -1,0 +1,53 @@
+.cc-ui-view,
+.cc-products__header-block,
+.cc-product__header-block {
+    // some tweaks for less flickering
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+//On Android 2, those two styles cause the page to jump around
+//when focusing input elements. This totaly breaks things like
+//checkout forms for such users. We normally set those for better
+//performance but we disable them for Android 2.x
+//https://github.com/scottjehl/Device-Bugs/issues/32
+.cc-os-android.cc-osv-2{
+    .cc-ui-view{
+        -webkit-backface-visibility: initial;
+        -webkit-transform-style: initial;
+    }
+}
+
+.cc-has-overflow-support {
+    .cc-view-wrapper {
+        height: 100%;
+    }
+}
+
+.cc-has-overflow-support.cc-modern-flexbox {
+    .cc-view-wrapper {
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+    }
+}
+
+.cc-has-overflow-support.cc-modern-flexbox {
+    .cc-view-wrapper {
+        flex: 1 1 auto;
+        min-height:100%;
+    }
+
+    .cc-sticky-view-wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height:100%;
+    }
+
+    // together with .cc-view-wrapper__footer this makes the sticky footer work
+    .cc-sticky-view-wrapper__content {
+        flex: 1;
+    }
+}

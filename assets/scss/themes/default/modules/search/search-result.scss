@@ -1,0 +1,90 @@
+$theme-search-result__top: $theme-header__height + $theme-header__shadow-size;
+$theme-search-result__image-size: 50px;
+// this should match the product images' background color:
+$theme-search-result__image-background-color:  $theme-color-light;
+
+.cc-search-result {
+    @extend %sofa-dock-bottom;
+
+    top: $theme-search-result__top;
+    height: auto;
+    z-index: 3;
+
+    .cc-view-wrapper {
+        padding:10px 6px;
+        height: 100%;
+        background-color: $theme-color-dark;
+    }
+}
+
+.cc-search-result__group {
+    margin-bottom:10px;
+}
+
+.cc-search-result__group-header {
+    position: relative;
+    padding: 10px 25px 10px 10px;
+    border-bottom: 1px solid $theme-color-dark;
+    background: $theme-color-dark__tinted--20;
+    color: $theme-color-light;
+}
+
+.cc-search-result__item-list {
+    display: table;
+    width: 100%;
+    border-collapse:separate;
+}
+
+.cc-search-result__item {
+    display: table-row;
+    background: $theme-color-light;
+
+    &:first-child {
+        .cc-search-result__item-image-wrapper,
+        .cc-search-result__item-text-wrapper {
+            border-top:0;
+        }
+    }
+}
+
+%cc-search-result__table-cells {
+    display: table-cell;
+    padding: 4px 6px;
+    vertical-align: middle;
+}
+
+.cc-search-result__item-image-wrapper {
+    @extend %cc-search-result__table-cells;
+
+    width: $theme-search-result__image-size;
+
+    .cc-search-result__item-image {
+        width: $theme-search-result__image-size;
+        height: $theme-search-result__image-size;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-color: $theme-search-result__image-background-color;
+    }
+}
+
+.cc-search-result__item-text-wrapper {
+    @extend %cc-search-result__table-cells;
+
+    position: relative;
+    padding-right:25px;
+    border-top:1px solid $theme-color-dark__lighter--50;
+}
+
+.cc-search-result__item-icon {
+    @include fa-icon-type($fa-var-angle-right);
+
+    position: absolute;
+    right: 10px;
+    top:50%;
+    line-height: inherit;
+    font-size: 125%;
+    color: $theme-color-dark__lighter--50;
+
+    transform: translateY(-50%);
+}

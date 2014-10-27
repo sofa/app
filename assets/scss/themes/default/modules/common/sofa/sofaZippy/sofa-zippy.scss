@@ -1,0 +1,43 @@
+// TODO: clean up
+.sofa-zippy {
+    background: $theme-color-light;
+}
+
+.sofa-zippy__caption {
+    line-height: 30px;
+    font-size: larger;
+    padding: 6px 30px 6px 10px;
+    background: $theme-color-light__darker--025;
+    color: $theme-color-dark;
+}
+
+%sofa-zippy-icon {
+    font-size: 30px;
+    right: 10px;
+    margin-top: 0;
+    color: $theme-color-dark__lighter--50;
+
+    transform: translateY(-50%);
+}
+
+.sofa-zippy-icon--opened {
+    @extend %sofa-zippy-icon;
+    @include fa-icon-type($fa-var-angle-up);
+}
+.sofa-zippy-icon--closed {
+    @extend %sofa-zippy-icon;
+    @include fa-icon-type($fa-var-angle-down);
+}
+
+.sofa-zippy__content {
+    border-top:2px solid $theme-color-dark__lighter--50;
+    background: $theme-color-light;
+    padding:0 10px;
+    line-height: 1.35;
+}
+
+.sofa-zippy--opened {
+    .sofa-zippy__content {
+        padding: 10px;
+    }
+}

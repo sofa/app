@@ -1,391 +1,83 @@
+// 3rd Party / Vendor
+@import '../../../../vendor/ui-modal/bootstrap-dialog.scss';
+@import '../../../../vendor/snap/angular-snap.scss';
 
-// SDK Component Styling
-@import 'src/libs/ccPrice/cc-price.scss';
-@import 'src/libs/ccThumbnailBar/cc-thumbnail-bar.scss';
-@import 'src/libs/ccZippy/cc-zippy.scss';
-@import 'src/libs/ccSelectBox/cc-select-box.scss';
-@import 'src/libs/ccFooterLinks/cc-footer-links.scss';
-@import 'src/libs/ccVariantSelector/cc-variant-selector.scss';
+@import '../../../../node_modules/sofa-base/src/styling/sofa-utilities.scss';
+@import '../../../../node_modules/sofa-base/src/styling/sofa-reset.scss';
+@import '../../../../node_modules/sofa-base/src/styling/sofa-grid.scss';
 
-@import 'src/cc-highlight.scss';
-@import 'src/cc-button.scss';
+// Theme variable definitions
+@import 'theme-variables';
 
-@import 'src/common/header/cc-header.scss';
-@import 'src/common/footer/cc-footer.scss';
-@import 'src/common/sidemenu/cc-side-menu.scss';
-@import 'src/common/contextviews/cc-context-views.scss';
+// Set variables for sofa-components
+@import 'utilities/buttons.vars';
 
-@import 'src/cart/cc-cart.scss';
-@import 'src/cart/cc-paypal-overlay.scss';
-@import 'src/wishlist/cc-wishlist.scss';
-@import 'src/wishlist/cc-wishlist-button.scss';
-@import 'src/pages/cc-pages.scss';
-@import 'src/categories/cc-category-list.scss';
-@import 'src/categories/cc-category-grid.scss';
-@import 'src/products/cc-product-grid.scss';
-@import 'src/product/cc-product.scss';
-@import 'src/product/cc-product-wide.scss';
-@import 'src/product/cc-product-buy-box.scss';
-@import 'src/search/cc-search-box.scss';
-@import 'src/search/cc-search-result.scss';
-@import 'src/checkout/cc-checkout.scss';
-@import 'src/summary/cc-summary.scss';
+// SDK framework
+@import '../../../../node_modules/sofa-base/src/styling/sofa-components.scss';
 
-body{
-    font-family: $cc-font-default;
-    background: $theme-color-light;
-    line-height: 1.2em;
-}
+// SDK Directives
+@import '../../../../node_modules/sofa-base/src/directives/sofaZippy/sofa-zippy.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaTouchSlider/sofa-touch-slider.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaSelectBox/sofa-select-box.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaCheckBox/sofa-check-box.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaRadioButton/sofa-radio-button.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaSearchField/sofa-search-field.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaRangeSlider/sofa-range-slider.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaImageZoom/sofa-image-zoom.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaFullPageView/sofa-full-page-view.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaVariantSelector/sofa-variant-selector.scss';
+@import '../../../../node_modules/sofa-base/src/directives/ccLoadingSpinner/ccloadingspinner.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaCategoryTreeView/sofa-category-tree-view.scss';
+@import '../../../../node_modules/sofa-base/src/directives/sofaPrice/sofa-price.scss';
 
-a {
-    color:$theme-color-accent;
-}
+// Theme: Utilities (functions, mixins, placeholders)
+@import 'utilities/font-awesome';
+@import 'utilities/buttons';
+@import 'utilities/animations';
+@import 'utilities/highlighting';
+@import 'utilities/theme';
 
-.snap-content {
-    background: $theme-color-light;
-}
+// Theme: SDK Directive overrides/additions
+@import 'modules/common/sofa/sofaPrice/sofa-price.scss';
+@import 'modules/common/sofa/sofaZippy/sofa-zippy.scss';
+@import 'modules/common/sofa/sofaSelectBox/sofa-select-box.scss';
+@import 'modules/common/sofa/sofaFooterLinks/sofa-footer-links.scss';
+@import 'modules/common/sofa/sofaVariantSelector/sofa-variant-selector.scss';
+@import 'modules/common/sofa/sofaSearchField/sofa-search-field.scss';
+@import 'modules/common/sofa/sofaFullPageView/sofa-full-page-view.scss';
+@import 'modules/common/sofa/sofaCategoryTreeView/sofa-category-tree-view.scss';
 
-.snap-drawer {
-    width:266px;
-}
+// Theme: Common styles
+@import 'modules/common/base';
+@import 'modules/common/structure';
+@import 'modules/common/animations';
+@import 'modules/common/lists';
 
-.cc-modal{
-    color: $theme-color-dark__tinted--20;
-}
+// Theme: Module styles
+@import 'modules/common/header/header.scss';
+@import 'modules/common/footer/footer.scss';
+@import 'modules/common/sidemenu/side-menu.scss';
+@import 'modules/common/contextviews/context-views.scss';
+@import 'modules/common/cart/cart.scss';
+@import 'modules/common/cart/paypal-overlay.scss';
+@import 'modules/common/cart/paypal-buttons.scss';
+@import 'modules/common/totalbox/total-box.scss';
+@import 'modules/common/dialog/dialog.scss';
+@import 'modules/common/dialog/dialog-loading.scss';
 
-.cc-modal--solid{
-    background: $theme-color-light;
-}
+@import 'modules/wishlist/wishlist.scss';
+@import 'modules/wishlist/wishlist-button.scss';
+@import 'modules/search/search-box.scss';
+@import 'modules/search/search-result.scss';
+@import 'modules/trustedshops/trusted-shops.scss';
 
-.cc-title--huge {
-    margin:0;
-    line-height: 1.25;
-}
-
-.cc-text-box,
-.cc-search-field__input {
-    @extend %sofa-text-field;
-
-    border-radius: $theme-border-radius--basic;
-
-    &:focus {
-        box-shadow: none;
-        border-color: $theme-color-dark__lighter--33;
-    }
-}
-
-// Override for sofa placeholder
-%cc-message-box--base {
-    border-radius: $theme-border-radius--basic;
-}
-
-.cc-form-item,
-.cc-form__item {
-    @extend %sofa-form__item;
-}
-
-.cc-form-label {
-    @extend %sofa-form-label;
-}
-.cc-form-label--required {
-    @extend %sofa-form-label--required;
-
-    color: $theme-color-dark;
-}
-
-.cc-form-label--optional {
-    @extend %sofa-form-label--optional;
-
-    color: $theme-color-dark__tinted--50;
-}
-
-.cc-hidden {
-    display: none;
-}
-
-.cc-img-loading {
-    position: relative;
-}
-.cc-img-loading:before {
-    content: '';
-    height:60px;
-    width:60px;
-    position:absolute;
-    left: 50%;
-    top: 50%;
-    margin:-30px 0 0 -30px;
-    -webkit-animation: rotation .6s infinite linear;
-    -moz-animation: rotation .6s infinite linear;
-    -o-animation: rotation .6s infinite linear;
-    animation: rotation .6s infinite linear;
-    border:6px solid rgba(0,0,0,.15);
-    border-top:6px solid rgba(0,0,0,.4);
-    border-radius:100%;
-    z-index:2;
-}
-
-@-webkit-keyframes rotation {
-    from {-webkit-transform: rotate(0deg);}
-    to {-webkit-transform: rotate(359deg);}
-}
-
-@-moz-keyframes rotation {
-    from {-moz-transform: rotate(0deg);}
-    to {-moz-transform: rotate(359deg);}
-}
-
-@keyframes rotation {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(359deg);}
-}
-
-.cc-validation__wrapper {
-    position: relative;
-}
-
-.cc-validation__message--success {
-    position: absolute;
-    right: .875rem;
-    //set line-height to the height of the text-box
-    line-height: 46px;
-    color:$theme-success-color;
-
-    &:after {
-        @include fa-base-class;
-
-        content: $fa-var-check-circle;
-    }
-}
-
-.cc-validation__message--fail {
-    position: relative;
-    display:block;
-    padding: .5rem;
-    border-radius: 0 0 $theme-border-radius--basic $theme-border-radius--basic;
-    border:2px solid $theme-warning-border-color;
-    color: $theme-warning-color;
-    font-size: 0.875rem;
-    background: $theme-warning-background-color;
-    margin:-2px 0 0;
-
-    &:before {
-        content: "";
-        position: absolute;
-        width: 16px;
-        height: 16px;
-        top: -9px;
-        left: 15px;
-        background: $theme-warning-background-color;
-        border-bottom-color: $theme-warning-background-color;
-        border:2px solid $theme-warning-border-color;
-        border-width:2px 0 0 2px;
-
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-}
-
-.cc-date__field--small,
-.cc-date__field--large {
-    display: inline-block;
-    width:3em;
-}
-.cc-date__field--large {
-    width:5em;
-}
-
-// This is a modal class to overwrite some default bootstrap properties
-// and is separate from the couch modal which is used in the search, among others.
-.modal,
-.cc-bootstrap-modal {
-    background: $theme-color-light;
-    border-radius: $theme-border-radius--basic !important;
-    border:0;
-}
-
-.cc-go-up-button,
-.cc-go-back-button {
-    background: none;
-    border: none;
-    padding: 0;
-    color: inherit;
-    font-size: inherit;
-}
-
-.cc-go-up-control__icon,
-.cc-go-back-button__icon {
-    @extend .fa;
-    @extend .fa-angle-left;
-
-    margin-right:6px;
-}
-
-@include breakpoint(wide) {
-    .cc-go-up-control__icon {
-        @extend %fa-fw-class--wide;
-
-        margin:0;
-    }
-}
-
-.cc-view-wrapper {
-    color: $theme-color-dark__tinted--20;
-}
-
-.cc-cms-content {
-
-    font-size: 0.9375rem;
-
-    h1, h2, h3, h4, h5, h6 {
-        line-height: 1.2;
-        margin:0 0 1rem;
-        font-weight: 700;
-    }
-    h1 {
-        font-size: 150%;
-    }
-    h2 {
-        font-size: 135%;
-    }
-    h3 {
-        font-size: 125%;
-    }
-    h4 {
-        font-size: 115%;
-    }
-    h5 {
-        font-size: 110%;
-    }
-    h6 {
-        font-size: 105%;
-    }
-
-    p {
-        font-size: inherit;
-        line-height: 1.25rem;
-        margin: .5rem 0;
-    }
-
-    ul {
-        font-size: inherit;
-        list-style: disc;
-        margin: 1rem 0;
-    }
-    li {
-        margin-left: 1rem;
-    }
-}
-
-/*  ===========================================================================
-    MEDIA-QUERY-SAVE @extend
-    note: each mixin has to include the respective media query in which it will
-    be applied. This way we can use @extend within media queries and still be
-    save with future releases of SASS.
-    =========================================================================*/
-
-// save @extend for up-nav container
-@mixin up-nav--generic {
-    background: $theme-color-dark;
-    color: $theme-color-dark__lighter--50;
-}
-%up-nav--generic {
-    @include up-nav--generic;
-}
-@mixin up-nav--narrow {
-    @include breakpoint(narrow) {
-        line-height: 24px;
-        padding:6px 10px;
-    }
-}
-%up-nav--narrow {
-    @include up-nav--narrow;
-}
-@mixin up-nav--wide {
-    @include breakpoint(wide) {
-        line-height:36px;
-        padding:6px 10px 6px 4px;
-    }
-}
-%up-nav--wide {
-    @include up-nav--wide;
-}
-
-// save @extend for main headers
-@mixin main-headline--generic {
-    line-height: 36px;
-    padding: 6px 10px;
-    background: $theme-color-dark;
-    color: $theme-color-light;
-}
-%main-headline--generic {
-    @include main-headline--generic;
-}
-@mixin main-headline--narrow {
-    @include breakpoint(narrow) {
-    }
-}
-%main-headline--narrow {
-    @include main-headline--narrow;
-}
-@mixin main-headline--wide {
-    @include breakpoint(wide) {
-    }
-}
-%main-headline--wide {
-    @include main-headline--wide;
-}
-
-// save @extend for go-up-controls
-
-// Shared within a media query
-@mixin go-up-control--wide__content-helper {
-    @include breakpoint(wide) {
-        position: relative;
-        display: inline-block;
-        line-height: 44px;
-    }
-}
-%go-up-control--wide__content-helper {
-    @include go-up-control--wide__content-helper;
-}
-@mixin go-up-control--wide {
-    @include breakpoint(wide) {
-        margin:0;
-        color: $theme-color-light__darker--20;
-        font-size: 1rem;
-    }
-}
-%go-up-control--wide {
-    @include go-up-control--wide;
-}
-    @mixin go-up-control__icon--wide {
-        @include breakpoint(wide) {
-            @extend %go-up-control--wide__content-helper;
-
-            width: 44px;
-            margin:0;
-            font-size: 1.5rem;
-            vertical-align: top;
-            background: $theme-color-dark__lighter--10;
-            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
-            border-radius: 3px 0 0 3px;
-        }
-    }
-    %go-up-control__icon--wide {
-        @include go-up-control__icon--wide;
-    }
-    @mixin go-up-control__text--wide {
-        @include breakpoint(wide) {
-            @extend %go-up-control--wide__content-helper;
-
-            background: $theme-color-dark__lighter--10;
-            padding: 0 20px 0 10px;
-            text-align: left;
-            margin-left: -4px;
-            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.25);
-            border-radius: 0 3px 3px 0;
-        }
-    }
-    %go-up-control__text--wide {
-        @include go-up-control__text--wide;
-    }
+// Theme: Views
+@import 'modules/pages/pages.scss';
+@import 'modules/category/category-list.scss';
+@import 'modules/category/category-grid.scss';
+@import 'modules/products/product-grid.scss';
+@import 'modules/product/product.scss';
+@import 'modules/product/product-wide.scss';
+@import 'modules/product/product-buy-box.scss';
+@import 'modules/checkout/checkout.scss';
+@import 'modules/summary/summary.scss';

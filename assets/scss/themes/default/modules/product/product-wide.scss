@@ -1,0 +1,281 @@
+
+// TODO: clean up
+.cc-modern-flexbox {
+
+    .cc-product--tablet {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        .cc-product__header-block {
+            display: flex;
+            flex-direction: row;
+            flex: auto 0 0;
+        }
+
+        .cc-product__content-block {
+            display: flex;
+            flex: 1;
+        }
+
+        .cc-product__info-block {
+            border:1px solid #ccc;
+        }
+
+        .cc-scroll-area {
+            overflow-y: auto;
+        }
+
+        .cc-product__content-box {
+            padding:0;
+        }
+
+        .cc-product__image-wrapper {
+            padding: 10px;
+        }
+    }
+}
+
+@include breakpoint(wide) {
+    .cc-no-modern-flexbox {
+        .cc-product__up-nav {
+            float: left;
+            margin-right: 10px;
+        }
+        .cc-product--tablet {
+            height:100%;
+
+            .cc-product__content-block {
+                height:100%;
+                position: relative;
+                overflow:hidden;
+            }
+
+            .cc-product__image-block {
+                position: absolute;
+                height:100%;
+                width:50%;
+                left:0;
+            }
+
+            .cc-product__info-block {
+                position: absolute;
+                height:100%;
+                width:50%;
+                right:0;
+                overflow-y: scroll;
+            }
+
+            .cc-flex-image-helper {
+                height:400px;
+            }
+
+        }
+    }
+
+    .cc-modern-flexbox {
+        .cc-product__up-nav {
+            flex: auto 0 0;
+        }
+        .cc-product__header {
+            flex: 1;
+        }
+        .cc-product__image-block {
+            position: relative;
+            margin:0;
+        }
+    }
+}
+
+@include breakpoint(wide-cap) {
+
+    .cc-modern-flexbox {
+        .cc-product__content-block {
+            flex-direction: column;
+
+            .cc-product__image-block {
+                display: flex;
+                flex-direction: row;
+                flex: 1;
+            }
+
+            .cc-product__info-block {
+                display: flex;
+                flex-direction: row;
+                flex: 1;
+                border-width:1px 0 0;
+            }
+
+            .cc-product__primary-info {
+                order: 2;
+                flex: 1;
+            }
+
+            .cc-product__content-box {
+                order: 2;
+                flex: 1;
+            }
+        }
+    }
+}
+
+@include breakpoint(extra-wide) {
+
+    // Fallback
+    .cc-no-modern-flexbox {
+        .cc-product--tablet {
+            .cc-product__image-block {
+                width:62%;
+            }
+
+            .cc-product__info-block {
+                width:38%;
+            }
+        }
+    }
+
+    // And for the flexbox
+    .cc-modern-flexbox {
+        .cc-product__content-block {
+
+            flex-direction: row;
+
+            .cc-product__image-block {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 62%;
+                width:62%;
+            }
+
+            .cc-product__info-block {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 38%;
+                width:38%;
+                border-width:0 0 0 1px;
+            }
+
+            .cc-product__content-box {
+                flex: 1;
+            }
+        }
+    }
+}
+
+// TODO: remove as soon as we have an image factory
+// flex-box container seem to prevent (min-)height:100%; on child elements
+.cc-flex-image-helper {
+    position: relative;
+
+    .cc-product-view-image-wrapper {
+        @extend %sofa-dock-all;
+
+        height:auto;
+    }
+}
+
+// ============================
+
+.cc-product--tablet {
+
+    .cc-product__info-block {
+        position: relative;
+        background: $theme-color-light__darker--025;
+        box-shadow:-1px 0 0 0 rgba(0, 0, 0, 0.15);
+    }
+
+    .cc-product__primary-info {
+        background: $theme-color-light__darker--10;
+    }
+
+    .cc-product-buy-box {
+        padding:12px 20px 6px;
+        background: transparent;
+    }
+
+    .cc-product-buy-box__shipping-info {
+        display:inline-block;
+    }
+
+}
+
+
+@include breakpoint(wide) {
+
+    .cc-product__up-nav {
+        @extend %up-nav--wide;
+
+        .cc-go-up-control {
+            @extend %go-up-control--wide;
+        }
+        .cc-go-up-control__icon {
+            @extend %go-up-control__icon--wide;
+        }
+        .cc-go-up-control__text {
+            @extend %go-up-control__text--wide;
+        }
+
+    }
+
+    .cc-product__header {
+        .cc-title--huge {
+            line-height: 44px;
+        }
+    }
+
+    .cc-variant-selector {
+        padding: 12px 20px;
+    }
+
+    .cc-product__image-slider {
+        .sofa-touch-slider-indicator {
+            -webkit-transform: translateY(-100%);
+               -moz-transform: translateY(-100%);
+                    transform: translateY(-100%);
+        }
+        // no scroll shadows please
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.cc-modern-flexbox {
+    .cc-product--tablet {
+        .sofa-touch-slider-wrapper {
+            @extend %sofa-dock-all;
+
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+        .sofa-touch-slider-mask {
+            flex: 1;
+        }
+    }
+}
+
+.sofa-touch-slider {
+
+    .cc-product-item {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .cc-product-item__media-wrapper {
+        padding:0;
+    }
+
+    .cc-product-item__media {
+        height: 140px;
+    }
+}
+
+.sofa-full-page-view {
+    .sofa-touch-slider-indicator {
+        position: absolute;
+        width:100%;
+    }
+}
