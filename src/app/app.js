@@ -25,6 +25,13 @@ function setPrerenderIOMetaTag(status) {
 //phase, we need to access it as non angular service for now
 cc.deviceService = new cc.DeviceService(window);
 
+angular.module('sdk.services.deviceService')
+    .factory('deviceService', [
+        function () {
+            return cc.deviceService;
+        }
+    ]);
+
 // this is an empty dummy package. It can be overwritten by simply
 // pasting customer specific code through the admin UI
 angular.module('CouchCommerceApp.plugins', []);
@@ -395,17 +402,6 @@ angular.module('CouchCommerceApp', [
     $rootScope.$on('$stateChangeStart', function () {
         snapRemote.close();
     });
-})
-.run(function (deviceService, ccImageFullScreenService, ccImageZoomSettings) {
-
-    //by default, we enable the real zoom. We just disable it for low budget devices
-    ccImageZoomSettings.enabled = true;
-    ccImageFullScreenService.enabled = false;
-
-    if (deviceService.isStockAndroidBrowser() || !deviceService.hasOverflowSupport()) {
-        ccImageFullScreenService.enabled = true;
-        ccImageZoomSettings.enabled = false;
-    }
 })
 .run(function () {
     sofa.Util.domReady(function () {
