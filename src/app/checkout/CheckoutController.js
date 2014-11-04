@@ -20,7 +20,8 @@ angular.module('CouchCommerceApp')
         addressEqual: true,
         surchargeHint: '',
         salutations: [$scope.ln.salutationMale, $scope.ln.salutationFemale],
-        salutation: null
+        salutation: null,
+        braintree: {}
     };
 
     $scope.checkoutService = checkoutService;
@@ -70,7 +71,10 @@ angular.module('CouchCommerceApp')
         // If it is already there, we just mark the field compulsory.
 
         // We maintain a list of fields in our checkout form which are able to be modified
-        $scope.availableBirthmonths = $scope.ln.months.split(',')
+        $scope.requiredInputFields = {};
+
+        // Generate data for selectboxes which may exist
+        $scope.monthList = $scope.ln.months.split(',')
             .map(function (value, index) {
                 return {
                     value: index + 1,
@@ -78,7 +82,13 @@ angular.module('CouchCommerceApp')
                 };
             });
 
-        $scope.requiredInputFields = {};
+        $scope.creditcardExpirationYears = [];
+        for (var i = 14; i <= 34; i++) {
+            $scope.creditcardExpirationYears.push({
+                value: i,
+                label: i + 2000
+            });
+        }
 
         if (configService.get('extraBillingFields')) {
             configService.get('extraBillingFields').forEach(function (field) {

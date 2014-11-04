@@ -256,6 +256,82 @@
                     </div>
                 </div>
 
+
+                <div class="cc-grid__row" ng-if="requiredInputFields['braintree_creditcard']">
+                    <div class="cc-grid__cell--3-4 cc-form-item">
+                        <label for="braintree_creditcardnumber" class="cc-form-label--required" bo-text="ln.formCreditCardNumber"></label>
+                        <div class="cc-validation__wrapper">
+                            <i ng-show="billingAddressForm.bt_ccn.ccValid" class="cc-validation__message--success"></i>
+                            <input type="text" id="braintree_creditcardnumber" name="bt_ccn" class="cc-text-box" placeholder="" maxlength="19"
+                                   ng-model="checkoutModel.braintree.creditcardnumber" required cc-lazy-validation cc-credit-card />
+                            <span ng-show="billingAddressForm.bt_ccn.$dirty && billingAddressForm.bt_ccn.ccInvalid">
+                            <span ng-show="billingAddressForm.bt_ccn.$error.required"
+                                  class="cc-validation__message--fail" bo-text="ln.invalidInput_CreditCardNumber"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="cc-grid__cell--1-4 cc-form-item">
+                        <label for="braintree_creditcardcvc2" class="cc-form-label--required" bo-text="ln.formCreditCardCVC2"></label>
+                        <div class="cc-validation__wrapper">
+                            <input type="text" id="braintree_creditcardcvc2" name="bt_cccvc2" class="cc-text-box" placeholder="" maxlength="3"
+                                   ng-model="checkoutModel.braintree.creditcardcvc2" required cc-lazy-validation />
+                            <span ng-show="billingAddressForm.bt_cccvc2.$dirty && billingAddressForm.bt_cccvc2.ccInvalid">
+                            <span ng-show="billingAddressForm.bt_cccvc2.$error.required"
+                                  class="cc-validation__message--fail" bo-text="ln.invalidInput_CreditCardCVC2"></span>
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="cc-grid__row" ng-if="requiredInputFields['braintree_creditcard']">
+                     <div class="cc-grid__cell--2-4 cc-form-item">
+                         <p class="cc-form-label--required" bo-text="ln.formCreditCardExpirationDate"></p>
+                         <div class="cc-validation__wrapper">
+                             <cc-select-box
+                                 name="bt_ccexpm"
+                                 model="checkoutModel.braintree.creditcardexpirationmonth"
+                                 class="cc-select-box-on-background"
+                                 property-name="ln.formMonth"
+                                 required="true"
+                                 choose-text="ln.choose"
+                                 display-value-exp="'label'"
+                                 data="monthList">
+                             </cc-select-box>
+                            <span ng-show="billingAddressForm.bt_ccexpm.$dirty && billingAddressForm.bt_ccexpm.$invalid"
+                                  class="cc-validation__message--fail" bo-text="ln.invalidInput_Month">
+                            </span>
+                        </div>
+                     </div>
+                     <div class="cc-grid__cell--2-4 cc-form-item">
+                         <p class="cc-form-label--optional">&nbsp;</p>
+
+                         <div class="cc-validation__wrapper">
+                             <cc-select-box
+                                 name="bt_ccexpy"
+                                 model="checkoutModel.braintree.creditcardexpirationyear"
+                                 class="cc-select-box-on-background"
+                                 required="true"
+                                 property-name="ln.formYear"
+                                 choose-text="ln.choose"
+                                 display-value-exp="'label'"
+                                 data="creditcardExpirationYears">
+                             </cc-select-box>
+                            <span ng-show="billingAddressForm.bt_ccexpy.$dirty && billingAddressForm.bt_ccexpy.$invalid"
+                                  class="cc-validation__message--fail" bo-text="ln.invalidInput_Year">
+                            </span>
+                         </div>
+ <!--                            <cc-select-box
+                                    model="checkoutModel.shippingAddress.country"
+                                    data="configService.getSupportedCountries()"
+                                    choose-text="ln.choose"
+                                    required="true"
+                                    property-name="f_country"
+                                    display-value-exp="'label'">
+                            </cc-select-box> -->
+                     </div>
+                 </div>
+
+
             </form>
 
         </section>
