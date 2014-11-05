@@ -21,7 +21,7 @@
         "sofa-base": "couchcommerce/sofa-base#0.44.2",
         "sofa-user-service": "~0.1.x",
         "sofa-basket-service": "0.2.x",
-        "sofa-tracking": "~0.3.x",
+        "sofa-tracking": "~0.6.x",
         "sofa-url-construction-service": "~0.3.x",
         "sofa-pages-service": "~0.1.0",
         "sofa-checkout-service": "0.5.x",
