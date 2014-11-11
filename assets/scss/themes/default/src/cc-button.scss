@@ -47,14 +47,14 @@
 .cc-paypal-button {
     height: 46px;
     display: block;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_en_EN_orange_195x37%402x.png);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
     position: relative;
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
     }
 }
 
@@ -64,10 +64,10 @@
 
 .cc-paypal-button--de-de {
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_de_DE_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_de_DE_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_de_DE_orange_195x37%402x_P.png);
     }
 }
 
@@ -79,10 +79,10 @@
 .cc-paypal-button--en-gb,
 .cc-paypal-button--en-us{
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_en_EN_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_en_EN_orange_195x37%402x_P.png);
     }
 }
 
@@ -94,10 +94,10 @@
 
 .cc-paypal-button--fr-fr {
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_fr_FR_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_fr_FR_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_fr_FR_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_fr_FR_orange_195x37%402x_P.png);
     }
 }
 
@@ -108,10 +108,10 @@
 
 .cc-paypal-button--it-it {
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_it_IT_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_it_IT_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_it_IT_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_it_IT_orange_195x37%402x_P.png);
     }
 }
 
@@ -122,10 +122,10 @@
 
 .cc-paypal-button--es-es {
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_es_ES_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_es_ES_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_es_ES_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_es_ES_orange_195x37%402x_P.png);
     }
 }
 
@@ -136,10 +136,10 @@
 
 .cc-paypal-button--pl-pl {
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_pl_PL_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_pl_PL_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_pl_PL_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_pl_PL_orange_195x37%402x_P.png);
     }
 }
 
@@ -150,10 +150,10 @@
 
 .cc-paypal-button--nl-nl {
     @extend .cc-paypal-button;
-    background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x.png);
+    background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_nl_NL_orange_195x37%402x.png);
 
     &:active, &.ng-click-active {
-        background-image: url(http://cdn.couchcommerce.com/images/paypal/CO_nl_NL_orange_195x37%402x_P.png);
+        background-image: url(//dy9xqgeevlmya.cloudfront.net/images/paypal/CO_nl_NL_orange_195x37%402x_P.png);
     }
 }
 
