@@ -887,9 +887,7 @@ module.exports = function (grunt) {
         'copy:build_testfiles',
         'copy:build_vendorcss',
         'copy:build_vendorjs',
-        'index:build',
-        'karmaconfig',
-        'karma:continuous',
+        'index:build'
     ]);
 
     /**
