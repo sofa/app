@@ -83,7 +83,7 @@ angular.module('CouchCommerceApp', [
         controller: 'CategoryController',
         screenIndex: screenIndexes.category,
         resolve: {
-            category: ['couchService', '$stateParams', 'navigationService', '$q', '$state', function (couchService, $stateParams, navigationService, $q, $state) {
+            category: function (couchService, $stateParams, navigationService, $q, $state) {
 
                 return couchService
                         .getCategory($stateParams.category)
@@ -99,9 +99,9 @@ angular.module('CouchCommerceApp', [
                             }
                             return category;
                         });
-            }]
+            }
         },
-        onEnter: ['metaService', 'category', function (metaService, category) {
+        onEnter: function (metaService, category) {
             if (category.isRoot) {
                 metaService.reset();
             } else {
@@ -109,7 +109,7 @@ angular.module('CouchCommerceApp', [
                     description: ''
                 });
             }
-        }]
+        }
     };
 
     $stateProvider
@@ -121,18 +121,18 @@ angular.module('CouchCommerceApp', [
             templateUrl: 'products/cc-product-grid.tpl.html',
             controller: 'ProductsController',
             resolve: {
-                products: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                products: function (couchService, $stateParams) {
                     return couchService.getProducts($stateParams.category);
-                }],
-                category: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                },
+                category: function (couchService, $stateParams) {
                     return couchService.getCategory($stateParams.category);
-                }]
+                }
             },
-            onEnter: ['metaService', function (metaService) {
+            onEnter: function (metaService) {
                 metaService.set({
                     description: ''
                 });
-            }],
+            },
             screenIndex: screenIndexes.products
         })
 
@@ -143,47 +143,47 @@ angular.module('CouchCommerceApp', [
             },
             controller: 'ProductController',
             resolve: {
-                product: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                product: function (couchService, $stateParams) {
                     return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
-                }],
-                category: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                },
+                category: function (couchService, $stateParams) {
                     return couchService.getCategory($stateParams.category);
-                }]
+                }
             },
-            onEnter: ['product', 'metaService', function (product, metaService) {
+            onEnter: function (product, metaService) {
                 if (product) {
                     metaService.set({
                         description: product.description
                     });
                 }
-            }],
+            },
             screenIndex: screenIndexes.product
         })
 
         .state('oldCategories', angular.extend({}, categoryStateConfig, {
             url: '/cat/:category',
             resolve: {
-                category: ['couchService', '$stateParams', '$state', function (couchService, $stateParams) {
+                category: function (couchService, $stateParams) {
                     return couchService.getCategory($stateParams.category);
-                }]
+                }
             },
-            controller: ['$location', 'category', function ($location, category) {
+            controller: function ($location, category) {
                 setPrerenderIOMetaTag('301');
                 $location.path(category.getOriginFullUrl());
-            }]
+            }
         }))
 
         .state('oldProducts', {
             url: '/cat/:category/products',
             templateUrl: 'products/cc-product-grid.tpl.html',
-            controller: ['category', '$location', function (category, $location) {
+            controller: function (category, $location) {
                 setPrerenderIOMetaTag('301');
                 $location.path(category.getOriginFullUrl());
-            }],
+            },
             resolve: {
-                category: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                category: function (couchService, $stateParams) {
                     return couchService.getCategory($stateParams.category);
-                }]
+                }
             }
         })
 
@@ -192,14 +192,14 @@ angular.module('CouchCommerceApp', [
             templateUrl: function () {
                 return cc.deviceService.isTabletSize() ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html';
             },
-            controller: ['product', '$location', function (product, $location) {
+            controller: function (product, $location) {
                 setPrerenderIOMetaTag('301');
                 $location.path(product.getOriginFullUrl());
-            }],
+            },
             resolve: {
-                product: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                product: function (couchService, $stateParams) {
                     return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
-                }]
+                }
             }
         })
 
@@ -218,11 +218,11 @@ angular.module('CouchCommerceApp', [
             url: '/checkout',
             templateUrl: 'checkout/cc-checkout.tpl.html',
             controller: 'CheckoutController',
-            onEnter: ['metaService', function (metaService) {
+            onEnter: function (metaService) {
                 metaService.set({
                     description: ''
                 });
-            }],
+            },
             screenIndex: screenIndexes.checkout
         })
 
@@ -230,11 +230,11 @@ angular.module('CouchCommerceApp', [
             url: '/summary/:token',
             templateUrl: 'summary/cc-summary.tpl.html',
             controller: 'SummaryController',
-            onEnter: ['metaService', function (metaService) {
+            onEnter: function (metaService) {
                 metaService.set({
                     description: ''
                 });
-            }],
+            },
             screenIndex: screenIndexes.summary
         });
 
@@ -243,15 +243,15 @@ angular.module('CouchCommerceApp', [
         controller: 'ThankyouController',
         screenIndex: screenIndexes.thankyou,
         resolve: {
-            summaryResponse: ['checkoutService', function (checkoutService) {
+            summaryResponse: function (checkoutService) {
                 return checkoutService.getLastSummary();
-            }]
+            }
         },
-        onEnter: ['metaService', function (metaService) {
+        onEnter: function (metaService) {
             metaService.set({
                 description: ''
             });
-        }]
+        }
     };
 
     $stateProvider
@@ -260,15 +260,15 @@ angular.module('CouchCommerceApp', [
         .state('thankyouWithToken', angular.extend({}, thankyouStateConfig, {
             url: '/thankyou/:token',
             resolve: {
-                summaryResponse: ['checkoutService', '$stateParams', function (checkoutService, $stateParams) {
+                summaryResponse: function (checkoutService, $stateParams) {
                     return checkoutService.getSummary($stateParams.token);
-                }]
+                }
             },
-            onEnter: ['metaService', function (metaService) {
+            onEnter: function (metaService) {
                 metaService.set({
                     description: ''
                 });
-            }]
+            }
         }))
 
         .state('pages', {
@@ -276,11 +276,11 @@ angular.module('CouchCommerceApp', [
             templateUrl: 'pages/cc-pages.tpl.html',
             controller: 'PagesController',
             screenIndex: screenIndexes.pages,
-            onEnter: ['metaService', function (metaService) {
+            onEnter: function (metaService) {
                 metaService.set({
                     description: ''
                 });
-            }]
+            }
         });
 
 
@@ -338,8 +338,8 @@ angular.module('CouchCommerceApp', [
     });
 }])
 //just to kick off the services
-.run(['stateChangeService', 'viewClassService', 'backStepHighlightService', 'metaService', function () { } ])
-.run(['$rootScope', '$timeout', '$window', 'slideDirectionService', 'deviceService', 'templateService', function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
+.run(function (stateChangeService, viewClassService, backStepHighlightService, metaService) { } )
+.run(function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
 
 
     //Todo: Check what can be moved over to the MainController
@@ -372,13 +372,13 @@ angular.module('CouchCommerceApp', [
         }
     }, false);
 
-}])
-.run(['$rootScope', 'snapRemote', function ($rootScope, snapRemote) {
+})
+.run(function ($rootScope, snapRemote) {
     $rootScope.$on('$stateChangeStart', function () {
         snapRemote.close();
     });
-}])
-.run(['deviceService', 'ccImageFullScreenService', 'ccImageZoomSettings', function (deviceService, ccImageFullScreenService, ccImageZoomSettings) {
+})
+.run(function (deviceService, ccImageFullScreenService, ccImageZoomSettings) {
 
     //by default, we enable the real zoom. We just disable it for low budget devices
     ccImageZoomSettings.enabled = true;
@@ -388,21 +388,21 @@ angular.module('CouchCommerceApp', [
         ccImageFullScreenService.enabled = true;
         ccImageZoomSettings.enabled = false;
     }
-}])
+})
 .run(function () {
     sofa.Util.domReady(function () {
         FastClick.attach(document.body);
     });
 })
-.run(['titleService', function (titleService) {
+.run(function (titleService) {
     titleService.setShopNameTitle();
-}])
+})
 // Animate on specific elements only
-.config(['$animateProvider', function ($animateProvider) {
+.config(function ($animateProvider) {
     $animateProvider.classNameFilter(/cc-animate/);
-}])
+})
 // Prevent animation on first page load
-.run(['$animate', '$rootScope', function ($animate, $rootScope) {
+.run(function ($animate, $rootScope) {
     $animate.enabled(false);
 
     var i = 0;
@@ -418,8 +418,8 @@ angular.module('CouchCommerceApp', [
         }
         i++;
     });
-}])
-.run(['trackingService', 'configService', function (trackingService, configService) {
+})
+.run(function (trackingService, configService) {
     trackingService.addTracker(new cc.tracking.GoogleAnalyticsUniversalTracker({
         accountNumber: configService.get('googleAnalytics')
     }));
@@ -431,4 +431,4 @@ angular.module('CouchCommerceApp', [
             actionId: configService.get('bingActionId')
         }));
     }
-}]);
+});

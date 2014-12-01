@@ -332,10 +332,10 @@ module.exports = function (grunt) {
         },
 
         /**
-         * `ng-min` annotates the sources before minifying. That is, it allows us
+         * `ng-annotate` annotates the sources before minifying. That is, it allows us
          * to code without the array syntax.
          */
-        ngmin: {
+        ngAnnotate: {
             compile: {
                 files: [
                     {
@@ -902,7 +902,7 @@ module.exports = function (grunt) {
         'cssmin:compile',
         'copy:compile_assets',
         'copy:compile_data',
-        'ngmin',
+        'ngAnnotate',
         'concat:compile_js',
         'uglify:compile',
         'index:compile'
@@ -918,7 +918,7 @@ module.exports = function (grunt) {
         'cssmin:compile',
         'copy:compile_assets',
         'copy:compile_data',
-        'ngmin',
+        'ngAnnotate',
         'concat:compile_js',
         'uglify:debug',
         'index:compile'
@@ -929,7 +929,7 @@ module.exports = function (grunt) {
         'cssmin:compile',
         'copy:compile_assets',
         'copy:compile_data',
-        'ngmin',
+        'ngAnnotate',
         'concat:compile_js',
         'uglify:compile',
         'index:compile'
