@@ -1,0 +1,19 @@
+.sofa-select-box {
+    border-radius: 0;
+    border-width: 1px;
+    max-width: 20rem;
+}
+
+.sofa-select-box__icon {
+    border-radius: 0;
+    border: 0;
+
+    &:before {
+        font-size: smaller;
+        line-height: 1;
+    }
+}
+
+.sofa-select-box__value--choose {
+    color: $theme-color-light__darker--33;
+}

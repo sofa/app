@@ -1,0 +1,91 @@
+%slide-transition {
+    transition: $slide-duration $slide-easing;
+}
+
+
+.slide-rtl .sofa-ui-view.ng-enter {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(100%, 0, 0);
+}
+
+.slide-rtl .sofa-ui-view.ng-enter-active {
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-rtl .sofa-ui-view.ng-leave {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-rtl .sofa-ui-view.ng-leave-active {
+    transform: translate3d(-100%, 0, 0);
+}
+
+.slide-ltr .sofa-ui-view.ng-enter {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(-100%, 0, 0);
+}
+
+.slide-ltr .sofa-ui-view.ng-enter-active {
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-ltr .sofa-ui-view.ng-leave {
+    @extend %animation-base;
+    @extend %slide-transition;
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-ltr .sofa-ui-view.ng-leave-active {
+    transform: translate3d(100%, 0, 0);
+}
+
+.slide-in-ttb {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(0, -100%, 0);
+}
+
+.slide-in-ttb.slide-in-ttb-active {
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-out-ttb {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-out-ttb.slide-out-ttb-active {
+    transform: translate3d(0, 100%, 0);
+}
+
+.slide-in-btt {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(0, 100%, 0);
+}
+
+.slide-in-btt.slide-in-btt-active {
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-out-btt {
+    @extend %animation-base;
+    @extend %slide-transition;
+
+    transform: translate3d(0, 0, 0);
+}
+
+.slide-out-btt.slide-out-btt-active {
+    transform: translate3d(0, -100%, 0);
+}

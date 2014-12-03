@@ -1,0 +1,90 @@
+$sofa-messages--success__background: #DFF0D8 !default;
+$sofa-messages--success__border-color: #D6E9C6 !default;
+$sofa-messages--success__color: #468847 !default;
+
+$sofa-messages--error__background: #F2DEDE !default;
+$sofa-messages--error__border-color: #EED3D7 !default;
+$sofa-messages--error__color: #B94A48 !default;
+
+$sofa-messages--info__background: #D9EDF7 !default;
+$sofa-messages--info__border-color: #BCE8F1 !default;
+$sofa-messages--info__color: #3A87AD !default;
+
+$sofa-messages--warning__background: #FCF8E3 !default;
+$sofa-messages--warning__border-color: #EAE6D1 !default;
+$sofa-messages--warning__color: #C09853 !default;
+
+
+%sofa-message-box--base {
+    padding: .625rem;
+    border-style: solid;
+    border-width: 1px;
+    margin: 0 0 1rem;
+
+    & > p {
+        margin: 0;
+    }
+}
+
+%sofa-message-box--iconic {
+    position: relative;
+    padding-left: 2rem;
+
+    &:before {
+        position: absolute;
+        left: .5rem;
+        top:50%;
+        transform: translateY(-50%);
+    }
+}
+
+%sofa-message-box--success {
+    @extend %sofa-message-box--base;
+
+    background: $sofa-messages--success__background;
+    border-color: $sofa-messages--success__border-color;
+    color: $sofa-messages--success__color;
+}
+
+%sofa-message-box--success--iconic {
+    @extend %sofa-message-box--success;
+    @extend %sofa-message-box--iconic;
+}
+
+%sofa-message-box--error {
+    @extend %sofa-message-box--base;
+
+    background: $sofa-messages--error__background;
+    border-color: $sofa-messages--error__border-color;
+    color: $sofa-messages--error__color;
+}
+%sofa-message-box--error--iconic {
+    @extend %sofa-message-box--error;
+    @extend %sofa-message-box--iconic;
+}
+
+%sofa-message-box--info {
+    @extend %sofa-message-box--base;
+
+    background: $sofa-messages--info__background;
+    border-color: $sofa-messages--info__border-color;
+    color: $sofa-messages--info__color;
+}
+
+%sofa-message-box--info--iconic {
+    @extend %sofa-message-box--info;
+    @extend %sofa-message-box--iconic;
+}
+
+%sofa-message-box--warning {
+    @extend %sofa-message-box--base;
+
+    background: $sofa-messages--warning__background;
+    border-color: $sofa-messages--warning__border-color;
+    color: $sofa-messages--warning__color;
+}
+
+%sofa-message-box--warning--iconic {
+    @extend %sofa-message-box--warning;
+    @extend %sofa-message-box--iconic;
+}

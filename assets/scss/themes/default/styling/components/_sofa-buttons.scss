@@ -1,0 +1,115 @@
+$sofa-button--base__background:      $theme-color-light__darker--05;
+$sofa-button--base__color:           $theme-color-dark__lighter--33;
+$sofa-button--primary__background:   $theme-color-accent;
+$sofa-button--primary__color:        $theme-color-light;
+$sofa-button--secondary__background: change_color(mix($theme-color-accent, $theme-color-dark, 33%), $lightness: 50%);
+$sofa-button--secondary__color:      $theme-color-light;
+
+@function sofa-buttons__disabled-color ($color) {
+    @return mix(white, desaturate($color, 33%), 50%);
+}
+
+@function sofa-buttons__active-color ($color) {
+    @return darken($color, 20%);
+}
+
+%sofa-button--base {
+    display: inline-block;
+    margin: 0 auto;
+    border: 0;
+    padding: .625rem;
+    text-align: center;
+    border-radius: .25rem;
+    line-height: 1.5rem;
+    font-size: .875rem;
+    max-width: 20rem;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    background: $sofa-button--base__background;
+    color: $sofa-button--base__color;
+
+    &:disabled {
+        background: sofa-buttons__disabled-color($sofa-button--base__background);
+        color: transparentize($sofa-button--base__color, .33);
+        cursor: default;
+        pointer-events: none;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:active {
+        background: sofa-buttons__active-color($sofa-button--base__background);
+    }
+}
+
+%sofa-button--primary {
+    @extend %sofa-button--base;
+
+    background: $sofa-button--primary__background;
+    color: $sofa-button--primary__color;
+
+    &:disabled {
+        background: sofa-buttons__disabled-color($sofa-button--primary__background);
+        color: transparentize($sofa-button--primary__color, .33);
+    }
+
+    &:active {
+        background: sofa-buttons__active-color($sofa-button--primary__background);
+    }
+}
+
+%sofa-button--secondary {
+    @extend %sofa-button--base;
+
+    background: $sofa-button--secondary__background;
+    color: $sofa-button--secondary__color;
+
+    &:disabled {
+        background: sofa-buttons__disabled-color($sofa-button--secondary__background);
+        color: transparentize($sofa-button--secondary__color, .33);
+    }
+
+    &:active {
+        background: sofa-buttons__active-color($sofa-button--secondary__background);
+    }
+}
+
+%sofa-button--primary--disabled {
+    @extend %sofa-button--primary;
+
+    background: sofa-buttons__disabled-color($sofa-button--primary__background);
+    color: transparentize($sofa-button--primary__color, .33);
+}
+
+%sofa-button--secondary--disabled {
+    @extend %sofa-button--secondary;
+
+    background: sofa-buttons__disabled-color($sofa-button--secondary__background);
+    color: transparentize($sofa-button--secondary__color, .33);
+}
+
+%sofa-button--large {
+    padding: .875rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+%sofa-button--small {
+    padding: .5rem;
+    font-size: .75rem;
+    line-height: 1rem;
+}
+
+%sofa-button--disabled {
+    opacity: .5;
+    cursor: default;
+    pointer-events: none;
+}
+
+%sofa-button--block {
+    display: block;
+    width: 100%;
+}

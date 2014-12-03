@@ -1,0 +1,92 @@
+/*//===========================================
+    Grid List
+*///===========================================
+
+%sofa-grid-list {
+    list-style: none;
+    margin-right: -1px;
+    border-style: solid;
+    border-width: 1px 0 0;
+
+    .modern-flexbox & {
+        display: flex;
+        flex-flow: row wrap;
+    }
+}
+
+%sofa-grid-list__item {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+
+    .no-modern-flexbox & {
+        display: inline-block;
+        vertical-align: top;
+        width: 50%;
+    }
+
+    .modern-flexbox & {
+        display: flex;
+        justify-content: center;
+        flex: 0 0 50%;
+    }
+
+    @include breakpoint(wide) {
+        width: 33.333333%;
+
+        .modern-flexbox & {
+            flex: 0 0 33.333333%;
+        }
+    }
+
+    @include breakpoint(extra-wide) {
+        width: 25%;
+
+        .modern-flexbox & {
+            flex: 0 0 25%;
+        }
+    }
+
+}
+
+/*//===========================================
+    Link Lists
+*///===========================================
+
+%sofa-link-list {
+    padding: .625rem 0;
+}
+
+%sofa-link-list__item {
+    position: relative;
+    border-top: 1px solid $theme-color-light__darker--15;
+    line-height: 1.5rem;
+
+    &:first-child {
+        border: 0;
+    }
+}
+
+%sofa-link-list__link {
+    display: block;
+    padding: .625rem 1rem;
+    text-decoration: none;
+    color: $theme-color-dark__lighter--20;
+}
+
+%sofa-link-list__link--arrow {
+    @extend %sofa-link-list__link;
+
+    @include fa-icon-type($fa-var-angle-right, after);
+
+    padding-right: 2rem;
+
+    &:after {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        text-align: right;
+        font-size: 1.25rem;
+        color: $theme-color-light__darker--20;
+        transform: translateY(-50%);
+    }
+}

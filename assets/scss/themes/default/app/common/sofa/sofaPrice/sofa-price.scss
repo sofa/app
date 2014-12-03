@@ -1,0 +1,17 @@
+.sofa-price__price {
+    font-weight: 700;
+    padding: 0;
+}
+
+.sofa-price--special {
+    .sofa-price__price {
+        float: left;
+        margin-right: .625rem;
+        color: $theme-color-accent;
+    }
+}
+
+.sofa-price__price--old {
+    color: $theme-color-light__darker--33;
+    padding: 0;
+}

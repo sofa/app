@@ -1,0 +1,38 @@
+// http://stackoverflow.com/questions/6370690/media-queries-how-to-target-desktop-tablet-and-mobile
+
+@mixin breakpoint($point) {
+
+    // Aims for narrow screens but should NOT target larger screens (e.g., phones ONLY)
+    @if $point == narrow {
+        @media screen
+        and (max-width: 640px) {
+            @content;
+        }
+    }
+
+    // Aims for everything wider than narrow screens (e.g., all sorts of tablet views)
+    @else if $point == wide {
+        @media screen
+        and (min-width: 641px) {
+            @content;
+        }
+    }
+
+    // Aims for wider screens but should NOT target huge ones (e.g., tablets in portrait ONLY)
+    @else if $point == wide-cap {
+        @media screen
+        and (min-width: 641px)
+        and (max-width: 1023px) {
+            @content;
+        }
+    }
+
+    // Aims for large screens (e.g., tablets in landscape)
+    @else if $point == extra-wide {
+        @media screen
+        and (min-width: 1024px) {
+            @content;
+        }
+    }
+
+}

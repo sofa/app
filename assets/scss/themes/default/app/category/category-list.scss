@@ -1,0 +1,22 @@
+.sofa-category-list {
+    @extend %sofa-link-list;
+
+    background: $theme-color-light;
+}
+
+.sofa-category-list__item {
+    @extend %sofa-link-list__item;
+}
+
+.sofa-category-link {
+    @extend %sofa-link-list__link--arrow;
+    @extend %sofa-highlight-transition--list;
+
+    &.sofa-highlight--in {
+        @extend %sofa-highlight--list--in;
+    }
+
+    &.sofa-highlight--out {
+        @extend %sofa-highlight--list--out;
+    }
+}

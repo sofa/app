@@ -1,0 +1,26 @@
+.cc-wishlist-button {
+    @extend %sofa-button--base;
+    @include fa-icon-type($fa-var-heart);
+
+    display: block;
+    text-align:left;
+
+    &:before {
+        font-size: 1.5rem;
+        margin-right: 0.875rem;
+        vertical-align: top;
+        transition: color .3s;
+    }
+
+    .cc-wishlist-button__text {
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+.cc-wishlist-button.cc-wishlist-button--active {
+    &:before {
+        content: $fa-var-heart;
+        color: $theme-color-accent;
+    }
+}

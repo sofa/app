@@ -1,0 +1,66 @@
+
+// Key/Value
+
+// TODO: build a component for key/value blocks
+// some of these could be replaced by dl, dt and dd
+
+%cc-properties-key-value-base {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.cc-properties__key {
+    @extend %cc-properties-key-value-base;
+    font-weight: 700;
+}
+
+.cc-properties__value {
+    @extend %cc-properties-key-value-base;
+}
+
+.cc-properties--block {
+    .cc-properties__key {
+        width:45%;
+    }
+    .cc-properties__value {
+        width:55%;
+        margin-left:-0.333333em; // remove the space character between key and value which comes from "inline-block"
+    }
+}
+
+// Need to go to the theme
+
+html,
+body {
+    font-family: "Helvetica Neue", HelveticaNeue, "Helvetica-Neue", Helvetica, "BBAlpha Sans", sans-serif;
+    font-size:16px;
+    word-wrap: break-word;
+    -webkit-text-size-adjust: none;
+    width:100%;
+}
+
+//some generic helper classes
+
+.cc-unstyled{
+
+    body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4, h5, h6{ font-weight: normal; font-size: 100%; }
+
+    address, caption, cite, code, dfn, em, strong, th, var {
+        font-style: normal;
+        font-weight: normal;
+    }
+}
+
+
+
+
+
+
+
+
+

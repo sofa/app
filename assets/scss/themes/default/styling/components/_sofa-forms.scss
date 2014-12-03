@@ -1,0 +1,66 @@
+
+%sofa-form__item {
+    margin-top: .875rem;
+}
+
+%sofa-form-label {
+    display: block;
+    padding: .5rem 0 .25rem .625rem;
+    font-size: 0.875rem;
+}
+
+%sofa-form--inline {
+
+    %sofa-form-label {
+        display: inline-block;
+    }
+
+}
+
+%sofa-form-label--required {
+    @extend %sofa-form-label;
+
+    &:after {
+        content: " *";
+    }
+}
+
+%sofa-form-label--optional {
+    @extend %sofa-form-label;
+}
+
+%sofa-text-field {
+    display:inline-block;
+    margin:0;
+    vertical-align: top;
+    font-size: inherit;
+    outline: none;
+    box-sizing: border-box;
+    height: 2.75rem;
+    line-height: 1.25rem;
+    width:100%;
+    border: 1px solid $theme-color-light__darker--20;
+    background: #fff;
+    padding: .625rem .5rem;
+
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: text;
+
+    &:focus {
+        background-color:#fff;
+        border-color: $theme-color-dark__lighter--33;
+        box-shadow: none;
+    }
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    &.ng-invalid.ng-dirty {
+        border-color: $theme-warning-border-color;
+    }
+
+}

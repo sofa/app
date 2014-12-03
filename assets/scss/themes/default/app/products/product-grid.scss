@@ -1,0 +1,239 @@
+
+.sofa-product-grid__list {
+    @extend %sofa-grid-list;
+
+    border-color: $theme-color-light__darker--15;
+    margin-bottom: -1px; // hide bottom border of last row's items
+}
+
+.sofa-product-grid__item {
+    @extend %sofa-grid-list__item;
+
+    background: #fff; // should match any given image background color
+    border-color: $theme-color-light__darker--15;
+}
+
+.sofa-product-item {
+    text-decoration: none;
+    color: $theme-color-dark__lighter--10;
+
+    .modern-flexbox & {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.sofa-product-item__media-wrapper {
+    padding: .625rem;
+
+    .modern-flexbox & {
+        flex: 0 0 160px;
+    }
+}
+
+.sofa-product-item__info-wrapper {
+    padding: .625rem;
+
+    .modern-flexbox & {
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+.sofa-product-item__media {
+    height: 140px;
+}
+
+.sofa-product-item__image {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+}
+
+.sofa-product-item__title {
+    display:block;
+    margin-bottom: .625rem;
+    padding: .25rem 0;
+    font-weight: 400;
+
+    .no-modern-flexbox & {
+        min-height: 2.75rem;
+    }
+}
+
+.sofa-product-item__base-price-info {
+    font-size: smaller;
+    color: $theme-color-light__darker--33;
+}
+
+.sofa-product-controls {
+    padding: 0 1rem 1rem;
+
+    @include breakpoint(wide) {
+        @include sofa-clearfix;
+
+        .sofa-select-box {
+            float: right;
+        }
+
+        .sofa-product-controls-count {
+            float: right;
+            line-height: 2.75rem;
+            margin-right: 1rem;
+        }
+    }
+}
+
+
+/*
+// TODO: clean up
+@include breakpoint(wide) {
+    .cc-products__controls {
+
+        &:after {
+            @include sofa-clearfix;
+        }
+
+        .cc-select-box {
+            float: right;
+            width: auto;
+            min-width: 19em;
+        }
+    }
+}
+
+
+// TODO: extract to a separate module
+
+
+
+
+.modern-flexbox {
+
+    .cc-product-item {
+        width:100%;
+    }
+    .cc-product-item,
+    .cc-product-item__info-wrapper {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .cc-product-item__info-wrapper {
+        flex: 1;
+
+        .cc-product-item__title {
+            flex: 1;
+        }
+        .cc-price {
+            flex: 0 0 2rem;
+        }
+    }
+
+}
+
+// ==========================
+
+.cc-products__list {
+//    @extend %cc-list;
+
+    border:0;
+    color: $theme-color-dark__lighter--10;
+    border-color: $theme-color-dark__lighter--50;
+
+    // TODO: consider renaming the generic class (maybe some .cc-products-list .cc-products-list__item was better?)
+    .cc-list__item,
+    .cc-product-item {
+        border-color: $theme-color-dark__lighter--50;
+    }
+
+    .cc-list__item {
+        text-align: center;
+        // no-flex-box fallback
+        min-height:230px;
+        // product/category image background...
+        background: #fff;
+    }
+
+    .cc-product-item {
+        color: $theme-color-dark__lighter--10;
+
+        @extend %sofa-highlight-transition--grid;
+
+        &.sofa-highlight--in {
+            @extend %sofa-highlight--grid--in;
+        }
+        &.sofa-highlight--out {
+            @extend %sofa-highlight--grid--out;
+        }
+
+    }
+    .cc-product-item__info-wrapper {
+        background: $theme-color-light__darker--05;
+    }
+
+    .cc-product-item__base-price-info {
+        font-size: smaller;
+    }
+
+    .cc-product-item__title {
+        color: $theme-color-dark;
+    }
+}
+
+//.cc-products__up-nav {
+//    @extend %up-nav--generic;
+//    @extend %up-nav--narrow;
+//}
+//
+//.cc-products__header {
+//    @extend %main-headline--generic;
+//}
+
+//@include breakpoint(wide) {
+//    .cc-products__header-block {
+//        display: flex;
+//    }
+//    .cc-products__up-nav {
+//        flex: auto 0 0;
+//    }
+//    .cc-products__header {
+//        flex: 1;
+//
+//        .cc-title--huge {
+//            line-height: 44px;
+//        }
+//
+//    }
+//
+//    .cc-products__up-nav {
+//        @extend %up-nav--wide;
+//
+//        .cc-go-up-control {
+//            @extend %go-up-control--wide;
+//        }
+//        .cc-go-up-control__icon {
+//            @extend %go-up-control__icon--wide;
+//        }
+//        .cc-go-up-control__text {
+//            @extend %go-up-control__text--wide;
+//        }
+//
+//    }
+//
+//}
+
+.cc-products__controls {
+    padding:10px 6px;
+    background-color: $theme-color-light__darker--05;
+}
+.cc-products__product-count {
+    float:left;
+    margin-left: 15px;
+    line-height: 44px;
+}
+*/

@@ -1,0 +1,106 @@
+$theme-header__shadow-size:    $theme-box-shadow-width;
+
+// Header Icons
+$theme-header__icon-width:         2.5rem;
+$theme-header__icon-height:        2.5rem;
+$theme-header__icon-line-height:   2.5rem;
+
+// Logo
+$theme-header__logo-big:       $logo-big;
+$theme-header__logo-small:     $logo-small;
+
+// The header is special. We need to make sure it works with all kinds of logos
+// and even when the toolbar is set to white.
+$theme-header-icon-color: $theme-color-light;
+$theme-header-icon-background-color: $theme-color-accent__tinted--25;
+
+$theme-header-icon-color-lightness: lightness($theme-header-icon-color);
+$theme-header-icon-background-color-lightness: lightness($theme-header-icon-background-color);
+
+@if abs($theme-header-icon-color-lightness - $theme-header-icon-background-color-lightness) < 20 {
+    @if $theme-header-icon-background-color-lightness > 50 {
+        $theme-header-icon-color: lighten(invert($theme-header-icon-color), 30%);
+    } @else {
+        $theme-header-icon-color: darken(invert($theme-header-icon-color), 30%);
+    }
+}
+
+
+%header-button--left {
+    float:left;
+    margin-right: .25rem;
+}
+
+%header-button--right {
+    float:right;
+    margin-left: .25rem;
+}
+
+.sofa-app-header {
+    flex: 0 0 auto;
+    padding: .25rem;
+    box-shadow: 0 $theme-header__shadow-size 0 $theme-color-accent__darker--10;
+    background: $theme-color-accent;
+    z-index: 999;
+}
+
+.sofa-app-header__button {
+    @extend %sofa-button--base;
+
+    height: 2.75rem;
+    width: 2.75rem;
+
+    color: $theme-header-icon-color;
+    background: $theme-header-icon-background-color;
+    box-shadow: 0 1px 0 0 $theme-color-accent__darker--20;
+
+    &:before {
+        font-size: 1rem;
+    }
+}
+
+.sofa-app-header__button--side-menu {
+    @extend %header-button--left;
+    @include fa-icon-type($fa-var-bars);
+}
+
+.sofa-app-header__button--search {
+    @extend %header-button--right;
+    @include fa-icon-type($fa-var-search);
+}
+
+.sofa-app-header__button--cart {
+    @extend %header-button--right;
+    @include fa-icon-type($fa-var-shopping-cart);
+
+    position: relative;
+}
+
+.sofa-app-header__badge {
+    position: absolute;
+    top: -.125rem;
+    right: -.125rem;
+    height: 1.25rem;
+    padding: 0 .25rem;
+    min-width: 1.25rem;
+    line-height: 1.125rem;
+    border: 1px solid white;
+    border-radius: 100%;
+    background: $theme-color-dark;
+    color: $theme-color-light;
+    font-size: smaller;
+}
+
+
+.sofa-app-header__logo {
+    display: block;
+    height: 2.75rem;
+    width:33.33333%;
+    margin:0 auto;
+    background: $theme-header__logo-small no-repeat center;
+    background-size: contain;
+
+    @include breakpoint(wide) {
+        background-image: $theme-header__logo-big;
+    }
+}

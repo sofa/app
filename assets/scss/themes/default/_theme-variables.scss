@@ -17,6 +17,7 @@ $theme-color-accent: $color-2;
 
 // Dark Shades
 $theme-color-dark__lighter--10: lighten($theme-color-dark, 10%);
+$theme-color-dark__lighter--20: lighten($theme-color-dark, 20%);
 $theme-color-dark__lighter--33: lighten($theme-color-dark, 33%);
 $theme-color-dark__lighter--50: lighten($theme-color-dark, 50%);
 
@@ -36,6 +37,7 @@ $theme-color-light__darker--05: darken($theme-color-light, 5%);
 $theme-color-light__darker--10: darken($theme-color-light, 10%);
 $theme-color-light__darker--15: darken($theme-color-light, 15%);
 $theme-color-light__darker--20: darken($theme-color-light, 20%);
+$theme-color-light__darker--33: darken($theme-color-light, 33%);
 
 $theme-color-light__shaded--30: shade($theme-color-light, 30%);
 

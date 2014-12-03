@@ -1,0 +1,158 @@
+//TODO: clean up here
+
+/**
+ * That's for the base styling of the app
+ * things that are not generic enough to be put in the sdk
+ * but also do not belong into any specify component
+ *
+ */
+
+
+.cc-link,
+.sofa-link {
+    text-decoration: underline;
+}
+
+.snap-content:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom:0;
+    left:0;
+    right:100%;
+    background-color: rgba(0,0,0,0);
+    transition: background-color .3s ease-in, right .01s ease-in .3s;
+}
+
+.snapjs-left,
+.snapjs-right {
+    .snap-content:after {
+        right:0;
+        background-color: rgba(0,0,0,0.5);
+        transition: background-color .3s ease-out;
+    }
+}
+
+
+// from the former theme file
+// TODO: move contents into the correct files
+
+body{
+    font-family: $cc-font-default;
+    background: $theme-color-light;
+}
+
+a {
+    color:$theme-color-accent;
+}
+
+.snap-content {
+    background: $theme-color-light;
+}
+
+.snap-drawer {
+    width:266px;
+}
+
+.cc-title--huge {
+    @extend %sofa-h1;
+}
+
+.cc-title--big {
+    @extend %sofa-h2;
+}
+
+
+// Override for sofa placeholder
+%cc-message-box--base {
+    border-radius: $theme-border-radius--basic;
+}
+
+
+.sofa-hidden {
+    display: none;
+}
+
+.cc-img-loading {
+    position: relative;
+}
+.cc-img-loading:before {
+    content: '';
+    height:60px;
+    width:60px;
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    margin:-30px 0 0 -30px;
+    animation: rotation .6s infinite linear;
+    border:6px solid rgba(0,0,0,.15);
+    border-top:6px solid rgba(0,0,0,.4);
+    border-radius:100%;
+    z-index:2;
+}
+
+@keyframes rotation {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(359deg);}
+}
+
+
+
+// This is a modal class to overwrite some default bootstrap properties
+// and is separate from the couch modal which is used in the search, among others.
+.modal,
+.cc-bootstrap-modal {
+    background: $theme-color-light;
+    border-radius: $theme-border-radius--basic !important;
+    border:0;
+}
+
+
+
+.sofa-view {
+    color: $theme-color-dark__tinted--20;
+}
+
+.cc-cms-content {
+
+    font-size: 0.9375rem;
+
+    h1, h2, h3, h4, h5, h6 {
+        line-height: 1.2;
+        margin:0 0 1rem;
+        font-weight: 700;
+    }
+    h1 {
+        font-size: 150%;
+    }
+    h2 {
+        font-size: 135%;
+    }
+    h3 {
+        font-size: 125%;
+    }
+    h4 {
+        font-size: 115%;
+    }
+    h5 {
+        font-size: 110%;
+    }
+    h6 {
+        font-size: 105%;
+    }
+
+    p {
+        font-size: inherit;
+        line-height: 1.25rem;
+        margin: .5rem 0;
+    }
+
+    ul {
+        font-size: inherit;
+        list-style: disc;
+        margin: 1rem 0;
+    }
+    li {
+        margin-left: 1rem;
+    }
+}

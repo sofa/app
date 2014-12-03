@@ -1,0 +1,29 @@
+
+.sofa-footer-list {
+    @extend %sofa-link-list;
+
+    background: $theme-color-light__darker--15;
+
+    @include breakpoint(wide) {
+        text-align: center;
+    }
+}
+
+.sofa-footer-list__item {
+    @extend %sofa-link-list__item;
+    @extend %sofa-link-list__link;
+
+    border-color: $theme-color-light__darker--33;
+    color: $theme-color-dark__lighter--33;
+
+    @include breakpoint(wide) {
+        display: inline-block;
+        border: 0;
+    }
+}
+
+//@include breakpoint(wide) {
+//    .sofa-footer-list {
+//        margin: 0 0 .625rem;
+//    }
+//}

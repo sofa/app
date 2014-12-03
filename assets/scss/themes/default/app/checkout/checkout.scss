@@ -1,0 +1,116 @@
+
+%checkout-section {
+    max-width: 600px;
+    margin: 0 auto .875rem;
+    padding: .75rem 1rem;
+
+    & + & {
+        border-top: 1px solid $theme-color-light__darker--20;
+    }
+}
+
+.sofa-checkout-section {
+    @extend %checkout-section;
+}
+
+.sofa-checkout-section--disabled {
+    opacity: .5;
+
+    .sofa-checkout-section__header {
+        margin-bottom: 0;
+    }
+
+    .sofa-checkout-section__content,
+    .sofa-checkout-section__footer,
+    .sofa-checkout-button--edit {
+        display: none;
+    }
+}
+
+.sofa-checkout-section__header {
+    margin: 0 0 1.25rem;
+}
+
+.cc-checkout-section--customer-login {
+    padding: 0;
+}
+
+.cc-checkout__navigation {
+
+    .cc-message-box--warning {
+        margin-bottom: .875rem;
+    }
+}
+
+.sofa-checkout-button {
+    @extend %sofa-button--primary;
+    @extend %sofa-button--block;
+}
+
+.sofa-checkout-section__footer {
+    margin: .625rem 0 0;
+}
+.sofa-checkout-button--edit {
+    @extend %sofa-button--base;
+    @extend .sofa-link;
+
+    background-color: transparent;
+    padding: 0;
+    float: right;
+}
+
+@mixin checkout-section--wide {
+    @include breakpoint(wide) {
+        padding: .75rem .625rem 1.5rem;
+        border-radius: $theme-border-radius--basic;
+        background: rgba(0, 0, 0, .05);
+    }
+}
+
+%checkout-section--wide {
+    @include checkout-section--wide;
+}
+
+.sofa-checkout__wrapper {
+    //    background: $theme-color-light__darker--05;
+    padding: 0 0 .625rem;
+
+    .cc-customer-login {
+        padding: .5rem .625rem .75rem;
+        background: rgba(0, 0, 0, .05);
+    }
+
+    .cc-customer-account-intro {
+        background: rgba(0, 0, 0, .05);
+    }
+}
+
+@include breakpoint(wide) {
+
+    .sofa-checkout__wrapper {
+        padding: .625rem 0;
+    }
+    .cc-checkout-section {
+        @extend %checkout-section--wide;
+    }
+    .cc-checkout-section--customer-login {
+        @extend %checkout-section--wide;
+
+        padding: 0;
+    }
+    .cc-checkout__navigation {
+
+        text-align: right;
+
+        .cc-checkout-button,
+        .cc-checkout-button--disabled {
+            display: inline-block;
+            width: 50%;
+        }
+
+        .cc-message-box--warning {
+            text-align: left;
+        }
+    }
+
+}

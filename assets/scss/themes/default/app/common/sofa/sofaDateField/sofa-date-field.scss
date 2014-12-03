@@ -1,0 +1,14 @@
+.sofa-date-field--day,
+.sofa-date-field--month,
+.sofa-date-field--year {
+    @extend %sofa-text-field;
+}
+
+.sofa-date-field--day,
+.sofa-date-field--month {
+    width: 3rem;
+}
+
+.sofa-date-field--year {
+    width: 4rem;
+}

@@ -1,0 +1,63 @@
+
+$sofa-line-height--base: 1rem;
+
+%sofa-line-height--h {
+    line-height: 1.5rem; // => 24px
+}
+
+%sofa-p {
+    line-height: $sofa-line-height--base;
+
+    font-size: .875rem; // => 14px
+}
+
+%sofa-h1 {
+    font-size: 1.5rem; // => 24px
+    line-height: 2rem; // => 32px
+}
+
+%sofa-h2 {
+    @extend %sofa-line-height--h;
+
+    font-size: 1.25rem; // => 20px
+}
+
+%sofa-h3 {
+    @extend %sofa-line-height--h;
+
+    font-size: 1.125rem; // => 18px
+}
+
+%sofa-h4 {
+    @extend %sofa-line-height--h;
+
+    font-size: 1rem; // => 16px
+}
+
+%sofa-list--unstyled {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+%sofa-list--styled {
+    margin-left: 1rem;
+}
+
+%sofa-list--disc {
+    @extend %sofa-list--styled;
+
+    list-style-type: disc;
+}
+
+%sofa-list--square {
+    @extend %sofa-list--styled;
+
+    list-style-type: square;
+}
+
+%sofa-list--number {
+    @extend %sofa-list--styled;
+
+    list-style-type: decimal;
+}

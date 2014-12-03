@@ -1,0 +1,152 @@
+
+.cc-cart__content-box {
+    padding: 0 4px 0 0;
+}
+
+.cc-cart-list {
+    background: $theme-color-light__darker--15;
+    color:$theme-color-dark;
+    margin:0;
+}
+
+.cc-cart-list__item {
+
+    background: $theme-color-light;
+    margin-top: 1px;
+    padding: 10px;
+    clear: both;
+
+    &:first-child {
+        margin:0;
+
+    }
+
+    &.ng-leave {
+        @include fade-out-and-shrink(200px);
+
+        &.ng-leave-active {
+            @extend %fade-out-and-shrink--active;
+        }
+    }
+}
+
+
+.cc-cart-list__item--coupon {
+    .cc-cart-list__item-content {
+        float:left;
+        width:60%;
+        margin:0;
+    }
+    .cc-cart-list__item-footer {
+        width:40%;
+        margin-left: 60%;
+        clear:none;
+        padding: 0;
+        line-height: inherit;
+    }
+}
+
+.cc-cart-list__item-image {
+    float: left;
+    width:46px;
+    height:46px;
+    border:1px solid $theme-color-light__darker--15;
+    margin:0 0 6px 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.cc-cart-list__item-content {
+    margin-left:60px;
+}
+
+.cc-cart-list__item-footer {
+    clear:left;
+    line-height: 1.5;
+    padding: 6px 0;
+
+    @extend %sofa-clearfix;
+}
+
+.cc-cart-list__item-variants {
+    font-size: smaller;
+}
+
+.cc-cart-quantity-selector {
+    text-align: right;
+}
+
+.cc-cart-list__item-title {
+    display:block;
+    font-weight:400;
+}
+
+.cc-cart__item-price {
+    float:left;
+}
+
+.cc-cart__item-price--total {
+    float:right;
+}
+
+// TODO: this should extend some base button placeholder...
+%cc-cart-button {
+    @extend %sofa-button--secondary;
+
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+}
+
+.cc-cart-button--decrease {
+    @extend %cc-cart-button;
+    @include fa-icon-type($fa-var-minus);
+}
+.cc-cart-button--increase {
+    @extend %cc-cart-button;
+    @include fa-icon-type($fa-var-plus);
+}
+
+.cc-cart-total-panel {
+    padding-right: 4px;
+}
+
+.cc-cart-actions {
+    background: $theme-color-dark__low--25;
+    padding: 12px;
+}
+
+.cc-cart-checkout-button {
+    @extend %sofa-button--primary;
+    @extend %sofa-button--block;
+
+    margin: 0 0 .875rem;
+}
+
+.cc-cart-coupon-button {
+    @extend %sofa-button--base;
+    display: block;
+}
+
+.cc-cart-promotioncode-box {
+    padding: 12px
+}
+
+.cc-cart-total-panel__remove-coupon-icon {
+    font-size: 20px;
+}
+
+.cc-cart-empty-hint {
+    text-align: center;
+    padding:30px 0 0;
+}
+
+
+.cc-promotion-code-button {
+    @extend %sofa-button--primary;
+    @extend %sofa-button--block;
+}
+.cc-promotion-code-button--disabled {
+    @extend .cc-promotion-code-button;
+    @extend %sofa-button--primary--disabled;
+}

@@ -1,0 +1,81 @@
+// List Highlighting
+
+%sofa-highlight-transition--list {
+    transition: background-color .4s ease-out, color .4s ease-out;
+}
+
+%sofa-highlight-transition--grid {
+
+    &:after {
+        transition: border-color .4s ease-out;
+    }
+}
+
+%sofa-highlight--list {
+    background: $theme-color-highlight;
+}
+
+%sofa-highlight--list--in {
+    @extend %sofa-highlight--list;
+}
+
+%sofa-highlight--list--out {
+    animation: list-highlight--fade-out ($slide-duration * 2) ease-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes list-highlight--fade-out {
+    0% {
+        background: $theme-color-highlight;
+    }
+    66% {
+        background: $theme-color-highlight;
+    }
+    100% {
+        background: none;
+    }
+}
+
+// Grid Highlighting
+
+%sofa-highlight--grid {
+    position: relative;
+
+    &:after {
+        @extend %sofa-dock-all;
+
+        content: '';
+        border-style: solid;
+        border-width: 5px;
+        border-color: transparent;
+    }
+}
+
+%sofa-highlight--grid--in {
+    @extend %sofa-highlight--grid;
+
+    &:after {
+        border-color: $theme-color-highlight;
+    }
+}
+
+%sofa-highlight--grid--out {
+    @extend %sofa-highlight--grid;
+
+    &:after {
+        animation: grid-highlight--fade-out ($slide-duration * 2) ease-out;
+        animation-iteration-count: 1;
+    }
+}
+
+@keyframes grid-highlight--fade-out {
+    0% {
+        border-color: $theme-color-highlight;
+    }
+    66% {
+        border-color: $theme-color-highlight;
+    }
+    100% {
+        border-color: transparent;
+    }
+}

@@ -1,0 +1,15 @@
+.sofa-message-box--success {
+    @extend %sofa-message-box--success;
+}
+
+.sofa-message-box--error {
+    @extend %sofa-message-box--error;
+}
+
+.sofa-message-box--warning {
+    @extend %sofa-message-box--warning;
+}
+
+.sofa-message-box--info {
+    @extend %sofa-message-box--info;
+}

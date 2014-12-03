@@ -1,0 +1,11 @@
+.cc-search-field__input {
+    @extend %sofa-text-field;
+}
+
+.sofa-search-field__icon--label {
+    @include fa-icon-type($fa-var-search);
+}
+
+.sofa-search-field__icon--clear {
+    @include fa-icon-type($fa-var-times-circle);
+}

@@ -1,0 +1,99 @@
+// This file carries some useful helper classes as %placeholders
+
+// Clearing
+
+%sofa-clearfix {
+    @include sofa-clearfix;
+}
+
+// Text alignment
+
+%sofa-text-left {
+    text-align: left;
+}
+%sofa-text-right {
+    text-align: right;
+}
+%sofa-text-center {
+    text-align: center;
+}
+
+// Scroll Container
+
+%sofa-scroll-container {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+// Dimensions
+
+%sofa-full-width-height {
+    width: 100%;
+    height: 100%;
+    position:relative;
+}
+
+// Docking
+
+%sofa-dock-all {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+%sofa-dock-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+}
+
+%sofa-dock-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+%sofa-dock-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+%sofa-dock-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+// Centering Elements
+
+%sofa-center-wrapper {
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+%sofa-center-wrapper__child {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+// Flex Box (these will result in longer rule sets since vendor prefixes will be added)
+
+%sofa-flexbox {
+    display: flex;
+}
+
+%sofa-flex-column {
+    @extend %sofa-flexbox;
+
+    flex-direction: column;
+}

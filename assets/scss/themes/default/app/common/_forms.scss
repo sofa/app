@@ -1,0 +1,75 @@
+.sofa-text-field {
+    @extend %sofa-text-field;
+}
+
+.sofa-form-item {
+    @extend %sofa-form__item;
+}
+
+.sofa-form-label {
+    @extend %sofa-form-label;
+}
+
+.sofa-form-label--required {
+    @extend %sofa-form-label--required;
+
+    color: $theme-color-dark;
+}
+
+.sofa-form-label--optional {
+    @extend %sofa-form-label--optional;
+
+    color: $theme-color-dark__tinted--50;
+}
+
+.sofa-validation__wrapper {
+    position: relative;
+}
+
+.sofa-validation__message--success {
+    @include fa-icon-type($fa-var-check-circle, after);
+
+    &:after {
+        position: absolute;
+        top: 0;
+        right: .875rem;
+        //set line-height to the height of the text-box
+        line-height: 2.75rem;
+        color: $theme-success-color;
+    }
+}
+
+.sofa-validation__message--fail {
+    position: relative;
+    display: block;
+    padding: .5rem .625rem;
+    border: 1px solid $theme-warning-border-color;
+    color: $theme-warning-color;
+    font-size: 0.875rem;
+    background: $theme-warning-background-color;
+    margin: -1px 0 0;
+
+    &:before {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: -9px;
+        left: .625rem;
+        background: $theme-warning-background-color;
+        border-bottom-color: $theme-warning-background-color;
+        border: 1px solid $theme-warning-border-color;
+        border-width: 1px 0 0 1px;
+        transform: rotate(45deg);
+    }
+}
+
+.sofa-date__field--small,
+.sofa-date__field--large {
+    display: inline-block;
+    width: 3em;
+}
+
+.sofa-date__field--large {
+    width: 5em;
+}

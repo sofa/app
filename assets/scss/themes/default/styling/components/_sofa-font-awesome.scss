@@ -1,0 +1,38 @@
+@import "../../../../../../node_modules/font-awesome/scss/variables";
+@import "../../../../../../node_modules/font-awesome/scss/mixins";
+
+$fa-font-path: '//netdna.bootstrapcdn.com/font-awesome/' + $fa-version + '/fonts';
+
+@import "../../../../../../node_modules/font-awesome/scss/path";
+
+@mixin fa-base-class {
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    text-rendering: auto; // optimizelegibility throws things off #1094
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+%fa-base-class {
+    @include fa-base-class;
+}
+
+@mixin fa-icon-type($content, $place: before) {
+
+    @if $place == before {
+        &:before {
+            @extend %fa-base-class;
+
+            content: $content;
+        }
+    } @else if $place == after {
+        &:after {
+            @extend %fa-base-class;
+
+            content: $content;
+        }
+    }
+}

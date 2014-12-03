@@ -1,0 +1,16 @@
+.sofa-go-back-control-button {
+    line-height: 2.5rem;
+    background: none;
+    border: none;
+    padding: 0 1rem;
+    color: inherit;
+    font-size: inherit;
+
+    @include fa-icon-type($fa-var-angle-left);
+
+    &:before {
+        width: 1rem;
+        line-height: inherit;
+        text-align: left;
+    }
+}

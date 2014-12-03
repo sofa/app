@@ -1,0 +1,168 @@
+// TODO: does this really make a difference?
+%fix-scrolling-behaviour {
+    overflow: hidden;
+    height: 100%;
+    -webkit-overflow-scrolling: auto;
+}
+
+html {
+   &.modern-flexbox {
+       @extend %fix-scrolling-behaviour;
+
+       body, .snap-content {
+           @extend %fix-scrolling-behaviour;
+       }
+   }
+}
+
+.sofa-ui-view,
+.sofa-view__header {
+    // some tweaks for less flickering
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+//On Android 2, those two styles cause the page to jump around
+//when focusing input elements. This totally breaks things like
+//checkout forms for such users. We normally set those for better
+//performance but we disable them for Android 2.x
+//https://github.com/scottjehl/Device-Bugs/issues/32
+.android-2 {
+    .sofa-ui-view {
+        -webkit-backface-visibility: initial;
+        -webkit-transform-style: initial;
+    }
+}
+
+.overflow-support {
+    .sofa-view {
+        height: 100%;
+    }
+}
+
+.overflow-support.modern-flexbox {
+    .sofa-view {
+        @extend %sofa-dock-all;
+    }
+}
+
+.overflow-support.modern-flexbox {
+    .sofa-view {
+        flex: 1 1 auto;
+        min-height: 100%;
+    }
+
+    .sofa-sticky-view {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+    }
+
+    .sofa-sticky-view__content {
+        flex: 1;
+    }
+}
+
+// the page wrapper needs to be `position:relative` for the animations
+// since those need `position: absolute
+.sofa-view-wrapper {
+    position: relative;
+}
+
+
+.no-modern-flexbox {
+    .sofa-view-wrapper,
+    .sofa-ui-view {
+        height: 100%;
+    }
+}
+
+.overflow-support.modern-flexbox {
+    .sofa-shell {
+        @extend %sofa-dock-all;
+
+        overflow: hidden;
+    }
+}
+
+.overflow-support.modern-flexbox {
+    .sofa-view-wrapper,
+    .sofa-shell__content {
+        @extend %sofa-flex-column;
+
+        flex: 1;
+    }
+    .sofa-ui-view {
+        flex: 1;
+    }
+    .sofa-view {
+        @extend %sofa-scroll-container;
+    }
+}
+
+.no-overflow-support{
+    .sofa-shell__content{
+        // if we use `height` instead of `min-height` scrolling does not
+        // work anymore on Android 2.3. I love the web!
+        min-height: 100%;
+    }
+}
+
+.sofa-shell__search-wrapper {
+    height: 100%;
+}
+
+.ipad-ios-7 {
+    position: fixed;
+    top:0;
+}
+
+.ipad-ios-7 > body {
+    @extend %sofa-dock-all;
+}
+
+
+// TODO: exclude to separate file "_view.scss"
+.sofa-view__header {
+    @include breakpoint(wide) {
+        @include sofa-clearfix;
+
+        padding: 1rem 0 .5rem;
+
+        &.sofa-view__header--root {
+            padding: .5rem 0;
+        }
+    }
+}
+
+.sofa-up-nav {
+    color: $theme-color-dark__lighter--50;
+
+    @include breakpoint(narrow) {
+        line-height: 1.5rem;
+        padding: 0;
+    }
+
+    @include breakpoint(wide) {
+        float: left;
+    }
+}
+
+.sofa-view__title {
+    line-height: 2rem;
+    padding: 1rem 1rem 2rem;
+
+    @include breakpoint(narrow) {
+        text-align: center;
+    }
+
+    @include breakpoint(wide) {
+        float: left;
+        padding: 0;
+
+        .cc-title--huge {
+            padding: .25rem .625rem;
+        }
+    }
+}
+

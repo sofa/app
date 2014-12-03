@@ -1,0 +1,86 @@
+$theme-search-result__image-size: 50px;
+// this should match the product images' background color:
+$theme-search-result__image-background-color:  $theme-color-light;
+
+.sofa-search-result {
+    @extend %sofa-dock-all;
+    @extend %sofa-scroll-container;
+
+    padding-top: 3.25rem;
+    height: 100%;
+    z-index: 3;
+    background: rgba(0, 0, 0, .66);
+
+    .sofa-loading-spinner {
+        position: absolute;
+        top: 33%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.sofa-search-result__group-list {
+    background: $theme-color-light;
+}
+
+.sofa-search-result__group-header {
+    position: relative;
+    padding: .625rem;
+    line-height: 1.5rem;
+    color: $theme-color-dark__tinted--20;
+    background: $theme-color-light__darker--05;
+    border: 1px solid $theme-color-light__darker--15;
+    border-width: 1px 0;
+}
+
+.sofa-search-result__group-header-badge {
+    float: right;
+    text-align: center;
+    padding: 0 .25rem;
+    min-width: 1.5rem;
+    border-radius: 2px;
+    background: $theme-color-light__darker--20;
+    color: $theme-color-light;
+    font-size: smaller;
+}
+
+.sofa-search-result__item-list {
+    display: table;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.sofa-search-result__item {
+    @extend %sofa-link-list__item;
+
+    display: table-row;
+    padding: 0 .625rem;
+    color: $theme-color-light__darker--33;
+}
+
+%search-result-table-cells {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sofa-search-result__item-image-wrapper {
+    @extend %search-result-table-cells;
+
+    width: $theme-search-result__image-size;
+    padding: .25rem 0;
+
+    .sofa-search-result__item-image {
+        width: $theme-search-result__image-size;
+        height: $theme-search-result__image-size;
+    }
+}
+
+.sofa-search-result__item-text-wrapper {
+    @extend %search-result-table-cells;
+
+    padding: 0 .625rem;
+
+    b {
+        color: darken($theme-color-light__darker--33, 33%);
+    }
+}

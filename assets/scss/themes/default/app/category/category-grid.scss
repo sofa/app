@@ -1,0 +1,86 @@
+
+.sofa-category-grid__list {
+    @extend %sofa-grid-list;
+
+    border-color: $theme-color-light__darker--15;
+    margin-bottom: -1px; // hide bottom border of last row's items
+}
+
+.sofa-category-grid__item {
+    @extend %sofa-grid-list__item;
+
+    background: #fff; // should match any given image background color
+    border-color: $theme-color-light__darker--15;
+    text-align: center;
+
+    .no-modern-flexbox & {
+        min-height: 230px;
+    }
+
+    .sofa-category-item {
+        @extend %sofa-highlight-transition--grid;
+
+        &.sofa-highlight--in {
+            @extend %sofa-highlight--grid--in;
+        }
+
+        &.sofa-highlight--out {
+            @extend %sofa-highlight--grid--out;
+        }
+    }
+
+}
+
+.sofa-category-item {
+    text-decoration: none;
+    padding: 1px;
+    color: $theme-color-dark__lighter--10;
+
+    .no-modern-flexbox & {
+        display: block;
+        width: 100%;
+    }
+
+    .modern-flexbox & {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+}
+
+.sofa-category-item__media-wrapper {
+    padding: 10px;
+
+    .no-modern-flexbox & {
+        min-height: 220px;
+    }
+
+    .modern-flexbox & {
+        flex: 1 0 220px;
+    }
+}
+
+// TODO: refactor as soon as the image resizer supports "force-dimensions"
+.sofa-category-item__media {
+    // Forcing media items to have the same height
+    height: 200px;
+}
+
+// TODO: refactor as soon as the image resizer supports "force-dimensions"
+.sofa-category-item__image {
+    display: block;
+    max-width: 100%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.sofa-category-item__info-wrapper {
+    padding: .5rem .625rem;
+    line-height: 1.5rem;
+}
+
+.sofa-category-item__title {
+    display: block;
+    font-weight: 400;
+    text-transform: uppercase;
+}
