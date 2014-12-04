@@ -1,14 +1,11 @@
-<div class="cc-header" ng-controller="HeaderController">
-    <div class="cc-header__icon-wrapper--left">
-        <i class="cc-header__icon cc-header__icon--sidemenu" snap-toggle></i>
-    </div>
-    <div class="cc-header__icon-wrapper--right">
-        <i class="cc-header__icon cc-header__icon--cart" ng-click="snapCart()">
-            <span class="cc-header__icon-badge--cart" ng-bind="basketItemCount" ng-show="basketItemCount > 0"></span>
-        </i>
-    </div>
-    <div ng-if="cfg.showSearch" class="cc-header__icon-wrapper--right">
-        <i class="cc-header__icon cc-header__icon--search" ng-click="showSearch()"></i>
-    </div>
-    <a class="cc-header__logo" href="/"></a>
+<div class="sofa-app-header" ng-controller="HeaderController">
+    <button type="button" class="sofa-app-header__button sofa-app-header__button--side-menu" snap-toggle>
+    </button>
+    <button type="button" class="sofa-app-header__button sofa-app-header__button--cart" ng-click="snapCart()">
+        <span class="sofa-app-header__badge" ng-bind="basketItemCount" ng-show="basketItemCount > 0"></span>
+    </button>
+    <button type="button" class="sofa-app-header__button sofa-app-header__button--search" ng-click="showSearch()">
+    </button>
+
+    <a class="sofa-app-header__logo" href="/"></a>
 </div>

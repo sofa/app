@@ -1,50 +1,48 @@
-<div cc-scroller-announcer class="cc-scroller--if-fixed cc-view-wrapper">
+<div cc-scroller-announcer class="sofa-view">
 
-    <div class="cc-sticky-view-wrapper">
+    <div class="sofa-sticky-view">
 
-        <div class="cc-sticky-view-wrapper__content">
+        <div class="sofa-sticky-view__content">
             <cc-inject target="aboveContent"></cc-inject>
 
             <div bindonce="category" ng-if="category">
 
-                <div class="cc-category__header-block">
-                    <div class="cc-category__up-nav" ng-show="category.parent">
-                        <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+                <div class="sofa-view__header sofa-view__header--category"
+                     ng-class="{'sofa-view__header--root': category.isRoot}">
+                    <div class="sofa-up-nav" ng-if="category.parent">
+                        <sofa-go-back-control button-text="{{ ln.home }}" category="category"></sofa-go-back-control>
                     </div>
-                    <div class="cc-category__header">
+                    <div class="sofa-view__title">
                         <h1 class="cc-title--huge" bo-text="headline"></h1>
                     </div>
                 </div>
 
-                <ul class="cc-category-grid">
-                    <li ng-repeat="category in category.children" class="cc-list__item">
+                <div class="sofa-category-grid">
+                    <ul class="sofa-category-grid__list">
+                        <li ng-repeat="category in category.children" class="sofa-category-grid__item">
+                            <a ng-href="{{category.getOriginFullUrl()}}"
+                               ng-click="goToCategory(category, $event)"
+                               ng-class="{ 'sofa-highlight--out': backStepHighlightService.isHighlighted(category) }"
+                               class="sofa-category-item">
 
-                        <a
-                            ng-href="{{category.getOriginFullUrl()}}"
-                            ng-click="goToCategory(category, $event)"
-                            ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(category) }"
-                            class="cc-category-item">
-
-                            <div class="cc-category-item__media-wrapper">
-                                <div class="cc-category-item__media">
-                                    <img class="cc-category-item__image" cc-src="category.image" cc-src-config="{maxwidth: 300, maxheight: 200}" cc-src-spinner="true" alt=""/>
+                                <div class="sofa-category-item__media-wrapper">
+                                    <div class="sofa-category-item__media">
+                                        <img class="sofa-category-item__image" cc-src="category.image" cc-src-config="{maxwidth: 300, maxheight: 200}" alt=""/>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="cc-category-item__info-wrapper">
-                                <strong class="cc-category-item__title" bo-text="category.label"></strong>
-                            </div>
-
-                        </a>
-
-                    </li>
-                </ul>
+                                <div class="sofa-category-item__info-wrapper">
+                                    <strong class="sofa-category-item__title" bo-text="category.label"></strong>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div ng-if="!category" ng-include="tpl.404"></div>
         </div>
 
-        <div class="cc-sticky-view-wrapper__footer">
+        <div class="sofa-sticky-view__footer">
             <cc-inject target="aboveFooter"></cc-inject>
             <cc-footer></cc-footer>
             <cc-inject target="beneathFooter"></cc-inject>

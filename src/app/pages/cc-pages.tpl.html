@@ -1,18 +1,15 @@
-<div cc-scroller-announcer class="cc-view-wrapper">
+<div cc-scroller-announcer class="sofa-view">
 
-    <div class="cc-sticky-view-wrapper">
+    <div class="sofa-sticky-view">
 
-        <div class="cc-sticky-view-wrapper__content">
+        <div class="sofa-sticky-view__content">
             <cc-inject target="aboveContent"></cc-inject>
 
-            <div class="cc-pages__header-block">
-                <div class="cc-pages__up-nav">
-                    <cc-go-back-button>
-                        <i class="cc-go-back-button__icon"></i>
-                        <span class="cc-go-back-button__text" ng-bind="ln.back"></span>
-                    </cc-go-back-button>
+            <div class="sofa-view__header sofa-view__header--pages">
+                <div class="sofa-up-nav">
+                    <sofa-go-back-control button-text="{{ ln.back }}"></sofa-go-back-control>
                 </div>
-                <div class="cc-pages__header">
+                <div class="sofa-view__title">
                     <h1 class="cc-title--huge" ng-bind="page.title"></h1>
                 </div>
             </div>
@@ -27,14 +24,14 @@
             </div>
 
             <div ng-if="isLoading" class="cc-pages__loading-box">
-                <cc-loading-spinner class="cc-pages__loading-box-spinner"></cc-loading-spinner>
+                <sofa-loading-spinner class="cc-pages__loading-box-spinner"></sofa-loading-spinner>
             </div>
 
             <div ng-include="tpl.404" ng-if="!page.content && !isLoading"></div>
 
         </div>
 
-        <div class="cc-sticky-view-wrapper__footer">
+        <div class="sofa-sticky-view__footer">
             <cc-inject target="aboveFooter"></cc-inject>
             <cc-footer></cc-footer>
             <cc-inject target="beneathFooter"></cc-inject>

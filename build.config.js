@@ -183,6 +183,7 @@ module.exports = {
             'node_modules/sofa-base/src/filter/**/*.js',
             'node_modules/sofa-base/src/services/**/*.js',
             // Hand-picking the directives
+            'node_modules/angular-sofa-address/dist/*.js',
             'node_modules/sofa-base/src/directives/sofaZippy/*.js',
             'node_modules/sofa-base/src/directives/sofaVariantSelector/*.js',
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.js',
@@ -195,12 +196,11 @@ module.exports = {
             'node_modules/sofa-base/src/directives/sofaForms/**/*.js',
             'node_modules/sofa-base/src/directives/sofaFooterLinks/*.js',
             'node_modules/sofa-base/src/directives/sofaCategoryTreeView/*.js',
-            'node_modules/sofa-base/src/directives/sofaAddress/*.js',
+            'node_modules/sofa-base/src/directives/sofaGoBackControl/*.js',
+            'node_modules/sofa-base/src/directives/sofaLoadingSpinner/*.js',
+            'node_modules/sofa-base/src/directives/sofaDateField/*.js',
             // TODO: rename to sofa
-            'node_modules/sofa-base/src/directives/ccTemplateCode/*.js',
-            'node_modules/sofa-base/src/directives/ccGoUpControl/*.js',
-            'node_modules/sofa-base/src/directives/ccGoUpButton/*.js',
-            'node_modules/sofa-base/src/directives/ccGoBackButton/*.js'
+            'node_modules/sofa-base/src/directives/ccTemplateCode/*.js'
         ],
         tpl: [
             // Hand-picking the directives
@@ -213,11 +213,9 @@ module.exports = {
             'node_modules/sofa-base/src/directives/sofaForms/**/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaFooterLinks/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaCategoryTreeView/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaAddress/*.tpl.html',
-            // TODO: rename to sofa
-            'node_modules/sofa-base/src/directives/ccGoUpControl/*.tpl.html',
-            'node_modules/sofa-base/src/directives/ccGoUpButton/*.tpl.html',
-            'node_modules/sofa-base/src/directives/ccGoBackButton/*.tpl.html'
+            'node_modules/sofa-base/src/directives/sofaGoBackControl/*.tpl.html',
+            'node_modules/sofa-base/src/directives/sofaLoadingSpinner/*.tpl.html',
+            'node_modules/sofa-base/src/directives/sofaDateField/*.tpl.html'
         ],
         css: [],
         scss: [

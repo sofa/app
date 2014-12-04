@@ -1,18 +1,12 @@
-<div ng-show="vm.page === vm.SUMMARY_PAGE" bindonce="ln" class="cc-scroller--if-fixed cc-view-wrapper">
+<div ng-show="vm.page === vm.SUMMARY_PAGE" bindonce="ln" class="sofa-view">
 
-    <div class="cc-checkout__header-block">
-
-        <div class="cc-checkout__up-nav">
-            <cc-go-back-button>
-                <i class="cc-go-back-button__icon"></i>
-                <span class="cc-go-back-button__text" ng-bind="ln.back"></span>
-            </cc-go-back-button>
+    <div class="sofa-view__header sofa-view__header--summary">
+        <div class="sofa-up-nav">
+            <sofa-go-back-control button-text="{{ ln.back }}"></sofa-go-back-control>
         </div>
-
-        <div class="cc-checkout__header">
+        <div class="sofa-view__title">
             <h1 bo-text="ln.summary" class="cc-title--huge"></h1>
         </div>
-
     </div>
 
     <div class="cc-checkout__wrapper">

@@ -1,17 +1,14 @@
-<div cc-scroller-announcer class="cc-view-wrapper cc-flex-column">
+<div cc-scroller-announcer class="sofa-view">
 
         <div bindonce="product" ng-if="product" class="cc-product--tablet">
 
-            <div class="cc-product__header-block">
-
-                <div class="cc-product__up-nav">
-                    <cc-go-up-control category="upCategory"></cc-go-up-control>
+            <div class="sofa-view__header sofa-view__header--product">
+                <div class="sofa-up-nav">
+                    <sofa-go-back-control category="upCategory"></sofa-go-back-control>
                 </div>
-
-                <div class="cc-product__header">
+                <div class="sofa-view__title">
                     <h1 bo-text="product.name" class="cc-title--huge"></h1>
                 </div>
-
             </div>
 
             <div class="cc-product__content-block">

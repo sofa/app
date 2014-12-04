@@ -1,25 +1,10 @@
-<div ng-class="{'cc-search-box--opened': vm.searchUiState.isOpen(), 'cc-search-box--closed' : !vm.searchUiState.isOpen() }" ng-controller="SearchController as vm">
-    <i class="cc-search-box__close fa fa-angle-up" ng-click="searchUiState.abort()"></i>
-
-    <div class="cc-search-box__input-wrapper">
-        <cc-search-field ng-model="searchUiState.searchTerm" placeholder-text="ln.productSearchPlaceholder" focus="searchUiState.isOpen()"></cc-search-field>
+<div class="sofa-search-box"
+     ng-class="{'sofa-search-box--closed': !vm.searchUiState.isOpen() }"
+     ng-controller="SearchController as vm">
+    <button type="button" class="sofa-search-box__close" ng-click="searchUiState.abort()"></button>
+    <div class="sofa-search-box__input-wrapper">
+        <cc-search-field ng-model="searchUiState.searchTerm" placeholder-text="ln.productSearchPlaceholder"
+                         focus="searchUiState.isOpen()">
+        </cc-search-field>
     </div>
-
-</div>
-
-<div class="cc-modal"
-     ng-click="searchUiState.abort()"
-     ng-show="(searchUiState.isOpen() && !searchUiState.hasResults()) || (searchUiState.isOpen() && searchUiState.isRunningSearch)">
-
-    <cc-loading-spinner class="cc-loading-spinner--centered"
-            ng-show="searchUiState.isRunningSearch">
-    </cc-loading-spinner>
-</div>
-
-<div class="cc-modal--solid" ng-show="searchUiState.hasNoMatch()">
-
-    <div bindonce="ln" class="cc-search-no-result">
-        <p bo-text="ln.searchNotFound"></p>
-    </div>
-
 </div>

@@ -1,8 +1,8 @@
-<div class="cc-view-wrapper">
+<div class="sofa-view">
 
-    <div class="cc-sticky-view-wrapper">
+    <div class="sofa-sticky-view">
 
-        <div class="cc-sticky-view-wrapper__content">
+        <div class="sofa-sticky-view__content">
 
             <div class="cc-pages__header-block">
                 <div class="cc-pages__header">
@@ -20,7 +20,7 @@
             </div>
 
             <div ng-if="isLoading" class="cc-pages__loading-box">
-                <cc-loading-spinner class="cc-pages__loading-box-spinner"></cc-loading-spinner>
+                <sofa-loading-spinner class="cc-pages__loading-box-spinner"></sofa-loading-spinner>
             </div>
 
             <div ng-include="tpl.404" ng-if="!page.content && !isLoading"></div>

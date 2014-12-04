@@ -53,7 +53,7 @@ angular.module('CouchCommerceApp')
         }
 
         if (!$mainWrapper) {
-            $mainWrapper = angular.element(document.querySelector('.cc-main-wrapper'));
+            $mainWrapper = angular.element(document.querySelector('.sofa-shell__content'));
         }
 
         // delegating this work to ng-class does not work out well for us and it

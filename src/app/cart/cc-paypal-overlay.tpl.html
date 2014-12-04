@@ -20,5 +20,5 @@
     </div>
     <div class="cc-message-box--error" ng-show="!vm.supportedShippingMethods.length" bo-text="ln.noPayPalShippingMethod"></div>
     <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>
-    <cc-loading-spinner ng-show="processing"></cc-loading-spinner>
+    <sofa-loading-spinner ng-show="processing"></sofa-loading-spinner>
 </div>

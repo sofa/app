@@ -1,61 +1,59 @@
-<div cc-scroller-announcer bindonce="products" class="cc-view-wrapper">
+<div cc-scroller-announcer bindonce="products" class="sofa-view">
 
-    <div class="cc-sticky-view-wrapper">
+    <div class="sofa-sticky-view">
 
-        <div class="cc-sticky-view-wrapper__content">
+        <div class="sofa-sticky-view__content">
             <cc-inject target="aboveContent"></cc-inject>
 
-            <div class="cc-products__header-block">
-                <div class="cc-products__up-nav">
-                    <cc-go-up-control home-text="{{ ln.home }}" category="category"></cc-go-up-control>
+            <div class="sofa-view__header sofa-view__header--products">
+                <div class="sofa-up-nav">
+                    <sofa-go-back-control button-text="{{ ln.home }}" category="category"></sofa-go-back-control>
                 </div>
-                <div class="cc-products__header">
+                <div class="sofa-view__title">
                     <h1 class="cc-title--huge" bo-text="headline"></h1>
                 </div>
             </div>
 
             <div bo-if="products.length > 0">
-
-                <div class="cc-products__controls">
-                <span ng-if="isTabletSize" class="cc-products__product-count">
-                    <b bo-text="products.length"></b>
-                    <span bo-text="ln.productCountText"></span>
-                </span>
+                <div class="sofa-product-controls">
                     <cc-select-box
                             model="sortModel.sortBy"
                             data="sortModel.sortTypes"
                             choose-text="ln.sortBy"
                             display-value-exp="'title'">
                     </cc-select-box>
+                    <span ng-if="isTabletSize" class="sofa-product-controls-count">
+                        <b bo-text="products.length"></b>
+                        <span bo-text="ln.productCountText"></span>
+                    </span>
                 </div>
 
-                <ul class="cc-products__list">
-                    <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
-                        class="cc-list__item">
+                <div class="sofa-product-grid">
+                    <ul class="sofa-product-grid__list">
+                        <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
+                            class="sofa-product-grid__item">
 
-                        <a
-                            ng-class="{ 'cc-highlight--out': backStepHighlightService.isHighlighted(product) }"
-                            ng-href="{{ product.getOriginFullUrl() }}"
-                            ng-click="goToProduct(product, $event)"
-                            class="cc-product-item">
+                            <a ng-class="{ 'sofa-highlight--out': backStepHighlightService.isHighlighted(product) }"
+                               ng-href="{{ product.getOriginFullUrl() }}"
+                               ng-click="goToProduct(product, $event)"
+                               class="sofa-product-item">
 
-                            <div class="cc-product-item__media-wrapper">
-                                <div class="cc-product-item__media">
-                                    <img class="cc-product-item__image" cc-src="product.getImage('large')" cc-src-config="{maxwidth: 140, maxheight: 140}" cc-src-spinner="true" alt=""/>
+                                <div class="sofa-product-item__media-wrapper">
+                                    <div class="sofa-product-item__media">
+                                        <img class="sofa-product-item__image" cc-src="product.getImage('large')" cc-src-config="{maxwidth: 140, maxheight: 140}" cc-src-spinner="true" alt=""/>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="cc-product-item__info-wrapper">
-                                <strong class="cc-product-item__title" bo-text="product.name"></strong>
-
-                                <cc-price product="product"></cc-price>
-                                <div class="cc-product-item__base-price-info" ng-bind="productService.getBasePriceInfo(product)"></div>
-                            </div>
-
-                        </a>
-
-                    </li>
-                </ul>
+                                <div class="sofa-product-item__info-wrapper">
+                                    <strong class="sofa-product-item__title" bo-text="product.name"></strong>
+                                    <div>
+                                        <cc-price product="product"></cc-price>
+                                        <div class="sofa-product-item__base-price-info" ng-bind="productService.getBasePriceInfo(product)"></div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div bo-if="products.length === 0">
@@ -64,7 +62,7 @@
 
         </div>
 
-        <div class="cc-sticky-view-wrapper__footer">
+        <div class="sofa-sticky-view__footer">
             <cc-inject target="aboveFooter"></cc-inject>
             <cc-footer></cc-footer>
             <cc-inject target="beneathFooter"></cc-inject>

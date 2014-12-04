@@ -5,7 +5,7 @@ angular.module('CouchCommerceApp')
 
     'use strict';
 
-    var WRAPPER_ELEMENT_CLASS               = 'cc-page-wrapper',
+    var WRAPPER_ELEMENT_CLASS               = 'sofa-view-wrapper',
         ANIMATION_SLIDE_IN_SETUP_CLASS      = 'slide-in-btt',
         ANIMATION_SLIDE_IN_ACTIVE_CLASS     = 'slide-in-btt-active',
         ANIMATION_SLIDE_OUT_SETUP_CLASS     = 'slide-out-ttb',
