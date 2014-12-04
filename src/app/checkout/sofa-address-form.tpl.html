@@ -1,0 +1,150 @@
+<ul class="sofa-form-items" bindonce="ln">
+    <li class="sofa-form-item" ng-if="optionalFields.company && !parcelStation">
+        <label for="f_company_{{instance}}" class="sofa-form-label--optional" bo-text="ln.company"></label>
+        <input type="text" id="f_company_{{instance}}" name="f_company" class="sofa-text-field"
+               ng-model="addressModel.company" />
+    </li>
+    <li class="sofa-form-item" ng-if="optionalFields.salutation">
+        <span class="sofa-form-label--required" bo-text="ln.salutation"></span>
+        <cc-select-box
+                model="addressModel.salutation"
+                data="addressOptions.salutations"
+                required="true"
+                choose-text="ln.choose"
+                property-name="f_salutation">
+        </cc-select-box>
+        <span ng-show="modelController.f_salutation.$dirty && modelController.f_salutation.$invalid"
+              class="sofa-validation__message--fail" bo-text="ln.errors.salutation">
+        </span>
+    </li>
+    <li class="sofa-form-item">
+        <label for="f_firstname_{{instance}}" class="sofa-form-label--required" bo-text="ln.firstname"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_firstname.ccValid}">
+            <input type="text" id="f_firstname_{{instance}}" name="f_firstname" class="sofa-text-field"
+                   ng-model="addressModel.firstName" required cc-lazy-validation />
+            <span ng-show="modelController.f_firstname.$dirty && modelController.f_firstname.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.firstname">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item">
+        <label for="f_lastname_{{instance}}" class="sofa-form-label--required" bo-text="ln.lastname"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_lastname.ccValid}">
+            <input type="text" id="f_lastname_{{instance}}" name="f_lastname" class="sofa-text-field"
+                   ng-model="addressModel.lastName" required cc-lazy-validation />
+            <span ng-show="modelController.f_lastname.$dirty && modelController.f_lastname.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.lastname">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item" ng-if="!parcelStation">
+        <label for="f_street_{{instance}}" class="sofa-form-label--required" bo-text="ln.street"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_street.ccValid}">
+            <input type="text" id="f_street_{{instance}}" name="f_street" class="sofa-text-field"
+                   ng-model="addressModel.street" required cc-lazy-validation/>
+            <span ng-show="modelController.f_street.$dirty && modelController.f_street.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.street">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item" ng-if="!parcelStation">
+        <label for="f_street_number_{{instance}}" class="sofa-form-label--required" bo-text="ln.streetNumber"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_street_number.ccValid}">
+            <input type="text" id="f_street_number_{{instance}}" name="f_street_number" class="sofa-text-field"
+                   ng-model="addressModel.streetNumber" required cc-lazy-validation/>
+            <span ng-show="modelController.f_street_number.$dirty && modelController.f_street_number.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.streetNumber">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item" ng-if="optionalFields.streetExtra && !parcelStation">
+        <label for="f_street_extra_{{instance}}" class="sofa-form-label--optional" bo-text="ln.streetExtra"></label>
+        <div class="sofa-validation__wrapper">
+            <input type="text" id="f_street_extra_{{instance}}" name="f_street_extra" class="sofa-text-field"
+                   ng-model="addressModel.streetExtra" />
+        </div>
+    </li>
+    <li class="sofa-form-item" ng-if="parcelStation">
+        <label for="f_parcel_station_code" class="sofa-form-label--required" bo-text="ln.parcelStation.customerCode"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_parcel_station_code.ccValid}">
+            <input type="text" id="f_parcel_station_code" name="f_parcel_station_code" class="sofa-text-field"
+                   ng-model="addressModel.parcelStationCustomerCode" required cc-lazy-validation/>
+            <span ng-show="modelController.f_parcel_station_code.$dirty && modelController.f_parcel_station_code.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.parcelStation.customerCode">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item" ng-if="parcelStation">
+        <label for="f_parcel_station_name" class="sofa-form-label--required" bo-text="ln.parcelStation.name"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_parcel_station_name.ccValid}">
+            <input type="text" id="f_parcel_station_name" name="f_parcel_station_name" class="sofa-text-field"
+                   ng-model="addressModel.parcelStationName" required cc-lazy-validation/>
+            <span ng-show="modelController.f_parcel_station_name.$dirty && modelController.f_parcel_station_name.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.parcelStation.name">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item">
+        <label for="f_zip_{{instance}}" class="sofa-form-label--required" bo-text="ln.zip"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_zip.ccValid}">
+            <input type="text" id="f_zip_{{instance}}" name="f_zip" class="sofa-text-field"
+                   ng-model="addressModel.zip" required cc-lazy-validation/>
+            <span ng-show="modelController.f_zip.$dirty && modelController.f_zip.ccInvalid"
+                  class="sofa-validation__message--fail" bo-text="ln.errors.zip">
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item">
+        <label for="f_city_{{instance}}" class="sofa-form-label--required" bo-text="ln.city"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_city.ccValid}">
+            <input type="text" id="f_city_{{instance}}" name="f_city" class="sofa-text-field"
+                   ng-model="addressModel.city" required cc-lazy-validation/>
+        <span ng-show="modelController.f_city.$dirty && modelController.f_city.ccInvalid"
+              class="sofa-validation__message--fail" bo-text="ln.errors.city">
+        </span>
+        </div>
+    </li>
+    <li class="sofa-form-item">
+        <span class="sofa-form-label--required" bo-text="ln.country"></span>
+        <div class="sofa-validation__wrapper">
+            <cc-select-box
+                    model="addressModel.country"
+                    data="addressOptions.countries"
+                    choose-text="ln.choose"
+                    required="true"
+                    property-name="f_country"
+                    display-value-exp="'label'">
+            </cc-select-box>
+        <span ng-show="modelController.f_country.$dirty && modelController.f_country.$invalid"
+              class="sofa-validation__message--fail" bo-text="ln.errors.country">
+        </span>
+        </div>
+    </li>
+    <li class="sofa-form-item">
+        <label for="f_email_{{instance}}" class="sofa-form-label--required" bo-text="ln.email"></label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController.f_email.ccValid}">
+            <input type="email" id="f_email_{{instance}}" name="f_email" class="sofa-text-field"
+                   ng-model="addressModel.email" required cc-lazy-validation/>
+            <span ng-show="modelController.f_email.$dirty && modelController.f_email.ccInvalid">
+                <span ng-show="modelController.f_email.$error.required"
+                      class="sofa-validation__message--fail" bo-text="ln.errors.email"></span>
+                <span ng-show="modelController.f_email.$error.email"
+                      class="sofa-validation__message--fail" bo-text="ln.errors.emailPattern"></span>
+            </span>
+        </div>
+    </li>
+    <li class="sofa-form-item">
+        <label for="f_phone_{{instance}}" class="sofa-form-label--optional" bo-text="ln.phone"></label>
+        <input type="tel" id="f_phone_{{instance}}" name="f_phone" class="sofa-text-field"
+               ng-model="addressModel.phone" cc-lazy-validation />
+    </li>
+</ul>

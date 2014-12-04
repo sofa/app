@@ -242,8 +242,9 @@ angular.module('CouchCommerceApp', [
 
         .state('checkout', {
             url: '/checkout',
-            templateUrl: 'checkout/cc-checkout.tpl.html',
+            templateUrl: 'checkout/sofa-checkout.tpl.html',
             controller: 'CheckoutController',
+            controllerAs: 'ctrl',
             onEnter: function (metaService) {
                 metaService.set({
                     description: ''

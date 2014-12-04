@@ -1,0 +1,194 @@
+<div cc-scroller-announcer class="sofa-view" bindonce="ln">
+
+    <div class="sofa-sticky-view">
+
+        <div class="sofa-sticky-view__content">
+
+            <div class="sofa-view__header sofa-view__header--checkout">
+                <div class="sofa-up-nav">
+                    <sofa-go-back-control button-text="{{ ln.back }}"></sofa-go-back-control>
+                </div>
+                <div class="sofa-view__title">
+                    <h1 bo-text="ln.sofaCheckout.title" class="cc-title--huge"></h1>
+                </div>
+            </div>
+
+            <div class="sofa-checkout__wrapper">
+
+                <!-- Shipping Address -->
+                <section class="sofa-checkout-section sofa-checkout-section--shipping-address">
+                    <header class="sofa-checkout-section__header">
+                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                                ng-click="stepCtrl.editSection('shippingAddress')" ng-show="stepCtrl.steps.shippingAddress.mode === 'summary'">
+                        </button>
+                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.shippingAddress"></h2>
+                    </header>
+
+                    <!-- Shipping Address EDIT -->
+                    <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.shippingAddress.mode === 'edit'">
+                        <div class="sofa-form-item">
+                            <cc-check-box model="stepCtrl.steps.shippingAddress.useParcelStation" label="ln.sofaCheckout.useParcelStation"></cc-check-box>
+                        </div>
+                        <form name="shippingAddressForm" class="sofa-address-form">
+                            <sofa-address-form
+                                    optional-fields="ctrl.viewModel.optionalFields.shipping"
+                                    parcel-station="stepCtrl.steps.shippingAddress.useParcelStation"
+                                    address-options="ctrl.viewModel.addressOptions"
+                                    ng-model="checkoutModel.shippingAddress">
+                            </sofa-address-form>
+                        </form>
+                    </div>
+                    <!-- Shipping Address SUMMARY -->
+                    <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.shippingAddress.mode === 'summary'">
+                        <sofa-address data="checkoutModel.shippingAddress"></sofa-address>
+                    </div>
+
+                    <footer class="sofa-checkout-section__footer">
+                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                                ng-click="stepCtrl.proceedFrom('shippingAddress')" ng-disabled="shippingAddressForm.$invalid"
+                                ng-show="stepCtrl.steps.shippingAddress.mode === 'edit'">
+                        </button>
+                    </footer>
+                </section>
+
+                <!-- Billing Address -->
+                <section class="sofa-checkout-section"
+                         ng-class="{'sofa-checkout-section--disabled': !stepCtrl.steps.billingAddress.active}">
+                    <header class="sofa-checkout-section__header">
+                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                                ng-click="stepCtrl.editSection('billingAddress')" ng-show="stepCtrl.steps.billingAddress.mode === 'summary'">
+                        </button>
+                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.billingAddress"></h2>
+                    </header>
+
+                    <!-- Billing Address EDIT -->
+                    <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.billingAddress.mode === 'edit'">
+                        <div class="sofa-form-item">
+                            <cc-check-box model="stepCtrl.steps.billingAddress.sameAsShipping" label="ln.sofaCheckout.sameAsShipping"></cc-check-box>
+                        </div>
+
+                        <form name="billingAddressForm" class="sofa-address-form">
+                            <sofa-address-form
+                                    ng-if="!stepCtrl.steps.billingAddress.sameAsShipping"
+                                    optional-fields="ctrl.viewModel.optionalFields.billing"
+                                    address-options="ctrl.viewModel.addressOptions"
+                                    ng-model="checkoutModel.billingAddress">
+                            </sofa-address-form>
+                        </form>
+                    </div>
+                    <!-- Billing Address SUMMARY -->
+                    <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.billingAddress.mode === 'summary'">
+                        <sofa-address data="checkoutModel.billingAddress" ng-if="!stepCtrl.steps.billingAddress.sameAsShipping"></sofa-address>
+                        <p ng-if="stepCtrl.steps.billingAddress.sameAsShipping" ng-bind="ln.sofaCheckout.sameAsShipping"></p>
+                    </div>
+
+                    <footer class="sofa-checkout-section__footer">
+                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                                ng-click="stepCtrl.proceedFrom('billingAddress')" ng-disabled="!stepCtrl.steps.billingAddress.sameAsShipping && billingAddressForm.$invalid"
+                                ng-show="stepCtrl.steps.billingAddress.mode === 'edit'">
+                        </button>
+                    </footer>
+                </section>
+
+                <!-- Payment Method -->
+                <section class="sofa-checkout-section"
+                         ng-class="{'sofa-checkout-section--disabled': !stepCtrl.steps.paymentMethod.active}">
+                    <header class="sofa-checkout-section__header">
+                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                                ng-click="stepCtrl.editSection('paymentMethod')" ng-show="stepCtrl.steps.paymentMethod.mode === 'summary'">
+                        </button>
+                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.paymentMethod"></h2>
+                    </header>
+
+                    <!-- Payment Method EDIT -->
+                    <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.paymentMethod.mode === 'edit'">
+                        <form name="paymentMethodForm" novalidate>
+                            <div class="sofa-form-item">
+                                <cc-select-box
+                                        model="ctrl.viewModel.selectedPaymentMethod"
+                                        data="ctrl.viewModel.supportedPaymentMethods"
+                                        choose-text="ln.sofaCheckout.choose"
+                                        required="true"
+                                        property-name="f_payment_method"
+                                        display-value-exp="'title'">
+                                </cc-select-box>
+                            </div>
+                            <div ng-if="!sofa.Util.isEmpty(stepCtrl.steps.paymentMethod.extraFields)">
+                                <sofa-payment-extra-fields
+                                        extra-fields="stepCtrl.steps.paymentMethod.extraFields"
+                                        ng-model="ctrl.viewModel.paymentExtraFields">
+                                </sofa-payment-extra-fields>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Payment Method SUMMARY -->
+                    <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.paymentMethod.mode === 'summary'">
+                        <p ng-bind="ctrl.viewModel.selectedPaymentMethod.title"></p>
+                    </div>
+
+                    <footer class="sofa-checkout-section__footer">
+                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                                ng-click="stepCtrl.proceedFrom('paymentMethod')" ng-disabled="paymentMethodForm.$invalid"
+                                ng-show="stepCtrl.steps.paymentMethod.mode === 'edit'">
+                        </button>
+                    </footer>
+                </section>
+
+                <!-- Shipping Method -->
+                <section class="sofa-checkout-section"
+                         ng-class="{'sofa-checkout-section--disabled': !stepCtrl.steps.shippingMethod.active}">
+                    <header class="sofa-checkout-section__header">
+                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                                ng-click="stepCtrl.editSection('shippingMethod')"
+                                ng-show="stepCtrl.steps.shippingMethod.hasMethods && stepCtrl.steps.shippingMethod.mode === 'summary'">
+                        </button>
+                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.shippingMethod"></h2>
+                    </header>
+
+                    <!-- Shipping Method EDIT -->
+                    <div class="sofa-checkout-section__content"
+                         ng-show="stepCtrl.steps.shippingMethod.hasMethods && stepCtrl.steps.shippingMethod.mode === 'edit'">
+                        <form name="shippingMethodForm" novalidate>
+                            <div class="sofa-form-item">
+                                <cc-select-box
+                                        model="ctrl.viewModel.selectedShippingMethod"
+                                        data="ctrl.viewModel.supportedShippingMethods"
+                                        required="true"
+                                        property-name="f_shipping_method"
+                                        display-value-exp="stepCtrl.steps.shippingMethod.formatter">
+                                </cc-select-box>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Shipping Method SUMMARY -->
+                    <div class="sofa-checkout-section__content"
+                         ng-show="stepCtrl.steps.shippingMethod.hasMethods && stepCtrl.steps.shippingMethod.mode === 'summary'">
+                        <p ng-bind="ctrl.viewModel.selectedShippingMethod.title"></p>
+                    </div>
+
+                    <!-- No methods available -->
+                    <div ng-show="!stepCtrl.steps.shippingMethod.hasMethods">
+                        <p class="sofa-message-box--error" bo-text="ln.sofaCheckout.noShippingAvailable"></p>
+                    </div>
+
+                    <footer class="sofa-checkout-section__footer">
+                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                                ng-click="stepCtrl.proceedFrom('shippingMethod')"
+                                ng-disabled="!stepCtrl.steps.shippingMethod.hasMethods || shippingMethodForm.$invalid">
+                        </button>
+                    </footer>
+                </section>
+
+                <!--<section class="cc-checkout-section cc-checkout__navigation">-->
+                    <!--<div class="cc-message-box--warning" ng-if="!canProceed()" bo-text="ln.checkoutProceedInfo"></div>-->
+                    <!--<a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-checkout-button' : 'cc-checkout-button--disabled'" bo-text="ln.nextStep"></a>-->
+                <!--</section>-->
+            </div>
+        </div>
+        <div class="sofa-sticky-view__footer">
+
+            <!-- WTF!? why can't we get that to work with ng-show? -->
+            <cc-footer ng-if="!isEmpty"></cc-footer>
+        </div>
+    </div>
+</div>

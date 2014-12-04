@@ -1,0 +1,84 @@
+<div ng-repeat="field in extraFields">
+    <!-- Type TEXT -->
+    <div class="sofa-form-item" ng-if="field.type === 'phone'">
+        <label for="{{field.code}}"
+               ng-class="field.required ? 'sofa-form-label--required' : 'sofa-form-label--optional'"
+               ng-bind="field.label">
+        </label>
+        <div class="sofa-validation__wrapper"
+             ng-class="{'sofa-validation__message--success': modelController['f_' + field.code].ccValid}">
+            <input type="text" id="{{field.code}}"
+                   ng-model="model[field.code]"
+                   sofa-name="'f_' + field.code" cc-lazy-validation class="sofa-text-field"
+                   ng-required="field.required" />
+            <span ng-show="modelController['f_' + field.code].$dirty && modelController['f_' + field.code].ccInvalid"
+                  class="sofa-validation__message--fail" bindonce bo-text="ln.errors.inputDefault">
+            </span>
+        </div>
+    </div>
+    <!-- Type DATE -->
+    <div class="sofa-form-item" ng-if="field.type === 'date'">
+        <span ng-class="field.required ? 'sofa-form-label--required' : 'sofa-form-label--optional'"
+              ng-bind="field.label">
+        </span>
+        <div class="sofa-validation-wrapper"
+             ng-class="{'sofa-validation__message--success': modelController['f_' + field.code].ccValid}">
+            <sofa-date-field field-name="'f_' + field.code" is-required="field.required"
+                             ng-model="model[field.code]" cc-lazy-validation>
+            </sofa-date-field>
+            <span ng-show="modelController['f_' + field.code].$dirty && modelController['f_' + field.code].ccInvalid"
+                  class="sofa-validation__message--fail" bindonce bo-text="ln.errors.dateOfBirth">
+            </span>
+        </div>
+    </div>
+    <!-- Type BANK ACCOUNT DATA -->
+    <div ng-if="field.type === 'accountdata'">
+        <div class="sofa-form-item">
+            <label for="{{field.children.bankAccountOwner.code}}"
+                   ng-class="field.children.bankAccountOwner.required ? 'sofa-form-label--required' : 'sofa-form-label--optional'"
+                   ng-bind="field.children.bankAccountOwner.label">
+            </label>
+            <div class="sofa-validation__wrapper"
+                 ng-class="{'sofa-validation__message--success': modelController['f_' + field.children.bankAccountOwner.code].ccValid}">
+                <input type="text" id="{{field.children.bankAccountOwner.code}}"
+                       ng-model="model[field.children.bankAccountOwner.code]"
+                       sofa-name="'f_' + field.children.bankAccountOwner.code" class="sofa-text-field"
+                       ng-required="field.children.bankAccountOwner.required" />
+            </div>
+        </div>
+        <div class="sofa-form-item">
+            <label for="{{field.children.bankAccountNumber.code}}"
+                   ng-class="field.children.bankAccountNumber.required ? 'sofa-form-label--required' : 'sofa-form-label--optional'"
+                   ng-bind="field.children.bankAccountNumber.label">
+            </label>
+            <div class="sofa-validation__wrapper"
+                 ng-class="{'sofa-validation__message--success': modelController['f_' + field.children.bankAccountNumber.code].ccValid}">
+                <input type="text" id="{{field.children.bankAccountNumber.code}}"
+                       ng-model="model[field.children.bankAccountNumber.code]"
+                       sofa-name="'f_' + field.children.bankAccountNumber.code" class="sofa-text-field"
+                       ng-pattern="/^\d+$/m" cc-lazy-validation
+                       required="field.children.bankAccountNumber.required" />
+                <span ng-show="modelController['f_' + field.children.bankAccountNumber.code].$dirty && modelController['f_' + field.children.bankAccountNumber.code].ccInvalid"
+                      class="sofa-validation__message--fail" bindonce bo-text="ln.errors.bankAccountNumber">
+                </span>
+            </div>
+        </div>
+        <div class="sofa-form-item">
+            <label for="{{field.children.bankCode.code}}"
+                   ng-class="field.children.bankCode.required ? 'sofa-form-label--required' : 'sofa-form-label--optional'"
+                   ng-bind="field.children.bankCode.label">
+            </label>
+            <div class="sofa-validation__wrapper"
+                 ng-class="{'sofa-validation__message--success': modelController['f_' + field.children.bankCode.code].ccValid}">
+                <input type="text" id="{{field.children.bankCode.code}}"
+                       ng-model="model[field.children.bankCode.code]"
+                       sofa-name="'f_' + field.children.bankCode.code" class="sofa-text-field"
+                       ng-pattern="/^\d+$/m" cc-lazy-validation
+                       required="field.children.bankCode.required" />
+                <span ng-show="modelController['f_' + field.children.bankCode.code].$dirty && modelController['f_' + field.children.bankCode.code].ccInvalid"
+                      class="sofa-validation__message--fail" bindonce bo-text="ln.errors.bankCode">
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
