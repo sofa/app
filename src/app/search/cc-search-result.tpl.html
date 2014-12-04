@@ -1,28 +1,31 @@
-<div ng-controller="SearchResultController as vm" ng-show="vm.searchUiState.isOpen() && vm.searchUiState.hasResults()" class="cc-content cc-search-result">
-    <div class="cc-view-wrapper">
-        <ul class="cc-search-result__group-list">
-            <li class="cc-search-result__group" ng-repeat="result in vm.searchUiState.results">
-                <div
-                    class="cc-search-result__group-header"
-                    ng-click="vm.goToCategory(result)">
-                    <span ng-bind-html="vm.createGroupText(result)"></span>
-                </div>
-                <ul class="cc-search-result__item-list">
-                    <li
-                        ng-repeat="product in result.items"
-                        ng-click="vm.goToProduct(product)"
-                        class="cc-search-result__item">
-                        <div class="cc-search-result__item-image-wrapper">
-                            <img class="cc-search-result__item-image" cc-src="product.productImageUrl" cc-src-config="{maxwidth: 50, maxheight: 50}" alt=""/>
-                        </div>
+<div class="sofa-search-result" ng-show="vm.searchUiState.isOpen()"
+     ng-click="vm.closeOnClick()"
+     ng-controller="SearchResultController as vm">
 
-                        <div class="cc-search-result__item-text-wrapper">
-                            <span ng-bind="product.text"></span>
-                            <i class="cc-search-result__item-icon"></i>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        </ul>
+    <ul class="sofa-search-result__group-list" ng-show="vm.searchUiState.hasResults()">
+        <li class="sofa-search-result__group" ng-repeat="result in vm.searchUiState.results">
+            <div class="sofa-search-result__group-header" ng-click="vm.goToCategory(result)">
+                <span ng-bind-html="vm.createGroupText(result)"></span>
+                <span class="sofa-search-result__group-header-badge" ng-bind="vm.getItemCount(result)"></span>
+            </div>
+            <ul class="sofa-search-result__item-list">
+                <li ng-repeat="product in result.items" ng-click="vm.goToProduct(product)"
+                    class="sofa-search-result__item">
+                    <div class="sofa-search-result__item-image-wrapper">
+                        <img class="sofa-search-result__item-image" cc-src="product.productImageUrl"
+                             cc-src-config="{maxwidth: 50, maxheight: 50}" alt=""/>
+                    </div>
+                    <div class="sofa-search-result__item-text-wrapper">
+                        <span ng-bind-html="vm.getItemText(product.text)"></span>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <div bindonce="ln" class="sofa-search-result-empty" ng-show="searchUiState.hasNoMatch()">
+        <p bo-text="ln.searchNotFound"></p>
     </div>
+
+    <sofa-loading-spinner ng-show="searchUiState.isRunningSearch"></sofa-loading-spinner>
 </div>

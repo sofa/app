@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CouchCommerceApp').factory('searchUiState', function (inputFocusFixConfigService) {
+angular.module('CouchCommerceApp').factory('searchUiState', function () {
 
     var self = {};
 
@@ -14,12 +14,10 @@ angular.module('CouchCommerceApp').factory('searchUiState', function (inputFocus
 
     self.openSearch = function () {
         isOpen = true;
-        inputFocusFixConfigService.enabled = true;
     };
 
     self.closeSearch = function () {
         isOpen = false;
-        inputFocusFixConfigService.enabled = false;
     };
 
     self.searchTerm = '';

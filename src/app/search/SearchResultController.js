@@ -1,38 +1,67 @@
 'use strict';
 
-angular.module('CouchCommerceApp').controller('SearchResultController', function ($scope, searchService, searchUiState, navigationService, stateResolverService, configService) {
+angular.module('CouchCommerceApp')
+    .controller('SearchResultController', [
+        '$scope', 'searchUiState', 'navigationService', 'stateResolverService', 'configService',
+        function ($scope, searchUiState, navigationService, stateResolverService, configService) {
 
-    var vm = this;
+            var highlightSearchPhrase = function (text, phrase) {
+                var highlightedText = text;
+                var regex;
 
-    var useShopUrls = configService.get('useShopUrls', false);
+                if (phrase.length > 2) {
+                    regex = new RegExp('(' + phrase + ')', 'i');
+                    highlightedText = text.replace(regex, '<b>$1</b>');
+                }
 
-    vm.searchUiState = searchUiState;
-    vm.navigationService = navigationService;
+                return highlightedText;
+            };
 
-    vm.createGroupText = function (grouping) {
-        return grouping.items.length === 1 ?
-            '1 ' + $scope.ln.searchProductFoundIn + ' ' + grouping.groupText :
-            grouping.items.length + ' ' + $scope.ln.searchProductsFoundIn + ' ' + grouping.groupText;
-    };
+            var vm = this;
 
-    vm.goToCategory = function (result) {
-        searchUiState.closeSearch();
-        var groupUrl = useShopUrls ? result.groupOriginFullUrl : result.groupKey;
-        navigationService.navigateToUrl(groupUrl);
-    };
+            var useShopUrls = configService.get('useShopUrls', false);
 
-    vm.goToProduct = function (item) {
-        searchUiState.closeSearch();
-        var productUrl = useShopUrls ? item.productOriginFullUrl : item.productUrlKey;
-        stateResolverService.registerState({
-            url: productUrl,
-            stateName: 'product',
-            stateParams: {
-                category: item.categoryUrlKey,
-                productUrlKey: item.productUrlKey
-            }
-        });
+            vm.searchUiState = searchUiState;
+            vm.navigationService = navigationService;
 
-        navigationService.navigateToUrl(productUrl);
-    };
-});
+            vm.createGroupText = function (grouping) {
+                return grouping.groupText;
+            };
+
+            vm.getItemText = function (text) {
+                var html = highlightSearchPhrase(text, searchUiState.searchTerm);
+                return html;
+            };
+
+            vm.getItemCount = function (grouping) {
+                return grouping.items.length;
+            };
+
+            vm.closeOnClick = function () {
+                if (!searchUiState.hasResults() || searchUiState.isRunningSearch) {
+                    searchUiState.abort();
+                }
+            };
+
+            vm.goToCategory = function (result) {
+                searchUiState.closeSearch();
+                var groupUrl = useShopUrls ? result.groupOriginFullUrl : result.groupKey;
+                navigationService.navigateToUrl(groupUrl);
+            };
+
+            vm.goToProduct = function (item) {
+                searchUiState.closeSearch();
+                var productUrl = useShopUrls ? item.productOriginFullUrl : item.productUrlKey;
+                stateResolverService.registerState({
+                    url: productUrl,
+                    stateName: 'product',
+                    stateParams: {
+                        category: item.categoryUrlKey,
+                        productUrlKey: item.productUrlKey
+                    }
+                });
+
+                navigationService.navigateToUrl(productUrl);
+            };
+        }
+    ]);
