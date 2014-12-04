@@ -383,16 +383,16 @@ angular.module('CouchCommerceApp', [
     $rootScope.isTabletSize = cc.deviceService.isTabletSize();
 
     //no need to add bindings for things that are unlikely to change over a session;
-    deviceService.flagOs();
     deviceService.flagOverflowSupport();
     deviceService.flagModernFlexboxSupport();
     deviceService.flagIpadOnIos7();
+    deviceService.flagAndroid2x();
 
     if (deviceService.isIpadOnIos7()) {
         deviceService.setViewportHeightToDeviceHeight();
     }
 
-    $window.addEventListener('orientationchange', function () {
+    $window.addEventListener('deviceService.orientationchange', function () {
         $rootScope.$apply();
         if (deviceService.isIpadOnIos7()) {
             deviceService.setViewportHeightToDeviceHeight();
