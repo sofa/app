@@ -50,7 +50,7 @@ module.exports = function (grunt) {
         },
         deploy: {
             options: {
-                releaseBranch: 'deployment'
+                releaseBranch: 'app-deployments'
             }
         }
     };
@@ -656,7 +656,9 @@ module.exports = function (grunt) {
                     return [
                         'git add -A',
                         'git add -f dist',
-                        'git add -f node_modules/sofa-base'
+                        'git add -f node_modules/sofa-base',
+                        'git add -f node_modules/angular-sofa-*',
+                        'git add -f node_modules/font-awesome'
                     ].join(' && ');
                 }
             }
@@ -795,7 +797,7 @@ module.exports = function (grunt) {
         deploy: {
             options: {
                 tagOnly: true,
-                remote: 'deployment',
+                remote: 'app-deployments',
                 masterBranch: 'master',
                 versionFiles: [
                     'package.json'

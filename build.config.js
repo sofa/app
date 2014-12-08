@@ -219,7 +219,6 @@ module.exports = {
         ],
         css: [],
         scss: [
-            'node_modules/sofa-base/**/*.scss',
             'vendor/snap/angular-snap.scss',
             'vendor/ui-modal/bootstrap-dialog.scss'
         ]
