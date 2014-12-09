@@ -82,6 +82,7 @@ angular.module('CouchCommerceApp', [
     'ui.bootstrap',
     'pasvaz.bindonce',
     'templates',
+    'sofa-templates',
     'snap',
     'chayns',
     'CouchCommerceApp.plugins'

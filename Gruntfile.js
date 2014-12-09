@@ -118,11 +118,11 @@ module.exports = function (grunt) {
             },
             sdk: {
                 options: {
-                    base: '<%= sofa_base %>/'
+                    base: '<%= sofa_base %>'
                 },
                 src: ['<%= vendor_files.tpl %>'],
                 dest: '<%= tpl.sofa_file %>',
-                module: '<%= tpl.module_name %>'
+                module: '<%= tpl.module_name_sofa_templates %>'
             }
         },
 
@@ -391,6 +391,7 @@ module.exports = function (grunt) {
                     'build.intro.js',
                     '<%= build_dir %>/<%= app_base %>/**/*.js',
                     '<%= html2js.app.dest %>',
+                    '<%= html2js.sdk.dest %>',
                     'build.outro.js'
                 ],
                 dest: '<%= compile_dir %>/assets/js/<%= appJsName %>'
@@ -438,6 +439,7 @@ module.exports = function (grunt) {
                     '<%= build_dir %>/<%= app_base %>/**/*.js',
                     '<%= data_files.inject %>',
                     '<%= html2js.app.dest %>',
+                    '<%= html2js.sdk.dest %>',
                     '<%= vendor_files.css %>',
                     '<%= build_dir %>/assets/css/**/*.css'
                 ]
