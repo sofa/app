@@ -83,7 +83,7 @@ angular.module('CouchCommerceApp', [
         controller: 'CategoryController',
         screenIndex: screenIndexes.category,
         resolve: {
-            category: function (couchService, $stateParams, navigationService, $q, $state) {
+            category: ['couchService', '$stateParams', 'navigationService', '$q', '$state', function (couchService, $stateParams, navigationService, $q, $state) {
 
                 return couchService
                         .getCategory($stateParams.category)
@@ -99,9 +99,9 @@ angular.module('CouchCommerceApp', [
                             }
                             return category;
                         });
-            }
+            }]
         },
-        onEnter: function (metaService, category) {
+        onEnter: ['metaService', 'category', function (metaService, category) {
             if (category.isRoot) {
                 metaService.reset();
             } else {
@@ -109,7 +109,7 @@ angular.module('CouchCommerceApp', [
                     description: ''
                 });
             }
-        }
+        }]
     };
 
     $stateProvider
