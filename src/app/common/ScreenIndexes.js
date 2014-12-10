@@ -17,5 +17,6 @@ angular.forEach(screenIndexMap, function (value, key) {
     screenIndexMap[value] = parseInt(key, 10);
 });
 
-angular.module('CouchCommerceApp')
-.constant('screenIndexes', screenIndexMap);
+angular
+    .module('CouchCommerceApp')
+    .constant('screenIndexes', screenIndexMap);

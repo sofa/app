@@ -1,22 +1,24 @@
 'use strict';
 
-angular.module('CouchCommerceApp').factory('titleService', ['$document', 'configService', function ($document, configService) {
+angular
+    .module('CouchCommerceApp')
+    .factory('titleService', function ($document, configService) {
 
-    var self = {};
+        var self = {};
 
-    var storeName = configService.get('storeName');
+        var storeName = configService.get('storeName');
 
-    self.setTitle = function (title) {
-        $document.prop('title', title);
-    };
+        self.setTitle = function (title) {
+            $document.prop('title', title);
+        };
 
-    self.setShopNameTitle = function () {
-        $document.prop('title', storeName);
-    };
+        self.setShopNameTitle = function () {
+            $document.prop('title', storeName);
+        };
 
-    self.setTitleWithSuffix = function (title) {
-        $document.prop('title', title + ' | ' + storeName);
-    };
-    
-    return self;
-}]);
+        self.setTitleWithSuffix = function (title) {
+            $document.prop('title', title + ' | ' + storeName);
+        };
+
+        return self;
+    });

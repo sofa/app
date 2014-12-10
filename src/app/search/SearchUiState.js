@@ -1,62 +1,63 @@
 'use strict';
 
-angular.module('CouchCommerceApp').factory('searchUiState', function () {
+angular
+    .module('CouchCommerceApp')
+    .factory('searchUiState', function () {
 
-    var self = {};
+        var self = {};
 
-    self.results = [];
+        self.results = [];
 
-    var isOpen = false;
+        var isOpen = false;
 
-    self.isOpen = function () {
-        return isOpen;
-    };
+        self.isOpen = function () {
+            return isOpen;
+        };
 
-    self.openSearch = function () {
-        isOpen = true;
-    };
+        self.openSearch = function () {
+            isOpen = true;
+        };
 
-    self.closeSearch = function () {
-        isOpen = false;
-    };
+        self.closeSearch = function () {
+            isOpen = false;
+        };
 
-    self.searchTerm = '';
-
-    self.isRunningSearch = false;
-
-    self.abort = function () {
         self.searchTerm = '';
-        self.closeSearch();
-    };
 
-    self.hasSearchTerm = function () {
-        return self.searchTerm.length > 0;
-    };
+        self.isRunningSearch = false;
 
-    self.clear = function () {
-
-        if (!self.hasSearchTerm()) {
-            self.abort();
-        } else {
+        self.abort = function () {
             self.searchTerm = '';
-        }
-    };
+            self.closeSearch();
+        };
 
-    self.clear();
+        self.hasSearchTerm = function () {
+            return self.searchTerm.length > 0;
+        };
 
-    self.setResults = function (newResults) {
-        self.results = newResults;
-    };
+        self.clear = function () {
 
-    self.hasResults = function () {
-        return self.results.length > 0;
-    };
+            if (!self.hasSearchTerm()) {
+                self.abort();
+            } else {
+                self.searchTerm = '';
+            }
+        };
 
-    self.hasNoMatch = function () {
-        return !self.hasResults() &&
-            !self.isRunningSearch &&
-            self.hasSearchTerm();
-    };
+        self.clear();
 
-    return self;
-});
+        self.setResults = function (newResults) {
+            self.results = newResults;
+        };
+
+        self.hasResults = function () {
+            return self.results.length > 0;
+        };
+
+        self.hasNoMatch = function () {
+            return !self.hasResults() && !self.isRunningSearch &&
+                self.hasSearchTerm();
+        };
+
+        return self;
+    });

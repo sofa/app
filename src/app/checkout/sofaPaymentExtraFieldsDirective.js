@@ -1,12 +1,8 @@
 'use strict';
 
-/**
- *
- */
-
 angular
     .module('sofa.checkout')
-    .directive('sofaPaymentExtraFields', ['localeService', function (localeService) {
+    .directive('sofaPaymentExtraFields', function (localeService) {
         return {
             restrict: 'E',
             replace: true,
@@ -30,4 +26,4 @@ angular
                 });
             }
         };
-    }]);
+    });

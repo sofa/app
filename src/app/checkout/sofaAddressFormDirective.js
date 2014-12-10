@@ -1,12 +1,8 @@
 'use strict';
 
-/**
- *
- */
-
 angular
     .module('sofa.checkout')
-    .directive('sofaAddressForm', ['localeService', function (localeService) {
+    .directive('sofaAddressForm', function (localeService) {
 
         var instanceCount = 0;
 
@@ -30,4 +26,4 @@ angular
                 scope.ln = localeService.getTranslation('sofaAddressForm');
             }
         };
-    }]);
+    });

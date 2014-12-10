@@ -1,8 +1,8 @@
 'use strict';
 
-angular.
-    module('sofa.tabs')
-    .controller('TabController', function ($scope, tabStateService) {
+angular
+    .module('sofa.tabs')
+    .controller('TabController', function (tabStateService) {
 
         var ctrl = this;
 

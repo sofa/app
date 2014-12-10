@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('CouchCommerceApp')
-    .controller('WishlistController', function ($scope, $location, storageService, wishlistService, navigationService, urlConstructionService, sidemenuUiState) {
+angular
+    .module('CouchCommerceApp')
+    .controller('WishlistController', function ($scope, $location, storageService, wishlistService, navigationService, sidemenuUiState) {
 
-        $scope.isFirstUse        = !(!!storageService.get('wishlist_used'));
-        $scope.showFirstUseInfo  = false;
+        $scope.isFirstUse = !(!!storageService.get('wishlist_used'));
+        $scope.showFirstUseInfo = false;
         $scope.navigationService = navigationService;
-        $scope.wishlist          = wishlistService.getItems();
-        $scope.isEmpty           = wishlistService.isEmpty();
+        $scope.wishlist = wishlistService.getItems();
+        $scope.isEmpty = wishlistService.isEmpty();
 
         var openWishlist = function () {
             sidemenuUiState.setActiveTab('wishlist');
@@ -20,7 +21,7 @@ angular.module('CouchCommerceApp')
 
         var updateWishlist = function () {
             $scope.wishlist = wishlistService.getItems();
-            $scope.isEmpty  = wishlistService.isEmpty();
+            $scope.isEmpty = wishlistService.isEmpty();
 
             // Automatically show wish list on first use.
             if ($scope.isFirstUse) {
@@ -28,7 +29,7 @@ angular.module('CouchCommerceApp')
                 $scope.showFirstUseInfo = true;
                 openWishlist();
                 var off = $scope.$onRootScope('sidemenuClosed', function () {
-                    $scope.isFirstUse       = false;
+                    $scope.isFirstUse = false;
                     $scope.showFirstUseInfo = false;
                     off();
                 });

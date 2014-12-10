@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('CouchCommerceApp')
+angular
+    .module('CouchCommerceApp')
     .factory('sidemenuUiState', function ($rootScope, snapRemote, tabStateService) {
 
         var self = this;
