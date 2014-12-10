@@ -6,7 +6,7 @@ angular.module('CouchCommerceApp')
     SEARCH_BOX: 'search/cc-search-box.tpl.html',
     SEARCH_RESULT: 'search/cc-search-result.tpl.html',
     SHELL: 'common/shell/shell.tpl.html',
-    SIDE_MENU: 'common/sidemenu/cc-side-menu.tpl.html',
+    SIDE_MENU: 'common/sidemenu/sofa-side-menu.tpl.html',
     CART: 'cart/cc-cart.tpl.html',
     WISHLIST: 'wishlist/cc-wishlist.tpl.html',
     '404': 'common/404/cc-404.tpl.html',

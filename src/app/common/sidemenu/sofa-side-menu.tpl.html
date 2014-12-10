@@ -1,0 +1,21 @@
+<div class="sofa-side-menu sofa-side-menu--navigation" ng-controller="SidemenuController">
+
+    <sofa-tabs tab-id="side-menu-tabs">
+        <sofa-tab-pane pane-id="categories">
+            <h2 class="sofa-side-menu__heading" bindonce bo-text="ln.categories"></h2>
+            <div class="sofa-sticky-view">
+                <div class="sofa-sticky-view__content">
+                    <cc-category-tree-view></cc-category-tree-view>
+                </div>
+                <div class="sofa-sticky-view__footer">
+                    <cc-footer-links></cc-footer-links>
+                </div>
+            </div>
+        </sofa-tab-pane>
+        <sofa-tab-pane pane-id="wishlist">
+            <h2 class="sofa-side-menu__heading" bindonce bo-text="ln.wishlist"></h2>
+            <div class="sofa-side-menu__tab-pane" ng-controller="WishlistController" ng-include="tpl.WISHLIST"></div>
+        </sofa-tab-pane>
+    </sofa-tabs>
+
+</div>

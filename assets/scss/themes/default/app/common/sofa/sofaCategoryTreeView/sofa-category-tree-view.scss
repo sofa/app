@@ -1,5 +1,5 @@
 .sofa-category-tree-view__list-item {
-    line-height: 1.5rem;
+    @extend %sofa-link-list__item;
 
     .sofa-category-tree-view__list--closed & {
         display: none;
@@ -10,59 +10,48 @@
     }
 }
 
-.sofa-category-tree-view__category-entry {
-    display: block;
-    position: relative;
-    color: hsl(0, 0%, 93%);
-    text-decoration: none;
-    padding: .5rem 1.875rem .5rem .625rem;
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
-}
+.sofa-category-tree-view__link {
+    @extend %sofa-link-list__link--arrow;
 
-.sofa-category-tree-view__category-entry--icon,
-.sofa-category-tree-view__category-entry--icon--open {
     &:after {
-        position: absolute;
-        right: .625rem;
-        top:0;
-        font-size: 1rem;
-        line-height: 2.5rem;
+        content: '';
+        color: $theme-color-dark__lighter--20;
     }
 }
 
-.sofa-category-tree-view__category-entry--icon {
+.sofa-category-tree-view__link--active {
+    color: $theme-color-accent;
+}
+
+.sofa-category-tree-view__link--has-children {
     @include fa-icon-type($fa-var-angle-down, after);
 }
 
-.sofa-category-tree-view__category-entry--icon--open {
+.sofa-category-tree-view__link--open {
     @include fa-icon-type($fa-var-angle-up, after);
 }
 
 .sofa-category-tree-view__list--open {
     &.sofa-category-tree-view__list--child {
-        background: rgba(0, 0, 0, .25);
+        background: rgba(0, 0, 0, .05);
     }
 }
 
 .sofa-category-tree-view__list--child {
     padding: 0;
 
-    .sofa-category-tree-view__category-entry {
+    .sofa-category-tree-view__link {
         padding-left: 1.5rem;
-        color: hsl(0, 0%, 82%);
-    }
-
-    .sofa-category-tree-view__category-entry--active {
-        color: hsl(0, 0%, 100%);
     }
 
     .sofa-category-tree-view__list--child {
 
-        .sofa-category-tree-view__category-entry {
+        .sofa-category-tree-view__link {
             padding-left: 2.5rem;
         }
+
         .sofa-category-tree-view__list--child {
-            .sofa-category-tree-view__category-entry {
+            .sofa-category-tree-view__link {
                 padding-left: 55px;
             }
         }

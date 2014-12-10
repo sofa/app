@@ -1,25 +1,19 @@
 'use strict';
 
 angular.module('CouchCommerceApp')
-    .factory('sidemenuUiState', function ($rootScope, snapRemote) {
+    .factory('sidemenuUiState', function ($rootScope, snapRemote, tabStateService) {
 
-        var state = {};
+        var self = this;
 
-        state.activeTab = '';
-
-        state.getActiveTab = function () {
-            return state.activeTab;
+        self.setActiveTab = function (paneId) {
+            tabStateService.activateTabByPaneId(paneId, 'side-menu-tabs');
         };
 
-        state.setActiveTab = function (tab) {
-            state.activeTab = tab;
-        };
-
-        state.openSidemenu = function (side) {
+        self.openSidemenu = function (side) {
             snapRemote.open(side || '');
         };
 
-        state.closeSidemenu = function () {
+        self.closeSidemenu = function () {
             snapRemote.close();
         };
 
@@ -29,5 +23,5 @@ angular.module('CouchCommerceApp')
             });
         });
 
-        return state;
+        return self;
     });
