@@ -1,0 +1,9 @@
+<div class="sofa-tabs">
+    <ul class="sofa-tabs__header">
+        <li ng-repeat="pane in tabCtrl.panes" class="sofa-tab" ng-class="{'sofa-tab--active': pane.selected}">
+            <a href="" class="sofa-tab__button" ng-class="pane.paneId ? 'sofa-tab__button--' + pane.paneId : ''"
+               ng-click="tabCtrl.activateTab(pane, tabCtrl.tabId)" ng-bind="pane.paneTitle"></a>
+        </li>
+    </ul>
+    <div class="sofa-tabs__content" ng-transclude></div>
+</div>
