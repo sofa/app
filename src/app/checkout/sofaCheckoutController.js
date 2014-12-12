@@ -86,13 +86,13 @@ angular
                 salutation: true,
                 company: true,
                 phone: false,
-                streetExtra: false
+                streetAdditional: false
             },
             billing: {
                 salutation: true,
                 company: false,
                 phone: false,
-                streetExtra: false
+                streetAdditional: false
             }
         };
 

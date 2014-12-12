@@ -61,11 +61,11 @@
             </span>
         </div>
     </li>
-    <li class="sofa-form-item" ng-if="optionalFields.streetExtra && !parcelStation">
-        <label for="f_street_extra_{{instance}}" class="sofa-form-label--optional" bo-text="ln.streetExtra"></label>
+    <li class="sofa-form-item" ng-if="optionalFields.streetAdditional && !parcelStation">
+        <label for="f_street_additional_{{instance}}" class="sofa-form-label--optional" bo-text="ln.streetAdditional"></label>
         <div class="sofa-validation__wrapper">
-            <input type="text" id="f_street_extra_{{instance}}" name="f_street_extra" class="sofa-text-field"
-                   ng-model="addressModel.streetExtra" />
+            <input type="text" id="f_street_additional_{{instance}}" name="f_street_additional" class="sofa-text-field"
+                   ng-model="addressModel.streetAdditional" />
         </div>
     </li>
     <li class="sofa-form-item" ng-if="parcelStation">
@@ -91,12 +91,12 @@
         </div>
     </li>
     <li class="sofa-form-item">
-        <label for="f_zip_{{instance}}" class="sofa-form-label--required" bo-text="ln.zip"></label>
+        <label for="f_zipCode_{{instance}}" class="sofa-form-label--required" bo-text="ln.zip"></label>
         <div class="sofa-validation__wrapper"
-             ng-class="{'sofa-validation__message--success': modelController.f_zip.ccValid}">
-            <input type="text" id="f_zip_{{instance}}" name="f_zip" class="sofa-text-field"
-                   ng-model="addressModel.zip" required cc-lazy-validation/>
-            <span ng-show="modelController.f_zip.$dirty && modelController.f_zip.ccInvalid"
+             ng-class="{'sofa-validation__message--success': modelController.f_zipCode.ccValid}">
+            <input type="text" id="f_zipCode_{{instance}}" name="f_zipCode" class="sofa-text-field"
+                   ng-model="addressModel.zipCode" required cc-lazy-validation/>
+            <span ng-show="modelController.f_zipCode.$dirty && modelController.f_zipCode.ccInvalid"
                   class="sofa-validation__message--fail" bo-text="ln.errors.zip">
             </span>
         </div>
