@@ -1,0 +1,78 @@
+.sofa-editable-list {
+    @extend %sofa-link-list;
+
+    padding: 0;
+    border: 1px solid $theme-color-light__darker--15;
+    border-width: 1px 0;
+}
+
+.sofa-editable-list__item {
+    @extend %sofa-link-list__item;
+
+    overflow: hidden;
+}
+
+.sofa-editable-list__item.ng-leave {
+    @include fade-out-and-shrink(6rem); // @param maxHeight (of leaving item)
+}
+
+.sofa-editable-list__item.ng-leave.ng-leave-active {
+    @extend %fade-out-and-shrink--active;
+}
+
+.sofa-editable-list__drawer {
+    transform: translateX(0);
+    transition: transform .3s;
+
+    .sofa-editable-list__item--open & {
+        transform: translateX(33%);
+    }
+}
+
+.sofa-editable-list__options {
+    @extend %sofa-dock-right;
+
+    left: 2rem;
+    transform: translateX(-100%);
+}
+
+.sofa-editable-list__content {
+    margin-left: 2rem; // width of .sofa-editable-list__options
+
+    // Prevent any click event that might be attached to list content's children
+    .sofa-editable-list__item--open & * {
+        pointer-events: none;
+    }
+}
+
+.sofa-editable-list__toggle {
+    @extend %sofa-button--base;
+    @extend %sofa-dock-right;
+
+    width: 2rem;
+    border-radius: 0;
+
+    background: $theme-color-light__darker--10;
+
+    @include fa-icon-type($fa-var-angle-right);
+
+    .sofa-editable-list__item--open & {
+        &:before {
+            content: $fa-var-angle-left;
+        }
+    }
+}
+
+.sofa-editable-list__delete {
+    @extend %sofa-button--base;
+    @extend %sofa-dock-right;
+
+    right: 2rem;
+    width: 4rem;
+    border-radius: 0;
+    background: #d13149;
+    color: #fff;
+
+    @include fa-icon-type($fa-var-trash);
+}
+

@@ -1,0 +1,11 @@
+<ul class="sofa-editable-list">
+    <li class="sofa-editable-list__item cc-animate" ng-class="{'sofa-editable-list__item--open': vm.activeIndex === $index}">
+        <div class="sofa-editable-list__drawer">
+            <div class="sofa-editable-list__options">
+                <button type="button" ng-click="vm.removeItem(item)" class="sofa-editable-list__delete"></button>
+                <button type="button" ng-click="vm.toggleState($index)" class="sofa-editable-list__toggle"></button>
+            </div>
+            <div class="sofa-editable-list__content" ng-click="vm.activeIndex === $index && vm.toggleState($index)"></div>
+        </div>
+    </li>
+</ul>
