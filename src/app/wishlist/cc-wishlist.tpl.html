@@ -1,31 +1,22 @@
-<div class="cc-wishlist" bindonce="ln">
+<div class="sofa-wishlist" bindonce="ln">
 
-    <div class="cc-wishlist__empty-hint" ng-show="isEmpty">
-        <div class="cc-wishlist__empty-hint-icon"></div>
-        <p bo-text="ln.wishlistEmpty"></p>
-    </div>
+    <p class="sofa-wishlist__empty-hint" bo-text="ln.wishlistEmpty" ng-show="isEmpty"></p>
 
-    <div ng-if="showFirstUseInfo" class="cc-wishlist__first-use-hint" bo-html="ln.wishlistFirstUse"></div>
+    <div ng-if="showFirstUseInfo" class="sofa-wishlist__first-use-hint" bo-html="ln.wishlistFirstUse"></div>
 
-    <ul class="cc-wishlist-list" ng-show="!isEmpty">
-        <li ng-repeat="(key,item) in wishlist" class="cc-wishlist-list__item cc-animate"
-            ng-click="navigateToProduct(item.product)">
-
-            <div class="cc-wishlist-list-item__wrapper">
-                <img class="cc-wishlist-list__item-image" cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 50, maxheight: 50}" alt=""/>
-                <div class="cc-wishlist-list__item-content">
-                    <strong class="cc-wishlist-list__item-title" ng-bind="item.product.name"></strong>
-
-                    <span class="cc-wishlist__item-price">
-                        <cc-price product="item.product" selected-variant="item.variant"></cc-price>
-                    </span>
-
-                </div>
-
-                <div class="cc-wishlist-list__item-footer">
-                    <span ng-click="removeItem(item); $event.stopPropagation()" class="cc-wishlist-button--remove"></span>
-                </div>
+    <sofa-editable-list
+            ng-show="!isEmpty"
+            repeater="(key,item) in wishlist"
+            on-remove="removeItem">
+        <div class="sofa-wishlist__item" ng-click="navigateToProduct(item.product)">
+            <img class="sofa-wishlist__item-image" cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 64, maxheight: 64}" alt=""/>
+            <div class="sofa-wishlist__item-content">
+                <strong class="sofa-wishlist__item-title" ng-bind="item.product.name"></strong>
+                <span class="sofa-wishlist__item-price">
+                    <cc-price product="item.product" selected-variant="item.variant"></cc-price>
+                </span>
             </div>
-        </li>
-    </ul>
+        </div>
+    </sofa-editable-list>
+
 </div>

@@ -1,87 +1,45 @@
 
-.cc-wishlist-list {
-    .cc-wishlist-list__item-image {
-        width:50px;
-        height:50px;
-        background-color: #fff;
-        border:0;
-        margin:0 10px 0 0;
-    }
-}
-.cc-wishlist-list__item {
-    background-color: rgba(255,255,255,.9);
-    overflow: hidden;
-    border-top: 1px solid #ccc;
-    clear:both;
-}
-.cc-wishlist-list__item:first-child {
-    border-top:0;
-}
-
-
-// Required for padding AND smooth animation. The web is the platform...
-.cc-wishlist-list-item__wrapper {
-    padding: 5px;
-
+.sofa-wishlist__item {
     @extend %sofa-clearfix;
+
+    padding: .625rem;
 }
 
-.cc-wishlist-list__item.ng-leave {
-    @include fade-out-and-shrink(150px);
-}
-.cc-wishlist-list__item.ng-leave.ng-leave-active {
-    @extend %fade-out-and-shrink--active;
-}
-
-.cc-wishlist-list__item-image {
-    @extend .cc-cart-list__item-image;
+.sofa-wishlist__item-image {
+    float: left;
+    width: 4rem;
+    max-height: 4rem;
+    margin: 0 .625rem 0 0;
 }
 
-.cc-wishlist-list__item-content {
-    color:#333;
-    font-size: 14px;
-}
-
-.cc-wishlist-list__item-title {
-    display:block;
+.sofa-wishlist__item-title {
+    display: block;
     font-weight: 400;
-    margin-bottom: 5px;
+    margin-bottom: .5rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.cc-wishlist .cc-price__price {
-    padding: 0;
-}
-.cc-wishlist-button--remove {
-    @extend %sofa-button--secondary;
-    @include fa-icon-type($fa-var-trash);
-
-    float:right;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-}
-
-// =========
-
-.cc-wishlist__empty-hint {
-    @extend .cc-cart-empty-hint;
-}
-
-.cc-wishlist__empty-hint-icon {
+.sofa-wishlist__empty-hint {
     @include fa-icon-type($fa-var-heart-o);
+
+    text-align: center;
+
+    &:before {
+        display: block;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
 }
 
-.cc-wishlist__first-use-hint {
+.sofa-wishlist__first-use-hint {
     @extend %sofa-message-box--info;
 
     position: relative;
-    padding: 6px 6px 6px 24px;
+    padding: .5rem .5rem .5rem 1.5rem;
     font-size: smaller;
-}
 
-.cc-wishlist__first-use-hint {
     @include fa-icon-type($fa-var-info-circle);
 
     &:before {
@@ -90,10 +48,11 @@
         top: 0.5em;
         font-size: larger;
     }
+
 }
 
-.cc-wishlist {
-    .cc-wishlist__first-use-hint {
-        border-radius: 0;
+.sofa-wishlist {
+    .sofa-editable-list__item--open .sofa-editable-list__drawer {
+        transform: translateX(4rem); // width of the delete button
     }
 }

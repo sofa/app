@@ -75,6 +75,7 @@ angular.module('CouchCommerceApp', [
     'sdk.directives.sofaGoBackControl',
     'sdk.directives.sofaLoadingSpinner',
     'sofa.tabs',
+    'sofa.editableList',
     'sofa.dateField',
     'sofa.checkout',
         // TODO: rename to sofa
