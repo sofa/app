@@ -37,6 +37,7 @@
 }
 
 .sofa-editable-list__content {
+    min-height: 4.75rem;
     margin-left: 2rem; // width of .sofa-editable-list__options
 
     // Prevent any click event that might be attached to list content's children
@@ -76,3 +77,45 @@
     @include fa-icon-type($fa-var-trash);
 }
 
+// TODO: this doesn't look good enough to me yet, we should consider refactoring...
+.sofa-editable-list--position-right {
+
+    .sofa-editable-list__item--open .sofa-editable-list__drawer {
+        transform: translateX(-33%);
+    }
+
+    .sofa-editable-list__options {
+        @extend %sofa-dock-left;
+
+        right: 2rem;
+        transform: translateX(100%);
+    }
+
+    .sofa-editable-list__content {
+        margin-right: 2rem;
+        margin-left: 0;
+    }
+
+    .sofa-editable-list__toggle {
+        @extend %sofa-dock-left;
+
+        right: auto;
+
+        @include fa-icon-type($fa-var-angle-left);
+
+    }
+
+    .sofa-editable-list__item--open .sofa-editable-list__toggle {
+        &:before {
+            content: $fa-var-angle-right;
+        }
+    }
+
+    .sofa-editable-list__delete {
+        @extend %sofa-dock-left;
+
+        left: 2rem;
+        right: auto;
+    }
+
+}

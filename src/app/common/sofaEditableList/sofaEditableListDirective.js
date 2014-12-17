@@ -5,6 +5,7 @@ angular
     .directive('sofaEditableList', function ($templateCache) {
         return {
             restrict: 'E',
+            scope: true,
             compile: function (tElement, tAttrs) {
 
                 // Extract the repeat expression to be used on the internal ng-repeat
@@ -24,6 +25,11 @@ angular
 
                 // Target element within "tpl" to insert "children" into
                 var transclusionElement = tpl[0].querySelector('.sofa-editable-list__content');
+
+                // Where do the options come from (right || left)
+                var layout = tAttrs.layout || 'left';
+
+                tpl.addClass('sofa-editable-list--position-' + layout);
 
                 // Wrap the children in our template
                 angular.element(transclusionElement).append(children);
