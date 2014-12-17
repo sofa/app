@@ -1,3 +1,9 @@
+%side-menu-headline--base {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+}
+
 .sofa-side-menu {
     font-size: 16px;
     position: absolute;
@@ -50,12 +56,22 @@
 
 }
 
+.sofa-side-menu__header {
+    background: $theme-color-light__darker--20;
+}
+
 .sofa-side-menu__heading {
-    text-align: center;
+    @extend %side-menu-headline--base;
+
+    font-size: 1rem;
+    line-height: 3.25rem;
+}
+
+.sofa-side-menu__sub-heading {
+    @extend %side-menu-headline--base;
+
     line-height: 2.75rem;
     font-size: small;
-    text-transform: uppercase;
-    letter-spacing: .1em;
 }
 
 .overflow-support.modern-flexbox {
@@ -86,7 +102,7 @@
             flex-direction: column;
         }
 
-        .sofa-side-menu__heading {
+        .sofa-side-menu__sub-heading {
             flex: 0 0 2.75rem;
         }
 
