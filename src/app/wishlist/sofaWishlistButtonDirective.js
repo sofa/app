@@ -5,21 +5,23 @@
  */
 
 angular
-    .module('CouchCommerceApp')
-    .directive('ccWishlistButton', function (wishlistService) {
+    .module('sofa.wishList')
+    .directive('sofaWishListButton', function (wishlistService, localeService) {
         return {
             restrict: 'E',
             replace: true,
             scope: {
                 product: '=',
-                buttonTextAdd: '=?',
-                buttonTextRemove: '=?',
                 selectedVariant: '=?'
             },
-            templateUrl: 'wishlist/cc-wishlist-button.tpl.html',
+            templateUrl: 'wishlist/sofa-wishlist-button.tpl.html',
             link: function (scope) {
 
-                scope.wishlistService = wishlistService;
+                scope.ln = localeService.getTranslation('sofaWishList');
+
+                scope.isListed = function (key) {
+                    return wishlistService.exists(key);
+                };
 
                 scope.toggleItem = function () {
                     if (wishlistService.exists(scope.product.urlKey)) {

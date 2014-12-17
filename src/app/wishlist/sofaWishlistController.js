@@ -1,8 +1,8 @@
 'use strict';
 
 angular
-    .module('CouchCommerceApp')
-    .controller('WishlistController', function ($scope, $location, storageService, wishlistService, navigationService, sidemenuUiState) {
+    .module('sofa.wishList')
+    .controller('WishListController', function ($scope, $location, storageService, wishlistService, navigationService, sidemenuUiState) {
 
         $scope.isFirstUse = !(!!storageService.get('wishlist_used'));
         $scope.showFirstUseInfo = false;

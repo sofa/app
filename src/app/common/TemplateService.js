@@ -9,7 +9,7 @@ angular
         SHELL: 'common/shell/shell.tpl.html',
         SIDE_MENU: 'common/sidemenu/sofa-side-menu.tpl.html',
         CART: 'cart/cc-cart.tpl.html',
-        WISHLIST: 'wishlist/cc-wishlist.tpl.html',
+        WISHLIST: 'wishlist/sofa-wishlist.tpl.html',
         '404': 'common/404/cc-404.tpl.html',
         '404_PRODUCTS': 'common/404/cc-404-products.tpl.html',
         EXTRA_FIELDS: 'checkout/sofa-payment-extra-fields.tpl.html'

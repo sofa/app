@@ -1,4 +1,4 @@
-.cc-wishlist-button {
+.sofa-wishlist-button {
     @extend %sofa-button--base;
     @include fa-icon-type($fa-var-heart);
 
@@ -12,13 +12,13 @@
         transition: color .3s;
     }
 
-    .cc-wishlist-button__text {
+    .sofa-wishlist-button__text {
         display: inline-block;
         vertical-align: top;
     }
 }
 
-.cc-wishlist-button.cc-wishlist-button--active {
+.sofa-wishlist-button.sofa-wishlist-button--active {
     &:before {
         content: $fa-var-heart;
         color: $theme-color-accent;

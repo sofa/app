@@ -78,6 +78,7 @@ angular.module('CouchCommerceApp', [
     'sofa.editableList',
     'sofa.dateField',
     'sofa.checkout',
+    'sofa.wishList',
         // TODO: rename to sofa
     'sdk.directives.ccTemplateCode',
     'sdk.filter',
