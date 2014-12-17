@@ -1,0 +1,173 @@
+.sofa-cart__empty-hint {
+    @include fa-icon-type($fa-var-shopping-cart);
+
+    text-align: center;
+
+    &:before {
+        display: block;
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+}
+
+.sofa-cart__item {
+    padding: .625rem;
+}
+
+.sofa-cart__item-image {
+    float: left;
+    width: 4rem;
+    max-height: 4rem;
+    margin: 0 .625rem 0 0;
+}
+
+.sofa-cart__item-content {
+    margin-left: 4.625rem;
+}
+
+.sofa-cart__item-title {
+    display: block;
+    font-weight: 400;
+    margin-bottom: .5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sofa-cart__variant-list {
+    font-size: smaller;
+    line-height: 1.25rem;
+}
+
+.sofa-cart__item-footer {
+    padding: .25rem .625rem;
+    color: $theme-color-dark__lighter--33;
+
+    .sofa-price__price {
+        font-weight: 400;
+    }
+
+    .sofa-price--special .sofa-price__price {
+        float: none;
+    }
+}
+
+.sofa-cart__item-price--total {
+    float: right;
+    color: $theme-color-dark;
+}
+
+%sofa-cart-button {
+    @extend %sofa-button--base;
+    @extend %sofa-dock-left;
+
+    width: 4rem;
+    border-radius: 0;
+    border-left: 1px solid $theme-color-light__darker--20;
+
+    &:before {
+        text-align: center;
+    }
+}
+
+.sofa-cart__item-increase {
+    @extend %sofa-cart-button;
+    @include fa-icon-type($fa-var-plus);
+
+    left: 6rem;
+}
+
+.sofa-cart__item-decrease {
+    @extend %sofa-cart-button;
+    @include fa-icon-type($fa-var-minus);
+
+    left: 2rem;
+}
+
+.sofa-cart {
+
+    .sofa-editable-list {
+        border-top: 0;
+        border-bottom: 2px solid $theme-color-light__darker--33;
+        margin-bottom: 1rem;
+        background: $theme-color-light;
+    }
+
+    .sofa-editable-list__item--open .sofa-editable-list__drawer {
+        transform: translateX(-4rem); // accumulated width of all buttons inside the drawer
+    }
+
+}
+
+.sofa-editable-list--cart {
+
+    .sofa-editable-list__delete {
+        left: 10rem;
+        width: 4rem;
+    }
+
+    .sofa-editable-list__item--open .sofa-editable-list__drawer {
+        transform: translateX(-12rem); // accumulated width of all buttons inside the drawer
+    }
+
+}
+
+.sofa-cart__actions {
+    padding: 0 .625rem 1rem;
+}
+
+.sofa-cart__checkout-button {
+    @extend %sofa-button--primary;
+    @extend %sofa-button--block;
+
+    & + .sofa-cart__paypal-button {
+        margin-top: .625rem;
+    }
+}
+
+.sofa-discount-list {
+    display: block; // it's a custom element
+    margin-top: -1rem;
+
+    .sofa-cart__item-content {
+        margin: 0;
+        padding: .25rem .625rem;
+    }
+
+}
+
+.sofa-discount-list__name {
+    margin: 0;
+    font-size: smaller;
+}
+
+// TODO: consider excluding this into its own file
+.sofa-discount-code {
+    padding: 0 .625rem;
+}
+
+.sofa-discount-code__toggle {
+    @extend %sofa-button--base;
+    @extend .sofa-link;
+
+    padding: 0;
+    background: none;
+    color: $theme-color-accent;
+}
+
+%sofa-promotion-code-button--base {
+    @extend %sofa-button--small;
+    @extend %sofa-button--block;
+
+    margin-top: .625rem;
+}
+
+.sofa-discount-code__button {
+    @extend %sofa-button--primary;
+    @extend %sofa-promotion-code-button--base;
+}
+
+.sofa-discount-code__button--disabled {
+    @extend %sofa-button--primary--disabled;
+    @extend %sofa-promotion-code-button--base;
+}

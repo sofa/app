@@ -19,10 +19,6 @@ describe('CouchCommerceApp', function () {
             expect(CartController).toBeDefined();
         });
 
-        it('should have basketService defined on $scope', function () {
-            expect($scope.basketService).toBeDefined();
-        });
-
         it('should have navigationService defined on $scope', function () {
             expect($scope.navigationService).toBeDefined();
         });

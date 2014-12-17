@@ -4,9 +4,8 @@
 
 angular
     .module('CouchCommerceApp')
-    .controller('CartController', function ($scope, basketService, navigationService, configService, payPalOverlayService, dialog, couponService) {
+    .controller('CartController', function ($scope, basketService, navigationService, configService, payPalOverlayService, dialog, couponService, sidemenuUiState, $location) {
 
-        $scope.basketService = basketService;
         $scope.navigationService = navigationService;
         $scope.configService = configService;
 
@@ -25,7 +24,7 @@ angular
             requestAnimationFrame(function () {
                 $scope.summary = basketService.getSummary();
 
-                $scope.coupons = basketService.getActiveCoupons();
+                $scope.discountCodes = basketService.getActiveCoupons();
 
                 //that's a bit of a hack. We use the total box for both cart
                 //and summary page. In the summary page we always have a server generated
@@ -52,26 +51,28 @@ angular
             .on('couponAdded', updateModels)
             .on('couponRemoved', updateModels);
 
+
+        $scope.navigateToProduct = function (product) {
+            if ($location.path().indexOf(product.getOriginFullUrl()) > -1) {
+                sidemenuUiState.closeSidemenu();
+            } else {
+                navigationService.navigateToUrl(product.getOriginFullUrl());
+            }
+        };
+
+        $scope.removeItem = function (item) {
+            basketService.removeItem(item.product, item.variant);
+        };
+
+        $scope.increaseItem = function (item) {
+            if (basketService.canBeIncreasedBy(item, 1)) {
+                basketService.increaseOne(item);
+            }
+        };
+
         $scope.decreaseItem = function (item) {
             if (item.quantity > 1) {
                 basketService.decreaseOne(item);
-            } else {
-                dialog.messageBox($scope.ln.btnWarning, $scope.ln.cartDelMsg, [
-                        {
-                            result: 'cancel',
-                            label: $scope.ln.btnCancel
-                        },
-                        {
-                            result: 'ok',
-                            label: $scope.ln.btnYes
-                        }
-                    ])
-                    .result
-                    .then(function (result) {
-                        if (result === 'ok') {
-                            basketService.decreaseOne(item);
-                        }
-                    });
             }
         };
 
@@ -79,24 +80,32 @@ angular
             payPalOverlayService.startPayPalCheckout();
         };
 
-        $scope.promotionCodeModel = {
+        $scope.discountModel = {
             code: '',
             showForm: false,
             canRedeemCode: true
         };
 
+        $scope.toggleDiscountCodeForm = function () {
+            $scope.discountModel.showForm = !$scope.discountModel.showForm;
+        };
+
+        $scope.removeDiscountCode = function (obj) {
+            basketService.removeCoupon(obj.code);
+        };
+
         $scope.canRedeemCode = function () {
-            return $scope.promotionCodeModel.canRedeemCode && $scope.promotionCodeModel.code.length;
+            return $scope.discountModel.canRedeemCode && $scope.discountModel.code.length;
         };
 
         $scope.redeemCode = function () {
-            $scope.promotionCodeModel.canRedeemCode = false;
+            $scope.discountModel.canRedeemCode = false;
 
-            couponService.submitCode($scope.promotionCodeModel.code)
+            couponService.submitCode($scope.discountModel.code)
                 .then(function () {
-                    $scope.promotionCodeModel.canRedeemCode = true;
-                    $scope.promotionCodeModel.showForm = false;
-                    $scope.promotionCodeModel.code = '';
+                    $scope.discountModel.canRedeemCode = true;
+                    $scope.discountModel.showForm = false;
+                    $scope.discountModel.code = '';
                     updateModels();
                 }, function (err) {
                     var message = $scope.ln.errorSubmitPromotionCode;
@@ -104,8 +113,8 @@ angular
                         message = $scope.ln.errorInvalidPromotionCode;
                     }
                     else {
-                        $scope.promotionCodeModel.showForm = false;
-                        $scope.promotionCodeModel.code = '';
+                        $scope.discountModel.showForm = false;
+                        $scope.discountModel.code = '';
                     }
                     dialog
                         .messageBox(
@@ -115,7 +124,7 @@ angular
                                 {result: 'ok', label: $scope.ln.btnOk}
                             ]
                         );
-                    $scope.promotionCodeModel.canRedeemCode = true;
+                    $scope.discountModel.canRedeemCode = true;
                 });
         };
 

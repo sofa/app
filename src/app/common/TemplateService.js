@@ -8,7 +8,7 @@ angular
         SEARCH_RESULT: 'search/cc-search-result.tpl.html',
         SHELL: 'common/shell/shell.tpl.html',
         SIDE_MENU: 'common/sidemenu/sofa-side-menu.tpl.html',
-        CART: 'cart/cc-cart.tpl.html',
+        CART: 'cart/sofa-cart.tpl.html',
         WISHLIST: 'wishlist/sofa-wishlist.tpl.html',
         '404': 'common/404/cc-404.tpl.html',
         '404_PRODUCTS': 'common/404/cc-404-products.tpl.html',

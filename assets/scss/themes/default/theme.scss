@@ -52,14 +52,14 @@
 @import 'app/common/footer/footer.scss';
 @import 'app/common/sidemenu/side-menu.scss';
 @import 'app/common/contextviews/context-views.scss';
-@import 'app/common/cart/cart.scss';
-@import 'app/common/cart/paypal-overlay.scss';
-@import 'app/common/cart/paypal-buttons.scss';
 @import 'app/common/totalbox/total-box.scss';
 @import 'app/common/dialog/dialog.scss';
 @import 'app/common/dialog/dialog-loading.scss';
 @import 'app/common/sofaEditableList/sofa-editable-list.scss';
 
+@import 'app/cart/sofa-cart.scss';
+@import 'app/cart/paypal-overlay.scss';
+@import 'app/cart/paypal-buttons.scss';
 @import 'app/wishlist/wishlist.scss';
 @import 'app/wishlist/wishlist-button.scss';
 @import 'app/search/search-box.scss';

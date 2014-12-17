@@ -1,0 +1,88 @@
+<div class="sofa-side-menu sofa-side-menu--cart" bindonce="ln">
+
+    <div class="sofa-side-menu__header">
+        <h2 class="sofa-side-menu__heading" bo-text="ln.shoppingCart"></h2>
+    </div>
+
+    <div class="sofa-side-menu__content">
+
+        <div class="sofa-side-menu__scroll-container">
+
+            <div class="sofa-sticky-view">
+                <div class="sofa-sticky-view__content">
+                    <div class="sofa-cart">
+
+                        <p class="sofa-cart__empty-hint" bo-text="ln.cartIsEmpty" ng-show="isEmpty"></p>
+
+                        <sofa-editable-cart-list
+                                ng-show="!isEmpty"
+                                on-remove="removeItem"
+                                on-increase="increaseItem"
+                                on-decrease="decreaseItem"
+                                layout="right">
+                            <div class="sofa-cart__item" ng-click="navigateToProduct(item.product)">
+                                <img class="sofa-cart__item-image" cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 64, maxheight: 64}" alt=""/>
+                                <div class="sofa-cart__item-content">
+                                    <strong class="sofa-cart__item-title" ng-bind="item.product.name"></strong>
+                                    <ul class="sofa-cart__variant-list">
+                                        <li ng-repeat="(variantProperty, variantPropertyValue) in item.variant.properties">
+                                            {{variantProperty}}: {{variantPropertyValue}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </sofa-editable-cart-list>
+
+                        <sofa-editable-list class="sofa-discount-list"
+                                ng-show="!isEmpty && discountCodes.length"
+                                on-remove="removeDiscountCode"
+                                repeater="item in discountCodes"
+                                layout="right">
+                            <div class="sofa-cart__item-content">
+                                <strong class="sofa-cart__item-title" ng-bind="ln.discountCode"></strong>
+                                <p class="sofa-discount-list__name" ng-bind="item.name"></p>
+                            </div>
+                        </sofa-editable-list>
+                    </div>
+
+                    <div class="sofa-discount-code" ng-show="!isEmpty">
+                        <button type="button" class="sofa-discount-code__toggle"
+                                ng-bind="ln.discountCodeHint" ng-click="toggleDiscountCodeForm()">
+                        </button>
+                        <form name="discountCodeForm" novalidate ng-show="discountModel.showForm">
+                            <div class="sofa-form-item">
+                                <label for="f_discount_code" class="sofa-hidden" bo-text="ln.discountCode"></label>
+                                <input ng-model="discountModel.code" class="sofa-text-field" id="f_discount_code" type="text" />
+                                <button type="button" ng-click="canRedeemCode() && redeemCode()" bo-text="ln.discountCodeButton"
+                                        ng-class="canRedeemCode() ? 'sofa-discount-code__button' : 'sofa-discount-code__button--disabled'">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="sofa-sticky-view__footer" ng-show="!isEmpty">
+                    <div cc-include="tpl.TOTALBOX"></div>
+
+                    <div class="sofa-cart__actions">
+                        <a ng-if="cfg.showCheckoutButton"
+                           ng-click="navigationService.navigateToCheckout()"
+                           class="sofa-cart__checkout-button"
+                           bo-text="ln.checkout">
+                        </a>
+
+                        <a ng-if="cfg.showPayPalButton"
+                           ng-click="checkoutWithPayPal()"
+                           class="sofa-cart__paypal-button"
+                           bo-class="configService.getLocalizedPayPalButtonClass()">
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

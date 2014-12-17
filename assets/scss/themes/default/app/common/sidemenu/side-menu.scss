@@ -100,7 +100,7 @@
     }
 
     .sofa-side-menu__header {
-        flex: 0 0 auto;
+        flex: 0 0 3.25rem;
     }
 
     .sofa-side-menu__content {
@@ -111,18 +111,15 @@
     .sofa-side-menu__scroll-container {
         @extend %sofa-dock-all;
         @extend %sofa-scroll-container;
+
+        display: flex;
+        flex-direction: column;
     }
 
 }
 
-.cc-side-menu--cart {
-    .cc-side-menu__header {
-        line-height: 18px;
-        padding: 20px 10px;
-        text-transform: uppercase;
-        letter-spacing: .1em;
-        text-align: center;
-    }
+.sofa-side-menu--cart {
+    background: $theme-color-light__darker--15;
 }
 
 // solves some issues where the content can be dragged horizontally
