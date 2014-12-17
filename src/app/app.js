@@ -76,6 +76,7 @@ angular.module('CouchCommerceApp', [
     'sdk.directives.sofaLoadingSpinner',
     'sofa.tabs',
     'sofa.editableList',
+    'sofa.editableCartList',
     'sofa.dateField',
     'sofa.checkout',
     'sofa.wishList',
