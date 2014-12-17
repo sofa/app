@@ -800,7 +800,7 @@ module.exports = function (grunt) {
             options: {
                 tagOnly: true,
                 remote: 'app-deployments',
-                masterBranch: 'master',
+                masterBranch: null,
                 versionFiles: [
                     'package.json'
                 ],
