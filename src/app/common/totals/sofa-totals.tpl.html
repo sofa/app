@@ -1,0 +1,34 @@
+<div class="sofa-totals">
+    <ul class="sofa-totals__list">
+        <li>
+            <span class="sofa-totals__label" ng-bind="ln.summarySubtotal" ></span>
+            <span class="sofa-totals__value" ng-bind="summary.sum | currency"></span>
+        </li>
+        <li ng-if="summary.shipping !== null">
+            <span class="sofa-totals__label" ng-bind="ln.summaryShipping" ></span>
+            <span class="sofa-totals__value" ng-bind="summary.shipping | currency"></span>
+        </li>
+        <li ng-if="summary.shipping === null">
+            <a class="sofa-link" ng-click="navigationService.navigateToShippingCostsPage()" ng-bind="ln.shippingCostsGeneric"></a>
+        </li>
+        <li ng-show="summary.surcharge">
+            <span class="sofa-totals__label" ng-bind="ln.surcharge" ></span>
+            <span class="sofa-totals__value" ng-bind="summary.surcharge | currency"></span>
+        </li>
+        <li>
+            <span class="sofa-totals__label" ng-bind="ln.summaryTaxLabel"></span>
+            <span class="sofa-totals__value" ng-bind="summary.vat | currency"></span>
+        </li>
+        <li ng-repeat="discountCode in discountCodes">
+            <span class="sofa-totals__label sofa-totals__label--discount">
+                <span ng-bind="ln.discountCode"></span>
+                <span ng-bind="discountCode.name"></span>
+            </span>
+            <span class="sofa-totals__value" ng-bind="-discountCode.amount | currency"></span>
+        </li>
+        <li class="sofa-totals__grand-total">
+            <span class="sofa-totals__label" ng-bind="ln.summaryGrandTotalLabel"></span>
+            <span class="sofa-totals__value" ng-bind="summary.total | currency"></span>
+        </li>
+    </ul>
+</div>
