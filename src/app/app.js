@@ -9,7 +9,7 @@
 
 (function () {
     var url = window.location.toString();
-    if (url.indexOf('#') > - 1) {
+    if (url.indexOf('#') > - 1 && url.indexOf('#!') === -1) {
         window.location = url.replace('#', '#!');
     }
 })();
