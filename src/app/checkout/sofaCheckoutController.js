@@ -24,6 +24,7 @@ angular
         $scope.checkoutModel.billingAddress = checkoutService.getBillingAddress() || {};
         $scope.checkoutModel.shippingAddress = checkoutService.getShippingAddress() || {};
 
+        // TODO: bring back the surcharge
 //        var checkSurcharge = function () {
 //            if ($scope.summary.surcharge) {
 //                //to keep compatibility to our current language file we need to
@@ -62,13 +63,14 @@ angular
 //    };
 
         ctrl.proceed = function () {
-            // TODO: add a final validator here
+            // TODO: add a final validator here (do we have to? should all have been checked within the respective steps)
 
             checkoutService
                 .checkoutWithCouchCommerce($scope.checkoutModel)
                 .then(function (token) {
                     navigationService.navigateToSummary(token);
                 }, function () {
+                    // TODO: did we introduce improved error messaging here?
                     dialog.messageBox($scope.ln.btnWarning, $scope.ln.errorGettingPaymentDetails, [
                         {result: 'ok', label: $scope.ln.btnOk}
                     ]);

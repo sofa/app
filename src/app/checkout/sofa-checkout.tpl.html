@@ -172,17 +172,13 @@
                     </div>
 
                     <footer class="sofa-checkout-section__footer">
-                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
-                                ng-click="stepCtrl.proceedFrom('shippingMethod')"
+                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.toSummaryStep"
+                                ng-click="stepCtrl.finishSteps()"
                                 ng-disabled="!stepCtrl.steps.shippingMethod.hasMethods || shippingMethodForm.$invalid">
                         </button>
                     </footer>
                 </section>
 
-                <!--<section class="cc-checkout-section cc-checkout__navigation">-->
-                    <!--<div class="cc-message-box--warning" ng-if="!canProceed()" bo-text="ln.checkoutProceedInfo"></div>-->
-                    <!--<a ng-click="canProceed() && proceed()" ng-class="canProceed() ? 'cc-checkout-button' : 'cc-checkout-button--disabled'" bo-text="ln.nextStep"></a>-->
-                <!--</section>-->
             </div>
         </div>
         <div class="sofa-sticky-view__footer">

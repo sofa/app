@@ -77,6 +77,15 @@ angular
             return deferred.promise;
         };
 
+        stepController.finishSteps = function () {
+            stepController.steps.shippingMethod.onLeave()
+                .then(function () {
+                    $scope.ctrl.proceed();
+                }, function (error) {
+                    console.log(error);
+                });
+        };
+
         stepController.steps = {
             shippingAddress: {
                 active: true,
@@ -126,7 +135,7 @@ angular
                     var deferred = $q.defer();
 
                     checkoutService
-                        .getSupportedCheckoutMethods($scope.checkoutModel)
+                        .getAvailableCheckoutMethods($scope.checkoutModel)
                         .then(function (data) {
                             var existingPayment = checkoutService.getPaymentMethod();
 
@@ -176,7 +185,6 @@ angular
                 active: false,
                 mode: 'edit',
                 valid: false,
-                next: '',
                 hasMethods: true,
                 formatter: shippingMethodFormatter,
                 onEnter: function () {
@@ -230,9 +238,6 @@ angular
                         }
                     })
                     .then(function () {
-                        if (!sofa.Util.isEmpty($scope.ctrl.viewModel.selectedShippingMethod)) {
-                            stepController.proceedFrom('shippingMethod');
-                        }
                         unwatchShippingAddress();
                     }, unwatchShippingAddress);
             }
