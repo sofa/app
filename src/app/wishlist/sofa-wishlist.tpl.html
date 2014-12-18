@@ -9,7 +9,7 @@
             repeater="(key,item) in wishlist"
             on-remove="removeItem">
         <div class="sofa-wishlist__item" ng-click="navigateToProduct(item.product)">
-            <img class="sofa-wishlist__item-image" cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 64, maxheight: 64}" alt=""/>
+            <img class="sofa-wishlist__item-image" cc-src="item.product.getImage('large')" cc-src-config="{maxwidth: 64, maxheight: 64, forceDimensions: true}" alt=""/>
             <div class="sofa-wishlist__item-content">
                 <strong class="sofa-wishlist__item-title" ng-bind="item.product.name"></strong>
                 <span class="sofa-wishlist__item-price">
