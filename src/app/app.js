@@ -370,7 +370,9 @@ angular.module('CouchCommerceApp', [
     });
 }])
 //just to kick off the services
+/* jshint ignore:start */
 .run(function (stateChangeService, viewClassService, backStepHighlightService, metaService) { } )
+/* jshint ignore:end */
 .run(function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
 
 
