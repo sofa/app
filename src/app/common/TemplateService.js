@@ -1,7 +1,7 @@
 angular
     .module('CouchCommerceApp')
     .constant('templateService', {
-        PRODUCT_BUY_BOX: 'product/cc-product-buy-box.tpl.html',
+        PRODUCT_INTERACTION: 'product/sofa-product-interaction.tpl.html',
         TOTALBOX: 'common/totals/sofa-totals.tpl.html',
         HEADER: 'common/header/cc-header.tpl.html',
         SEARCH_BOX: 'search/cc-search-box.tpl.html',

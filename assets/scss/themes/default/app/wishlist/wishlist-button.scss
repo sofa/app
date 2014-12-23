@@ -2,12 +2,11 @@
     @extend %sofa-button--base;
     @include fa-icon-type($fa-var-heart);
 
-    display: block;
-    text-align:left;
+    text-align: left;
+    background: none;
 
     &:before {
         font-size: 1.5rem;
-        margin-right: 0.875rem;
         vertical-align: top;
         transition: color .3s;
     }
@@ -15,6 +14,11 @@
     .sofa-wishlist-button__text {
         display: inline-block;
         vertical-align: top;
+        margin: 0 .5rem;
+    }
+
+    .sofa-product-interaction & {
+        float: right;
     }
 }
 

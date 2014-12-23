@@ -79,6 +79,7 @@ angular.module('CouchCommerceApp', [
     'sofa.editableCartList',
     'sofa.dateField',
     'sofa.checkout',
+    'sofa.productView',
     'sofa.wishList',
         // TODO: rename to sofa
     'sdk.directives.ccTemplateCode',
@@ -170,9 +171,10 @@ angular.module('CouchCommerceApp', [
         .state('product', {
             url: UNIQUE_URL_PREFIX + ':category:productUrlKey',
             templateUrl: function () {
-                return cc.deviceService.isTabletSize() ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html';
+                return cc.deviceService.isTabletSize() ? 'product/sofa-product-wide.tpl.html' : 'product/sofa-product.tpl.html';
             },
-            controller: 'ProductController',
+            controller: 'ProductViewController',
+            controllerAs: 'viewCtrl',
             resolve: {
                 product: function (couchService, $stateParams) {
                     return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);

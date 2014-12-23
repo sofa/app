@@ -1,6 +1,11 @@
+.sofa-variant-selector {
+    padding: 1rem .625rem;
+    border-bottom: 1px solid $theme-color-light__darker--20;
+    background: $theme-color-light;
+}
 
 .sofa-variant-selector__item + .sofa-variant-selector__item {
-    margin-top:4px;
+    margin-top: .25rem;
 }
 
 .sofa-variant-selector__label {

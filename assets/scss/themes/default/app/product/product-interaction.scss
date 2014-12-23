@@ -1,0 +1,59 @@
+.sofa-product-interaction {
+    padding-bottom: .625rem;
+    background: $theme-color-light__darker--10;
+    border: 1px solid $theme-color-light__darker--20;
+    border-width: 1px 0;
+}
+
+.sofa-product-interaction__add-to-cart {
+    @extend %sofa-button--primary;
+    @extend %sofa-button--block;
+}
+
+.sofa-product-interaction__info {
+    padding: 1rem .625rem;
+}
+
+.sofa-product-interaction__buy {
+    padding: 0 .625rem;
+}
+
+.sofa-product-interaction__sold-out {
+    @extend %sofa-button--primary--disabled;
+    @extend %sofa-button--block;
+}
+
+.sofa-price {
+    .sofa-product-interaction & {
+        display: block;
+        line-height: 2.75rem;
+    }
+}
+
+.sofa-price--basic {
+    .sofa-product-interaction & {
+        font-size: 1.25rem;
+    }
+}
+
+.sofa-price__price {
+    .sofa-product-interaction & {
+        font-size: 1.25rem;
+        font-weight: 400;
+    }
+}
+
+.sofa-product-interaction__base-price-info,
+.sofa-product-interaction__info--legal {
+    display: block;
+    font-size: smaller;
+    line-height: 1.5rem;
+    color: $theme-color-light__darker--33;
+}
+
+.sofa-product-interaction__delivery {
+    margin: .625rem;
+    padding: .625rem 0;
+    line-height: 1.5rem;
+    border-top: 1px solid $theme-color-light__darker--20;
+}

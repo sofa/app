@@ -1,3 +1,10 @@
 .sofa-full-page-view__close {
+    @extend %sofa-button--base;
     @include fa-icon-type($fa-var-times);
+
+    line-height: 1;
+    top: .25rem;
+    right: .25rem;
+    background: none;
+    font-size: 1.5rem;
 }
