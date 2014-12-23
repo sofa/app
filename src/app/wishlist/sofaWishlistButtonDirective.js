@@ -15,9 +15,11 @@ angular
                 selectedVariant: '=?'
             },
             templateUrl: 'wishlist/sofa-wishlist-button.tpl.html',
-            link: function (scope) {
+            link: function (scope, element, attrs) {
 
                 scope.ln = localeService.getTranslation('sofaWishList');
+
+                scope.hasLabel = attrs.labeled;
 
                 scope.isListed = function (key) {
                     return wishlistService.exists(key);
