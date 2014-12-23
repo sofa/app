@@ -375,7 +375,7 @@ angular.module('CouchCommerceApp', [
 /* jshint ignore:start */
 .run(function (stateChangeService, viewClassService, backStepHighlightService, metaService) { } )
 /* jshint ignore:end */
-.run(function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService) {
+.run(function ($rootScope, $timeout, $window, slideDirectionService, deviceService, templateService, localeService) {
 
 
     //Todo: Check what can be moved over to the MainController
@@ -390,6 +390,8 @@ angular.module('CouchCommerceApp', [
     $rootScope.tpl = templateService;
 
     $rootScope.isTabletSize = cc.deviceService.isTabletSize();
+
+    localeService.setTranslationData(cc.Lang);
 
     //no need to add bindings for things that are unlikely to change over a session;
     deviceService.flagOverflowSupport();
