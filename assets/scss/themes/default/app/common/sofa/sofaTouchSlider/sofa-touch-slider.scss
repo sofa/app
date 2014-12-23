@@ -1,0 +1,86 @@
+.sofa-touch-slider-mask {
+    overflow: hidden;
+}
+
+.sofa-touch-slider {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    transition: transform .3s;
+    transform: translateX(0);
+
+    // some tweaks for less flickering. Never ever put this on the <li>'s...
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+.sofa-touch-slider__item {
+    //    box-sizing: border-box;
+    padding: .25rem;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+%sofa-touch-slider-indicator__item {
+    display: inline-block;
+    width: .75rem;
+    height: .75rem;
+    line-height: 1rem;
+    border-radius: 100%;
+    border: 1px solid $theme-color-dark__lighter--33;
+    background: $theme-color-dark__lighter--33;
+    margin: 0 .25rem;
+    vertical-align: top;
+}
+
+.sofa-touch-slider-indicator {
+    text-align: center;
+    line-height: .75rem;
+    padding: .625rem .25rem 1rem;
+}
+
+.sofa-touch-slider-indicator__item {
+    @extend %sofa-touch-slider-indicator__item;
+}
+
+.sofa-touch-slider-indicator__item--active {
+    @extend %sofa-touch-slider-indicator__item;
+
+    background: $theme-color-light;
+}
+
+// NO FLEXBOX FALLBACK
+
+.sofa-touch-slider-no-flexbox {
+
+    .sofa-touch-slider {
+        &:after {
+            content: ' ';
+            display: block;
+            clear: left;
+        }
+    }
+
+    .sofa-touch-slider__item {
+        float: left;
+    }
+}
+
+.sofa-touch-slider__item {
+    .sofa-product__image-slider & {
+        border: 0;
+    }
+}
+
+.sofa-touch-slider-wrapper {
+    .sofa-full-page-view & {
+        margin: 0;
+        max-width: 100%;
+        max-height: 100%;
+    }
+}

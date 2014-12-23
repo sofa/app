@@ -4,7 +4,6 @@
 
 // 3rd Party / SDK
 @import '../../../../node_modules/sofa-base/src/directives/sofaZippy/sofa-zippy.scss';
-@import '../../../../node_modules/sofa-base/src/directives/sofaTouchSlider/sofa-touch-slider.scss';
 @import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaSelectBox/sofa-select-box.scss';
 @import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaSearchField/sofa-search-field.scss';
 @import '../../../../node_modules/sofa-base/src/directives/sofaForms/sofaRangeSlider/sofa-range-slider.scss';
@@ -39,6 +38,7 @@
 @import 'app/common/sofa/sofaCategoryTreeView/sofa-category-tree-view.scss';
 @import 'app/common/sofa/sofaGoBackControl/sofa-go-back-control.scss';
 @import 'app/common/sofa/sofaDateField/sofa-date-field.scss';
+@import 'app/common/sofa/sofaTouchSlider/sofa-touch-slider.scss';
 
 // Theme: Common styles
 @import 'app/common/base';
