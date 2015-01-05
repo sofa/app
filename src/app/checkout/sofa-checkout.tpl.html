@@ -104,14 +104,14 @@
                     <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.paymentMethod.mode === 'edit'">
                         <form name="paymentMethodForm" novalidate>
                             <div class="sofa-form-item">
-                                <cc-select-box
+                                <sofa-select-box
                                         model="ctrl.viewModel.selectedPaymentMethod"
                                         data="ctrl.viewModel.supportedPaymentMethods"
                                         choose-text="ln.sofaCheckout.choose"
                                         required="true"
                                         property-name="f_payment_method"
                                         display-value-exp="'title'">
-                                </cc-select-box>
+                                </sofa-select-box>
                             </div>
                             <div ng-if="!sofa.Util.isEmpty(stepCtrl.steps.paymentMethod.extraFields)">
                                 <sofa-payment-extra-fields
@@ -150,13 +150,13 @@
                          ng-show="stepCtrl.steps.shippingMethod.hasMethods && stepCtrl.steps.shippingMethod.mode === 'edit'">
                         <form name="shippingMethodForm" novalidate>
                             <div class="sofa-form-item">
-                                <cc-select-box
+                                <sofa-select-box
                                         model="ctrl.viewModel.selectedShippingMethod"
                                         data="ctrl.viewModel.supportedShippingMethods"
                                         required="true"
                                         property-name="f_shipping_method"
                                         display-value-exp="stepCtrl.steps.shippingMethod.formatter">
-                                </cc-select-box>
+                                </sofa-select-box>
                             </div>
                         </form>
                     </div>

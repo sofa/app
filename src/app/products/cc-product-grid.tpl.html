@@ -16,12 +16,12 @@
 
             <div bo-if="products.length > 0">
                 <div class="sofa-product-controls">
-                    <cc-select-box
+                    <sofa-select-box
                             model="sortModel.sortBy"
                             data="sortModel.sortTypes"
                             choose-text="ln.sortBy"
                             display-value-exp="'title'">
-                    </cc-select-box>
+                    </sofa-select-box>
                     <span ng-if="isTabletSize" class="sofa-product-controls-count">
                         <b bo-text="products.length"></b>
                         <span bo-text="ln.productCountText"></span>

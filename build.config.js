@@ -186,8 +186,11 @@ module.exports = {
             'node_modules/sofa-base/src/services/**/*.js',
             // Hand-picking the directives
             'node_modules/angular-sofa-address/dist/*.js',
+            'node_modules/angular-sofa-variant-selector/dist/*.js',
+            'node_modules/angular-sofa-select-box/dist/*.js',
+            'node_modules/angular-sofa-name/dist/*.js',
+
             'node_modules/sofa-base/src/directives/sofaZippy/*.js',
-            'node_modules/sofa-base/src/directives/sofaVariantSelector/*.js',
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.js',
             'node_modules/sofa-base/src/directives/sofaPrice/*.js',
             'node_modules/sofa-base/src/directives/sofaInject/*.js',
@@ -207,7 +210,6 @@ module.exports = {
         tpl: [
             // Hand-picking the directives
             'node_modules/sofa-base/src/directives/sofaZippy/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaVariantSelector/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaPrice/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaImageZoom/*.tpl.html',

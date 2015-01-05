@@ -12,6 +12,9 @@
     "dependencies": {
         "angular-bindonce": "~0.2.2",
         "angular-sofa-address": "sofa/angular-sofa-address#sofa-1.0",
+        "angular-sofa-variant-selector": "sofa/angular-sofa-variant-selector",
+        "angular-sofa-select-box": "sofa/angular-sofa-select-box",
+        "angular-sofa-name": "sofa/angular-sofa-name",
         "hammerjs": "2.0.x",
         "font-awesome": "4.2.0",
         "sofa-core": "~0.13.x",

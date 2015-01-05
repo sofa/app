@@ -6,13 +6,13 @@
     </li>
     <li class="sofa-form-item" ng-if="optionalFields.salutation">
         <span class="sofa-form-label--required" bo-text="ln.salutation"></span>
-        <cc-select-box
+        <sofa-select-box
                 model="addressModel.salutation"
                 data="addressOptions.salutations"
                 required="true"
                 choose-text="ln.choose"
                 property-name="f_salutation">
-        </cc-select-box>
+        </sofa-select-box>
         <span ng-show="modelController.f_salutation.$dirty && modelController.f_salutation.$invalid"
               class="sofa-validation__message--fail" bo-text="ln.errors.salutation">
         </span>
@@ -115,14 +115,14 @@
     <li class="sofa-form-item">
         <span class="sofa-form-label--required" bo-text="ln.country"></span>
         <div class="sofa-validation__wrapper">
-            <cc-select-box
+            <sofa-select-box
                     model="addressModel.country"
                     data="addressOptions.countries"
                     choose-text="ln.choose"
                     required="true"
                     property-name="f_country"
                     display-value-exp="'label'">
-            </cc-select-box>
+            </sofa-select-box>
         <span ng-show="modelController.f_country.$dirty && modelController.f_country.$invalid"
               class="sofa-validation__message--fail" bo-text="ln.errors.country">
         </span>

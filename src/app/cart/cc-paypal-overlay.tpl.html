@@ -2,21 +2,21 @@
     <i class="cc-paypal-overlay__close-icon" ng-click="close()"></i>
     <div class="cc-form__item">
         <label class="cc-form__label" bo-text="ln.formCountry"></label>
-        <cc-select-box
+        <sofa-select-box
             model="vm.selectedCountry"
             data="vm.countries"
             property-name="{{ln.paymentMethod}}"
             display-value-exp="'label'">
-        </cc-select-box>
+        </sofa-select-box>
     </div>
     <div class="cc-form__item">
         <label class="cc-form__label" bo-text="ln.shippingMethod"></label>
-        <cc-select-box
+        <sofa-select-box
             model="vm.selectedShippingMethod"
             data="vm.supportedShippingMethods"
             property-name="{{ln.shippingMethod}}"
             display-value-exp="shippingMethodFormatter">
-        </cc-select-box>
+        </sofa-select-box>
     </div>
     <div class="cc-message-box--error" ng-show="!vm.supportedShippingMethods.length" bo-text="ln.noPayPalShippingMethod"></div>
     <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>
