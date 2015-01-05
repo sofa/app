@@ -289,18 +289,25 @@ angular.module('CouchCommerceApp', [
         var navigationService = $injector.get('navigationService');
         var $state = $injector.get('$state');
 
-        stateResolverService
-            .resolveState($location.path())
-            .then(function (state) {
-                $state.transitionTo(state.stateName, state.stateParams, { location: false });
-            }, function () {
-                // since we're generating HTML snapshots for search engines
-                // via prerender.io, we have to add this meta tag when the
-                // requested url actually returns a 404 error
-                // https://prerender.io/getting-started#404s
-                setPrerenderIOMetaTag('404');
-                navigationService.navigateToRootCategory();
-            });
+        var path = $location.path();
+
+        if (path.length === 0) {
+            navigationService.navigateToRootCategory();
+        }
+        else {
+            stateResolverService
+                .resolveState(path)
+                .then(function (state) {
+                    $state.transitionTo(state.stateName, state.stateParams, { location: false });
+                }, function () {
+                    // since we're generating HTML snapshots for search engines
+                    // via prerender.io, we have to add this meta tag when the
+                    // requested url actually returns a 404 error
+                    // https://prerender.io/getting-started#404s
+                    setPrerenderIOMetaTag('404');
+                    navigationService.navigateToRootCategory();
+                });
+        }
     });
 })
 .run(['couchService', 'stateResolverService', function (couchService, stateResolverService) {
