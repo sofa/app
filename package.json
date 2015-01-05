@@ -27,7 +27,7 @@
         "sofa-url-construction-service": "~0.3.x",
         "sofa-pages-service": "~0.1.0",
         "sofa-checkout-service": "sofa/sofa-checkout-service#sofa-1.0",
-        "sofa-couch-service": "~0.8.x",
+        "sofa-couch-service": "~0.14.x",
         "sofa-coupon-service": "~0.1.0",
         "sofa-wishlist-service": "~0.2.1",
         "sofa-image-resizer-service": "~0.2.x",
