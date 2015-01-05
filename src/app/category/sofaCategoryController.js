@@ -1,20 +1,21 @@
 'use strict';
 
 angular
-    .module('CouchCommerceApp')
-    .controller('CategoryController', function ($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, urlParserService, categoryTreeViewRemote, titleService, $state) {
+    .module('sofa.category')
+    .controller('CategoryController', function CategoryController($scope, $stateParams, couchService, navigationService, backStepHighlightService, category, selectionService, categoryTreeViewRemote, titleService, $state) {
+
+        var self = this;
 
         if (!category) {
             return;
         }
 
-        //we want to set the active category in the side menu.
+        // we want to set the active category in the side menu.
         categoryTreeViewRemote.setActive(category);
 
-        $scope.urlParserService = urlParserService;
-        $scope.backStepHighlightService = backStepHighlightService;
+        self.backStepHighlightService = backStepHighlightService;
 
-        $scope.goToCategory = function (category, $event) {
+        self.goToCategory = function (category, $event) {
             $event.preventDefault();
             selectionService.select($stateParams.category, angular.element($event.currentTarget));
 
@@ -44,6 +45,6 @@ angular
             titleService.setShopNameTitle();
         }
 
-        $scope.category = category;
-        $scope.headline = !category.parent ? $scope.ln.welcomeText : category.label;
+        self.category = category;
+        self.headline = !category.parent ? $scope.ln.welcomeText : category.label;
     });

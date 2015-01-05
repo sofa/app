@@ -82,6 +82,7 @@ angular.module('CouchCommerceApp', [
     'sofa.dateField',
     'sofa.checkout',
     'sofa.productView',
+    'sofa.category',
     'sofa.wishList',
         // TODO: rename to sofa
     'sdk.directives.ccTemplateCode',
@@ -107,51 +108,11 @@ angular.module('CouchCommerceApp', [
     snapRemoteProvider.globalOptions.addBodyClasses = true;
     snapRemoteProvider.globalOptions.hyperextensible = false;
 
-    var UNIQUE_URL_PREFIX = '29ad37d2-78e3-428d-9ff4-057acdff42b8/';
-
-    var categoryStateConfig = {
-        url: '/',
-        templateUrl: function () {
-            return cc.deviceService.isTabletSize() ? 'categories/cc-category-grid.tpl.html' : 'categories/cc-category-list.tpl.html';
-        },
-        controller: 'CategoryController',
-        screenIndex: screenIndexes.category,
-        resolve: {
-            category: ['couchService', '$stateParams', 'navigationService', '$q', '$state', function (couchService, $stateParams, navigationService, $q, $state) {
-
-                return couchService
-                        .getCategory($stateParams.category)
-                        .then(function (category) {
-                            //we need to make that check here *before* the CategoryController
-                            //is intialized. Otherwise we will have double transitions in such
-                            //cases.
-                            if (category && !category.children) {
-                                // the serverside states API does not differentiate between `category` and `products` state. It
-                                // always returns `category` states. It's currently easier for us to just redirect on the clientside
-                                $state.transitionTo('products', { category: category.urlId }, { location: false });
-                                return $q.reject();
-                            }
-                            return category;
-                        });
-            }]
-        },
-        onEnter: ['metaService', 'category', function (metaService, category) {
-            if (category.isRoot) {
-                metaService.reset();
-            } else {
-                metaService.set({
-                    description: ''
-                });
-            }
-        }]
-    };
-
     $stateProvider
-        .state('categoryempty', categoryStateConfig)
-        .state('categories', angular.extend({}, categoryStateConfig, { url: UNIQUE_URL_PREFIX + ':category' }))
-
         .state('products', {
-            url: UNIQUE_URL_PREFIX + ':category',
+            params: {
+                category: {}
+            },
             templateUrl: 'products/cc-product-grid.tpl.html',
             controller: 'ProductsController',
             resolve: {
@@ -171,7 +132,10 @@ angular.module('CouchCommerceApp', [
         })
 
         .state('product', {
-            url: UNIQUE_URL_PREFIX + ':category:productUrlKey',
+            params: {
+                category: {},
+                productUrlKey: ''
+            },
             templateUrl: function () {
                 return cc.deviceService.isTabletSize() ? 'product/sofa-product-wide.tpl.html' : 'product/sofa-product.tpl.html';
             },
@@ -194,19 +158,6 @@ angular.module('CouchCommerceApp', [
             },
             screenIndex: screenIndexes.product
         })
-
-        .state('oldCategories', angular.extend({}, categoryStateConfig, {
-            url: '/cat/:category',
-            resolve: {
-                category: function (couchService, $stateParams) {
-                    return couchService.getCategory($stateParams.category);
-                }
-            },
-            controller: function ($location, category) {
-                setPrerenderIOMetaTag('301');
-                $location.path(category.getOriginFullUrl());
-            }
-        }))
 
         .state('oldProducts', {
             url: '/cat/:category/products',
