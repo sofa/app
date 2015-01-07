@@ -82,6 +82,7 @@ angular.module('CouchCommerceApp', [
     'sofa.dateField',
     'sofa.checkout',
     'sofa.productView',
+    'sofa.products',
     'sofa.category',
     'sofa.wishList',
         // TODO: rename to sofa
@@ -109,28 +110,6 @@ angular.module('CouchCommerceApp', [
     snapRemoteProvider.globalOptions.hyperextensible = false;
 
     $stateProvider
-        .state('products', {
-            params: {
-                category: {}
-            },
-            templateUrl: 'products/cc-product-grid.tpl.html',
-            controller: 'ProductsController',
-            resolve: {
-                products: function (couchService, $stateParams) {
-                    return couchService.getProducts($stateParams.category);
-                },
-                category: function (couchService, $stateParams) {
-                    return couchService.getCategory($stateParams.category);
-                }
-            },
-            onEnter: function (metaService) {
-                metaService.set({
-                    description: ''
-                });
-            },
-            screenIndex: screenIndexes.products
-        })
-
         .state('product', {
             params: {
                 category: {},
@@ -157,20 +136,6 @@ angular.module('CouchCommerceApp', [
                 }
             },
             screenIndex: screenIndexes.product
-        })
-
-        .state('oldProducts', {
-            url: '/cat/:category/products',
-            templateUrl: 'products/cc-product-grid.tpl.html',
-            controller: function (category, $location) {
-                setPrerenderIOMetaTag('301');
-                $location.path(category.getOriginFullUrl());
-            },
-            resolve: {
-                category: function (couchService, $stateParams) {
-                    return couchService.getCategory($stateParams.category);
-                }
-            }
         })
 
         .state('oldProduct', {

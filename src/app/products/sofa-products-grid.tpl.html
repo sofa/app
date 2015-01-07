@@ -1,4 +1,4 @@
-<div cc-scroller-announcer bindonce="products" class="sofa-view">
+<div cc-scroller-announcer bindonce="productsController" class="sofa-view">
 
     <div class="sofa-sticky-view">
 
@@ -7,35 +7,35 @@
 
             <div class="sofa-view__header sofa-view__header--products">
                 <div class="sofa-up-nav">
-                    <sofa-go-back-control button-text="{{ ln.home }}" category="category"></sofa-go-back-control>
+                    <sofa-go-back-control button-text="{{ ln.home }}" category="productsController.category"></sofa-go-back-control>
                 </div>
                 <div class="sofa-view__title">
-                    <h1 class="cc-title--huge" bo-text="headline"></h1>
+                    <h1 class="cc-title--huge" bo-text="productsController.headline"></h1>
                 </div>
             </div>
 
-            <div bo-if="products.length > 0">
+            <div bo-if="productsController.products.length > 0">
                 <div class="sofa-product-controls">
                     <sofa-select-box
-                            model="sortModel.sortBy"
-                            data="sortModel.sortTypes"
+                            model="productsController.sortModel.sortBy"
+                            data="productsController.sortModel.sortTypes"
                             choose-text="ln.sortBy"
                             display-value-exp="'title'">
                     </sofa-select-box>
                     <span ng-if="isTabletSize" class="sofa-product-controls-count">
-                        <b bo-text="products.length"></b>
+                        <b bo-text="productsController.products.length"></b>
                         <span bo-text="ln.productCountText"></span>
                     </span>
                 </div>
 
                 <div class="sofa-product-grid">
                     <ul class="sofa-product-grid__list">
-                        <li ng-repeat="product in products | orderBy:sortModel.sortBy.key:sortModel.sortBy.reverse"
+                        <li ng-repeat="product in productsController.products | orderBy:productsController.sortModel.sortBy.key:productsController.sortModel.sortBy.reverse"
                             class="sofa-product-grid__item">
 
-                            <a ng-class="{ 'sofa-highlight--out': backStepHighlightService.isHighlighted(product) }"
+                            <a ng-class="{ 'sofa-highlight--out': productsController.isHighlighted(product) }"
                                ng-href="{{ product.getOriginFullUrl() }}"
-                               ng-click="goToProduct(product, $event)"
+                               ng-click="productsController.goToProduct(product, $event)"
                                class="sofa-product-item">
 
                                 <div class="sofa-product-item__media-wrapper">
@@ -47,7 +47,7 @@
                                     <strong class="sofa-product-item__title" bo-text="product.name"></strong>
                                     <div>
                                         <cc-price product="product"></cc-price>
-                                        <div class="sofa-product-item__base-price-info" ng-bind="productService.getBasePriceInfo(product)"></div>
+                                        <div class="sofa-product-item__base-price-info" ng-bind="productsController.getBasePriceInfo(product)"></div>
                                     </div>
                                 </div>
                             </a>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div bo-if="products.length === 0">
+            <div bo-if="productsController.products.length === 0">
                 <div ng-include="tpl.404_PRODUCTS"></div>
             </div>
 
