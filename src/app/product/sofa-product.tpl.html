@@ -1,14 +1,14 @@
 <div cc-scroller-announcer class="sofa-view">
     <cc-inject target="aboveContent"></cc-inject>
 
-    <div bindonce="viewCtrl.product" ng-if="viewCtrl.product">
+    <div bindonce="productController.product" ng-if="productController.product">
 
         <div class="sofa-view__header sofa-view__header--product">
             <div class="sofa-up-nav">
-                <sofa-go-back-control category="viewCtrl.upCategory"></sofa-go-back-control>
+                <sofa-go-back-control category="productController.upCategory"></sofa-go-back-control>
             </div>
             <div class="sofa-view__title">
-                <h1 bo-text="viewCtrl.product.name" class="cc-title--huge"></h1>
+                <h1 bo-text="productController.product.name" class="cc-title--huge"></h1>
             </div>
         </div>
 
@@ -18,7 +18,7 @@
             <sofa-full-page-view-clone class="cc-animate">
                 <sofa-touch-slider
                         class="sofa-product__image-slider"
-                        items="viewCtrl.productImages"
+                        items="productController.productImages"
                         display-items="1"
                         snap="true"
                         slide-index="shared.slideIndex"
@@ -33,7 +33,7 @@
             <sofa-full-page-view-original>
                 <sofa-touch-slider
                         class="sofa-product__image-slider"
-                        items="viewCtrl.productImages"
+                        items="productController.productImages"
                         display-items="1"
                         on-item-click="openFullPageView(e)"
                         snap="true"
@@ -51,19 +51,19 @@
 
         <div cc-include="tpl.PRODUCT_INTERACTION"></div>
 
-        <div class="sofa-product-information" ng-if="viewCtrl.hasInfo()">
+        <div class="sofa-product-information" ng-if="productController.hasInfo()">
 
-            <div class="sofa-product-information__block" ng-if="viewCtrl.product.description">
+            <div class="sofa-product-information__block" ng-if="productController.product.description">
                 <h2 class="cc-title--big" bo-text="ln.productDetails"></h2>
-                <div class="cc-cms-content" ng-bind-html="viewCtrl.product.description"></div>
+                <div class="cc-cms-content" ng-bind-html="productController.product.description"></div>
             </div>
 
-            <div class="sofa-product-information__block" ng-if="viewCtrl.product.hasAttributes()">
+            <div class="sofa-product-information__block" ng-if="productController.product.hasAttributes()">
                 <h2 class="cc-title--big" bo-text="ln.productSpecifications"></h2>
                 <ul class="cc-properties--block">
-                    <li ng-repeat="(key, value) in viewCtrl.product.attributes track by key">
+                    <li ng-repeat="(key, value) in productController.product.attributes track by key">
                         <span class="cc-properties__key" ng-bind="key"></span>
-                        <span class="cc-properties__value" ng-bind-html="viewCtrl.getTrustedHtml(value)"></span>
+                        <span class="cc-properties__value" ng-bind-html="productController.getTrustedHtml(value)"></span>
                     </li>
                 </ul>
             </div>
@@ -72,7 +72,7 @@
 
     </div>
 
-    <div ng-if="!viewCtrl.product" ng-include="tpl.404"></div>
+    <div ng-if="!productController.product" ng-include="tpl.404"></div>
 
     <cc-inject target="aboveFooter"></cc-inject>
     <cc-footer></cc-footer>

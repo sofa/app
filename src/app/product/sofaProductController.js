@@ -3,10 +3,10 @@
 /* global sofa */
 
 angular
-    .module('sofa.productView')
-    .controller('ProductViewController', function ProductViewController($rootScope, $scope, $filter, configService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService, titleService, imagePreloadService) {
+    .module('sofa.product')
+    .controller('ProductController', function ProductController($rootScope, $scope, $filter, configService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService, titleService, imagePreloadService) {
 
-        var ctrl = this; // = $scope.viewCtrl
+        var self = this;
 
         if (!product || !category) {
             return;
@@ -21,34 +21,34 @@ angular
         titleService.setTitleWithSuffix(product.name);
         categoryTreeViewRemote.setActive(category);
 
-        ctrl.product = product;
+        self.product = product;
         // yep, that's a hack to trick our sofa-go-back-control. Seems reasonable though.
-        ctrl.upCategory = { parent: category };
-        ctrl.images = product.getAllImages();
+        self.upCategory = { parent: category };
+        self.images = product.getAllImages();
 
-        ctrl.navigateToShippingCostsPage = function () {
+        self.navigateToShippingCostsPage = function () {
             navigationService.navigateToShippingCostsPage();
         };
 
-        ctrl.hasInfo = function () {
+        self.hasInfo = function () {
             return product.description || product.hasAttributes();
         };
 
-        ctrl.getTrustedHtml = function (htmlStr) {
+        self.getTrustedHtml = function (htmlStr) {
             return $sce.trustAsHtml(htmlStr);
         };
 
-        ctrl.getBasePriceInfo = function () {
-            return productService.getBasePriceInfo(product, ctrl.variants.selectedVariant);
+        self.getBasePriceInfo = function () {
+            return productService.getBasePriceInfo(product, self.variants.selectedVariant);
         };
 
         var isVariantSelected = function (product) {
-            if (product.hasVariants() && !ctrl.variants.selectedVariant) {
+            if (product.hasVariants() && !self.variants.selectedVariant) {
 
                 var missingProperties = '';
 
-                for (var key in ctrl.variants.selectedProperties) {
-                    if (!ctrl.variants.selectedProperties[key]) {
+                for (var key in self.variants.selectedProperties) {
+                    if (!self.variants.selectedProperties[key]) {
                         missingProperties += key + ', ';
                     }
                 }
@@ -63,16 +63,16 @@ angular
             return true;
         };
 
-        ctrl.addToBasket = function (product) {
+        self.addToBasket = function (product) {
             if (!isVariantSelected(product)) {
                 return;
             }
 
-            basketService.addItem(product, 1, ctrl.variants.selectedVariant);
+            basketService.addItem(product, 1, self.variants.selectedVariant);
             snapRemote.open('right');
         };
 
-        ctrl.variants = {
+        self.variants = {
             selectedVariant: null,
             selectedProperties: null
         };
@@ -90,15 +90,15 @@ angular
             }
         ];
 
-        ctrl.productImages = imagePreloadService.getResizedProductImages(ctrl.images, imagePreloaderOptions);
-        ctrl.selectedImage = ctrl.productImages[0].image;
+        self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);
+        self.selectedImage = self.productImages[0].image;
 
         var getFormattedShippingCost = function (shippingCost) {
             return $filter('stringReplace')($scope.ln.shippingCosts, $filter('currency')(shippingCost));
         };
 
         var shippingCost = configService.get('shippingCost');
-        ctrl.shippingCost = sofa.Util.isNotNullNorUndefined(shippingCost) ? getFormattedShippingCost(shippingCost) : null;
+        self.shippingCost = sofa.Util.isNotNullNorUndefined(shippingCost) ? getFormattedShippingCost(shippingCost) : null;
 
         //keep that in for debugging variants
         // $scope.product.variants = [
@@ -157,11 +157,13 @@ angular
             cloneSliderScope.setToIndex($scope.shared.slideIndex);
         };
 
-        $scope.$watch('viewCtrl.variants.selectedVariant', function (variant) {
+        $scope.$watch(function () { 
+            return self.variants.selectedVariant; 
+        }, function (variant) {
             if (variant && variant.images && variant.images[0]) {
-                ctrl.images = variant.images;
-                ctrl.productImages = imagePreloadService.getResizedProductImages(ctrl.images, imagePreloaderOptions);
-                ctrl.selectedImage = ctrl.productImages[0].image;
+                self.images = variant.images;
+                self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);
+                self.selectedImage = self.productImages[0].image;
             }
         });
 

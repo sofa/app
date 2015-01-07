@@ -81,7 +81,7 @@ angular.module('CouchCommerceApp', [
     'sofa.editableCartList',
     'sofa.dateField',
     'sofa.checkout',
-    'sofa.productView',
+    'sofa.product',
     'sofa.products',
     'sofa.category',
     'sofa.wishList',
@@ -110,49 +110,6 @@ angular.module('CouchCommerceApp', [
     snapRemoteProvider.globalOptions.hyperextensible = false;
 
     $stateProvider
-        .state('product', {
-            params: {
-                category: {},
-                productUrlKey: ''
-            },
-            templateUrl: function () {
-                return cc.deviceService.isTabletSize() ? 'product/sofa-product-wide.tpl.html' : 'product/sofa-product.tpl.html';
-            },
-            controller: 'ProductViewController',
-            controllerAs: 'viewCtrl',
-            resolve: {
-                product: function (couchService, $stateParams) {
-                    return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
-                },
-                category: function (couchService, $stateParams) {
-                    return couchService.getCategory($stateParams.category);
-                }
-            },
-            onEnter: function (product, metaService) {
-                if (product) {
-                    metaService.set({
-                        description: product.description
-                    });
-                }
-            },
-            screenIndex: screenIndexes.product
-        })
-
-        .state('oldProduct', {
-            url: '/cat/:category/product/:productUrlKey',
-            templateUrl: function () {
-                return cc.deviceService.isTabletSize() ? 'product/cc-product-wide.tpl.html' : 'product/cc-product.tpl.html';
-            },
-            controller: function (product, $location) {
-                setPrerenderIOMetaTag('301');
-                $location.path(product.getOriginFullUrl());
-            },
-            resolve: {
-                product: function (couchService, $stateParams) {
-                    return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
-                }
-            }
-        })
 
         // would really love to keep this so that we can trigger the cart opening via
         // URL. Unfortunately I haven't found a way to keep the /cart URL just as a way
