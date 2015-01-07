@@ -4,10 +4,10 @@ angular
     .module('sofa.checkout')
     .controller('CheckoutController', function CheckoutController($scope, basketService, navigationService, checkoutService, configService, dialog, $filter, titleService, $controller) {
 
-        var ctrl = this;
+        var self = this;
         $scope.stepCtrl = $controller('StepController', {$scope: $scope});
 
-        ctrl.viewModel = {
+        self.viewModel = {
             supportedShippingMethods: [],
             supportedPaymentMethods: [],
             selectedPaymentMethod: {},
@@ -62,7 +62,7 @@ angular
 //            checkoutModel.selectedPaymentMethod.method !== PAYPAL_EXPRESS_ID;
 //    };
 
-        ctrl.proceed = function () {
+        self.proceed = function () {
             // TODO: add a final validator here (do we have to? should all have been checked within the respective steps)
 
             checkoutService
@@ -77,13 +77,13 @@ angular
                 });
         };
 
-        ctrl.viewModel.addressOptions = {
+        self.viewModel.addressOptions = {
             salutations: configService.get('salutations'),
             countries: configService.getSupportedCountries()
         };
 
         // TODO: this should come from a config object
-        ctrl.viewModel.optionalFields = {
+        self.viewModel.optionalFields = {
             shipping: {
                 salutation: true,
                 company: true,
@@ -98,9 +98,11 @@ angular
             }
         };
 
-        $scope.$watch('ctrl.viewModel.selectedPaymentMethod', function () {
-            if (ctrl.viewModel.selectedPaymentMethod && ctrl.viewModel.selectedPaymentMethod.extraFields) {
-                $scope.stepCtrl.steps.paymentMethod.extraFields = ctrl.viewModel.selectedPaymentMethod.extraFields;
+        $scope.$watch(function () {
+            return self.viewModel.selectedPaymentMethod;
+        }, function () {
+            if (self.viewModel.selectedPaymentMethod && self.viewModel.selectedPaymentMethod.extraFields) {
+                $scope.stepCtrl.steps.paymentMethod.extraFields = self.viewModel.selectedPaymentMethod.extraFields;
             }
         });
 

@@ -122,19 +122,6 @@ angular.module('CouchCommerceApp', [
         //     }]
         // });
 
-        .state('checkout', {
-            url: '/checkout',
-            templateUrl: 'checkout/sofa-checkout.tpl.html',
-            controller: 'CheckoutController',
-            controllerAs: 'ctrl',
-            onEnter: function (metaService) {
-                metaService.set({
-                    description: ''
-                });
-            },
-            screenIndex: screenIndexes.checkout
-        })
-
         .state('summary', {
             url: '/summary/:token',
             templateUrl: 'summary/cc-summary.tpl.html',

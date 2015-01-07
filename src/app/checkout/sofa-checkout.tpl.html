@@ -31,9 +31,9 @@
                         </div>
                         <form name="shippingAddressForm" class="sofa-address-form">
                             <sofa-address-form
-                                    optional-fields="ctrl.viewModel.optionalFields.shipping"
+                                    optional-fields="checkoutController.viewModel.optionalFields.shipping"
                                     parcel-station="stepCtrl.steps.shippingAddress.useParcelStation"
-                                    address-options="ctrl.viewModel.addressOptions"
+                                    address-options="checkoutController.viewModel.addressOptions"
                                     ng-model="checkoutModel.shippingAddress">
                             </sofa-address-form>
                         </form>
@@ -70,8 +70,8 @@
                         <form name="billingAddressForm" class="sofa-address-form">
                             <sofa-address-form
                                     ng-if="!stepCtrl.steps.billingAddress.sameAsShipping"
-                                    optional-fields="ctrl.viewModel.optionalFields.billing"
-                                    address-options="ctrl.viewModel.addressOptions"
+                                    optional-fields="checkoutController.viewModel.optionalFields.billing"
+                                    address-options="checkoutController.viewModel.addressOptions"
                                     ng-model="checkoutModel.billingAddress">
                             </sofa-address-form>
                         </form>
@@ -105,8 +105,8 @@
                         <form name="paymentMethodForm" novalidate>
                             <div class="sofa-form-item">
                                 <sofa-select-box
-                                        model="ctrl.viewModel.selectedPaymentMethod"
-                                        data="ctrl.viewModel.supportedPaymentMethods"
+                                        model="checkoutController.viewModel.selectedPaymentMethod"
+                                        data="checkoutController.viewModel.supportedPaymentMethods"
                                         choose-text="ln.sofaCheckout.choose"
                                         required="true"
                                         property-name="f_payment_method"
@@ -116,14 +116,14 @@
                             <div ng-if="!sofa.Util.isEmpty(stepCtrl.steps.paymentMethod.extraFields)">
                                 <sofa-payment-extra-fields
                                         extra-fields="stepCtrl.steps.paymentMethod.extraFields"
-                                        ng-model="ctrl.viewModel.paymentExtraFields">
+                                        ng-model="checkoutController.viewModel.paymentExtraFields">
                                 </sofa-payment-extra-fields>
                             </div>
                         </form>
                     </div>
                     <!-- Payment Method SUMMARY -->
                     <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.paymentMethod.mode === 'summary'">
-                        <p ng-bind="ctrl.viewModel.selectedPaymentMethod.title"></p>
+                        <p ng-bind="checkoutController.viewModel.selectedPaymentMethod.title"></p>
                     </div>
 
                     <footer class="sofa-checkout-section__footer">
@@ -151,8 +151,8 @@
                         <form name="shippingMethodForm" novalidate>
                             <div class="sofa-form-item">
                                 <sofa-select-box
-                                        model="ctrl.viewModel.selectedShippingMethod"
-                                        data="ctrl.viewModel.supportedShippingMethods"
+                                        model="checkoutController.viewModel.selectedShippingMethod"
+                                        data="checkoutController.viewModel.supportedShippingMethods"
                                         required="true"
                                         property-name="f_shipping_method"
                                         display-value-exp="stepCtrl.steps.shippingMethod.formatter">
@@ -163,7 +163,7 @@
                     <!-- Shipping Method SUMMARY -->
                     <div class="sofa-checkout-section__content"
                          ng-show="stepCtrl.steps.shippingMethod.hasMethods && stepCtrl.steps.shippingMethod.mode === 'summary'">
-                        <p ng-bind="ctrl.viewModel.selectedShippingMethod.title"></p>
+                        <p ng-bind="checkoutController.viewModel.selectedShippingMethod.title"></p>
                     </div>
 
                     <!-- No methods available -->

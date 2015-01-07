@@ -5,7 +5,7 @@
 angular
     .module('sofa.checkout')
     .controller('StepController', function StepController($scope, checkoutService, $q, shippingMethodFormatter) {
-        var stepController = this;
+        var self = this;
         var PAYPAL_EXPRESS_ID = 'paypal_express';
 
         var getPaymentMethodsWithoutPayPal = function (allMethods) {
@@ -19,7 +19,7 @@ angular
                 return;
             }
             methods.forEach(function (methodName) {
-                stepController.steps[methodName].active = false;
+                self.steps[methodName].active = false;
             });
         };
 
@@ -30,7 +30,7 @@ angular
             if (next) {
                 next.active = true;
                 if (next.valid) {
-                    stepController.proceedFrom(current.next);
+                    self.proceedFrom(current.next);
                 }
             }
         };
@@ -49,15 +49,15 @@ angular
             return queue;
         };
 
-        stepController.editSection = function (section) {
-            stepController.steps[section].mode = 'edit';
-            deactivateMethods(stepController.steps[section].deactivates);
+        self.editSection = function (section) {
+            self.steps[section].mode = 'edit';
+            deactivateMethods(self.steps[section].deactivates);
         };
 
-        stepController.proceedFrom = function (current) {
+        self.proceedFrom = function (current) {
             var deferred = $q.defer();
-            var currentStep = stepController.steps[current];
-            var nextStep = stepController.steps[currentStep.next];
+            var currentStep = self.steps[current];
+            var nextStep = self.steps[currentStep.next];
             var queue = createQueue(currentStep, nextStep);
 
             if (queue.length) {
@@ -77,8 +77,8 @@ angular
             return deferred.promise;
         };
 
-        stepController.finishSteps = function () {
-            stepController.steps.shippingMethod.onLeave()
+        self.finishSteps = function () {
+            self.steps.shippingMethod.onLeave()
                 .then(function () {
                     $scope.ctrl.proceed();
                 }, function (error) {
@@ -86,7 +86,7 @@ angular
                 });
         };
 
-        stepController.steps = {
+        self.steps = {
             shippingAddress: {
                 active: true,
                 mode: 'edit', // [summary]
@@ -115,7 +115,7 @@ angular
                 onLeave: function () {
                     var deferred = $q.defer();
 
-                    if (!stepController.steps.billingAddress.sameAsShipping) {
+                    if (!self.steps.billingAddress.sameAsShipping) {
                         checkoutService.updateBillingAddress($scope.checkoutModel.billingAddress);
                     }
                     // There might be some intercepting address validation one day...
@@ -201,7 +201,7 @@ angular
                         deferred.resolve();
                     }
 
-                    stepController.steps.shippingMethod.hasMethods = !!$scope.ctrl.viewModel.supportedShippingMethods.length;
+                    self.steps.shippingMethod.hasMethods = !!$scope.ctrl.viewModel.supportedShippingMethods.length;
 
                     return deferred.promise;
                 },
@@ -228,13 +228,13 @@ angular
         // initially check, if we can speed up the checkout process
         var unwatchShippingAddress = $scope.$watch('shippingAddressForm.$valid', function (nv) {
             if (nv && !$scope.shippingAddressForm.$dirty) {
-                return stepController.proceedFrom('shippingAddress')
+                return self.proceedFrom('shippingAddress')
                     .then(function () {
-                        return stepController.proceedFrom('billingAddress');
+                        return self.proceedFrom('billingAddress');
                     })
                     .then(function () {
                         if (checkoutService.getPaymentMethod()) {
-                            return stepController.proceedFrom('paymentMethod');
+                            return self.proceedFrom('paymentMethod');
                         }
                     })
                     .then(function () {
