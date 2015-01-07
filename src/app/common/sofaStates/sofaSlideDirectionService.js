@@ -3,7 +3,7 @@
 /* global document */
 
 angular
-    .module('CouchCommerceApp')
+    .module('sofa.states')
     .factory('slideDirectionService', function ($rootScope, pagesService) {
 
         var direction = 'rtl',

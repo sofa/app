@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('CouchCommerceApp')
+    .module('sofa.states')
     .factory('stateChangeService', function ($rootScope, screenIndexes, couchService) {
 
         var self = {};

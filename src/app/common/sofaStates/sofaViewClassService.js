@@ -3,7 +3,7 @@
 /* global document */
 
 angular
-    .module('CouchCommerceApp')
+    .module('sofa.states')
     .factory('viewClassService', function ($rootScope, screenIndexes) {
 
         var self = {},

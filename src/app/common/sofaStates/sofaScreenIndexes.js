@@ -18,5 +18,5 @@ angular.forEach(screenIndexMap, function (value, key) {
 });
 
 angular
-    .module('CouchCommerceApp')
+    .module('sofa.states')
     .constant('screenIndexes', screenIndexMap);

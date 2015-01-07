@@ -14,12 +14,6 @@
     }
 })();
 
-function setPrerenderIOMetaTag(status) {
-    var meta = document.createElement('meta');
-    meta.setAttribute('name', 'prerender-status-code');
-    meta.setAttribute('content', status);
-    document.getElementsByTagName('head')[0].appendChild(meta);
-}
 //we need this to be available in the Angular config phase
 //since Angular does not allow access to services in the config
 //phase, we need to access it as non angular service for now
@@ -80,6 +74,7 @@ angular.module('CouchCommerceApp', [
     'sofa.editableList',
     'sofa.editableCartList',
     'sofa.dateField',
+    'sofa.states',
     'sofa.checkout',
     'sofa.product',
     'sofa.products',
@@ -183,6 +178,7 @@ angular.module('CouchCommerceApp', [
     $urlRouterProvider.otherwise(function ($injector, $location) {
         var stateResolverService = $injector.get('stateResolverService');
         var navigationService = $injector.get('navigationService');
+        var preRenderService = $injector.get('preRenderService');
         var $state = $injector.get('$state');
 
         var path = $location.path();
@@ -200,7 +196,7 @@ angular.module('CouchCommerceApp', [
                     // via prerender.io, we have to add this meta tag when the
                     // requested url actually returns a 404 error
                     // https://prerender.io/getting-started#404s
-                    setPrerenderIOMetaTag('404');
+                    preRenderService.setStatusMetaTag('404');
                     navigationService.navigateToRootCategory();
                 });
         }
