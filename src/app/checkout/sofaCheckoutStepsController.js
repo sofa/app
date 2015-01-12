@@ -7,12 +7,13 @@ angular
     .controller('StepController', function StepController($scope, checkoutService, $q, shippingMethodFormatter) {
         var self = this;
         var PAYPAL_EXPRESS_ID = 'paypal_express';
+        var lastQuoteWrapper = null;
 
-        var getPaymentMethodsWithoutPayPal = function (allMethods) {
-            return allMethods.filter(function (method) {
-                return method.method !== PAYPAL_EXPRESS_ID;
-            });
-        };
+        // var getPaymentMethodsWithoutPayPal = function (allMethods) {
+        //     return allMethods.filter(function (method) {
+        //         return method.method !== PAYPAL_EXPRESS_ID;
+        //     });
+        // };
 
         var deactivateMethods = function (methods) {
             if (!methods) {
@@ -118,8 +119,17 @@ angular
                     if (!self.steps.billingAddress.sameAsShipping) {
                         checkoutService.updateBillingAddress($scope.checkoutModel.billingAddress);
                     }
-                    // There might be some intercepting address validation one day...
-                    deferred.resolve();
+                    $scope.checkoutModel.addressEqual = self.steps.billingAddress.sameAsShipping;
+
+                    // TODO: if quote exists, reuse and update
+                    checkoutService
+                        .createQuote($scope.checkoutModel)
+                        .then(function(quoteWrapper) {
+                            lastQuoteWrapper = quoteWrapper;
+
+                            // There might be some intercepting address validation one day...
+                            deferred.resolve();
+                        });
 
                     return deferred.promise;
                 }
@@ -133,26 +143,26 @@ angular
                 extraFields: {},
                 onEnter: function () {
                     var deferred = $q.defer();
+                    deferred.resolve();
+                    // checkoutService
+                    //     .getAvailableCheckoutMethods($scope.checkoutModel)
+                    //     .then(function (data) {
+                    //         var existingPayment = checkoutService.getPaymentMethod();
 
-                    checkoutService
-                        .getAvailableCheckoutMethods($scope.checkoutModel)
-                        .then(function (data) {
-                            var existingPayment = checkoutService.getPaymentMethod();
+                    //         $scope.ctrl.viewModel.supportedPaymentMethods = getPaymentMethodsWithoutPayPal(data.paymentMethods);
+                    //         $scope.ctrl.viewModel.supportedShippingMethods = data.shippingMethods;
 
-                            $scope.ctrl.viewModel.supportedPaymentMethods = getPaymentMethodsWithoutPayPal(data.paymentMethods);
-                            $scope.ctrl.viewModel.supportedShippingMethods = data.shippingMethods;
+                    //         if (existingPayment && existingPayment.methodCode) {
+                    //             $scope.ctrl.viewModel.selectedPaymentMethod =
+                    //                 checkoutService.getPaymentMethodByCode(existingPayment.methodCode, data.paymentMethods);
+                    //             $scope.ctrl.viewModel.paymentExtraFields = existingPayment.methodDetails || {};
+                    //         }
 
-                            if (existingPayment && existingPayment.methodCode) {
-                                $scope.ctrl.viewModel.selectedPaymentMethod =
-                                    checkoutService.getPaymentMethodByCode(existingPayment.methodCode, data.paymentMethods);
-                                $scope.ctrl.viewModel.paymentExtraFields = existingPayment.methodDetails || {};
-                            }
-
-                            deferred.resolve();
-                        }, function () {
-                            // TODO: we need some sane message here to display to the user
-                            deferred.reject('CheckoutService did not respond');
-                        });
+                    //         deferred.resolve();
+                    //     }, function () {
+                    //         // TODO: we need some sane message here to display to the user
+                    //         deferred.reject('CheckoutService did not respond');
+                    //     });
 
                     return deferred.promise;
                 },

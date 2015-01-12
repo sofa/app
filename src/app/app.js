@@ -311,6 +311,12 @@ angular.module('CouchCommerceApp', [
         i++;
     });
 })
+.run(function (checkoutService, configService, $q, $http) {
+    checkoutService.addFlow({
+        flow: new sofa.checkout.flows.DefaultFlow(configService, $q, $http),
+        predicate: function () { return true; }
+    });
+})
 .run(function (trackingService, configService) {
     trackingService.addTracker(new cc.tracking.GoogleAnalyticsUniversalTracker({
         accountNumber: configService.get('googleAnalytics')
