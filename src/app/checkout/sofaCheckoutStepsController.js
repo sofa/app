@@ -36,18 +36,14 @@ angular
             }
         };
 
-        var createQueue = function (currentStep, nextStep) {
-            var queue = [];
+        var createSequence = function (currentStep, nextStep) {
 
-            if (currentStep.onLeave && angular.isFunction(currentStep.onLeave)) {
-                queue.push(currentStep.onLeave());
-            }
+            var hasOnLeave = angular.isFunction(currentStep.onLeave),
+                hasOnEnter = nextStep && angular.isFunction(nextStep.onEnter);
 
-            if (nextStep && nextStep.onEnter && angular.isFunction(nextStep.onEnter)) {
-                queue.push(nextStep.onEnter());
-            }
-
-            return queue;
+            return hasOnLeave && hasOnEnter ? currentStep.onLeave().then(nextStep.onEnter) :
+                   hasOnLeave && !hasOnEnter ? currentStep.onLeave() :
+                   !hasOnLeave && hasOnEnter ? nextStep.onEnter() : $q.when();
         };
 
         self.editSection = function (section) {
@@ -59,21 +55,15 @@ angular
             var deferred = $q.defer();
             var currentStep = self.steps[current];
             var nextStep = self.steps[currentStep.next];
-            var queue = createQueue(currentStep, nextStep);
-
-            if (queue.length) {
-                $q.all(queue)
-                    .then(function () {
-                        finishStep(currentStep, nextStep);
-                        deferred.resolve();
-                    }, function (e) {
-                        deferred.reject();
-                        $exceptionHandler(new Error('Could not proceed from checkout step "' + currentStep.name + '", due to "' + e + '"'));
-                    });
-            } else {
-                finishStep(currentStep, nextStep);
-                deferred.resolve();
-            }
+            
+            createSequence(currentStep, nextStep)
+                .then(function () {
+                    finishStep(currentStep, nextStep);
+                    deferred.resolve();
+                }, function (e) {
+                    deferred.reject();
+                    $exceptionHandler(new Error('Could not proceed from checkout step "' + currentStep.name + '", due to "' + e + '"'));
+                });
 
             return deferred.promise;
         };
