@@ -167,7 +167,7 @@
                     </div>
 
                     <!-- No methods available -->
-                    <div ng-show="!stepCtrl.steps.shippingMethod.hasMethods">
+                    <div ng-show="stepCtrl.steps.shippingMethod.active && !stepCtrl.steps.shippingMethod.hasMethods">
                         <p class="sofa-message-box--error" bo-text="ln.sofaCheckout.noShippingAvailable"></p>
                     </div>
 
