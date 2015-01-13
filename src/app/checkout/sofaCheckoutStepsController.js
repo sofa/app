@@ -134,18 +134,21 @@ angular
                     var deferred = $q.defer();
 
                     var existingPayment = checkoutService.getPaymentMethod();
-console.log(lastQuoteWrapper.quote);
-//                    $scope.checkoutController.viewModel.supportedPaymentMethods = getPaymentMethodsWithoutPayPal(lastQuoteWrapper.quote);
+
+                    $scope.checkoutController.viewModel.supportedPaymentMethods = getPaymentMethodsWithoutPayPal(lastQuoteWrapper.quote.allowedPaymentMethods);
 //                    $scope.checkoutController.viewModel.supportedShippingMethods = data.shippingMethods;
 
-                    //         if (existingPayment && existingPayment.methodCode) {
-                    //             $scope.checkoutController.viewModel.selectedPaymentMethod =
-                    //                 checkoutService.getPaymentMethodByCode(existingPayment.methodCode, data.paymentMethods);
-                    //             $scope.checkoutController.viewModel.paymentExtraFields = existingPayment.methodDetails || {};
-                    //         }
+                    if (existingPayment && existingPayment.methodCode) {
+                        $scope.checkoutController.viewModel.selectedPaymentMethod =
+                            checkoutService.getPaymentMethodByCode(existingPayment.methodCode, lastQuoteWrapper.quote.allowedPaymentMethods);
+                        $scope.checkoutController.viewModel.paymentExtraFields = existingPayment.methodDetails || {};
+                    }
 
-
-                    deferred.resolve();
+                    if (!$scope.checkoutController.viewModel.supportedPaymentMethods.length) {
+                        deferred.reject('No payment methods available');
+                    } else {
+                        deferred.resolve();
+                    }
                     // checkoutService
                     //     .getAvailableCheckoutMethods($scope.checkoutModel)
                     //     .then(function (data) {
