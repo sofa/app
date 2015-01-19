@@ -187,6 +187,7 @@ angular.module('CouchCommerceApp', [
             navigationService.navigateToRootCategory();
         }
         else {
+            console.log('resolve state');
             stateResolverService
                 .resolveState(path)
                 .then(function (state) {
