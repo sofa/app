@@ -57,7 +57,6 @@ sofa.ProductBatchResolver = function ($http, $q, configService) {
             data: queryOptions
         })
         .then(function (data) {
-            console.log(data);
             return {
                 items: data.data.hits.hits,
                 meta: {

@@ -49,7 +49,6 @@ sofa.define('sofa.StateResolver', function ($q, $http, configService) {
             data: query
         })
         .then(function (data) {
-            console.log(data);
             var hits = data.data.hits.hits;
             var stateType, stateData;
 

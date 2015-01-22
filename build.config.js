@@ -189,6 +189,7 @@ module.exports = {
             'node_modules/angular-sofa-variant-selector/dist/*.js',
             'node_modules/angular-sofa-select-box/dist/*.js',
             'node_modules/angular-sofa-name/dist/*.js',
+            'node_modules/angular-sofa-price/dist/*.js',
 
             'node_modules/sofa-base/src/directives/sofaZippy/*.js',
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.js',

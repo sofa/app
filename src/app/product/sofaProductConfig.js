@@ -15,12 +15,16 @@ angular.module('sofa.product')
                 controller: 'ProductController',
                 controllerAs: 'productController',
                 resolve: {
-                    product: function (couchService, $stateParams) {
+                    product: ['couchService', '$stateParams', function (couchService, $stateParams) {
                         return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
-                    },
-                    category: function (couchService, $stateParams) {
-                        return couchService.getCategory($stateParams.category);
-                    }
+                    }],
+                    category: ['couchService', '$stateParams', function (couchService, $stateParams) {
+                        return couchService
+                            .getCategory($stateParams.category)
+                            .then(function (category) {
+                                return category;
+                            });
+                    }]
                 },
                 onEnter: function (product, metaService) {
                     if (product) {

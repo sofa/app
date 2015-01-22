@@ -8,8 +8,7 @@
 
     <div class="sofa-product-interaction__info">
         <sofa-wish-list-button product="productController.product"></sofa-wish-list-button>
-
-        <cc-price product="productController.product" selected-variant="productController.variants.selectedVariant"></cc-price>
+        <sofa-price price="productController.price" special-price="productController.specialPrice"></sofa-price>
         <span class="sofa-product-interaction__base-price-info" ng-bind="productController.getBasePriceInfo()"></span>
     </div>
 
@@ -27,7 +26,7 @@
     </div>
 
     <div class="sofa-product-interaction__info sofa-product-interaction__info--legal">
-        <span class="sofa-product-interaction__tax-info" ng-bind="ln.productTaxText | stringReplace:productController.product.tax"></span>
+        <span class="sofa-product-interaction__tax-info" ng-bind="ln.productTaxText | stringReplace:productController.vat"></span>
 
         <span class="sofa-product-interaction__shipping-info" ng-if="productController.shippingCost !== null" ng-bind="productController.shippingCost"></span>
 

@@ -1,4 +1,5 @@
-angular.module('sofa.products')
+angular
+    .module('sofa.products')
     .config(function ($stateProvider, screenIndexes) {
 
         'use strict';
@@ -12,9 +13,9 @@ angular.module('sofa.products')
                 controller: 'ProductsController',
                 controllerAs: 'productsController',
                 resolve: {
-                    products: function (couchService, $stateParams) {
-                        return couchService.getProducts($stateParams.category);
-                    },
+//                    products: function (couchService, $stateParams) {
+//                        return couchService.getProducts($stateParams.category);
+//                    },
                     category: function (couchService, $stateParams) {
                         return couchService.getCategory($stateParams.category);
                     }

@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <div bo-if="productsController.products.length > 0">
+            <div ng-if="productsController.products.length">
                 <div class="sofa-product-controls">
                     <sofa-select-box
                             model="productsController.sortModel.sortBy"
@@ -40,13 +40,13 @@
 
                                 <div class="sofa-product-item__media-wrapper">
                                     <div class="sofa-product-item__media">
-                                        <img class="sofa-product-item__image" cc-src="product.getImage('large')" cc-src-config="{maxwidth: 140, maxheight: 140, forceDimensions: true}" cc-src-spinner="true" alt=""/>
+                                        <img class="sofa-product-item__image" cc-src="product.getMainImage()" cc-src-config="{maxwidth: 140, maxheight: 140, forceDimensions: true}" cc-src-spinner="true" alt=""/>
                                     </div>
                                 </div>
                                 <div class="sofa-product-item__info-wrapper">
                                     <strong class="sofa-product-item__title" bo-text="product.name"></strong>
                                     <div>
-                                        <cc-price product="product"></cc-price>
+                                        <sofa-price price="product.prices.normal" special-price="product.prices.special"></sofa-price>
                                         <div class="sofa-product-item__base-price-info" ng-bind="productsController.getBasePriceInfo(product)"></div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div bo-if="productsController.products.length === 0">
+            <div ng-if="!productsController.products.length">
                 <div ng-include="tpl.404_PRODUCTS"></div>
             </div>
 

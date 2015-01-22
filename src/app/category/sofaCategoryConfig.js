@@ -22,7 +22,7 @@ angular.module('sofa.category')
                                 //we need to make that check here *before* the CategoryController
                                 //is initialized. Otherwise we will have double transitions in such
                                 //cases.
-                                if (category && !category.children) {
+                                if (category && (!category.children || !category.children.length)) {
                                     // the server side states API does not differentiate between `category` and `products` state. It
                                     // always returns `category` states. It's currently easier for us to just redirect on the client side
                                     $state.transitionTo('products', { category: category.urlId }, { location: false });

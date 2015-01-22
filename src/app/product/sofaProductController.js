@@ -4,7 +4,7 @@
 
 angular
     .module('sofa.product')
-    .controller('ProductController', function ProductController($rootScope, $scope, $filter, configService, basketService, navigationService, product, category, dialog, $sce, categoryTreeViewRemote, snapRemote, productService, titleService, imagePreloadService) {
+    .controller('ProductController', function ProductController($rootScope, $scope, $filter, configService, basketService, navigationService, product, category, $sce, categoryTreeViewRemote, snapRemote, productService, titleService, imagePreloadService) {
 
         var self = this;
 
@@ -12,11 +12,36 @@ angular
             return;
         }
 
+        console.log(product, category);
+
         // TODO: consider using device service to get image sizes which are optimized for the very view port
         var IMAGE_MAX_WIDTH = $rootScope.isTabletSize ? 500 : 300,
             IMAGE_MAX_HEIGHT = IMAGE_MAX_WIDTH,
             ZOOM_IMAGE_MAX_WIDTH = $rootScope.isTabletSize ? 2000 : 1200,
             ZOOM_IMAGE_MAX_HEIGHT = ZOOM_IMAGE_MAX_WIDTH;
+
+        var isVariantSelected = function () {
+            return product.hasVariants() ? self.variants.selectedVariant : true;
+//            if (product.hasVariants() && !self.variants.selectedVariant) {
+
+                // TODO: add a smarter warning in another place
+//                var missingProperties = '';
+//
+//                for (var key in self.variants.selectedProperties) {
+//                    if (!self.variants.selectedProperties[key]) {
+//                        missingProperties += key + ', ';
+//                    }
+//                }
+//
+//                dialog
+//                    .messageBox($scope.ln.btnWarning, cc.Lang.missingVariantAttributeText + missingProperties, [
+//                        {result: 'ok', label: $scope.ln.btnOk}
+//                    ]);
+
+//                return false;
+//            }
+//            return true;
+        };
 
         titleService.setTitleWithSuffix(product.name);
         categoryTreeViewRemote.setActive(category);
@@ -25,6 +50,11 @@ angular
         // yep, that's a hack to trick our sofa-go-back-control. Seems reasonable though.
         self.upCategory = { parent: category };
         self.images = product.getAllImages();
+
+        self.variants = {
+            selectedVariant: null,
+            selectedProperties: null
+        };
 
         self.navigateToShippingCostsPage = function () {
             navigationService.navigateToShippingCostsPage();
@@ -38,29 +68,12 @@ angular
             return $sce.trustAsHtml(htmlStr);
         };
 
+        self.price = product.getPrice();
+        self.specialPrice = product.getSpecialPrice();
+        self.vat = product.getVat();
+
         self.getBasePriceInfo = function () {
             return productService.getBasePriceInfo(product, self.variants.selectedVariant);
-        };
-
-        var isVariantSelected = function (product) {
-            if (product.hasVariants() && !self.variants.selectedVariant) {
-
-                var missingProperties = '';
-
-                for (var key in self.variants.selectedProperties) {
-                    if (!self.variants.selectedProperties[key]) {
-                        missingProperties += key + ', ';
-                    }
-                }
-
-                dialog
-                    .messageBox($scope.ln.btnWarning, cc.Lang.missingVariantAttributeText + missingProperties, [
-                        {result: 'ok', label: $scope.ln.btnOk}
-                    ]);
-
-                return false;
-            }
-            return true;
         };
 
         self.addToBasket = function (product) {
@@ -70,11 +83,6 @@ angular
 
             basketService.addItem(product, 1, self.variants.selectedVariant);
             snapRemote.open('right');
-        };
-
-        self.variants = {
-            selectedVariant: null,
-            selectedProperties: null
         };
 
         var imagePreloaderOptions = [{
@@ -101,39 +109,44 @@ angular
         self.shippingCost = sofa.Util.isNotNullNorUndefined(shippingCost) ? getFormattedShippingCost(shippingCost) : null;
 
         //keep that in for debugging variants
-        // $scope.product.variants = [
-
-        // {
-        //     variantID: 1,
-        //     stock: 1,
-        //     properties: {
-        //         color: 'red',
-        //         size: 'XL',
-        //         zipside: 'left'
-        //     }
-        // },
-        // {
-        //     variantID: 2,
-        //     stock: 1,
-        //     properties: {
-        //         color: 'green',
-        //         size: 'XL',
-        //         zipside: 'right'
-        //     }
-        // },
-        // {
-        //     variantID: 3,
-        //     stock: 1,
-        //     properties: {
-        //         color: 'green',
-        //         size: 'L',
-        //         zipside: 'left'
-        //     }
-        // }
-
-        // ];
-
-
+//        product.variants = [
+//            {
+//                id: '1',
+//                stock: 1,
+//                properties: {
+//                    color: 'red',
+//                    size: 'XL'
+//                },
+//                prices: {
+//                    normal: 89.99,
+//                    special: 20.00
+//                }
+//            },
+//            {
+//                id: '2',
+//                stock: 1,
+//                properties: {
+//                    color: 'green',
+//                    size: 'XL'
+//                },
+//                prices: {
+//                    normal: 89.99,
+//                    special: 89.99
+//                }
+//            },
+//            {
+//                id: '3',
+//                stock: 1,
+//                properties: {
+//                    color: 'green',
+//                    size: 'L'
+//                },
+//                prices: {
+//                    normal: 89.99,
+//                    special: 39.90
+//                }
+//            }
+//        ];
 
         $scope.shared = {};
         $scope.shared.slideIndex = 0;
@@ -160,10 +173,19 @@ angular
         $scope.$watch(function () { 
             return self.variants.selectedVariant; 
         }, function (variant) {
-            if (variant && variant.images && variant.images[0]) {
-                self.images = variant.images;
-                self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);
-                self.selectedImage = self.productImages[0].image;
+            if (variant) {
+                if (variant.images && variant.images[0]) {
+                    self.images = variant.images;
+                    self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);
+                    self.selectedImage = self.productImages[0].image;
+                }
+                if (variant.prices) {
+                    self.price = variant.prices.normal;
+                    self.specialPrice = variant.prices.special || null;
+                }
+            } else {
+                self.price = product.getPrice();
+                self.specialPrice = product.getSpecialPrice();
             }
         });
 

@@ -57,6 +57,7 @@ angular.module('CouchCommerceApp', [
     'sofa.variantSelector',
     'sofa.selectBox',
     'sofa.name',
+    'sofa.price',
     'sdk.directives.sofaZippy',
     'sdk.directives.sofaTouchSlider',
     'sdk.directives.sofaPrice',
@@ -187,7 +188,6 @@ angular.module('CouchCommerceApp', [
             navigationService.navigateToRootCategory();
         }
         else {
-            console.log('resolve state');
             stateResolverService
                 .resolveState(path)
                 .then(function (state) {
