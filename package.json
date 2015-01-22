@@ -15,7 +15,7 @@
         "angular-sofa-variant-selector": "sofa/angular-sofa-variant-selector",
         "angular-sofa-select-box": "sofa/angular-sofa-select-box",
         "angular-sofa-name": "sofa/angular-sofa-name",
-        "angular-sofa-price": "sofa/angular-sofa-name#sofa-1.0",
+        "angular-sofa-price": "sofa/angular-sofa-price#sofa-1.0",
         "hammerjs": "2.0.x",
         "font-awesome": "4.2.0",
         "sofa-core": "~0.13.x",
