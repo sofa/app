@@ -179,9 +179,9 @@ angular
                     self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);
                     self.selectedImage = self.productImages[0].image;
                 }
-                if (variant.prices) {
-                    self.price = variant.prices.normal;
-                    self.specialPrice = variant.prices.special || null;
+                if (variant.price) {
+                    self.price = variant.price.normal;
+                    self.specialPrice = variant.price.special || null;
                 }
             } else {
                 self.price = product.getPrice();

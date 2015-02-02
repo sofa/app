@@ -46,7 +46,7 @@
                                 <div class="sofa-product-item__info-wrapper">
                                     <strong class="sofa-product-item__title" bo-text="product.name"></strong>
                                     <div>
-                                        <sofa-price price="product.prices.normal" special-price="product.prices.special"></sofa-price>
+                                        <sofa-price price="product.getPrice()" special-price="product.getSpecialPrice()"></sofa-price>
                                         <div class="sofa-product-item__base-price-info" ng-bind="productsController.getBasePriceInfo(product)"></div>
                                     </div>
                                 </div>

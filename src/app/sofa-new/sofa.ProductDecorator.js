@@ -32,12 +32,12 @@ sofa.ProductDecorator = function () {
 
         // TODO: Add to sofa.models.Product.prototype
         product.getPrice = function () {
-            return product.prices.normal;
+            return product.price.normal;
         };
 
         // TODO: Add to sofa.models.Product.prototype
         product.getSpecialPrice = function () {
-            return product.prices.special;
+            return product.price.special;
         };
 
         // TODO: Add to sofa.models.Product.prototype
