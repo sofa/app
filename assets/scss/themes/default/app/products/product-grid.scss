@@ -4,6 +4,33 @@
 
     border-color: $theme-color-light__darker--15;
     margin-bottom: -1px; // hide bottom border of last row's items
+
+    &--loading {
+        position: relative;
+
+        &:before {
+            @extend %sofa-dock-all;
+
+            content: '';
+            z-index: 2;
+            background: rgba(255, 255, 255, .66);
+        }
+    }
+}
+
+.sofa-pager {
+    padding: 1rem 0;
+}
+
+.sofa-pager__load-more-button {
+    @extend %sofa-button--primary;
+    @extend %sofa-button--block;
+}
+
+.sofa-no-products-message {
+    @extend .sofa-message-box--warning;
+
+    margin: 0 .25rem;
 }
 
 .sofa-product-grid__item {

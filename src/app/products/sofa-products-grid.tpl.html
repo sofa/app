@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="sofa-product-grid">
-                    <ul class="sofa-product-grid__list">
+                    <ul class="sofa-product-grid__list" ng-class="{'sofa-product-grid__list--loading': productsController.loading}">
                         <li ng-repeat="product in productsController.products | orderBy:productsController.sortModel.sortBy.key:productsController.sortModel.sortBy.reverse"
                             class="sofa-product-grid__item">
 
@@ -53,11 +53,17 @@
                             </a>
                         </li>
                     </ul>
+                    <div class="sofa-pager">
+                        <button class="sofa-pager__load-more-button" ng-disabled="productsController.loading"
+                                ng-click="productsController.loadMore()" ng-show="productsController.hasMoreItems"
+                                ng-bind="ln.loadMore | stringReplace:productsController.productPaging.size">
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <div ng-if="!productsController.products.length">
-                <div ng-include="tpl.404_PRODUCTS"></div>
+            <div ng-if="!productsController.products.length" class="sofa-no-products-message">
+                <p bo-text="ln.noProductResults"></p>
             </div>
 
         </div>
