@@ -243,9 +243,9 @@ angular.module('CouchCommerceApp', [
         controller: 'ThankyouController',
         screenIndex: screenIndexes.thankyou,
         resolve: {
-            summaryResponse: function (checkoutService) {
+            summaryResponse: ['checkoutService', function (checkoutService) {
                 return checkoutService.getLastSummary();
-            }
+            }]
         },
         onEnter: function (metaService) {
             metaService.set({
