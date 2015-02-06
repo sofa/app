@@ -16,7 +16,7 @@ angular.module('sofa.product')
                 controllerAs: 'productController',
                 resolve: {
                     product: ['couchService', '$stateParams', function (couchService, $stateParams) {
-                        return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
+                        return couchService.getProduct($stateParams.productUrlKey);
                     }],
                     category: ['couchService', '$stateParams', function (couchService, $stateParams) {
                         return couchService

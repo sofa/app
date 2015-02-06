@@ -232,7 +232,7 @@ angular.module('CouchCommerceApp', [
             stateName: 'product',
             stateParams: {
                 category: product.categoryUrlId,
-                productUrlKey: product.urlKey
+                productUrlKey: product.id
             }
         });
     });
