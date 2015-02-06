@@ -34,7 +34,7 @@
                             class="sofa-product-grid__item">
 
                             <a ng-class="{ 'sofa-highlight--out': productsController.isHighlighted(product) }"
-                               ng-href="{{ product.getOriginFullUrl() }}"
+                               ng-href="{{ product.getOriginFullUrl(category.getOriginFullUrl()) }}"
                                ng-click="productsController.goToProduct(product, $event)"
                                class="sofa-product-item">
 

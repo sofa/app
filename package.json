@@ -20,6 +20,7 @@
         "font-awesome": "4.2.0",
         "sofa-core": "sofa/sofa-core#sofa-1.0",
         "sofa-storages": "~0.1.x",
+        "sofa-hash-service": "~0.1.x",
         "sofa-logging-service": "~0.1.x",
         "sofa-device-service": "sofa/sofa-device-service#sofa-1.0",
         "sofa-url-parser-service": "~0.1.x",

@@ -22,13 +22,13 @@ sofa.define('sofa.StateResolver', function ($q, $http, configService) {
                     filter: {
                         or: [
                             {
-                                term: {'originFullUrl.product': config.url}
+                                term: {'routes.productUrl': config.url}
                             },
                             {
                                 bool: {
                                     must: [
                                         {
-                                            term: {'originFullUrl.category': config.url}
+                                            term: {'route': config.url}
                                         },
                                         {
                                             term: {'_type': 'category'}

@@ -1,45 +1,26 @@
 'use strict';
 
-/* global buildHashKey */
+/* global sofa */
 
 angular
     .module('CouchCommerceApp')
-    .factory('productQueryBuilderService', function () {
+    .factory('productQueryBuilderService', function (elasticSearchService, hashService) {
 
         // Properties from the category.filters object we want to copy over to the filter config
         // (only those we need for the query)
         var FILTER_PROPERTIES  = ['type', 'nested', 'indexPath', 'limits'];
 
-        var isEmptyObject = function (obj) {
-            for (var key in obj) {
-                if (hasOwnProperty.call(obj, key)) {
-                    return false;
-                }
-            }
-            return true;
-        };
-
-        /* jshint ignore:start */
-        // str = path
-        var buildHashKey = function (str) {
-            return str.split('').reduce(function (a, b) {
-                a = ((a << 5) - a) + b.charCodeAt(0);
-                return a & a;
-            }, 0);
-        };
-        /* jshint ignore:end */
-
         var self  = this;
         var cache = {};
 
         self.setCacheEntity = function (path, name, value) {
-            var key = buildHashKey(path);
+            var key = hashService.hashString(path);
             cache[key] = cache[key] || {};
             cache[key][name] = value;
         };
 
         self.getCacheValue = function (path, entityName) {
-            var key = buildHashKey(path);
+            var key = hashService.hashString(path);
             return cache[key] && cache[key][entityName];
         };
 
@@ -102,43 +83,6 @@ angular
             return activeFilter;
         };
 
-        self.getTermQuery = function (field, option) {
-            var query = {};
-
-            query.term = {};
-            query.term[field] = option;
-
-            return query;
-        };
-
-        self.getBoolQuery = function (type, field, options) {
-            var query = {};
-            var termArray = [];
-
-            options.forEach(function (option) {
-                termArray.push(self.getTermQuery(field, option));
-            });
-
-            query.bool = {
-                must:   type === 'must' ? termArray : [],
-                should: type === 'should' ? termArray : []
-            };
-
-            return query;
-        };
-
-        self.getRangeQuery = function (field, min, max) {
-            var query = {};
-
-            query.range = {};
-            query.range[field] = {
-                gte: min,
-                lte: max
-            };
-
-            return query;
-        };
-
         self.getFullFilterQuery = function (filterArray) {
             return {
                 query: {
@@ -187,13 +131,13 @@ angular
 
                 if (type === 'multiple') {
                     // bool with "should"
-                    innerFilter = self.getBoolQuery('should', indexField, options);
+                    innerFilter = elasticSearchService.getBoolQuery('should', indexField, options);
                 } else if (type === 'single') {
                     // term
-                    innerFilter = self.getTermQuery(indexField, options);
+                    innerFilter = elasticSearchService.getTermQuery(indexField, options);
                 } else if (type === 'range') {
                     // range with min/max
-                    innerFilter = self.getRangeQuery(indexField, options.min, options.max);
+                    innerFilter = elasticSearchService.getRangeQuery(indexField, options.min, options.max);
                 }
 
                 if (data.config.nested) {
@@ -209,10 +153,10 @@ angular
 
             query = self.getFullFilterQuery(must);
 
-            if (sorting && !isEmptyObject(sorting) || sortingConstraints && sortingConstraints.length) {
+            if (sorting && !sofa.Util.isEmptyObject(sorting) || sortingConstraints && sortingConstraints.length) {
                 query.sort = [];
 
-                if (!isEmptyObject(sorting)) {
+                if (!sofa.Util.isEmptyObject(sorting)) {
                     query.sort.push(self.getSortingQuery(sorting));
                 }
 

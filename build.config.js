@@ -166,7 +166,6 @@ module.exports = {
             'node_modules/sofa-core/dist/sofa.core.js',
             'node_modules/sofa-storages/dist/sofa.storages.js',
             'node_modules/sofa-logging-service/dist/sofa.loggingService.js',
-            'node_modules/sofa-device-service/dist/sofa.deviceService.js',
             'node_modules/sofa-url-parser-service/dist/sofa.urlParserService.js',
             'node_modules/sofa-url-construction-service/dist/sofa.urlConstructionService.js',
             'node_modules/sofa-search-service/dist/sofa.searchService.js',
@@ -184,6 +183,10 @@ module.exports = {
             'node_modules/sofa-base/src/decorators/**/*.js',
             'node_modules/sofa-base/src/filter/**/*.js',
             'node_modules/sofa-base/src/services/**/*.js',
+            'node_modules/sofa-hash-service/dist/*.js',
+            'node_modules/sofa-device-service/dist/*.js',
+            // TODO: remove after those are correctly componentized
+            'vendor/sofa*.js',
             // Hand-picking the directives
             'node_modules/angular-sofa-address/dist/*.js',
             'node_modules/angular-sofa-variant-selector/dist/*.js',
@@ -192,6 +195,7 @@ module.exports = {
             'node_modules/angular-sofa-price/dist/*.js',
             // Do NOT include the minified versions
             '!node_modules/angular-sofa-*/dist/*min.js',
+            '!node_modules/sofa-*/dist/*min.js',
 
             'node_modules/sofa-base/src/directives/sofaZippy/*.js',
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.js',

@@ -17,9 +17,9 @@
 //we need this to be available in the Angular config phase
 //since Angular does not allow access to services in the config
 //phase, we need to access it as non angular service for now
-cc.deviceService = new cc.DeviceService(window);
+cc.deviceService = new sofa.DeviceService(window);
 
-angular.module('sdk.services.deviceService')
+angular.module('sofa.deviceService')
     .factory('deviceService', [
         function () {
             return cc.deviceService;
@@ -42,7 +42,7 @@ angular.module('CouchCommerceApp', [
     'sdk.services.wishlistService',
     'sdk.services.couponService',
     'sdk.services.pagesService',
-    'sdk.services.deviceService',
+    'sofa.deviceService',
     'sdk.services.checkoutService',
     'sdk.services.userService',
     'sdk.services.configService',
@@ -53,6 +53,8 @@ angular.module('CouchCommerceApp', [
     'sdk.services.stateResolverService',
     'sdk.services.imageResizeService',
     'sdk.services.localeService',
+    'sofa.elasticSearchService',
+    'sofa.hashService',
     'sofa.address',
     'sofa.variantSelector',
     'sofa.selectBox',

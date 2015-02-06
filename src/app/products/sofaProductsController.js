@@ -35,7 +35,7 @@ angular
         self.goToProduct = function (product, $event) {
             $event.preventDefault();
             selectionService.select('products_' + $stateParams.category, angular.element($event.currentTarget));
-            navigationService.navigateToUrl(product.getOriginFullUrl());
+            navigationService.navigateToUrl(product.getOriginFullUrl(category.getOriginFullUrl()));
         };
 
         self.getBasePriceInfo = function (product) {

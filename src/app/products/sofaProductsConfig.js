@@ -13,9 +13,6 @@ angular
                 controller: 'ProductsController',
                 controllerAs: 'productsController',
                 resolve: {
-//                    products: function (couchService, $stateParams) {
-//                        return couchService.getProducts($stateParams.category);
-//                    },
                     category: function (couchService, $stateParams) {
                         return couchService.getCategory($stateParams.category);
                     }
