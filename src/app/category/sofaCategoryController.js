@@ -29,7 +29,7 @@ angular
             //as the one we got via the function parameter but for such alias corner cases it's important
             //to retrieve it through the couchService.
             couchService
-                .getCategory(category.urlId)
+                .getCategory(category.id)
                 .then(function (realCategory) {
                     if (!realCategory.children) {
                         navigationService.navigateToUrl(realCategory.getOriginFullUrl());

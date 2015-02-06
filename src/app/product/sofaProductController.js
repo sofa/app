@@ -48,7 +48,7 @@ angular
 
         self.product = product;
         // yep, that's a hack to trick our sofa-go-back-control. Seems reasonable though.
-        self.upCategory = { parent: category };
+        self.upCategory = { parent: categoryTreeViewRemote };
         self.images = product.getAllImages();
 
         self.variants = {

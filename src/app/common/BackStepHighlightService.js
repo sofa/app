@@ -25,11 +25,11 @@ angular
 
             if (item instanceof cc.models.Product) {
                 return isHighlighted(item, 'product');
-            } else if (item && item.urlId) {
-                //we don't have a category model, but the urlId property
+            } else if (item && item.route) {
+                //we don't have a category model, but the route property
                 //is unique enough to identify a category
                 var matcher = function (item, flaggedObject) {
-                    return item.urlId === flaggedObject;
+                    return item.id === flaggedObject;
                 };
                 return isHighlighted(item, 'category', matcher);
             }

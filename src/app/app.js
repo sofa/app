@@ -211,7 +211,7 @@ angular.module('CouchCommerceApp', [
                 url: category.getOriginFullUrl(),
                 stateName: 'categories',
                 stateParams: {
-                    category: category.urlId
+                    category: category.id
                 }
             });
         }
@@ -220,7 +220,7 @@ angular.module('CouchCommerceApp', [
                 url: category.getOriginFullUrl(),
                 stateName: 'products',
                 stateParams: {
-                    category: category.urlId
+                    category: category.id
                 }
             });
         }
@@ -231,7 +231,7 @@ angular.module('CouchCommerceApp', [
             url: product.getOriginFullUrl(),
             stateName: 'product',
             stateParams: {
-                category: product.categoryUrlId,
+                category: product.routes[0].categoryId,
                 productUrlKey: product.id
             }
         });

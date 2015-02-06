@@ -101,7 +101,7 @@ angular
                 type: 'single',
                 nested: 'categories',
                 indexPath: 'categories.id',
-                value: category.urlId
+                value: category.id
             }
         ];
 
