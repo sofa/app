@@ -229,13 +229,15 @@ angular.module('CouchCommerceApp', [
     });
 
     couchService.on('productCreated', function (origin, product) {
-        stateResolverService.registerState({
-            url: product.getOriginFullUrl(),
-            stateName: 'product',
-            stateParams: {
-                category: product.routes[0].categoryId,
-                productUrlKey: product.id
-            }
+        product.routes.forEach(function (route) {
+            stateResolverService.registerState({
+                url: route.productUrl,
+                stateName: 'product',
+                stateParams: {
+                    category: route.categoryId,
+                    productUrlKey: product.id
+                }
+            });
         });
     });
 }])
