@@ -17,7 +17,7 @@ angular
 
         self.goToCategory = function (category, $event) {
             $event.preventDefault();
-            selectionService.select($stateParams.category, angular.element($event.currentTarget));
+            selectionService.select($stateParams.categoryId, angular.element($event.currentTarget));
 
             //even if we have the category already provided by the function parameter,
             //we have to fetch it again via the couchService. The reason for that is, that

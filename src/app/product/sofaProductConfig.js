@@ -6,8 +6,8 @@ angular.module('sofa.product')
         $stateProvider
             .state('product', {
                 params: {
-                    category: {},
-                    productUrlKey: ''
+                    categoryId: '',
+                    productId: '' // TODO: used for getProduct() which works with IDs
                 },
                 templateUrl: function () {
                     return cc.deviceService.isTabletSize() ? 'product/sofa-product-wide.tpl.html' : 'product/sofa-product.tpl.html';
@@ -16,11 +16,11 @@ angular.module('sofa.product')
                 controllerAs: 'productController',
                 resolve: {
                     product: ['couchService', '$stateParams', function (couchService, $stateParams) {
-                        return couchService.getProduct($stateParams.productUrlKey);
+                        return couchService.getProduct($stateParams.productId);
                     }],
                     category: ['couchService', '$stateParams', function (couchService, $stateParams) {
                         return couchService
-                            .getCategory($stateParams.category)
+                            .getCategory($stateParams.categoryId)
                             .then(function (category) {
                                 return category;
                             });
@@ -46,7 +46,7 @@ angular.module('sofa.product')
                 },
                 resolve: {
                     product: function (couchService, $stateParams) {
-                        return couchService.getProduct($stateParams.category, $stateParams.productUrlKey);
+                        return couchService.getProduct($stateParams.categoryId, $stateParams.productUrlKey);
                     }
                 }
             });

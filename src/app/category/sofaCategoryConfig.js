@@ -17,7 +17,7 @@ angular.module('sofa.category')
                     function (couchService, $stateParams, navigationService, $q, $state) {
 
                         return couchService
-                            .getCategory($stateParams.category)
+                            .getCategory($stateParams.categoryId)
                             .then(function (category) {
                                 //we need to make that check here *before* the CategoryController
                                 //is initialized. Otherwise we will have double transitions in such
@@ -25,7 +25,7 @@ angular.module('sofa.category')
                                 if (category && (!category.children || !category.children.length)) {
                                     // the server side states API does not differentiate between `category` and `products` state. It
                                     // always returns `category` states. It's currently easier for us to just redirect on the client side
-                                    $state.transitionTo('products', { category: category.id }, { location: false });
+                                    $state.transitionTo('products', { categoryId: category.id }, { location: false });
                                     return $q.reject();
                                 }
                                 return category;
@@ -53,7 +53,7 @@ angular.module('sofa.category')
             }))
             .state('categories', angular.extend({}, categoryStateConfig, {
                 params: {
-                    category: {}
+                    categoryId: ''
                 }
             }))
             // Fallback for old API
@@ -61,7 +61,7 @@ angular.module('sofa.category')
                 url: '/cat/:category',
                 resolve: {
                     category: function (couchService, $stateParams) {
-                        return couchService.getCategory($stateParams.category);
+                        return couchService.getCategory($stateParams.categoryId);
                     }
                 },
                 controller: function (preRenderService, $location, category) {

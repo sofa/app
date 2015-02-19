@@ -12,8 +12,6 @@ angular
             return;
         }
 
-        console.log(product, category);
-
         // TODO: consider using device service to get image sizes which are optimized for the very view port
         var IMAGE_MAX_WIDTH = $rootScope.isTabletSize ? 500 : 300,
             IMAGE_MAX_HEIGHT = IMAGE_MAX_WIDTH,

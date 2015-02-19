@@ -36,7 +36,7 @@
         "sofa-coupon-service": "~0.1.0",
         "sofa-wishlist-service": "~0.2.1",
         "sofa-image-resizer-service": "~0.2.x",
-        "sofa-state-resolver-service": "^0.2.x",
+        "sofa-state-resolver-service": "sofa/sofa-state-resolver-service#sofa-1.0",
         "express": "^4.6.1",
         "walkdir": "0.0.7",
         "underscore": "^1.6.0",

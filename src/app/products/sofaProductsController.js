@@ -34,8 +34,8 @@ angular
 
         self.goToProduct = function (product, $event) {
             $event.preventDefault();
-            selectionService.select('products_' + $stateParams.category, angular.element($event.currentTarget));
-            navigationService.navigateToUrl(product.getOriginFullUrl(category.getOriginFullUrl()));
+            selectionService.select('products_' + $stateParams.categoryId, angular.element($event.currentTarget));
+            navigationService.navigateToUrl(product.getUrl(category.getUrl()));
         };
 
         self.getBasePriceInfo = function (product) {
@@ -99,8 +99,8 @@ angular
         var filterConstraints = [
             {
                 type: 'single',
-                nested: 'categories',
-                indexPath: 'categories.id',
+                nested: 'routes',
+                indexPath: 'routes.categoryId',
                 value: category.id
             }
         ];

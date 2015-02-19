@@ -208,21 +208,21 @@ angular.module('CouchCommerceApp', [
 .run(['couchService', 'stateResolverService', function (couchService, stateResolverService) {
     couchService.on('categoryCreated', function (origin, category) {
 
-        if (category.hasChildren) {
+        if (category.hasChildren()) {
             stateResolverService.registerState({
-                url: category.getOriginFullUrl(),
+                url: category.getUrl(),
                 stateName: 'categories',
                 stateParams: {
-                    category: category.id
+                    categoryId: category.id
                 }
             });
         }
         else {
             stateResolverService.registerState({
-                url: category.getOriginFullUrl(),
+                url: category.getUrl(),
                 stateName: 'products',
                 stateParams: {
-                    category: category.id
+                    categoryId: category.id
                 }
             });
         }
@@ -234,8 +234,8 @@ angular.module('CouchCommerceApp', [
                 url: route.productUrl,
                 stateName: 'product',
                 stateParams: {
-                    category: route.categoryId,
-                    productUrlKey: product.id
+                    categoryId: route.categoryId,
+                    productId: product.id
                 }
             });
         });

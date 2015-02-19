@@ -7,14 +7,14 @@ angular
         $stateProvider
             .state('products', {
                 params: {
-                    category: {}
+                    categoryId: ''
                 },
                 templateUrl: 'products/sofa-products-grid.tpl.html',
                 controller: 'ProductsController',
                 controllerAs: 'productsController',
                 resolve: {
                     category: function (couchService, $stateParams) {
-                        return couchService.getCategory($stateParams.category);
+                        return couchService.getCategory($stateParams.categoryId);
                     }
                 },
                 onEnter: function (metaService) {
@@ -33,7 +33,7 @@ angular
                 },
                 resolve: {
                     category: function (couchService, $stateParams) {
-                        return couchService.getCategory($stateParams.category);
+                        return couchService.getCategory($stateParams.categoryId);
                     }
                 }
             });
