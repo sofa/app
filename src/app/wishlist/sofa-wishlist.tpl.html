@@ -13,7 +13,7 @@
             <div class="sofa-wishlist__item-content">
                 <strong class="sofa-wishlist__item-title" ng-bind="item.product.name"></strong>
                 <span class="sofa-wishlist__item-price">
-                    <cc-price product="item.product" selected-variant="item.variant"></cc-price>
+                    <sofa-price price="item.product.getPrice()" special-price="item.product.getSpecialPrice()"></sofa-price>
                 </span>
             </div>
         </div>

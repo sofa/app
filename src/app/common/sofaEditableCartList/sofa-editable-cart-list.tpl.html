@@ -11,7 +11,7 @@
         </div>
         <div class="sofa-cart__item-footer">
             <span class="sofa-cart__item-price">
-                {{item.quantity}} &times; <cc-price product="item.product" selected-variant="item.variant"></cc-price>
+                {{item.quantity}} &times; <sofa-price price="item.getPrice()" special-price="item.getSpecialPrice()"></sofa-price>
             </span>
 
             <span class="sofa-cart__item-price--total">
