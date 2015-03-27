@@ -40,12 +40,6 @@ angular
                 if (couchService.isAParentOfB(fromRouteCategory, toRouteCategory)) {
                     eventData.move = 'categoryToChildCategory';
                     $rootScope.$emit('stateChangeService.stateChangeSuccess', eventData);
-                } else if (couchService.isAChildAliasOfB(toRouteCategory, fromRouteCategory)) {
-                    //It's a special case with alias categories. Let's check this before we
-                    //check if the category we go to is a parent, becauses chances are that we might
-                    //detected it as parent even so we would rather like it to be detected as (fake) child.
-                    eventData.move = 'categoryToChildCategory';
-                    $rootScope.$emit('stateChangeService.stateChangeSuccess', eventData);
                 } else if (couchService.isAChildOfB(fromRouteCategory, toRouteCategory)) {
                     eventData.move = 'categoryToParentCategory';
                     $rootScope.$emit('stateChangeService.stateChangeSuccess', eventData);
