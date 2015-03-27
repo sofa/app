@@ -1,6 +1,6 @@
 <span class="sofa-wishlist-button"
-   ng-class="{'sofa-wishlist-button--active': isListed(product.urlKey)}"
+   ng-class="{'sofa-wishlist-button--active': isListed(product.id)}"
    ng-click="toggleItem()">
     <span class="sofa-wishlist-button__text" ng-if="hasLabel"
-        ng-bind="isListed(product.urlKey) ? ln.remove : ln.add"></span>
+        ng-bind="isListed(product.id) ? ln.remove : ln.add"></span>
 </span>

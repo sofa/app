@@ -34,7 +34,7 @@
         "sofa-checkout-service": "sofa/sofa-checkout-service#sofa-1.0",
         "sofa-couch-service": "sofa/sofa-couch-service#sofa-1.0",
         "sofa-coupon-service": "~0.1.0",
-        "sofa-wishlist-service": "~0.2.1",
+        "sofa-wishlist-service": "sofa/sofa-wishlist-service#sofa-1.0",
         "sofa-image-resizer-service": "~0.2.x",
         "sofa-state-resolver-service": "sofa/sofa-state-resolver-service#sofa-1.0",
         "express": "^4.6.1",

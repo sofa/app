@@ -26,7 +26,7 @@ angular
                 };
 
                 scope.toggleItem = function () {
-                    if (wishlistService.exists(scope.product.urlKey)) {
+                    if (wishlistService.exists(scope.product.id)) {
                         scope.removeFromWishlist();
                     } else {
                         scope.addToWishlist();
@@ -38,7 +38,7 @@ angular
                 };
 
                 scope.removeFromWishlist = function () {
-                    wishlistService.removeItem(scope.product.urlKey);
+                    wishlistService.removeItem(scope.product.id);
                 };
 
             }
