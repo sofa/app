@@ -54,6 +54,8 @@ angular
             selectedProperties: null
         };
 
+        self.showVariantHint = false;
+
         self.navigateToShippingCostsPage = function () {
             navigationService.navigateToShippingCostsPage();
         };
@@ -76,6 +78,7 @@ angular
 
         self.addToBasket = function (product) {
             if (!isVariantSelected(product)) {
+                self.showVariantHint = true;
                 return;
             }
 
@@ -172,6 +175,7 @@ angular
             return self.variants.selectedVariant; 
         }, function (variant) {
             if (variant) {
+                self.showVariantHint = false;
                 if (variant.images && variant.images[0]) {
                     self.images = variant.images;
                     self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);

@@ -13,8 +13,12 @@
     </div>
 
     <div class="sofa-product-interaction__buy">
+        <div ng-show="productController.showVariantHint" class="sofa-product-interaction__variant-warning"
+             bo-text="ln.variantWarning">
+        </div>
         <button type="button" class="sofa-product-interaction__add-to-cart"
            ng-click="productController.addToBasket(productController.product)"
+           ng-class="{'sofa-product-interaction__add-to-cart--disabled': productController.product.variants.length && !productController.variants.selectedVariant}"
            ng-if="!productController.product.isOutOfStock()"
            bo-text="ln.addToCart">
         </button>

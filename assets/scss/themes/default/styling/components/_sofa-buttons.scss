@@ -103,6 +103,17 @@ $sofa-button--secondary__color:      $theme-color-light;
     line-height: 1rem;
 }
 
+%sofa-button--disabled--clickable {
+    opacity: .5;
+    cursor: default;
+}
+
+%sofa-button--disabled {
+    @extend %sofa-button--disabled--clickable;
+
+    pointer-events: none;
+}
+
 %sofa-button--disabled {
     opacity: .5;
     cursor: default;

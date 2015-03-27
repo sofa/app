@@ -10,6 +10,10 @@
     @extend %sofa-button--block;
 }
 
+.sofa-product-interaction__add-to-cart--disabled {
+    @extend %sofa-button--disabled--clickable;
+}
+
 .sofa-product-interaction__info {
     padding: 1rem .625rem;
 }
@@ -56,4 +60,8 @@
     padding: .625rem 0;
     line-height: 1.5rem;
     border-top: 1px solid $theme-color-light__darker--20;
+}
+
+.sofa-product-interaction__variant-warning {
+    @extend %sofa-message-box--warning;
 }
