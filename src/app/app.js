@@ -62,7 +62,6 @@ angular.module('CouchCommerceApp', [
     'sofa.price',
     'sdk.directives.sofaZippy',
     'sdk.directives.sofaTouchSlider',
-    'sdk.directives.sofaPrice',
     'sdk.directives.sofaInject',
     'sdk.directives.sofaInclude',
     'sdk.directives.sofaImageZoom',
