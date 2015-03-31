@@ -26,7 +26,7 @@
                                     <strong class="sofa-cart__item-title" ng-bind="item.product.name"></strong>
                                     <ul class="sofa-cart__variant-list">
                                         <li ng-repeat="(variantProperty, variantPropertyValue) in item.variant.properties">
-                                            {{variantProperty}}: {{variantPropertyValue}}
+                                            {{variantPropertyValue.label}}: {{variantPropertyValue.value}}
                                         </li>
                                     </ul>
                                 </div>
