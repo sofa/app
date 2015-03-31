@@ -45,6 +45,7 @@
         .cc-product--tablet {
             height:100%;
 
+
             .cc-product__content-block {
                 height:100%;
                 position: relative;
@@ -83,6 +84,14 @@
         .cc-product__image-block {
             position: relative;
             margin:0;
+        }
+        .cc-product--tablet .sofa-touch-slider-wrapper {
+            position: relative;
+        }
+
+        sofa-full-page-view {
+            display: block;
+            width: 100%;
         }
     }
 }

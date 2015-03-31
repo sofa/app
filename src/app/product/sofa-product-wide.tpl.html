@@ -1,13 +1,13 @@
 <div cc-scroller-announcer class="sofa-view">
 
-        <div bindonce="product" ng-if="product" class="cc-product--tablet">
+        <div bindonce="productController.product" ng-if="productController.product" class="cc-product--tablet">
 
             <div class="sofa-view__header sofa-view__header--product">
                 <div class="sofa-up-nav">
-                    <sofa-go-back-control category="upCategory"></sofa-go-back-control>
+                    <sofa-go-back-control category="productController.upCategory"></sofa-go-back-control>
                 </div>
                 <div class="sofa-view__title">
-                    <h1 bo-text="product.name" class="cc-title--huge"></h1>
+                    <h1 bo-text="productController.product.name" class="cc-title--huge"></h1>
                 </div>
             </div>
 
@@ -18,33 +18,33 @@
                     <sofa-full-page-view on-open="setCloneState" on-close="setOriginalState">
                         <sofa-full-page-view-clone class="cc-animate">
                             <sofa-touch-slider
-                                    class="cc-product__image-slider"
-                                    items="productImages"
+                                    class="sofa-product__image-slider"
+                                    items="productController.productImages"
                                     display-items="1"
                                     snap="true"
                                     slide-index="shared.slideIndex"
                                     show-indicator="true"
                                     data-snap-ignore="true">
-                                <div class="cc-product-view-image-wrapper">
-                                    <img ng-src="{{item.image.url}}" class="cc-product-view-image"
-                                         sofa-image-aspect-ratio sofa-image-zoom="item.zoomImage.loaded && item.zoomImage.url">
+                                <div class="sofa-product-view-image-wrapper">
+                                    <img ng-src="{{item.image.url}}" class="sofa-product-view-image"
+                                         sofa-image-zoom="item.zoomImage.loaded && item.zoomImage.url">
                                 </div>
                             </sofa-touch-slider>
                         </sofa-full-page-view-clone>
                         <sofa-full-page-view-original>
                             <sofa-touch-slider
-                                    class="cc-product__image-slider"
-                                    items="productImages"
+                                    class="sofa-product__image-slider"
+                                    items="productController.productImages"
                                     display-items="1"
                                     on-item-click="openFullPageView(e)"
                                     snap="true"
                                     slide-index="shared.slideIndex"
                                     show-indicator="true"
                                     data-snap-ignore="true">
-                                <div class="cc-product-view-image-wrapper"
+                                <div class="sofa-product-view-image-wrapper"
                                      ng-click="onItemClick({e: $event});"
                                      ng-class="{'cc-img-loading': !item.image.loaded}">
-                                    <img ng-src="{{item.image.url}}" class="cc-product-view-image">
+                                    <img ng-src="{{item.image.url}}" class="sofa-product-view-image">
                                 </div>
                             </sofa-touch-slider>
                         </sofa-full-page-view-original>
@@ -55,28 +55,20 @@
                 <div class="cc-product__info-block">
 
                     <div class="cc-product__primary-info">
-
-                        <cc-variant-selector
-                            choose-text="ln.choose"
-                            variants="product.variants"
-                            variant="variants.selectedVariant"
-                            selected-properties="variants.selectedProperties">
-                        </cc-variant-selector>
-
-                        <div cc-include="tpl.PRODUCT_BUY_BOX"></div>
+                        <div cc-include="tpl.PRODUCT_INTERACTION"></div>
                     </div>
 
                     <div class="cc-product__content-box cc-scroll-area">
 
                         <cc-zippy caption="ln.productDetails" init-opened="true">
-                            <div class="cc-unstyled cc-product-description" ng-bind-html="$sce.trustAsHtml(product.description)"></div>
+                            <div class="cc-unstyled cc-product-description" ng-bind-html="productController.getTrustedHtml(productController.product.description)"></div>
                         </cc-zippy>
 
                         <cc-zippy caption="ln.productSpecifications">
                             <ul class="cc-properties--block">
-                                <li ng-repeat="(key, value) in product.attributes track by key">
+                                <li ng-repeat="(key, value) in productController.product.attributes track by key">
                                     <span class="cc-properties__key">{{key}}</span>
-                                    <span class="cc-properties__value" ng-bind-html="$sce.trustAsHtml(value)"></span>
+                                    <span class="cc-properties__value" ng-bind-html="productController.getTrustedHtml(value)"></span>
                                 </li>
                             </ul>
                         </cc-zippy>
@@ -88,6 +80,6 @@
 
         </div>
 
-        <div ng-if="!product" ng-include="tpl.404"></div>
+        <div ng-if="!productController.product" ng-include="tpl.404"></div>
 
 </div>
