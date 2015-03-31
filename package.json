@@ -12,7 +12,7 @@
     "dependencies": {
         "angular-bindonce": "~0.2.2",
         "angular-sofa-address": "sofa/angular-sofa-address#sofa-1.0",
-        "angular-sofa-variant-selector": "sofa/angular-sofa-variant-selector",
+        "angular-sofa-variant-selector": "sofa/angular-sofa-variant-selector#sofa-1.0",
         "angular-sofa-select-box": "sofa/angular-sofa-select-box",
         "angular-sofa-name": "sofa/angular-sofa-name",
         "angular-sofa-price": "sofa/angular-sofa-price#sofa-1.0",
