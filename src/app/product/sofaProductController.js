@@ -90,17 +90,19 @@ angular
                 type: 'image',
                 maxwidth: IMAGE_MAX_WIDTH,
                 maxheight: IMAGE_MAX_HEIGHT,
+                forceDimensions: true,
                 quality: 80
             }, {
                 type: 'zoomImage',
                 maxwidth: ZOOM_IMAGE_MAX_WIDTH,
                 maxheight: ZOOM_IMAGE_MAX_HEIGHT,
+                forceDimensions: true,
                 quality: 80
             }
         ];
 
         self.productImages = imagePreloadService.getResizedProductImages(self.images, imagePreloaderOptions);
-        self.selectedImage = self.productImages[0].image;
+        self.selectedImage = self.productImages.length && self.productImages[0].image;
 
         var getFormattedShippingCost = function (shippingCost) {
             return $filter('stringReplace')($scope.ln.shippingCosts, $filter('currency')(shippingCost));

@@ -1,77 +1,84 @@
-<div cc-scroller-announcer class="sofa-view">
+<div cc-scroller-announcer class="sofa-view sofa-view--tablet sofa-view--product">
 
-        <div bindonce="productController.product" ng-if="productController.product" class="cc-product--tablet">
+    <div bindonce="productController.product" ng-if="productController.product" class="sofa-product">
 
-            <div class="sofa-view__header sofa-view__header--product">
-                <div class="sofa-up-nav">
-                    <sofa-go-back-control category="productController.upCategory"></sofa-go-back-control>
-                </div>
-                <div class="sofa-view__title">
-                    <h1 bo-text="productController.product.name" class="cc-title--huge"></h1>
-                </div>
+        <div class="sofa-view__header sofa-view__header--product">
+            <div class="sofa-up-nav">
+                <sofa-go-back-control category="productController.upCategory"></sofa-go-back-control>
+            </div>
+            <div class="sofa-view__title">
+                <h1 bo-text="productController.product.name" class="cc-title--huge"></h1>
+            </div>
+        </div>
+
+        <div class="sofa-product__content-block">
+
+            <div class="sofa-product__image-block">
+
+                <sofa-full-page-view on-open="setCloneState" on-close="setOriginalState">
+                    <sofa-full-page-view-clone class="cc-animate">
+                        <sofa-touch-slider
+                                class="sofa-product__image-slider"
+                                items="productController.productImages"
+                                display-items="1"
+                                snap="true"
+                                slide-index="shared.slideIndex"
+                                show-indicator="true"
+                                data-snap-ignore="true">
+                            <div class="sofa-product-view-image-wrapper">
+                                <img ng-src="{{item.image.url}}" class="sofa-product-view-image"
+                                     sofa-image-aspect-ratio sofa-image-zoom="item.zoomImage.loaded && item.zoomImage.url">
+                            </div>
+                        </sofa-touch-slider>
+                    </sofa-full-page-view-clone>
+                    <sofa-full-page-view-original>
+                        <sofa-touch-slider
+                                class="sofa-product__image-slider"
+                                items="productController.productImages"
+                                display-items="1"
+                                on-item-click="openFullPageView(e)"
+                                snap="true"
+                                slide-index="shared.slideIndex"
+                                show-indicator="true"
+                                data-snap-ignore="true">
+                            <div class="sofa-product-view-image-wrapper"
+                                 ng-click="onItemClick({e: $event});"
+                                 ng-class="{'cc-img-loading': !item.image.loaded}">
+                                <img ng-src="{{item.image.url}}" class="sofa-product-view-image">
+                            </div>
+                        </sofa-touch-slider>
+                    </sofa-full-page-view-original>
+                </sofa-full-page-view>
+
             </div>
 
-            <div class="cc-product__content-block">
+            <div class="sofa-product__info-block">
 
-                <div class="cc-product__image-block">
+                <div class="sofa-product__primary-info">
 
-                    <sofa-full-page-view on-open="setCloneState" on-close="setOriginalState">
-                        <sofa-full-page-view-clone class="cc-animate">
-                            <sofa-touch-slider
-                                    class="sofa-product__image-slider"
-                                    items="productController.productImages"
-                                    display-items="1"
-                                    snap="true"
-                                    slide-index="shared.slideIndex"
-                                    show-indicator="true"
-                                    data-snap-ignore="true">
-                                <div class="sofa-product-view-image-wrapper">
-                                    <img ng-src="{{item.image.url}}" class="sofa-product-view-image"
-                                         sofa-image-zoom="item.zoomImage.loaded && item.zoomImage.url">
-                                </div>
-                            </sofa-touch-slider>
-                        </sofa-full-page-view-clone>
-                        <sofa-full-page-view-original>
-                            <sofa-touch-slider
-                                    class="sofa-product__image-slider"
-                                    items="productController.productImages"
-                                    display-items="1"
-                                    on-item-click="openFullPageView(e)"
-                                    snap="true"
-                                    slide-index="shared.slideIndex"
-                                    show-indicator="true"
-                                    data-snap-ignore="true">
-                                <div class="sofa-product-view-image-wrapper"
-                                     ng-click="onItemClick({e: $event});"
-                                     ng-class="{'cc-img-loading': !item.image.loaded}">
-                                    <img ng-src="{{item.image.url}}" class="sofa-product-view-image">
-                                </div>
-                            </sofa-touch-slider>
-                        </sofa-full-page-view-original>
-                    </sofa-full-page-view>
+                    <div cc-include="tpl.PRODUCT_INTERACTION"></div>
 
                 </div>
 
-                <div class="cc-product__info-block">
+                <div class="sofa-product__content-box sofa-scroll-area">
 
-                    <div class="cc-product__primary-info">
-                        <div cc-include="tpl.PRODUCT_INTERACTION"></div>
-                    </div>
+                    <div class="sofa-product-information" ng-if="productController.hasInfo()">
 
-                    <div class="cc-product__content-box cc-scroll-area">
+                        <div class="sofa-product-information__block" ng-if="productController.product.description">
+                            <h2 class="cc-title--big" bo-text="ln.productDetails"></h2>
+                            <div class="cc-cms-content" ng-bind-html="productController.product.description"></div>
+                        </div>
 
-                        <cc-zippy caption="ln.productDetails" init-opened="true">
-                            <div class="cc-unstyled cc-product-description" ng-bind-html="productController.getTrustedHtml(productController.product.description)"></div>
-                        </cc-zippy>
-
-                        <cc-zippy caption="ln.productSpecifications">
+                        <div class="sofa-product-information__block" ng-if="productController.product.hasAttributes()">
+                            <h2 class="cc-title--big" bo-text="ln.productSpecifications"></h2>
                             <ul class="cc-properties--block">
                                 <li ng-repeat="(key, value) in productController.product.attributes track by key">
-                                    <span class="cc-properties__key">{{key}}</span>
+                                    <span class="cc-properties__key" ng-bind="key"></span>
                                     <span class="cc-properties__value" ng-bind-html="productController.getTrustedHtml(value)"></span>
                                 </li>
                             </ul>
-                        </cc-zippy>
+                        </div>
+
                     </div>
 
                 </div>
@@ -81,5 +88,7 @@
         </div>
 
         <div ng-if="!productController.product" ng-include="tpl.404"></div>
+
+    </div>
 
 </div>
