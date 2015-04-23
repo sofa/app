@@ -72,6 +72,7 @@ angular.module('CouchCommerceApp', [
     'sdk.directives.sofaGoBackControl',
     'sdk.directives.sofaLoadingSpinner',
     'sofa.inject',
+    'sofa.lazyValidation',
     'sofa.tabs',
     'sofa.editableList',
     'sofa.editableCartList',

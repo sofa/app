@@ -25,7 +25,7 @@
         <div class="sofa-validation-wrapper"
              ng-class="{'sofa-validation__message--success': modelController['f_' + field.code].ccValid}">
             <sofa-date-field field-name="'f_' + field.code" is-required="field.required"
-                             ng-model="model[field.code]" cc-lazy-validation>
+                             ng-model="model[field.code]" sofa-lazy-validation>
             </sofa-date-field>
             <span ng-show="modelController['f_' + field.code].$dirty && modelController['f_' + field.code].ccInvalid"
                 class="sofa-validation__message--fail">

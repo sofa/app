@@ -23,7 +23,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_firstname.ccValid}">
             <input type="text" id="f_firstname_{{instance}}" name="f_firstname" class="sofa-text-field"
-                   ng-model="addressModel.firstName" required cc-lazy-validation />
+                   ng-model="addressModel.firstName" required sofa-lazy-validation />
             <span ng-show="modelController.f_firstname.$dirty && modelController.f_firstname.ccInvalid"
                 class="sofa-validation__message--fail">
                 {{::ln.errors.firstname}}
@@ -35,7 +35,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_lastname.ccValid}">
             <input type="text" id="f_lastname_{{instance}}" name="f_lastname" class="sofa-text-field"
-                   ng-model="addressModel.lastName" required cc-lazy-validation />
+                   ng-model="addressModel.lastName" required sofa-lazy-validation />
             <span ng-show="modelController.f_lastname.$dirty && modelController.f_lastname.ccInvalid"
                   class="sofa-validation__message--fail">
                 {{::ln.errors.lastname}}
@@ -47,7 +47,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_street.ccValid}">
             <input type="text" id="f_street_{{instance}}" name="f_street" class="sofa-text-field"
-                   ng-model="addressModel.street" required cc-lazy-validation/>
+                   ng-model="addressModel.street" required sofa-lazy-validation/>
             <span ng-show="modelController.f_street.$dirty && modelController.f_street.ccInvalid"
                   class="sofa-validation__message--fail">
                 {{::ln.errors.street}}
@@ -59,7 +59,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_street_number.ccValid}">
             <input type="text" id="f_street_number_{{instance}}" name="f_street_number" class="sofa-text-field"
-                   ng-model="addressModel.streetNumber" required cc-lazy-validation/>
+                   ng-model="addressModel.streetNumber" required sofa-lazy-validation/>
             <span ng-show="modelController.f_street_number.$dirty && modelController.f_street_number.ccInvalid"
                   class="sofa-validation__message--fail">
                 {{::ln.errors.streetNumber}}
@@ -78,9 +78,10 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_parcel_station_code.ccValid}">
             <input type="text" id="f_parcel_station_code" name="f_parcel_station_code" class="sofa-text-field"
-                   ng-model="addressModel.parcelStationCustomerCode" required cc-lazy-validation/>
+                   ng-model="addressModel.parcelStationCustomerCode" required sofa-lazy-validation/>
             <span ng-show="modelController.f_parcel_station_code.$dirty && modelController.f_parcel_station_code.ccInvalid"
                   class="sofa-validation__message--fail">
+                {{::ln.errors.parcelStation.customerCode}}
             </span>
         </div>
     </li>
@@ -89,7 +90,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_parcel_station_name.ccValid}">
             <input type="text" id="f_parcel_station_name" name="f_parcel_station_name" class="sofa-text-field"
-                   ng-model="addressModel.parcelStationName" required cc-lazy-validation/>
+                   ng-model="addressModel.parcelStationName" required sofa-lazy-validation/>
             <span ng-show="modelController.f_parcel_station_name.$dirty && modelController.f_parcel_station_name.ccInvalid"
                   class="sofa-validation__message--fail">
                 {{::ln.errors.parcelStation.name}}
@@ -101,7 +102,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_zipCode.ccValid}">
             <input type="text" id="f_zipCode_{{instance}}" name="f_zipCode" class="sofa-text-field"
-                   ng-model="addressModel.zipCode" required cc-lazy-validation/>
+                   ng-model="addressModel.zipCode" required sofa-lazy-validation/>
             <span ng-show="modelController.f_zipCode.$dirty && modelController.f_zipCode.ccInvalid"
                   class="sofa-validation__message--fail">
                 {{::ln.errors.zip}}
@@ -113,7 +114,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_city.ccValid}">
             <input type="text" id="f_city_{{instance}}" name="f_city" class="sofa-text-field"
-                   ng-model="addressModel.city" required cc-lazy-validation/>
+                   ng-model="addressModel.city" required sofa-lazy-validation/>
         <span ng-show="modelController.f_city.$dirty && modelController.f_city.ccInvalid"
               class="sofa-validation__message--fail">
             {{::ln.errors.salutation}} 
@@ -142,7 +143,7 @@
         <div class="sofa-validation__wrapper"
              ng-class="{'sofa-validation__message--success': modelController.f_email.ccValid}">
             <input type="email" id="f_email_{{instance}}" name="f_email" class="sofa-text-field"
-                   ng-model="addressModel.email" required cc-lazy-validation/>
+                   ng-model="addressModel.email" required sofa-lazy-validation/>
             <span ng-show="modelController.f_email.$dirty && modelController.f_email.ccInvalid">
                 <span ng-show="modelController.f_email.$error.required"
                     class="sofa-validation__message--fail">{{::ln.errors.email}}</span>
@@ -154,6 +155,6 @@
     <li class="sofa-form-item">
         <label for="f_phone_{{instance}}" class="sofa-form-label--optional">{{::ln.phone}}</label>
         <input type="tel" id="f_phone_{{instance}}" name="f_phone" class="sofa-text-field"
-               ng-model="addressModel.phone" cc-lazy-validation />
+               ng-model="addressModel.phone" sofa-lazy-validation />
     </li>
 </ul>

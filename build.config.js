@@ -211,6 +211,8 @@ module.exports = {
             'node_modules/sofa-base/src/directives/sofaDateField/*.js',
             // TODO: rename to sofa
             'node_modules/sofa-base/src/directives/ccTemplateCode/*.js'
+
+            'node_modules/angular-sofa-lazy-validation/dist/sofaLazyValidation.js'
         ],
         tpl: [
             // Hand-picking the directives
