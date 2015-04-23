@@ -3,8 +3,8 @@
      ng-controller="SearchController as vm">
     <button type="button" class="sofa-search-box__close" ng-click="searchUiState.abort()"></button>
     <div class="sofa-search-box__input-wrapper">
-        <cc-search-field ng-model="searchUiState.searchTerm" placeholder-text="ln.productSearchPlaceholder"
+        <sofa-search-field ng-model="searchUiState.searchTerm" placeholder-text="ln.productSearchPlaceholder"
                          focus="searchUiState.isOpen()">
-        </cc-search-field>
+        </sofa-search-field>
     </div>
 </div>
