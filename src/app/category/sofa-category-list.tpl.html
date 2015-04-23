@@ -3,7 +3,7 @@
     <div class="sofa-sticky-view">
 
         <div class="sofa-sticky-view__content">
-            <cc-inject target="aboveContent"></cc-inject>
+            <sofa-inject target="aboveContent"></sofa-inject>
 
             <div bindonce="categoryController.category" ng-if="categoryController.category">
 
@@ -31,9 +31,9 @@
         </div>
 
         <div class="sofa-sticky-view__footer">
-            <cc-inject target="aboveFooter"></cc-inject>
-            <cc-footer></cc-footer>
-            <cc-inject target="beneathFooter"></cc-inject>
+            <sofa-inject target="aboveFooter"></sofa-inject>
+            <sofa-footer></sofa-footer>
+            <sofa-inject target="beneathFooter"></sofa-inject>
         </div>
     </div>
 </div>

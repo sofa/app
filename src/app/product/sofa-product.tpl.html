@@ -1,5 +1,5 @@
 <div cc-scroller-announcer class="sofa-view">
-    <cc-inject target="aboveContent"></cc-inject>
+    <sofa-inject target="aboveContent"></sofa-inject>
 
     <div ng-if="productController.product">
 
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <cc-inject target="beneathTitle"></cc-inject>
+        <sofa-inject target="beneathTitle"></sofa-inject>
 
         <sofa-full-page-view on-open="setCloneState" on-close="setOriginalState">
             <sofa-full-page-view-clone class="cc-animate">
@@ -49,7 +49,7 @@
             </sofa-full-page-view-original>
         </sofa-full-page-view>
 
-        <div cc-include="tpl.PRODUCT_INTERACTION"></div>
+        <div sofa-include="tpl.PRODUCT_INTERACTION"></div>
 
         <div class="sofa-product-information" ng-if="productController.hasInfo()">
 
@@ -74,8 +74,8 @@
 
     <div ng-if="!productController.product" ng-include="tpl.404"></div>
 
-    <cc-inject target="aboveFooter"></cc-inject>
+    <sofa-inject target="aboveFooter"></sofa-inject>
     <cc-footer></cc-footer>
-    <cc-inject target="beneathFooter"></cc-inject>
+    <sofa-inject target="beneathFooter"></sofa-inject>
 
 </div>

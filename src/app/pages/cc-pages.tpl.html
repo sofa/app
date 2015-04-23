@@ -3,7 +3,7 @@
     <div class="sofa-sticky-view">
 
         <div class="sofa-sticky-view__content">
-            <cc-inject target="aboveContent"></cc-inject>
+            <sofa-inject target="aboveContent"></sofa-inject>
 
             <div class="sofa-view__header sofa-view__header--pages">
                 <div class="sofa-up-nav">
@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-            <cc-inject target="beneathTitle"></cc-inject>
+            <sofa-inject target="beneathTitle"></sofa-inject>
 
             <div class="cc-pages__content-box">
                 <div ng-bind-html="page.content"></div>
@@ -32,9 +32,9 @@
         </div>
 
         <div class="sofa-sticky-view__footer">
-            <cc-inject target="aboveFooter"></cc-inject>
+            <sofa-inject target="aboveFooter"></sofa-inject>
             <cc-footer></cc-footer>
-            <cc-inject target="beneathFooter"></cc-inject>
+            <sofa-inject target="beneathFooter"></sofa-inject>
         </div>
     </div>
 </div>
