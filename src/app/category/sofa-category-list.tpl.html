@@ -12,7 +12,7 @@
                         <sofa-go-back-control button-text="{{ ln.home }}" category="categoryController.category"></sofa-go-back-control>
                     </div>
                     <div class="sofa-view__title">
-                        <h1 class="cc-title--huge" bo-text="categoryController.headline"></h1>
+                        <h1 class="cc-title--huge">{{::categoryController.headline}}</h1>
                     </div>
                 </div>
 
@@ -21,8 +21,8 @@
                         <a class="sofa-category-link"
                            ng-class="{ 'sofa-highlight--out': categoryController.backStepHighlightService.isHighlighted(category) }"
                            ng-click="categoryController.goToCategory(category, $event)"
-                           ng-href="{{category.getOriginFullUrl()}}"
-                           bo-text="category.label">
+                           ng-href="{{category.getOriginFullUrl()}}">
+                           {{::category.label}}
                         </a>
                     </li>
                 </ul>

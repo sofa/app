@@ -154,10 +154,9 @@ module.exports = {
      */
     vendor_files: {
         js: [
-            'vendor/angular-unstable/angular.js',
-            'vendor/angular-unstable/angular-animate.js',
-            'vendor/angular-unstable/angular-sanitize.js',
-            'node_modules/angular-bindonce/bindonce.js',
+            'node_modules/angular/angular.js',
+            'node_modules/angular-animate/angular-animate.js',
+            'node_modules/angular-sanitize/angular-sanitize.js',
             'node_modules/hammerjs/hammer.js',
             'vendor/ui-router/angular-ui-router.js',
             'vendor/ui-modal/*.js',

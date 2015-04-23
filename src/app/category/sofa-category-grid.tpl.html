@@ -5,7 +5,7 @@
         <div class="sofa-sticky-view__content">
             <cc-inject target="aboveContent"></cc-inject>
 
-            <div bindonce="categoryController.category" ng-if="categoryController.category">
+            <div ng-if="categoryController.category">
 
                 <div class="sofa-view__header sofa-view__header--category"
                      ng-class="{'sofa-view__header--root': categoryController.category.isRoot}">
@@ -13,7 +13,7 @@
                         <sofa-go-back-control button-text="{{ ln.home }}" category="categoryController.category"></sofa-go-back-control>
                     </div>
                     <div class="sofa-view__title">
-                        <h1 class="cc-title--huge" bo-text="categoryController.headline"></h1>
+                        <h1 class="cc-title--huge">{{::categorycontroller.headline}}</h1>
                     </div>
                 </div>
 
@@ -31,7 +31,6 @@
                                     </div>
                                 </div>
                                 <div class="sofa-category-item__info-wrapper">
-                                    <strong class="sofa-category-item__title" bo-text="category.label"></strong>
                                 </div>
                             </a>
                         </li>

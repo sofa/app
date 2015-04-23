@@ -1,4 +1,4 @@
-<div cc-scroller-announcer bindonce="productsController" class="sofa-view">
+<div cc-scroller-announcer class="sofa-view">
 
     <div class="sofa-sticky-view">
 
@@ -10,7 +10,7 @@
                     <sofa-go-back-control button-text="{{ ln.home }}" category="productsController.category"></sofa-go-back-control>
                 </div>
                 <div class="sofa-view__title">
-                    <h1 class="cc-title--huge" bo-text="productsController.headline"></h1>
+                    <h1 class="cc-title--huge">{{::productsController.headline}}</h1>
                 </div>
             </div>
 
@@ -23,8 +23,8 @@
                             display-value-exp="'title'">
                     </sofa-select-box>
                     <span ng-if="isTabletSize" class="sofa-product-controls-count">
-                        <b bo-text="productsController.products.length"></b>
-                        <span bo-text="ln.productCountText"></span>
+                        <b>{{::productsController.products.length}}</b>
+                        <span>{{::ln.productCountText}}</span>
                     </span>
                 </div>
 
@@ -44,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="sofa-product-item__info-wrapper">
-                                    <strong class="sofa-product-item__title" bo-text="product.name"></strong>
+                                    <strong class="sofa-product-item__title">{{::product.name}}</strong>
                                     <div>
                                         <sofa-price price="product.getPrice()" special-price="product.getSpecialPrice()"></sofa-price>
                                         <div class="sofa-product-item__base-price-info" ng-bind="productsController.getBasePriceInfo(product)"></div>
@@ -63,7 +63,7 @@
             </div>
 
             <div ng-if="!productsController.products.length" class="sofa-no-products-message">
-                <p bo-text="ln.noProductResults"></p>
+                <p>{{::ln.noProductResults}}</p>
             </div>
 
         </div>

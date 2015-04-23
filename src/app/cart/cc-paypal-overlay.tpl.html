@@ -1,7 +1,7 @@
-<div class="modal-body cc-paypal-overlay" bindonce="ln">
+<div class="modal-body cc-paypal-overlay">
     <i class="cc-paypal-overlay__close-icon" ng-click="close()"></i>
     <div class="cc-form__item">
-        <label class="cc-form__label" bo-text="ln.formCountry"></label>
+        <label class="cc-form__label">{{::ln.formCountry}}</label>
         <sofa-select-box
             model="vm.selectedCountry"
             data="vm.countries"
@@ -10,7 +10,7 @@
         </sofa-select-box>
     </div>
     <div class="cc-form__item">
-        <label class="cc-form__label" bo-text="ln.shippingMethod"></label>
+        <label class="cc-form__label">{{::ln.shippingMethod}}</label>
         <sofa-select-box
             model="vm.selectedShippingMethod"
             data="vm.supportedShippingMethods"
@@ -18,7 +18,7 @@
             display-value-exp="shippingMethodFormatter">
         </sofa-select-box>
     </div>
-    <div class="cc-message-box--error" ng-show="!vm.supportedShippingMethods.length" bo-text="ln.noPayPalShippingMethod"></div>
+    <div class="cc-message-box--error" ng-show="!vm.supportedShippingMethods.length">{{::ln.noPayPalShippingMethod}}</div>
     <a ng-click="vm.canProceed && proceed()" ng-class="configService.getLocalizedPayPalButtonClass(!vm.canProceed)"></a>
     <sofa-loading-spinner ng-show="processing"></sofa-loading-spinner>
 </div>

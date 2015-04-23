@@ -1,11 +1,11 @@
-<div ng-show="vm.page === vm.SUMMARY_PAGE" bindonce="ln" class="sofa-view">
+<div ng-show="vm.page === vm.SUMMARY_PAGE" class="sofa-view">
 
     <div class="sofa-view__header sofa-view__header--summary">
         <div class="sofa-up-nav">
             <sofa-go-back-control button-text="{{ ln.back }}"></sofa-go-back-control>
         </div>
         <div class="sofa-view__title">
-            <h1 bo-text="ln.summary" class="cc-title--huge"></h1>
+            <h1 class="cc-title--huge">{{::ln.summary}}</h1>
         </div>
     </div>
 

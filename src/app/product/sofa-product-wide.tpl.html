@@ -1,13 +1,13 @@
 <div cc-scroller-announcer class="sofa-view">
 
-        <div bindonce="productController.product" ng-if="productController.product" class="cc-product--tablet">
+        <div ng-if="productController.product" class="cc-product--tablet">
 
             <div class="sofa-view__header sofa-view__header--product">
                 <div class="sofa-up-nav">
                     <sofa-go-back-control category="productController.upCategory"></sofa-go-back-control>
                 </div>
                 <div class="sofa-view__title">
-                    <h1 bo-text="productController.product.name" class="cc-title--huge"></h1>
+                    <h1 class="cc-title--huge">{{::productController.product.name}}</h1>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-<div class="sofa-product-interaction" bindonce="ln">
+<div class="sofa-product-interaction">
     <sofa-variant-selector
             choose-text="ln.choose"
             variants="productController.product.variants"
@@ -13,19 +13,19 @@
     </div>
 
     <div class="sofa-product-interaction__buy">
-        <div ng-show="productController.showVariantHint" class="sofa-product-interaction__variant-warning"
-             bo-text="ln.variantWarning">
+        <div ng-show="productController.showVariantHint" class="sofa-product-interaction__variant-warning">
+            {{::ln.variantWarning}}
         </div>
         <button type="button" class="sofa-product-interaction__add-to-cart"
            ng-click="productController.addToBasket(productController.product)"
            ng-class="{'sofa-product-interaction__add-to-cart--disabled': productController.product.variants.length && !productController.variants.selectedVariant}"
-           ng-if="!productController.product.isOutOfStock()"
-           bo-text="ln.addToCart">
+           ng-if="!productController.product.isOutOfStock()">
+           {{::ln.addToCart}}
         </button>
 
         <span class="sofa-product-interaction__sold-out"
-              ng-if="productController.product.isOutOfStock()"
-              bo-text="ln.soldOut">
+              ng-if="productController.product.isOutOfStock()">
+              {{::ln.soldOut}}
         </span>
     </div>
 
@@ -35,12 +35,12 @@
         <span class="sofa-product-interaction__shipping-info" ng-if="productController.shippingCost !== null" ng-bind="productController.shippingCost"></span>
 
         <div class="sofa-product-interaction__shipping-info" ng-if="productController.shippingCost === null">
-            <a class="sofa-link" ng-click="productController.navigateToShippingCostsPage()" bo-text="ln.shippingCostsGeneric"></a>
+            <a class="sofa-link" ng-click="productController.navigateToShippingCostsPage()">{{::ln.shippingCostsGeneric}}</a>
         </div>
     </div>
 
     <div class="sofa-product-interaction__delivery">
-        <span bindonce="productController.product" bo-html="productController.product.delivery"></span>
+        <span ng-html="::productController.product.delivery"></span>
     </div>
 
 </div>

@@ -23,8 +23,8 @@
         </li>
     </ul>
 
-    <div bindonce="ln" class="sofa-search-result-empty" ng-show="searchUiState.hasNoMatch()">
-        <p bo-text="ln.searchNotFound"></p>
+    <div class="sofa-search-result-empty" ng-show="searchUiState.hasNoMatch()">
+        <p>{{::ln.searchNotFound}}</p>
     </div>
 
     <sofa-loading-spinner ng-show="searchUiState.isRunningSearch"></sofa-loading-spinner>

@@ -1,8 +1,8 @@
-<div class="sofa-wishlist" bindonce="ln">
+<div class="sofa-wishlist">
 
-    <p class="sofa-wishlist__empty-hint" bo-text="ln.wishlistEmpty" ng-show="isEmpty"></p>
+    <p class="sofa-wishlist__empty-hint" ng-show="isEmpty">{{::ln.wishlistEmpty}}</p>
 
-    <div ng-if="showFirstUseInfo" class="sofa-wishlist__first-use-hint" bo-html="ln.wishlistFirstUse"></div>
+    <div ng-if="showFirstUseInfo" class="sofa-wishlist__first-use-hint" ng-html="::ln.wishlistFirstUse"></div>
 
     <sofa-editable-list
             ng-show="!isEmpty"

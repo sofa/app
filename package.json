@@ -10,7 +10,9 @@
     "author": "",
     "license": "",
     "dependencies": {
-        "angular-bindonce": "~0.2.2",
+        "angular": "^1.3.15",
+        "angular-animate": "^1.3.15",
+        "angular-sanitize": "^1.3.15",
         "angular-sofa-address": "sofa/angular-sofa-address#sofa-1.0",
         "angular-sofa-variant-selector": "sofa/angular-sofa-variant-selector#sofa-1.0",
         "angular-sofa-select-box": "sofa/angular-sofa-select-box",

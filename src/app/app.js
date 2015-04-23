@@ -86,7 +86,6 @@ angular.module('CouchCommerceApp', [
     'sdk.directives.ccTemplateCode',
     'sdk.filter',
     'ui.bootstrap',
-    'pasvaz.bindonce',
     'templates',
     'sofa-templates',
     'snap',

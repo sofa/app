@@ -1,4 +1,4 @@
-<div cc-scroller-announcer class="sofa-view" bindonce="ln">
+<div cc-scroller-announcer class="sofa-view">
 
     <div class="sofa-sticky-view">
 
@@ -9,7 +9,7 @@
                     <sofa-go-back-control button-text="{{ ln.back }}"></sofa-go-back-control>
                 </div>
                 <div class="sofa-view__title">
-                    <h1 bo-text="ln.sofaCheckout.title" class="cc-title--huge"></h1>
+                    <h1 class="cc-title--huge">{{::ln.sofaCheckout.title}}</h1>
                 </div>
             </div>
 
@@ -18,10 +18,11 @@
                 <!-- Shipping Address -->
                 <section class="sofa-checkout-section sofa-checkout-section--shipping-address">
                     <header class="sofa-checkout-section__header">
-                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                        <button class="sofa-checkout-button--edit"
                                 ng-click="stepCtrl.editSection('shippingAddress')" ng-show="stepCtrl.steps.shippingAddress.mode === 'summary'">
+                            {{::ln.sofaCheckout.edit}}
                         </button>
-                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.shippingAddress"></h2>
+                        <h2 class="cc-title--big">{{::ln.sofaCheckout.shippingAddress}}</h2>
                     </header>
 
                     <!-- Shipping Address EDIT -->
@@ -44,9 +45,10 @@
                     </div>
 
                     <footer class="sofa-checkout-section__footer">
-                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                        <button class="sofa-checkout-button"
                                 ng-click="stepCtrl.proceedFrom('shippingAddress')" ng-disabled="shippingAddressForm.$invalid"
                                 ng-show="stepCtrl.steps.shippingAddress.mode === 'edit'">
+                                {{::ln.sofaCheckout.nextStep}}
                         </button>
                     </footer>
                 </section>
@@ -55,10 +57,11 @@
                 <section class="sofa-checkout-section"
                          ng-class="{'sofa-checkout-section--disabled': !stepCtrl.steps.billingAddress.active}">
                     <header class="sofa-checkout-section__header">
-                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                        <button class="sofa-checkout-button--edit"
                                 ng-click="stepCtrl.editSection('billingAddress')" ng-show="stepCtrl.steps.billingAddress.mode === 'summary'">
+                            {{::ln.sofaCheckout.edit}}
                         </button>
-                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.billingAddress"></h2>
+                        <h2 class="cc-title--big">{{::ln.sofaCheckout.billingAddress}}</h2>
                     </header>
 
                     <!-- Billing Address EDIT -->
@@ -83,9 +86,10 @@
                     </div>
 
                     <footer class="sofa-checkout-section__footer">
-                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                        <button class="sofa-checkout-button"
                                 ng-click="stepCtrl.proceedFrom('billingAddress')" ng-disabled="!stepCtrl.steps.billingAddress.sameAsShipping && billingAddressForm.$invalid"
                                 ng-show="stepCtrl.steps.billingAddress.mode === 'edit'">
+                                {{::ln.sofaCheckout.nextStep}}
                         </button>
                     </footer>
                 </section>
@@ -94,10 +98,11 @@
                 <section class="sofa-checkout-section"
                          ng-class="{'sofa-checkout-section--disabled': !stepCtrl.steps.paymentMethod.active}">
                     <header class="sofa-checkout-section__header">
-                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                        <button class="sofa-checkout-button--edit"
                                 ng-click="stepCtrl.editSection('paymentMethod')" ng-show="stepCtrl.steps.paymentMethod.mode === 'summary'">
+                            {{::ln.sofaCheckout.edit}}
                         </button>
-                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.paymentMethod"></h2>
+                        <h2 class="cc-title--big">{{::ln.sofaCheckout.paymentMethod}}</h2>
                     </header>
 
                     <!-- Payment Method EDIT -->
@@ -127,9 +132,10 @@
                     </div>
 
                     <footer class="sofa-checkout-section__footer">
-                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.nextStep"
+                        <button class="sofa-checkout-button"
                                 ng-click="stepCtrl.proceedFrom('paymentMethod')" ng-disabled="paymentMethodForm.$invalid"
                                 ng-show="stepCtrl.steps.paymentMethod.mode === 'edit'">
+                                {{::ln.sofaCheckout.nextStep}}
                         </button>
                     </footer>
                 </section>
@@ -138,11 +144,12 @@
                 <section class="sofa-checkout-section"
                          ng-class="{'sofa-checkout-section--disabled': !stepCtrl.steps.shippingMethod.active}">
                     <header class="sofa-checkout-section__header">
-                        <button class="sofa-checkout-button--edit" bo-text="ln.sofaCheckout.edit"
+                        <button class="sofa-checkout-button--edit"
                                 ng-click="stepCtrl.editSection('shippingMethod')"
                                 ng-show="stepCtrl.steps.shippingMethod.hasMethods && stepCtrl.steps.shippingMethod.mode === 'summary'">
+                                {{::ln.sofaCheckout.edit}}
                         </button>
-                        <h2 class="cc-title--big" bo-text="ln.sofaCheckout.shippingMethod"></h2>
+                        <h2 class="cc-title--big">{{::ln.sofaCheckout.shippingMethod}}</h2>
                     </header>
 
                     <!-- Shipping Method EDIT -->
@@ -168,13 +175,14 @@
 
                     <!-- No methods available -->
                     <div ng-show="stepCtrl.steps.shippingMethod.active && !stepCtrl.steps.shippingMethod.hasMethods">
-                        <p class="sofa-message-box--error" bo-text="ln.sofaCheckout.noShippingAvailable"></p>
+                        <p class="sofa-message-box--error">{{::ln.sofaCheckout.noShippingAvailable}}</p>
                     </div>
 
                     <footer class="sofa-checkout-section__footer">
-                        <button class="sofa-checkout-button" bo-text="ln.sofaCheckout.toSummaryStep"
+                        <button class="sofa-checkout-button"
                                 ng-click="stepCtrl.finishSteps()"
                                 ng-disabled="!stepCtrl.steps.shippingMethod.hasMethods || shippingMethodForm.$invalid">
+                                {{::ln.sofaCheckout.toSummaryStep}}
                         </button>
                     </footer>
                 </section>

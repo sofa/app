@@ -1,7 +1,7 @@
-<div class="sofa-side-menu sofa-side-menu--cart" bindonce="ln">
+<div class="sofa-side-menu sofa-side-menu--cart">
 
     <div class="sofa-side-menu__header">
-        <h2 class="sofa-side-menu__heading" bo-text="ln.shoppingCart"></h2>
+        <h2 class="sofa-side-menu__heading">{{::ln.shoppingCart}}</h2>
     </div>
 
     <div class="sofa-side-menu__content">
@@ -12,7 +12,7 @@
                 <div class="sofa-sticky-view__content">
                     <div class="sofa-cart">
 
-                        <p class="sofa-cart__empty-hint" bo-text="ln.cartIsEmpty" ng-show="isEmpty"></p>
+                        <p class="sofa-cart__empty-hint" ng-show="isEmpty">{{::ln.cartIsEmpty}}</p>
 
                         <sofa-editable-cart-list
                                 ng-show="!isEmpty"
@@ -51,10 +51,11 @@
                         </button>
                         <form name="discountCodeForm" novalidate ng-show="discountModel.showForm">
                             <div class="sofa-form-item">
-                                <label for="f_discount_code" class="sofa-hidden" bo-text="ln.discountCode"></label>
+                                <label for="f_discount_code" class="sofa-hidden" >{{::ln.discountCode}}</label>
                                 <input ng-model="discountModel.code" class="sofa-text-field" id="f_discount_code" type="text" />
-                                <button type="button" ng-click="canRedeemCode() && redeemCode()" bo-text="ln.discountCodeButton"
-                                        ng-class="canRedeemCode() ? 'sofa-discount-code__button' : 'sofa-discount-code__button--disabled'">
+                                <button type="button" ng-click="canRedeemCode() && redeemCode()" 
+                                    ng-class="canRedeemCode() ? 'sofa-discount-code__button' : 'sofa-discount-code__button--disabled'">
+                                    {{::ln.discountCodeButton}}
                                 </button>
                             </div>
                         </form>
@@ -69,13 +70,13 @@
                         <a ng-if="cfg.showCheckoutButton"
                            ng-click="navigationService.navigateToCheckout()"
                            class="sofa-cart__checkout-button"
-                           bo-text="ln.checkout">
+                           >
+                           {{::ln.checkout}}
                         </a>
 
                         <a ng-if="cfg.showPayPalButton"
                            ng-click="checkoutWithPayPal()"
-                           class="sofa-cart__paypal-button"
-                           bo-class="configService.getLocalizedPayPalButtonClass()">
+                           class="sofa-cart__paypal-button {{::configService.getLocalizedPayPalButtonClass()}}">
                         </a>
                     </div>
                 </div>

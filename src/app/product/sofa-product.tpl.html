@@ -1,14 +1,14 @@
 <div cc-scroller-announcer class="sofa-view">
     <cc-inject target="aboveContent"></cc-inject>
 
-    <div bindonce="productController.product" ng-if="productController.product">
+    <div ng-if="productController.product">
 
         <div class="sofa-view__header sofa-view__header--product">
             <div class="sofa-up-nav">
                 <sofa-go-back-control category="productController.upCategory"></sofa-go-back-control>
             </div>
             <div class="sofa-view__title">
-                <h1 bo-text="productController.product.name" class="cc-title--huge"></h1>
+                <h1 class="cc-title--huge">{{::productController.product.name}}</h1>
             </div>
         </div>
 
@@ -54,12 +54,12 @@
         <div class="sofa-product-information" ng-if="productController.hasInfo()">
 
             <div class="sofa-product-information__block" ng-if="productController.product.description">
-                <h2 class="cc-title--big" bo-text="ln.productDetails"></h2>
+                <h2 class="cc-title--big">{{::ln.productDetails}}</h2>
                 <div class="cc-cms-content" ng-bind-html="productController.product.description"></div>
             </div>
 
             <div class="sofa-product-information__block" ng-if="productController.product.hasAttributes()">
-                <h2 class="cc-title--big" bo-text="ln.productSpecifications"></h2>
+                <h2 class="cc-title--big">{{::ln.productSpecifications}}</h2>
                 <ul class="cc-properties--block">
                     <li ng-repeat="(key, value) in productController.product.attributes track by key">
                         <span class="cc-properties__key" ng-bind="key"></span>
