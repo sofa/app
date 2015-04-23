@@ -207,7 +207,7 @@ module.exports = {
             'node_modules/sofa-base/src/directives/sofaFullPageView/*.js',
             'node_modules/sofa-base/src/directives/sofaForms/**/*.js',
             'node_modules/sofa-base/src/directives/sofaFooterLinks/*.js',
-            'node_modules/sofa-base/src/directives/sofaCategoryTreeView/*.js',
+            'node_modules/angular-sofa-category-tree-view/dist/sofaCategoryTreeView.js',
             'node_modules/sofa-base/src/directives/sofaGoBackControl/*.js',
             'node_modules/sofa-base/src/directives/sofaLoadingSpinner/*.js',
             'node_modules/sofa-base/src/directives/sofaDateField/*.js',
