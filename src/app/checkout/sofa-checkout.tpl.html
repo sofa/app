@@ -28,7 +28,7 @@
                     <!-- Shipping Address EDIT -->
                     <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.shippingAddress.mode === 'edit'">
                         <div class="sofa-form-item">
-                            <cc-check-box model="stepCtrl.steps.shippingAddress.useParcelStation" label="ln.sofaCheckout.useParcelStation"></cc-check-box>
+                            <sofa-checkbox model="stepCtrl.steps.shippingAddress.useParcelStation" label="ln.sofaCheckout.useParcelStation"></sofa-checkbox>
                         </div>
                         <form name="shippingAddressForm" class="sofa-address-form">
                             <sofa-address-form
@@ -67,7 +67,7 @@
                     <!-- Billing Address EDIT -->
                     <div class="sofa-checkout-section__content" ng-show="stepCtrl.steps.billingAddress.mode === 'edit'">
                         <div class="sofa-form-item">
-                            <cc-check-box model="stepCtrl.steps.billingAddress.sameAsShipping" label="ln.sofaCheckout.sameAsShipping"></cc-check-box>
+                            <sofa-checkbox model="stepCtrl.steps.billingAddress.sameAsShipping" label="ln.sofaCheckout.sameAsShipping"></sofa-checkbox>
                         </div>
 
                         <form name="billingAddressForm" class="sofa-address-form">

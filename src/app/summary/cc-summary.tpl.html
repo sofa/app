@@ -75,21 +75,21 @@
 
         <section class="cc-summary__agreements">
             <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
-            <cc-check-box
+            <sofa-checkbox
                     ng-if="vm.showGeneralAgreement"
-                    class="cc-check-box-on-background"
+                    class="sofa-check-box-on-background"
                     value="vm.generalAgreement"
                     label="ln.combinedAgreement"
                     agreement="ln.combinedAgreement">
-            </cc-check-box>
+            </sofa-checkbox>
 
             <!-- For some reason, ng-show's not working here. However, ng-if is fine, too -->
-            <cc-check-box
+            <sofa-checkbox
                     ng-if="vm.showAgeAgreement"
-                    class="cc-check-box-on-background"
+                    class="sofa-check-box-on-background"
                     value="vm.ageAgreement"
                     label="ln.ageAgreement">
-            </cc-check-box>
+            </sofa-checkbox>
 
             <div class="cc-summary__finish-wrapper">
                 <a  ng-click="acceptedAgreements() && proceed()"

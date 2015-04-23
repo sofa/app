@@ -13,7 +13,7 @@ angular
 
         return {
             restrict: 'A',
-            require: 'ccCheckBox',
+            require: 'sofaCheckbox',
             link: function (scope, $element, attrs, controller) {
                 //ATTENTION: That's pretty the most shittiest code across the
                 //entire code base. But the language files make it not very
@@ -27,7 +27,7 @@ angular
                 //we need to create an entire new label. Otherwise the binding
                 //will just remove our hard inserted value. We need to directly
                 //reach out to the checkbox id. Super ugly yep.
-                oldLabel.after('<label for="cc-check-box-' + controller.getId() + '" class="cc-checkbox__label">' + agreementText + '</label>');
+                oldLabel.after('<label for="sofa-checkbox-' + controller.getId() + '" class="sofa-checkbox__label">' + agreementText + '</label>');
 
                 oldLabel.remove();
 

@@ -181,6 +181,8 @@ module.exports = {
             'node_modules/sofa-base/src/core/**/*.js',
             'node_modules/sofa-base/src/decorators/**/*.js',
             'node_modules/sofa-base/src/filter/**/*.js',
+            'node_modules/angular-sofa-checkbox/dist/sofaCheckBox.js',
+
             'node_modules/sofa-base/src/services/**/*.js',
             'node_modules/sofa-hash-service/dist/*.js',
             'node_modules/sofa-device-service/dist/*.js',
