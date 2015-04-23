@@ -162,27 +162,71 @@ module.exports = {
             'vendor/ui-modal/*.js',
             'vendor/snap/snap.js',
             'vendor/snap/angular-snap.js',
-            'node_modules/sofa-core/dist/*.js',
-            'node_modules/sofa-storages/dist/sofa.storages.js',
-            'node_modules/sofa-logging-service/dist/sofa.loggingService.js',
+            'node_modules/fastclick/lib/fastclick.js',
+            'node_modules/sofa-core/dist/sofaCore.js',
+            'node_modules/sofa-core/dist/sofaCore.angular.js',
+            'node_modules/sofa-requestAnimationFrame/dist/sofaRequestAnimationFrame.js',
+            'node_modules/sofa-requestAnimationFrame/dist/sofaRequestAnimationFrame.angular.js',
+            'node_modules/angular-sofa-include/dist/sofaInclude.js',
+            'node_modules/sofa-storages/dist/sofaStorages.js',
+            'node_modules/sofa-storages/dist/sofaStorages.angular.js',
+            'node_modules/sofa-logging-service/dist/sofaLoggingService.js',
+            'node_modules/sofa-logging-service/dist/sofaLoggingService.angular.js',
             'node_modules/sofa-url-parser-service/dist/sofa.urlParserService.js',
             'node_modules/sofa-url-construction-service/dist/sofa.urlConstructionService.js',
-            'node_modules/sofa-search-service/dist/sofa.searchService.js',
-            'node_modules/sofa-tracking/dist/sofa.tracking.js',
-            'node_modules/sofa-user-service/dist/sofa.userService.js',
-            'node_modules/sofa-basket-service/dist/sofa.basketService.js',
+            'node_modules/sofa-search-service/dist/sofaSearchService.js',
+            'node_modules/sofa-search-service/dist/sofaSearchService.angular.js',
+            'node_modules/sofa-user-service/dist/sofaUserService.js',
+            'node_modules/sofa-user-service/dist/sofaUserService.angular.js',
+            'node_modules/sofa-basket-service/dist/sofaBasketService.js',
+            'node_modules/sofa-basket-service/dist/sofaBasketService.angular.js',
             'node_modules/sofa-wishlist-service/dist/*.js',
-            'node_modules/sofa-image-resizer-service/dist/sofa.imageResizerService.js',
-            'node_modules/sofa-pages-service/dist/sofa.pagesService.js',
-            'node_modules/sofa-checkout-service/dist/sofa.checkoutService.js',
-            'node_modules/sofa-couch-service/dist/sofa.couchService.js',
-            'node_modules/sofa-coupon-service/dist/sofa.couponService.js',
-            'node_modules/sofa-state-resolver-service/dist/*.js',
-            'node_modules/sofa-base/src/core/**/*.js',
-            'node_modules/sofa-base/src/decorators/**/*.js',
-            'node_modules/sofa-base/src/filter/**/*.js',
+            'node_modules/sofa-image-resizer-service/dist/sofaImageResizerService.js',
+            'node_modules/sofa-image-resizer-service/dist/sofaImageResizerService.angular.js',
+            'node_modules/sofa-pages-service/dist/sofaPagesService.js',
+            'node_modules/sofa-pages-service/dist/sofaPagesService.angular.js',
+            'node_modules/sofa-checkout-service/dist/sofaCheckoutService.js',
+            'node_modules/sofa-checkout-service/dist/sofaCheckoutService.angular.js',
+            'node_modules/sofa-couch-service/dist/sofaCouchService.js',
+            'node_modules/sofa-couch-service/dist/sofaCouchService.angular.js',
+            'node_modules/sofa-coupon-service/dist/sofaCouponService.js',
+            'node_modules/sofa-coupon-service/dist/sofaCouponService.angular.js',
+            'node_modules/sofa-state-resolver-service/dist/sofaStateResolverService.js',
+            'node_modules/sofa-state-resolver-service/dist/sofaStateResolverService.angular.js',
+
+            'node_modules/sofa-tracking/dist/sofaTracking.js',
+            'node_modules/sofa-tracking/dist/sofaTracking.angular.js',
+
+            'node_modules/sofa-url-construction-service/dist/sofaUrlConstructionService.js',
+            'node_modules/sofa-url-construction-service/dist/sofaUrlConstructionService.angular.js',
+
+            'node_modules/sofa-url-parser-service/dist/sofaUrlParserService.js',
+            'node_modules/sofa-url-parser-service/dist/sofaUrlParserService.angular.js',
+
+
+            'node_modules/angular-sofa-navigation-service/dist/sofaNavigationService.js',
+
+
+            'node_modules/angular-sofa-locale-service/dist/sofaLocaleService.js',
+
+            'node_modules/angular-sofa-date-field/dist/sofaDateField.js',
+
             'node_modules/angular-sofa-checkbox/dist/sofaCheckBox.js',
 
+            'node_modules/angular-sofa-go-back-control/dist/sofaGoBackControl.js',
+
+            'node_modules/angular-sofa-image-aspect-ratio/dist/sofaImageAspectRatio.js',
+            'node_modules/angular-sofa-image-zoom/dist/sofaImageZoom.js',
+
+            'node_modules/angular-sofa-touch-slider/dist/sofaTouchSlider.js',
+
+            'node_modules/angular-sofa-search-field/dist/sofaSearchField.js',
+
+            'node_modules/angular-sofa-radio-button/dist/sofaRadioButton.js',
+
+
+            'node_modules/angular-sofa-rootscope-decorator/dist/sofaRootscopeDecorator.js',
+            'node_modules/angular-sofa-filter/dist/sofaFilter.js',
             'node_modules/sofa-base/src/services/**/*.js',
             'node_modules/sofa-hash-service/dist/*.js',
             'node_modules/sofa-device-service/dist/*.js',
@@ -198,35 +242,30 @@ module.exports = {
             '!node_modules/angular-sofa-*/dist/*min.js',
             '!node_modules/sofa-*/dist/*min.js',
 
-            'node_modules/sofa-base/src/directives/sofaZippy/*.js',
+            'node_modules/angular-sofa-zippy/dist/sofaZippy.js',
+
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.js',
-            'node_modules/sofa-base/src/directives/sofaInject/*.js',
+            'node_modules/angular-sofa-inject/dist/sofaInject.angular.js',
+            'node_modules/angular-sofa-inject/dist/sofaInject.js',
             'node_modules/sofa-base/src/directives/sofaInclude/*.js',
             'node_modules/sofa-base/src/directives/sofaImageZoom/*.js',
             'node_modules/sofa-base/src/directives/sofaImageAspectRatio/*.js',
-            'node_modules/sofa-base/src/directives/sofaFullPageView/*.js',
-            'node_modules/sofa-base/src/directives/sofaForms/**/*.js',
-            'node_modules/sofa-base/src/directives/sofaFooterLinks/*.js',
+            'node_modules/angular-sofa-full-page-view/dist/sofaFullPageView.js',
+            'node_modules/angular-sofa-footer-links/dist/sofaFooterLinks.js',
             'node_modules/angular-sofa-category-tree-view/dist/sofaCategoryTreeView.js',
             'node_modules/sofa-base/src/directives/sofaGoBackControl/*.js',
-            'node_modules/sofa-base/src/directives/sofaLoadingSpinner/*.js',
+            'node_modules/angular-sofa-loading-spinner/dist/sofaLoadingSpinner.js',
             'node_modules/sofa-base/src/directives/sofaDateField/*.js',
             // TODO: rename to sofa
-            'node_modules/sofa-base/src/directives/ccTemplateCode/*.js'
+            'node_modules/angular-sofa-template-code/dist/sofaTemplateCode.js',
 
             'node_modules/angular-sofa-lazy-validation/dist/sofaLazyValidation.js'
         ],
         tpl: [
             // Hand-picking the directives
-            'node_modules/sofa-base/src/directives/sofaZippy/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaTouchSlider/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaImageZoom/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaFullPageView/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaForms/**/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaFooterLinks/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaCategoryTreeView/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaGoBackControl/*.tpl.html',
-            'node_modules/sofa-base/src/directives/sofaLoadingSpinner/*.tpl.html',
             'node_modules/sofa-base/src/directives/sofaDateField/*.tpl.html'
         ],
         css: [],
