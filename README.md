@@ -1,8 +1,8 @@
 # CouchCommerce App
-This is our App based on our SDK.
+This App is based on our SDK.
 
 ## Prerequisites
-You need to have the following tools installed globally on you machine:
+Given below the following tools should be installed globally on you machine:
 
 - node
 - npm
