@@ -46,11 +46,11 @@ This will run the `build` and the `delta` task. You can now open a browser at `h
 The task also takes care of re-running sub targets during development when changes occur.
 
 ## Configuration
-To configure the app, makes changes in the `build.conf.js` file accordingly.
+To configure the app, make changes in the `build.conf.js` file accordingly.
 
 ## Build Tasks
 
-- `grunt watch` - process `build` tasks and starts a server for you
+- `grunt watch` - process `build` tasks and starts a server for you.
 - `grunt build` - generates a build of the app. This can be run in the browser.
 - `grunt compile` - compiles a built app. The result is a production ready package.
 - `grunt compile-debug` - same as `compile` without uglified JavaScript
@@ -85,7 +85,7 @@ The typical update process goes like this:
 
 **3. Update the app**
 
-- 3.1 update the `package.json` of the app to use the correct versions of the sofa dependencies
+- 3.1 update the `package.json` of the app to use the correct version of the sofa dependencies
 - 3.2 make a commit that roughly goes like this `chore(package.json): updating dependencies`
 - 3.2 in case updates have been made to `sofa-base` make sure to also update the tag dependency in the app's `package.json`
 - 3.3 run `grunt deploy --app-version=VERSION` with the correct version number (e.g. `grunt deploy --app-version=0.50.0`)
